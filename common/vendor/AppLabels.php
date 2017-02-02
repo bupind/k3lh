@@ -15,8 +15,6 @@ namespace common\vendor;
  */
 class AppLabels {
     
-    // coba commit 1
-    
     // BUTTONS
     const BTN_ADD = 'Tambah';
     const BTN_VIEW = 'Lihat';
@@ -232,15 +230,4 @@ class AppLabels {
     const REALIZATION = 'Realisasi';
     const ACCUMULATION = "Akumulasi";
     const ACCUMULATION_MONTH = "Akumulasi Perbulan";
-
-    //Testing
-    /*
-     * percobaa kedua
-     * untuk cek conflict
-     */
-    /*
-     * hasil pertama conflict
-     * bisa di merge secara manual
-     */
-    //TESTTTTTTTT
 }
