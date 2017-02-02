@@ -238,4 +238,8 @@ class AppLabels {
      * percobaa kedua
      * untuk cek conflict
      */
+    /*
+     * hasil pertama conflict
+     * bisa di merge secara manual
+     */
 }
