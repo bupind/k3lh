@@ -234,4 +234,8 @@ class AppLabels {
     const ACCUMULATION_MONTH = "Akumulasi Perbulan";
 
     //Testing
+    /*
+     * percobaa kedua
+     * untuk cek conflict
+     */
 }
