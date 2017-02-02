@@ -1,0 +1,31 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 12, 2016, 10:56:24 PM
+    Author     : Joko Hermanto
+*/
+
+.table > tfoot > tr > td {
+    background: #f2f2f2;
+    font-weight: bold;
+}
+
+input.typeahead, input.tt-query, input.tt-hint, .tt-suggestion { font-size: 14px; }
+.tt-dataset h3 {
+    border-bottom: 1px solid #cccccc;
+    margin: 0 20px 5px;
+    padding: 10px;
+}
+
+.profile-info-name.info-large { width: 150px; }
+.table-responsive { overflow-x: visible; }
+
+.working_plan {}
+.working_plan .progress_1 { background: #A5A5A5; }
+.working_plan .progress_2 { background: #44546A; }
+.working_plan .progress_3 { background: #FF0000; }
+.working_plan .progress_4 { background: #70AD47; }
+.working_plan .progress_5 { background: #7030A0; }

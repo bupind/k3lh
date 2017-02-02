@@ -1,0 +1,338 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 14 Sep 14, 18:21:37
+    Author     : Joko
+*/
+
+.spotlight {
+    left: 45%;
+    bottom: 23em;
+    position: absolute;
+    width: 250px;
+    z-index: 999;
+}
+.light-1, .light-2 { position: absolute; }
+.light-1 { left: 0; bottom: 0; }
+.light-2 { left: 57%; bottom: -7px; }
+
+.thin-spotlight {
+    width: 401px;
+    position: absolute;
+    z-index: 999;
+    bottom: 22em;
+    left: 34%;
+}
+.thin-light-1, .thin-light-2 { position: absolute; }
+.thin-light-1 { left: 0; bottom: 0; }
+.thin-light-2 { right: -6%; bottom: -10px; }
+
+@media (max-width: 1280px) {
+    .spotlight { bottom: 21em; }
+    .light-2 { bottom: 5px; }
+    .thin-spotlight {
+        bottom: 21em;
+        left: 35%;
+    }
+    .thin-light-2 { right: 0; }
+}
+@media (min-width: 1920px) {
+    .spotlight { bottom: 32em; }
+    .light-2 { left: 80%; bottom: 0; }
+    .thin-spotlight {
+        bottom: 31em;
+        left: 28%;
+    }
+    .thin-light-2 { right: -47%; }
+}
+
+.light-1 .animation {
+    animation: left-animate-50d linear 6s;
+    animation-iteration-count: infinite;
+    transform-origin: 50% 100%;
+    -webkit-animation: left-animate-50d linear 6s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-transform-origin: 50% 100%;
+    -moz-animation: left-animate-50d linear 6s;
+    -moz-animation-iteration-count: infinite;
+    -moz-transform-origin: 50% 100%;
+    -o-animation: left-animate-50d linear 6s;
+    -o-animation-iteration-count: infinite;
+    -o-transform-origin: 50% 100%;
+    -ms-animation: left-animate-50d linear 6s;
+    -ms-animation-iteration-count: infinite;
+    -ms-transform-origin: 50% 100%;
+}
+
+.light-2 .animation{
+    animation: right-animate-50d linear 8s;
+    animation-iteration-count: infinite;
+    transform-origin: 50% 100%;
+    -webkit-animation: right-animate-50d linear 8s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-transform-origin: 50% 100%;
+    -moz-animation: right-animate-50d linear 8s;
+    -moz-animation-iteration-count: infinite;
+    -moz-transform-origin: 50% 100%;
+    -o-animation: right-animate-50d linear 8s;
+    -o-animation-iteration-count: infinite;
+    -o-transform-origin: 50% 100%;
+    -ms-animation: right-animate-50d linear 8s;
+    -ms-animation-iteration-count: infinite;
+    -ms-transform-origin: 50% 100%;
+}
+
+.light-3 .animation {
+    animation: left-animate-50d linear 10s;
+    animation-iteration-count: infinite;
+    transform-origin: 50% 100%;
+    -webkit-animation: left-animate-50d linear 10s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-transform-origin: 50% 100%;
+    -moz-animation: left-animate-50d linear 10s;
+    -moz-animation-iteration-count: infinite;
+    -moz-transform-origin: 50% 100%;
+    -o-animation: left-animate-50d linear 10s;
+    -o-animation-iteration-count: infinite;
+    -o-transform-origin: 50% 100%;
+    -ms-animation: left-animate-50d linear 10s;
+    -ms-animation-iteration-count: infinite;
+    -ms-transform-origin: 50% 100%;
+}
+
+.light-4 .animation{
+    animation: right-animate-50d linear 10s;
+    animation-iteration-count: infinite;
+    transform-origin: 50% 100%;
+    -webkit-animation: right-animate-50d linear 10s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-transform-origin: 50% 100%;
+    -moz-animation: right-animate-50d linear 10s;
+    -moz-animation-iteration-count: infinite;
+    -moz-transform-origin: 50% 100%;
+    -o-animation: right-animate-50d linear 10s;
+    -o-animation-iteration-count: infinite;
+    -o-transform-origin: 50% 100%;
+    -ms-animation: right-animate-50d linear 10s;
+    -ms-animation-iteration-count: infinite;
+    -ms-transform-origin: 50% 100%;
+}
+
+.light-5 .animation {
+    animation: left-animate-20d linear 6s;
+    animation-iteration-count: infinite;
+    transform-origin: 50% 100%;
+    -webkit-animation: left-animate-20d linear 6s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-transform-origin: 50% 100%;
+    -moz-animation: left-animate-20d linear 6s;
+    -moz-animation-iteration-count: infinite;
+    -moz-transform-origin: 50% 100%;
+    -o-animation: left-animate-20d linear 6s;
+    -o-animation-iteration-count: infinite;
+    -o-transform-origin: 50% 100%;
+    -ms-animation: left-animate-20d linear 6s;
+    -ms-animation-iteration-count: infinite;
+    -ms-transform-origin: 50% 100%;
+}
+
+.light-6 .animation{
+    animation: right-animate-20d linear 6s;
+    animation-iteration-count: infinite;
+    transform-origin: 50% 100%;
+    -webkit-animation: right-animate-20d linear 6s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-transform-origin: 50% 100%;
+    -moz-animation: right-animate-20d linear 6s;
+    -moz-animation-iteration-count: infinite;
+    -moz-transform-origin: 50% 100%;
+    -o-animation: right-animate-20d linear 6s;
+    -o-animation-iteration-count: infinite;
+    -o-transform-origin: 50% 100%;
+    -ms-animation: right-animate-20d linear 6s;
+    -ms-animation-iteration-count: infinite;
+    -ms-transform-origin: 50% 100%;
+}
+
+.thin-light-1 .animation {
+    animation: left-animate-50d linear 10s;
+    animation-iteration-count: infinite;
+    transform-origin: 50% 100%;
+    -webkit-animation: left-animate-50d linear 10s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-transform-origin: 50% 100%;
+    -moz-animation: left-animate-50d linear 10s;
+    -moz-animation-iteration-count: infinite;
+    -moz-transform-origin: 50% 100%;
+    -o-animation: left-animate-50d linear 10s;
+    -o-animation-iteration-count: infinite;
+    -o-transform-origin: 50% 100%;
+    -ms-animation: left-animate-50d linear 10s;
+    -ms-animation-iteration-count: infinite;
+    -ms-transform-origin: 50% 100%;
+}
+
+.thin-light-2 .animation{
+    animation: right-animate-20d linear 10s;
+    animation-iteration-count: infinite;
+    transform-origin: 50% 100%;
+    -webkit-animation: right-animate-20d linear 10s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-transform-origin: 50% 100%;
+    -moz-animation: right-animate-20d linear 10s;
+    -moz-animation-iteration-count: infinite;
+    -moz-transform-origin: 50% 100%;
+    -o-animation: right-animate-20d linear 10s;
+    -o-animation-iteration-count: infinite;
+    -o-transform-origin: 50% 100%;
+    -ms-animation: right-animate-20d linear 10s;
+    -ms-animation-iteration-count: infinite;
+    -ms-transform-origin: 50% 100%;
+}
+
+.thin-light-3 .animation{
+    animation: left-animate-20d linear 10s;
+    animation-iteration-count: infinite;
+    transform-origin: 50% 100%;
+    -webkit-animation: left-animate-20d linear 10s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-transform-origin: 50% 100%;
+    -moz-animation: left-animate-20d linear 10s;
+    -moz-animation-iteration-count: infinite;
+    -moz-transform-origin: 50% 100%;
+    -o-animation: left-animate-20d linear 10s;
+    -o-animation-iteration-count: infinite;
+    -o-transform-origin: 50% 100%;
+    -ms-animation: left-animate-20d linear 10s;
+    -ms-animation-iteration-count: infinite;
+    -ms-transform-origin: 50% 100%;
+}
+
+.thin-light-4 .animation{
+    animation: right-animate-50d linear 10s;
+    animation-iteration-count: infinite;
+    transform-origin: 50% 100%;
+    -webkit-animation: right-animate-50d linear 10s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-transform-origin: 50% 100%;
+    -moz-animation: right-animate-50d linear 10s;
+    -moz-animation-iteration-count: infinite;
+    -moz-transform-origin: 50% 100%;
+    -o-animation: right-animate-50d linear 10s;
+    -o-animation-iteration-count: infinite;
+    -o-transform-origin: 50% 100%;
+    -ms-animation: right-animate-50d linear 10s;
+    -ms-animation-iteration-count: infinite;
+    -ms-transform-origin: 50% 100%;
+}
+
+/* left animate 50d */
+@keyframes left-animate-50d{
+    0% { left:0px; top:0px; opacity:1; transform:  rotate(-50deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg) ; }
+    50% { transform:  rotate(50deg); }
+    100% { left:0px; top:0px; opacity:1; transform:  rotate(-50deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg);}
+}
+@-moz-keyframes left-animate-50d{
+    0% { left:0px; top:0px; opacity:1; transform:  rotate(-50deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg) ; }
+    50% { transform:  rotate(50deg); }
+    100% { left:0px; top:0px; opacity:1; transform:  rotate(-50deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg);}
+}
+@-webkit-keyframes left-animate-50d {
+    0% { left:0px; top:0px; opacity:1; transform:  rotate(-50deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg) ; }
+    50% { transform:  rotate(50deg); }
+    100% { left:0px; top:0px; opacity:1; transform:  rotate(-50deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg);}
+}
+@-o-keyframes left-animate-50d {
+    0% { left:0px; top:0px; opacity:1; transform:  rotate(-50deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg) ; }
+    50% { transform:  rotate(50deg); }
+    100% { left:0px; top:0px; opacity:1; transform:  rotate(-50deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg);}
+}
+@-ms-keyframes left-animate-50d {
+    0% { left:0px; top:0px; opacity:1; transform:  rotate(-50deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg) ; }
+    50% { transform:  rotate(50deg); }
+    100% { left:0px; top:0px; opacity:1; transform:  rotate(-50deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg);}
+}
+
+/* left animate 20d */
+@keyframes left-animate-20d{
+    0% { left:0px; top:0px; opacity:1; transform:  rotate(-20deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg) ; }
+    50% { transform:  rotate(20deg); }
+    100% { left:0px; top:0px; opacity:1; transform:  rotate(-20deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg);}
+}
+@-moz-keyframes left-animate-20d{
+    0% { left:0px; top:0px; opacity:1; transform:  rotate(-20deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg) ; }
+    50% { transform:  rotate(20deg); }
+    100% { left:0px; top:0px; opacity:1; transform:  rotate(-20deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg);}
+}
+@-webkit-keyframes left-animate-20d {
+    0% { left:0px; top:0px; opacity:1; transform:  rotate(-20deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg) ; }
+    50% { transform:  rotate(20deg); }
+    100% { left:0px; top:0px; opacity:1; transform:  rotate(-20deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg);}
+}
+@-o-keyframes left-animate-20d {
+    0% { left:0px; top:0px; opacity:1; transform:  rotate(-20deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg) ; }
+    50% { transform:  rotate(20deg); }
+    100% { left:0px; top:0px; opacity:1; transform:  rotate(-20deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg);}
+}
+@-ms-keyframes left-animate-20d {
+    0% { left:0px; top:0px; opacity:1; transform:  rotate(-20deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg) ; }
+    50% { transform:  rotate(20deg); }
+    100% { left:0px; top:0px; opacity:1; transform:  rotate(-20deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg);}
+}
+
+/* right animate 50d */
+@keyframes right-animate-50d{
+    0% { left:0px; top:0px; opacity:1; transform:  rotate(50deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg) ; }
+    50% { transform:  rotate(-50deg); }
+    100% { left:0px; top:0px; opacity:1; transform:  rotate(50deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg);}
+}
+@-moz-keyframes right-animate-50d{
+    0% { left:0px; top:0px; opacity:1; transform:  rotate(50deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg) ; }
+    50% { transform:  rotate(-50deg); }
+    100% { left:0px; top:0px; opacity:1; transform:  rotate(50deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg);}
+}
+@-webkit-keyframes right-animate-50d {
+    0% { left:0px; top:0px; opacity:1; transform:  rotate(50deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg) ; }
+    50% { transform:  rotate(-50deg); }
+    100% { left:0px; top:0px; opacity:1; transform:  rotate(50deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg);}
+}
+@-o-keyframes right-animate-50d {
+    0% { left:0px; top:0px; opacity:1; transform:  rotate(50deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg) ; }
+    50% { transform:  rotate(-50deg); }
+    100% { left:0px; top:0px; opacity:1; transform:  rotate(50deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg);}
+}
+@-ms-keyframes right-animate-50d {
+    0% { left:0px; top:0px; opacity:1; transform:  rotate(50deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg) ; }
+    50% { transform:  rotate(-50deg); }
+    100% { left:0px; top:0px; opacity:1; transform:  rotate(50deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg);}
+}
+
+/* right animate 20d */
+@keyframes right-animate-20d{
+    0% { left:0px; top:0px; opacity:1; transform:  rotate(20deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg) ; }
+    50% { transform:  rotate(-20deg); }
+    100% { left:0px; top:0px; opacity:1; transform:  rotate(20deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg);}
+}
+@-moz-keyframes right-animate-20d{
+    0% { left:0px; top:0px; opacity:1; transform:  rotate(20deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg) ; }
+    50% { transform:  rotate(-20deg); }
+    100% { left:0px; top:0px; opacity:1; transform:  rotate(20deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg);}
+}
+@-webkit-keyframes right-animate-20d {
+    0% { left:0px; top:0px; opacity:1; transform:  rotate(20deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg) ; }
+    50% { transform:  rotate(-20deg); }
+    100% { left:0px; top:0px; opacity:1; transform:  rotate(20deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg);}
+}
+@-o-keyframes right-animate-20d {
+    0% { left:0px; top:0px; opacity:1; transform:  rotate(20deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg) ; }
+    50% { transform:  rotate(-20deg); }
+    100% { left:0px; top:0px; opacity:1; transform:  rotate(20deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg);}
+}
+@-ms-keyframes right-animate-20d {
+    0% { left:0px; top:0px; opacity:1; transform:  rotate(20deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg) ; }
+    50% { transform:  rotate(-20deg); }
+    100% { left:0px; top:0px; opacity:1; transform:  rotate(20deg) scaleX(1) scaleY(1) skewX(0deg) skewY(0deg);}
+}

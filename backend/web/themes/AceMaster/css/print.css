@@ -1,0 +1,43 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 12, 2016, 10:56:24 PM
+    Author     : Joko Hermanto
+*/
+
+body {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 11px;
+    background-color: #FFFFFF;
+    left:5px;
+    right:5px;
+    height: 5.51in ;
+    width: 8.50in;
+}
+
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+p { margin: 0; }
+
+table {
+    width: 100%;
+    margin-bottom: 10px;
+}
+table.border { border: 1px solid #000000; }
+table.border-bottom { border-bottom: 1px double #000000; }
+table tr {}
+table tfoot tr td {
+    font-weight: bold;
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    padding: 3px;
+}
+table tr td { padding: 0 3px; }
+table tr th {
+    border-bottom: 1px solid #000000;
+    padding-bottom: 3px;
+}
