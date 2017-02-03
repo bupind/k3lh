@@ -14,9 +14,7 @@ namespace common\vendor;
  * @author Joko Hermanto
  */
 class AppLabels {
-    
-    // coba commit 1
-    
+
     // BUTTONS
     const BTN_ADD = 'Tambah';
     const BTN_VIEW = 'Lihat';
@@ -232,8 +230,5 @@ class AppLabels {
     const REALIZATION = 'Realisasi';
     const ACCUMULATION = "Akumulasi";
     const ACCUMULATION_MONTH = "Akumulasi Perbulan";
-
-    //Testing
-    //TESTTTTTTTT
-    //TESTTTT
+    
 }
