@@ -11,8 +11,7 @@ use common\vendor\AppLabels;
  *
  * @property integer $id
  * @property integer $smk3_title_id
- * @property integer $subtitle_number
- * @property string $subtitle
+ * @property string $ssub_subtitle
  * @property integer $created_by
  * @property integer $created_at
  * @property integer $updated_by
@@ -37,9 +36,9 @@ class Smk3Subtitle extends AppModel
     public function rules()
     {
         return [
-            [['smk3_title_id', 'subtitle_number', 'subtitle'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
-            [['smk3_title_id', 'subtitle_number'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
-            [['subtitle'], 'string', 'max' => 1000],
+            [['smk3_title_id', 'ssub_subtitle'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
+            [['smk3_title_id'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
+            [['ssub_subtitle'], 'string', 'max' => 1000],
             [['smk3_title_id'], 'exist', 'skipOnError' => true, 'targetClass' => Smk3Title::className(), 'targetAttribute' => ['smk3_title_id' => 'id']],
         ];
     }
@@ -52,8 +51,7 @@ class Smk3Subtitle extends AppModel
         return [
             'id' => 'ID',
             'smk3_title_id' => AppLabels::SMK3_TITLE,
-            'subtitle_number' => AppLabels::SMK3_NUMBER_SUBTITLE,
-            'subtitle' => AppLabels::SMK3_SUBTITLE,
+            'ssub_subtitle' => AppLabels::SMK3_SUBTITLE,
         ];
     }
 

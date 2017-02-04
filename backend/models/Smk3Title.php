@@ -10,8 +10,7 @@ use common\vendor\AppLabels;
  * This is the model class for table "smk3_title".
  *
  * @property integer $id
- * @property integer $title_number
- * @property string $title
+ * @property string $sttl_title
  * @property integer $created_by
  * @property integer $created_at
  * @property integer $updated_by
@@ -35,9 +34,8 @@ class Smk3Title extends AppModel
     public function rules()
     {
         return [
-            [['title_number', 'title'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
-            [['title_number'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
-            [['title'], 'string', 'max' => 1000],
+            [[ 'sttl_title'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
+            [['sttl_title'], 'string', 'max' => 1000],
         ];
     }
 
@@ -48,8 +46,7 @@ class Smk3Title extends AppModel
     {
         return [
             'id' => 'ID',
-            'title_number' => AppLabels::SMK3_NUMBER_TITLE,
-            'title' => AppLabels::SMK3_TITLE,
+            'sttl_title' => AppLabels::SMK3_TITLE,
         ];
     }
 

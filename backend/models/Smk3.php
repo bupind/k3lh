@@ -12,8 +12,8 @@ use common\vendor\AppLabels;
  * @property integer $id
  * @property integer $sector_id
  * @property integer $power_plant_id
- * @property integer $k3l_year
- * @property integer $semester
+ * @property integer $smk3_year
+ * @property integer $smk3_semester
  * @property integer $created_by
  * @property integer $created_at
  * @property integer $updated_by
@@ -21,7 +21,7 @@ use common\vendor\AppLabels;
  *
  * @property PowerPlant $powerPlant
  * @property Sector $sector
- * @property Smk3Answer[] $smk3Answers
+ * @property Smk3Detail[] $smk3Details
  */
 class Smk3 extends AppModel
 {
@@ -39,8 +39,8 @@ class Smk3 extends AppModel
     public function rules()
     {
         return [
-            [['sector_id', 'power_plant_id', 'k3l_year', 'semester'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
-            [['sector_id', 'power_plant_id', 'k3l_year', 'semester'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
+            [['sector_id', 'power_plant_id', 'smk3_year', 'smk3_semester'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
+            [['sector_id', 'power_plant_id', 'smk3_year', 'smk3_semester'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
             [['power_plant_id'], 'exist', 'skipOnError' => true, 'targetClass' => PowerPlant::className(), 'targetAttribute' => ['power_plant_id' => 'id']],
             [['sector_id'], 'exist', 'skipOnError' => true, 'targetClass' => Sector::className(), 'targetAttribute' => ['sector_id' => 'id']],
         ];
@@ -55,8 +55,8 @@ class Smk3 extends AppModel
             'id' => 'ID',
             'sector_id' => AppLabels::SECTOR,
             'power_plant_id' => AppLabels::POWER_PLANT,
-            'k3l_year' => AppLabels::YEAR,
-            'semester' => AppLabels::SEMESTER,
+            'smk3_year' => AppLabels::YEAR,
+            'smk3_semester' => AppLabels::SEMESTER,
         ];
     }
 
@@ -81,6 +81,6 @@ class Smk3 extends AppModel
      */
     public function getSmk3Answers()
     {
-        return $this->hasMany(Smk3Answer::className(), ['smk3_id' => 'id']);
+        return $this->hasMany(Smk3Detail::className(), ['smk3_id' => 'id']);
     }
 }
