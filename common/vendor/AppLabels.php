@@ -229,6 +229,17 @@ class AppLabels {
     const PLAN = 'Rencana';
     const REALIZATION = 'Realisasi';
     const ACCUMULATION = "Akumulasi";
-    const ACCUMULATION_MONTH = "Akumulasi Perbulan";
+    const ACCUMULATION_MONTH = "Akumulasi Perbulan";\
+
+    //SMK3
+    const SEMESTER = 'SEMESTER';
+    const SMK3_TITLE = 'Judul SMK3';
+    const SMK3_SUBTITLE = 'Sub-Judul SMK3';
+    const SMK3_NUMBER_TITLE = 'Nomor Judul SMK3';
+    const SMK3_NUMBER_SUBTITLE = 'Nomor Sub-Judul SMK3';
+    const CRITERIA = 'Kriteria';
+    const SMK3 = 'SMK3';
+    const ANSWER = 'JAWABAN';
+    const CRITERIA_NUMBER = 'Nomor Kriteria';
     
 }
