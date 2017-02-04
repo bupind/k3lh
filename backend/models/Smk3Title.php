@@ -34,7 +34,7 @@ class Smk3Title extends AppModel
     public function rules()
     {
         return [
-            [[ 'sttl_title'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
+            [['sttl_title'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
             [['sttl_title'], 'string', 'max' => 1000],
         ];
     }
