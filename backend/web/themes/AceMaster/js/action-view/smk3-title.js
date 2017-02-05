@@ -57,12 +57,10 @@ jQuery(document).ready(function () {
 
     function insertCriteria(subtitleIndex, criteriaIndex) {
         criteriaDiv = $('#criteriaDiv'+subtitleIndex+'');
-        sb.append('<div id="criteriaDiv'+subtitleIndex+'">');
         sb.append('<div class="form-group">');
         sb.append('<label for="criteria'+criteriaIndex+'" class="col-sm-3 control-label">Kriteria '+subtitleIndex+'.'+criteriaIndex+'</label>');
         sb.append('<div class="col-sm-9">');
         sb.append('<textarea class="form-control" name="Smk3Criteria['+subtitleIndex+']['+criteriaIndex+'][sctr_criteria]" rows="5"></textarea>');
-        sb.append('</div>');
         sb.append('</div>');
         sb.append('</div>');
         criteriaDiv.append(sb.toString());
