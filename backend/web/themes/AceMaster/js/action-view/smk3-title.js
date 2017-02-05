@@ -5,53 +5,63 @@ jQuery(document).ready(function () {
     var baseUrl = $('#baseUrl').val(),
         sb = new StringBuilder(),
         form = $('#smk3-title-form'),
-        titleIndex = $('div.addTitleItem').length+1;
-        subtitleIndex = $('.addSubtitleItem').length+1;
-        criteriaIndex = $('#addCriteriaItem').length;
-        titleDiv = $('#titleDiv');
         subtitleDiv = $('#subtitleDiv');
-        criteriaDiv = $('.criteriaDiv');
 
     chr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-    $('#addTitleButton').click(function(){
-        insertTitle();
-        //titleIndex++;
+    $('.addSubtitleButton').click(function(){
+        currentSubtitleNo = takeNumber($(this).attr('id'), 8, 9);
+        currentSubtitleNo++;
+        newButton = "subtitle"+currentSubtitleNo;
+        $(this).attr('id', newButton);
+        insertSubtitle(currentSubtitleNo);
     });
 
-    $('#addSubtitleButton').click(function(){
-        subtitleIndex++;
-        insertSubtitle();
+    $(document).on('click', ".addCriteriaButton", function(){
+        currentCriteriaNo = takeNumber($(this).attr('id'), 9, 10);
+        currentSubtitleNo = takeNumber($(this).attr('id'), 8, 9);
+        currentCriteriaNo++;
+        newButton = "criteria"+currentSubtitleNo+currentCriteriaNo;
+        $(this).attr('id', newButton);
+        insertCriteria(currentSubtitleNo, currentCriteriaNo);
     });
 
-    $('#addCriteriaButton').click(function(){
-        //criteriaIndex++;
-        insertCriteria();
-    });
-
-
-    function insertTitle() {
-        sb.append(titleIndex);
-        titleDiv.append(sb.toString());
-        sb.clear();
-    }
-
-    function insertSubtitle() {
+    function insertSubtitle(currentSubtitleNo) {
+        sb.append('<div class="form-group">');
+        sb.append('<label for="subtitle" class="col-sm-3 control-label"> Sub-Judul SMK3 '+currentSubtitleNo+' </label>');
+        sb.append('<div class="col-sm-9">');
+        sb.append('<input class="form-control" name="Smk3Subtitle['+currentSubtitleNo+'][ssub_subtitle]" type="text">');
+        sb.append('</div>');
+        sb.append('</div>');
+        sb.append('<div id="criteriaDiv'+currentSubtitleNo+'">');
+        sb.append('<div class="form-group">');
+        sb.append('<label for="criteria'+1+'" class="col-sm-3 control-label">Kriteria '+currentSubtitleNo+'.'+1+'</label>');
+        sb.append('<div class="col-sm-9">');
+        sb.append('<textarea class="form-control" name="Smk3Criteria['+currentSubtitleNo+']['+1+'][sctr_criteria]" rows="5"></textarea>');
+        sb.append('</div>');
+        sb.append('</div>');
+        sb.append('</div>');
+        sb.append('<div class="row">');
+        sb.append('<div class="col-xs-12 col-sm-4 col-sm-offset-8">');
+        sb.append('<button id="criteria'+currentSubtitleNo+'1" class="addCriteriaButton btn btn-info btn-sm col-sm-8" type="button">Tambah Kriteria</button>');
+        sb.append('</div>');
+        sb.append('</div>');
+        sb.append('<hr/>');
         subtitleDiv.append(sb.toString());
         sb.clear();
     }
 
-    function takeNumber(str ,howLong){
-        return str.substring(howLong);
+    function takeNumber(str , start, end){
+        return str.substring(start, end);
     }
 
-    function insertCriteria() {
-        sb.append(takeNumber());
-        sb.append('<div class="criteriaDiv">');
-        sb.append('<div id="addCriteriaItem" class="form-group">');
-        sb.append('<label for="criteria'+criteriaIndex+'" class="col-sm-3 control-label">Kriteria '+titleIndex+'.'+subtitleIndex+'.'+criteriaIndex+'</label>');
+    function insertCriteria(subtitleIndex, criteriaIndex) {
+        criteriaDiv = $('#criteriaDiv'+subtitleIndex+'');
+        sb.append('<div id="criteriaDiv'+subtitleIndex+'">');
+        sb.append('<div class="form-group">');
+        sb.append('<label for="criteria'+criteriaIndex+'" class="col-sm-3 control-label">Kriteria '+subtitleIndex+'.'+criteriaIndex+'</label>');
         sb.append('<div class="col-sm-9">');
-        sb.append('<textarea id="criteria" class="form-control" name="Smk3Criteria['+criteriaIndex+'][sctr_criteria]" rows="5"></textarea>');
+        sb.append('<textarea class="form-control" name="Smk3Criteria['+subtitleIndex+']['+criteriaIndex+'][sctr_criteria]" rows="5"></textarea>');
         sb.append('</div>');
         sb.append('</div>');
         sb.append('</div>');
