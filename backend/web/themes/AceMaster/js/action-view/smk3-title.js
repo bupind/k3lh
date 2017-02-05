@@ -27,17 +27,20 @@ jQuery(document).ready(function () {
     });
 
     function insertSubtitle(currentSubtitleNo) {
+        sb.append('<div class="parent">');
         sb.append('<div class="form-group">');
-        sb.append('<label for="subtitle" class="col-sm-3 control-label"> Sub-Judul SMK3 '+currentSubtitleNo+' </label>');
+        sb.append('<label for="subtitle" class="col-sm-3 control-label"> Sub-Judul SMK3</label>');
         sb.append('<div class="col-sm-9">');
         sb.append('<input class="form-control" name="Smk3Subtitle['+currentSubtitleNo+'][ssub_subtitle]" type="text">');
+        sb.append('<button type="button" class="btn btn-xs btn-danger btn-remove">Hapus Kriteria</button>');
         sb.append('</div>');
         sb.append('</div>');
         sb.append('<div id="criteriaDiv'+currentSubtitleNo+'">');
         sb.append('<div class="form-group">');
-        sb.append('<label for="criteria'+1+'" class="col-sm-3 control-label">Kriteria '+currentSubtitleNo+'.'+1+'</label>');
+        sb.append('<label for="criteria'+1+'" class="col-sm-3 control-label">Kriteria</label>');
         sb.append('<div class="col-sm-9">');
         sb.append('<textarea class="form-control" name="Smk3Criteria['+currentSubtitleNo+']['+1+'][sctr_criteria]" rows="5"></textarea>');
+        sb.append('<button type="button" class="btn btn-xs btn-danger btn-remove">Hapus Kriteria</button>');
         sb.append('</div>');
         sb.append('</div>');
         sb.append('</div>');
@@ -47,6 +50,7 @@ jQuery(document).ready(function () {
         sb.append('</div>');
         sb.append('</div>');
         sb.append('<hr/>');
+        sb.append('</div>');
         subtitleDiv.append(sb.toString());
         sb.clear();
     }
@@ -57,10 +61,13 @@ jQuery(document).ready(function () {
 
     function insertCriteria(subtitleIndex, criteriaIndex) {
         criteriaDiv = $('#criteriaDiv'+subtitleIndex+'');
+        sb.append('<div class="parent">');
         sb.append('<div class="form-group">');
-        sb.append('<label for="criteria'+criteriaIndex+'" class="col-sm-3 control-label">Kriteria '+subtitleIndex+'.'+criteriaIndex+'</label>');
+        sb.append('<label for="criteria'+criteriaIndex+'" class="col-sm-3 control-label">Kriteria</label>');
         sb.append('<div class="col-sm-9">');
         sb.append('<textarea class="form-control" name="Smk3Criteria['+subtitleIndex+']['+criteriaIndex+'][sctr_criteria]" rows="5"></textarea>');
+        sb.append('<button type="button" class="btn btn-xs btn-danger btn-remove">Hapus Kriteria</button>');
+        sb.append('</div>');
         sb.append('</div>');
         sb.append('</div>');
         criteriaDiv.append(sb.toString());
@@ -69,7 +76,7 @@ jQuery(document).ready(function () {
     }
 
     $(document).on('click', '.btn-remove', function(){
-        $(this).closest('tr').remove();
+        $(this).closest('.parent').remove();
     });
 
     $(document).on('click', '.btn-remove-ajax', function(){

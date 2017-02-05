@@ -34,7 +34,7 @@ $form = ActiveForm::begin([
     <div class="row">
         <div class="col-xs-12 col-md-6 col-md-offset-3">
             <div class="form-group">
-                <label for="title" class="col-sm-3 control-label"><?= AppLabels::SMK3_TITLE ?> 1</label>
+                <label for="title" class="col-sm-3 control-label"><?= AppLabels::SMK3_TITLE ?> </label>
                 <div class="col-sm-9">
                     <?= Html::textInput("Smk3Title[sttl_title]", null, [ 'id' => 'title', 'class' => 'form-control']); ?>
                 </div>
@@ -42,28 +42,33 @@ $form = ActiveForm::begin([
 
             <hr/>
             <div id="subtitleDiv">
-                <div  class="form-group">
-                    <label for="subtitle" class="col-sm-3 control-label"> <?= AppLabels::SMK3_SUBTITLE ?> 1</label>
-                    <div class="col-sm-9">
-                        <?= Html::textInput("Smk3Subtitle[1][ssub_subtitle]", null, ['id' => 'subtitle', 'class' => 'form-control']); ?>
-                    </div>
-                </div>
-
-                <div id="criteriaDiv1">
-                    <div class="form-group">
-                        <label for="criteria" class="col-sm-3 control-label"> <?= AppLabels::CRITERIA ?> 1.1</label>
+                <div class="parent">
+                    <div  class="form-group">
+                        <label for="subtitle" class="col-sm-3 control-label"> <?= AppLabels::SMK3_SUBTITLE ?></label>
                         <div class="col-sm-9">
-                            <?= Html::textArea("Smk3Criteria[1][1][sctr_criteria]", null, ['rows' => '5', 'id' => 'criteria', 'class' => 'form-control']); ?>
+                            <?= Html::textInput("Smk3Subtitle[1][ssub_subtitle]", null, ['id' => 'subtitle', 'class' => 'form-control']); ?>
+                            <button type="button" class="btn btn-xs btn-danger btn-remove">Hapus Subtitle</button>
                         </div>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-xs-12 col-sm-4 col-sm-offset-8">
-                        <?= Html::button(sprintf('%s %s', AppLabels::BTN_ADD, AppLabels::CRITERIA),['id' => 'criteria11', 'class' => 'addCriteriaButton btn btn-info btn-sm col-sm-8']); ?>
+                    <div id="criteriaDiv1">
+                        <div class="parent">
+                            <div class="form-group">
+                                <label for="criteria" class="col-sm-3 control-label"> <?= AppLabels::CRITERIA ?> </label>
+                                <div class="col-sm-9">
+                                    <?= Html::textArea("Smk3Criteria[1][1][sctr_criteria]", null, ['rows' => '5', 'id' => 'criteria', 'class' => 'form-control']); ?>
+                                    <button type="button" class="btn btn-xs btn-danger btn-remove">Hapus Kriteria</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-4 col-sm-offset-8">
+                            <?= Html::button(sprintf('%s %s', AppLabels::BTN_ADD, AppLabels::CRITERIA),['id' => 'criteria11', 'class' => 'addCriteriaButton btn btn-info btn-sm col-sm-8']); ?>
+                        </div>
+                    </div>
+                    <hr/>
                 </div>
-                <hr/>
             </div>
 
 
