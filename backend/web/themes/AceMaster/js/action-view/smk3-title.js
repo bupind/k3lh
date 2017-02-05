@@ -82,9 +82,10 @@ jQuery(document).ready(function () {
     $(document).on('click', '.btn-remove-ajax', function(){
         if (confirm('Data akan terhapus secara permanen. Teruskan?')) {
             var id = $(this).data('id'),
-                controller = $(this).data('controller'),
-                tr = $(this).closest('tr');
+                controller = $(this).data('controller');
 
+                parent = $(this).closest('.parent');
+            alert(controller);
             $.ajax({
                 url: baseUrl + '/'+ controller +'/ajax-delete',
                 dataType: "json",
@@ -92,8 +93,7 @@ jQuery(document).ready(function () {
                 data: {id: id},
                 success: function(data) {
                     if (data !== false) {
-                        tr.remove();
-                        form.calx('update').calx('calculate');
+                        parent.remove();
                     } else {
                         alert('Proses hapus data gagal.');
                     }

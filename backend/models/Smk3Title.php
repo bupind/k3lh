@@ -5,6 +5,7 @@ namespace backend\models;
 use Yii;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
+use yii\base\Exception;
 
 /**
  * This is the model class for table "smk3_title".
@@ -65,34 +66,33 @@ class Smk3Title extends AppModel
                 throw new Exception();
             }
 
-            $budgetMonitoringLHId = $this->id;
+            $smk3TitleId = $this->id;
 
-            if (isset($request['BudgetMonitoringDetail'])) {
-                foreach ($request['BudgetMonitoringDetail'] as $key => $detail) {
-                    if (isset($detail['id'])) {
-                        $detailTuple = BudgetMonitoringDetail::findOne(['id' => $detail['id']]);
+            if (isset($request['Smk3Subtitle'])) {
+                foreach ($request['Smk3Subtitle'] as $key => $subtitle) {
+                    if (isset($subtitle['id'])) {
+                        $subtitleTuple = Smk3Subtitle::findOne(['id' => $subtitle['id']]);
                     } else {
-                        $detailTuple = new BudgetMonitoringDetail();
-                        $detailTuple->budget_monitoring_id = $budgetMonitoringLHId;
+                        $subtitleTuple = new Smk3Subtitle();
+                        $subtitleTuple->smk3_title_id = $smk3TitleId;
                     }
 
-                    if (!$detailTuple->load(['BudgetMonitoringDetail' => $detail]) || !$detailTuple->save()) {
-                        $errors = array_merge($errors, $detailTuple->errors);
+                    if (!$subtitleTuple->load(['Smk3Subtitle' => $subtitle]) || !$subtitleTuple->save()) {
+                        $errors = array_merge($errors, $subtitleTuple->errors);
                         throw new Exception();
                     }
 
-                    if (isset($request['BudgetMonitoringMonth'][$key])) {
-                        foreach ($request['BudgetMonitoringMonth'][$key] as $key2 => $month) {
-                            if (isset($month['id'])) {
-                                $monthTuple = BudgetMonitoringMonth::findOne(['id' => $month['id']]);
+                    if (isset($request['Smk3Criteria'][$key])) {
+                        foreach ($request['Smk3Criteria'][$key] as $key2 => $criteria) {
+                            if (isset($criteria['id'])) {
+                                $criteriaTuple = Smk3Criteria::findOne(['id' => $criteria['id']]);
                             } else {
-                                $monthTuple = new BudgetMonitoringMonth();
-                                $monthTuple->budget_monitoring_detail_id = $detailTuple->id;
-                                $monthTuple->bmv_month = $key2 + 1;
+                                $criteriaTuple = new Smk3Criteria();
+                                $criteriaTuple->smk3_subtitle_id = $subtitleTuple->id;
                             }
 
-                            if (!$monthTuple->load(['BudgetMonitoringMonth' => $month]) || !$monthTuple->save()) {
-                                $errors = array_merge($errors, $monthTuple->errors);
+                            if (!$criteriaTuple->load(['Smk3Criteria' => $criteria]) || !$criteriaTuple->save()) {
+                                $errors = array_merge($errors, $criteriaTuple->errors);
                                 throw new Exception();
                             }
                         }
