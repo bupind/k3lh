@@ -53,8 +53,6 @@ class Smk3Title extends AppModel
 
     public function saveTransactional() {
         $request = Yii::$app->request->post();
-        d($request);
-        exit;
         $transaction = Yii::$app->db->beginTransaction();
         $errors = [];
 

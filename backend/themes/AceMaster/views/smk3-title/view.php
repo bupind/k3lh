@@ -1,40 +1,48 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\DetailView;
+use common\vendor\AppLabels;
+use app\components\ViewButton;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Smk3Title */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Smk3 Titles', 'url' => ['index']];
+$this->title = sprintf("%s %s", AppLabels::BTN_VIEW, AppLabels::SMK3_TITLE);
+$this->params['breadcrumbs'][] = ['label' => AppLabels::SMK3_TITLE, 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="smk3-title-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="page-header">
+        <h1><?= Html::encode($this->title) ?></h1>
+    </div>
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'sttl_title',
-            'created_by',
-            'created_at',
-            'updated_by',
-            'updated_at',
-        ],
-    ]) ?>
-
+    <div class="col-sm-12">
+        <div class="widget-box">
+            <div class="widget-header widget-header-flat">
+                <h4 class="widget-title"><?= $model->sttl_title ?></h4>
+            </div>
+            <div class="widget-body">
+                <div class="widget-main">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <ol>
+                                <?php foreach ($model->smk3Subtitles as $key => $subtitle): ?>
+                                    <li>
+                                        <p><?= $subtitle->ssub_subtitle; ?></p>
+                                        <ol>
+                                            <?php foreach($subtitle->smk3Criterias as $key1 => $criteria): ?>
+                                                <li><p><?= $criteria->sctr_criteria ?></p></li>
+                                            <?php  endforeach; ?>
+                                        </ol>
+                                    </li>
+                                <?php  endforeach; ?>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?= ViewButton::widget(['model' => $model]); ?>
 </div>

@@ -81,7 +81,7 @@ $form = ActiveForm::begin([
             </div>
         </div>
     </div>
-<?php } ?>
+<?php } else{ ?>
 
 <div id="titleDiv">
     <div class="row">
@@ -112,17 +112,17 @@ $form = ActiveForm::begin([
                                         <label for="criteria" class="col-sm-3 control-label"> <?= AppLabels::CRITERIA ?> </label>
                                         <div class="col-sm-9">
                                             <?= Html::activeHiddenInput($criteria, "[$key][$key1]id"); ?>
-                                            <?= Html::activeTextArea($criteria, "[$key][$key1]sctr_criteria", ['class' => 'form-control']); ?>
+                                            <?= Html::activeTextArea($criteria, "[$key][$key1]sctr_criteria", ['rows' => '5', 'class' => 'form-control']); ?>
                                             <button type="button" class="btn btn-xs btn-danger btn-remove-ajax">Hapus Kriteria</button>
                                         </div>
                                     </div>
                                 </div>
+                                <?php $buttonId = "criteria" . ($key+1) . ($key1+1); ?>
                             <?php  endforeach; ?>
                         </div>
-
                         <div class="row">
                             <div class="col-xs-12 col-sm-4 col-sm-offset-8">
-                                <?= Html::button(sprintf('%s %s', AppLabels::BTN_ADD, AppLabels::CRITERIA),['id' => 'criteria11', 'class' => 'addCriteriaButton btn btn-info btn-sm col-sm-8']); ?>
+                                <?= Html::button(sprintf('%s %s', AppLabels::BTN_ADD, AppLabels::CRITERIA),['id' => $buttonId, 'class' => 'addCriteriaButton btn btn-info btn-sm col-sm-8']); ?>
                             </div>
                         </div>
                         <hr/>
@@ -138,15 +138,7 @@ $form = ActiveForm::begin([
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
+<?php } ?>
 
 <div class="row">
     <div class="col-xs-12 form-actions text-center">
