@@ -95,7 +95,7 @@ $form = ActiveForm::begin([
 
             <hr/>
             <div id="subtitleDiv">
-                <?php foreach ($model->smk3Subtitles as $key => $subtitle): ?>
+                <?php foreach ($model->smk3Subtitles as $key => $subtitle): $key+=1; ?>
                     <div class="parent">
                         <div  class="form-group">
                             <label for="subtitle" class="col-sm-3 control-label"> <?= AppLabels::SMK3_SUBTITLE ?></label>
@@ -105,8 +105,8 @@ $form = ActiveForm::begin([
                                 <button type="button" class="btn btn-xs btn-danger btn-remove-ajax">Hapus Subtitle</button>
                             </div>
                         </div>
-                        <div id="criteriaDiv1">
-                            <?php foreach($subtitle->smk3Criterias as $key1 => $criteria): ?>
+                        <div id="criteriaDiv<?= ($key) ?>">
+                            <?php foreach($subtitle->smk3Criterias as $key1 => $criteria): $key1+=1; ?>
                                 <div class="parent">
                                     <div class="form-group">
                                         <label for="criteria" class="col-sm-3 control-label"> <?= AppLabels::CRITERIA ?> </label>
@@ -117,22 +117,23 @@ $form = ActiveForm::begin([
                                         </div>
                                     </div>
                                 </div>
-                                <?php $buttonId = "criteria" . ($key+1) . ($key1+1); ?>
+                                <?php $buttonCriteriaId = "criteria" . ($key) . ($key1); ?>
                             <?php  endforeach; ?>
                         </div>
                         <div class="row">
                             <div class="col-xs-12 col-sm-4 col-sm-offset-8">
-                                <?= Html::button(sprintf('%s %s', AppLabels::BTN_ADD, AppLabels::CRITERIA),['id' => $buttonId, 'class' => 'addCriteriaButton btn btn-info btn-sm col-sm-8']); ?>
+                                <?= Html::button(sprintf('%s %s', AppLabels::BTN_ADD, AppLabels::CRITERIA),['id' => $buttonCriteriaId, 'class' => 'addCriteriaButton btn btn-info btn-sm col-sm-8']); ?>
                             </div>
                         </div>
                         <hr/>
                     </div>
+                    <?php $buttonSubtitleId = "subtitle" . ($key); ?>
                 <?php  endforeach; ?>
             </div>
 
             <div class="row">
                 <div class="col-xs-12 col-sm-4 col-sm-offset-8">
-                    <?= Html::button(sprintf('%s %s', AppLabels::BTN_ADD, AppLabels::SMK3_SUBTITLE),['id' => 'subtitle1', 'class' => 'addSubtitleButton btn btn-info btn-sm col-sm-8']); ?>
+                    <?= Html::button(sprintf('%s %s', AppLabels::BTN_ADD, AppLabels::SMK3_SUBTITLE),['id' => $buttonSubtitleId, 'class' => 'addSubtitleButton btn btn-info btn-sm col-sm-8']); ?>
                 </div>
             </div>
         </div>
