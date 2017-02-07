@@ -13,8 +13,9 @@ $this->params['breadcrumbs'][] = AppLabels::BTN_UPDATE;
 ?>
 <div class="smk3-title-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
+    <div class="page-header">
+        <h1><?= Html::encode($this->title) ?></h1>
+    </div>
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>

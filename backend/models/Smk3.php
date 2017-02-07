@@ -3,6 +3,7 @@
 namespace backend\models;
 
 use Yii;
+use yii\db\Command;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
 
@@ -58,6 +59,14 @@ class Smk3 extends AppModel
             'smk3_year' => AppLabels::YEAR,
             'smk3_semester' => AppLabels::SEMESTER,
         ];
+    }
+
+    public function getAllTitles(){
+        $sql = "SELECT * FROM smk3_title";
+        $command = Yii::$app->db->createCommand($sql);
+        $results = $command->queryAll();
+
+        return $results;
     }
 
     /**

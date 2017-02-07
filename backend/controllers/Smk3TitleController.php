@@ -8,6 +8,7 @@ use backend\models\Smk3TitleSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\vendor\AppConstants;
 
 /**
  * Smk3TitleController implements the CRUD actions for Smk3Title model.
@@ -66,6 +67,7 @@ class Smk3TitleController extends AppController
         $model = new Smk3Title();
 
         if ($model->load(Yii::$app->request->post()) && $model->saveTransactional()) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -85,6 +87,7 @@ class Smk3TitleController extends AppController
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->saveTransactional()) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [

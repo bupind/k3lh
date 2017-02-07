@@ -2,13 +2,17 @@
 
 namespace backend\controllers;
 
+use backend\models\Smk3Title;
 use Yii;
 use backend\models\Smk3;
 use backend\models\Smk3Search;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use common\vendor\AppConstants;
+use common\vendor\AppLabels;
+use backend\models\Sector;
+use backend\models\PowerPlant;
 /**
  * Smk3Controller implements the CRUD actions for Smk3 model.
  */
@@ -64,12 +68,25 @@ class Smk3Controller extends AppController
     public function actionCreate()
     {
         $model = new Smk3();
+        $allTitle = Smk3Title::find()->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            $powerPlantList = ['' => AppLabels::PLEASE_SELECT];
+            if (!is_null($model->power_plant_id)) {
+                $powerPlantList = PowerPlant::map(new PowerPlant(), 'pp_name', null, true, [
+                    'where' => [
+                        ['sector_id' => $model->sector_id]
+                    ]
+                ]);
+            }
+
             return $this->render('create', [
                 'model' => $model,
+                'powerPlantList' => $powerPlantList,
+                'allTitle' => $allTitle,
             ]);
         }
     }
@@ -85,6 +102,7 @@ class Smk3Controller extends AppController
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [

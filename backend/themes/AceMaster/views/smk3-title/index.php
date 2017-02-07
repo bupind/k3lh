@@ -2,22 +2,28 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use common\vendor\AppLabels;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\Smk3TitleSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Smk3 Titles';
+$this->title = AppLabels::SMK3_TITLE;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="smk3-title-index">
+    <div class="page-header">
+        <h1><?= Html::encode($this->title) ?></h1>
+    </div>
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <div class="clearfix">
+        <div class="pull-right">
+            <?= Html::a(AppLabels::BTN_ADD, ['create'], ['class' => 'btn btn-sm btn-success']); ?>
+        </div>
+    </div>
 
-    <p>
-        <?= Html::a('Create Smk3 Title', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <hr/>
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -25,7 +31,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'sttl_title',
-
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
