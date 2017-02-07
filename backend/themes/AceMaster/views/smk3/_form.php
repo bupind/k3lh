@@ -19,7 +19,7 @@ $baseUrl = Url::base();
 <?php
 echo Html::hiddenInput('baseUrl', $baseUrl, ['id' => 'baseUrl']);
 $form = ActiveForm::begin([
-    'id' => 'budget-monitoring-form',
+    'id' => 'smk3-form',
     'options' => [
         'class' => 'form-horizontal',
         'role' => 'form'
@@ -33,7 +33,7 @@ $form = ActiveForm::begin([
 
 ?>
 
-<div class="row budget-monitoring-LH-form">
+<div class="row smk3-form">
     <div class="col-xs-12 col-md-6 col-md-offset-3">
         <?php
 
@@ -48,6 +48,10 @@ $form = ActiveForm::begin([
         echo $form->field($model, 'smk3_year', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
             ->textInput(['maxlength' => true, 'class' => AppConstants::ACTIVE_FORM_CLASS_INPUT_TEXT_NUMBERSONLY])
             ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+
+        echo $form->field($model, 'smk3_semester', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+            ->textInput(['maxlength' => true, 'class' => AppConstants::ACTIVE_FORM_CLASS_INPUT_TEXT_NUMBERSONLY])
+            ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
         ?>
     </div>
 </div>
@@ -56,36 +60,49 @@ $form = ActiveForm::begin([
 
 <div class="row">
     <div class="col-xs-12">
-        <table id="table-smk3" class="<?= AppConstants::TABLE_CLASS_DEFAULT_SMALL; ?>">
+        <?php foreach ($allTitle as $key => $title):  ?>
+            <h1> <?= $key+1 ?> <?= $title->sttl_title ?> </h1>
+            <?php foreach ($title->smk3Subtitles as $key1 => $subtitle):  ?>
+                <h2><?= $key+1 ?>.<?= $key1+1 ?> <?= $subtitle->ssub_subtitle ?></h2>
+                <table class="<?= AppConstants::TABLE_CLASS_DEFAULT_SMALL; ?>">
 
-        <thead>
-        <tr>
-            <th>
-                <?php
-                foreach ($allTitle->Smk3Subtitle as $key => $subtitle):  ?>
-            <?= $subtitle ?>
+                <thead>
+                <tr>
+                    <th rowspan="2" width="3%"><?= AppLabels::NUMBER ?> </th>
+                    <th rowspan="2" width="7%" class="text-center"><?= AppLabels::ELEMENT ?> </th>
+                    <th rowspan="2" width="80%" class="text-center"><?= AppLabels::CRITERIA ?> </th>
+                    <th rowspan="1" colspan="4" class="text-center"><?= AppLabels::SUITABILITY ?> </th>
+                </tr>
+                <tr>
+                    <th rowspan="1" colspan="2" class="text-center"><?= AppLabels::SUITABLE ?></th>
+                    <th rowspan="1" colspan="2" class="text-center"><?= AppLabels::NO ?></th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <?php foreach ($subtitle->smk3Criterias as $key2 => $criteria):  ?>
+                    <tr>
+                        <td class="text-center"><?= $key2+1 ?></td>
+                        <td class="text-center"><?= $key+1 ?>.<?= $key1+1 ?>.<?= $key2+1 ?></td>
+                        <td><?= $criteria->sctr_criteria?></td>
+                        <?php $answerName = "Smk3Detail[" . ($key+1) . "][" . ($key1+1) . "][" . ($key2+1) . "][sdtl_answer]"; ?>
+                        <?php $hiddenName = "Smk3Detail[" . ($key+1) . "][" . ($key1+1) . "][" . ($key2+1) . "][smk3_criteria_id]"; ?>
+                        <td colspan="2" class="text-center"><?= Html::hiddenInput($hiddenName, $criteria->id); ?><?= Html::radio($answerName, false, ['value' => '1', 'class' => 'radio-inline'])?></td>
+                        <td colspan="2" class="text-center"><?= Html::radio($answerName, true, ['value' => '0', 'class' => 'radio-inline'])?></td>
+                    </tr>
 
                 <?php endforeach; ?>
-            </th>
+                </tbody>
 
-        </tr>
-        </thead>
-
-        <tbody>
-
-        </tbody>
-
-        <tfoot>
-
-        </tfoot>
-
-        </table>
+                </table>
+            <?php endforeach; ?>
+        <?php endforeach; ?>
     </div>
 </div>
 
 <div class="row">
     <div class="col-xs-12 form-actions text-center">
-        <?= SubmitLinkButton::widget(['formId' => 'budget-monitoring-form', 'backAction' => 'index', 'isNewRecord' => $model->isNewRecord]); ?>
+        <?= SubmitLinkButton::widget(['formId' => 'smk3-form', 'backAction' => 'index', 'isNewRecord' => $model->isNewRecord]); ?>
     </div>
 </div>
 

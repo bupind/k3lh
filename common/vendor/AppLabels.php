@@ -239,5 +239,10 @@ class AppLabels {
     const SMK3 = 'SMK3';
     const ANSWER = 'JAWABAN';
     const CRITERIA_NUMBER = 'Nomor Kriteria';
+    const NUMBER = 'Nomor';
+    const ELEMENT = 'Element';
+    const SUITABILITY = 'Kesesuaian';
+    const SUITABLE = 'Sesuai';
+    const NO = 'Tidak';
     
 }

@@ -6,6 +6,7 @@ use Yii;
 use yii\db\Command;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
+use yii\base\Exception;
 
 /**
  * This is the model class for table "smk3".
@@ -61,14 +62,56 @@ class Smk3 extends AppModel
         ];
     }
 
-    public function getAllTitles(){
-        $sql = "SELECT * FROM smk3_title";
-        $command = Yii::$app->db->createCommand($sql);
-        $results = $command->queryAll();
+    public function saveTransactional() {
+        $request = Yii::$app->request->post();
+        $transaction = Yii::$app->db->beginTransaction();
+        $errors = [];
 
-        return $results;
+        try {
+            $this->load($request);
+
+            if (!$this->save()) {
+                $errors = array_merge($errors, $this->errors);
+                throw new Exception();
+            }
+
+            $smk3Id = $this->id;
+
+            if (isset($request['Smk3Detail'])) {
+                foreach ($request['Smk3Detail'] as $key => $index) {
+                    foreach ($index as $key2 => $index2) {
+                        foreach ($index2 as $key3 => $detail) {
+                            if (isset($detail['id'])) {
+                                $detailTuple = Smk3Detail::findOne(['id' => $detail['id']]);
+                            } else {
+                                $detailTuple = new Smk3Detail();
+                                $detailTuple->smk3_id = $smk3Id;
+                            }
+
+                            if (!$detailTuple->load(['Smk3Detail' => $detail]) || !$detailTuple->save()) {
+                                $errors = array_merge($errors, $detailTuple->errors);
+                                throw new Exception();
+                            }
+                        }
+                    }
+                }
+            }
+
+            $transaction->commit();
+            return TRUE;
+
+        } catch (Exception $e) {
+            $transaction->rollBack();
+            $this->afterFind();
+
+            foreach ($errors as $attr => $errorArr) {
+                $error = join('<br />', $errorArr);
+                Yii::$app->session->addFlash('danger', $error);
+            }
+
+            return FALSE;
+        }
     }
-
     /**
      * @return \yii\db\ActiveQuery
      */
