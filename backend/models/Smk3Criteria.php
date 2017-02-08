@@ -57,7 +57,7 @@ class Smk3Criteria extends AppModel
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSmk3Answers()
+    public function getSmk3Details()
     {
         return $this->hasMany(Smk3Detail::className(), ['smk3_criteria_id' => 'id']);
     }

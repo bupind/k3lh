@@ -61,7 +61,7 @@ $form = ActiveForm::begin([
 <div class="row">
     <div class="col-xs-12">
         <?php foreach ($allTitle as $key => $title):  ?>
-            <h1> <?= $key+1 ?> <?= $title->sttl_title ?> </h1>
+            <h1> <?= $key+1 ?>. <?= $title->sttl_title ?> </h1>
             <?php foreach ($title->smk3Subtitles as $key1 => $subtitle):  ?>
                 <h2><?= $key+1 ?>.<?= $key1+1 ?> <?= $subtitle->ssub_subtitle ?></h2>
                 <table class="<?= AppConstants::TABLE_CLASS_DEFAULT_SMALL; ?>">
@@ -87,8 +87,17 @@ $form = ActiveForm::begin([
                         <td><?= $criteria->sctr_criteria?></td>
                         <?php $answerName = "Smk3Detail[" . ($key+1) . "][" . ($key1+1) . "][" . ($key2+1) . "][sdtl_answer]"; ?>
                         <?php $hiddenName = "Smk3Detail[" . ($key+1) . "][" . ($key1+1) . "][" . ($key2+1) . "][smk3_criteria_id]"; ?>
-                        <td colspan="2" class="text-center"><?= Html::hiddenInput($hiddenName, $criteria->id); ?><?= Html::radio($answerName, false, ['value' => '1', 'class' => 'radio-inline'])?></td>
-                        <td colspan="2" class="text-center"><?= Html::radio($answerName, true, ['value' => '0', 'class' => 'radio-inline'])?></td>
+                        <?php if($model->getIsNewRecord()){ ?>
+                            <td colspan="2" class="text-center"><?= Html::hiddenInput($hiddenName, $criteria->id); ?><?= Html::radio($answerName, false, ['value' => '1', 'class' => 'radio-inline'])?></td>
+                            <td colspan="2" class="text-center"><?= Html::radio($answerName, true, ['value' => '0', 'class' => 'radio-inline'])?></td>
+                        <?php } else{ ?>
+                            <?php foreach ($criteria->smk3Details as $key3 => $detail): ?>
+                                <?php if ($model->id == $detail->smk3_id) { ?>
+                                    <td colspan="2" class="text-center"><?= Html::activeHiddenInput($detail, "[$key][$key1][$key2]smk3_criteria_id"); ?><?= Html::activeHiddenInput($detail, "[$key][$key1][$key2]id"); ?><?= Html::activeRadio($detail, "[$key][$key1][$key2]sdtl_answer", ['label' => '', 'value' => 1, 'uncheck' => null]); ?></td>
+                                    <td colspan="2" class="text-center"><?= Html::activeRadio($detail, "[$key][$key1][$key2]sdtl_answer", ['label' => '', 'value' => 0, 'uncheck' => null]); ?></td>
+                                <?php } ?>
+                            <?php endforeach; ?>
+                        <?php } ?>
                     </tr>
 
                 <?php endforeach; ?>

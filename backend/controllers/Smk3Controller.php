@@ -55,8 +55,11 @@ class Smk3Controller extends AppController
      */
     public function actionView($id)
     {
+        $allTitle = Smk3Title::find()->all();
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'allTitle' => $allTitle,
         ]);
     }
 
@@ -100,13 +103,25 @@ class Smk3Controller extends AppController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $allTitle = Smk3Title::find()->all();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->saveTransactional()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            $powerPlantList = ['' => AppLabels::PLEASE_SELECT];
+            if (!is_null($model->power_plant_id)) {
+                $powerPlantList = PowerPlant::map(new PowerPlant(), 'pp_name', null, true, [
+                    'where' => [
+                        ['sector_id' => $model->sector_id]
+                    ]
+                ]);
+            }
+
             return $this->render('update', [
                 'model' => $model,
+                'powerPlantList' => $powerPlantList,
+                'allTitle' => $allTitle,
             ]);
         }
     }

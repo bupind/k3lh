@@ -19,6 +19,8 @@ $this->params['breadcrumbs'][] = AppLabels::BTN_UPDATE;
 
     <?= $this->render('_form', [
         'model' => $model,
+        'powerPlantList' => $powerPlantList,
+        'allTitle' => $allTitle,
     ]) ?>
 
 </div>

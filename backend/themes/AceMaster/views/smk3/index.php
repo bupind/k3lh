@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use common\vendor\AppLabels;
+use backend\models\Sector;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\Smk3Search */
@@ -30,8 +31,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'sector_id',
-            'power_plant_id',
+            [
+                'attribute' => 'sector_id',
+                'value' => 'sector.sector_name',
+                'filter' => Html::activeDropDownList($searchModel, 'sector_id', Sector::map(new Sector(), 'sector_name'), ['class' => 'chosen-select form-control'])
+            ],
+            [
+                'attribute' => 'power_plant_id',
+                'value' => 'powerPlant.pp_name'
+            ],
             'smk3_year',
             'smk3_semester',
 

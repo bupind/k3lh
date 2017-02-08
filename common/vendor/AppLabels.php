@@ -237,7 +237,7 @@ class AppLabels {
     const SMK3_SUBTITLE = 'Sub-Judul SMK3';
     const CRITERIA = 'Kriteria';
     const SMK3 = 'SMK3';
-    const ANSWER = 'JAWABAN';
+    const ANSWER = 'Jawaban';
     const CRITERIA_NUMBER = 'Nomor Kriteria';
     const NUMBER = 'Nomor';
     const ELEMENT = 'Element';
