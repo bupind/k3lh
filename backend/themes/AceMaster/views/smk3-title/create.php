@@ -8,7 +8,7 @@ use common\vendor\AppLabels;
 /* @var $model backend\models\Smk3Title */
 
 $this->title = sprintf('%s %s', AppLabels::BTN_ADD, AppLabels::SMK3_TITLE);
-$this->params['breadcrumbs'][] = ['label' => $model->sttl_title, 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => AppLabels::SMK3_TITLE, 'url' => ['index']];
 $this->params['breadcrumbs'][] =  sprintf('%s %s', AppLabels::BTN_ADD, AppLabels::SMK3);
 ?>
 <div class="smk3-title-create">
