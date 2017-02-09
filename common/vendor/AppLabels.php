@@ -123,6 +123,11 @@ class AppLabels {
     const RNR = 'R / NR';
     const PIC = 'PIC';
     const LEGEND = 'Legenda';
+    const QUESTION = 'Pertanyaan';
+    const UNIT = 'Satuan';
+    const WEIGHT = 'Bobot-B';
+    const QUARTER = 'Triwulan';
+    const NO = 'No';
     
     // MONTH
     const JANUARY = 'Januari';
@@ -239,5 +244,10 @@ class AppLabels {
     const SMK3 = 'SMK3';
     const ANSWER = 'JAWABAN';
     const CRITERIA_NUMBER = 'Nomor Kriteria';
+    
+    // MATURITY LEVEL
+    const MATURITY_LEVEL = 'Maturity Level';
+    const ACTION_PLAN = 'Action Plan';
+    const TOTAL_MATURITY = 'Total Nilai Maturity';
     
 }

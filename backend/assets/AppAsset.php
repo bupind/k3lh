@@ -42,7 +42,8 @@ class AppAsset extends AssetBundle {
         'js/jquery-calx-2.2.6.min.js',
         'js/site.js',
         'js/ace-elements.min.js',
-        'js/ace.min.js',        
+        'js/ace.min.js',
+        'js/stringbuilder.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

@@ -1,8 +1,6 @@
 <?php
-use yii\helpers\Html; 
-use common\vendor\AppLabels;
-use common\vendor\AppConstants;
 use app\components\Nav;
+use common\vendor\AppLabels;
 
 $navs = [
     ['icon' => 'fa-tachometer', 'label' => AppLabels::DASHBOARD, 'url' => ['/site'], 'rbac' => false],
@@ -11,6 +9,14 @@ $navs = [
         'label' => AppLabels::COMPANY,
         'submenu' => [
             ['icon' => 'fa-pencil-square-o', 'label' => AppLabels::PROFILE, 'url' => ['/profile'], 'controller' => 'profile'],
+        ]
+    ],
+    [
+        'icon' => 'fa-file-text-o',
+        'label' => AppLabels::MATURITY_LEVEL,
+        'submenu' => [
+            ['icon' => 'fa-file-text-o', 'label' => AppLabels::TITLE, 'url' => ['/maturity-level-title'], 'controller' => 'maturity-level-title'],
+            ['icon' => 'fa-file-text-o', 'label' => AppLabels::QUESTION, 'url' => ['/maturity-level-question'], 'controller' => 'maturity-level-question'],
         ]
     ],
     ['icon' => 'fa-history', 'label' => AppLabels::LOGIN_HISTORY, 'url' => ['/login-history'], 'controller' => 'login-history'],
@@ -50,11 +56,12 @@ $navs = [
         } catch (e) {
         }
     </script>
-
+    
     <?= Nav::widget(['navs' => $navs]); ?>
 
     <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
-        <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+        <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left"
+           data-icon2="ace-icon fa fa-angle-double-right"></i>
     </div>
 
     <script type="text/javascript">

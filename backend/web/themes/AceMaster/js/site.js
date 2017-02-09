@@ -1,4 +1,7 @@
 jQuery(function($) {
+    var baseUrl = $('#baseUrl').val(),
+        sb = new StringBuilder();
+
     $('.date-picker').datepicker({
         autoclose: true,
         todayHighlight: true
@@ -116,6 +119,32 @@ jQuery(function($) {
         
         e.preventDefault();
     });
+
+    $(document).on('click', '.btn-delete-attachment', function(){
+        if (confirm('Dokumen akan terhapus secara permanen. Teruskan?')) {
+            var id = $(this).data('id'),
+                index = $(this).data('index') === undefined ? '' : $(this).data('index'),
+                wrapper = $('#att_' + index),
+                inputName = index == '' ? 'Attachment[file]' : 'Attachment['+ index +'][file]';
+
+            $.ajax({
+                url: baseUrl + '/attachment/ajax-delete',
+                dataType: "json",
+                type: 'post',
+                data: {id: id},
+                success: function(data) {
+                    if (data !== false) {
+                        sb.append('<input name="'+ inputName +'" value="" type="hidden">');
+                        sb.append('<input name="'+ inputName +'" type="file">');
+
+                        wrapper.empty().append(sb.toString());
+                    } else {
+                        alert('Proses hapus dokumen gagal.');
+                    }
+                }
+            });
+        }
+    });
     
 });
 
@@ -133,8 +162,9 @@ $(document).ready(function(){
                 // allow backspace, tab, delete, arrows, numbers and keypad numbers ONLY
                 // key == 188 => ,
                 // key == 190 => .
+                // key == 110 ==> . numpad
                 // key == 173 => -
-                return (key == 173 || key == 190 || key == 8 || key == 9 || key == 46 || (key >= 37 && key <= 40) ||(key >= 48 && key <= 57) || (key >= 96 && key <= 105));
+                return (key == 110 || key == 173 || key == 190 || key == 8 || key == 9 || key == 46 || (key >= 37 && key <= 40) ||(key >= 48 && key <= 57) || (key >= 96 && key <= 105));
             });
         });
     };

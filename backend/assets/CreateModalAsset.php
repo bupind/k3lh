@@ -15,13 +15,14 @@ use common\vendor\AppConstants;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class WorkingPlanAsset extends AssetBundle {
+class CreateModalAsset extends AssetBundle {
 
     public $basePath = AppConstants::THEME_BASE_PATH;
     public $baseUrl = AppConstants::THEME_BASE_URL;
     public $css = [];
     public $js = [
-        'js/action-view/working_plan.js'
+        'js/action-view/createModal.js',        
+        'js/stringbuilder.js'
     ];
     public $depends = [
         'yii\web\JqueryAsset'

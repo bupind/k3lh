@@ -8,12 +8,10 @@ use backend\models\WorkingPlanAttribute;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
 use yii\helpers\Html;
-use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use common\components\helpers\Converter;
 
 WorkingPlanAsset::register($this);
-$baseUrl = Url::base();
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\WorkingPlan */
@@ -22,7 +20,6 @@ $baseUrl = Url::base();
 ?>
 
 <?php
-echo Html::hiddenInput('baseUrl', $baseUrl, ['id' => 'baseUrl']);
 
 $form = ActiveForm::begin([
     'id' => 'working-plan-form',
@@ -129,14 +126,9 @@ $form = ActiveForm::begin([
                         </td>
                         <td><?= Html::activeTextarea($detail, "[$key]wpd_location", ['class' => 'form-control']); ?></td>
                         <td><?= Html::activeTextarea($detail, "[$key]wpd_pic", ['class' => 'form-control']); ?></td>
-                        <td id="attachment_<?= $key; ?>"><?= Converter::attachment($detail->attachmentOwner, ['show_file_upload' => true, 'index' => $key]); ?></td>
+                        <td><?= Converter::attachment($detail->attachmentOwner, ['show_file_upload' => true, 'show_delete_file' => true, 'index' => $key]); ?></td>
                         <td>
                             <?= Html::button('<i class="ace-icon fa fa-table bigger-110 icon-only"></i>', ['class' => 'btn btn-primary btn-xs btn-calendar', 'data-id' => $detail->working_plan_attribute_id]); ?>
-                            
-                            <?php if (!empty($detail->attachmentOwner)): ?>
-                                <?= Html::button('<i class="ace-icon fa fa-file-pdf-o bigger-110 icon-only"></i>', ['class' => 'btn btn-xs btn-pink btn-remove-attachment', 'data-id' => $detail->attachmentOwner->attachment_id, 'data-module-code' => AppConstants::MODULE_CODE_WORKING_PLAN, 'data-index' => $key]); ?>
-                            <?php endif; ?>
-                            
                             <?= Html::button('<i class="ace-icon fa fa-trash bigger-110 icon-only"></i>', ['class' => 'btn btn-xs btn-pink btn-remove-ajax', 'data-id' => $detail->id]); ?>
                         </td>
                     </tr>

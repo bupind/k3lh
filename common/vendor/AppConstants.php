@@ -2,8 +2,6 @@
 
 namespace common\vendor;
 
-use common\vendor\AppLabels;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -21,18 +19,18 @@ class AppConstants {
     const USER_ROLE_ADMINISTRATOR = 10;
     const USER_ROLE_SUPERVISOR = 20;
     const USER_ROLE_OPERATOR = 30;
-
+    
     // SESSIONS
     const SES_WEB_PROFILE = 'S_WEB_PROFILE';
     const SES_WORKING_PLAN_DETAIL = 'S_WORKING_PLAN';
-
+    
     // APP CONFIG
     const DELIMITER = '#|#';
     const LIMIT_PER_PAGE = 20;
     const INVOICE_FORMAT = '{module}/{date}/{number}';
-    const APP_BACKEND_BASE_URL = '/k3lh/adminpanel'; // localhost
+    const APP_BACKEND_BASE_URL = '/k3lh-repo/adminpanel'; // localhost
 //    const APP_BACKEND_BASE_URL = '/adminpanel';
-    const APP_FRONTEND_BASE_URL = '/k3lh'; // localhost
+    const APP_FRONTEND_BASE_URL = '/k3lh-repo'; // localhost
 //    const APP_FRONTEND_BASE_URL = '/';
     const IMG_RESPONSIVE = 'img-responsive';
     
@@ -42,6 +40,7 @@ class AppConstants {
     const GRID_TEMPLATE_DEFAULT_EXTRA = '<div class="hidden-sm hidden-xs btn-group">{view} {update} {delete} {additional_buttons}</div><div class="hidden-md hidden-lg"><div class="inline pos-rel"><button data-position="auto" data-toggle="dropdown" class="btn btn-minier btn-primary dropdown-toggle" aria-expanded="false"><i class="ace-icon fa fa-cog icon-only bigger-110"></i></button><ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close"><li>{view_xs}</li><li>{update_xs}</li><li>{delete_xs}</li>{additional_buttons_xs}</ul></div></div>';
     const GRID_TEMPLATE_CUSTOM = '<div class="hidden-sm hidden-xs btn-group">{custom_buttons}</div><div class="hidden-md hidden-lg"><div class="inline pos-rel"><button data-position="auto" data-toggle="dropdown" class="btn btn-minier btn-primary dropdown-toggle" aria-expanded="false"><i class="ace-icon fa fa-cog icon-only bigger-110"></i></button><ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">{custom_buttons_xs}</ul></div></div>';
     
+    const ACTIVE_FORM_TEMPLATE_INPUT_PLAIN_NO_LABEL = '{input}{error}{hint}';
     const ACTIVE_FORM_TEMPLATE_INPUT_COL_4 = '{label} <div class="col-sm-4">{input}</div><div class="col-sm-5"><span class="help-inline col-xs-12 col-sm-7"><span class="middle">{error}{hint}</span></span></div>';
     const ACTIVE_FORM_TEMPLATE_INPUT_COL_4_EXTRA = '{label} <div id="{wrapper_id}" class="col-sm-4"><div class="input-group">{input}<span class="input-group-btn">{extra}</span></div></div><div class="col-sm-5"><span class="help-inline col-xs-12 col-sm-7"><span class="middle">{error}{hint}</span></span></div>';
     const ACTIVE_FORM_TEMPLATE_INPUT_COL_8_FULL_EXTRA = '{label} <div id="{wrapper_id}" class="col-sm-8"><div class="input-group">{input}<span class="input-group-btn">{extra}</span></div><span class="help-inline col-xs-12"><span class="middle">{error}{hint}</span></span></div>';
@@ -92,6 +91,7 @@ class AppConstants {
     
     // MODULE CODE
     const MODULE_CODE_WORKING_PLAN = 'WORKPLAN';
+    const MODULE_CODE_MATURITY_LEVEL = 'MAT_LEV';
     
     // ATTACHMENT TYPE
     const ATTACHMENT_TYPE_IMAGE = 'IMG';
@@ -110,7 +110,7 @@ class AppConstants {
     
     // CALX DATA FORMAT
     const CALX_DATA_FORMAT_THO = '0,0';
-    const CALX_DATA_FORMAT_DEC = '0[.]00';    
+    const CALX_DATA_FORMAT_DEC = '0[.]00';
     const CALX_DATA_FORMAT_THO_DEC = '0,0[.]00';
     const CALX_DATA_FORMAT_CURRENCY = '$0,0[.]00';
     const CALX_DATA_FORMAT_PLAIN = '0';
@@ -124,7 +124,7 @@ class AppConstants {
     const LOGIN_STATUS_FAILED = 'LOGIN FAILED';
     const LOGIN_STATUS_SUCCESS = 'LOGIN SUCCESS';
     const LOGIN_STATUS_LOGOUT = 'LOGOUT';
-        
+    
     // FLASH MESSAGES
     const MSG_SAVE_SUCCESS = 'Data berhasil disimpan.';
     const MSG_UPDATE_SUCCESS = 'Data berhasil diubah.';
@@ -144,7 +144,7 @@ class AppConstants {
     
     // WARNING
     const WARNING_LOAD_FAILED = 'WARNING: Load Multiple %s Failed.';
-        
+    
     // VALIDATION MESSAGES
     const VALIDATE_REQUIRED = '{attribute} harus diisi.';
     const VALIDATE_INTEGER = '{attribute} harus berupa angka.';
@@ -156,7 +156,7 @@ class AppConstants {
     const VALIDATE_LARGER_THAN = '{attribute} harus lebih besar dari {compareValue}.';
     const VALIDATE_LARGER_OR_EQUAL = '{attribute} harus lebih besar atau sama dengan {compareValue}.';
     const VALIDATE_WRONG_EXTENSION = 'Jenis file yang diizinkan adalah {extensions}.';
-    const VALIDATE_UPLOAD_REQUIRED = 'Silahkan pilih minimal 1 file.';    
+    const VALIDATE_UPLOAD_REQUIRED = 'Silahkan pilih minimal 1 file.';
     const VALIDATE_TOO_MANY = 'Maksimal {limit} file dalam sekali upload.';
     const VALIDATE_TOO_BIG = 'Ukuran file {file} melebihi batas maksimal 1MB.';
     const VALIDATE_LOGIN_FAILED = 'Username atau Password salah.';
@@ -169,7 +169,7 @@ class AppConstants {
     const VALIDATE_COMPARE_MUST_NOT_EQUAL = '{attribute} tidak boleh sama dengan {compareAttribute}.';
     const VALIDATE_CAPTCHA = 'Kode verifikasi captcha salah.';
     const VALIDATE_NOT_EXISTS = '{attribute} tidak ditemukan.';
-        
+    
     // HINT MESSAGES
     const HINT_LEAVE_EMPTY = 'Kosongkan kolom ini jika tidak ada perubahan.';
     
@@ -178,18 +178,19 @@ class AppConstants {
     const INFO_DATA_FETCH = 'Data fetching, please wait..';
     
     // CONFIRM MESSAGES
-
+    
     // CODESETS NAME
     const CODESET_NAME_WEB_CONFIG = 'WEB_CONFIG';
     const CODESET_NAME_POST_TYPE_CODE = 'POST_TYPE_CODE';
     const CODESET_NAME_FORM_TYPE_CODE = 'FORM_TYPE_CODE';
     const CODESET_NAME_ATTRIBUTE_TYPE_CODE = 'ATTRIBUTE_TYPE_CODE';
     const CODESET_WORKING_PLAN_LEGEND = 'WP_LEGEND';
+    const CODESET_UNIT_CODE = 'UNIT_CODE';
     
     // WEB CONFIG
     const WEB_CONFIG_SALE_EXTERNAL_SALES = 'SALE_EXT_SALES';
     const WEB_CONFIG_ALLOWED_IP = 'ALLOWED_IP';
-        
+    
     // POST TYPE
     const POST_TYPE_PAGE = 'PAGE';
     const POST_TYPE_NEWS = 'NEWS';
@@ -210,7 +211,7 @@ class AppConstants {
     const LOG_MSG_ACTION_INSERT = 'INSERTING NEW DATA WITH ID #%s';
     const LOG_MSG_ACTION_UPDATE = 'UPDATING DATA ID #%s';
     const LOG_MSG_ACTION_DELETE = 'DELETING DATA ID #%s';
-
+    
     const STATUS_YES = 'Y';
     const STATUS_NO = 'N';
     

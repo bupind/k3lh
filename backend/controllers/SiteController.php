@@ -7,6 +7,7 @@ use backend\models\Sector;
 use backend\models\User;
 use common\models\LoginForm;
 use common\vendor\AppConstants;
+use common\vendor\AppLabels;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -56,6 +57,8 @@ class SiteController extends AppController {
             
             return $this->render('error', ['exception' => $exception]);
         }
+        
+        return true;
     }
 
     public function actionIndex() {
@@ -144,6 +147,7 @@ class SiteController extends AppController {
             'data-sektor' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Monitoring Data Sektor', 'type' => 'item'],
             'create-title' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Create title',['/smk3-title']), 'type' => 'item'],
             'create-form' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Create Form', ['/smk3']), 'type' => 'item'],
+            'maturity-level' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . AppLabels::MATURITY_LEVEL, ['/maturity-level']), 'type' => 'item'],
         ];
     
         $json = Json::encode($dataMainOffice);

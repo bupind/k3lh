@@ -2,20 +2,18 @@
 
 namespace backend\controllers;
 
-use backend\models\PowerPlant;
-use backend\models\Smk3;
-use backend\models\Smk3Search;
-use backend\models\Smk3Title;
+use backend\models\MaturityLevelTitle;
+use backend\models\MaturityLevelTitleSearch;
 use common\vendor\AppConstants;
-use common\vendor\AppLabels;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
+use yii\helpers\Json;
 
 /**
- * Smk3Controller implements the CRUD actions for Smk3 model.
+ * MaturityLevelTitleController implements the CRUD actions for MaturityLevelTitle model.
  */
-class Smk3Controller extends AppController {
+class MaturityLevelTitleController extends AppController {
     /**
      * @inheritdoc
      */
@@ -30,12 +28,17 @@ class Smk3Controller extends AppController {
         ];
     }
     
+    public function beforeAction($action) {
+        parent::beforeAction($action);
+        return $this->rbac();
+    }
+    
     /**
-     * Lists all Smk3 models.
+     * Lists all MaturityLevelTitle models.
      * @return mixed
      */
     public function actionIndex() {
-        $searchModel = new Smk3Search();
+        $searchModel = new MaturityLevelTitleSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         
         return $this->render('index', [
@@ -45,7 +48,7 @@ class Smk3Controller extends AppController {
     }
     
     /**
-     * Displays a single Smk3 model.
+     * Displays a single MaturityLevelTitle model.
      * @param integer $id
      * @return mixed
      */
@@ -56,14 +59,14 @@ class Smk3Controller extends AppController {
     }
     
     /**
-     * Finds the Smk3 model based on its primary key value.
+     * Finds the MaturityLevelTitle model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Smk3 the loaded model
+     * @return MaturityLevelTitle the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id) {
-        if (($model = Smk3::findOne($id)) !== null) {
+        if (($model = MaturityLevelTitle::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
@@ -71,37 +74,35 @@ class Smk3Controller extends AppController {
     }
     
     /**
-     * Creates a new Smk3 model.
+     * Creates a new MaturityLevelTitle model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate() {
-        $model = new Smk3();
-        $allTitle = Smk3Title::find()->all();
+        $model = new MaturityLevelTitle();
         
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['create']);
         } else {
-            $powerPlantList = ['' => AppLabels::PLEASE_SELECT];
-            if (!is_null($model->power_plant_id)) {
-                $powerPlantList = PowerPlant::map(new PowerPlant(), 'pp_name', null, true, [
-                    'where' => [
-                        ['sector_id' => $model->sector_id]
-                    ]
-                ]);
-            }
-            
             return $this->render('create', [
                 'model' => $model,
-                'powerPlantList' => $powerPlantList,
-                'allTitle' => $allTitle,
             ]);
         }
     }
     
+    public function actionAjaxCreate() {
+        $model = new MaturityLevelTitle();
+        
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return Json::encode($model);
+        } else {
+            return Json::encode(false);
+        }
+    }
+    
     /**
-     * Updates an existing Smk3 model.
+     * Updates an existing MaturityLevelTitle model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -110,7 +111,7 @@ class Smk3Controller extends AppController {
         $model = $this->findModel($id);
         
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
+            Yii::$app->session->setFlash('success', AppConstants::MSG_UPDATE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
@@ -120,13 +121,15 @@ class Smk3Controller extends AppController {
     }
     
     /**
-     * Deletes an existing Smk3 model.
+     * Deletes an existing MaturityLevelTitle model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
      */
     public function actionDelete($id) {
-        $this->findModel($id)->delete();
+        if ($this->findModel($id)->delete()) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_DELETE_SUCCESS);
+        }
         
         return $this->redirect(['index']);
     }

@@ -176,33 +176,6 @@ jQuery(document).ready(function () {
         }
     });
 
-    $(document).on('click', '.btn-remove-attachment', function(){
-        if (confirm('Dokumen akan terhapus secara permanen. Teruskan?')) {
-            var id = $(this).data('id'),
-                moduleCode = $(this).data('module-code'),
-                index = $(this).data('index'),
-                tr = $(this).closest('tr'),
-                tdAttachment = tr.find('td#attachment_' + index);
-
-            $.ajax({
-                url: baseUrl + '/attachment/ajax-delete',
-                dataType: "json",
-                type: 'post',
-                data: {id: id, module_code: moduleCode},
-                success: function(data) {
-                    if (data !== false) {
-                        sb.append('<input name="Attachment['+ index +'][file]" value="" type="hidden">');
-                        sb.append('<input name="Attachment['+ index +'][file]" type="file">');
-
-                        tdAttachment.empty().append(sb.toString());
-                    } else {
-                        alert('Proses hapus dokumen gagal.');
-                    }
-                }
-            });
-        }
-    });
-
     $(document).on('click', '.btn-calendar', function(){
         var id = $(this).data('id');
         $.ajax({

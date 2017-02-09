@@ -1,6 +1,8 @@
 <?php
 namespace common\components\helpers;
 
+use backend\models\AttachmentOwner;
+use common\vendor\AppLabels;
 use yii\helpers\Html;
 use yii\base\Component;
 use common\vendor\AppConstants;
@@ -21,6 +23,7 @@ class Converter extends Component {
             }
         }
         
+        return true;
     }
     
     public static function cleanDecimal($value) {
@@ -101,21 +104,61 @@ class Converter extends Component {
         }
     }
     
+    /* @var $attachmentOwner AttachmentOwner */
     public static function attachment($attachmentOwner, $options = []) {
+        $index = isset($options['index']) ? $options['index'] : null;
+        
         if (!is_null($attachmentOwner)) {
-            return Html::a($attachmentOwner->attachment->atf_filename, sprintf('%s/uploads/%s/%s', \Yii::getAlias(AppConstants::THEME_BASE_URL), strtolower($attachmentOwner->attachment->atf_location), $attachmentOwner->attachment->atf_filename), ['target' => '_blank']);
+            $link = Html::beginTag('div', ['id' => "att_$index"]);
+            $link .= Html::a($attachmentOwner->attachment->atf_filename, sprintf('%s/uploads/%s/%s', \Yii::getAlias(AppConstants::THEME_BASE_URL), strtolower($attachmentOwner->attachment->atf_location), $attachmentOwner->attachment->atf_filename), ['target' => '_blank']);
+            
+            if (isset($options['show_delete_file']) && $options['show_delete_file'] == true) {
+                $link .= ' ';
+                $link .= Html::button('<i class="ace-icon fa fa-trash bigger-110 icon-only"></i>', ['class' => 'btn btn-minier btn-danger btn-delete-attachment', 'data-id' => $attachmentOwner->attachment_id, 'data-index' => $index]);
+            }
+            $link .= Html::endTag('div');
+            
+            return $link;
         } else {
+            $inputName = !is_null($index) ? "Attachment[$index][file]" : "Attachment[file]";
             
             if (isset($options['show_file_upload']) && $options['show_file_upload'] == true) {
-                $index = $options['index'];
-                $input = Html::hiddenInput("Attachment[$index][file]");
-                $input .= Html::fileInput("Attachment[$index][file]");
+                $input = Html::hiddenInput($inputName);
+                $input .= Html::fileInput($inputName);
                 
                 return $input;
             } else {
                 return AppConstants::MSG_DATA_NOT_FOUND;
             }
         }
+    }
+    
+    public static function toRoman($number) {
+        $lookup = [
+            1000 => 'M',
+            900 => 'CM',
+            500 => 'D',
+            400 => 'CD',
+            100 => 'C',
+            90 => 'XC',
+            50 => 'L',
+            40 => 'XL',
+            10 => 'X',
+            9 => 'IX',
+            5 => 'V',
+            4 => 'IV',
+            1 => 'I',
+        ];
+    
+        $result = '';
+        foreach($lookup as $limit => $glyph){
+            while ($number >= $limit) {
+                 $result .= $glyph;
+                $number -= $limit;
+            }
+        }
+        
+        return $result;
     }
     
 }
