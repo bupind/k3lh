@@ -21,17 +21,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'power_plant_id') ?>
 
-    <?= $form->field($model, 'k3l_year') ?>
+    <?= $form->field($model, 'smk3_year') ?>
 
-    <?= $form->field($model, 'semester') ?>
-
-    <?php // echo $form->field($model, 'created_by') ?>
-
-    <?php // echo $form->field($model, 'created_at') ?>
-
-    <?php // echo $form->field($model, 'updated_by') ?>
-
-    <?php // echo $form->field($model, 'updated_at') ?>
+    <?= $form->field($model, 'smk3_quarter') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
