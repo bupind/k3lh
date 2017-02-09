@@ -28,9 +28,9 @@ class AppConstants {
     const DELIMITER = '#|#';
     const LIMIT_PER_PAGE = 20;
     const INVOICE_FORMAT = '{module}/{date}/{number}';
-    const APP_BACKEND_BASE_URL = '/k3lh-repo/adminpanel'; // localhost
+    const APP_BACKEND_BASE_URL = '/k3lh/adminpanel'; // localhost
 //    const APP_BACKEND_BASE_URL = '/adminpanel';
-    const APP_FRONTEND_BASE_URL = '/k3lh-repo'; // localhost
+    const APP_FRONTEND_BASE_URL = '/k3lh'; // localhost
 //    const APP_FRONTEND_BASE_URL = '/';
     const IMG_RESPONSIVE = 'img-responsive';
     
