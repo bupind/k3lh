@@ -30,6 +30,11 @@ class Smk3TitleController extends AppController
         ];
     }
 
+    public function beforeAction($action) {
+        parent::beforeAction($action);
+        return $this->rbac();
+    }
+
     /**
      * Lists all Smk3Title models.
      * @return mixed

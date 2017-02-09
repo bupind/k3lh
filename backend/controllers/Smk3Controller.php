@@ -33,6 +33,11 @@ class Smk3Controller extends AppController
         ];
     }
 
+    public function beforeAction($action) {
+        parent::beforeAction($action);
+        return $this->rbac();
+    }
+
     /**
      * Lists all Smk3 models.
      * @return mixed

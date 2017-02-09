@@ -13,6 +13,13 @@ $navs = [
             ['icon' => 'fa-pencil-square-o', 'label' => AppLabels::PROFILE, 'url' => ['/profile'], 'controller' => 'profile'],
         ]
     ],
+    [
+        'icon' => 'fa-file-text-o',
+        'label' => AppLabels::SMK3,
+        'submenu' => [
+            ['icon' => 'fa-file-text-o', 'label' => AppLabels::QUESTION, 'url' => ['/smk3-title'], 'controller' => 'smk3-title'],
+        ]
+    ],
     ['icon' => 'fa-history', 'label' => AppLabels::LOGIN_HISTORY, 'url' => ['/login-history'], 'controller' => 'login-history'],
     [
         'icon' => 'fa-life-ring',

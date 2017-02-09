@@ -8,6 +8,7 @@
 
 namespace backend\controllers;
 use backend\models\BudgetMonitoringDetail;
+use backend\models\Smk3Detail;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
@@ -33,15 +34,16 @@ class Smk3DetailController extends AppController
     }
 
 
+
     /**
-     * Finds the RoadmapK3lItem model based on its primary key value.
+     * Finds the Smk3Detail model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return BudgetMonitoringDetail the loaded model
+     * @return Smk3Detail the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id) {
-        if (($model = BudgetMonitoringDetail::findOne($id)) !== null) {
+        if (($model = Smk3Detail::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
@@ -49,7 +51,7 @@ class Smk3DetailController extends AppController
     }
 
     /**
-     * Deletes an existing BudgetMonitoringDetail model.
+     * Deletes an existing Smk3Detail model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed

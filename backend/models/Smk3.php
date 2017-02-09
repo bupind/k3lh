@@ -15,7 +15,7 @@ use yii\base\Exception;
  * @property integer $sector_id
  * @property integer $power_plant_id
  * @property integer $smk3_year
- * @property integer $smk3_semester
+ * @property integer $smk3_quarter
  * @property integer $created_by
  * @property integer $created_at
  * @property integer $updated_by
@@ -41,8 +41,9 @@ class Smk3 extends AppModel
     public function rules()
     {
         return [
-            [['sector_id', 'power_plant_id', 'smk3_year', 'smk3_semester'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
-            [['sector_id', 'power_plant_id', 'smk3_year', 'smk3_semester'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
+            [['sector_id', 'power_plant_id', 'smk3_year', 'smk3_quarter'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
+            [['sector_id', 'power_plant_id', 'smk3_year'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
+            [['smk3_quarter'], 'string', 'max' => 2],
             [['power_plant_id'], 'exist', 'skipOnError' => true, 'targetClass' => PowerPlant::className(), 'targetAttribute' => ['power_plant_id' => 'id']],
             [['sector_id'], 'exist', 'skipOnError' => true, 'targetClass' => Sector::className(), 'targetAttribute' => ['sector_id' => 'id']],
         ];
@@ -58,7 +59,7 @@ class Smk3 extends AppModel
             'sector_id' => AppLabels::SECTOR,
             'power_plant_id' => AppLabels::POWER_PLANT,
             'smk3_year' => AppLabels::YEAR,
-            'smk3_semester' => AppLabels::SEMESTER,
+            'smk3_quarter' => AppLabels::QUARTER,
         ];
     }
 

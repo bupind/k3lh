@@ -94,18 +94,16 @@ class Smk3Title extends AppModel
                                 $errors = array_merge($errors, $criteriaTuple->errors);
                                 throw new Exception();
                             }
-                            foreach ($criteria as $key3 => $detail){
-                                foreach ($smk3Model as $key4 => $smk3){
-                                    if(!isset($detail['id'])) {
-                                        $detailTuple = new Smk3Detail();
-                                        $detailTuple->smk3_criteria_id = $criteriaTuple->id;
-                                        $detailTuple->smk3_id = $smk3->id;
-                                        $detailTuple->sdtl_answer = 0;
+                            foreach ($smk3Model as $key4 => $smk3) {
+                                if (!isset($criteria['id'])) {
+                                    $detailTuple = new Smk3Detail();
+                                    $detailTuple->smk3_criteria_id = $criteriaTuple->id;
+                                    $detailTuple->smk3_id = $smk3->id;
+                                    $detailTuple->sdtl_answer = 0;
 
-                                        if (!$detailTuple->load(['Smk3Detail' => $detail]) || !$detailTuple->save()) {
-                                            $errors = array_merge($errors, $detailTuple->errors);
-                                            throw new Exception();
-                                        }
+                                    if (!$detailTuple->save()) {
+                                        $errors = array_merge($errors, $detailTuple->errors);
+                                        throw new Exception();
                                     }
                                 }
                             }

@@ -40,7 +40,7 @@ jQuery(document).ready(function () {
         sb.append('<div class="form-group">');
         sb.append('<label class="col-sm-3 control-label">Kriteria</label>');
         sb.append('<div class="col-sm-9">');
-        sb.append('<textarea class="form-control" name="Smk3Criteria['+currentSubtitleNo+']['+1+'][sctr_criteria]" rows="5"></textarea>');
+        sb.append('<textarea class="form-control redactor" name="Smk3Criteria['+currentSubtitleNo+']['+1+'][sctr_criteria]" rows="5"></textarea>');
         sb.append('<button type="button" class="btn btn-xs btn-danger btn-remove-criteria">Hapus Kriteria</button>');
         sb.append('</div>');
         sb.append('</div>');
@@ -54,6 +54,8 @@ jQuery(document).ready(function () {
         sb.append('<hr/>');
         sb.append('</div>');
         subtitleDiv.append(sb.toString());
+        generateRedactor();
+
         sb.clear();
     }
 
@@ -67,14 +69,19 @@ jQuery(document).ready(function () {
         sb.append('<div class="form-group">');
         sb.append('<label class="col-sm-3 control-label">Kriteria</label>');
         sb.append('<div class="col-sm-9">');
-        sb.append('<textarea class="form-control" name="Smk3Criteria['+subtitleIndex+']['+criteriaIndex+'][sctr_criteria]" rows="5"></textarea>');
+        sb.append('<textarea class="form-control redactor" name="Smk3Criteria['+subtitleIndex+']['+criteriaIndex+'][sctr_criteria]" rows="5"></textarea>');
         sb.append('<button type="button" class="btn btn-xs btn-danger btn-remove-criteria">Hapus Kriteria</button>');
         sb.append('</div>');
         sb.append('</div>');
         sb.append('</div>');
         criteriaDiv.append(sb.toString());
-        sb.clear();
+        generateRedactor();
 
+        sb.clear();
+    }
+
+    function generateRedactor(){
+        $('.redactor').redactor().removeClass('redactor');
     }
 
     $(document).on('click', '.btn-remove-subtitle', function(){
@@ -84,13 +91,12 @@ jQuery(document).ready(function () {
         $(this).closest('.cDiv').remove();
     });
 
-    $(document).on('click', '.btn-remove-ajax', function(){
+    $(document).on('click', '.btn-remove-ajax-subtitle', function(){
         if (confirm('Data akan terhapus secara permanen. Teruskan?')) {
             var id = $(this).data('id'),
-                controller = $(this).data('controller');
+                controller = $(this).data('controller'),
+                subtitle = $(this).closest('.sDiv');
 
-                parent = $(this).closest('.parent');
-            alert(controller);
             $.ajax({
                 url: baseUrl + '/'+ controller +'/ajax-delete',
                 dataType: "json",
@@ -98,7 +104,30 @@ jQuery(document).ready(function () {
                 data: {id: id},
                 success: function(data) {
                     if (data !== false) {
-                        parent.remove();
+                        subtitle.remove();
+                    } else {
+                        alert('Proses hapus data gagal.');
+                    }
+                }
+            });
+        }
+    });
+
+    $(document).on('click', '.btn-remove-ajax-criteria', function(){
+        if (confirm('Data akan terhapus secara permanen. Teruskan?')) {
+            var id = $(this).data('id'),
+                controller = $(this).data('controller'),
+                criteria = $(this).closest('.cDiv');
+            alert(controller);
+
+            $.ajax({
+                url: baseUrl + '/'+ controller +'/ajax-delete',
+                dataType: "json",
+                type: 'post',
+                data: {id: id},
+                success: function(data) {
+                    if (data !== false) {
+                        criteria.remove();
                     } else {
                         alert('Proses hapus data gagal.');
                     }

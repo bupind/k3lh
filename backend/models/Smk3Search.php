@@ -18,7 +18,7 @@ class Smk3Search extends Smk3
     public function rules()
     {
         return [
-            [['id', 'sector_id', 'power_plant_id', 'smk3_year', 'smk3_semester', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'integer'],
+            [['id', 'sector_id', 'power_plant_id', 'smk3_year', 'smk3_quarter', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'integer'],
         ];
     }
 
@@ -62,7 +62,7 @@ class Smk3Search extends Smk3
             'sector_id' => $this->sector_id,
             'power_plant_id' => $this->power_plant_id,
             'smk3_year' => $this->smk3_year,
-            'smk3_semester' => $this->smk3_semester,
+            'smk3_quarter' => $this->smk3_quarter,
             'created_by' => $this->created_by,
             'created_at' => $this->created_at,
             'updated_by' => $this->updated_by,
