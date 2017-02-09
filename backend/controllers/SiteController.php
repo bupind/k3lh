@@ -145,8 +145,7 @@ class SiteController extends AppController {
             'training-k3l' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Training K3L', 'type' => 'item'],
             'stakeholder' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Daftar Stakeholder', 'type' => 'item'],
             'data-sektor' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Monitoring Data Sektor', 'type' => 'item'],
-            'create-title' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Create title',['/smk3-title']), 'type' => 'item'],
-            'create-form' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Create Form', ['/smk3']), 'type' => 'item'],
+            'create-form-smk3' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> SMK3', ['/smk3']), 'type' => 'item'],
             'maturity-level' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . AppLabels::MATURITY_LEVEL, ['/maturity-level']), 'type' => 'item'],
         ];
     
