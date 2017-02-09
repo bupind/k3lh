@@ -1,6 +1,6 @@
 /*
 SQLyog Enterprise - MySQL GUI v7.15 
-MySQL - 5.5.25a : Database - k3lh
+MySQL - 5.5.5-10.1.19-MariaDB : Database - k3lh
 *********************************************************************
 */
 
@@ -10,6 +10,8 @@ MySQL - 5.5.25a : Database - k3lh
 
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`k3lh` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
 /*Table structure for table `attachment` */
 
@@ -26,16 +28,13 @@ CREATE TABLE `attachment` (
   `updated_by` smallint(5) unsigned NOT NULL,
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `attachment` */
 
 insert  into `attachment`(`id`,`atf_filename`,`atf_filesize`,`atf_filetype`,`atf_location`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1,'1485318881_eTicket_GNLREQ.pdf',NULL,'pdf','WORKPLAN',8,1485318881,8,1485318881);
+insert  into `attachment`(`id`,`atf_filename`,`atf_filesize`,`atf_filetype`,`atf_location`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (2,'1485318881_eTicket_KEGBAF.pdf',NULL,'pdf','WORKPLAN',8,1485318881,8,1485318881);
 insert  into `attachment`(`id`,`atf_filename`,`atf_filesize`,`atf_filetype`,`atf_location`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (3,'1485318881_eTicket_DVWQIV_165908.pdf',NULL,'pdf','WORKPLAN',8,1485318881,8,1485318881);
-insert  into `attachment`(`id`,`atf_filename`,`atf_filesize`,`atf_filetype`,`atf_location`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (4,'1486485061_D3JEUY.pdf',NULL,'pdf','MAT_LEV',8,1486485061,8,1486485061);
-insert  into `attachment`(`id`,`atf_filename`,`atf_filesize`,`atf_filetype`,`atf_location`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (5,'1486485061_AirAsia___Pembelian___Beli_tiket_penerbangan_murah_secara_online.pdf',NULL,'pdf','MAT_LEV',8,1486485061,8,1486485061);
-insert  into `attachment`(`id`,`atf_filename`,`atf_filesize`,`atf_filetype`,`atf_location`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (8,'1486531756_B8C8QJ.pdf',NULL,'pdf','WORKPLAN',8,1486531756,8,1486531756);
-insert  into `attachment`(`id`,`atf_filename`,`atf_filesize`,`atf_filetype`,`atf_location`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (12,'1486532961_B8C8QJ.pdf',NULL,'pdf','MAT_LEV',8,1486532961,8,1486532961);
 
 /*Table structure for table `attachment_owner` */
 
@@ -53,16 +52,13 @@ CREATE TABLE `attachment_owner` (
   PRIMARY KEY (`id`),
   KEY `FK_attachment_owner_attachment` (`attachment_id`),
   CONSTRAINT `FK_attachment_owner_attachment` FOREIGN KEY (`attachment_id`) REFERENCES `attachment` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 /*Data for the table `attachment_owner` */
 
 insert  into `attachment_owner`(`id`,`attachment_id`,`atfo_module_code`,`atfo_module_pk`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (7,1,'WORKPLAN',1,8,1485318881,8,1485318881);
+insert  into `attachment_owner`(`id`,`attachment_id`,`atfo_module_code`,`atfo_module_pk`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (8,2,'WORKPLAN',2,8,1485318881,8,1485318881);
 insert  into `attachment_owner`(`id`,`attachment_id`,`atfo_module_code`,`atfo_module_pk`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (9,3,'WORKPLAN',6,8,1485318881,8,1485318881);
-insert  into `attachment_owner`(`id`,`attachment_id`,`atfo_module_code`,`atfo_module_pk`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (10,4,'MAT_LEV',23,8,1486485061,8,1486485061);
-insert  into `attachment_owner`(`id`,`attachment_id`,`atfo_module_code`,`atfo_module_pk`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (11,5,'MAT_LEV',25,8,1486485061,8,1486485061);
-insert  into `attachment_owner`(`id`,`attachment_id`,`atfo_module_code`,`atfo_module_pk`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (14,8,'WORKPLAN',2,8,1486531756,8,1486531756);
-insert  into `attachment_owner`(`id`,`attachment_id`,`atfo_module_code`,`atfo_module_pk`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (18,12,'MAT_LEV',3,8,1486532961,8,1486532961);
 
 /*Table structure for table `auth_assignment` */
 
@@ -120,27 +116,11 @@ insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created
 insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('log-dirty-index',1,NULL,NULL,NULL,NULL,NULL);
 insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('login-history-delete-all',1,NULL,NULL,NULL,NULL,NULL);
 insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('login-history-index',1,NULL,NULL,NULL,NULL,NULL);
-insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('maturity-level',2,NULL,NULL,NULL,NULL,NULL);
-insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('maturity-level-create',1,NULL,NULL,NULL,NULL,NULL);
-insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('maturity-level-delete',1,NULL,NULL,NULL,NULL,NULL);
-insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('maturity-level-index',1,NULL,NULL,NULL,NULL,NULL);
-insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('maturity-level-question-create',1,NULL,NULL,NULL,NULL,NULL);
-insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('maturity-level-question-delete',1,NULL,NULL,NULL,NULL,NULL);
-insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('maturity-level-question-index',1,NULL,NULL,NULL,NULL,NULL);
-insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('maturity-level-question-update',1,NULL,NULL,NULL,NULL,NULL);
-insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('maturity-level-question-view',1,NULL,NULL,NULL,NULL,NULL);
-insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('maturity-level-title-create',1,NULL,NULL,NULL,NULL,NULL);
-insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('maturity-level-title-delete',1,NULL,NULL,NULL,NULL,NULL);
-insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('maturity-level-title-index',1,NULL,NULL,NULL,NULL,NULL);
-insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('maturity-level-title-update',1,NULL,NULL,NULL,NULL,NULL);
-insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('maturity-level-title-view',1,NULL,NULL,NULL,NULL,NULL);
-insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('maturity-level-update',1,NULL,NULL,NULL,NULL,NULL);
-insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('maturity-level-view',1,NULL,NULL,NULL,NULL,NULL);
 insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('monitoring-anggaran',2,NULL,NULL,NULL,NULL,NULL);
 insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('Operator',3,'Level akses operator',NULL,NULL,NULL,NULL);
 insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('pembangkit-listrik',2,NULL,NULL,NULL,NULL,NULL);
 insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('pengguna',2,NULL,NULL,NULL,NULL,NULL);
-insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('pertanyaan-maturity-level',2,NULL,NULL,NULL,NULL,NULL);
+insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('pertanyaan-smk3',2,NULL,NULL,NULL,NULL,NULL);
 insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('power-plant-ajax-plant',1,NULL,NULL,NULL,NULL,NULL);
 insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('power-plant-create',1,NULL,NULL,NULL,NULL,NULL);
 insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('power-plant-delete',1,NULL,NULL,NULL,NULL,NULL);
@@ -176,6 +156,20 @@ insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created
 insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('sector-update',1,NULL,NULL,NULL,NULL,NULL);
 insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('sector-view',1,NULL,NULL,NULL,NULL,NULL);
 insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('sektor',2,NULL,NULL,NULL,NULL,NULL);
+insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('smk3',2,NULL,NULL,NULL,NULL,NULL);
+insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('smk3-create',1,NULL,NULL,NULL,NULL,NULL);
+insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('smk3-criteria-ajax-delete',1,NULL,NULL,NULL,NULL,NULL);
+insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('smk3-delete',1,NULL,NULL,NULL,NULL,NULL);
+insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('smk3-detail-ajax-delete',1,NULL,NULL,NULL,NULL,NULL);
+insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('smk3-index',1,NULL,NULL,NULL,NULL,NULL);
+insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('smk3-subtitle-ajax-delete',1,NULL,NULL,NULL,NULL,NULL);
+insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('smk3-title-create',1,NULL,NULL,NULL,NULL,NULL);
+insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('smk3-title-delete',1,NULL,NULL,NULL,NULL,NULL);
+insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('smk3-title-index',1,NULL,NULL,NULL,NULL,NULL);
+insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('smk3-title-update',1,NULL,NULL,NULL,NULL,NULL);
+insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('smk3-title-view',1,NULL,NULL,NULL,NULL,NULL);
+insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('smk3-update',1,NULL,NULL,NULL,NULL,NULL);
+insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('smk3-view',1,NULL,NULL,NULL,NULL,NULL);
 insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('user-create',1,NULL,NULL,NULL,NULL,NULL);
 insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('user-delete',1,NULL,NULL,NULL,NULL,NULL);
 insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('user-index',1,NULL,NULL,NULL,NULL,NULL);
@@ -213,6 +207,27 @@ CREATE TABLE `auth_item_child` (
 
 /*Data for the table `auth_item_child` */
 
+insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','codeset');
+insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','log');
+insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','monitoring-anggaran');
+insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','pembangkit-listrik');
+insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','pengguna');
+insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','pertanyaan-smk3');
+insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','profil-pengguna');
+insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','profil-perusahaan');
+insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','rencana-kerja');
+insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','roadmap-k3l-kitsbs');
+insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','sektor');
+insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','smk3');
+insert  into `auth_item_child`(`parent`,`child`) values ('codeset','codeset-create');
+insert  into `auth_item_child`(`parent`,`child`) values ('codeset','codeset-delete');
+insert  into `auth_item_child`(`parent`,`child`) values ('codeset','codeset-index');
+insert  into `auth_item_child`(`parent`,`child`) values ('codeset','codeset-update');
+insert  into `auth_item_child`(`parent`,`child`) values ('codeset','codeset-view');
+insert  into `auth_item_child`(`parent`,`child`) values ('log','log-dirty-delete-all');
+insert  into `auth_item_child`(`parent`,`child`) values ('log','log-dirty-index');
+insert  into `auth_item_child`(`parent`,`child`) values ('log','login-history-delete-all');
+insert  into `auth_item_child`(`parent`,`child`) values ('log','login-history-index');
 insert  into `auth_item_child`(`parent`,`child`) values ('monitoring-anggaran','budget-monitoring-create');
 insert  into `auth_item_child`(`parent`,`child`) values ('monitoring-anggaran','budget-monitoring-delete');
 insert  into `auth_item_child`(`parent`,`child`) values ('monitoring-anggaran','budget-monitoring-detail-ajax-delete');
@@ -220,81 +235,34 @@ insert  into `auth_item_child`(`parent`,`child`) values ('monitoring-anggaran','
 insert  into `auth_item_child`(`parent`,`child`) values ('monitoring-anggaran','budget-monitoring-realization');
 insert  into `auth_item_child`(`parent`,`child`) values ('monitoring-anggaran','budget-monitoring-update');
 insert  into `auth_item_child`(`parent`,`child`) values ('monitoring-anggaran','budget-monitoring-view');
-insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','codeset');
-insert  into `auth_item_child`(`parent`,`child`) values ('codeset','codeset-create');
-insert  into `auth_item_child`(`parent`,`child`) values ('codeset','codeset-delete');
-insert  into `auth_item_child`(`parent`,`child`) values ('codeset','codeset-index');
-insert  into `auth_item_child`(`parent`,`child`) values ('codeset','codeset-update');
-insert  into `auth_item_child`(`parent`,`child`) values ('codeset','codeset-view');
-insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','log');
-insert  into `auth_item_child`(`parent`,`child`) values ('log','log-dirty-delete-all');
-insert  into `auth_item_child`(`parent`,`child`) values ('log','log-dirty-index');
-insert  into `auth_item_child`(`parent`,`child`) values ('log','login-history-delete-all');
-insert  into `auth_item_child`(`parent`,`child`) values ('log','login-history-index');
-insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','maturity-level');
-insert  into `auth_item_child`(`parent`,`child`) values ('maturity-level','maturity-level-create');
-insert  into `auth_item_child`(`parent`,`child`) values ('maturity-level','maturity-level-delete');
-insert  into `auth_item_child`(`parent`,`child`) values ('maturity-level','maturity-level-index');
-insert  into `auth_item_child`(`parent`,`child`) values ('pertanyaan-maturity-level','maturity-level-question-create');
-insert  into `auth_item_child`(`parent`,`child`) values ('pertanyaan-maturity-level','maturity-level-question-delete');
-insert  into `auth_item_child`(`parent`,`child`) values ('pertanyaan-maturity-level','maturity-level-question-index');
-insert  into `auth_item_child`(`parent`,`child`) values ('pertanyaan-maturity-level','maturity-level-question-update');
-insert  into `auth_item_child`(`parent`,`child`) values ('pertanyaan-maturity-level','maturity-level-question-view');
-insert  into `auth_item_child`(`parent`,`child`) values ('pertanyaan-maturity-level','maturity-level-title-create');
-insert  into `auth_item_child`(`parent`,`child`) values ('pertanyaan-maturity-level','maturity-level-title-delete');
-insert  into `auth_item_child`(`parent`,`child`) values ('pertanyaan-maturity-level','maturity-level-title-index');
-insert  into `auth_item_child`(`parent`,`child`) values ('pertanyaan-maturity-level','maturity-level-title-update');
-insert  into `auth_item_child`(`parent`,`child`) values ('pertanyaan-maturity-level','maturity-level-title-view');
-insert  into `auth_item_child`(`parent`,`child`) values ('maturity-level','maturity-level-update');
-insert  into `auth_item_child`(`parent`,`child`) values ('maturity-level','maturity-level-view');
-insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','monitoring-anggaran');
-insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','pembangkit-listrik');
 insert  into `auth_item_child`(`parent`,`child`) values ('Operator','pembangkit-listrik');
-insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','pengguna');
-insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','pertanyaan-maturity-level');
+insert  into `auth_item_child`(`parent`,`child`) values ('Operator','profil-pengguna');
+insert  into `auth_item_child`(`parent`,`child`) values ('Operator','sektor');
 insert  into `auth_item_child`(`parent`,`child`) values ('pembangkit-listrik','power-plant-ajax-plant');
 insert  into `auth_item_child`(`parent`,`child`) values ('pembangkit-listrik','power-plant-create');
 insert  into `auth_item_child`(`parent`,`child`) values ('pembangkit-listrik','power-plant-delete');
 insert  into `auth_item_child`(`parent`,`child`) values ('pembangkit-listrik','power-plant-index');
 insert  into `auth_item_child`(`parent`,`child`) values ('pembangkit-listrik','power-plant-update');
 insert  into `auth_item_child`(`parent`,`child`) values ('pembangkit-listrik','power-plant-view');
-insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','profil-pengguna');
-insert  into `auth_item_child`(`parent`,`child`) values ('Operator','profil-pengguna');
-insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','profil-perusahaan');
+insert  into `auth_item_child`(`parent`,`child`) values ('pengguna','user-create');
+insert  into `auth_item_child`(`parent`,`child`) values ('pengguna','user-delete');
+insert  into `auth_item_child`(`parent`,`child`) values ('pengguna','user-index');
+insert  into `auth_item_child`(`parent`,`child`) values ('pengguna','user-update');
+insert  into `auth_item_child`(`parent`,`child`) values ('pengguna','user-view');
+insert  into `auth_item_child`(`parent`,`child`) values ('pertanyaan-smk3','smk3-criteria-ajax-delete');
+insert  into `auth_item_child`(`parent`,`child`) values ('pertanyaan-smk3','smk3-detail-ajax-delete');
+insert  into `auth_item_child`(`parent`,`child`) values ('pertanyaan-smk3','smk3-subtitle-ajax-delete');
+insert  into `auth_item_child`(`parent`,`child`) values ('pertanyaan-smk3','smk3-title-create');
+insert  into `auth_item_child`(`parent`,`child`) values ('pertanyaan-smk3','smk3-title-delete');
+insert  into `auth_item_child`(`parent`,`child`) values ('pertanyaan-smk3','smk3-title-index');
+insert  into `auth_item_child`(`parent`,`child`) values ('pertanyaan-smk3','smk3-title-update');
+insert  into `auth_item_child`(`parent`,`child`) values ('pertanyaan-smk3','smk3-title-view');
+insert  into `auth_item_child`(`parent`,`child`) values ('profil-pengguna','user-profile-update');
 insert  into `auth_item_child`(`parent`,`child`) values ('profil-perusahaan','profile-create');
 insert  into `auth_item_child`(`parent`,`child`) values ('profil-perusahaan','profile-delete');
 insert  into `auth_item_child`(`parent`,`child`) values ('profil-perusahaan','profile-index');
 insert  into `auth_item_child`(`parent`,`child`) values ('profil-perusahaan','profile-update');
 insert  into `auth_item_child`(`parent`,`child`) values ('profil-perusahaan','profile-view');
-insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','rencana-kerja');
-insert  into `auth_item_child`(`parent`,`child`) values ('roadmap-k3l-kitsbs','roadmap-k3l-attribute-ajax-create');
-insert  into `auth_item_child`(`parent`,`child`) values ('roadmap-k3l-kitsbs','roadmap-k3l-attribute-ajax-search');
-insert  into `auth_item_child`(`parent`,`child`) values ('roadmap-k3l-kitsbs','roadmap-k3l-attribute-create');
-insert  into `auth_item_child`(`parent`,`child`) values ('roadmap-k3l-kitsbs','roadmap-k3l-attribute-delete');
-insert  into `auth_item_child`(`parent`,`child`) values ('roadmap-k3l-kitsbs','roadmap-k3l-attribute-index');
-insert  into `auth_item_child`(`parent`,`child`) values ('roadmap-k3l-kitsbs','roadmap-k3l-attribute-update');
-insert  into `auth_item_child`(`parent`,`child`) values ('roadmap-k3l-kitsbs','roadmap-k3l-attribute-view');
-insert  into `auth_item_child`(`parent`,`child`) values ('roadmap-k3l-kitsbs','roadmap-k3l-create');
-insert  into `auth_item_child`(`parent`,`child`) values ('roadmap-k3l-kitsbs','roadmap-k3l-delete');
-insert  into `auth_item_child`(`parent`,`child`) values ('roadmap-k3l-kitsbs','roadmap-k3l-index');
-insert  into `auth_item_child`(`parent`,`child`) values ('roadmap-k3l-kitsbs','roadmap-k3l-item-ajax-delete');
-insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','roadmap-k3l-kitsbs');
-insert  into `auth_item_child`(`parent`,`child`) values ('roadmap-k3l-kitsbs','roadmap-k3l-target-ajax-delete');
-insert  into `auth_item_child`(`parent`,`child`) values ('roadmap-k3l-kitsbs','roadmap-k3l-update');
-insert  into `auth_item_child`(`parent`,`child`) values ('roadmap-k3l-kitsbs','roadmap-k3l-view');
-insert  into `auth_item_child`(`parent`,`child`) values ('sektor','sector-create');
-insert  into `auth_item_child`(`parent`,`child`) values ('sektor','sector-delete');
-insert  into `auth_item_child`(`parent`,`child`) values ('sektor','sector-index');
-insert  into `auth_item_child`(`parent`,`child`) values ('sektor','sector-update');
-insert  into `auth_item_child`(`parent`,`child`) values ('sektor','sector-view');
-insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','sektor');
-insert  into `auth_item_child`(`parent`,`child`) values ('Operator','sektor');
-insert  into `auth_item_child`(`parent`,`child`) values ('pengguna','user-create');
-insert  into `auth_item_child`(`parent`,`child`) values ('pengguna','user-delete');
-insert  into `auth_item_child`(`parent`,`child`) values ('pengguna','user-index');
-insert  into `auth_item_child`(`parent`,`child`) values ('profil-pengguna','user-profile-update');
-insert  into `auth_item_child`(`parent`,`child`) values ('pengguna','user-update');
-insert  into `auth_item_child`(`parent`,`child`) values ('pengguna','user-view');
 insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-ajax-delete-detail');
 insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-ajax-read-detail');
 insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-ajax-save-detail');
@@ -310,6 +278,30 @@ insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','workin
 insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-index');
 insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-update');
 insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-view');
+insert  into `auth_item_child`(`parent`,`child`) values ('roadmap-k3l-kitsbs','roadmap-k3l-attribute-ajax-create');
+insert  into `auth_item_child`(`parent`,`child`) values ('roadmap-k3l-kitsbs','roadmap-k3l-attribute-ajax-search');
+insert  into `auth_item_child`(`parent`,`child`) values ('roadmap-k3l-kitsbs','roadmap-k3l-attribute-create');
+insert  into `auth_item_child`(`parent`,`child`) values ('roadmap-k3l-kitsbs','roadmap-k3l-attribute-delete');
+insert  into `auth_item_child`(`parent`,`child`) values ('roadmap-k3l-kitsbs','roadmap-k3l-attribute-index');
+insert  into `auth_item_child`(`parent`,`child`) values ('roadmap-k3l-kitsbs','roadmap-k3l-attribute-update');
+insert  into `auth_item_child`(`parent`,`child`) values ('roadmap-k3l-kitsbs','roadmap-k3l-attribute-view');
+insert  into `auth_item_child`(`parent`,`child`) values ('roadmap-k3l-kitsbs','roadmap-k3l-create');
+insert  into `auth_item_child`(`parent`,`child`) values ('roadmap-k3l-kitsbs','roadmap-k3l-delete');
+insert  into `auth_item_child`(`parent`,`child`) values ('roadmap-k3l-kitsbs','roadmap-k3l-index');
+insert  into `auth_item_child`(`parent`,`child`) values ('roadmap-k3l-kitsbs','roadmap-k3l-item-ajax-delete');
+insert  into `auth_item_child`(`parent`,`child`) values ('roadmap-k3l-kitsbs','roadmap-k3l-target-ajax-delete');
+insert  into `auth_item_child`(`parent`,`child`) values ('roadmap-k3l-kitsbs','roadmap-k3l-update');
+insert  into `auth_item_child`(`parent`,`child`) values ('roadmap-k3l-kitsbs','roadmap-k3l-view');
+insert  into `auth_item_child`(`parent`,`child`) values ('sektor','sector-create');
+insert  into `auth_item_child`(`parent`,`child`) values ('sektor','sector-delete');
+insert  into `auth_item_child`(`parent`,`child`) values ('sektor','sector-index');
+insert  into `auth_item_child`(`parent`,`child`) values ('sektor','sector-update');
+insert  into `auth_item_child`(`parent`,`child`) values ('sektor','sector-view');
+insert  into `auth_item_child`(`parent`,`child`) values ('smk3','smk3-create');
+insert  into `auth_item_child`(`parent`,`child`) values ('smk3','smk3-delete');
+insert  into `auth_item_child`(`parent`,`child`) values ('smk3','smk3-index');
+insert  into `auth_item_child`(`parent`,`child`) values ('smk3','smk3-update');
+insert  into `auth_item_child`(`parent`,`child`) values ('smk3','smk3-view');
 
 /*Table structure for table `auth_rule` */
 
@@ -349,7 +341,7 @@ CREATE TABLE `budget_monitoring` (
 /*Data for the table `budget_monitoring` */
 
 insert  into `budget_monitoring`(`id`,`form_type_code`,`sector_id`,`power_plant_id`,`k3l_year`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1,'LH',4,1,'2017',8,1486035644,8,1486035644);
-insert  into `budget_monitoring`(`id`,`form_type_code`,`sector_id`,`power_plant_id`,`k3l_year`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (2,'LH',4,1,'2017',8,1486035723,8,1486035723);
+insert  into `budget_monitoring`(`id`,`form_type_code`,`sector_id`,`power_plant_id`,`k3l_year`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (2,'LH',4,1,'2017',8,1486035723,8,1486565752);
 insert  into `budget_monitoring`(`id`,`form_type_code`,`sector_id`,`power_plant_id`,`k3l_year`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (4,'LH',4,1,'2017',8,1486036303,8,1486036303);
 
 /*Table structure for table `budget_monitoring_detail` */
@@ -373,8 +365,7 @@ CREATE TABLE `budget_monitoring_detail` (
 
 /*Data for the table `budget_monitoring_detail` */
 
-insert  into `budget_monitoring_detail`(`id`,`budget_monitoring_id`,`bmd_no_prk`,`bmd_program`,`bmd_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1,1,'asdf','asdf',11,8,1486035644,8,1486035644);
-insert  into `budget_monitoring_detail`(`id`,`budget_monitoring_id`,`bmd_no_prk`,`bmd_program`,`bmd_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (2,2,'asdf','asdf',110000,8,1486035724,8,1486035724);
+insert  into `budget_monitoring_detail`(`id`,`budget_monitoring_id`,`bmd_no_prk`,`bmd_program`,`bmd_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (2,2,'asdf','asdf',110000,8,1486035724,8,1486565753);
 insert  into `budget_monitoring_detail`(`id`,`budget_monitoring_id`,`bmd_no_prk`,`bmd_program`,`bmd_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (4,4,'asdf','asdf',11000,8,1486036303,8,1486036303);
 insert  into `budget_monitoring_detail`(`id`,`budget_monitoring_id`,`bmd_no_prk`,`bmd_program`,`bmd_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (5,4,'qwer','qwer',11000,8,1486036304,8,1486036304);
 
@@ -399,30 +390,18 @@ CREATE TABLE `budget_monitoring_month` (
 
 /*Data for the table `budget_monitoring_month` */
 
-insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1,1,2,11,NULL,8,1486035644,8,1486035644);
-insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (2,1,3,11,NULL,8,1486035644,8,1486035644);
-insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (3,1,4,NULL,NULL,8,1486035644,8,1486035644);
-insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (4,1,5,NULL,NULL,8,1486035644,8,1486035644);
-insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (5,1,6,NULL,NULL,8,1486035644,8,1486035644);
-insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (6,1,7,NULL,NULL,8,1486035644,8,1486035644);
-insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (7,1,8,NULL,NULL,8,1486035644,8,1486035644);
-insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (8,1,9,NULL,NULL,8,1486035644,8,1486035644);
-insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (9,1,10,NULL,NULL,8,1486035644,8,1486035644);
-insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (10,1,11,NULL,NULL,8,1486035644,8,1486035644);
-insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (11,1,12,NULL,NULL,8,1486035644,8,1486035644);
-insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (12,1,13,NULL,NULL,8,1486035644,8,1486035644);
-insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (13,2,2,110000,NULL,8,1486035724,8,1486035724);
-insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (14,2,3,NULL,NULL,8,1486035724,8,1486035724);
-insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (15,2,4,NULL,NULL,8,1486035724,8,1486035724);
-insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (16,2,5,NULL,NULL,8,1486035724,8,1486035724);
-insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (17,2,6,NULL,NULL,8,1486035724,8,1486035724);
-insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (18,2,7,NULL,NULL,8,1486035724,8,1486035724);
-insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (19,2,8,NULL,NULL,8,1486035724,8,1486035724);
-insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (20,2,9,NULL,NULL,8,1486035724,8,1486035724);
-insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (21,2,10,NULL,NULL,8,1486035724,8,1486035724);
-insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (22,2,11,NULL,NULL,8,1486035724,8,1486035724);
-insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (23,2,12,NULL,NULL,8,1486035724,8,1486035724);
-insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (24,2,13,NULL,NULL,8,1486035724,8,1486035724);
+insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (13,2,2,110000,NULL,8,1486035724,8,1486565753);
+insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (14,2,3,NULL,NULL,8,1486035724,8,1486565753);
+insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (15,2,4,NULL,NULL,8,1486035724,8,1486565753);
+insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (16,2,5,NULL,NULL,8,1486035724,8,1486565753);
+insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (17,2,6,NULL,NULL,8,1486035724,8,1486565753);
+insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (18,2,7,NULL,NULL,8,1486035724,8,1486565753);
+insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (19,2,8,NULL,NULL,8,1486035724,8,1486565753);
+insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (20,2,9,NULL,NULL,8,1486035724,8,1486565753);
+insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (21,2,10,NULL,NULL,8,1486035724,8,1486565753);
+insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (22,2,11,NULL,NULL,8,1486035724,8,1486565753);
+insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (23,2,12,NULL,NULL,8,1486035724,8,1486565753);
+insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (24,2,13,NULL,NULL,8,1486035724,8,1486565753);
 insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (37,4,2,11000,NULL,8,1486036303,8,1486036303);
 insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (38,4,3,NULL,NULL,8,1486036303,8,1486036303);
 insert  into `budget_monitoring_month`(`id`,`budget_monitoring_detail_id`,`bmv_month`,`bmv_plan_value`,`bmv_realization_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (39,4,4,NULL,NULL,8,1486036303,8,1486036303);
@@ -465,7 +444,7 @@ CREATE TABLE `codeset` (
   `created_by` smallint(5) unsigned DEFAULT NULL,
   `updated_by` smallint(5) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 /*Data for the table `codeset` */
 
@@ -483,17 +462,6 @@ insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_descripti
 insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_description`,`cset_parent_pk`,`cset_order`,`created_at`,`updated_at`,`created_by`,`updated_by`) values (12,'WP_LEGEND','3','Pelaksanaan Program','','',NULL,1484796162,1484796162,8,8);
 insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_description`,`cset_parent_pk`,`cset_order`,`created_at`,`updated_at`,`created_by`,`updated_by`) values (13,'WP_LEGEND','4','Monitoring Evaluasi','','',NULL,1484796174,1484796174,8,8);
 insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_description`,`cset_parent_pk`,`cset_order`,`created_at`,`updated_at`,`created_by`,`updated_by`) values (14,'WP_LEGEND','5','Penyusunan Laporan','','',NULL,1484796190,1484796190,8,8);
-insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_description`,`cset_parent_pk`,`cset_order`,`created_at`,`updated_at`,`created_by`,`updated_by`) values (18,'UNIT_CODE','BH','Buah','Buah','',NULL,1486366163,1486366163,8,8);
-insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_description`,`cset_parent_pk`,`cset_order`,`created_at`,`updated_at`,`created_by`,`updated_by`) values (19,'UNIT_CODE','KL','Kali','Kali','',NULL,1486366179,1486366179,8,8);
-insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_description`,`cset_parent_pk`,`cset_order`,`created_at`,`updated_at`,`created_by`,`updated_by`) values (20,'UNIT_CODE','RP','Rupiah','Rupiah','',NULL,1486366191,1486366191,8,8);
-insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_description`,`cset_parent_pk`,`cset_order`,`created_at`,`updated_at`,`created_by`,`updated_by`) values (21,'UNIT_CODE','UIP','Unit Induk & Pelaksana','Unit Induk & Pelaksana','',NULL,1486366211,1486366211,8,8);
-insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_description`,`cset_parent_pk`,`cset_order`,`created_at`,`updated_at`,`created_by`,`updated_by`) values (22,'UNIT_CODE','UP','Unit Pelaksana','Unit Pelaksana','',NULL,1486366227,1486366227,8,8);
-insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_description`,`cset_parent_pk`,`cset_order`,`created_at`,`updated_at`,`created_by`,`updated_by`) values (23,'UNIT_CODE','UNT','Unit','Unit','',NULL,1486366242,1486366242,8,8);
-insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_description`,`cset_parent_pk`,`cset_order`,`created_at`,`updated_at`,`created_by`,`updated_by`) values (24,'UNIT_CODE','PCT','%','%','',NULL,1486366270,1486366270,8,8);
-insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_description`,`cset_parent_pk`,`cset_order`,`created_at`,`updated_at`,`created_by`,`updated_by`) values (25,'UNIT_CODE','TMN','Temuan','Temuan','',NULL,1486366285,1486366285,8,8);
-insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_description`,`cset_parent_pk`,`cset_order`,`created_at`,`updated_at`,`created_by`,`updated_by`) values (26,'UNIT_CODE','TTK','Titik','Titik','',NULL,1486366300,1486366300,8,8);
-insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_description`,`cset_parent_pk`,`cset_order`,`created_at`,`updated_at`,`created_by`,`updated_by`) values (27,'UNIT_CODE','BLN','Bulan','Bulan','',NULL,1486366314,1486366314,8,8);
-insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_description`,`cset_parent_pk`,`cset_order`,`created_at`,`updated_at`,`created_by`,`updated_by`) values (28,'UNIT_CODE','LPRN','Laporan','Laporan','',NULL,1486366325,1486366325,8,8);
 
 /*Table structure for table `employee` */
 
@@ -542,7 +510,7 @@ CREATE TABLE `log` (
   KEY `FK_log_created_by` (`created_by`),
   CONSTRAINT `FK_log_created_by` FOREIGN KEY (`created_by`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_log_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=928 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1558 DEFAULT CHARSET=latin1;
 
 /*Data for the table `log` */
 
@@ -1038,251 +1006,819 @@ insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`
 insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (675,'SUCCESS','budget_monitoring_month','INSERTING NEW DATA WITH ID #58',8,1486036304,8,1486036304);
 insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (676,'SUCCESS','budget_monitoring_month','INSERTING NEW DATA WITH ID #59',8,1486036304,8,1486036304);
 insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (677,'SUCCESS','budget_monitoring_month','INSERTING NEW DATA WITH ID #60',8,1486036304,8,1486036304);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (678,'SUCCESS','codeset','INSERTING NEW DATA WITH ID #15',8,1486308433,8,1486308433);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (679,'SUCCESS','codeset','INSERTING NEW DATA WITH ID #16',8,1486308455,8,1486308455);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (680,'SUCCESS','codeset','INSERTING NEW DATA WITH ID #17',8,1486308469,8,1486308469);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (681,'SUCCESS','codeset','INSERTING NEW DATA WITH ID #18',8,1486366163,8,1486366163);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (682,'SUCCESS','codeset','INSERTING NEW DATA WITH ID #19',8,1486366179,8,1486366179);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (683,'SUCCESS','codeset','INSERTING NEW DATA WITH ID #20',8,1486366192,8,1486366192);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (684,'SUCCESS','codeset','INSERTING NEW DATA WITH ID #21',8,1486366211,8,1486366211);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (685,'SUCCESS','codeset','INSERTING NEW DATA WITH ID #22',8,1486366227,8,1486366227);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (686,'SUCCESS','codeset','INSERTING NEW DATA WITH ID #23',8,1486366242,8,1486366242);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (687,'SUCCESS','codeset','INSERTING NEW DATA WITH ID #24',8,1486366271,8,1486366271);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (688,'SUCCESS','codeset','INSERTING NEW DATA WITH ID #25',8,1486366285,8,1486366285);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (689,'SUCCESS','codeset','INSERTING NEW DATA WITH ID #26',8,1486366300,8,1486366300);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (690,'SUCCESS','codeset','INSERTING NEW DATA WITH ID #27',8,1486366314,8,1486366314);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (691,'SUCCESS','codeset','INSERTING NEW DATA WITH ID #28',8,1486366325,8,1486366325);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (692,'SUCCESS','maturity_level_title','INSERTING NEW DATA WITH ID #1',8,1486371354,8,1486371354);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (693,'SUCCESS','maturity_level_question','INSERTING NEW DATA WITH ID #1',8,1486372863,8,1486372863);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (694,'SUCCESS','maturity_level_question','INSERTING NEW DATA WITH ID #2',8,1486373299,8,1486373299);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (695,'SUCCESS','maturity_level_question','UPDATING DATA ID #1',8,1486374550,8,1486374550);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (696,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #19',8,1486374551,8,1486374551);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (697,'SUCCESS','maturity_level_question','UPDATING DATA ID #1',8,1486374568,8,1486374568);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (698,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #20',8,1486374568,8,1486374568);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (699,'SUCCESS','maturity_level_title','INSERTING NEW DATA WITH ID #2',8,1486374660,8,1486374660);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (700,'SUCCESS','maturity_level_question','INSERTING NEW DATA WITH ID #3',8,1486374732,8,1486374732);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (701,'SUCCESS','maturity_level_question','INSERTING NEW DATA WITH ID #4',8,1486374856,8,1486374856);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (702,'SUCCESS','maturity_level_question','INSERTING NEW DATA WITH ID #5',8,1486375089,8,1486375089);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (703,'SUCCESS','maturity_level_question','INSERTING NEW DATA WITH ID #6',8,1486401206,8,1486401206);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (704,'SUCCESS','maturity_level_question','INSERTING NEW DATA WITH ID #7',8,1486401262,8,1486401262);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (705,'SUCCESS','maturity_level_title','INSERTING NEW DATA WITH ID #3',8,1486401278,8,1486401278);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (706,'SUCCESS','maturity_level_question','INSERTING NEW DATA WITH ID #8',8,1486401560,8,1486401560);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (707,'SUCCESS','maturity_level_question','INSERTING NEW DATA WITH ID #9',8,1486401811,8,1486401811);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (708,'SUCCESS','maturity_level_question','INSERTING NEW DATA WITH ID #10',8,1486401883,8,1486401883);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (709,'SUCCESS','maturity_level_question','INSERTING NEW DATA WITH ID #11',8,1486401943,8,1486401943);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (710,'SUCCESS','maturity_level_question','INSERTING NEW DATA WITH ID #12',8,1486402015,8,1486402015);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (711,'SUCCESS','maturity_level_question','INSERTING NEW DATA WITH ID #13',8,1486402073,8,1486402073);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (712,'SUCCESS','maturity_level_question','INSERTING NEW DATA WITH ID #14',8,1486402112,8,1486402112);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (713,'SUCCESS','maturity_level_question','INSERTING NEW DATA WITH ID #15',8,1486402162,8,1486402162);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (714,'SUCCESS','maturity_level_question','INSERTING NEW DATA WITH ID #16',8,1486402202,8,1486402202);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (715,'SUCCESS','maturity_level_title','INSERTING NEW DATA WITH ID #4',8,1486402218,8,1486402218);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (716,'SUCCESS','maturity_level_question','INSERTING NEW DATA WITH ID #17',8,1486402260,8,1486402260);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (717,'SUCCESS','maturity_level_title','INSERTING NEW DATA WITH ID #5',8,1486402274,8,1486402274);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (718,'SUCCESS','maturity_level_question','INSERTING NEW DATA WITH ID #18',8,1486402297,8,1486402297);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (719,'SUCCESS','maturity_level_question','INSERTING NEW DATA WITH ID #19',8,1486402335,8,1486402335);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (720,'SUCCESS','maturity_level_question','INSERTING NEW DATA WITH ID #20',8,1486402369,8,1486402369);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (721,'SUCCESS','maturity_level_title','INSERTING NEW DATA WITH ID #6',8,1486457047,8,1486457047);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (722,'SUCCESS','maturity_level_title','UPDATING DATA ID #6',8,1486457260,8,1486457260);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (723,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #21',8,1486457260,8,1486457260);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (724,'SUCCESS','maturity_level_title','DELETING DATA ID #6',8,1486457267,8,1486457267);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (725,'SUCCESS','smk3_title','INSERTING NEW DATA WITH ID #1',8,1486478121,8,1486478121);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (726,'SUCCESS','smk3_subtitle','INSERTING NEW DATA WITH ID #1',8,1486478121,8,1486478121);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (727,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #1',8,1486478121,8,1486478121);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (728,'SUCCESS','smk3_subtitle','INSERTING NEW DATA WITH ID #2',8,1486478121,8,1486478121);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (729,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #2',8,1486478121,8,1486478121);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (735,'SUCCESS','maturity_level','INSERTING NEW DATA WITH ID #6',8,1486484967,8,1486484967);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (736,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #1',8,1486484967,8,1486484967);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (737,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #2',8,1486484967,8,1486484967);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (738,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #3',8,1486484967,8,1486484967);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (739,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #4',8,1486484967,8,1486484967);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (740,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #5',8,1486484967,8,1486484967);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (741,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #6',8,1486484967,8,1486484967);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (742,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #7',8,1486484967,8,1486484967);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (743,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #8',8,1486484967,8,1486484967);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (744,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #9',8,1486484967,8,1486484967);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (745,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #10',8,1486484967,8,1486484967);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (746,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #11',8,1486484967,8,1486484967);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (747,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #12',8,1486484967,8,1486484967);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (748,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #13',8,1486484967,8,1486484967);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (749,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #14',8,1486484967,8,1486484967);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (750,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #15',8,1486484967,8,1486484967);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (751,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #16',8,1486484967,8,1486484967);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (752,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #17',8,1486484967,8,1486484967);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (753,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #18',8,1486484967,8,1486484967);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (754,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #19',8,1486484967,8,1486484967);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (755,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #20',8,1486484967,8,1486484967);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (756,'SUCCESS','maturity_level','UPDATING DATA ID #6',8,1486485061,8,1486485061);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (757,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #21',8,1486485061,8,1486485061);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (758,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #22',8,1486485061,8,1486485061);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (759,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #23',8,1486485061,8,1486485061);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (760,'SUCCESS','attachment','INSERTING NEW DATA WITH ID #4',8,1486485061,8,1486485061);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (761,'SUCCESS','attachment_owner','INSERTING NEW DATA WITH ID #10',8,1486485061,8,1486485061);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (762,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #24',8,1486485061,8,1486485061);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (763,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #25',8,1486485061,8,1486485061);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (764,'SUCCESS','attachment','INSERTING NEW DATA WITH ID #5',8,1486485061,8,1486485061);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (765,'SUCCESS','attachment_owner','INSERTING NEW DATA WITH ID #11',8,1486485061,8,1486485061);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (766,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #26',8,1486485061,8,1486485061);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (767,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #27',8,1486485062,8,1486485062);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (768,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #28',8,1486485062,8,1486485062);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (769,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #29',8,1486485062,8,1486485062);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (770,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #30',8,1486485062,8,1486485062);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (771,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #31',8,1486485062,8,1486485062);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (772,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #32',8,1486485062,8,1486485062);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (773,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #33',8,1486485062,8,1486485062);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (774,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #34',8,1486485062,8,1486485062);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (775,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #35',8,1486485062,8,1486485062);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (776,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #36',8,1486485062,8,1486485062);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (777,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #37',8,1486485062,8,1486485062);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (778,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #38',8,1486485062,8,1486485062);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (779,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #39',8,1486485062,8,1486485062);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (780,'SUCCESS','maturity_level_detail','INSERTING NEW DATA WITH ID #40',8,1486485062,8,1486485062);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (781,'SUCCESS','maturity_level','UPDATING DATA ID #6',8,1486485195,8,1486485195);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (782,'SUCCESS','maturity_level_detail','UPDATING DATA ID #1',8,1486485195,8,1486485195);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (783,'SUCCESS','maturity_level_detail','UPDATING DATA ID #2',8,1486485195,8,1486485195);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (784,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #22',8,1486485195,8,1486485195);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (785,'SUCCESS','maturity_level_detail','UPDATING DATA ID #3',8,1486485195,8,1486485195);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (786,'SUCCESS','attachment','INSERTING NEW DATA WITH ID #6',8,1486485195,8,1486485195);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (787,'SUCCESS','attachment_owner','INSERTING NEW DATA WITH ID #12',8,1486485195,8,1486485195);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (788,'SUCCESS','maturity_level_detail','UPDATING DATA ID #4',8,1486485195,8,1486485195);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (789,'SUCCESS','maturity_level_detail','UPDATING DATA ID #5',8,1486485195,8,1486485195);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (790,'SUCCESS','attachment','INSERTING NEW DATA WITH ID #7',8,1486485195,8,1486485195);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (791,'SUCCESS','attachment_owner','INSERTING NEW DATA WITH ID #13',8,1486485195,8,1486485195);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (792,'SUCCESS','maturity_level_detail','UPDATING DATA ID #6',8,1486485196,8,1486485196);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (793,'SUCCESS','maturity_level_detail','UPDATING DATA ID #7',8,1486485196,8,1486485196);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (794,'SUCCESS','maturity_level_detail','UPDATING DATA ID #8',8,1486485196,8,1486485196);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (795,'SUCCESS','maturity_level_detail','UPDATING DATA ID #9',8,1486485196,8,1486485196);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (796,'SUCCESS','maturity_level_detail','UPDATING DATA ID #10',8,1486485196,8,1486485196);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (797,'SUCCESS','maturity_level_detail','UPDATING DATA ID #11',8,1486485196,8,1486485196);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (798,'SUCCESS','maturity_level_detail','UPDATING DATA ID #12',8,1486485196,8,1486485196);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (799,'SUCCESS','maturity_level_detail','UPDATING DATA ID #13',8,1486485196,8,1486485196);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (800,'SUCCESS','maturity_level_detail','UPDATING DATA ID #14',8,1486485196,8,1486485196);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (801,'SUCCESS','maturity_level_detail','UPDATING DATA ID #15',8,1486485196,8,1486485196);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (802,'SUCCESS','maturity_level_detail','UPDATING DATA ID #16',8,1486485196,8,1486485196);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (803,'SUCCESS','maturity_level_detail','UPDATING DATA ID #17',8,1486485196,8,1486485196);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (804,'SUCCESS','maturity_level_detail','UPDATING DATA ID #18',8,1486485196,8,1486485196);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (805,'SUCCESS','maturity_level_detail','UPDATING DATA ID #19',8,1486485196,8,1486485196);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (806,'SUCCESS','maturity_level_detail','UPDATING DATA ID #20',8,1486485196,8,1486485196);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (807,'SUCCESS','attachment','DELETING DATA ID #6',8,1486531422,8,1486531422);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (808,'SUCCESS','attachment','DELETING DATA ID #7',8,1486531572,8,1486531572);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (809,'SUCCESS','attachment','DELETING DATA ID #2',8,1486531725,8,1486531725);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (810,'SUCCESS','working_plan','UPDATING DATA ID #1',8,1486531756,8,1486531756);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (811,'SUCCESS','working_plan_detail','UPDATING DATA ID #1',8,1486531756,8,1486531756);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (812,'SUCCESS','working_plan_month','INSERTING NEW DATA WITH ID #101',8,1486531756,8,1486531756);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (813,'SUCCESS','working_plan_month','INSERTING NEW DATA WITH ID #102',8,1486531756,8,1486531756);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (814,'SUCCESS','working_plan_detail','UPDATING DATA ID #2',8,1486531756,8,1486531756);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (815,'SUCCESS','attachment','INSERTING NEW DATA WITH ID #8',8,1486531756,8,1486531756);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (816,'SUCCESS','attachment_owner','INSERTING NEW DATA WITH ID #14',8,1486531756,8,1486531756);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (817,'SUCCESS','working_plan_month','INSERTING NEW DATA WITH ID #103',8,1486531756,8,1486531756);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (818,'SUCCESS','working_plan_detail','UPDATING DATA ID #6',8,1486531756,8,1486531756);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (819,'SUCCESS','working_plan_month','INSERTING NEW DATA WITH ID #104',8,1486531756,8,1486531756);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (820,'SUCCESS','working_plan_month','INSERTING NEW DATA WITH ID #105',8,1486531756,8,1486531756);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (821,'SUCCESS','working_plan_month','INSERTING NEW DATA WITH ID #106',8,1486531756,8,1486531756);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (822,'SUCCESS','working_plan_month','INSERTING NEW DATA WITH ID #107',8,1486531756,8,1486531756);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (823,'SUCCESS','working_plan_month','INSERTING NEW DATA WITH ID #108',8,1486531756,8,1486531756);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (824,'SUCCESS','working_plan_month','INSERTING NEW DATA WITH ID #109',8,1486531756,8,1486531756);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (825,'SUCCESS','working_plan_month','INSERTING NEW DATA WITH ID #110',8,1486531756,8,1486531756);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (826,'SUCCESS','working_plan_month','INSERTING NEW DATA WITH ID #111',8,1486531756,8,1486531756);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (827,'SUCCESS','working_plan_month','INSERTING NEW DATA WITH ID #112',8,1486531756,8,1486531756);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (828,'SUCCESS','working_plan_month','INSERTING NEW DATA WITH ID #113',8,1486531756,8,1486531756);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (829,'SUCCESS','working_plan_month','INSERTING NEW DATA WITH ID #114',8,1486531756,8,1486531756);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (830,'SUCCESS','working_plan_month','INSERTING NEW DATA WITH ID #115',8,1486531756,8,1486531756);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (831,'SUCCESS','working_plan_month','INSERTING NEW DATA WITH ID #116',8,1486531756,8,1486531756);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (832,'SUCCESS','working_plan_month','INSERTING NEW DATA WITH ID #117',8,1486531756,8,1486531756);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (833,'SUCCESS','maturity_level','UPDATING DATA ID #6',8,1486531800,8,1486531800);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (834,'SUCCESS','maturity_level_detail','UPDATING DATA ID #1',8,1486531800,8,1486531800);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (835,'SUCCESS','maturity_level_detail','UPDATING DATA ID #2',8,1486531800,8,1486531800);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (836,'SUCCESS','maturity_level_detail','UPDATING DATA ID #3',8,1486531800,8,1486531800);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (837,'SUCCESS','attachment','INSERTING NEW DATA WITH ID #9',8,1486531800,8,1486531800);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (838,'SUCCESS','attachment_owner','INSERTING NEW DATA WITH ID #15',8,1486531800,8,1486531800);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (839,'SUCCESS','maturity_level_detail','UPDATING DATA ID #4',8,1486531800,8,1486531800);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (840,'SUCCESS','maturity_level_detail','UPDATING DATA ID #5',8,1486531800,8,1486531800);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (841,'SUCCESS','maturity_level_detail','UPDATING DATA ID #6',8,1486531800,8,1486531800);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (842,'SUCCESS','maturity_level_detail','UPDATING DATA ID #7',8,1486531800,8,1486531800);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (843,'SUCCESS','maturity_level_detail','UPDATING DATA ID #8',8,1486531800,8,1486531800);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (844,'SUCCESS','maturity_level_detail','UPDATING DATA ID #9',8,1486531800,8,1486531800);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (845,'SUCCESS','maturity_level_detail','UPDATING DATA ID #10',8,1486531800,8,1486531800);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (846,'SUCCESS','maturity_level_detail','UPDATING DATA ID #11',8,1486531800,8,1486531800);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (847,'SUCCESS','maturity_level_detail','UPDATING DATA ID #12',8,1486531800,8,1486531800);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (848,'SUCCESS','maturity_level_detail','UPDATING DATA ID #13',8,1486531800,8,1486531800);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (849,'SUCCESS','maturity_level_detail','UPDATING DATA ID #14',8,1486531800,8,1486531800);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (850,'SUCCESS','maturity_level_detail','UPDATING DATA ID #15',8,1486531800,8,1486531800);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (851,'SUCCESS','maturity_level_detail','UPDATING DATA ID #16',8,1486531800,8,1486531800);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (852,'SUCCESS','maturity_level_detail','UPDATING DATA ID #17',8,1486531800,8,1486531800);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (853,'SUCCESS','maturity_level_detail','UPDATING DATA ID #18',8,1486531800,8,1486531800);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (854,'SUCCESS','maturity_level_detail','UPDATING DATA ID #19',8,1486531800,8,1486531800);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (855,'SUCCESS','maturity_level_detail','UPDATING DATA ID #20',8,1486531800,8,1486531800);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (856,'SUCCESS','attachment','DELETING DATA ID #9',8,1486531817,8,1486531817);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (857,'SUCCESS','maturity_level','UPDATING DATA ID #6',8,1486531835,8,1486531835);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (858,'SUCCESS','maturity_level_detail','UPDATING DATA ID #1',8,1486531835,8,1486531835);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (859,'SUCCESS','maturity_level_detail','UPDATING DATA ID #2',8,1486531836,8,1486531836);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (860,'SUCCESS','maturity_level_detail','UPDATING DATA ID #3',8,1486531836,8,1486531836);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (861,'SUCCESS','attachment','INSERTING NEW DATA WITH ID #10',8,1486531836,8,1486531836);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (862,'SUCCESS','attachment_owner','INSERTING NEW DATA WITH ID #16',8,1486531836,8,1486531836);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (863,'SUCCESS','maturity_level_detail','UPDATING DATA ID #4',8,1486531836,8,1486531836);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (864,'SUCCESS','maturity_level_detail','UPDATING DATA ID #5',8,1486531836,8,1486531836);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (865,'SUCCESS','maturity_level_detail','UPDATING DATA ID #6',8,1486531836,8,1486531836);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (866,'SUCCESS','maturity_level_detail','UPDATING DATA ID #7',8,1486531836,8,1486531836);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (867,'SUCCESS','maturity_level_detail','UPDATING DATA ID #8',8,1486531836,8,1486531836);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (868,'SUCCESS','maturity_level_detail','UPDATING DATA ID #9',8,1486531836,8,1486531836);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (869,'SUCCESS','maturity_level_detail','UPDATING DATA ID #10',8,1486531836,8,1486531836);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (870,'SUCCESS','maturity_level_detail','UPDATING DATA ID #11',8,1486531836,8,1486531836);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (871,'SUCCESS','maturity_level_detail','UPDATING DATA ID #12',8,1486531836,8,1486531836);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (872,'SUCCESS','maturity_level_detail','UPDATING DATA ID #13',8,1486531836,8,1486531836);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (873,'SUCCESS','maturity_level_detail','UPDATING DATA ID #14',8,1486531836,8,1486531836);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (874,'SUCCESS','maturity_level_detail','UPDATING DATA ID #15',8,1486531836,8,1486531836);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (875,'SUCCESS','maturity_level_detail','UPDATING DATA ID #16',8,1486531836,8,1486531836);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (876,'SUCCESS','maturity_level_detail','UPDATING DATA ID #17',8,1486531836,8,1486531836);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (877,'SUCCESS','maturity_level_detail','UPDATING DATA ID #18',8,1486531836,8,1486531836);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (878,'SUCCESS','maturity_level_detail','UPDATING DATA ID #19',8,1486531836,8,1486531836);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (879,'SUCCESS','maturity_level_detail','UPDATING DATA ID #20',8,1486531836,8,1486531836);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (880,'SUCCESS','attachment','DELETING DATA ID #10',8,1486532872,8,1486532872);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (881,'SUCCESS','maturity_level','UPDATING DATA ID #6',8,1486532925,8,1486532925);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (882,'SUCCESS','maturity_level_detail','UPDATING DATA ID #1',8,1486532925,8,1486532925);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (883,'SUCCESS','maturity_level_detail','UPDATING DATA ID #2',8,1486532925,8,1486532925);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (884,'SUCCESS','maturity_level_detail','UPDATING DATA ID #3',8,1486532925,8,1486532925);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (885,'SUCCESS','attachment','INSERTING NEW DATA WITH ID #11',8,1486532925,8,1486532925);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (886,'SUCCESS','attachment_owner','INSERTING NEW DATA WITH ID #17',8,1486532925,8,1486532925);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (887,'SUCCESS','maturity_level_detail','UPDATING DATA ID #4',8,1486532925,8,1486532925);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (888,'SUCCESS','maturity_level_detail','UPDATING DATA ID #5',8,1486532925,8,1486532925);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (889,'SUCCESS','maturity_level_detail','UPDATING DATA ID #6',8,1486532925,8,1486532925);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (890,'SUCCESS','maturity_level_detail','UPDATING DATA ID #7',8,1486532925,8,1486532925);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (891,'SUCCESS','maturity_level_detail','UPDATING DATA ID #8',8,1486532925,8,1486532925);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (892,'SUCCESS','maturity_level_detail','UPDATING DATA ID #9',8,1486532925,8,1486532925);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (893,'SUCCESS','maturity_level_detail','UPDATING DATA ID #10',8,1486532925,8,1486532925);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (894,'SUCCESS','maturity_level_detail','UPDATING DATA ID #11',8,1486532925,8,1486532925);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (895,'SUCCESS','maturity_level_detail','UPDATING DATA ID #12',8,1486532925,8,1486532925);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (896,'SUCCESS','maturity_level_detail','UPDATING DATA ID #13',8,1486532925,8,1486532925);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (897,'SUCCESS','maturity_level_detail','UPDATING DATA ID #14',8,1486532925,8,1486532925);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (898,'SUCCESS','maturity_level_detail','UPDATING DATA ID #15',8,1486532925,8,1486532925);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (899,'SUCCESS','maturity_level_detail','UPDATING DATA ID #16',8,1486532925,8,1486532925);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (900,'SUCCESS','maturity_level_detail','UPDATING DATA ID #17',8,1486532925,8,1486532925);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (901,'SUCCESS','maturity_level_detail','UPDATING DATA ID #18',8,1486532925,8,1486532925);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (902,'SUCCESS','maturity_level_detail','UPDATING DATA ID #19',8,1486532925,8,1486532925);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (903,'SUCCESS','maturity_level_detail','UPDATING DATA ID #20',8,1486532925,8,1486532925);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (904,'SUCCESS','attachment','DELETING DATA ID #11',8,1486532942,8,1486532942);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (905,'SUCCESS','maturity_level','UPDATING DATA ID #6',8,1486532961,8,1486532961);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (906,'SUCCESS','maturity_level_detail','UPDATING DATA ID #1',8,1486532961,8,1486532961);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (907,'SUCCESS','maturity_level_detail','UPDATING DATA ID #2',8,1486532961,8,1486532961);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (908,'SUCCESS','maturity_level_detail','UPDATING DATA ID #3',8,1486532961,8,1486532961);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (909,'SUCCESS','attachment','INSERTING NEW DATA WITH ID #12',8,1486532961,8,1486532961);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (910,'SUCCESS','attachment_owner','INSERTING NEW DATA WITH ID #18',8,1486532961,8,1486532961);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (911,'SUCCESS','maturity_level_detail','UPDATING DATA ID #4',8,1486532961,8,1486532961);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (912,'SUCCESS','maturity_level_detail','UPDATING DATA ID #5',8,1486532961,8,1486532961);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (913,'SUCCESS','maturity_level_detail','UPDATING DATA ID #6',8,1486532961,8,1486532961);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (914,'SUCCESS','maturity_level_detail','UPDATING DATA ID #7',8,1486532961,8,1486532961);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (915,'SUCCESS','maturity_level_detail','UPDATING DATA ID #8',8,1486532961,8,1486532961);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (916,'SUCCESS','maturity_level_detail','UPDATING DATA ID #9',8,1486532961,8,1486532961);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (917,'SUCCESS','maturity_level_detail','UPDATING DATA ID #10',8,1486532961,8,1486532961);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (918,'SUCCESS','maturity_level_detail','UPDATING DATA ID #11',8,1486532961,8,1486532961);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (919,'SUCCESS','maturity_level_detail','UPDATING DATA ID #12',8,1486532961,8,1486532961);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (920,'SUCCESS','maturity_level_detail','UPDATING DATA ID #13',8,1486532961,8,1486532961);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (921,'SUCCESS','maturity_level_detail','UPDATING DATA ID #14',8,1486532961,8,1486532961);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (922,'SUCCESS','maturity_level_detail','UPDATING DATA ID #15',8,1486532961,8,1486532961);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (923,'SUCCESS','maturity_level_detail','UPDATING DATA ID #16',8,1486532961,8,1486532961);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (924,'SUCCESS','maturity_level_detail','UPDATING DATA ID #17',8,1486532961,8,1486532961);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (925,'SUCCESS','maturity_level_detail','UPDATING DATA ID #18',8,1486532961,8,1486532961);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (926,'SUCCESS','maturity_level_detail','UPDATING DATA ID #19',8,1486532961,8,1486532961);
-insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (927,'SUCCESS','maturity_level_detail','UPDATING DATA ID #20',8,1486532961,8,1486532961);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (681,'SUCCESS','smk3_title','INSERTING NEW DATA WITH ID #4',8,1486307185,8,1486307185);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (682,'SUCCESS','smk3_subtitle','INSERTING NEW DATA WITH ID #1',8,1486307185,8,1486307185);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (683,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #1',8,1486307185,8,1486307185);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (684,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #2',8,1486307185,8,1486307185);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (685,'SUCCESS','smk3_subtitle','INSERTING NEW DATA WITH ID #2',8,1486307185,8,1486307185);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (686,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #3',8,1486307185,8,1486307185);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (687,'SUCCESS','smk3_title','UPDATING DATA ID #4',8,1486320971,8,1486320971);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (688,'SUCCESS','smk3_title','UPDATING DATA ID #4',8,1486321015,8,1486321015);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (689,'SUCCESS','smk3_subtitle','UPDATING DATA ID #1',8,1486321015,8,1486321015);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (690,'SUCCESS','smk3_criteria','UPDATING DATA ID #2',8,1486321015,8,1486321015);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (691,'SUCCESS','smk3_subtitle','UPDATING DATA ID #2',8,1486321015,8,1486321015);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (692,'SUCCESS','smk3_title','UPDATING DATA ID #4',8,1486400612,8,1486400612);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (693,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #19',8,1486400612,8,1486400612);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (694,'SUCCESS','smk3_subtitle','UPDATING DATA ID #1',8,1486400612,8,1486400612);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (695,'SUCCESS','smk3_criteria','UPDATING DATA ID #1',8,1486400612,8,1486400612);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (696,'SUCCESS','smk3_criteria','UPDATING DATA ID #2',8,1486400612,8,1486400612);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (697,'SUCCESS','smk3_subtitle','UPDATING DATA ID #2',8,1486400612,8,1486400612);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (698,'SUCCESS','smk3_criteria','UPDATING DATA ID #3',8,1486400612,8,1486400612);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (699,'SUCCESS','smk3_title','DELETING DATA ID #4',8,1486400936,8,1486400936);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (700,'SUCCESS','smk3_title','INSERTING NEW DATA WITH ID #5',8,1486401063,8,1486401063);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (701,'SUCCESS','smk3_subtitle','INSERTING NEW DATA WITH ID #3',8,1486401063,8,1486401063);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (702,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #4',8,1486401063,8,1486401063);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (703,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #5',8,1486401063,8,1486401063);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (704,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #6',8,1486401063,8,1486401063);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (705,'SUCCESS','smk3_subtitle','INSERTING NEW DATA WITH ID #4',8,1486401063,8,1486401063);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (706,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #7',8,1486401063,8,1486401063);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (707,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #8',8,1486401063,8,1486401063);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (708,'SUCCESS','smk3_subtitle','INSERTING NEW DATA WITH ID #5',8,1486401063,8,1486401063);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (709,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #9',8,1486401063,8,1486401063);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (710,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #10',8,1486401063,8,1486401063);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (711,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #11',8,1486401063,8,1486401063);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (712,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #12',8,1486401063,8,1486401063);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (713,'SUCCESS','smk3_title','UPDATING DATA ID #5',8,1486401422,8,1486401422);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (714,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #20',8,1486401422,8,1486401422);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (715,'SUCCESS','smk3_subtitle','UPDATING DATA ID #3',8,1486401422,8,1486401422);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (716,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #21',8,1486401422,8,1486401422);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (717,'SUCCESS','smk3_criteria','UPDATING DATA ID #4',8,1486401422,8,1486401422);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (718,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #22',8,1486401422,8,1486401422);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (719,'SUCCESS','smk3_criteria','UPDATING DATA ID #5',8,1486401422,8,1486401422);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (720,'SUCCESS','smk3_criteria','UPDATING DATA ID #6',8,1486401422,8,1486401422);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (721,'SUCCESS','smk3_subtitle','UPDATING DATA ID #4',8,1486401422,8,1486401422);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (722,'SUCCESS','smk3_criteria','UPDATING DATA ID #7',8,1486401422,8,1486401422);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (723,'SUCCESS','smk3_criteria','UPDATING DATA ID #8',8,1486401422,8,1486401422);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (724,'SUCCESS','smk3_subtitle','UPDATING DATA ID #5',8,1486401422,8,1486401422);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (725,'SUCCESS','smk3_criteria','UPDATING DATA ID #9',8,1486401422,8,1486401422);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (726,'SUCCESS','smk3_criteria','UPDATING DATA ID #10',8,1486401422,8,1486401422);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (727,'SUCCESS','smk3_criteria','UPDATING DATA ID #11',8,1486401422,8,1486401422);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (728,'SUCCESS','smk3_criteria','UPDATING DATA ID #12',8,1486401422,8,1486401422);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (729,'SUCCESS','smk3_title','UPDATING DATA ID #5',8,1486402988,8,1486402988);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (730,'SUCCESS','smk3_subtitle','UPDATING DATA ID #3',8,1486402988,8,1486402988);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (731,'SUCCESS','smk3_criteria','UPDATING DATA ID #4',8,1486402988,8,1486402988);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (732,'SUCCESS','smk3_criteria','UPDATING DATA ID #5',8,1486402988,8,1486402988);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (733,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #23',8,1486402988,8,1486402988);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (734,'SUCCESS','smk3_criteria','UPDATING DATA ID #6',8,1486402988,8,1486402988);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (735,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #24',8,1486402988,8,1486402988);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (736,'SUCCESS','smk3_subtitle','UPDATING DATA ID #4',8,1486402988,8,1486402988);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (737,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #25',8,1486402988,8,1486402988);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (738,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #13',8,1486402988,8,1486402988);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (739,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #14',8,1486402988,8,1486402988);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (740,'SUCCESS','smk3_criteria','UPDATING DATA ID #7',8,1486402988,8,1486402988);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (741,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #26',8,1486402988,8,1486402988);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (742,'SUCCESS','smk3_criteria','UPDATING DATA ID #8',8,1486402988,8,1486402988);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (743,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #27',8,1486402988,8,1486402988);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (744,'SUCCESS','smk3_subtitle','UPDATING DATA ID #5',8,1486402988,8,1486402988);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (745,'SUCCESS','smk3_criteria','UPDATING DATA ID #9',8,1486402988,8,1486402988);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (746,'SUCCESS','smk3_criteria','UPDATING DATA ID #10',8,1486402988,8,1486402988);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (747,'SUCCESS','smk3_criteria','UPDATING DATA ID #11',8,1486402988,8,1486402988);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (748,'SUCCESS','smk3_criteria','UPDATING DATA ID #12',8,1486402988,8,1486402988);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (749,'SUCCESS','smk3_title','UPDATING DATA ID #5',8,1486409906,8,1486409906);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (750,'SUCCESS','smk3_subtitle','UPDATING DATA ID #3',8,1486409906,8,1486409906);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (751,'SUCCESS','smk3_criteria','UPDATING DATA ID #4',8,1486409906,8,1486409906);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (752,'SUCCESS','smk3_criteria','UPDATING DATA ID #5',8,1486409906,8,1486409906);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (753,'SUCCESS','smk3_criteria','UPDATING DATA ID #6',8,1486409906,8,1486409906);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (754,'SUCCESS','smk3_subtitle','UPDATING DATA ID #4',8,1486409906,8,1486409906);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (755,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #15',8,1486409906,8,1486409906);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (756,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #16',8,1486409906,8,1486409906);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (757,'SUCCESS','smk3_criteria','UPDATING DATA ID #7',8,1486409906,8,1486409906);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (758,'SUCCESS','smk3_criteria','UPDATING DATA ID #8',8,1486409906,8,1486409906);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (759,'SUCCESS','smk3_criteria','UPDATING DATA ID #13',8,1486409906,8,1486409906);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (760,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #28',8,1486409906,8,1486409906);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (761,'SUCCESS','smk3_criteria','UPDATING DATA ID #14',8,1486409906,8,1486409906);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (762,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #29',8,1486409906,8,1486409906);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (763,'SUCCESS','smk3_subtitle','UPDATING DATA ID #5',8,1486409906,8,1486409906);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (764,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #30',8,1486409906,8,1486409906);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (765,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #17',8,1486409906,8,1486409906);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (766,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #18',8,1486409906,8,1486409906);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (767,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #19',8,1486409906,8,1486409906);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (768,'SUCCESS','smk3_criteria','UPDATING DATA ID #9',8,1486409906,8,1486409906);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (769,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #31',8,1486409906,8,1486409906);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (770,'SUCCESS','smk3_criteria','UPDATING DATA ID #10',8,1486409906,8,1486409906);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (771,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #32',8,1486409906,8,1486409906);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (772,'SUCCESS','smk3_criteria','UPDATING DATA ID #11',8,1486409906,8,1486409906);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (773,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #33',8,1486409906,8,1486409906);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (774,'SUCCESS','smk3_criteria','UPDATING DATA ID #12',8,1486409906,8,1486409906);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (775,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #34',8,1486409906,8,1486409906);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (776,'SUCCESS','smk3_title','UPDATING DATA ID #5',8,1486410025,8,1486410025);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (777,'SUCCESS','smk3_subtitle','UPDATING DATA ID #3',8,1486410025,8,1486410025);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (778,'SUCCESS','smk3_criteria','UPDATING DATA ID #4',8,1486410025,8,1486410025);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (779,'SUCCESS','smk3_criteria','UPDATING DATA ID #5',8,1486410025,8,1486410025);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (780,'SUCCESS','smk3_criteria','UPDATING DATA ID #6',8,1486410025,8,1486410025);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (781,'SUCCESS','smk3_subtitle','UPDATING DATA ID #4',8,1486410025,8,1486410025);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (782,'SUCCESS','smk3_criteria','UPDATING DATA ID #15',8,1486410025,8,1486410025);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (783,'SUCCESS','smk3_criteria','UPDATING DATA ID #7',8,1486410025,8,1486410025);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (784,'SUCCESS','smk3_criteria','UPDATING DATA ID #8',8,1486410025,8,1486410025);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (785,'SUCCESS','smk3_criteria','UPDATING DATA ID #13',8,1486410025,8,1486410025);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (786,'SUCCESS','smk3_criteria','UPDATING DATA ID #14',8,1486410025,8,1486410025);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (787,'SUCCESS','smk3_criteria','UPDATING DATA ID #16',8,1486410025,8,1486410025);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (788,'SUCCESS','smk3_subtitle','UPDATING DATA ID #5',8,1486410025,8,1486410025);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (789,'SUCCESS','smk3_criteria','UPDATING DATA ID #9',8,1486410025,8,1486410025);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (790,'SUCCESS','smk3_criteria','UPDATING DATA ID #10',8,1486410025,8,1486410025);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (791,'SUCCESS','smk3_criteria','UPDATING DATA ID #11',8,1486410025,8,1486410025);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (792,'SUCCESS','smk3_criteria','UPDATING DATA ID #12',8,1486410025,8,1486410025);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (793,'SUCCESS','smk3_criteria','UPDATING DATA ID #17',8,1486410025,8,1486410025);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (794,'SUCCESS','smk3_criteria','UPDATING DATA ID #18',8,1486410025,8,1486410025);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (795,'SUCCESS','smk3_criteria','UPDATING DATA ID #19',8,1486410025,8,1486410025);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (796,'SUCCESS','smk3_title','UPDATING DATA ID #5',8,1486410590,8,1486410590);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (797,'SUCCESS','smk3_subtitle','UPDATING DATA ID #3',8,1486410590,8,1486410590);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (798,'SUCCESS','smk3_criteria','UPDATING DATA ID #4',8,1486410590,8,1486410590);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (799,'SUCCESS','smk3_criteria','UPDATING DATA ID #5',8,1486410590,8,1486410590);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (800,'SUCCESS','smk3_criteria','UPDATING DATA ID #6',8,1486410590,8,1486410590);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (801,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #20',8,1486410590,8,1486410590);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (802,'SUCCESS','smk3_subtitle','UPDATING DATA ID #4',8,1486410590,8,1486410590);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (803,'SUCCESS','smk3_criteria','UPDATING DATA ID #7',8,1486410590,8,1486410590);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (804,'SUCCESS','smk3_criteria','UPDATING DATA ID #8',8,1486410590,8,1486410590);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (805,'SUCCESS','smk3_criteria','UPDATING DATA ID #13',8,1486410590,8,1486410590);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (806,'SUCCESS','smk3_criteria','UPDATING DATA ID #14',8,1486410590,8,1486410590);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (807,'SUCCESS','smk3_criteria','UPDATING DATA ID #15',8,1486410590,8,1486410590);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (808,'SUCCESS','smk3_criteria','UPDATING DATA ID #16',8,1486410590,8,1486410590);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (809,'SUCCESS','smk3_subtitle','UPDATING DATA ID #5',8,1486410590,8,1486410590);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (810,'SUCCESS','smk3_criteria','UPDATING DATA ID #9',8,1486410590,8,1486410590);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (811,'SUCCESS','smk3_criteria','UPDATING DATA ID #10',8,1486410590,8,1486410590);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (812,'SUCCESS','smk3_criteria','UPDATING DATA ID #11',8,1486410590,8,1486410590);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (813,'SUCCESS','smk3_criteria','UPDATING DATA ID #12',8,1486410590,8,1486410590);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (814,'SUCCESS','smk3_criteria','UPDATING DATA ID #17',8,1486410590,8,1486410590);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (815,'SUCCESS','smk3_criteria','UPDATING DATA ID #18',8,1486410590,8,1486410590);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (816,'SUCCESS','smk3_criteria','UPDATING DATA ID #19',8,1486410590,8,1486410590);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (817,'SUCCESS','smk3_title','INSERTING NEW DATA WITH ID #6',8,1486470322,8,1486470322);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (818,'SUCCESS','smk3_subtitle','INSERTING NEW DATA WITH ID #6',8,1486470322,8,1486470322);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (819,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #21',8,1486470322,8,1486470322);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (820,'SUCCESS','smk3_title','INSERTING NEW DATA WITH ID #7',8,1486470338,8,1486470338);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (821,'SUCCESS','smk3_subtitle','INSERTING NEW DATA WITH ID #7',8,1486470338,8,1486470338);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (822,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #22',8,1486470338,8,1486470338);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (823,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #23',8,1486470338,8,1486470338);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (824,'SUCCESS','smk3_subtitle','INSERTING NEW DATA WITH ID #8',8,1486470338,8,1486470338);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (825,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #24',8,1486470338,8,1486470338);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (827,'SUCCESS','smk3','INSERTING NEW DATA WITH ID #2',8,1486496275,8,1486496275);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (828,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #1',8,1486496275,8,1486496275);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (829,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #2',8,1486496275,8,1486496275);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (830,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #3',8,1486496275,8,1486496275);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (831,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #4',8,1486496275,8,1486496275);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (832,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #5',8,1486496275,8,1486496275);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (833,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #6',8,1486496275,8,1486496275);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (834,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #7',8,1486496275,8,1486496275);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (835,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #8',8,1486496275,8,1486496275);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (836,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #9',8,1486496275,8,1486496275);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (837,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #10',8,1486496275,8,1486496275);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (838,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #11',8,1486496275,8,1486496275);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (839,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #12',8,1486496275,8,1486496275);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (840,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #13',8,1486496275,8,1486496275);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (841,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #14',8,1486496275,8,1486496275);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (842,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #15',8,1486496275,8,1486496275);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (843,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #16',8,1486496275,8,1486496275);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (844,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #17',8,1486496275,8,1486496275);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (845,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #18',8,1486496275,8,1486496275);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (846,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #19',8,1486496275,8,1486496275);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (847,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #20',8,1486496275,8,1486496275);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (848,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #21',8,1486496275,8,1486496275);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (849,'SUCCESS','smk3','UPDATING DATA ID #2',8,1486535874,8,1486535874);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (850,'SUCCESS','smk3','UPDATING DATA ID #2',8,1486535897,8,1486535897);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (851,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #22',8,1486535897,8,1486535897);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (852,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #23',8,1486535897,8,1486535897);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (853,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #24',8,1486535897,8,1486535897);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (854,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #25',8,1486535897,8,1486535897);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (855,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #26',8,1486535897,8,1486535897);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (856,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #27',8,1486535897,8,1486535897);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (857,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #28',8,1486535897,8,1486535897);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (858,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #29',8,1486535897,8,1486535897);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (859,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #30',8,1486535897,8,1486535897);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (860,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #31',8,1486535897,8,1486535897);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (861,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #32',8,1486535897,8,1486535897);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (862,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #33',8,1486535897,8,1486535897);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (863,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #34',8,1486535897,8,1486535897);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (864,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #35',8,1486535897,8,1486535897);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (865,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #36',8,1486535897,8,1486535897);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (866,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #37',8,1486535897,8,1486535897);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (867,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #38',8,1486535897,8,1486535897);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (868,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #39',8,1486535897,8,1486535897);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (869,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #40',8,1486535897,8,1486535897);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (870,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #41',8,1486535897,8,1486535897);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (871,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #42',8,1486535897,8,1486535897);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (872,'SUCCESS','smk3','UPDATING DATA ID #2',8,1486535904,8,1486535904);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (873,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #43',8,1486535904,8,1486535904);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (874,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #44',8,1486535904,8,1486535904);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (875,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #45',8,1486535904,8,1486535904);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (876,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #46',8,1486535904,8,1486535904);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (877,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #47',8,1486535904,8,1486535904);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (878,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #48',8,1486535904,8,1486535904);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (879,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #49',8,1486535904,8,1486535904);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (880,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #50',8,1486535904,8,1486535904);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (881,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #51',8,1486535904,8,1486535904);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (882,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #52',8,1486535904,8,1486535904);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (883,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #53',8,1486535904,8,1486535904);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (884,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #54',8,1486535904,8,1486535904);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (885,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #55',8,1486535904,8,1486535904);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (886,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #56',8,1486535904,8,1486535904);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (887,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #57',8,1486535904,8,1486535904);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (888,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #58',8,1486535904,8,1486535904);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (889,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #59',8,1486535904,8,1486535904);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (890,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #60',8,1486535904,8,1486535904);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (891,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #61',8,1486535904,8,1486535904);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (892,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #62',8,1486535904,8,1486535904);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (893,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #63',8,1486535904,8,1486535904);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (894,'SUCCESS','smk3','UPDATING DATA ID #2',8,1486535952,8,1486535952);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (895,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #64',8,1486535952,8,1486535952);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (896,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #65',8,1486535952,8,1486535952);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (897,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #66',8,1486535952,8,1486535952);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (898,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #67',8,1486535952,8,1486535952);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (899,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #68',8,1486535952,8,1486535952);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (900,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #69',8,1486535952,8,1486535952);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (901,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #70',8,1486535952,8,1486535952);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (902,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #71',8,1486535952,8,1486535952);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (903,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #72',8,1486535952,8,1486535952);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (904,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #73',8,1486535952,8,1486535952);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (905,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #74',8,1486535952,8,1486535952);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (906,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #75',8,1486535952,8,1486535952);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (907,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #76',8,1486535952,8,1486535952);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (908,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #77',8,1486535952,8,1486535952);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (909,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #78',8,1486535952,8,1486535952);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (910,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #79',8,1486535952,8,1486535952);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (911,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #80',8,1486535952,8,1486535952);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (912,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #81',8,1486535952,8,1486535952);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (913,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #82',8,1486535952,8,1486535952);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (914,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #83',8,1486535952,8,1486535952);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (915,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #84',8,1486535952,8,1486535952);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (916,'SUCCESS','smk3','UPDATING DATA ID #2',8,1486535977,8,1486535977);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (917,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #85',8,1486535977,8,1486535977);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (918,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #86',8,1486535977,8,1486535977);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (919,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #87',8,1486535977,8,1486535977);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (920,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #88',8,1486535977,8,1486535977);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (921,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #89',8,1486535977,8,1486535977);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (922,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #90',8,1486535977,8,1486535977);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (923,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #91',8,1486535977,8,1486535977);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (924,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #92',8,1486535977,8,1486535977);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (925,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #93',8,1486535977,8,1486535977);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (926,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #94',8,1486535977,8,1486535977);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (927,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #95',8,1486535977,8,1486535977);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (928,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #96',8,1486535978,8,1486535978);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (929,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #97',8,1486535978,8,1486535978);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (930,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #98',8,1486535978,8,1486535978);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (931,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #99',8,1486535978,8,1486535978);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (932,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #100',8,1486535978,8,1486535978);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (933,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #101',8,1486535978,8,1486535978);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (934,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #102',8,1486535978,8,1486535978);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (935,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #103',8,1486535978,8,1486535978);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (936,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #104',8,1486535978,8,1486535978);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (937,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #105',8,1486535978,8,1486535978);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (938,'SUCCESS','smk3','DELETING DATA ID #2',8,1486538364,8,1486538364);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (939,'SUCCESS','smk3','INSERTING NEW DATA WITH ID #3',8,1486538380,8,1486538380);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (940,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #106',8,1486538380,8,1486538380);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (941,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #107',8,1486538380,8,1486538380);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (942,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #108',8,1486538380,8,1486538380);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (943,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #109',8,1486538380,8,1486538380);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (944,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #110',8,1486538380,8,1486538380);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (945,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #111',8,1486538380,8,1486538380);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (946,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #112',8,1486538380,8,1486538380);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (947,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #113',8,1486538380,8,1486538380);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (948,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #114',8,1486538380,8,1486538380);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (949,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #115',8,1486538380,8,1486538380);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (950,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #116',8,1486538380,8,1486538380);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (951,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #117',8,1486538380,8,1486538380);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (952,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #118',8,1486538380,8,1486538380);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (953,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #119',8,1486538380,8,1486538380);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (954,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #120',8,1486538380,8,1486538380);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (955,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #121',8,1486538380,8,1486538380);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (956,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #122',8,1486538380,8,1486538380);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (957,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #123',8,1486538380,8,1486538380);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (958,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #124',8,1486538380,8,1486538380);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (959,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #125',8,1486538380,8,1486538380);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (960,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #126',8,1486538380,8,1486538380);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (961,'SUCCESS','smk3','INSERTING NEW DATA WITH ID #4',8,1486538835,8,1486538835);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (962,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #127',8,1486538835,8,1486538835);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (963,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #128',8,1486538835,8,1486538835);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (964,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #129',8,1486538835,8,1486538835);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (965,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #130',8,1486538835,8,1486538835);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (966,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #131',8,1486538836,8,1486538836);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (967,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #132',8,1486538836,8,1486538836);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (968,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #133',8,1486538836,8,1486538836);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (969,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #134',8,1486538836,8,1486538836);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (970,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #135',8,1486538836,8,1486538836);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (971,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #136',8,1486538836,8,1486538836);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (972,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #137',8,1486538836,8,1486538836);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (973,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #138',8,1486538836,8,1486538836);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (974,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #139',8,1486538836,8,1486538836);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (975,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #140',8,1486538836,8,1486538836);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (976,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #141',8,1486538836,8,1486538836);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (977,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #142',8,1486538836,8,1486538836);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (978,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #143',8,1486538836,8,1486538836);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (979,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #144',8,1486538836,8,1486538836);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (980,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #145',8,1486538836,8,1486538836);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (981,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #146',8,1486538836,8,1486538836);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (982,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #147',8,1486538836,8,1486538836);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (992,'SUCCESS','smk3','UPDATING DATA ID #4',8,1486545030,8,1486545030);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (993,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #148',8,1486545030,8,1486545030);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (994,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #149',8,1486545030,8,1486545030);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (995,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #150',8,1486545030,8,1486545030);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (996,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #151',8,1486545030,8,1486545030);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (997,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #152',8,1486545030,8,1486545030);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (998,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #153',8,1486545030,8,1486545030);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (999,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #154',8,1486545030,8,1486545030);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1000,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #155',8,1486545030,8,1486545030);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1001,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #156',8,1486545030,8,1486545030);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1002,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #157',8,1486545030,8,1486545030);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1003,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #158',8,1486545030,8,1486545030);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1004,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #159',8,1486545030,8,1486545030);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1005,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #160',8,1486545030,8,1486545030);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1006,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #161',8,1486545030,8,1486545030);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1007,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #162',8,1486545030,8,1486545030);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1008,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #163',8,1486545030,8,1486545030);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1009,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #164',8,1486545030,8,1486545030);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1010,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #165',8,1486545030,8,1486545030);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1011,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #166',8,1486545030,8,1486545030);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1012,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #167',8,1486545030,8,1486545030);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1013,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #168',8,1486545030,8,1486545030);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1014,'SUCCESS','smk3','DELETING DATA ID #4',8,1486545176,8,1486545176);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1015,'SUCCESS','smk3','DELETING DATA ID #3',8,1486545181,8,1486545181);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1016,'SUCCESS','smk3','INSERTING NEW DATA WITH ID #5',8,1486545260,8,1486545260);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1017,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #169',8,1486545260,8,1486545260);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1018,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #170',8,1486545260,8,1486545260);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1019,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #171',8,1486545261,8,1486545261);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1020,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #172',8,1486545261,8,1486545261);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1021,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #173',8,1486545261,8,1486545261);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1022,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #174',8,1486545261,8,1486545261);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1023,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #175',8,1486545261,8,1486545261);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1024,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #176',8,1486545261,8,1486545261);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1025,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #177',8,1486545261,8,1486545261);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1026,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #178',8,1486545261,8,1486545261);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1027,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #179',8,1486545261,8,1486545261);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1028,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #180',8,1486545261,8,1486545261);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1029,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #181',8,1486545261,8,1486545261);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1030,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #182',8,1486545261,8,1486545261);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1031,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #183',8,1486545261,8,1486545261);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1032,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #184',8,1486545261,8,1486545261);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1033,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #185',8,1486545261,8,1486545261);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1034,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #186',8,1486545261,8,1486545261);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1035,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #187',8,1486545261,8,1486545261);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1036,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #188',8,1486545261,8,1486545261);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1037,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #189',8,1486545261,8,1486545261);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1038,'SUCCESS','smk3','UPDATING DATA ID #5',8,1486545272,8,1486545272);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1039,'SUCCESS','smk3_detail','UPDATING DATA ID #169',8,1486545272,8,1486545272);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1040,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #35',8,1486545273,8,1486545273);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1041,'SUCCESS','smk3_detail','UPDATING DATA ID #170',8,1486545273,8,1486545273);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1042,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #36',8,1486545273,8,1486545273);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1043,'SUCCESS','smk3_detail','UPDATING DATA ID #171',8,1486545273,8,1486545273);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1044,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #37',8,1486545273,8,1486545273);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1045,'SUCCESS','smk3_detail','UPDATING DATA ID #172',8,1486545273,8,1486545273);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1046,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #38',8,1486545273,8,1486545273);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1047,'SUCCESS','smk3_detail','UPDATING DATA ID #173',8,1486545273,8,1486545273);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1048,'SUCCESS','smk3_detail','UPDATING DATA ID #174',8,1486545273,8,1486545273);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1049,'SUCCESS','smk3_detail','UPDATING DATA ID #175',8,1486545273,8,1486545273);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1050,'SUCCESS','smk3_detail','UPDATING DATA ID #176',8,1486545273,8,1486545273);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1051,'SUCCESS','smk3_detail','UPDATING DATA ID #177',8,1486545273,8,1486545273);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1052,'SUCCESS','smk3_detail','UPDATING DATA ID #178',8,1486545273,8,1486545273);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1053,'SUCCESS','smk3_detail','UPDATING DATA ID #179',8,1486545273,8,1486545273);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1054,'SUCCESS','smk3_detail','UPDATING DATA ID #180',8,1486545273,8,1486545273);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1055,'SUCCESS','smk3_detail','UPDATING DATA ID #181',8,1486545273,8,1486545273);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1056,'SUCCESS','smk3_detail','UPDATING DATA ID #182',8,1486545273,8,1486545273);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1057,'SUCCESS','smk3_detail','UPDATING DATA ID #183',8,1486545273,8,1486545273);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1058,'SUCCESS','smk3_detail','UPDATING DATA ID #184',8,1486545273,8,1486545273);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1059,'SUCCESS','smk3_detail','UPDATING DATA ID #185',8,1486545273,8,1486545273);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1060,'SUCCESS','smk3_detail','UPDATING DATA ID #186',8,1486545273,8,1486545273);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1061,'SUCCESS','smk3_detail','UPDATING DATA ID #187',8,1486545273,8,1486545273);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1062,'SUCCESS','smk3_detail','UPDATING DATA ID #188',8,1486545273,8,1486545273);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1063,'SUCCESS','smk3_detail','UPDATING DATA ID #189',8,1486545273,8,1486545273);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1064,'SUCCESS','smk3','UPDATING DATA ID #5',8,1486545296,8,1486545296);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1065,'SUCCESS','smk3_detail','UPDATING DATA ID #169',8,1486545296,8,1486545296);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1066,'SUCCESS','smk3_detail','UPDATING DATA ID #170',8,1486545296,8,1486545296);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1067,'SUCCESS','smk3_detail','UPDATING DATA ID #171',8,1486545296,8,1486545296);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1068,'SUCCESS','smk3_detail','UPDATING DATA ID #172',8,1486545296,8,1486545296);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1069,'SUCCESS','smk3_detail','UPDATING DATA ID #173',8,1486545296,8,1486545296);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1070,'SUCCESS','smk3_detail','UPDATING DATA ID #174',8,1486545296,8,1486545296);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1071,'SUCCESS','smk3_detail','UPDATING DATA ID #175',8,1486545296,8,1486545296);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1072,'SUCCESS','smk3_detail','UPDATING DATA ID #176',8,1486545296,8,1486545296);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1073,'SUCCESS','smk3_detail','UPDATING DATA ID #177',8,1486545296,8,1486545296);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1074,'SUCCESS','smk3_detail','UPDATING DATA ID #178',8,1486545296,8,1486545296);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1075,'SUCCESS','smk3_detail','UPDATING DATA ID #179',8,1486545296,8,1486545296);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1076,'SUCCESS','smk3_detail','UPDATING DATA ID #180',8,1486545296,8,1486545296);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1077,'SUCCESS','smk3_detail','UPDATING DATA ID #181',8,1486545296,8,1486545296);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1078,'SUCCESS','smk3_detail','UPDATING DATA ID #182',8,1486545296,8,1486545296);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1079,'SUCCESS','smk3_detail','UPDATING DATA ID #183',8,1486545296,8,1486545296);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1080,'SUCCESS','smk3_detail','UPDATING DATA ID #184',8,1486545296,8,1486545296);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1081,'SUCCESS','smk3_detail','UPDATING DATA ID #185',8,1486545296,8,1486545296);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1082,'SUCCESS','smk3_detail','UPDATING DATA ID #186',8,1486545296,8,1486545296);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1083,'SUCCESS','smk3_detail','UPDATING DATA ID #187',8,1486545296,8,1486545296);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1084,'SUCCESS','smk3_detail','UPDATING DATA ID #188',8,1486545296,8,1486545296);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1085,'SUCCESS','smk3_detail','UPDATING DATA ID #189',8,1486545296,8,1486545296);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1086,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #39',8,1486545296,8,1486545296);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1087,'SUCCESS','smk3_title','INSERTING NEW DATA WITH ID #8',8,1486545317,8,1486545317);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1088,'SUCCESS','smk3_subtitle','INSERTING NEW DATA WITH ID #9',8,1486545317,8,1486545317);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1089,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #25',8,1486545317,8,1486545317);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1093,'SUCCESS','smk3_title','DELETING DATA ID #8',8,1486551480,8,1486551480);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1097,'SUCCESS','smk3_title','INSERTING NEW DATA WITH ID #11',8,1486551509,8,1486551509);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1098,'SUCCESS','smk3_subtitle','INSERTING NEW DATA WITH ID #12',8,1486551509,8,1486551509);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1099,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #28',8,1486551509,8,1486551509);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1100,'SUCCESS','smk3_title','DELETING DATA ID #11',8,1486551658,8,1486551658);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1107,'SUCCESS','smk3_title','INSERTING NEW DATA WITH ID #14',8,1486551819,8,1486551819);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1108,'SUCCESS','smk3_subtitle','INSERTING NEW DATA WITH ID #15',8,1486551819,8,1486551819);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1109,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #31',8,1486551819,8,1486551819);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1110,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #190',8,1486551819,8,1486551819);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1111,'SUCCESS','smk3','UPDATING DATA ID #5',8,1486551854,8,1486551854);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1112,'SUCCESS','smk3_detail','UPDATING DATA ID #169',8,1486551854,8,1486551854);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1113,'SUCCESS','smk3_detail','UPDATING DATA ID #170',8,1486551854,8,1486551854);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1114,'SUCCESS','smk3_detail','UPDATING DATA ID #171',8,1486551854,8,1486551854);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1115,'SUCCESS','smk3_detail','UPDATING DATA ID #172',8,1486551854,8,1486551854);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1116,'SUCCESS','smk3_detail','UPDATING DATA ID #173',8,1486551854,8,1486551854);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1117,'SUCCESS','smk3_detail','UPDATING DATA ID #174',8,1486551854,8,1486551854);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1118,'SUCCESS','smk3_detail','UPDATING DATA ID #175',8,1486551854,8,1486551854);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1119,'SUCCESS','smk3_detail','UPDATING DATA ID #176',8,1486551854,8,1486551854);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1120,'SUCCESS','smk3_detail','UPDATING DATA ID #177',8,1486551854,8,1486551854);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1121,'SUCCESS','smk3_detail','UPDATING DATA ID #178',8,1486551854,8,1486551854);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1122,'SUCCESS','smk3_detail','UPDATING DATA ID #179',8,1486551854,8,1486551854);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1123,'SUCCESS','smk3_detail','UPDATING DATA ID #180',8,1486551854,8,1486551854);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1124,'SUCCESS','smk3_detail','UPDATING DATA ID #181',8,1486551854,8,1486551854);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1125,'SUCCESS','smk3_detail','UPDATING DATA ID #182',8,1486551854,8,1486551854);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1126,'SUCCESS','smk3_detail','UPDATING DATA ID #183',8,1486551854,8,1486551854);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1127,'SUCCESS','smk3_detail','UPDATING DATA ID #184',8,1486551854,8,1486551854);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1128,'SUCCESS','smk3_detail','UPDATING DATA ID #185',8,1486551854,8,1486551854);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1129,'SUCCESS','smk3_detail','UPDATING DATA ID #186',8,1486551854,8,1486551854);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1130,'SUCCESS','smk3_detail','UPDATING DATA ID #187',8,1486551854,8,1486551854);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1131,'SUCCESS','smk3_detail','UPDATING DATA ID #188',8,1486551854,8,1486551854);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1132,'SUCCESS','smk3_detail','UPDATING DATA ID #189',8,1486551854,8,1486551854);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1133,'SUCCESS','smk3_detail','UPDATING DATA ID #190',8,1486551854,8,1486551854);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1134,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #40',8,1486551854,8,1486551854);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1135,'SUCCESS','smk3','INSERTING NEW DATA WITH ID #6',8,1486551887,8,1486551887);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1136,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #191',8,1486551887,8,1486551887);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1137,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #192',8,1486551887,8,1486551887);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1138,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #193',8,1486551887,8,1486551887);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1139,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #194',8,1486551887,8,1486551887);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1140,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #195',8,1486551887,8,1486551887);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1141,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #196',8,1486551887,8,1486551887);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1142,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #197',8,1486551887,8,1486551887);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1143,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #198',8,1486551887,8,1486551887);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1144,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #199',8,1486551887,8,1486551887);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1145,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #200',8,1486551887,8,1486551887);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1146,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #201',8,1486551887,8,1486551887);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1147,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #202',8,1486551887,8,1486551887);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1148,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #203',8,1486551887,8,1486551887);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1149,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #204',8,1486551887,8,1486551887);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1150,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #205',8,1486551887,8,1486551887);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1151,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #206',8,1486551887,8,1486551887);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1152,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #207',8,1486551887,8,1486551887);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1153,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #208',8,1486551887,8,1486551887);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1154,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #209',8,1486551887,8,1486551887);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1155,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #210',8,1486551887,8,1486551887);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1156,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #211',8,1486551887,8,1486551887);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1157,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #212',8,1486551887,8,1486551887);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1158,'SUCCESS','smk3_title','INSERTING NEW DATA WITH ID #15',8,1486551915,8,1486551915);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1159,'SUCCESS','smk3_subtitle','INSERTING NEW DATA WITH ID #16',8,1486551916,8,1486551916);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1160,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #32',8,1486551916,8,1486551916);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1161,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #213',8,1486551916,8,1486551916);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1162,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #214',8,1486551916,8,1486551916);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1163,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #33',8,1486551916,8,1486551916);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1164,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #215',8,1486551916,8,1486551916);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1165,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #216',8,1486551916,8,1486551916);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1166,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #34',8,1486551916,8,1486551916);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1167,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #217',8,1486551916,8,1486551916);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1168,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #218',8,1486551916,8,1486551916);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1169,'SUCCESS','smk3_subtitle','INSERTING NEW DATA WITH ID #17',8,1486551916,8,1486551916);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1170,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #35',8,1486551916,8,1486551916);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1171,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #219',8,1486551916,8,1486551916);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1172,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #220',8,1486551916,8,1486551916);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1173,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #36',8,1486551916,8,1486551916);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1174,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #221',8,1486551916,8,1486551916);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1175,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #222',8,1486551916,8,1486551916);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1176,'SUCCESS','smk3_title','INSERTING NEW DATA WITH ID #16',8,1486552144,8,1486552144);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1177,'SUCCESS','smk3_subtitle','INSERTING NEW DATA WITH ID #18',8,1486552144,8,1486552144);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1178,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #37',8,1486552144,8,1486552144);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1179,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #223',8,1486552144,8,1486552144);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1180,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #224',8,1486552144,8,1486552144);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1181,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #38',8,1486552144,8,1486552144);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1182,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #225',8,1486552145,8,1486552145);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1183,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #226',8,1486552145,8,1486552145);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1184,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #39',8,1486552145,8,1486552145);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1185,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #227',8,1486552145,8,1486552145);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1186,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #228',8,1486552145,8,1486552145);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1187,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #40',8,1486552145,8,1486552145);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1188,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #229',8,1486552145,8,1486552145);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1189,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #230',8,1486552145,8,1486552145);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1190,'SUCCESS','smk3_subtitle','INSERTING NEW DATA WITH ID #19',8,1486552145,8,1486552145);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1191,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #41',8,1486552145,8,1486552145);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1192,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #231',8,1486552145,8,1486552145);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1193,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #232',8,1486552145,8,1486552145);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1194,'SUCCESS','smk3_subtitle','INSERTING NEW DATA WITH ID #20',8,1486552145,8,1486552145);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1195,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #42',8,1486552145,8,1486552145);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1196,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #233',8,1486552145,8,1486552145);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1197,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #234',8,1486552145,8,1486552145);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1198,'SUCCESS','smk3_subtitle','INSERTING NEW DATA WITH ID #21',8,1486552145,8,1486552145);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1199,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #43',8,1486552145,8,1486552145);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1200,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #235',8,1486552145,8,1486552145);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1201,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #236',8,1486552145,8,1486552145);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1202,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #44',8,1486552145,8,1486552145);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1203,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #237',8,1486552145,8,1486552145);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1204,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #238',8,1486552145,8,1486552145);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1205,'SUCCESS','smk3_title','INSERTING NEW DATA WITH ID #17',8,1486552301,8,1486552301);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1206,'SUCCESS','smk3_subtitle','INSERTING NEW DATA WITH ID #22',8,1486552301,8,1486552301);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1207,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #45',8,1486552301,8,1486552301);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1208,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #239',8,1486552301,8,1486552301);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1209,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #240',8,1486552301,8,1486552301);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1210,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #46',8,1486552301,8,1486552301);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1211,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #241',8,1486552301,8,1486552301);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1212,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #242',8,1486552301,8,1486552301);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1213,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #47',8,1486552301,8,1486552301);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1214,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #243',8,1486552301,8,1486552301);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1215,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #244',8,1486552301,8,1486552301);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1216,'SUCCESS','smk3_subtitle','INSERTING NEW DATA WITH ID #23',8,1486552301,8,1486552301);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1217,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #48',8,1486552301,8,1486552301);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1218,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #245',8,1486552301,8,1486552301);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1219,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #246',8,1486552301,8,1486552301);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1220,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #49',8,1486552301,8,1486552301);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1221,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #247',8,1486552301,8,1486552301);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1222,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #248',8,1486552301,8,1486552301);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1223,'SUCCESS','smk3_title','INSERTING NEW DATA WITH ID #18',8,1486552355,8,1486552355);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1224,'SUCCESS','smk3_subtitle','INSERTING NEW DATA WITH ID #24',8,1486552355,8,1486552355);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1225,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #50',8,1486552355,8,1486552355);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1226,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #249',8,1486552355,8,1486552355);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1227,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #250',8,1486552355,8,1486552355);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1228,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #51',8,1486552355,8,1486552355);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1229,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #251',8,1486552356,8,1486552356);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1230,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #252',8,1486552356,8,1486552356);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1231,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #52',8,1486552356,8,1486552356);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1232,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #253',8,1486552356,8,1486552356);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1233,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #254',8,1486552356,8,1486552356);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1234,'SUCCESS','smk3_subtitle','INSERTING NEW DATA WITH ID #25',8,1486552356,8,1486552356);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1235,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #53',8,1486552356,8,1486552356);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1236,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #255',8,1486552356,8,1486552356);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1237,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #256',8,1486552356,8,1486552356);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1238,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #54',8,1486552356,8,1486552356);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1239,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #257',8,1486552356,8,1486552356);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1240,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #258',8,1486552356,8,1486552356);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1241,'SUCCESS','smk3_subtitle','INSERTING NEW DATA WITH ID #26',8,1486552356,8,1486552356);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1242,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #55',8,1486552356,8,1486552356);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1243,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #259',8,1486552356,8,1486552356);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1244,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #260',8,1486552356,8,1486552356);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1245,'SUCCESS','smk3_title','UPDATING DATA ID #5',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1246,'SUCCESS','smk3_subtitle','UPDATING DATA ID #3',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1247,'SUCCESS','smk3_criteria','UPDATING DATA ID #4',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1248,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #41',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1249,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #261',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1250,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #262',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1251,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #263',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1252,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #264',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1253,'SUCCESS','smk3_criteria','UPDATING DATA ID #5',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1254,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #42',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1255,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #265',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1256,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #266',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1257,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #267',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1258,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #268',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1259,'SUCCESS','smk3_criteria','UPDATING DATA ID #6',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1260,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #43',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1261,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #269',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1262,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #270',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1263,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #271',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1264,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #272',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1265,'SUCCESS','smk3_criteria','UPDATING DATA ID #20',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1266,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #44',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1267,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #273',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1268,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #274',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1269,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #275',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1270,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #276',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1271,'SUCCESS','smk3_subtitle','UPDATING DATA ID #4',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1272,'SUCCESS','smk3_criteria','UPDATING DATA ID #7',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1273,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #45',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1274,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #277',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1275,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #278',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1276,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #279',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1277,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #280',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1278,'SUCCESS','smk3_criteria','UPDATING DATA ID #8',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1279,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #46',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1280,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #281',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1281,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #282',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1282,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #283',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1283,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #284',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1284,'SUCCESS','smk3_criteria','UPDATING DATA ID #13',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1285,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #47',8,1486564003,8,1486564003);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1286,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #285',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1287,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #286',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1288,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #287',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1289,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #288',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1290,'SUCCESS','smk3_criteria','UPDATING DATA ID #14',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1291,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #48',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1292,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #289',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1293,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #290',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1294,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #291',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1295,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #292',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1296,'SUCCESS','smk3_criteria','UPDATING DATA ID #15',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1297,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #49',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1298,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #293',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1299,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #294',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1300,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #295',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1301,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #296',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1302,'SUCCESS','smk3_criteria','UPDATING DATA ID #16',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1303,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #50',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1304,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #297',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1305,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #298',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1306,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #299',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1307,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #300',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1308,'SUCCESS','smk3_subtitle','UPDATING DATA ID #5',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1309,'SUCCESS','smk3_criteria','UPDATING DATA ID #9',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1310,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #51',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1311,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #301',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1312,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #302',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1313,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #303',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1314,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #304',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1315,'SUCCESS','smk3_criteria','UPDATING DATA ID #10',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1316,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #52',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1317,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #305',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1318,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #306',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1319,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #307',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1320,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #308',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1321,'SUCCESS','smk3_criteria','UPDATING DATA ID #11',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1322,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #53',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1323,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #309',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1324,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #310',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1325,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #311',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1326,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #312',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1327,'SUCCESS','smk3_criteria','UPDATING DATA ID #12',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1328,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #54',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1329,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #313',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1330,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #314',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1331,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #315',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1332,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #316',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1333,'SUCCESS','smk3_criteria','UPDATING DATA ID #17',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1334,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #55',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1335,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #317',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1336,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #318',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1337,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #319',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1338,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #320',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1339,'SUCCESS','smk3_criteria','UPDATING DATA ID #18',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1340,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #56',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1341,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #321',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1342,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #322',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1343,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #323',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1344,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #324',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1345,'SUCCESS','smk3_criteria','UPDATING DATA ID #19',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1346,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #57',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1347,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #325',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1348,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #326',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1349,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #327',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1350,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #328',8,1486564004,8,1486564004);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1351,'SUCCESS','smk3_title','DELETING DATA ID #5',8,1486564335,8,1486564335);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1352,'SUCCESS','smk3_title','UPDATING DATA ID #6',8,1486564491,8,1486564491);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1353,'SUCCESS','smk3_subtitle','UPDATING DATA ID #6',8,1486564491,8,1486564491);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1354,'SUCCESS','smk3_criteria','UPDATING DATA ID #21',8,1486564491,8,1486564491);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1355,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #58',8,1486564491,8,1486564491);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1356,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #329',8,1486564491,8,1486564491);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1357,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #330',8,1486564491,8,1486564491);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1358,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #331',8,1486564491,8,1486564491);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1359,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #332',8,1486564491,8,1486564491);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1391,'SUCCESS','smk3_title','INSERTING NEW DATA WITH ID #24',8,1486565158,8,1486565158);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1392,'SUCCESS','smk3_subtitle','INSERTING NEW DATA WITH ID #32',8,1486565158,8,1486565158);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1393,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #61',8,1486565158,8,1486565158);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1394,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #333',8,1486565158,8,1486565158);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1395,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #334',8,1486565158,8,1486565158);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1396,'SUCCESS','smk3_title','DELETING DATA ID #6',8,1486565220,8,1486565220);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1397,'SUCCESS','smk3_title','UPDATING DATA ID #7',8,1486565232,8,1486565232);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1398,'SUCCESS','smk3_subtitle','UPDATING DATA ID #7',8,1486565232,8,1486565232);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1399,'SUCCESS','smk3_criteria','UPDATING DATA ID #22',8,1486565232,8,1486565232);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1400,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #63',8,1486565232,8,1486565232);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1401,'SUCCESS','smk3_criteria','UPDATING DATA ID #23',8,1486565232,8,1486565232);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1402,'SUCCESS','smk3_subtitle','UPDATING DATA ID #8',8,1486565232,8,1486565232);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1403,'SUCCESS','smk3_criteria','UPDATING DATA ID #24',8,1486565232,8,1486565232);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1404,'SUCCESS','budget_monitoring_detail','DELETING DATA ID #1',8,1486565699,8,1486565699);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1405,'SUCCESS','budget_monitoring','UPDATING DATA ID #2',8,1486565752,8,1486565752);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1406,'SUCCESS','budget_monitoring_detail','UPDATING DATA ID #2',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1407,'SUCCESS','budget_monitoring_month','UPDATING DATA ID #13',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1408,'SUCCESS','budget_monitoring_month','UPDATING DATA ID #14',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1409,'SUCCESS','budget_monitoring_month','UPDATING DATA ID #15',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1410,'SUCCESS','budget_monitoring_month','UPDATING DATA ID #16',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1411,'SUCCESS','budget_monitoring_month','UPDATING DATA ID #17',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1412,'SUCCESS','budget_monitoring_month','UPDATING DATA ID #18',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1413,'SUCCESS','budget_monitoring_month','UPDATING DATA ID #19',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1414,'SUCCESS','budget_monitoring_month','UPDATING DATA ID #20',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1415,'SUCCESS','budget_monitoring_month','UPDATING DATA ID #21',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1416,'SUCCESS','budget_monitoring_month','UPDATING DATA ID #22',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1417,'SUCCESS','budget_monitoring_month','UPDATING DATA ID #23',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1418,'SUCCESS','budget_monitoring_month','UPDATING DATA ID #24',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1419,'SUCCESS','budget_monitoring_detail','INSERTING NEW DATA WITH ID #6',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1420,'SUCCESS','budget_monitoring_month','INSERTING NEW DATA WITH ID #61',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1421,'SUCCESS','budget_monitoring_month','INSERTING NEW DATA WITH ID #62',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1422,'SUCCESS','budget_monitoring_month','INSERTING NEW DATA WITH ID #63',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1423,'SUCCESS','budget_monitoring_month','INSERTING NEW DATA WITH ID #64',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1424,'SUCCESS','budget_monitoring_month','INSERTING NEW DATA WITH ID #65',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1425,'SUCCESS','budget_monitoring_month','INSERTING NEW DATA WITH ID #66',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1426,'SUCCESS','budget_monitoring_month','INSERTING NEW DATA WITH ID #67',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1427,'SUCCESS','budget_monitoring_month','INSERTING NEW DATA WITH ID #68',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1428,'SUCCESS','budget_monitoring_month','INSERTING NEW DATA WITH ID #69',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1429,'SUCCESS','budget_monitoring_month','INSERTING NEW DATA WITH ID #70',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1430,'SUCCESS','budget_monitoring_month','INSERTING NEW DATA WITH ID #71',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1431,'SUCCESS','budget_monitoring_month','INSERTING NEW DATA WITH ID #72',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1432,'SUCCESS','budget_monitoring_detail','INSERTING NEW DATA WITH ID #7',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1433,'SUCCESS','budget_monitoring_month','INSERTING NEW DATA WITH ID #73',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1434,'SUCCESS','budget_monitoring_month','INSERTING NEW DATA WITH ID #74',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1435,'SUCCESS','budget_monitoring_month','INSERTING NEW DATA WITH ID #75',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1436,'SUCCESS','budget_monitoring_month','INSERTING NEW DATA WITH ID #76',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1437,'SUCCESS','budget_monitoring_month','INSERTING NEW DATA WITH ID #77',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1438,'SUCCESS','budget_monitoring_month','INSERTING NEW DATA WITH ID #78',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1439,'SUCCESS','budget_monitoring_month','INSERTING NEW DATA WITH ID #79',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1440,'SUCCESS','budget_monitoring_month','INSERTING NEW DATA WITH ID #80',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1441,'SUCCESS','budget_monitoring_month','INSERTING NEW DATA WITH ID #81',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1442,'SUCCESS','budget_monitoring_month','INSERTING NEW DATA WITH ID #82',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1443,'SUCCESS','budget_monitoring_month','INSERTING NEW DATA WITH ID #83',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1444,'SUCCESS','budget_monitoring_month','INSERTING NEW DATA WITH ID #84',8,1486565753,8,1486565753);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1445,'SUCCESS','budget_monitoring_detail','DELETING DATA ID #7',8,1486565840,8,1486565840);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1446,'SUCCESS','budget_monitoring_detail','DELETING DATA ID #6',8,1486565871,8,1486565871);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1447,'SUCCESS','smk3_criteria','DELETING DATA ID #23',8,1486567637,8,1486567637);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1448,'SUCCESS','smk3_subtitle','DELETING DATA ID #8',8,1486567658,8,1486567658);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1449,'SUCCESS','smk3_subtitle','DELETING DATA ID #7',8,1486567673,8,1486567673);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1450,'SUCCESS','smk3_title','UPDATING DATA ID #7',8,1486568027,8,1486568027);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1451,'SUCCESS','smk3_subtitle','INSERTING NEW DATA WITH ID #33',8,1486568027,8,1486568027);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1452,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #62',8,1486568027,8,1486568027);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1453,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #335',8,1486568027,8,1486568027);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1454,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #336',8,1486568027,8,1486568027);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1455,'SUCCESS','smk3_criteria','DELETING DATA ID #62',8,1486568083,8,1486568083);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1456,'SUCCESS','smk3_subtitle','DELETING DATA ID #33',8,1486635547,8,1486635547);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1457,'SUCCESS','smk3_title','UPDATING DATA ID #7',8,1486635551,8,1486635551);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1458,'SUCCESS','smk3_title','INSERTING NEW DATA WITH ID #25',8,1486635593,8,1486635593);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1459,'SUCCESS','smk3_subtitle','INSERTING NEW DATA WITH ID #34',8,1486635594,8,1486635594);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1460,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #62',8,1486635594,8,1486635594);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1461,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #335',8,1486635594,8,1486635594);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1462,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #336',8,1486635594,8,1486635594);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1463,'SUCCESS','smk3_subtitle','DELETING DATA ID #34',8,1486635604,8,1486635604);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1464,'SUCCESS','smk3_title','UPDATING DATA ID #25',8,1486635607,8,1486635607);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1465,'SUCCESS','smk3','UPDATING DATA ID #5',8,1486636814,8,1486636814);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1466,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #64',8,1486636814,8,1486636814);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1467,'SUCCESS','smk3_detail','UPDATING DATA ID #190',8,1486636814,8,1486636814);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1468,'SUCCESS','smk3_detail','UPDATING DATA ID #213',8,1486636814,8,1486636814);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1469,'SUCCESS','smk3_detail','UPDATING DATA ID #215',8,1486636814,8,1486636814);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1470,'SUCCESS','smk3_detail','UPDATING DATA ID #217',8,1486636814,8,1486636814);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1471,'SUCCESS','smk3_detail','UPDATING DATA ID #219',8,1486636814,8,1486636814);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1472,'SUCCESS','smk3_detail','UPDATING DATA ID #221',8,1486636814,8,1486636814);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1473,'SUCCESS','smk3_detail','UPDATING DATA ID #223',8,1486636814,8,1486636814);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1474,'SUCCESS','smk3_detail','UPDATING DATA ID #225',8,1486636814,8,1486636814);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1475,'SUCCESS','smk3_detail','UPDATING DATA ID #227',8,1486636814,8,1486636814);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1476,'SUCCESS','smk3_detail','UPDATING DATA ID #229',8,1486636814,8,1486636814);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1477,'SUCCESS','smk3_detail','UPDATING DATA ID #231',8,1486636814,8,1486636814);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1478,'SUCCESS','smk3_detail','UPDATING DATA ID #233',8,1486636814,8,1486636814);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1479,'SUCCESS','smk3_detail','UPDATING DATA ID #235',8,1486636814,8,1486636814);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1480,'SUCCESS','smk3_detail','UPDATING DATA ID #237',8,1486636814,8,1486636814);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1481,'SUCCESS','smk3_detail','UPDATING DATA ID #239',8,1486636814,8,1486636814);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1482,'SUCCESS','smk3_detail','UPDATING DATA ID #241',8,1486636814,8,1486636814);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1483,'SUCCESS','smk3_detail','UPDATING DATA ID #243',8,1486636814,8,1486636814);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1484,'SUCCESS','smk3_detail','UPDATING DATA ID #245',8,1486636814,8,1486636814);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1485,'SUCCESS','smk3_detail','UPDATING DATA ID #247',8,1486636814,8,1486636814);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1486,'SUCCESS','smk3_detail','UPDATING DATA ID #249',8,1486636814,8,1486636814);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1487,'SUCCESS','smk3_detail','UPDATING DATA ID #251',8,1486636814,8,1486636814);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1488,'SUCCESS','smk3_detail','UPDATING DATA ID #253',8,1486636814,8,1486636814);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1489,'SUCCESS','smk3_detail','UPDATING DATA ID #255',8,1486636814,8,1486636814);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1490,'SUCCESS','smk3_detail','UPDATING DATA ID #257',8,1486636814,8,1486636814);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1491,'SUCCESS','smk3_detail','UPDATING DATA ID #259',8,1486636814,8,1486636814);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1492,'SUCCESS','smk3_detail','UPDATING DATA ID #333',8,1486636814,8,1486636814);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1493,'SUCCESS','smk3','UPDATING DATA ID #6',8,1486636827,8,1486636827);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1494,'SUCCESS','log_dirty','INSERTING NEW DATA WITH ID #65',8,1486636827,8,1486636827);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1495,'SUCCESS','smk3_detail','UPDATING DATA ID #212',8,1486636827,8,1486636827);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1496,'SUCCESS','smk3_detail','UPDATING DATA ID #214',8,1486636827,8,1486636827);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1497,'SUCCESS','smk3_detail','UPDATING DATA ID #216',8,1486636827,8,1486636827);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1498,'SUCCESS','smk3_detail','UPDATING DATA ID #218',8,1486636827,8,1486636827);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1499,'SUCCESS','smk3_detail','UPDATING DATA ID #220',8,1486636827,8,1486636827);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1500,'SUCCESS','smk3_detail','UPDATING DATA ID #222',8,1486636827,8,1486636827);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1501,'SUCCESS','smk3_detail','UPDATING DATA ID #224',8,1486636827,8,1486636827);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1502,'SUCCESS','smk3_detail','UPDATING DATA ID #226',8,1486636827,8,1486636827);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1503,'SUCCESS','smk3_detail','UPDATING DATA ID #228',8,1486636827,8,1486636827);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1504,'SUCCESS','smk3_detail','UPDATING DATA ID #230',8,1486636827,8,1486636827);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1505,'SUCCESS','smk3_detail','UPDATING DATA ID #232',8,1486636827,8,1486636827);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1506,'SUCCESS','smk3_detail','UPDATING DATA ID #234',8,1486636827,8,1486636827);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1507,'SUCCESS','smk3_detail','UPDATING DATA ID #236',8,1486636827,8,1486636827);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1508,'SUCCESS','smk3_detail','UPDATING DATA ID #238',8,1486636827,8,1486636827);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1509,'SUCCESS','smk3_detail','UPDATING DATA ID #240',8,1486636827,8,1486636827);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1510,'SUCCESS','smk3_detail','UPDATING DATA ID #242',8,1486636827,8,1486636827);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1511,'SUCCESS','smk3_detail','UPDATING DATA ID #244',8,1486636827,8,1486636827);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1512,'SUCCESS','smk3_detail','UPDATING DATA ID #246',8,1486636827,8,1486636827);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1513,'SUCCESS','smk3_detail','UPDATING DATA ID #248',8,1486636827,8,1486636827);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1514,'SUCCESS','smk3_detail','UPDATING DATA ID #250',8,1486636827,8,1486636827);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1515,'SUCCESS','smk3_detail','UPDATING DATA ID #252',8,1486636827,8,1486636827);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1516,'SUCCESS','smk3_detail','UPDATING DATA ID #254',8,1486636827,8,1486636827);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1517,'SUCCESS','smk3_detail','UPDATING DATA ID #256',8,1486636827,8,1486636827);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1518,'SUCCESS','smk3_detail','UPDATING DATA ID #258',8,1486636827,8,1486636827);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1519,'SUCCESS','smk3_detail','UPDATING DATA ID #260',8,1486636827,8,1486636827);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1520,'SUCCESS','smk3_detail','UPDATING DATA ID #334',8,1486636827,8,1486636827);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1521,'SUCCESS','smk3_title','INSERTING NEW DATA WITH ID #26',8,1486640348,8,1486640348);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1522,'SUCCESS','smk3_subtitle','INSERTING NEW DATA WITH ID #35',8,1486640348,8,1486640348);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1523,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #63',8,1486640348,8,1486640348);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1524,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #337',8,1486640348,8,1486640348);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1525,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #338',8,1486640348,8,1486640348);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1537,'SUCCESS','smk3_title','INSERTING NEW DATA WITH ID #28',8,1486641950,8,1486641950);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1538,'SUCCESS','smk3_subtitle','INSERTING NEW DATA WITH ID #37',8,1486641950,8,1486641950);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1539,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #67',8,1486641950,8,1486641950);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1540,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #345',8,1486641950,8,1486641950);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1541,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #346',8,1486641951,8,1486641951);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1542,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #68',8,1486641951,8,1486641951);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1543,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #347',8,1486641951,8,1486641951);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1544,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #348',8,1486641951,8,1486641951);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1545,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #69',8,1486641951,8,1486641951);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1546,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #349',8,1486641951,8,1486641951);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1547,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #350',8,1486641951,8,1486641951);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1548,'SUCCESS','smk3_subtitle','INSERTING NEW DATA WITH ID #38',8,1486641951,8,1486641951);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1549,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #70',8,1486641951,8,1486641951);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1550,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #351',8,1486641951,8,1486641951);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1551,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #352',8,1486641951,8,1486641951);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1552,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #71',8,1486641951,8,1486641951);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1553,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #353',8,1486641951,8,1486641951);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1554,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #354',8,1486641951,8,1486641951);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1555,'SUCCESS','smk3_criteria','INSERTING NEW DATA WITH ID #72',8,1486641951,8,1486641951);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1556,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #355',8,1486641951,8,1486641951);
+insert  into `log`(`id`,`type`,`table_name`,`action`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1557,'SUCCESS','smk3_detail','INSERTING NEW DATA WITH ID #356',8,1486641951,8,1486641951);
 
 /*Table structure for table `log_dirty` */
 
@@ -1301,7 +1837,7 @@ CREATE TABLE `log_dirty` (
   `updated_by` smallint(5) unsigned NOT NULL,
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=latin1;
 
 /*Data for the table `log_dirty` */
 
@@ -1319,10 +1855,49 @@ insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_v
 insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (13,2,'roadmap-k3l','RoadmapK3lTarget','Nilai','100%','99%',8,1483694734,8,1483694734);
 insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (14,1,'roadmap-k3l','RoadmapK3l','Pembangkit Listrik','3','2',8,1483694887,8,1483694887);
 insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (18,1,'working-plan','WorkingPlanDetail','R / NR','NR','R',8,1485315493,8,1485315493);
-insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (19,1,'maturity-level-question','MaturityLevelQuestion','Satuan','BH','KL',8,1486374551,8,1486374551);
-insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (20,1,'maturity-level-question','MaturityLevelQuestion','Satuan','KL','BH',8,1486374568,8,1486374568);
-insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (21,6,'maturity-level-title','MaturityLevelTitle','Judul','YRDY','YRDYGFDGDFG',8,1486457260,8,1486457260);
-insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (22,2,'maturity-level','MaturityLevelDetail','Realisasi','2000.00','2500',8,1486485195,8,1486485195);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (19,4,'smk3-title','Smk3Title','Judul SMK3','awda','awdas',8,1486400612,8,1486400612);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (20,5,'smk3-title','Smk3Title','Judul SMK3','Judul','Pembangunan dan Pemeliharaan Komitmen',8,1486401422,8,1486401422);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (21,3,'smk3-title','Smk3Subtitle','Sub-Judul SMK3','awda','Kebijakan',8,1486401422,8,1486401422);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (22,4,'smk3-title','Smk3Criteria','Kriteria','awda','Terdapat kebijakan K3 yang tertulis, bertanggal, ditandatangan oleh pengusaha atau pengurus secara jelas menyatakan tujuan dan sasaran K3 serta komitmen terhadap peningkatan K3',8,1486401422,8,1486401422);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (23,5,'smk3-title','Smk3Criteria','Kriteria','aawdawd','Kebijakan disusun oleh pengusaha dan atau pengurus setelah melalui proses konsultasi dengan wakil tenaga kerja.',8,1486402988,8,1486402988);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (24,6,'smk3-title','Smk3Criteria','Kriteria','adwadadawda','Perusahaan mengkomunikasikan kebijakan K3\r\nkepada seluruh tenaga kerja, tamu, kontraktor, pelanggan dan pemasok dengan tata cara yang tepat.',8,1486402988,8,1486402988);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (25,4,'smk3-title','Smk3Subtitle','Sub-Judul SMK3','adwwadasd','Tanggung Jawab & Wewenang untuk Bertindak',8,1486402988,8,1486402988);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (26,7,'smk3-title','Smk3Criteria','Kriteria','asdsadwad','Tanggung jawab dan wewenang untuk mengambil tindakan dan melaporkan kepada semua pihak yang terkait dalam perusahaan di bidang K3 yang telah ditetapkan, diinformasikan dan didokumentasikan.',8,1486402988,8,1486402988);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (27,8,'smk3-title','Smk3Criteria','Kriteria','asdasd','Penunjukan penanggung jawab K3 harus sesuai peraturan perundang-undangan.',8,1486402988,8,1486402988);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (28,13,'smk3-title','Smk3Criteria','Kriteria','Kebijakan khusus dibuat untuk masalah K3 yang bersifat khusus.','Pimpinan unit kerja dalam suatu perusahaan bertanggung jawab atas kinerja K3 pada unit kerjanya.',8,1486409906,8,1486409906);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (29,14,'smk3-title','Smk3Criteria','Kriteria','Kebijakan K3 dan kebijakan khusus lainnya ditinjau ulang secara berkala untuk menjamin bahwa kebijakan tersebut sesuai dengan perubahan yang terjadi dalam perusahaan dan dalam peraturan per undang-undangan','Pengusaha atau pengurus bertanggung jawab secara penuh untuk menjamin pelaksanaan SMK3.',8,1486409906,8,1486409906);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (30,5,'smk3-title','Smk3Subtitle','Sub-Judul SMK3','asdadasd','Tinjauan dan Evaluasi',8,1486409906,8,1486409906);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (31,9,'smk3-title','Smk3Criteria','Kriteria','azcxzczxvzxv','Tinjauan terhadap penerapan SMK3 meliputi kebijakan, perencanaan, pelaksanaan, pemantauan\r\ndan evaluasi telah dilakukan, dicatat dan\r\ndidokumentasikan.',8,1486409906,8,1486409906);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (32,10,'smk3-title','Smk3Criteria','Kriteria','zxvxzv','Hasil tinjauan ulang dimasukkan dalam perencanaan tindakan manajemen.',8,1486409906,8,1486409906);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (33,11,'smk3-title','Smk3Criteria','Kriteria','zxvzxv','Keterlibatan tenaga kerja dan penjadwalan konsultasi tenaga kerja dengan wakil perusahaan didokumentasikan dan disebarluaskan ke seluruh tenaga kerja.',8,1486409906,8,1486409906);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (34,12,'smk3-title','Smk3Criteria','Kriteria','zxvxzvzx','Pengurus harus meninjau ulang pelaksanaan SMK3 secara berkala untuk menilai kesesuaian dan efektivitas SMK3.',8,1486409906,8,1486409906);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (35,169,'smk3','Smk3Detail','Jawaban','0','1',8,1486545273,8,1486545273);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (36,170,'smk3','Smk3Detail','Jawaban','0','1',8,1486545273,8,1486545273);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (37,171,'smk3','Smk3Detail','Jawaban','0','1',8,1486545273,8,1486545273);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (38,172,'smk3','Smk3Detail','Jawaban','0','1',8,1486545273,8,1486545273);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (39,189,'smk3','Smk3Detail','Jawaban','0','1',8,1486545296,8,1486545296);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (40,190,'smk3','Smk3Detail','Jawaban','0','1',8,1486551854,8,1486551854);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (41,4,'smk3-title','Smk3Criteria','Kriteria','Terdapat kebijakan K3 yang tertulis, bertanggal, ditandatangan oleh pengusaha atau pengurus secara jelas menyatakan tujuan dan sasaran K3 serta komitmen terhadap peningkatan K3','<strong></strong><p>Terdapat kebijakan K3 yang tertulis, bertanggal, ditandatangan oleh pengusaha atau pengurus secara jelas menyatakan tujuan dan sasaran K3 serta komitmen terhadap peningkatan </p>',8,1486564003,8,1486564003);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (42,5,'smk3-title','Smk3Criteria','Kriteria','Kebijakan disusun oleh pengusaha dan atau pengurus setelah melalui proses konsultasi dengan wakil tenaga kerja.','<p>Kebijakan disusun oleh pengusaha dan atau pengurus setelah melalui proses konsultasi dengan wakil tenaga kerja.</p>',8,1486564003,8,1486564003);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (43,6,'smk3-title','Smk3Criteria','Kriteria','Perusahaan mengkomunikasikan kebijakan K3\r\nkepada seluruh tenaga kerja, tamu, kontraktor, pelanggan dan pemasok dengan tata cara yang tepat.','<p>Perusahaan mengkomunikasikan kebijakan K3</p><p>kepada seluruh tenaga kerja, tamu, kontraktor, pelanggan dan pemasok dengan tata cara yang tepat.</p>',8,1486564003,8,1486564003);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (44,20,'smk3-title','Smk3Criteria','Kriteria','awd','<p>awd</p>',8,1486564003,8,1486564003);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (45,7,'smk3-title','Smk3Criteria','Kriteria','Tanggung jawab dan wewenang untuk mengambil tindakan dan melaporkan kepada semua pihak yang terkait dalam perusahaan di bidang K3 yang telah ditetapkan, diinformasikan dan didokumentasikan.','<p>Tanggung jawab dan wewenang untuk mengambil tindakan dan melaporkan kepada semua pihak yang terkait dalam perusahaan di bidang K3 yang telah ditetapkan, diinformasikan dan didokumentasikan.</p>',8,1486564003,8,1486564003);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (46,8,'smk3-title','Smk3Criteria','Kriteria','Penunjukan penanggung jawab K3 harus sesuai peraturan perundang-undangan.','<p>Penunjukan penanggung jawab K3 harus sesuai peraturan perundang-undangan.</p>',8,1486564003,8,1486564003);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (47,13,'smk3-title','Smk3Criteria','Kriteria','Pimpinan unit kerja dalam suatu perusahaan bertanggung jawab atas kinerja K3 pada unit kerjanya.','<p>Pimpinan unit kerja dalam suatu perusahaan bertanggung jawab atas kinerja K3 pada unit kerjanya.</p>',8,1486564003,8,1486564003);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (48,14,'smk3-title','Smk3Criteria','Kriteria','Pengusaha atau pengurus bertanggung jawab secara penuh untuk menjamin pelaksanaan SMK3.','<p>Pengusaha atau pengurus bertanggung jawab secara penuh untuk menjamin pelaksanaan SMK3.</p>',8,1486564004,8,1486564004);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (49,15,'smk3-title','Smk3Criteria','Kriteria','Kebijakan khusus dibuat untuk masalah K3 yang bersifat khusus.','<p>Kebijakan khusus dibuat untuk masalah K3 yang bersifat khusus.</p>',8,1486564004,8,1486564004);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (50,16,'smk3-title','Smk3Criteria','Kriteria','Kebijakan K3 dan kebijakan khusus lainnya ditinjau ulang secara berkala untuk menjamin bahwa kebijakan tersebut sesuai dengan perubahan yang terjadi dalam perusahaan dan dalam peraturan per undang-undangan','<p>Kebijakan K3 dan kebijakan khusus lainnya ditinjau ulang secara berkala untuk menjamin bahwa kebijakan tersebut sesuai dengan perubahan yang terjadi dalam perusahaan dan dalam peraturan per undang-undangan</p>',8,1486564004,8,1486564004);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (51,9,'smk3-title','Smk3Criteria','Kriteria','Tinjauan terhadap penerapan SMK3 meliputi kebijakan, perencanaan, pelaksanaan, pemantauan\r\ndan evaluasi telah dilakukan, dicatat dan\r\ndidokumentasikan.','<p>Tinjauan terhadap penerapan SMK3 meliputi kebijakan, perencanaan, pelaksanaan, pemantauan</p><p>dan evaluasi telah dilakukan, dicatat dan</p><p>didokumentasikan.</p>',8,1486564004,8,1486564004);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (52,10,'smk3-title','Smk3Criteria','Kriteria','Hasil tinjauan ulang dimasukkan dalam perencanaan tindakan manajemen.','<p>Hasil tinjauan ulang dimasukkan dalam perencanaan tindakan manajemen.</p>',8,1486564004,8,1486564004);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (53,11,'smk3-title','Smk3Criteria','Kriteria','Keterlibatan tenaga kerja dan penjadwalan konsultasi tenaga kerja dengan wakil perusahaan didokumentasikan dan disebarluaskan ke seluruh tenaga kerja.','<p>Keterlibatan tenaga kerja dan penjadwalan konsultasi tenaga kerja dengan wakil perusahaan didokumentasikan dan disebarluaskan ke seluruh tenaga kerja.</p>',8,1486564004,8,1486564004);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (54,12,'smk3-title','Smk3Criteria','Kriteria','Pengurus harus meninjau ulang pelaksanaan SMK3 secara berkala untuk menilai kesesuaian dan efektivitas SMK3.','<p>Pengurus harus meninjau ulang pelaksanaan SMK3 secara berkala untuk menilai kesesuaian dan efektivitas SMK3.</p>',8,1486564004,8,1486564004);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (55,17,'smk3-title','Smk3Criteria','Kriteria','Petugas yang bertanggung jawab untuk menangani keadaan darurat telah ditetapkan dan mendapatkan pelatihan.','<p>Petugas yang bertanggung jawab untuk menangani keadaan darurat telah ditetapkan dan mendapatkan pelatihan.</p>',8,1486564004,8,1486564004);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (56,18,'smk3-title','Smk3Criteria','Kriteria','Perusahaan mendapatkan saran-saran dari para ahli di bidang K3 yang berasal dari dalam dan/atau luar perusahaan.','<p>Perusahaan mendapatkan saran-saran dari para ahli di bidang K3 yang berasal dari dalam dan/atau luar perusahaan.</p>',8,1486564004,8,1486564004);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (57,19,'smk3-title','Smk3Criteria','Kriteria','Kinerja K3 termuat dalam laporan tahunan perusahaan atau laporan lain yang setingkat.','<strong></strong><p>Kinerja K3 termuat dalam laporan tahunan perusahaan atau laporan lain yang setingkat.<strong>asdasdawd</strong></p>',8,1486564004,8,1486564004);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (58,21,'smk3-title','Smk3Criteria','Kriteria','test','testatat',8,1486564491,8,1486564491);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (63,22,'smk3-title','Smk3Criteria','Kriteria','test','testaadasdaw',8,1486565232,8,1486565232);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (64,5,'smk3','Smk3','Triwulan','6','IV',8,1486636814,8,1486636814);
+insert  into `log_dirty`(`id`,`data_id`,`controller`,`model`,`label`,`original_value`,`changed_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (65,6,'smk3','Smk3','Triwulan','1','V',8,1486636827,8,1486636827);
 
 /*Table structure for table `login_history` */
 
@@ -1340,7 +1915,7 @@ CREATE TABLE `login_history` (
   PRIMARY KEY (`id`),
   KEY `FK_login_history_user` (`user_id`),
   CONSTRAINT `FK_login_history_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=latin1;
 
 /*Data for the table `login_history` */
 
@@ -1405,16 +1980,6 @@ insert  into `login_history`(`id`,`user_id`,`username`,`password`,`remark`,`ip_a
 insert  into `login_history`(`id`,`user_id`,`username`,`password`,`remark`,`ip_address`,`created_at`,`updated_at`) values (59,8,NULL,NULL,'LOGIN SUCCESS','::1',1485422635,1485422635);
 insert  into `login_history`(`id`,`user_id`,`username`,`password`,`remark`,`ip_address`,`created_at`,`updated_at`) values (60,8,NULL,NULL,'LOGOUT','::1',1485444933,1485444933);
 insert  into `login_history`(`id`,`user_id`,`username`,`password`,`remark`,`ip_address`,`created_at`,`updated_at`) values (61,8,NULL,NULL,'LOGIN SUCCESS','::1',1486025491,1486025491);
-insert  into `login_history`(`id`,`user_id`,`username`,`password`,`remark`,`ip_address`,`created_at`,`updated_at`) values (62,8,NULL,NULL,'LOGOUT','::1',1486044319,1486044319);
-insert  into `login_history`(`id`,`user_id`,`username`,`password`,`remark`,`ip_address`,`created_at`,`updated_at`) values (63,8,NULL,NULL,'LOGIN SUCCESS','::1',1486096134,1486096134);
-insert  into `login_history`(`id`,`user_id`,`username`,`password`,`remark`,`ip_address`,`created_at`,`updated_at`) values (64,8,NULL,NULL,'LOGOUT','::1',1486097163,1486097163);
-insert  into `login_history`(`id`,`user_id`,`username`,`password`,`remark`,`ip_address`,`created_at`,`updated_at`) values (65,8,NULL,NULL,'LOGIN SUCCESS','::1',1486305525,1486305525);
-insert  into `login_history`(`id`,`user_id`,`username`,`password`,`remark`,`ip_address`,`created_at`,`updated_at`) values (66,8,NULL,NULL,'LOGOUT','::1',1486402415,1486402415);
-insert  into `login_history`(`id`,`user_id`,`username`,`password`,`remark`,`ip_address`,`created_at`,`updated_at`) values (67,8,NULL,NULL,'LOGIN SUCCESS','::1',1486456169,1486456169);
-insert  into `login_history`(`id`,`user_id`,`username`,`password`,`remark`,`ip_address`,`created_at`,`updated_at`) values (68,8,NULL,NULL,'LOGOUT','::1',1486486775,1486486775);
-insert  into `login_history`(`id`,`user_id`,`username`,`password`,`remark`,`ip_address`,`created_at`,`updated_at`) values (69,8,NULL,NULL,'LOGIN SUCCESS','::1',1486529313,1486529313);
-insert  into `login_history`(`id`,`user_id`,`username`,`password`,`remark`,`ip_address`,`created_at`,`updated_at`) values (70,8,NULL,NULL,'LOGOUT','::1',1486541317,1486541317);
-insert  into `login_history`(`id`,`user_id`,`username`,`password`,`remark`,`ip_address`,`created_at`,`updated_at`) values (71,8,NULL,NULL,'LOGIN SUCCESS','::1',1486635934,1486635934);
 
 /*Table structure for table `maturity_level` */
 
@@ -1422,21 +1987,38 @@ DROP TABLE IF EXISTS `maturity_level`;
 
 CREATE TABLE `maturity_level` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `maturity_level_attribute_id` int(11) NOT NULL,
   `sector_id` int(11) NOT NULL,
-  `mlvl_quarter` varchar(2) NOT NULL,
+  `mlvl_quarter` int(1) NOT NULL,
   `mlvl_year` int(4) NOT NULL,
   `created_by` smallint(5) unsigned NOT NULL,
   `created_at` int(11) NOT NULL,
   `updated_by` smallint(5) unsigned NOT NULL,
   `updated_at` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_maturity_level_sector` (`sector_id`),
-  CONSTRAINT `FK_maturity_level_sector` FOREIGN KEY (`sector_id`) REFERENCES `sector` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `maturity_level` */
 
-insert  into `maturity_level`(`id`,`sector_id`,`mlvl_quarter`,`mlvl_year`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (6,4,'IV',2016,8,1486484967,8,1486532961);
+/*Table structure for table `maturity_level_attribute` */
+
+DROP TABLE IF EXISTS `maturity_level_attribute`;
+
+CREATE TABLE `maturity_level_attribute` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `attr_type_code` varchar(10) NOT NULL,
+  `attr_text` text,
+  `attr_unit_code` varchar(10) NOT NULL,
+  `attr_weight` decimal(14,2) DEFAULT NULL,
+  `attr_parent_id` int(11) DEFAULT NULL,
+  `created_by` smallint(5) unsigned NOT NULL,
+  `created_at` int(11) NOT NULL,
+  `updated_by` smallint(5) unsigned NOT NULL,
+  `updated_at` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `maturity_level_attribute` */
 
 /*Table structure for table `maturity_level_detail` */
 
@@ -1445,127 +2027,16 @@ DROP TABLE IF EXISTS `maturity_level_detail`;
 CREATE TABLE `maturity_level_detail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `maturity_level_id` int(11) NOT NULL,
-  `maturity_level_question_id` int(11) NOT NULL,
   `mld_target` decimal(14,2) DEFAULT NULL,
-  `mld_realization` decimal(14,2) DEFAULT NULL,
-  `created_by` smallint(5) unsigned NOT NULL,
-  `created_at` int(11) NOT NULL,
-  `updated_by` smallint(5) unsigned NOT NULL,
-  `updated_at` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_maturity_level_detail` (`maturity_level_id`),
-  KEY `FK_maturity_level_detail_question` (`maturity_level_question_id`),
-  CONSTRAINT `FK_maturity_level_detail` FOREIGN KEY (`maturity_level_id`) REFERENCES `maturity_level` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_maturity_level_detail_question` FOREIGN KEY (`maturity_level_question_id`) REFERENCES `maturity_level_question` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
-
-/*Data for the table `maturity_level_detail` */
-
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1,6,1,'11.00','11.00',8,1486484967,8,1486532961);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (2,6,2,'1500.00','2500.00',8,1486484967,8,1486532961);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (3,6,3,'68.00','50.00',8,1486484967,8,1486532961);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (4,6,4,NULL,NULL,8,1486484967,8,1486532961);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (5,6,5,'4.00','4.00',8,1486484967,8,1486532961);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (6,6,6,NULL,NULL,8,1486484967,8,1486532961);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (7,6,7,NULL,NULL,8,1486484967,8,1486532961);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (8,6,8,NULL,NULL,8,1486484967,8,1486532961);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (9,6,9,NULL,NULL,8,1486484967,8,1486532961);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (10,6,10,NULL,NULL,8,1486484967,8,1486532961);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (11,6,11,NULL,NULL,8,1486484967,8,1486532961);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (12,6,12,NULL,NULL,8,1486484967,8,1486532961);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (13,6,13,NULL,NULL,8,1486484967,8,1486532961);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (14,6,14,NULL,NULL,8,1486484967,8,1486532961);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (15,6,15,NULL,NULL,8,1486484967,8,1486532961);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (16,6,16,NULL,NULL,8,1486484967,8,1486532961);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (17,6,17,NULL,NULL,8,1486484967,8,1486532961);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (18,6,18,NULL,NULL,8,1486484967,8,1486532961);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (19,6,19,NULL,NULL,8,1486484967,8,1486532961);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (20,6,20,NULL,NULL,8,1486484967,8,1486532961);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (21,6,1,'11.00','11.00',8,1486485061,8,1486485061);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (22,6,2,'1500.00','2000.00',8,1486485061,8,1486485061);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (23,6,3,'68.00','50.00',8,1486485061,8,1486485061);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (24,6,4,NULL,NULL,8,1486485061,8,1486485061);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (25,6,5,'4.00','4.00',8,1486485061,8,1486485061);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (26,6,6,NULL,NULL,8,1486485061,8,1486485061);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (27,6,7,NULL,NULL,8,1486485062,8,1486485062);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (28,6,8,NULL,NULL,8,1486485062,8,1486485062);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (29,6,9,NULL,NULL,8,1486485062,8,1486485062);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (30,6,10,NULL,NULL,8,1486485062,8,1486485062);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (31,6,11,NULL,NULL,8,1486485062,8,1486485062);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (32,6,12,NULL,NULL,8,1486485062,8,1486485062);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (33,6,13,NULL,NULL,8,1486485062,8,1486485062);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (34,6,14,NULL,NULL,8,1486485062,8,1486485062);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (35,6,15,NULL,NULL,8,1486485062,8,1486485062);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (36,6,16,NULL,NULL,8,1486485062,8,1486485062);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (37,6,17,NULL,NULL,8,1486485062,8,1486485062);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (38,6,18,NULL,NULL,8,1486485062,8,1486485062);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (39,6,19,NULL,NULL,8,1486485062,8,1486485062);
-insert  into `maturity_level_detail`(`id`,`maturity_level_id`,`maturity_level_question_id`,`mld_target`,`mld_realization`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (40,6,20,NULL,NULL,8,1486485062,8,1486485062);
-
-/*Table structure for table `maturity_level_question` */
-
-DROP TABLE IF EXISTS `maturity_level_question`;
-
-CREATE TABLE `maturity_level_question` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `maturity_level_title_id` int(11) NOT NULL,
-  `q_action_plan` text,
-  `q_criteria` text,
-  `q_unit_code` varchar(10) NOT NULL,
-  `q_weight` decimal(5,2) DEFAULT NULL,
-  `created_by` smallint(5) unsigned NOT NULL,
-  `created_at` int(11) NOT NULL,
-  `updated_by` smallint(5) unsigned NOT NULL,
-  `updated_at` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_maturity_level_question_title` (`maturity_level_title_id`),
-  CONSTRAINT `FK_maturity_level_question_title` FOREIGN KEY (`maturity_level_title_id`) REFERENCES `maturity_level_title` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
-
-/*Data for the table `maturity_level_question` */
-
-insert  into `maturity_level_question`(`id`,`maturity_level_title_id`,`q_action_plan`,`q_criteria`,`q_unit_code`,`q_weight`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1,1,'<p>Pimpinan unit membuat Komitmen dan kebijakan K2/K3 &amp; Keamanan</p>','<ul><li>Komitmen dan kebijakan K2/K3 &amp; Kemanan dibuat, ditandatangani untuk seluruh Unit Induk dan Unit Pelaksana.</li><li>Komitmen dan kebijakan K2/K3 &amp; Keamanan disosialisasikan ke seluruh tenaga kerja di unitnya.</li></ul>','BH','1.50',8,1486372863,8,1486374568);
-insert  into `maturity_level_question`(`id`,`maturity_level_title_id`,`q_action_plan`,`q_criteria`,`q_unit_code`,`q_weight`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (2,1,'<p>Menyusun RKAP bidang K2/K3 &amp; Keamanan di unit induk yang mencakup program kerja di unit pelaksana.</p>','<p>Program kerja dan Anggaran bidang K2/K3 &amp; Keamanan Unit Induk dan Unit Pelaksana tertuang dalam RKAP per semester</p>','RP','10.00',8,1486373299,8,1486373299);
-insert  into `maturity_level_question`(`id`,`maturity_level_title_id`,`q_action_plan`,`q_criteria`,`q_unit_code`,`q_weight`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (3,2,'<p>Manajemen Unit Induk dan unit pelaksana wajib mengikuti pelatihan K2/K3</p>','<ul><li>Peserta :<br>Unit Induk : General Manager &amp; Manajer Bidang<br>Unit Pelaksana : Manajer Area/yang setingkat,  dan Asman/ yang setingkat.</li><li>Target pelatihan peserta adalah 1 (satu) kali per semester</li></ul>','BH','3.00',8,1486374732,8,1486374732);
-insert  into `maturity_level_question`(`id`,`maturity_level_title_id`,`q_action_plan`,`q_criteria`,`q_unit_code`,`q_weight`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (4,2,'<p>Melakukan sertifikasi SMK3 (Sistem Manajemen K3) untuk unit induk &amp; unit pelaksana</p>','<ul><li>Mendapatkan sertifikasi SMK3 untuk Unit induk.</li><li>dan  seluruh unit pelaksana. Apabila Unit Induk dan Unit Pelaksana dilakukan sertifikasi secara terpadu, maka</li><li>Unit Induk mendapatkan sertifikat SMK3 terpadu<br>Target sertifikasi :<br>Semester 1 : 70% unit sudah sertifikasi SMK3<br>Semester 2 : 100% unit sudah sertifikasi SMK3</li></ul>','UIP','8.00',8,1486374856,8,1486374856);
-insert  into `maturity_level_question`(`id`,`maturity_level_title_id`,`q_action_plan`,`q_criteria`,`q_unit_code`,`q_weight`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (5,2,'<p>Melakukan sertifikasi SMP (Sistem Manajemen Pengamanan ) untuk aset yang termasuk dalam Obyek Vital / Obyek Vital Nasional (Obvit / Obvitnas) di Unitnya</p>','<p>Mendapatkan sertifikasi SMP untuk aset Obvitnas di Unitnya<br>Target :<br>- Selesai sertifikasi SMP (100%)<br>- Proses set up SMP (50%)<br>- Tidak ada progres set up SMP (0%)</p>','UP','7.00',8,1486375089,8,1486375089);
-insert  into `maturity_level_question`(`id`,`maturity_level_title_id`,`q_action_plan`,`q_criteria`,`q_unit_code`,`q_weight`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (6,2,'<p>Melakukan sertifikasi kompetensi bagi pengawas dan pelaksana pekerjaan </p>','<ul><li>Pengawas pekerjaan dan Pelaksana Pekerjaan di Unit Induk (UI) , Unit Pelaksana (UP) dan Sub Unit Pelaksana (SUP) memiliki sertifikasi kompetensi</li><li>Target sertifikasi :<br>- UP : 3 Pengawas dan 6 Pelaksan. </li></ul>','BH','3.00',8,1486401206,8,1486401206);
-insert  into `maturity_level_question`(`id`,`maturity_level_title_id`,`q_action_plan`,`q_criteria`,`q_unit_code`,`q_weight`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (7,2,'<p>Sertifikasi Laik Operasi (SLO) pada Intalasi Ketenagalistrikan<br>(Pembangkit, Transmisi, Distribusi )</p>','<ul><li>Instalasi Pembangkit, Transmisi dan Distribusi yang beroperasi wajib memiliki sertifikat SLO</li><li>Target SLO Instalasi per Semester :<br>- Pembangkit : Semua instalasi wajib ber-SLO</li></ul>','UNT','10.00',8,1486401262,8,1486401262);
-insert  into `maturity_level_question`(`id`,`maturity_level_title_id`,`q_action_plan`,`q_criteria`,`q_unit_code`,`q_weight`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (8,3,'<p>Melakukan Sosialisasi K2/K3 &amp; Keamanan kepada seluruh pegawai dan mitra kerja (vendor) di setiap unit induk dan unit pelaksana </p>','<ul><li>Jumlah pelaksanaan sosialisasi K2/K3 dan keamanan di Induk dan di Unit Pelaksana, termasuk mitra kerja (vendor)</li><li>Target : sosialisasi dilakukan minimal 1 (satu) kali per triwulan, baik di Induk maupun di Unit Pelaksana.</li></ul>','KL','2.00',8,1486401560,8,1486401560);
-insert  into `maturity_level_question`(`id`,`maturity_level_title_id`,`q_action_plan`,`q_criteria`,`q_unit_code`,`q_weight`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (9,3,'<p>Melakukan Sosialisasi K2/K3 &amp; Keamanan kepada Masyarakat umum, Sekolah &amp; Instansi pemerintah di setiap unit induk dan unit pelaksana</p>','<ul><li>Jumlah pelaksanaan sosialisasi K2/K3 &amp; Keamanan di Induk dan di Unit Pelaksana.</li><li>Target : sosialisasi dilakukan minimal 1 (satu) kali per triwulan, baik di Induk maupun di Unit Pelaksana.</li></ul>','KL','2.00',8,1486401811,8,1486401811);
-insert  into `maturity_level_question`(`id`,`maturity_level_title_id`,`q_action_plan`,`q_criteria`,`q_unit_code`,`q_weight`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (10,3,'<p>Melakukan penilaian kinerja K2/K3 Mitra Kerja (vendor) terhadap aspek kompetensi teknik pengawas dan pelaksana pekerjaan, kompetensi pengawas K2/K3, ketersediaan SOP, peralatan kerja dan APD sesuai standard yang diwujudkan dalam bentuk Raport Triwulanan</p>','<ul><li>Jumlah pegawai mitra kerja yang memiliki sertifikat kompetensi teknik bagi pengawas dan pelaksana pekerjaan serta kompetensi pengawas K2/K3 (100% bila memadai seluruhnya; 50% bila sebagian tidak memadai)</li><li>Kelengkapan SOP, peralatan kerja dan APD sesuai standart pada setiap pelaksanaan pekerjaan yang berpotensi bahaya (100% bila lengkap dan sesuai standar; 50% bila tidak lengkap dan tidak sesuai standar)</li><li>Jumlah korban luka ringan, luka berat dan meninggal dunia akibat kecelakaan kerja (0% bila terjadi kecelakaan kerja)</li></ul>','PCT','10.00',8,1486401883,8,1486401883);
-insert  into `maturity_level_question`(`id`,`maturity_level_title_id`,`q_action_plan`,`q_criteria`,`q_unit_code`,`q_weight`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (11,3,'<p>Melakukan inspeksi instalasi ketenagalistrikan &amp; Keamanan pada instalasi yang berpotensi bahaya di Unit Induk dan seluruh Unit Pelaksana secara berkala</p>','<ul><li>Jumlah temuan dan tindaklanjut inspeksi dalam pelaksanaan inspeksi instalasi ketenagalistrikan dan keamanan di Unit Induk dan Unit Pelaksana per periode</li><li>Target seluruh Unit Pelaksana melakukan inspeksi instalasi ketenagalistrikan dan keamanan serta membuat daftar hasil temuan</li></ul>','TMN','5.00',8,1486401943,8,1486401943);
-insert  into `maturity_level_question`(`id`,`maturity_level_title_id`,`q_action_plan`,`q_criteria`,`q_unit_code`,`q_weight`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (12,3,'<p>Menyediakan Sistem proteksi kebakaran di unit induk, seluruh kantor unit pelaksana dan instalasi pembangkit terbesar dan/atau instalasi Gardu Induk (GI) terbesar serta melakukan simulasi minimal 1 (satu) kali dalam 1 (satu) semester.</p>','<ul><li>Sistem proteksi kebakaran minimal terpasang di Kantor unit induk, Kantor unit pelaksana dan instalasi Pembangkit terbesar dan/atau Instalasi GI terbesar di unit tersebut.</li><li>Target :<br>Semester 1 :<br>50 % unit sudah terpasang proteksi kebakaran<br>Semester 2 :<br>100% unit sudah terpasang proteksi kebakaran</li></ul>','PCT','10.00',8,1486402015,8,1486402015);
-insert  into `maturity_level_question`(`id`,`maturity_level_title_id`,`q_action_plan`,`q_criteria`,`q_unit_code`,`q_weight`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (13,3,'<p>Membuat visual management terkait informasi K3 yang selalu diupdate di unit induk dan seluruh unit pelaksana</p>','<ul><li>Visual management K3 terpasang di tempat yang strategis dan Update</li><li>Target : seluruh unit terpasang pada Semester 1</li></ul>','PCT','3.00',8,1486402073,8,1486402073);
-insert  into `maturity_level_question`(`id`,`maturity_level_title_id`,`q_action_plan`,`q_criteria`,`q_unit_code`,`q_weight`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (14,3,'Memasukan klausul K2/K3 pada dokumen pengadaan barang &amp; jasa dan memberikan penjelasan kepada kontraktor/mitra kerja','<p>Semua dokumen kontrak telah mencantumkan klausul K2/K3</p>','PCT','3.00',8,1486402111,8,1486402111);
-insert  into `maturity_level_question`(`id`,`maturity_level_title_id`,`q_action_plan`,`q_criteria`,`q_unit_code`,`q_weight`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (15,3,'<p>Melakukan pemeriksaan kesehatan bagi pegawai secara berkala</p>','<ul><li>Pemeriksaan kesehatan dilaksanakan secara berkala minimal 1x setiap tahun, bagi pegawai berusia &gt;40 tahun, operator pembangkit dan pekerja pada resiko tinggi.</li><li>Target :<br>Semester 1 : 45% dari pegawai yang berhak<br>Semester 2 : 100% dari pegawai yang berhak</li></ul>','KL','3.00',8,1486402162,8,1486402162);
-insert  into `maturity_level_question`(`id`,`maturity_level_title_id`,`q_action_plan`,`q_criteria`,`q_unit_code`,`q_weight`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (16,3,'General Manager melakukan inspeksi mendadak (SIDAK) K2/K3 &amp; KEAMANAN pada unit yang dipimpinnya.','<ul><li>SIDAK dilakukan oleh GM ke Unit Pelaksana/Unit Pembangkit/setingkat di unitnya.</li><li>Target : SIDAK dilakukan minimal 1(satu) kali per bulan atau 6 (enam) kali per semester</li></ul>','KL','5.00',8,1486402202,8,1486402202);
-insert  into `maturity_level_question`(`id`,`maturity_level_title_id`,`q_action_plan`,`q_criteria`,`q_unit_code`,`q_weight`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (17,4,'<p>Memasang rambu-rambu tanda bahaya dan/atau memasang kunci pengaman pada instalasi ketenagalistrikan yang berpotensi bahaya.</p>','<ul><li>Rambu-rambu tanda bahaya dan kunci pengaman terpasang pada instalasi ketenagalistrikan yang berpotensi bahaya di Unit Induk (UI) dan Unit Pelaksanan (UP)</li><li>Target Per semester :<br>- UP : memasang minimal 60 titik instalasi<br>- UI : memasang minimal 60 (enam puluh) titik x jumlah unit pelaksananya</li></ul>','TTK','5.00',8,1486402260,8,1486402260);
-insert  into `maturity_level_question`(`id`,`maturity_level_title_id`,`q_action_plan`,`q_criteria`,`q_unit_code`,`q_weight`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (18,5,'Membuat tabel rangkuman laporan kecelakaan dan laporan keamanan bulanan','<p>Tabel rangkuman laporan kecelakaan (baik Nihil maupun ada kecelakaan) dikirim paling lambat tanggal 10 bulan berikutnya</p>','BLN','2.00',8,1486402297,8,1486402297);
-insert  into `maturity_level_question`(`id`,`maturity_level_title_id`,`q_action_plan`,`q_criteria`,`q_unit_code`,`q_weight`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (19,5,'Membuat Laporan P2K3 di Unit Induk dan seluruh Unit Pelaksana','<p>Laporan P2K3 dilaporkan ke Disnaker setempat</p>','LPRN','2.00',8,1486402335,8,1486402335);
-insert  into `maturity_level_question`(`id`,`maturity_level_title_id`,`q_action_plan`,`q_criteria`,`q_unit_code`,`q_weight`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (20,5,'<p>Self asesmen kuisioner maturity dibuat dan dilaporkan sesuai dengan kondisi implementasi di lapangan</p>','<p>Hasil asesmen dibuat dengan akurat dan sesuai implementasi di lapangan</p>','PCT','4.00',8,1486402369,8,1486402369);
-
-/*Table structure for table `maturity_level_title` */
-
-DROP TABLE IF EXISTS `maturity_level_title`;
-
-CREATE TABLE `maturity_level_title` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title_text` varchar(255) NOT NULL,
+  `mld_realisasi` decimal(14,2) DEFAULT NULL,
   `created_by` smallint(5) unsigned NOT NULL,
   `created_at` int(11) NOT NULL,
   `updated_by` smallint(5) unsigned NOT NULL,
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/*Data for the table `maturity_level_title` */
-
-insert  into `maturity_level_title`(`id`,`title_text`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1,'KEPEMIMPINAN, KEBIJAKAN DAN KOMITMEN MANAJEMEN',8,1486371353,8,1486371353);
-insert  into `maturity_level_title`(`id`,`title_text`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (2,'SERTIFIKASI/DIKLAT',8,1486374660,8,1486374660);
-insert  into `maturity_level_title`(`id`,`title_text`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (3,'PEMANTAUAN IMPLEMENTASI K2/K3 & SISTEM PENGAMANAN',8,1486401278,8,1486401278);
-insert  into `maturity_level_title`(`id`,`title_text`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (4,' PEMASANGAN RAMBU-RAMBU PERINGATAN TANDA BAHAYA',8,1486402218,8,1486402218);
-insert  into `maturity_level_title`(`id`,`title_text`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (5,'INTEGRITAS PELAPORAN',8,1486402274,8,1486402274);
+/*Data for the table `maturity_level_detail` */
 
 /*Table structure for table `power_plant` */
 
@@ -1765,7 +2236,7 @@ CREATE TABLE `smk3` (
   `sector_id` int(11) NOT NULL,
   `power_plant_id` int(11) NOT NULL,
   `smk3_year` int(4) NOT NULL,
-  `smk3_semester` int(2) NOT NULL,
+  `smk3_quarter` varchar(2) NOT NULL,
   `created_by` smallint(5) unsigned NOT NULL,
   `created_at` int(11) NOT NULL,
   `updated_by` smallint(5) unsigned NOT NULL,
@@ -1775,9 +2246,12 @@ CREATE TABLE `smk3` (
   KEY `FK_smk3_power_plant` (`power_plant_id`),
   CONSTRAINT `FK_smk3_power_plant` FOREIGN KEY (`power_plant_id`) REFERENCES `power_plant` (`id`),
   CONSTRAINT `FK_smk3_sector` FOREIGN KEY (`sector_id`) REFERENCES `sector` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Data for the table `smk3` */
+
+insert  into `smk3`(`id`,`sector_id`,`power_plant_id`,`smk3_year`,`smk3_quarter`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (5,7,5,131,'IV',8,1486545260,8,1486636814);
+insert  into `smk3`(`id`,`sector_id`,`power_plant_id`,`smk3_year`,`smk3_quarter`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (6,7,5,2332,'V',8,1486551887,8,1486636827);
 
 /*Table structure for table `smk3_criteria` */
 
@@ -1794,12 +2268,43 @@ CREATE TABLE `smk3_criteria` (
   PRIMARY KEY (`id`),
   KEY `FK_smk3_criteria_subtitle` (`smk3_subtitle_id`),
   CONSTRAINT `FK_smk3_criteria_subtitle` FOREIGN KEY (`smk3_subtitle_id`) REFERENCES `smk3_subtitle` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=latin1;
 
 /*Data for the table `smk3_criteria` */
 
-insert  into `smk3_criteria`(`id`,`smk3_subtitle_id`,`sctr_criteria`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1,1,'kriteria 1',8,1486478121,8,1486478121);
-insert  into `smk3_criteria`(`id`,`smk3_subtitle_id`,`sctr_criteria`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (2,2,'kriteria 2',8,1486478121,8,1486478121);
+insert  into `smk3_criteria`(`id`,`smk3_subtitle_id`,`sctr_criteria`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (31,15,'awada',8,1486551819,8,1486551819);
+insert  into `smk3_criteria`(`id`,`smk3_subtitle_id`,`sctr_criteria`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (32,16,'asdadasfas',8,1486551916,8,1486551916);
+insert  into `smk3_criteria`(`id`,`smk3_subtitle_id`,`sctr_criteria`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (33,16,'asdafsaf',8,1486551916,8,1486551916);
+insert  into `smk3_criteria`(`id`,`smk3_subtitle_id`,`sctr_criteria`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (34,16,'asdafsadsaf',8,1486551916,8,1486551916);
+insert  into `smk3_criteria`(`id`,`smk3_subtitle_id`,`sctr_criteria`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (35,17,'asfasfasdasfasfasf',8,1486551916,8,1486551916);
+insert  into `smk3_criteria`(`id`,`smk3_subtitle_id`,`sctr_criteria`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (36,17,'asfasdasf',8,1486551916,8,1486551916);
+insert  into `smk3_criteria`(`id`,`smk3_subtitle_id`,`sctr_criteria`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (37,18,'asdadwad',8,1486552144,8,1486552144);
+insert  into `smk3_criteria`(`id`,`smk3_subtitle_id`,`sctr_criteria`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (38,18,'saddawdawdad',8,1486552144,8,1486552144);
+insert  into `smk3_criteria`(`id`,`smk3_subtitle_id`,`sctr_criteria`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (39,18,'adsadwadsadw',8,1486552145,8,1486552145);
+insert  into `smk3_criteria`(`id`,`smk3_subtitle_id`,`sctr_criteria`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (40,18,'asdasdawdada',8,1486552145,8,1486552145);
+insert  into `smk3_criteria`(`id`,`smk3_subtitle_id`,`sctr_criteria`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (41,19,'asdawdawdawd',8,1486552145,8,1486552145);
+insert  into `smk3_criteria`(`id`,`smk3_subtitle_id`,`sctr_criteria`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (42,20,'asdwadasdw',8,1486552145,8,1486552145);
+insert  into `smk3_criteria`(`id`,`smk3_subtitle_id`,`sctr_criteria`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (43,21,'dasdwadasdwadwad',8,1486552145,8,1486552145);
+insert  into `smk3_criteria`(`id`,`smk3_subtitle_id`,`sctr_criteria`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (44,21,'asdadawdasd',8,1486552145,8,1486552145);
+insert  into `smk3_criteria`(`id`,`smk3_subtitle_id`,`sctr_criteria`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (45,22,'asdwad',8,1486552301,8,1486552301);
+insert  into `smk3_criteria`(`id`,`smk3_subtitle_id`,`sctr_criteria`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (46,22,'asdadaw',8,1486552301,8,1486552301);
+insert  into `smk3_criteria`(`id`,`smk3_subtitle_id`,`sctr_criteria`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (47,22,'sadawdasdw',8,1486552301,8,1486552301);
+insert  into `smk3_criteria`(`id`,`smk3_subtitle_id`,`sctr_criteria`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (48,23,'dwadasdawdadawadwadawdwadawd',8,1486552301,8,1486552301);
+insert  into `smk3_criteria`(`id`,`smk3_subtitle_id`,`sctr_criteria`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (49,23,'asdadwad',8,1486552301,8,1486552301);
+insert  into `smk3_criteria`(`id`,`smk3_subtitle_id`,`sctr_criteria`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (50,24,'asdawdaw',8,1486552355,8,1486552355);
+insert  into `smk3_criteria`(`id`,`smk3_subtitle_id`,`sctr_criteria`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (51,24,'asdwadasdwad',8,1486552355,8,1486552355);
+insert  into `smk3_criteria`(`id`,`smk3_subtitle_id`,`sctr_criteria`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (52,24,'dawdasdwadasdawdadsadw',8,1486552356,8,1486552356);
+insert  into `smk3_criteria`(`id`,`smk3_subtitle_id`,`sctr_criteria`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (53,25,'adsadawdasdwadwad',8,1486552356,8,1486552356);
+insert  into `smk3_criteria`(`id`,`smk3_subtitle_id`,`sctr_criteria`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (54,25,'asdsadasdawda',8,1486552356,8,1486552356);
+insert  into `smk3_criteria`(`id`,`smk3_subtitle_id`,`sctr_criteria`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (55,26,'asdawdasdwad',8,1486552356,8,1486552356);
+insert  into `smk3_criteria`(`id`,`smk3_subtitle_id`,`sctr_criteria`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (61,32,'asdawd',8,1486565158,8,1486565158);
+insert  into `smk3_criteria`(`id`,`smk3_subtitle_id`,`sctr_criteria`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (63,35,'<p>asdadsdwd<strong>asdawdsad<em>asdasdsadawa<del>dasdsadwadsa</del></em></strong></p>',8,1486640348,8,1486640348);
+insert  into `smk3_criteria`(`id`,`smk3_subtitle_id`,`sctr_criteria`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (67,37,'<p>asdwada</p>',8,1486641950,8,1486641950);
+insert  into `smk3_criteria`(`id`,`smk3_subtitle_id`,`sctr_criteria`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (68,37,'<p>asdawd</p>',8,1486641951,8,1486641951);
+insert  into `smk3_criteria`(`id`,`smk3_subtitle_id`,`sctr_criteria`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (69,37,'<p>asdawd</p>',8,1486641951,8,1486641951);
+insert  into `smk3_criteria`(`id`,`smk3_subtitle_id`,`sctr_criteria`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (70,38,'<p>asdasdawd</p>',8,1486641951,8,1486641951);
+insert  into `smk3_criteria`(`id`,`smk3_subtitle_id`,`sctr_criteria`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (71,38,'<p>asdawdsad</p>',8,1486641951,8,1486641951);
+insert  into `smk3_criteria`(`id`,`smk3_subtitle_id`,`sctr_criteria`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (72,38,'<p>asdwadsad<em>sadadadasdwadawd<strong>sadwad</strong><strong></strong></em></p>',8,1486641951,8,1486641951);
 
 /*Table structure for table `smk3_detail` */
 
@@ -1815,13 +2320,80 @@ CREATE TABLE `smk3_detail` (
   `updated_by` smallint(5) unsigned NOT NULL,
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK_smk3_answer` (`smk3_id`),
   KEY `FK_smk3_answer_criteria` (`smk3_criteria_id`),
-  CONSTRAINT `FK_smk3_answer` FOREIGN KEY (`smk3_id`) REFERENCES `smk3` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  KEY `FK_smk3_answer` (`smk3_id`),
+  CONSTRAINT `FK_smk3_answer` FOREIGN KEY (`smk3_id`) REFERENCES `smk3` (`id`),
   CONSTRAINT `FK_smk3_answer_criteria` FOREIGN KEY (`smk3_criteria_id`) REFERENCES `smk3_criteria` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=357 DEFAULT CHARSET=latin1;
 
 /*Data for the table `smk3_detail` */
+
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (190,5,31,1,8,1486551819,8,1486636814);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (212,6,31,1,8,1486551887,8,1486636827);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (213,5,32,0,8,1486551916,8,1486636814);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (214,6,32,0,8,1486551916,8,1486636827);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (215,5,33,0,8,1486551916,8,1486636814);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (216,6,33,0,8,1486551916,8,1486636827);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (217,5,34,0,8,1486551916,8,1486636814);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (218,6,34,0,8,1486551916,8,1486636827);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (219,5,35,0,8,1486551916,8,1486636814);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (220,6,35,0,8,1486551916,8,1486636827);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (221,5,36,0,8,1486551916,8,1486636814);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (222,6,36,0,8,1486551916,8,1486636827);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (223,5,37,0,8,1486552144,8,1486636814);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (224,6,37,0,8,1486552144,8,1486636827);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (225,5,38,0,8,1486552145,8,1486636814);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (226,6,38,0,8,1486552145,8,1486636827);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (227,5,39,0,8,1486552145,8,1486636814);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (228,6,39,0,8,1486552145,8,1486636827);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (229,5,40,0,8,1486552145,8,1486636814);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (230,6,40,0,8,1486552145,8,1486636827);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (231,5,41,0,8,1486552145,8,1486636814);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (232,6,41,0,8,1486552145,8,1486636827);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (233,5,42,0,8,1486552145,8,1486636814);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (234,6,42,0,8,1486552145,8,1486636827);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (235,5,43,0,8,1486552145,8,1486636814);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (236,6,43,0,8,1486552145,8,1486636827);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (237,5,44,0,8,1486552145,8,1486636814);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (238,6,44,0,8,1486552145,8,1486636827);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (239,5,45,0,8,1486552301,8,1486636814);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (240,6,45,0,8,1486552301,8,1486636827);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (241,5,46,0,8,1486552301,8,1486636814);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (242,6,46,0,8,1486552301,8,1486636827);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (243,5,47,0,8,1486552301,8,1486636814);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (244,6,47,0,8,1486552301,8,1486636827);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (245,5,48,0,8,1486552301,8,1486636814);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (246,6,48,0,8,1486552301,8,1486636827);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (247,5,49,0,8,1486552301,8,1486636814);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (248,6,49,0,8,1486552301,8,1486636827);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (249,5,50,0,8,1486552355,8,1486636814);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (250,6,50,0,8,1486552355,8,1486636827);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (251,5,51,0,8,1486552355,8,1486636814);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (252,6,51,0,8,1486552356,8,1486636827);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (253,5,52,0,8,1486552356,8,1486636814);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (254,6,52,0,8,1486552356,8,1486636827);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (255,5,53,0,8,1486552356,8,1486636814);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (256,6,53,0,8,1486552356,8,1486636827);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (257,5,54,0,8,1486552356,8,1486636814);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (258,6,54,0,8,1486552356,8,1486636827);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (259,5,55,0,8,1486552356,8,1486636814);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (260,6,55,0,8,1486552356,8,1486636827);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (333,5,61,0,8,1486565158,8,1486636814);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (334,6,61,0,8,1486565158,8,1486636827);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (337,5,63,0,8,1486640348,8,1486640348);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (338,6,63,0,8,1486640348,8,1486640348);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (345,5,67,0,8,1486641950,8,1486641950);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (346,6,67,0,8,1486641951,8,1486641951);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (347,5,68,0,8,1486641951,8,1486641951);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (348,6,68,0,8,1486641951,8,1486641951);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (349,5,69,0,8,1486641951,8,1486641951);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (350,6,69,0,8,1486641951,8,1486641951);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (351,5,70,0,8,1486641951,8,1486641951);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (352,6,70,0,8,1486641951,8,1486641951);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (353,5,71,0,8,1486641951,8,1486641951);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (354,6,71,0,8,1486641951,8,1486641951);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (355,5,72,0,8,1486641951,8,1486641951);
+insert  into `smk3_detail`(`id`,`smk3_id`,`smk3_criteria_id`,`sdtl_answer`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (356,6,72,0,8,1486641951,8,1486641951);
 
 /*Table structure for table `smk3_subtitle` */
 
@@ -1838,12 +2410,26 @@ CREATE TABLE `smk3_subtitle` (
   PRIMARY KEY (`id`),
   KEY `FK_smk3_title` (`smk3_title_id`),
   CONSTRAINT `FK_smk3_title` FOREIGN KEY (`smk3_title_id`) REFERENCES `smk3_title` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
 
 /*Data for the table `smk3_subtitle` */
 
-insert  into `smk3_subtitle`(`id`,`smk3_title_id`,`ssub_subtitle`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1,1,'sub title 1',8,1486478121,8,1486478121);
-insert  into `smk3_subtitle`(`id`,`smk3_title_id`,`ssub_subtitle`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (2,1,'sub title 2',8,1486478121,8,1486478121);
+insert  into `smk3_subtitle`(`id`,`smk3_title_id`,`ssub_subtitle`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (15,14,'awdadad',8,1486551819,8,1486551819);
+insert  into `smk3_subtitle`(`id`,`smk3_title_id`,`ssub_subtitle`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (16,15,'asdfasdasfasdasf',8,1486551916,8,1486551916);
+insert  into `smk3_subtitle`(`id`,`smk3_title_id`,`ssub_subtitle`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (17,15,'asdasdasdasf',8,1486551916,8,1486551916);
+insert  into `smk3_subtitle`(`id`,`smk3_title_id`,`ssub_subtitle`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (18,16,'sadawdasdwad',8,1486552144,8,1486552144);
+insert  into `smk3_subtitle`(`id`,`smk3_title_id`,`ssub_subtitle`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (19,16,'asdadadwad',8,1486552145,8,1486552145);
+insert  into `smk3_subtitle`(`id`,`smk3_title_id`,`ssub_subtitle`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (20,16,'asdasdwad',8,1486552145,8,1486552145);
+insert  into `smk3_subtitle`(`id`,`smk3_title_id`,`ssub_subtitle`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (21,16,'asdawdasdadwa',8,1486552145,8,1486552145);
+insert  into `smk3_subtitle`(`id`,`smk3_title_id`,`ssub_subtitle`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (22,17,'asdawad',8,1486552301,8,1486552301);
+insert  into `smk3_subtitle`(`id`,`smk3_title_id`,`ssub_subtitle`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (23,17,'asdawdsa',8,1486552301,8,1486552301);
+insert  into `smk3_subtitle`(`id`,`smk3_title_id`,`ssub_subtitle`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (24,18,'dwadzxdzdad',8,1486552355,8,1486552355);
+insert  into `smk3_subtitle`(`id`,`smk3_title_id`,`ssub_subtitle`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (25,18,'asdasdawdasdwada',8,1486552356,8,1486552356);
+insert  into `smk3_subtitle`(`id`,`smk3_title_id`,`ssub_subtitle`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (26,18,'asdasdawd',8,1486552356,8,1486552356);
+insert  into `smk3_subtitle`(`id`,`smk3_title_id`,`ssub_subtitle`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (32,24,'asdadw',8,1486565158,8,1486565158);
+insert  into `smk3_subtitle`(`id`,`smk3_title_id`,`ssub_subtitle`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (35,26,'asdwadsdw',8,1486640348,8,1486640348);
+insert  into `smk3_subtitle`(`id`,`smk3_title_id`,`ssub_subtitle`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (37,28,'asdawd',8,1486641950,8,1486641950);
+insert  into `smk3_subtitle`(`id`,`smk3_title_id`,`ssub_subtitle`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (38,28,'asdwadsd',8,1486641951,8,1486641951);
 
 /*Table structure for table `smk3_title` */
 
@@ -1857,11 +2443,20 @@ CREATE TABLE `smk3_title` (
   `updated_by` smallint(5) unsigned NOT NULL,
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
 /*Data for the table `smk3_title` */
 
-insert  into `smk3_title`(`id`,`sttl_title`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1,'title 1',8,1486478121,8,1486478121);
+insert  into `smk3_title`(`id`,`sttl_title`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (7,'Judul',8,1486470338,8,1486470338);
+insert  into `smk3_title`(`id`,`sttl_title`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (14,'wadawda',8,1486551819,8,1486551819);
+insert  into `smk3_title`(`id`,`sttl_title`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (15,'Jududul',8,1486551915,8,1486551915);
+insert  into `smk3_title`(`id`,`sttl_title`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (16,'adsadwad',8,1486552144,8,1486552144);
+insert  into `smk3_title`(`id`,`sttl_title`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (17,'adsadawda',8,1486552299,8,1486552299);
+insert  into `smk3_title`(`id`,`sttl_title`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (18,'awdasdawdasda',8,1486552355,8,1486552355);
+insert  into `smk3_title`(`id`,`sttl_title`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (24,'adwad',8,1486565158,8,1486565158);
+insert  into `smk3_title`(`id`,`sttl_title`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (25,'judul',8,1486635593,8,1486635593);
+insert  into `smk3_title`(`id`,`sttl_title`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (26,'awdasdw',8,1486640348,8,1486640348);
+insert  into `smk3_title`(`id`,`sttl_title`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (28,'wdadsd',8,1486641950,8,1486641950);
 
 /*Table structure for table `user` */
 
@@ -1936,7 +2531,7 @@ CREATE TABLE `working_plan` (
 
 /*Data for the table `working_plan` */
 
-insert  into `working_plan`(`id`,`form_type_code`,`sector_id`,`wp_year`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1,'K3',4,'2017',8,1484970609,8,1486531756);
+insert  into `working_plan`(`id`,`form_type_code`,`sector_id`,`wp_year`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1,'K3',4,'2017',8,1484970609,8,1485323406);
 
 /*Table structure for table `working_plan_attribute` */
 
@@ -2015,27 +2610,27 @@ CREATE TABLE `working_plan_month` (
   PRIMARY KEY (`id`),
   KEY `FK_working_plan_month_detail` (`working_plan_detail_id`),
   CONSTRAINT `FK_working_plan_month_detail` FOREIGN KEY (`working_plan_detail_id`) REFERENCES `working_plan_detail` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=118 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=latin1;
 
 /*Data for the table `working_plan_month` */
 
-insert  into `working_plan_month`(`id`,`working_plan_detail_id`,`wpm_month`,`wpm_week`,`wpm_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (101,1,1,1,3,8,1486531756,8,1486531756);
-insert  into `working_plan_month`(`id`,`working_plan_detail_id`,`wpm_month`,`wpm_week`,`wpm_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (102,1,1,2,4,8,1486531756,8,1486531756);
-insert  into `working_plan_month`(`id`,`working_plan_detail_id`,`wpm_month`,`wpm_week`,`wpm_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (103,2,1,2,4,8,1486531756,8,1486531756);
-insert  into `working_plan_month`(`id`,`working_plan_detail_id`,`wpm_month`,`wpm_week`,`wpm_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (104,6,1,2,4,8,1486531756,8,1486531756);
-insert  into `working_plan_month`(`id`,`working_plan_detail_id`,`wpm_month`,`wpm_week`,`wpm_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (105,6,3,2,1,8,1486531756,8,1486531756);
-insert  into `working_plan_month`(`id`,`working_plan_detail_id`,`wpm_month`,`wpm_week`,`wpm_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (106,6,3,3,1,8,1486531756,8,1486531756);
-insert  into `working_plan_month`(`id`,`working_plan_detail_id`,`wpm_month`,`wpm_week`,`wpm_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (107,6,3,4,1,8,1486531756,8,1486531756);
-insert  into `working_plan_month`(`id`,`working_plan_detail_id`,`wpm_month`,`wpm_week`,`wpm_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (108,6,4,1,2,8,1486531756,8,1486531756);
-insert  into `working_plan_month`(`id`,`working_plan_detail_id`,`wpm_month`,`wpm_week`,`wpm_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (109,6,4,2,2,8,1486531756,8,1486531756);
-insert  into `working_plan_month`(`id`,`working_plan_detail_id`,`wpm_month`,`wpm_week`,`wpm_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (110,6,4,3,3,8,1486531756,8,1486531756);
-insert  into `working_plan_month`(`id`,`working_plan_detail_id`,`wpm_month`,`wpm_week`,`wpm_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (111,6,5,1,2,8,1486531756,8,1486531756);
-insert  into `working_plan_month`(`id`,`working_plan_detail_id`,`wpm_month`,`wpm_week`,`wpm_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (112,6,10,2,1,8,1486531756,8,1486531756);
-insert  into `working_plan_month`(`id`,`working_plan_detail_id`,`wpm_month`,`wpm_week`,`wpm_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (113,6,10,3,1,8,1486531756,8,1486531756);
-insert  into `working_plan_month`(`id`,`working_plan_detail_id`,`wpm_month`,`wpm_week`,`wpm_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (114,6,10,4,1,8,1486531756,8,1486531756);
-insert  into `working_plan_month`(`id`,`working_plan_detail_id`,`wpm_month`,`wpm_week`,`wpm_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (115,6,11,1,2,8,1486531756,8,1486531756);
-insert  into `working_plan_month`(`id`,`working_plan_detail_id`,`wpm_month`,`wpm_week`,`wpm_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (116,6,11,2,2,8,1486531756,8,1486531756);
-insert  into `working_plan_month`(`id`,`working_plan_detail_id`,`wpm_month`,`wpm_week`,`wpm_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (117,6,11,3,3,8,1486531756,8,1486531756);
+insert  into `working_plan_month`(`id`,`working_plan_detail_id`,`wpm_month`,`wpm_week`,`wpm_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (84,1,1,1,3,8,1485323406,8,1485323406);
+insert  into `working_plan_month`(`id`,`working_plan_detail_id`,`wpm_month`,`wpm_week`,`wpm_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (85,1,1,2,4,8,1485323406,8,1485323406);
+insert  into `working_plan_month`(`id`,`working_plan_detail_id`,`wpm_month`,`wpm_week`,`wpm_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (86,2,1,2,4,8,1485323406,8,1485323406);
+insert  into `working_plan_month`(`id`,`working_plan_detail_id`,`wpm_month`,`wpm_week`,`wpm_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (87,6,1,2,4,8,1485323407,8,1485323407);
+insert  into `working_plan_month`(`id`,`working_plan_detail_id`,`wpm_month`,`wpm_week`,`wpm_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (88,6,3,2,1,8,1485323407,8,1485323407);
+insert  into `working_plan_month`(`id`,`working_plan_detail_id`,`wpm_month`,`wpm_week`,`wpm_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (89,6,3,3,1,8,1485323407,8,1485323407);
+insert  into `working_plan_month`(`id`,`working_plan_detail_id`,`wpm_month`,`wpm_week`,`wpm_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (90,6,3,4,1,8,1485323407,8,1485323407);
+insert  into `working_plan_month`(`id`,`working_plan_detail_id`,`wpm_month`,`wpm_week`,`wpm_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (91,6,4,1,2,8,1485323407,8,1485323407);
+insert  into `working_plan_month`(`id`,`working_plan_detail_id`,`wpm_month`,`wpm_week`,`wpm_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (92,6,4,2,2,8,1485323407,8,1485323407);
+insert  into `working_plan_month`(`id`,`working_plan_detail_id`,`wpm_month`,`wpm_week`,`wpm_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (93,6,4,3,3,8,1485323407,8,1485323407);
+insert  into `working_plan_month`(`id`,`working_plan_detail_id`,`wpm_month`,`wpm_week`,`wpm_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (94,6,5,1,2,8,1485323407,8,1485323407);
+insert  into `working_plan_month`(`id`,`working_plan_detail_id`,`wpm_month`,`wpm_week`,`wpm_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (95,6,10,2,1,8,1485323407,8,1485323407);
+insert  into `working_plan_month`(`id`,`working_plan_detail_id`,`wpm_month`,`wpm_week`,`wpm_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (96,6,10,3,1,8,1485323407,8,1485323407);
+insert  into `working_plan_month`(`id`,`working_plan_detail_id`,`wpm_month`,`wpm_week`,`wpm_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (97,6,10,4,1,8,1485323407,8,1485323407);
+insert  into `working_plan_month`(`id`,`working_plan_detail_id`,`wpm_month`,`wpm_week`,`wpm_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (98,6,11,1,2,8,1485323407,8,1485323407);
+insert  into `working_plan_month`(`id`,`working_plan_detail_id`,`wpm_month`,`wpm_week`,`wpm_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (99,6,11,2,2,8,1485323407,8,1485323407);
+insert  into `working_plan_month`(`id`,`working_plan_detail_id`,`wpm_month`,`wpm_week`,`wpm_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (100,6,11,3,3,8,1485323407,8,1485323407);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
