@@ -142,6 +142,7 @@ class SiteController extends AppController {
             'training-k3l' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Training K3L', 'type' => 'item'],
             'stakeholder' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Daftar Stakeholder', 'type' => 'item'],
             'data-sektor' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Monitoring Data Sektor', 'type' => 'item'],
+            'create-form-smk3' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> SMK3', ['/smk3']), 'type' => 'item'],
         ];
     
         $json = Json::encode($dataMainOffice);

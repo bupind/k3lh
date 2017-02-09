@@ -230,5 +230,20 @@ class AppLabels {
     const REALIZATION = 'Realisasi';
     const ACCUMULATION = "Akumulasi";
     const ACCUMULATION_MONTH = "Akumulasi Perbulan";
+
+    //SMK3
+    const QUARTER = 'Triwulan';
+    const SMK3_TITLE = 'Judul SMK3';
+    const SMK3_SUBTITLE = 'Sub-Judul SMK3';
+    const CRITERIA = 'Kriteria';
+    const SMK3 = 'SMK3';
+    const ANSWER = 'Jawaban';
+    const CRITERIA_NUMBER = 'Nomor Kriteria';
+    const NUMBER = 'Nomor';
+    const ELEMENT = 'Element';
+    const SUITABILITY = 'Kesesuaian';
+    const SUITABLE = 'Sesuai';
+    const NO = 'Tidak';
+    const QUESTION = 'Pertanyaan';
     
 }

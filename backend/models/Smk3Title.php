@@ -3,23 +3,23 @@
 namespace backend\models;
 
 use Yii;
+use common\vendor\AppConstants;
+use common\vendor\AppLabels;
+use yii\base\Exception;
 
 /**
  * This is the model class for table "smk3_title".
  *
  * @property integer $id
- * @property integer $smk3_id
- * @property integer $title_number
- * @property string $title
+ * @property string $sttl_title
  * @property integer $created_by
  * @property integer $created_at
  * @property integer $updated_by
  * @property integer $updated_at
  *
  * @property Smk3Subtitle[] $smk3Subtitles
- * @property Smk3 $smk3
  */
-class Smk3Title extends \yii\db\ActiveRecord
+class Smk3Title extends AppModel
 {
     /**
      * @inheritdoc
@@ -35,10 +35,8 @@ class Smk3Title extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['smk3_id', 'title_number', 'title', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'required'],
-            [['smk3_id', 'title_number', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'integer'],
-            [['title'], 'string', 'max' => 1000],
-            [['smk3_id'], 'exist', 'skipOnError' => true, 'targetClass' => Smk3::className(), 'targetAttribute' => ['smk3_id' => 'id']],
+            [['sttl_title'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
+            [['sttl_title'], 'string', 'max' => 1000],
         ];
     }
 
@@ -49,14 +47,85 @@ class Smk3Title extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'smk3_id' => 'Smk3 ID',
-            'title_number' => 'Title Number',
-            'title' => 'Title',
-            'created_by' => 'Created By',
-            'created_at' => 'Created At',
-            'updated_by' => 'Updated By',
-            'updated_at' => 'Updated At',
+            'sttl_title' => AppLabels::SMK3_TITLE,
         ];
+    }
+
+    public function saveTransactional() {
+        $request = Yii::$app->request->post();
+        $transaction = Yii::$app->db->beginTransaction();
+        $errors = [];
+        $smk3Model = Smk3::find()->all();
+
+        try {
+            $this->load($request);
+
+            if (!$this->save()) {
+                $errors = array_merge($errors, $this->errors);
+                throw new Exception();
+            }
+
+            $smk3TitleId = $this->id;
+
+            if (isset($request['Smk3Subtitle'])) {
+                foreach ($request['Smk3Subtitle'] as $key => $subtitle) {
+                    if (isset($subtitle['id'])) {
+                        $subtitleTuple = Smk3Subtitle::findOne(['id' => $subtitle['id']]);
+                    } else {
+                        $subtitleTuple = new Smk3Subtitle();
+                        $subtitleTuple->smk3_title_id = $smk3TitleId;
+                    }
+
+                    if (!$subtitleTuple->load(['Smk3Subtitle' => $subtitle]) || !$subtitleTuple->save()) {
+                        $errors = array_merge($errors, $subtitleTuple->errors);
+                        throw new Exception();
+                    }
+
+                    if (isset($request['Smk3Criteria'][$key])) {
+                        foreach ($request['Smk3Criteria'][$key] as $key2 => $criteria) {
+                            if (isset($criteria['id'])) {
+                                $criteriaTuple = Smk3Criteria::findOne(['id' => $criteria['id']]);
+                            } else {
+                                $criteriaTuple = new Smk3Criteria();
+                                $criteriaTuple->smk3_subtitle_id = $subtitleTuple->id;
+                            }
+
+                            if (!$criteriaTuple->load(['Smk3Criteria' => $criteria]) || !$criteriaTuple->save()) {
+                                $errors = array_merge($errors, $criteriaTuple->errors);
+                                throw new Exception();
+                            }
+                            foreach ($smk3Model as $key4 => $smk3) {
+                                if (!isset($criteria['id'])) {
+                                    $detailTuple = new Smk3Detail();
+                                    $detailTuple->smk3_criteria_id = $criteriaTuple->id;
+                                    $detailTuple->smk3_id = $smk3->id;
+                                    $detailTuple->sdtl_answer = 0;
+
+                                    if (!$detailTuple->save()) {
+                                        $errors = array_merge($errors, $detailTuple->errors);
+                                        throw new Exception();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            $transaction->commit();
+            return TRUE;
+
+        } catch (Exception $e) {
+            $transaction->rollBack();
+            $this->afterFind();
+
+            foreach ($errors as $attr => $errorArr) {
+                $error = join('<br />', $errorArr);
+                Yii::$app->session->addFlash('danger', $error);
+            }
+
+            return FALSE;
+        }
     }
 
     /**
@@ -65,13 +134,5 @@ class Smk3Title extends \yii\db\ActiveRecord
     public function getSmk3Subtitles()
     {
         return $this->hasMany(Smk3Subtitle::className(), ['smk3_title_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getSmk3()
-    {
-        return $this->hasOne(Smk3::className(), ['id' => 'smk3_id']);
     }
 }

@@ -3,6 +3,10 @@
 namespace backend\models;
 
 use Yii;
+use yii\db\Command;
+use common\vendor\AppConstants;
+use common\vendor\AppLabels;
+use yii\base\Exception;
 
 /**
  * This is the model class for table "smk3".
@@ -10,8 +14,8 @@ use Yii;
  * @property integer $id
  * @property integer $sector_id
  * @property integer $power_plant_id
- * @property integer $k3l_year
- * @property integer $semester
+ * @property integer $smk3_year
+ * @property integer $smk3_quarter
  * @property integer $created_by
  * @property integer $created_at
  * @property integer $updated_by
@@ -19,9 +23,9 @@ use Yii;
  *
  * @property PowerPlant $powerPlant
  * @property Sector $sector
- * @property Smk3Title[] $smk3Titles
+ * @property Smk3Detail[] $smk3Details
  */
-class Smk3 extends \yii\db\ActiveRecord
+class Smk3 extends AppModel
 {
     /**
      * @inheritdoc
@@ -37,8 +41,9 @@ class Smk3 extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['sector_id', 'power_plant_id', 'k3l_year', 'semester', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'required'],
-            [['sector_id', 'power_plant_id', 'k3l_year', 'semester', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'integer'],
+            [['sector_id', 'power_plant_id', 'smk3_year', 'smk3_quarter'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
+            [['sector_id', 'power_plant_id', 'smk3_year'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
+            [['smk3_quarter'], 'string', 'max' => 2],
             [['power_plant_id'], 'exist', 'skipOnError' => true, 'targetClass' => PowerPlant::className(), 'targetAttribute' => ['power_plant_id' => 'id']],
             [['sector_id'], 'exist', 'skipOnError' => true, 'targetClass' => Sector::className(), 'targetAttribute' => ['sector_id' => 'id']],
         ];
@@ -51,17 +56,63 @@ class Smk3 extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'sector_id' => 'Sector ID',
-            'power_plant_id' => 'Power Plant ID',
-            'k3l_year' => 'K3l Year',
-            'semester' => 'Semester',
-            'created_by' => 'Created By',
-            'created_at' => 'Created At',
-            'updated_by' => 'Updated By',
-            'updated_at' => 'Updated At',
+            'sector_id' => AppLabels::SECTOR,
+            'power_plant_id' => AppLabels::POWER_PLANT,
+            'smk3_year' => AppLabels::YEAR,
+            'smk3_quarter' => AppLabels::QUARTER,
         ];
     }
 
+    public function saveTransactional() {
+        $request = Yii::$app->request->post();
+        $transaction = Yii::$app->db->beginTransaction();
+        $errors = [];
+
+        try {
+            $this->load($request);
+
+            if (!$this->save()) {
+                $errors = array_merge($errors, $this->errors);
+                throw new Exception();
+            }
+
+            $smk3Id = $this->id;
+
+            if (isset($request['Smk3Detail'])) {
+                foreach ($request['Smk3Detail'] as $key => $index) {
+                    foreach ($index as $key2 => $index2) {
+                        foreach ($index2 as $key3 => $detail) {
+                            if (isset($detail['id'])) {
+                                $detailTuple = Smk3Detail::findOne(['id' => $detail['id']]);
+                            } else {
+                                $detailTuple = new Smk3Detail();
+                                $detailTuple->smk3_id = $smk3Id;
+                            }
+
+                            if (!$detailTuple->load(['Smk3Detail' => $detail]) || !$detailTuple->save()) {
+                                $errors = array_merge($errors, $detailTuple->errors);
+                                throw new Exception();
+                            }
+                        }
+                    }
+                }
+            }
+
+            $transaction->commit();
+            return TRUE;
+
+        } catch (Exception $e) {
+            $transaction->rollBack();
+            $this->afterFind();
+
+            foreach ($errors as $attr => $errorArr) {
+                $error = join('<br />', $errorArr);
+                Yii::$app->session->addFlash('danger', $error);
+            }
+
+            return FALSE;
+        }
+    }
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -81,8 +132,8 @@ class Smk3 extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSmk3Titles()
+    public function getSmk3Answers()
     {
-        return $this->hasMany(Smk3Title::className(), ['smk3_id' => 'id']);
+        return $this->hasMany(Smk3Detail::className(), ['smk3_id' => 'id']);
     }
 }

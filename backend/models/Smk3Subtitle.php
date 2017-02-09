@@ -3,14 +3,15 @@
 namespace backend\models;
 
 use Yii;
+use common\vendor\AppConstants;
+use common\vendor\AppLabels;
 
 /**
  * This is the model class for table "smk3_subtitle".
  *
  * @property integer $id
  * @property integer $smk3_title_id
- * @property integer $subtitle_number
- * @property string $subtitle
+ * @property string $ssub_subtitle
  * @property integer $created_by
  * @property integer $created_at
  * @property integer $updated_by
@@ -19,7 +20,7 @@ use Yii;
  * @property Smk3Criteria[] $smk3Criterias
  * @property Smk3Title $smk3Title
  */
-class Smk3Subtitle extends \yii\db\ActiveRecord
+class Smk3Subtitle extends AppModel
 {
     /**
      * @inheritdoc
@@ -35,9 +36,9 @@ class Smk3Subtitle extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['smk3_title_id', 'subtitle_number', 'subtitle', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'required'],
-            [['smk3_title_id', 'subtitle_number', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'integer'],
-            [['subtitle'], 'string', 'max' => 1000],
+            [['smk3_title_id', 'ssub_subtitle'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
+            [['smk3_title_id'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
+            [['ssub_subtitle'], 'string', 'max' => 1000],
             [['smk3_title_id'], 'exist', 'skipOnError' => true, 'targetClass' => Smk3Title::className(), 'targetAttribute' => ['smk3_title_id' => 'id']],
         ];
     }
@@ -49,13 +50,8 @@ class Smk3Subtitle extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'smk3_title_id' => 'Smk3 Title ID',
-            'subtitle_number' => 'Subtitle Number',
-            'subtitle' => 'Subtitle',
-            'created_by' => 'Created By',
-            'created_at' => 'Created At',
-            'updated_by' => 'Updated By',
-            'updated_at' => 'Updated At',
+            'smk3_title_id' => AppLabels::SMK3_TITLE,
+            'ssub_subtitle' => AppLabels::SMK3_SUBTITLE,
         ];
     }
 
