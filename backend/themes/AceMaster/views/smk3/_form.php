@@ -12,6 +12,8 @@ use backend\assets\Smk3Asset;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Smk3 */
 /* @var $form yii\widgets\ActiveForm */
+/* @var $allTitle backend\models\Smk3Title */
+/* @var $powerPlantList [backend\models\PowerPlant] */
 Smk3Asset::register($this);
 $baseUrl = Url::base();
 ?>
