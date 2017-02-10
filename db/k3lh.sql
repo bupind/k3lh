@@ -141,7 +141,7 @@ insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created
 insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('Operator',3,'Level akses operator',NULL,NULL,NULL,NULL);
 insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('pembangkit-listrik',2,NULL,NULL,NULL,NULL,NULL);
 insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('pengguna',2,NULL,NULL,NULL,NULL,NULL);
-insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('pertanyaan-maturity-level',2,NULL,NULL,NULL,NULL,NULL);
+insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('pertanyaan-smk3',2,NULL,NULL,NULL,NULL,NULL);
 insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('power-plant-ajax-plant',1,NULL,NULL,NULL,NULL,NULL);
 insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('power-plant-create',1,NULL,NULL,NULL,NULL,NULL);
 insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('power-plant-delete',1,NULL,NULL,NULL,NULL,NULL);
@@ -177,6 +177,20 @@ insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created
 insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('sector-update',1,NULL,NULL,NULL,NULL,NULL);
 insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('sector-view',1,NULL,NULL,NULL,NULL,NULL);
 insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('sektor',2,NULL,NULL,NULL,NULL,NULL);
+insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('smk3',2,NULL,NULL,NULL,NULL,NULL);
+insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('smk3-create',1,NULL,NULL,NULL,NULL,NULL);
+insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('smk3-criteria-ajax-delete',1,NULL,NULL,NULL,NULL,NULL);
+insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('smk3-delete',1,NULL,NULL,NULL,NULL,NULL);
+insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('smk3-detail-ajax-delete',1,NULL,NULL,NULL,NULL,NULL);
+insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('smk3-index',1,NULL,NULL,NULL,NULL,NULL);
+insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('smk3-subtitle-ajax-delete',1,NULL,NULL,NULL,NULL,NULL);
+insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('smk3-title-create',1,NULL,NULL,NULL,NULL,NULL);
+insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('smk3-title-delete',1,NULL,NULL,NULL,NULL,NULL);
+insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('smk3-title-index',1,NULL,NULL,NULL,NULL,NULL);
+insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('smk3-title-update',1,NULL,NULL,NULL,NULL,NULL);
+insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('smk3-title-view',1,NULL,NULL,NULL,NULL,NULL);
+insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('smk3-update',1,NULL,NULL,NULL,NULL,NULL);
+insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('smk3-view',1,NULL,NULL,NULL,NULL,NULL);
 insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('user-create',1,NULL,NULL,NULL,NULL,NULL);
 insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('user-delete',1,NULL,NULL,NULL,NULL,NULL);
 insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('user-index',1,NULL,NULL,NULL,NULL,NULL);
@@ -232,6 +246,9 @@ insert  into `auth_item_child`(`parent`,`child`) values ('log','log-dirty-delete
 insert  into `auth_item_child`(`parent`,`child`) values ('log','log-dirty-index');
 insert  into `auth_item_child`(`parent`,`child`) values ('log','login-history-delete-all');
 insert  into `auth_item_child`(`parent`,`child`) values ('log','login-history-index');
+insert  into `auth_item_child`(`parent`,`child`) values ('Operator','pembangkit-listrik');
+insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','pengguna');
+insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','pertanyaan-maturity-level');
 insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','maturity-level');
 insert  into `auth_item_child`(`parent`,`child`) values ('maturity-level','maturity-level-create');
 insert  into `auth_item_child`(`parent`,`child`) values ('maturity-level','maturity-level-delete');
@@ -248,26 +265,46 @@ insert  into `auth_item_child`(`parent`,`child`) values ('pertanyaan-maturity-le
 insert  into `auth_item_child`(`parent`,`child`) values ('pertanyaan-maturity-level','maturity-level-title-view');
 insert  into `auth_item_child`(`parent`,`child`) values ('maturity-level','maturity-level-update');
 insert  into `auth_item_child`(`parent`,`child`) values ('maturity-level','maturity-level-view');
-insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','monitoring-anggaran');
-insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','pembangkit-listrik');
-insert  into `auth_item_child`(`parent`,`child`) values ('Operator','pembangkit-listrik');
-insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','pengguna');
-insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','pertanyaan-maturity-level');
 insert  into `auth_item_child`(`parent`,`child`) values ('pembangkit-listrik','power-plant-ajax-plant');
 insert  into `auth_item_child`(`parent`,`child`) values ('pembangkit-listrik','power-plant-create');
 insert  into `auth_item_child`(`parent`,`child`) values ('pembangkit-listrik','power-plant-delete');
 insert  into `auth_item_child`(`parent`,`child`) values ('pembangkit-listrik','power-plant-index');
 insert  into `auth_item_child`(`parent`,`child`) values ('pembangkit-listrik','power-plant-update');
 insert  into `auth_item_child`(`parent`,`child`) values ('pembangkit-listrik','power-plant-view');
-insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','profil-pengguna');
-insert  into `auth_item_child`(`parent`,`child`) values ('Operator','profil-pengguna');
-insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','profil-perusahaan');
+insert  into `auth_item_child`(`parent`,`child`) values ('pengguna','user-create');
+insert  into `auth_item_child`(`parent`,`child`) values ('pengguna','user-delete');
+insert  into `auth_item_child`(`parent`,`child`) values ('pengguna','user-index');
+insert  into `auth_item_child`(`parent`,`child`) values ('pengguna','user-update');
+insert  into `auth_item_child`(`parent`,`child`) values ('pengguna','user-view');
+insert  into `auth_item_child`(`parent`,`child`) values ('pertanyaan-smk3','smk3-criteria-ajax-delete');
+insert  into `auth_item_child`(`parent`,`child`) values ('pertanyaan-smk3','smk3-detail-ajax-delete');
+insert  into `auth_item_child`(`parent`,`child`) values ('pertanyaan-smk3','smk3-subtitle-ajax-delete');
+insert  into `auth_item_child`(`parent`,`child`) values ('pertanyaan-smk3','smk3-title-create');
+insert  into `auth_item_child`(`parent`,`child`) values ('pertanyaan-smk3','smk3-title-delete');
+insert  into `auth_item_child`(`parent`,`child`) values ('pertanyaan-smk3','smk3-title-index');
+insert  into `auth_item_child`(`parent`,`child`) values ('pertanyaan-smk3','smk3-title-update');
+insert  into `auth_item_child`(`parent`,`child`) values ('pertanyaan-smk3','smk3-title-view');
+insert  into `auth_item_child`(`parent`,`child`) values ('profil-pengguna','user-profile-update');
 insert  into `auth_item_child`(`parent`,`child`) values ('profil-perusahaan','profile-create');
 insert  into `auth_item_child`(`parent`,`child`) values ('profil-perusahaan','profile-delete');
 insert  into `auth_item_child`(`parent`,`child`) values ('profil-perusahaan','profile-index');
 insert  into `auth_item_child`(`parent`,`child`) values ('profil-perusahaan','profile-update');
 insert  into `auth_item_child`(`parent`,`child`) values ('profil-perusahaan','profile-view');
-insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','rencana-kerja');
+insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-ajax-delete-detail');
+insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-ajax-read-detail');
+insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-ajax-save-detail');
+insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-attribute-ajax-create');
+insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-attribute-ajax-search');
+insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-attribute-create');
+insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-attribute-delete');
+insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-attribute-index');
+insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-attribute-update');
+insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-attribute-view');
+insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-create');
+insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-delete');
+insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-index');
+insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-update');
+insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-view');
 insert  into `auth_item_child`(`parent`,`child`) values ('roadmap-k3l-kitsbs','roadmap-k3l-attribute-ajax-create');
 insert  into `auth_item_child`(`parent`,`child`) values ('roadmap-k3l-kitsbs','roadmap-k3l-attribute-ajax-search');
 insert  into `auth_item_child`(`parent`,`child`) values ('roadmap-k3l-kitsbs','roadmap-k3l-attribute-create');
@@ -288,29 +325,13 @@ insert  into `auth_item_child`(`parent`,`child`) values ('sektor','sector-delete
 insert  into `auth_item_child`(`parent`,`child`) values ('sektor','sector-index');
 insert  into `auth_item_child`(`parent`,`child`) values ('sektor','sector-update');
 insert  into `auth_item_child`(`parent`,`child`) values ('sektor','sector-view');
-insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','sektor');
-insert  into `auth_item_child`(`parent`,`child`) values ('Operator','sektor');
-insert  into `auth_item_child`(`parent`,`child`) values ('pengguna','user-create');
-insert  into `auth_item_child`(`parent`,`child`) values ('pengguna','user-delete');
-insert  into `auth_item_child`(`parent`,`child`) values ('pengguna','user-index');
-insert  into `auth_item_child`(`parent`,`child`) values ('profil-pengguna','user-profile-update');
-insert  into `auth_item_child`(`parent`,`child`) values ('pengguna','user-update');
-insert  into `auth_item_child`(`parent`,`child`) values ('pengguna','user-view');
-insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-ajax-delete-detail');
-insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-ajax-read-detail');
-insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-ajax-save-detail');
-insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-attribute-ajax-create');
-insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-attribute-ajax-search');
-insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-attribute-create');
-insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-attribute-delete');
-insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-attribute-index');
-insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-attribute-update');
-insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-attribute-view');
-insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-create');
-insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-delete');
-insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-index');
-insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-update');
-insert  into `auth_item_child`(`parent`,`child`) values ('rencana-kerja','working-plan-view');
+insert  into `auth_item_child`(`parent`,`child`) values ('smk3','smk3-create');
+insert  into `auth_item_child`(`parent`,`child`) values ('smk3','smk3-delete');
+insert  into `auth_item_child`(`parent`,`child`) values ('smk3','smk3-index');
+insert  into `auth_item_child`(`parent`,`child`) values ('smk3','smk3-update');
+insert  into `auth_item_child`(`parent`,`child`) values ('smk3','smk3-view');
+insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','pertanyaan-smk3');
+insert  into `auth_item_child`(`parent`,`child`) values ('Administrator','smk3');
 
 /*Table structure for table `auth_rule` */
 
@@ -350,7 +371,7 @@ CREATE TABLE `budget_monitoring` (
 /*Data for the table `budget_monitoring` */
 
 insert  into `budget_monitoring`(`id`,`form_type_code`,`sector_id`,`power_plant_id`,`k3l_year`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1,'LH',4,1,'2017',8,1486035644,8,1486035644);
-insert  into `budget_monitoring`(`id`,`form_type_code`,`sector_id`,`power_plant_id`,`k3l_year`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (2,'LH',4,1,'2017',8,1486035723,8,1486035723);
+insert  into `budget_monitoring`(`id`,`form_type_code`,`sector_id`,`power_plant_id`,`k3l_year`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (2,'LH',4,1,'2017',8,1486035723,8,1486565752);
 insert  into `budget_monitoring`(`id`,`form_type_code`,`sector_id`,`power_plant_id`,`k3l_year`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (4,'LH',4,1,'2017',8,1486036303,8,1486036303);
 
 /*Table structure for table `budget_monitoring_detail` */
@@ -374,8 +395,7 @@ CREATE TABLE `budget_monitoring_detail` (
 
 /*Data for the table `budget_monitoring_detail` */
 
-insert  into `budget_monitoring_detail`(`id`,`budget_monitoring_id`,`bmd_no_prk`,`bmd_program`,`bmd_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1,1,'asdf','asdf',11,8,1486035644,8,1486035644);
-insert  into `budget_monitoring_detail`(`id`,`budget_monitoring_id`,`bmd_no_prk`,`bmd_program`,`bmd_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (2,2,'asdf','asdf',110000,8,1486035724,8,1486035724);
+insert  into `budget_monitoring_detail`(`id`,`budget_monitoring_id`,`bmd_no_prk`,`bmd_program`,`bmd_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (2,2,'asdf','asdf',110000,8,1486035724,8,1486565753);
 insert  into `budget_monitoring_detail`(`id`,`budget_monitoring_id`,`bmd_no_prk`,`bmd_program`,`bmd_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (4,4,'asdf','asdf',11000,8,1486036303,8,1486036303);
 insert  into `budget_monitoring_detail`(`id`,`budget_monitoring_id`,`bmd_no_prk`,`bmd_program`,`bmd_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (5,4,'qwer','qwer',11000,8,1486036304,8,1486036304);
 
@@ -1766,7 +1786,7 @@ CREATE TABLE `smk3` (
   `sector_id` int(11) NOT NULL,
   `power_plant_id` int(11) NOT NULL,
   `smk3_year` int(4) NOT NULL,
-  `smk3_semester` int(2) NOT NULL,
+  `smk3_quarter` varchar(2) NOT NULL,
   `created_by` smallint(5) unsigned NOT NULL,
   `created_at` int(11) NOT NULL,
   `updated_by` smallint(5) unsigned NOT NULL,
@@ -1776,9 +1796,12 @@ CREATE TABLE `smk3` (
   KEY `FK_smk3_power_plant` (`power_plant_id`),
   CONSTRAINT `FK_smk3_power_plant` FOREIGN KEY (`power_plant_id`) REFERENCES `power_plant` (`id`),
   CONSTRAINT `FK_smk3_sector` FOREIGN KEY (`sector_id`) REFERENCES `sector` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Data for the table `smk3` */
+
+insert  into `smk3`(`id`,`sector_id`,`power_plant_id`,`smk3_year`,`smk3_quarter`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (5,7,5,131,'IV',8,1486545260,8,1486636814);
+insert  into `smk3`(`id`,`sector_id`,`power_plant_id`,`smk3_year`,`smk3_quarter`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (6,7,5,2332,'V',8,1486551887,8,1486636827);
 
 /*Table structure for table `smk3_criteria` */
 
