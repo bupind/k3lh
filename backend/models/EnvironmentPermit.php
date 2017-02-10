@@ -3,6 +3,8 @@
 namespace backend\models;
 
 use Yii;
+use common\vendor\AppLabels;
+use common\vendor\AppConstants;
 
 /**
  * This is the model class for table "environment_permit".
@@ -16,8 +18,12 @@ use Yii;
  * @property integer $created_at
  * @property integer $updated_by
  * @property integer $updated_at
+ *
+ * @property PowerPlant $powerPlant
+ * @property Sector $sector
+ * @property EnvironmentPermitDetail[] $environmentPermitDetails
  */
-class EnvironmentPermit extends \yii\db\ActiveRecord
+class EnvironmentPermit extends AppModel
 {
     /**
      * @inheritdoc
@@ -33,9 +39,11 @@ class EnvironmentPermit extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['sector_id', 'power_plant_id', 'ep_year', 'ep_quarter', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'required'],
-            [['sector_id', 'power_plant_id', 'ep_year', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'integer'],
+            [['sector_id', 'power_plant_id', 'ep_year', 'ep_quarter'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
+            [['sector_id', 'power_plant_id', 'ep_year'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
             [['ep_quarter'], 'string', 'max' => 11],
+            [['power_plant_id'], 'exist', 'skipOnError' => true, 'targetClass' => PowerPlant::className(), 'targetAttribute' => ['power_plant_id' => 'id']],
+            [['sector_id'], 'exist', 'skipOnError' => true, 'targetClass' => Sector::className(), 'targetAttribute' => ['sector_id' => 'id']],
         ];
     }
 
@@ -46,14 +54,34 @@ class EnvironmentPermit extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'sector_id' => 'Sector ID',
-            'power_plant_id' => 'Power Plant ID',
-            'ep_year' => 'Ep Year',
-            'ep_quarter' => 'Ep Quarter',
-            'created_by' => 'Created By',
-            'created_at' => 'Created At',
-            'updated_by' => 'Updated By',
-            'updated_at' => 'Updated At',
+            'sector_id' => AppLabels::SECTOR,
+            'power_plant_id' => AppLabels::POWER_PLANT,
+            'ep_year' => AppLabels::YEAR,
+            'ep_quarter' => AppLabels::QUARTER,
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPowerPlant()
+    {
+        return $this->hasOne(PowerPlant::className(), ['id' => 'power_plant_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSector()
+    {
+        return $this->hasOne(Sector::className(), ['id' => 'sector_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEnvironmentPermitDetails()
+    {
+        return $this->hasMany(EnvironmentPermitDetail::className(), ['environment_permit_id' => 'id']);
     }
 }

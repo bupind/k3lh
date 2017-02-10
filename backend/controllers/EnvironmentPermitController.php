@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * EnvironmentPermitController implements the CRUD actions for EnvironmentPermit model.
  */
-class EnvironmentPermitController extends Controller
+class EnvironmentPermitController extends AppController
 {
     /**
      * @inheritdoc

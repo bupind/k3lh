@@ -236,7 +236,7 @@ class AppLabels {
     const ACCUMULATION = "Akumulasi";
     const ACCUMULATION_MONTH = "Akumulasi Perbulan";
 
-    //SMK3
+    // SMK3
     const SMK3_TITLE = 'Judul SMK3';
     const SMK3_SUBTITLE = 'Sub-Judul SMK3';
     const CRITERIA = 'Kriteria';
@@ -253,5 +253,11 @@ class AppLabels {
     const MATURITY_LEVEL = 'Maturity Level';
     const ACTION_PLAN = 'Action Plan';
     const TOTAL_MATURITY = 'Total Nilai Maturity';
-    
+
+    // ENVIRONMENT PERMIT
+    const ENVIRONMENT_PERMIT = 'Izin Lingkungan';
+    const DOCUMENT_NAME = 'Nama Dokumen';
+    const INSTITUTION = 'Institusi';
+    const CAPACITY_LIMIT = 'Batasan Kapasitas';
+    const CAPACITY_REALIZATION = 'Realisasi Kapasitas';
 }
