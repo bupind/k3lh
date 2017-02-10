@@ -102,6 +102,7 @@ CREATE TABLE `auth_item` (
 
 /*Data for the table `auth_item` */
 
+insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('pertanyaan-maturity-level',2,NULL,NULL,NULL,NULL,NULL);
 insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('Administrator',4,'Level akses admin',NULL,NULL,NULL,NULL);
 insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('budget-monitoring-create',1,NULL,NULL,NULL,NULL,NULL);
 insert  into `auth_item`(`name`,`type`,`description`,`rule_name`,`data`,`created_at`,`updated_at`) values ('budget-monitoring-delete',1,NULL,NULL,NULL,NULL,NULL);
