@@ -127,7 +127,7 @@ class AppLabels {
     const UNIT = 'Satuan';
     const WEIGHT = 'Bobot-B';
     const QUARTER = 'Triwulan';
-    const NO = 'No';
+    const NUMBER_SHORT = 'No';
     
     // MONTH
     const JANUARY = 'Januari';
@@ -237,7 +237,6 @@ class AppLabels {
     const ACCUMULATION_MONTH = "Akumulasi Perbulan";
 
     //SMK3
-    const QUARTER = 'Triwulan';
     const SMK3_TITLE = 'Judul SMK3';
     const SMK3_SUBTITLE = 'Sub-Judul SMK3';
     const CRITERIA = 'Kriteria';
@@ -249,7 +248,6 @@ class AppLabels {
     const SUITABILITY = 'Kesesuaian';
     const SUITABLE = 'Sesuai';
     const NO = 'Tidak';
-    const QUESTION = 'Pertanyaan';
     
     // MATURITY LEVEL
     const MATURITY_LEVEL = 'Maturity Level';

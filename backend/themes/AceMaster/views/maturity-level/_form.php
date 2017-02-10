@@ -59,7 +59,7 @@ $form = ActiveForm::begin([
         <table id="table-action" class="<?= AppConstants::TABLE_CLASS_DEFAULT_SMALL; ?>">
             <thead>
             <tr>
-                <th><?= AppLabels::NO; ?></th>
+                <th><?= AppLabels::NUMBER_SHORT; ?></th>
                 <th><?= AppLabels::ACTION_PLAN; ?></th>
                 <th><?= AppLabels::CRITERIA; ?></th>
                 <th><?= AppLabels::UNIT; ?></th>
