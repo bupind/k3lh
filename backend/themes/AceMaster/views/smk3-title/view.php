@@ -14,7 +14,15 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="smk3-title-view">
 
     <div class="page-header">
-        <h1><?= Html::encode($this->title) ?></h1>
+        <h1>
+            <?= Html::encode($this->title) ?>
+            <?php if (isset($this->params['subtitle'])): ?>
+                <small>
+                    <i class="ace-icon fa fa-angle-double-right"></i>
+                    <?= $this->params['subtitle']; ?>
+                </small>
+            <?php endif; ?>
+        </h1>
     </div>
 
     <div class="col-sm-12">

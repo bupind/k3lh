@@ -2,7 +2,6 @@
 
 namespace backend\models;
 
-use Yii;
 use common\vendor\AppLabels;
 use common\vendor\AppConstants;
 
@@ -64,18 +63,18 @@ class EnvironmentPermitDetail extends AppModel
         ];
     }
 
-    public function beforeSave($insert) {
+    public function beforeSave($insert)
+    {
         parent::beforeSave($insert);
         $this->ep_date = \Yii::$app->formatter->asDate($this->ep_date, AppConstants::FORMAT_DB_DATE_PHP);
 
         return true;
     }
 
-    public function afterFind() {
+    public function afterFind()
+    {
         parent::afterFind();
         $this->ep_date = \Yii::$app->formatter->asDate($this->ep_date);
-//        $this->status = AppConstants::$yesNoList[$this->status];
-        $this->salary = Yii::$app->formatter->asCurrency($this->salary);
 
         return true;
     }
@@ -91,7 +90,8 @@ class EnvironmentPermitDetail extends AppModel
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAttachmentOwner() {
+    public function getAttachmentOwner()
+    {
         return $this->hasOne(AttachmentOwner::className(), ['atfo_module_pk' => 'id'])->andOnCondition(['atfo_module_code' => AppConstants::MODULE_CODE_ENVIRONMENT_PERMIT]);
     }
 

@@ -10,7 +10,6 @@ use app\components\SubmitLinkButton;
 use common\vendor\AppLabels;
 use yii\jui\DatePicker;
 use common\components\helpers\Converter;
-use backend\models\AttachmentOwner;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\EnvironmentPermit */
@@ -83,27 +82,62 @@ $form = ActiveForm::begin([
             </thead>
 
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td><?= Html::textInput("EnvironmentPermitDetail[0][ep_document_name]", null, [  'class' => 'form-control']); ?></td>
-                    <td><?= Html::textInput("EnvironmentPermitDetail[0][ep_institution]", null, [  'class' => 'form-control']); ?></td>
-                    <td>
-                        <?= DatePicker::widget([
-                            'name' => 'EnvironmentPermitDetail[0][ep_date]',
-                            'clientOptions' => [
-                                'format' => 'dd-mm-yyyy',
-                                'autoclose' => 'true'
-                            ],
-                        ])
-                        ?>
-                    </td>
-                    <td><?= Html::textInput("EnvironmentPermitDetail[0][ep_limit_capacity]", null, [  'class' => 'form-control']); ?></td>
-                    <td><?= Html::textInput("EnvironmentPermitDetail[0][ep_realization_capacity]", null, [  'class' => 'form-control']); ?></td>
-                    <td><?= Converter::attachment($firstDetail->attachmentOwner, ['show_file_upload' => true, 'show_delete_file' => true, 'index' => 0]); ?></td>
-                </tr>
+                <?php if($model->getIsNewRecord()){ ?>
+                    <tr>
+                        <td>1</td>
+                        <td><?= Html::textInput("EnvironmentPermitDetail[1][ep_document_name]", null, [  'class' => 'form-control']); ?></td>
+                        <td><?= Html::textInput("EnvironmentPermitDetail[1][ep_institution]", null, [  'class' => 'form-control']); ?></td>
+                        <td>
+                            <?= DatePicker::widget([
+                                'name' => 'EnvironmentPermitDetail[1][ep_date]',
+                                'id' => 'date1',
+                                'clientOptions' => [
+                                    'format' => 'dd-mm-yyyy',
+                                    'autoclose' => 'true'
+                                ],
+                            ])
+                            ?>
+                        </td>
+                        <td><?= Html::textInput("EnvironmentPermitDetail[1][ep_limit_capacity]", null, [  'class' => 'form-control']); ?></td>
+                        <td><?= Html::textInput("EnvironmentPermitDetail[1][ep_realization_capacity]", null, [  'class' => 'form-control']); ?></td>
+                        <td><?= Converter::attachment($firstDetail->attachmentOwner, ['show_file_upload' => true, 'show_delete_file' => true, 'index' => 1]); ?></td>
+                    </tr>
+                <?php } else { ?>
+                    <?php foreach ($model->environmentPermitDetails as $key => $detail): ?>
+                        <tr>
+                            <?= Html::activeHiddenInput($detail, "[$key]id"); ?>
+                            <td><?= $key+1 ?></td>
+                            <td><?= Html::activeTextInput($detail, "[$key]ep_document_name", [  'class' => 'form-control']); ?></td>
+                            <td><?= Html::activeTextInput($detail, "[$key]ep_institution", [  'class' => 'form-control']); ?></td>
+                            <td>
+                                <?= DatePicker::widget([
+                                    'model' => $detail,
+                                    'attribute' => "[$key]ep_date",
+                                    'id' => 'date1',
+                                    'clientOptions' => [
+                                        'format' => 'dd-mm-yyyy',
+                                        'autoclose' => 'true'
+                                    ],
+                                ])
+                                ?>
+                            </td>
+                            <td><?= Html::activeTextInput($detail, "[$key]ep_limit_capacity", [  'class' => 'form-control']); ?></td>
+                            <td><?= Html::activeTextInput($detail, "[$key]ep_realization_capacity", [  'class' => 'form-control']); ?></td>
+                            <td><?= Converter::attachment($detail->attachmentOwner, ['show_file_upload' => true, 'show_delete_file' => true, 'index' => 1]); ?></td>
+                        </tr>
+                    <?php  endforeach; ?>
+                <?php } ?>
             </tbody>
 
         </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-4 col-sm-offset-8">
+        <label for="test" class="col-sm-3 control-label"><?= AppLabels::BTN_ADD ?></label>
+        <?= Html::textInput('attr_text', null, ['id' => 'add', 'class' => 'col-sm-4']); ?>
+        <?= Html::button('Go',['id' => 'addButton1', 'class' => 'addButtonClass btn btn-info btn-sm col-sm-2']); ?>
     </div>
 </div>
 

@@ -4,7 +4,11 @@
 jQuery(document).ready(function () {
     var baseUrl = $('#baseUrl').val(),
         sb = new StringBuilder(),
+        environmentTbody = $('#table-environment-permit').find('tbody'),
+        buttonName = "addButton"+environmentTbody.find('tr').size(),
         form = $('#smk3-form');
+
+    $('.addButtonClass').attr('id', buttonName);
 
     $(document).on('change', '.sector-list', function(){
         var powerPlantList = $('#power-plant-list');
@@ -44,5 +48,59 @@ jQuery(document).ready(function () {
             alert('Pilihan salah.');
         }
     });
+
+    $('.addButtonClass').click(function(){
+        totalRow = $('#add').val();
+        currentSubtitleNo = takeNumber($(this).attr('id'), 9);
+        for(i=0; i<totalRow; i++) {
+            currentSubtitleNo++;
+            insertDetail(currentSubtitleNo);
+        }
+        newButton = "addButton" + currentSubtitleNo;
+        $(this).attr('id', newButton);
+    });
+
+    function insertDetail(subtitleIndex){
+        sb.append('<tr>');
+        sb.append('<td>');
+        sb.append(subtitleIndex);
+        sb.append('</td>');
+        sb.append('<td>');
+        sb.append('<input class="form-control" name="EnvironmentPermitDetail['+subtitleIndex+'][ep_document_name]" type="text">');
+        sb.append('</td>');
+        sb.append('<td>');
+        sb.append('<input class="form-control" name="EnvironmentPermitDetail['+subtitleIndex+'][ep_institution]" type="text">');
+        sb.append('</td>');
+        sb.append('<td>');
+        sb.append('<input id="date'+subtitleIndex+'" name="EnvironmentPermitDetail['+subtitleIndex+'][ep_date]" type="text">');
+        sb.append('</td>');
+        currentDate = "#date"+subtitleIndex;
+
+        sb.append('<td>');
+        sb.append('<input class="form-control" name="EnvironmentPermitDetail['+subtitleIndex+'][ep_limit_capacity]" type="text">');
+        sb.append('</td>');
+        sb.append('<td>');
+        sb.append('<input class="form-control" name="EnvironmentPermitDetail['+subtitleIndex+'][ep_realization_capacity]" type="text">');
+        sb.append('</td>');
+        sb.append('<td>');
+        sb.append('<input name="Attachment['+subtitleIndex+'][file]" type="hidden">');
+        sb.append('<input name="Attachment['+subtitleIndex+'][file]" type="file">');
+        sb.append('</td>');
+
+        sb.append('</tr>');
+        environmentTbody.append(sb.toString());
+
+        sb.clear();
+
+        $(currentDate).datepicker({
+            format: "dd-mm-yyyy",
+            autoclose: true
+        });
+    }
+
+    function takeNumber(str , howLong){
+        return str.substring(howLong);
+    }
+
 
 });

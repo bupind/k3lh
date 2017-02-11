@@ -6,7 +6,6 @@ use backend\models\EnvironmentPermitDetail;
 use Yii;
 use backend\models\EnvironmentPermit;
 use backend\models\EnvironmentPermitSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\vendor\AppLabels;
@@ -101,7 +100,7 @@ class EnvironmentPermitController extends AppController
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->saveTransactional()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

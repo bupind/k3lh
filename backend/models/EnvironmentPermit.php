@@ -66,7 +66,6 @@ class EnvironmentPermit extends AppModel
     public function saveTransactional()
     {
         $request = Yii::$app->request->post();
-
         $transaction = Yii::$app->db->beginTransaction();
         $errors = [];
 
