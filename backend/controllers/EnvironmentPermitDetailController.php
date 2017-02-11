@@ -2,21 +2,20 @@
 /**
  * Created by PhpStorm.
  * User: User
- * Date: 25/1/2017
- * Time: 9:02 PM
+ * Date: 11/2/2017
+ * Time: 12:21 PM
  */
 
 namespace backend\controllers;
-
-
-use backend\models\BudgetMonitoringMonth;
 
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
 use yii\helpers\Json;
 
-class BudgetMonitoringMonthController extends AppController
+use backend\models\EnvironmentPermitDetail;
+
+class EnvironmentPermitDetailController extends AppController
 {
     /**
      * @inheritdoc
@@ -32,20 +31,15 @@ class BudgetMonitoringMonthController extends AppController
         ];
     }
 
-    public function beforeAction($action) {
-        parent::beforeAction($action);
-        return $this->rbac();
-    }
-
     /**
-     * Finds the BudgetMonitoringMonth model based on its primary key value.
+     * Finds the EnvironmentPermitDetail model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return BudgetMonitoringMonth the loaded model
+     * @return EnvironmentPermitDetail the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id) {
-        if (($model = BudgetMonitoringMonth::findOne($id)) !== null) {
+        if (($model = EnvironmentPermitDetail::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
@@ -53,7 +47,7 @@ class BudgetMonitoringMonthController extends AppController
     }
 
     /**
-     * Deletes an existing BudgetMonitoringMonth model.
+     * Deletes an existing EnvironmentPermitDetail model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed

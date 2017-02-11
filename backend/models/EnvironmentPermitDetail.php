@@ -22,6 +22,7 @@ use common\vendor\AppConstants;
  * @property integer $updated_at
  *
  * @property EnvironmentPermit $environmentPermit
+ * @property AttachmentOwner $attachmentOwner
  */
 class EnvironmentPermitDetail extends AppModel
 {
@@ -55,12 +56,28 @@ class EnvironmentPermitDetail extends AppModel
         return [
             'id' => 'ID',
             'environment_permit_id' => AppLabels::ENVIRONMENT_PERMIT,
-            'ep_document_name' => AppLabels::DOCUMENT_NAME,
+            'ep_document_name' => AppLabels::DOCUMENTS,
             'ep_institution' => AppLabels::INSTITUTION,
             'ep_date' => AppLabels::DATE,
             'ep_limit_capacity' => AppLabels::CAPACITY_LIMIT,
             'ep_realization_capacity' => AppLabels::CAPACITY_REALIZATION,
         ];
+    }
+
+    public function beforeSave($insert) {
+        parent::beforeSave($insert);
+        $this->ep_date = \Yii::$app->formatter->asDate($this->ep_date, AppConstants::FORMAT_DB_DATE_PHP);
+
+        return true;
+    }
+
+    public function afterFind() {
+        parent::afterFind();
+        $this->ep_date = \Yii::$app->formatter->asDate($this->ep_date);
+//        $this->status = AppConstants::$yesNoList[$this->status];
+        $this->salary = Yii::$app->formatter->asCurrency($this->salary);
+
+        return true;
     }
 
     /**
@@ -70,4 +87,12 @@ class EnvironmentPermitDetail extends AppModel
     {
         return $this->hasOne(EnvironmentPermit::className(), ['id' => 'environment_permit_id']);
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAttachmentOwner() {
+        return $this->hasOne(AttachmentOwner::className(), ['atfo_module_pk' => 'id'])->andOnCondition(['atfo_module_code' => AppConstants::MODULE_CODE_ENVIRONMENT_PERMIT]);
+    }
+
 }

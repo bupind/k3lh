@@ -256,8 +256,9 @@ class AppLabels {
 
     // ENVIRONMENT PERMIT
     const ENVIRONMENT_PERMIT = 'Izin Lingkungan';
-    const DOCUMENT_NAME = 'Nama Dokumen';
     const INSTITUTION = 'Institusi';
+    const VERIFICATION = 'Pengesahan';
     const CAPACITY_LIMIT = 'Batasan Kapasitas';
     const CAPACITY_REALIZATION = 'Realisasi Kapasitas';
+    const PRODUCTION = 'Produksi';
 }

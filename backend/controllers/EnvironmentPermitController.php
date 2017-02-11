@@ -2,12 +2,16 @@
 
 namespace backend\controllers;
 
+use backend\models\EnvironmentPermitDetail;
 use Yii;
 use backend\models\EnvironmentPermit;
 use backend\models\EnvironmentPermitSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\vendor\AppLabels;
+use common\vendor\AppConstants;
+use backend\models\PowerPlant;
 
 /**
  * EnvironmentPermitController implements the CRUD actions for EnvironmentPermit model.
@@ -64,11 +68,24 @@ class EnvironmentPermitController extends AppController
     public function actionCreate()
     {
         $model = new EnvironmentPermit();
+        $firstDetail = new EnvironmentPermitDetail();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->saveTransactional()) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            $powerPlantList = ['' => AppLabels::PLEASE_SELECT];
+            if (!is_null($model->power_plant_id)) {
+                $powerPlantList = PowerPlant::map(new PowerPlant(), 'pp_name', null, true, [
+                    'where' => [
+                        ['sector_id' => $model->sector_id]
+                    ]
+                ]);
+            }
+
             return $this->render('create', [
+                'firstDetail' => $firstDetail,
+                'powerPlantList' => $powerPlantList,
                 'model' => $model,
             ]);
         }
@@ -85,9 +102,17 @@ class EnvironmentPermitController extends AppController
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            $powerPlantList = PowerPlant::map(new PowerPlant(), 'pp_name', null, true, [
+                'where' => [
+                    ['sector_id' => $model->sector_id]
+                ]
+            ]);
+
             return $this->render('update', [
+                'powerPlantList' => $powerPlantList,
                 'model' => $model,
             ]);
         }

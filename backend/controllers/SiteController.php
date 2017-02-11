@@ -288,7 +288,7 @@ class SiteController extends AppController {
                                                                         'icon-class' => 'blue',
                                                                         'additionalParameters' => [
                                                                             'children' => [
-                                                                                '3211-1' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form Izin & Dokumen Lingkungan', 'type' => 'item'],
+                                                                                '3211-1' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Izin & Dokumen Lingkungan', ['/environment-permit']), 'type' => 'item'],
                                                                             ]
                                                                         ]
                                                                     ],

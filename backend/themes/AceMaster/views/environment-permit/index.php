@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use common\vendor\AppLabels;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\EnvironmentPermitSearch */
@@ -11,13 +12,17 @@ $this->title = 'Environment Permits';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="environment-permit-index">
+    <div class="page-header">
+        <h1><?= Html::encode($this->title) ?></h1>
+    </div>
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <div class="clearfix">
+        <div class="pull-right">
+            <?= Html::a(AppLabels::BTN_ADD, ['create'], ['class' => 'btn btn-sm btn-success']) ?>
+        </div>
+    </div>
+    <hr/>
 
-    <p>
-        <?= Html::a('Create Environment Permit', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,

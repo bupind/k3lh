@@ -13,6 +13,7 @@ use Yii;
 use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
 use yii\helpers\Json;
+
 class BudgetMonitoringDetailController extends AppController
 {
     /**
@@ -36,7 +37,7 @@ class BudgetMonitoringDetailController extends AppController
 
 
     /**
-     * Finds the RoadmapK3lItem model based on its primary key value.
+     * Finds the BudgetMonitoringDetail model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
      * @return BudgetMonitoringDetail the loaded model
