@@ -125,6 +125,16 @@ class EnvironmentPermit extends AppModel
         }
     }
 
+    public function beforeDelete()
+    {
+        foreach($this->environmentPermitDetails as $key => $detail) :
+
+            $attachment = $detail->attachmentOwner;
+            $attachment->delete();
+
+        endforeach;
+        return parent::beforeDelete();
+    }
 
 
     /**

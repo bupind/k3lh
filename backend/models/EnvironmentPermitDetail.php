@@ -63,6 +63,13 @@ class EnvironmentPermitDetail extends AppModel
         ];
     }
 
+    public function beforeDelete()
+    {
+        $attachment = $this->attachmentOwner;
+        $attachment->delete();
+        return parent::beforeDelete();
+    }
+
     public function beforeSave($insert)
     {
         parent::beforeSave($insert);

@@ -131,7 +131,9 @@ class EnvironmentPermitController extends AppController
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        if ($this->findModel($id)->delete()) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_DELETE_SUCCESS);
+        }
 
         return $this->redirect(['index']);
     }
