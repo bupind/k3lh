@@ -78,6 +78,7 @@ $form = ActiveForm::begin([
                     <th><?= sprintf("%s %s", AppLabels::CAPACITY_LIMIT, AppLabels::PRODUCTION) ?></th>
                     <th><?= sprintf("%s %s", AppLabels::CAPACITY_REALIZATION, AppLabels::PRODUCTION) ?></th>
                     <th>Dampak penting yang dikelola</th>
+                    <th></th>
                 </tr>
             </thead>
 
@@ -100,7 +101,8 @@ $form = ActiveForm::begin([
                         </td>
                         <td><?= Html::textInput("EnvironmentPermitDetail[1][ep_limit_capacity]", null, [  'class' => 'form-control']); ?></td>
                         <td><?= Html::textInput("EnvironmentPermitDetail[1][ep_realization_capacity]", null, [  'class' => 'form-control']); ?></td>
-                        <td><?= Converter::attachment($firstDetail->attachmentOwner, ['show_file_upload' => true, 'show_delete_file' => true, 'index' => 1]); ?></td>
+                        <td><?= Converter::attachment($firstDetail->attachmentOwner, ['show_file_upload' => true, 'index' => 1]); ?></td>
+                        <td><button type="button" class="btn btn-xs btn-danger btn-remove">Hapus</button></td>
                     </tr>
                 <?php } else { ?>
                     <?php foreach ($model->environmentPermitDetails as $key => $detail): ?>
@@ -123,7 +125,8 @@ $form = ActiveForm::begin([
                             </td>
                             <td><?= Html::activeTextInput($detail, "[$key]ep_limit_capacity", [  'class' => 'form-control']); ?></td>
                             <td><?= Html::activeTextInput($detail, "[$key]ep_realization_capacity", [  'class' => 'form-control']); ?></td>
-                            <td><?= Converter::attachment($detail->attachmentOwner, ['show_file_upload' => true, 'show_delete_file' => true, 'index' => 1]); ?></td>
+                            <td><?= Converter::attachment($detail->attachmentOwner, ['show_file_upload' => true, 'index' => 1]); ?></td>
+                            <td><?= Html::button(AppLabels::BTN_DELETE, ['class' => 'btn btn-xs btn-pink btn-remove-ajax', 'data-id' => $detail->id, 'data-controller' => 'environment-permit-detail']); ?></td>
                         </tr>
                     <?php  endforeach; ?>
                 <?php } ?>

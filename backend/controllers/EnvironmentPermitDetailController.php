@@ -31,6 +31,11 @@ class EnvironmentPermitDetailController extends AppController
         ];
     }
 
+    public function beforeAction($action) {
+        parent::beforeAction($action);
+        return $this->rbac();
+    }
+
     /**
      * Finds the EnvironmentPermitDetail model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

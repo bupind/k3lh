@@ -86,7 +86,9 @@ jQuery(document).ready(function () {
         sb.append('<input name="Attachment['+subtitleIndex+'][file]" type="hidden">');
         sb.append('<input name="Attachment['+subtitleIndex+'][file]" type="file">');
         sb.append('</td>');
-
+        sb.append('<td>');
+        sb.append('<button type="button" class="btn btn-xs btn-danger btn-remove">Hapus</button>');
+        sb.append('</td>');
         sb.append('</tr>');
         environmentTbody.append(sb.toString());
 
@@ -101,6 +103,32 @@ jQuery(document).ready(function () {
     function takeNumber(str , howLong){
         return str.substring(howLong);
     }
+
+    $(document).on('click', '.btn-remove', function(){
+        $(this).closest('tr').remove();
+    });
+
+    $(document).on('click', '.btn-remove-ajax', function(){
+        if (confirm('Data akan terhapus secara permanen. Teruskan?')) {
+            var id = $(this).data('id'),
+                controller = $(this).data('controller'),
+                tr = $(this).closest('tr');
+
+            $.ajax({
+                url: baseUrl + '/'+ controller +'/ajax-delete',
+                dataType: "json",
+                type: 'post',
+                data: {id: id},
+                success: function(data) {
+                    if (data !== false) {
+                        tr.remove();
+                    } else {
+                        alert('Proses hapus data gagal.');
+                    }
+                }
+            });
+        }
+    });
 
 
 });

@@ -36,6 +36,12 @@ class EnvironmentPermitController extends AppController
      * Lists all EnvironmentPermit models.
      * @return mixed
      */
+
+    public function beforeAction($action) {
+        parent::beforeAction($action);
+        return $this->rbac();
+    }
+
     public function actionIndex()
     {
         $searchModel = new EnvironmentPermitSearch();
