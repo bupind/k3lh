@@ -112,7 +112,7 @@ class SiteController extends AppController {
                             'additionalParameters' => [
                                 'children' => [
                                     's211' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Workplan K3', ['/working-plan', 'wpt' => AppConstants::FORM_TYPE_K3]), 'type' => 'item'],
-                                    's212' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Monitoring Anggaran LH', ['/budget-monitoring', 'bmt' => AppConstants::FORM_TYPE_K3]), 'type' => 'item'],
+                                    's212' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Monitoring Anggaran K3', ['/budget-monitoring', 'bmt' => AppConstants::FORM_TYPE_K3]), 'type' => 'item'],
                                 ]
                             ]
                         ],

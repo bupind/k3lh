@@ -70,7 +70,7 @@ class EnvironmentPermitDetail extends AppModel
 
     public function beforeDelete()
     {
-        $attachment = $this->attachmentOwner;
+        $attachment = $this->attachmentOwner->attachment;
         $attachment->delete();
         return parent::beforeDelete();
     }

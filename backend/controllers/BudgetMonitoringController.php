@@ -53,6 +53,7 @@ class BudgetMonitoringController extends AppController
 
         $bmt = strtoupper($bmt);
         $searchModel = new BudgetMonitoringSearch();
+        $searchModel->form_type_code = $bmt;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         $title = Codeset::getCodesetValue(AppConstants::CODESET_NAME_FORM_TYPE_CODE, $bmt);

@@ -80,8 +80,8 @@ $form = ActiveForm::begin([
                         <td class="text-center"><?= Html::label($detail->ep_document_name, null, [ 'class' => 'control-label']); ?></td>
                         <td class="text-center"><?= Html::label($detail->ep_institution, null, [ 'class' => 'control-label']); ?></td>
                         <td class="text-center"><?= Html::label($detail->ep_date, null, [ 'class' => 'control-label']); ?></td>
-                        <td class="text-center"><?= Html::label($detail->ep_limit_capacity, null, [ 'data-cell' => "A$key", 'data-format' => AppConstants::CALX_DATA_FORMAT_CURRENCY, 'class' => 'control-label']); ?></td>
-                        <td class="text-center"><?= Html::label($detail->ep_realization_capacity, null, [ 'data-cell' => "B$key", 'data-format' => AppConstants::CALX_DATA_FORMAT_CURRENCY, 'class' => 'control-label']); ?></td>
+                        <td class="text-center"><?= Html::label($detail->ep_limit_capacity, null, [ 'data-cell' => "A$key", 'data-format' => AppConstants::CALX_DATA_FORMAT_THO, 'class' => 'control-label']); ?></td>
+                        <td class="text-center"><?= Html::label($detail->ep_realization_capacity, null, [ 'data-cell' => "B$key", 'data-format' => AppConstants::CALX_DATA_FORMAT_THO, 'class' => 'control-label']); ?></td>
                         <td><span class="col-sm-6"><?= Converter::attachment($detail->attachmentOwner); ?></span></td>
                     </tr>
                 <?php  endforeach; ?>

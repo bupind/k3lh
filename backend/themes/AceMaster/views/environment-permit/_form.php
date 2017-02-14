@@ -138,7 +138,7 @@ $form = ActiveForm::begin([
                             <td>
                                 <?= Html::activeHiddenInput($detail, "[$key]ep_realization_capacity", ['data-cell' => "BB$key", 'data-format' => '0', 'data-formula' => "B$key"]); ?>
                                 <?= Html::activeTextInput($detail, "[$key]ep_realization_capacity_display", ['data-cell' => "B$key", 'data-format' => AppConstants::CALX_DATA_FORMAT_THO, 'class' => 'form-control']); ?></td>
-                            <td><?= Converter::attachment($detail->attachmentOwner, ['show_file_upload' => true, 'index' => 1]); ?></td>
+                            <td><?= Converter::attachment($detail->attachmentOwner, ['show_file_upload' => true, 'show_delete_file' => true, 'index' => $key]); ?></td>
                             <td><?= Html::button(AppLabels::BTN_DELETE, ['class' => 'btn btn-xs btn-pink btn-remove-ajax', 'data-id' => $detail->id, 'data-controller' => 'environment-permit-detail']); ?></td>
                         </tr>
                     <?php  endforeach; ?>
