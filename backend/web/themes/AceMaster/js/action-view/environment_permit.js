@@ -75,12 +75,13 @@ jQuery(document).ready(function () {
         sb.append('<input id="date'+subtitleIndex+'" placeholder="Tanggal" name="EnvironmentPermitDetail['+subtitleIndex+'][ep_date]" type="text" class="form-control">');
         sb.append('</td>');
         currentDate = "#date"+subtitleIndex;
-
         sb.append('<td>');
-        sb.append('<input data-cell="A'+subtitleIndex+'" data-format="0,0" class="form-control" name="EnvironmentPermitDetail['+subtitleIndex+'][ep_limit_capacity]" type="text">');
+        sb.append('<input name="EnvironmentPermitDetail['+subtitleIndex+'][ep_limit_capacity]" data-cell="AA'+subtitleIndex+'" data-formula="A'+subtitleIndex+'" value="" type="hidden">');
+        sb.append('<input data-cell="A'+subtitleIndex+'" data-format="0,0" class="form-control" name="EnvironmentPermitDetail['+subtitleIndex+'][ep_limit_capacity_display]" type="text">');
         sb.append('</td>');
         sb.append('<td>');
-        sb.append('<input data-cell="B'+subtitleIndex+'" data-format="0,0" class="form-control" name="EnvironmentPermitDetail['+subtitleIndex+'][ep_realization_capacity]" type="text">');
+        sb.append('<input name="EnvironmentPermitDetail['+subtitleIndex+'][ep_realization_capacity]" data-cell="BB'+subtitleIndex+'" data-formula="B'+subtitleIndex+'" value="" type="hidden">');
+        sb.append('<input data-cell="B'+subtitleIndex+'" data-format="0,0" class="form-control" name="EnvironmentPermitDetail['+subtitleIndex+'][ep_realization_capacity_display]" type="text">');
         sb.append('</td>');
         sb.append('<td>');
         sb.append('<input name="Attachment['+subtitleIndex+'][file]" type="hidden">');

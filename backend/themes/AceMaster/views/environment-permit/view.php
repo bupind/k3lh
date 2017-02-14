@@ -6,6 +6,7 @@ use common\vendor\AppConstants;
 use app\components\DetailView;
 use app\components\ViewButton;
 use common\components\helpers\Converter;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\EnvironmentPermit */
@@ -14,6 +15,24 @@ $this->title = sprintf('%s %s', AppLabels::BTN_VIEW, AppLabels::ENVIRONMENT_PERM
 $this->params['breadcrumbs'][] = ['label' => AppLabels::ENVIRONMENT_PERMIT, 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
+<?php
+$form = ActiveForm::begin([
+    'id' => 'environment-permit-form',
+    'options' => [
+        'class' => 'calx form-horizontal',
+        'role' => 'form',
+        'enctype' => 'multipart/form-data'
+    ],
+    'fieldConfig' => [
+        'options' => [
+            'tag' => 'div'
+        ]
+    ]
+]);
+
+?>
+
 <div class="environment-permit-view">
 
     <div class="page-header">
@@ -61,8 +80,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         <td class="text-center"><?= Html::label($detail->ep_document_name, null, [ 'class' => 'control-label']); ?></td>
                         <td class="text-center"><?= Html::label($detail->ep_institution, null, [ 'class' => 'control-label']); ?></td>
                         <td class="text-center"><?= Html::label($detail->ep_date, null, [ 'class' => 'control-label']); ?></td>
-                        <td class="text-center"><?= Html::label($detail->ep_limit_capacity, null, [ 'class' => 'control-label']); ?></td>
-                        <td class="text-center"><?= Html::label($detail->ep_realization_capacity, null, [ 'class' => 'control-label']); ?></td>
+                        <td class="text-center"><?= Html::label($detail->ep_limit_capacity, null, [ 'data-cell' => "A$key", 'data-format' => AppConstants::CALX_DATA_FORMAT_CURRENCY, 'class' => 'control-label']); ?></td>
+                        <td class="text-center"><?= Html::label($detail->ep_realization_capacity, null, [ 'data-cell' => "B$key", 'data-format' => AppConstants::CALX_DATA_FORMAT_CURRENCY, 'class' => 'control-label']); ?></td>
                         <td><span class="col-sm-6"><?= Converter::attachment($detail->attachmentOwner); ?></span></td>
                     </tr>
                 <?php  endforeach; ?>
@@ -76,3 +95,5 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= ViewButton::widget(['model' => $model]); ?>
 
 </div>
+
+<?php ActiveForm::end(); ?>

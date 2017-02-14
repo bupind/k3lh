@@ -25,6 +25,8 @@ use common\vendor\AppConstants;
  */
 class EnvironmentPermitDetail extends AppModel
 {
+    public $ep_limit_capacity_display;
+    public $ep_realization_capacity_display;
     /**
      * @inheritdoc
      */
@@ -59,9 +61,12 @@ class EnvironmentPermitDetail extends AppModel
             'ep_institution' => AppLabels::INSTITUTION,
             'ep_date' => AppLabels::DATE,
             'ep_limit_capacity' => AppLabels::CAPACITY_LIMIT,
+            'ep_limit_capacity_display' => AppLabels::CAPACITY_LIMIT,
             'ep_realization_capacity' => AppLabels::CAPACITY_REALIZATION,
+            'ep_realization_capacity_display' => AppLabels::CAPACITY_REALIZATION,
         ];
     }
+
 
     public function beforeDelete()
     {
@@ -81,6 +86,8 @@ class EnvironmentPermitDetail extends AppModel
     public function afterFind()
     {
         parent::afterFind();
+        $this->ep_limit_capacity_display = $this->ep_limit_capacity;
+        $this->ep_realization_capacity_display = $this->ep_realization_capacity;
         $this->ep_date = \Yii::$app->formatter->asDate($this->ep_date);
 
         return true;

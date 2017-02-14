@@ -102,10 +102,13 @@ $form = ActiveForm::begin([
                             ])
                             ?>
                         </td>
-                        <td><?= Html::textInput("EnvironmentPermitDetail[1][ep_limit_capacity]", null, [  'data-format' => AppConstants::CALX_DATA_FORMAT_THO, 'class' => 'form-control']); ?></td>
-                        <td><?= Html::textInput("EnvironmentPermitDetail[1][ep_realization_capacity]", null, [ 'data-format' => AppConstants::CALX_DATA_FORMAT_THO, 'class' => 'form-control']); ?></td>
+                        <td>
+                            <?= Html::hiddenInput("EnvironmentPermitDetail[1][ep_limit_capacity]", null, ['data-cell' => 'AA1', 'data-formula' => 'A1']); ?>
+                            <?= Html::textInput("EnvironmentPermitDetail[1][ep_limit_capacity_display]", null, [ 'data-cell' => 'A1', 'data-format' => AppConstants::CALX_DATA_FORMAT_THO, 'class' => 'form-control']); ?></td>
+                        <td>
+                            <?= Html::hiddenInput("EnvironmentPermitDetail[1][ep_realization_capacity]", null, ['data-cell' => 'BB1', 'data-formula' => 'B1']); ?>
+                            <?= Html::textInput("EnvironmentPermitDetail[1][ep_realization_capacity_display]", null, [ 'data-cell' => 'B1', 'data-format' => AppConstants::CALX_DATA_FORMAT_THO, 'class' => 'form-control']); ?></td>
                         <td><?= Converter::attachment($firstDetail->attachmentOwner, ['show_file_upload' => true, 'index' => 1]); ?></td>
-                        <td><button type="button" class="btn btn-xs btn-danger btn-remove">Hapus</button></td>
                     </tr>
                 <?php } else { ?>
                     <?php foreach ($model->environmentPermitDetails as $key => $detail): ?>
@@ -117,7 +120,7 @@ $form = ActiveForm::begin([
                             <td>
                                 <?= DatePicker::widget([
                                     'model' => $detail,
-                                    'attribute' => 'EnvironmentPermitDetail[1][ep_date]',
+                                    'attribute' => "[$key]ep_date",
                                     'id' => 'date1',
                                     'type' => DatePicker::TYPE_INPUT,
                                     'options' => ['placeholder' => AppLabels::DATE],
@@ -129,8 +132,12 @@ $form = ActiveForm::begin([
                                 ])
                                 ?>
                             </td>
-                            <td><?= Html::activeTextInput($detail, "[$key]ep_limit_capacity", [ 'data-format' => AppConstants::CALX_DATA_FORMAT_THO, 'class' => 'form-control']); ?></td>
-                            <td><?= Html::activeTextInput($detail, "[$key]ep_realization_capacity", [ 'data-format' => AppConstants::CALX_DATA_FORMAT_THO, 'class' => 'form-control']); ?></td>
+                            <td>
+                                <?= Html::activeHiddenInput($detail, "[$key]ep_limit_capacity", ['data-cell' => "AA$key", 'data-format' => '0', 'data-formula' => "A$key"]); ?>
+                                <?= Html::activeTextInput($detail, "[$key]ep_limit_capacity_display", ['data-cell' => "A$key", 'data-format' => AppConstants::CALX_DATA_FORMAT_THO, 'class' => 'form-control']); ?></td>
+                            <td>
+                                <?= Html::activeHiddenInput($detail, "[$key]ep_realization_capacity", ['data-cell' => "BB$key", 'data-format' => '0', 'data-formula' => "B$key"]); ?>
+                                <?= Html::activeTextInput($detail, "[$key]ep_realization_capacity_display", ['data-cell' => "B$key", 'data-format' => AppConstants::CALX_DATA_FORMAT_THO, 'class' => 'form-control']); ?></td>
                             <td><?= Converter::attachment($detail->attachmentOwner, ['show_file_upload' => true, 'index' => 1]); ?></td>
                             <td><?= Html::button(AppLabels::BTN_DELETE, ['class' => 'btn btn-xs btn-pink btn-remove-ajax', 'data-id' => $detail->id, 'data-controller' => 'environment-permit-detail']); ?></td>
                         </tr>
