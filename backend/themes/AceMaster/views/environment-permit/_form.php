@@ -8,7 +8,7 @@ use backend\models\Sector;
 use common\vendor\AppConstants;
 use app\components\SubmitLinkButton;
 use common\vendor\AppLabels;
-use yii\jui\DatePicker;
+use kartik\widgets\DatePicker;
 use common\components\helpers\Converter;
 
 /* @var $this yii\web\View */
@@ -28,7 +28,7 @@ echo Html::hiddenInput('baseUrl', $baseUrl, ['id' => 'baseUrl']);
 $form = ActiveForm::begin([
     'id' => 'environment-permit-form',
     'options' => [
-        'class' => 'form-horizontal',
+        'class' => 'calx form-horizontal',
         'role' => 'form',
         'enctype' => 'multipart/form-data'
     ],
@@ -92,15 +92,18 @@ $form = ActiveForm::begin([
                             <?= DatePicker::widget([
                                 'name' => 'EnvironmentPermitDetail[1][ep_date]',
                                 'id' => 'date1',
-                                'clientOptions' => [
+                                'type' => DatePicker::TYPE_INPUT,
+                                'options' => ['placeholder' => AppLabels::DATE],
+                                'pluginOptions' => [
+                                    'autoclose' => true,
                                     'format' => 'dd-mm-yyyy',
-                                    'autoclose' => 'true'
+                                    'todayHighlight' => 'true'
                                 ],
                             ])
                             ?>
                         </td>
-                        <td><?= Html::textInput("EnvironmentPermitDetail[1][ep_limit_capacity]", null, [  'class' => 'form-control']); ?></td>
-                        <td><?= Html::textInput("EnvironmentPermitDetail[1][ep_realization_capacity]", null, [  'class' => 'form-control']); ?></td>
+                        <td><?= Html::textInput("EnvironmentPermitDetail[1][ep_limit_capacity]", null, [  'data-format' => AppConstants::CALX_DATA_FORMAT_THO, 'class' => 'form-control']); ?></td>
+                        <td><?= Html::textInput("EnvironmentPermitDetail[1][ep_realization_capacity]", null, [ 'data-format' => AppConstants::CALX_DATA_FORMAT_THO, 'class' => 'form-control']); ?></td>
                         <td><?= Converter::attachment($firstDetail->attachmentOwner, ['show_file_upload' => true, 'index' => 1]); ?></td>
                         <td><button type="button" class="btn btn-xs btn-danger btn-remove">Hapus</button></td>
                     </tr>
@@ -114,17 +117,20 @@ $form = ActiveForm::begin([
                             <td>
                                 <?= DatePicker::widget([
                                     'model' => $detail,
-                                    'attribute' => "[$key]ep_date",
+                                    'attribute' => 'EnvironmentPermitDetail[1][ep_date]',
                                     'id' => 'date1',
-                                    'clientOptions' => [
+                                    'type' => DatePicker::TYPE_INPUT,
+                                    'options' => ['placeholder' => AppLabels::DATE],
+                                    'pluginOptions' => [
+                                        'autoclose' => true,
                                         'format' => 'dd-mm-yyyy',
-                                        'autoclose' => 'true'
+                                        'todayHighlight' => 'true'
                                     ],
                                 ])
                                 ?>
                             </td>
-                            <td><?= Html::activeTextInput($detail, "[$key]ep_limit_capacity", [  'class' => 'form-control']); ?></td>
-                            <td><?= Html::activeTextInput($detail, "[$key]ep_realization_capacity", [  'class' => 'form-control']); ?></td>
+                            <td><?= Html::activeTextInput($detail, "[$key]ep_limit_capacity", [ 'data-format' => AppConstants::CALX_DATA_FORMAT_THO, 'class' => 'form-control']); ?></td>
+                            <td><?= Html::activeTextInput($detail, "[$key]ep_realization_capacity", [ 'data-format' => AppConstants::CALX_DATA_FORMAT_THO, 'class' => 'form-control']); ?></td>
                             <td><?= Converter::attachment($detail->attachmentOwner, ['show_file_upload' => true, 'index' => 1]); ?></td>
                             <td><?= Html::button(AppLabels::BTN_DELETE, ['class' => 'btn btn-xs btn-pink btn-remove-ajax', 'data-id' => $detail->id, 'data-controller' => 'environment-permit-detail']); ?></td>
                         </tr>

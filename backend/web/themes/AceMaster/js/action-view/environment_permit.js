@@ -6,7 +6,7 @@ jQuery(document).ready(function () {
         sb = new StringBuilder(),
         environmentTbody = $('#table-environment-permit').find('tbody'),
         buttonName = "addButton"+environmentTbody.find('tr').size(),
-        form = $('#smk3-form');
+        form = $('#environment-permit-form');
 
     $('.addButtonClass').attr('id', buttonName);
 
@@ -66,21 +66,21 @@ jQuery(document).ready(function () {
         sb.append(subtitleIndex);
         sb.append('</td>');
         sb.append('<td>');
-        sb.append('<input class="form-control" name="EnvironmentPermitDetail['+subtitleIndex+'][ep_document_name]" type="text">');
+        sb.append('<input class="form-control" name="EnvironmentPermitDetail['+subtitleIndex+'][ep_document_name]" type="text" >');
         sb.append('</td>');
         sb.append('<td>');
         sb.append('<input class="form-control" name="EnvironmentPermitDetail['+subtitleIndex+'][ep_institution]" type="text">');
         sb.append('</td>');
         sb.append('<td>');
-        sb.append('<input id="date'+subtitleIndex+'" name="EnvironmentPermitDetail['+subtitleIndex+'][ep_date]" type="text">');
+        sb.append('<input id="date'+subtitleIndex+'" placeholder="Tanggal" name="EnvironmentPermitDetail['+subtitleIndex+'][ep_date]" type="text" class="form-control">');
         sb.append('</td>');
         currentDate = "#date"+subtitleIndex;
 
         sb.append('<td>');
-        sb.append('<input class="form-control" name="EnvironmentPermitDetail['+subtitleIndex+'][ep_limit_capacity]" type="text">');
+        sb.append('<input data-cell="A'+subtitleIndex+'" data-format="0,0" class="form-control" name="EnvironmentPermitDetail['+subtitleIndex+'][ep_limit_capacity]" type="text">');
         sb.append('</td>');
         sb.append('<td>');
-        sb.append('<input class="form-control" name="EnvironmentPermitDetail['+subtitleIndex+'][ep_realization_capacity]" type="text">');
+        sb.append('<input data-cell="B'+subtitleIndex+'" data-format="0,0" class="form-control" name="EnvironmentPermitDetail['+subtitleIndex+'][ep_realization_capacity]" type="text">');
         sb.append('</td>');
         sb.append('<td>');
         sb.append('<input name="Attachment['+subtitleIndex+'][file]" type="hidden">');
@@ -91,12 +91,13 @@ jQuery(document).ready(function () {
         sb.append('</td>');
         sb.append('</tr>');
         environmentTbody.append(sb.toString());
-
+        form.calx('update').calx('calculate');
         sb.clear();
 
-        $(currentDate).datepicker({
+        $(currentDate).kvDatepicker({
             format: "dd-mm-yyyy",
-            autoclose: true
+            autoclose: true,
+            todayHighlight: 'true'
         });
     }
 
