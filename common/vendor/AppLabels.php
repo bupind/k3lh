@@ -128,6 +128,14 @@ class AppLabels {
     const WEIGHT = 'Bobot-B';
     const QUARTER = 'Triwulan';
     const NUMBER_SHORT = 'No';
+    const COORDINATE = 'Koordinat';
+    const LS = 'LS';
+    const BT = 'BT';
+    const PERMIT_STATUS = 'Status Izin';
+    const PERMIT_NUMBER = 'Nomor Izin';
+    const PERMIT_PUBLISHER = 'Instansi Penerbit Izin';
+    const PERMIT_PUBLISH_DATE = 'Tanggal Izin Terbit';
+    const PERMIT_END_DATE = 'Tanggal Berakhir Izin';
     
     // MONTH
     const JANUARY = 'Januari';
@@ -261,4 +269,19 @@ class AppLabels {
     const CAPACITY_LIMIT = 'Batasan Kapasitas';
     const CAPACITY_REALIZATION = 'Realisasi Kapasitas';
     const PRODUCTION = 'Produksi';
+    
+    // WATER POLLUTION CONTROL
+    const PPA = 'PPA';
+    const WATER_POLLUTION_CONTROL = 'Form Pengendalian Pencemaran Air';
+    const SETUP_POINT_PERMIT = 'Titik Penataan & Izin';
+    const BM_REPORT_PARAMETER = 'Parameter Pelaporan BM';
+    const TECHNICAL_PROVISION = 'Ketentuan Teknis';
+    const POLLUTION_LOAD_DECREASE = 'Penurunan Beban Pencemaran';
+    const POLLUTION_LOAD_BM = 'PPA BM Beban Pencemaran';
+    const POLLUTION_LOAD_ACTUAL = 'PPA Beban Pencemaran Aktual';
+    const WASTE_WATER_SOURCE = 'Sumber Air Limbah';
+    const SETUP_POINT_NAME = 'Nama Titik Penataan';
+    const WASTE_WATER_TECHNOLOGY = 'Jenis Teknologi Pengolahan Air Limbah';
+    
+    
 }

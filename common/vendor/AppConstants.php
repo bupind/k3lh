@@ -41,22 +41,22 @@ class AppConstants {
     const GRID_TEMPLATE_CUSTOM = '<div class="hidden-sm hidden-xs btn-group">{custom_buttons}</div><div class="hidden-md hidden-lg"><div class="inline pos-rel"><button data-position="auto" data-toggle="dropdown" class="btn btn-minier btn-primary dropdown-toggle" aria-expanded="false"><i class="ace-icon fa fa-cog icon-only bigger-110"></i></button><ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">{custom_buttons_xs}</ul></div></div>';
     
     const ACTIVE_FORM_TEMPLATE_INPUT_PLAIN_NO_LABEL = '{input}{error}{hint}';
-    const ACTIVE_FORM_TEMPLATE_INPUT_COL_4 = '{label} <div class="col-sm-4">{input}</div><div class="col-sm-5"><span class="help-inline col-xs-12 col-sm-7"><span class="middle">{error}{hint}</span></span></div>';
-    const ACTIVE_FORM_TEMPLATE_INPUT_COL_4_EXTRA = '{label} <div id="{wrapper_id}" class="col-sm-4"><div class="input-group">{input}<span class="input-group-btn">{extra}</span></div></div><div class="col-sm-5"><span class="help-inline col-xs-12 col-sm-7"><span class="middle">{error}{hint}</span></span></div>';
-    const ACTIVE_FORM_TEMPLATE_INPUT_COL_8_FULL_EXTRA = '{label} <div id="{wrapper_id}" class="col-sm-8"><div class="input-group">{input}<span class="input-group-btn">{extra}</span></div><span class="help-inline col-xs-12"><span class="middle">{error}{hint}</span></span></div>';
-    const ACTIVE_FORM_TEMPLATE_INPUT_COL_9 = '{label} <div class="col-sm-9">{input}<span class="help-inline col-xs-12 col-sm-7"><span class="middle">{error}{hint}</span></span></div>';
-    const ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL = '{label} <div class="col-sm-9">{input}<span class="help-inline col-xs-12"><span class="middle">{error}{hint}</span></span></div>';
+    const ACTIVE_FORM_TEMPLATE_INPUT_COL_4 = '{label} <div class="col-md-4">{input}</div><div class="col-md-5"><span class="help-inline col-xs-12 col-md-7"><span class="middle">{error}{hint}</span></span></div>';
+    const ACTIVE_FORM_TEMPLATE_INPUT_COL_4_EXTRA = '{label} <div id="{wrapper_id}" class="col-md-4"><div class="input-group">{input}<span class="input-group-btn">{extra}</span></div></div><div class="col-md-5"><span class="help-inline col-xs-12 col-md-7"><span class="middle">{error}{hint}</span></span></div>';
+    const ACTIVE_FORM_TEMPLATE_INPUT_COL_8_FULL_EXTRA = '{label} <div id="{wrapper_id}" class="col-md-8"><div class="input-group">{input}<span class="input-group-btn">{extra}</span></div><span class="help-inline col-xs-12"><span class="middle">{error}{hint}</span></span></div>';
+    const ACTIVE_FORM_TEMPLATE_INPUT_COL_9 = '{label} <div class="col-md-9">{input}<span class="help-inline col-xs-12 col-md-7"><span class="middle">{error}{hint}</span></span></div>';
+    const ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL = '{label} <div class="col-md-9">{input}<span class="help-inline col-xs-12"><span class="middle">{error}{hint}</span></span></div>';
     const ACTIVE_FORM_WIDGET_TEMPLATE = '{label}{input}<span class="help-block">{error}{hint}</span>';
     const ACTIVE_FORM_WIDGET_TEMPLATE_EXTRA = '{label} <div id="{wrapper_id}" class="input-group input-large"><div class="input-group">{input}<span class="input-group-btn">{extra}</span></div><span class="help-block">{error}{hint}</span></div>';
-    const ACTIVE_FORM_CLASS_LABEL_COL_3 = 'col-sm-3 control-label no-padding-right';
+    const ACTIVE_FORM_CLASS_LABEL_COL_3 = 'col-md-3 control-label no-padding-right';
     
-    const ACTIVE_FORM_CLASS_INPUT_TEXT = 'col-xs-10 col-sm-5';
-    const ACTIVE_FORM_CLASS_INPUT_TEXT_UPPERCASE = 'col-xs-10 col-sm-5 uppercase';
-    const ACTIVE_FORM_CLASS_INPUT_TEXT_NUMBERSONLY = 'col-xs-10 col-sm-5 numbersOnly';
-    const ACTIVE_FORM_CLASS_INPUT_TEXT_DATEPICKER = 'col-xs-10 col-sm-5 date-picker';
-    const ACTIVE_FORM_CLASS_TEXTAREA = 'col-xs-10 col-sm-9';
-    const ACTIVE_FORM_CLASS_DROPDOWN = 'col-xs-10 col-sm-5 chosen-select form-control';
-    const ACTIVE_FORM_CLASS_FILE_IMAGE = 'col-xs-10 col-sm-5 file-input-image';
+    const ACTIVE_FORM_CLASS_INPUT_TEXT = 'col-xs-10 col-md-5';
+    const ACTIVE_FORM_CLASS_INPUT_TEXT_UPPERCASE = 'col-xs-10 col-md-5 uppercase';
+    const ACTIVE_FORM_CLASS_INPUT_TEXT_NUMBERSONLY = 'col-xs-10 col-md-5 numbersOnly';
+    const ACTIVE_FORM_CLASS_INPUT_TEXT_DATEPICKER = 'col-xs-10 col-md-5 date-picker';
+    const ACTIVE_FORM_CLASS_TEXTAREA = 'col-xs-10 col-md-9';
+    const ACTIVE_FORM_CLASS_DROPDOWN = 'col-xs-10 col-md-5 chosen-select form-control';
+    const ACTIVE_FORM_CLASS_FILE_IMAGE = 'col-xs-10 col-md-5 file-input-image';
     
     const ACTIVE_FORM_MODAL_CLASS_INPUT_TEXT = 'col-xs-12';
     const ACTIVE_FORM_MODAL_CLASS_INPUT_TEXT_UPPERCASE = 'col-xs-12 uppercase';
