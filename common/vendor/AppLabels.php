@@ -261,4 +261,8 @@ class AppLabels {
     const CAPACITY_LIMIT = 'Batasan Kapasitas';
     const CAPACITY_REALIZATION = 'Realisasi Kapasitas';
     const PRODUCTION = 'Produksi';
+
+    // AIR POLLUTION CONTROL
+    const PPU = 'PPU';
+    const AIR_POLLUTION_CONTROL = 'Form Pengendalian Pencemaran Udara';
 }

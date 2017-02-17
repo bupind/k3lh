@@ -25,25 +25,28 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <hr/>
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
 
-            [
-                'attribute' => 'sector_id',
-                'value' => 'sector.sector_name',
-                'filter' => Html::activeDropDownList($searchModel, 'sector_id', Sector::map(new Sector(), 'sector_name'), ['class' => 'chosen-select form-control'])
-            ],
-            [
-                'attribute' => 'power_plant_id',
-                'value' => 'powerPlant.pp_name'
-            ],
-            'smk3_year',
-            'smk3_quarter',
+    <div class="table-responsive">
+        <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+                [
+                    'attribute' => 'sector_id',
+                    'value' => 'sector.sector_name',
+                    'filter' => Html::activeDropDownList($searchModel, 'sector_id', Sector::map(new Sector(), 'sector_name'), ['class' => 'chosen-select form-control'])
+                ],
+                [
+                    'attribute' => 'power_plant_id',
+                    'value' => 'powerPlant.pp_name'
+                ],
+                'smk3_year',
+                'smk3_quarter',
+
+                ['class' => 'yii\grid\ActionColumn'],
+            ],
+        ]); ?>
+    </div>
 </div>

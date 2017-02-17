@@ -32,6 +32,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'sector_id',
             'power_plant_id',
             'ppu_year',
+            'created_by',
+            'created_at',
+            'updated_by',
+            'updated_at',
         ],
     ]) ?>
 

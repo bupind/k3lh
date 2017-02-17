@@ -308,7 +308,7 @@ class SiteController extends AppController {
                                                                         'icon-class' => 'blue',
                                                                         'additionalParameters' => [
                                                                             'children' => [
-                                                                                '3213-1' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form Pengendalian Pencemaran Udara', 'type' => 'item'],
+                                                                                '3213-1' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Pengendalian Pencemaran Udara', ['/ppu']), 'type' => 'item'],
                                                                             ]
                                                                         ]
                                                                     ],

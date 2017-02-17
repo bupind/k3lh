@@ -5,14 +5,16 @@ namespace backend\controllers;
 use Yii;
 use backend\models\Ppu;
 use backend\models\PpuSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\vendor\AppConstants;
+use common\vendor\AppLabels;
+use backend\models\PowerPlant;
 
 /**
  * PpuController implements the CRUD actions for Ppu model.
  */
-class PpuController extends Controller
+class PpuController extends AppController
 {
     /**
      * @inheritdoc
@@ -38,9 +40,26 @@ class PpuController extends Controller
         $searchModel = new PpuSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        $model = new Ppu();
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
+            $this->redirect('ppu');
+        }
+
+        $powerPlantList = ['' => AppLabels::PLEASE_SELECT];
+        if (!is_null($model->power_plant_id)) {
+            $powerPlantList = PowerPlant::map(new PowerPlant(), 'pp_name', null, true, [
+                'where' => [
+                    ['sector_id' => $model->sector_id]
+                ]
+            ]);
+        }
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'model' => $model,
+            'powerPlantList' => $powerPlantList,
         ]);
     }
 
@@ -66,6 +85,7 @@ class PpuController extends Controller
         $model = new Ppu();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -85,6 +105,7 @@ class PpuController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
@@ -101,7 +122,9 @@ class PpuController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        if ($this->findModel($id)->delete()) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_DELETE_SUCCESS);
+        }
 
         return $this->redirect(['index']);
     }

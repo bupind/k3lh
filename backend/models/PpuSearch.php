@@ -18,7 +18,7 @@ class PpuSearch extends Ppu
     public function rules()
     {
         return [
-            [['id', 'sector_id', 'power_plant_id', 'ppu_year'], 'integer'],
+            [['id', 'sector_id', 'power_plant_id', 'ppu_year', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'integer'],
         ];
     }
 
@@ -62,6 +62,10 @@ class PpuSearch extends Ppu
             'sector_id' => $this->sector_id,
             'power_plant_id' => $this->power_plant_id,
             'ppu_year' => $this->ppu_year,
+            'created_by' => $this->created_by,
+            'created_at' => $this->created_at,
+            'updated_by' => $this->updated_by,
+            'updated_at' => $this->updated_at,
         ]);
 
         return $dataProvider;

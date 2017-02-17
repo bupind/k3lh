@@ -23,23 +23,21 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <hr/>
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+    <div class="table-responsive">
+        <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'sector_id',
-            'power_plant_id',
-            'ep_year',
-            'ep_quarter',
-            // 'created_by',
-            // 'created_at',
-            // 'updated_by',
-            // 'updated_at',
+                'id',
+                'sector_id',
+                'power_plant_id',
+                'ep_year',
+                'ep_quarter',
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+                ['class' => 'yii\grid\ActionColumn'],
+            ],
+        ]); ?>
+    </div>
 </div>
