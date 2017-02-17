@@ -2,34 +2,72 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use backend\models\Sector;
+use common\vendor\AppConstants;
+use common\vendor\AppLabels;
+use app\components\SubmitLinkButton;
+use backend\assets\PPUAsset;
+
+PPUAsset::register($this);
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Ppu */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="ppu-form">
+<?php
+$form = ActiveForm::begin([
+    'id' => 'ppu-form',
+    'options' => [
+        'class' => 'calx form-horizontal',
+        'role' => 'form'
+    ],
+    'fieldConfig' => [
+        'options' => [
+            'tag' => 'div'
+        ]
+    ]
+]);
+?>
 
-    <?php $form = ActiveForm::begin(); ?>
+<div class="row ppu-form">
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+        <?php
+        echo $form->field($model, 'sector_id', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+            ->dropDownList(Sector::map(new Sector(), 'sector_name'), ['class' => 'sector-list ' . AppConstants::ACTIVE_FORM_CLASS_DROPDOWN])
+            ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
 
-    <?= $form->field($model, 'sector_id')->textInput() ?>
+        echo $form->field($model, 'power_plant_id', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+            ->dropDownList($powerPlantList, ['id' => 'power-plant-list', 'class' => AppConstants::ACTIVE_FORM_CLASS_DROPDOWN])
+            ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
 
-    <?= $form->field($model, 'power_plant_id')->textInput() ?>
-
-    <?= $form->field($model, 'ppu_year')->textInput() ?>
-
-    <?= $form->field($model, 'created_by')->textInput() ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_by')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
-
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        echo $form->field($model, 'ppu_year', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+            ->textInput(['maxlength' => true, 'class' => AppConstants::ACTIVE_FORM_CLASS_INPUT_TEXT_NUMBERSONLY])
+            ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+        ?>
     </div>
 
-    <?php ActiveForm::end(); ?>
-
 </div>
+
+<hr/>
+
+<div class="row">
+    <div class="col-xs-12 center">
+        <div class="btn-group">
+            <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::EMISSION_SOURCE_INVENTORY, ['/ppa-setup-', 'ppaId' => $model->id], ['class' => 'btn btn-sm btn-success']); ?>
+            <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::ADHERENCE_POINT, '#', ['class' => 'btn btn-sm btn-warning']); ?>
+            <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::ADHERENCE . AppLabels::BM_REPORT_PARAMETER, '#', ['class' => 'btn btn-sm btn-primary']); ?>
+            <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::EMISSION_LOAD_CALCULATION, '#', ['class' => 'btn btn-sm btn-default']); ?>
+            <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::TECHNICAL_PROVISION, '#', ['class' => 'btn btn-sm btn-info']); ?>
+            <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::POLLUTION_LOAD, '#', ['class' => 'btn btn-sm btn-purple']); ?>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 form-actions text-center">
+        <?= SubmitLinkButton::widget(['formId' => 'ppu-form', 'backAction' => 'index', 'isNewRecord' => $model->isNewRecord]); ?>
+    </div>
+</div>
+
+<?php ActiveForm::end(); ?>

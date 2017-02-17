@@ -265,4 +265,13 @@ class AppLabels {
     // AIR POLLUTION CONTROL
     const PPU = 'PPU';
     const AIR_POLLUTION_CONTROL = 'Form Pengendalian Pencemaran Udara';
+    const EMISSION_SOURCE_INVENTORY = 'Inventarisasi Sumber Emisi';
+    const ADHERENCE_POINT = 'Titik Penaatan';
+    const BM_REPORT_PARAMETER = 'Parameter Pelaporan BM';
+    const ADHERENCE = 'Ketaatan';
+    const EMISSION_LOAD_CALCULATION = 'Perhitungan Beban Emisi';
+    const GRK = 'GRK';
+    const TECHNICAL_PROVISION = 'Ketentuan Teknis';
+    const POLLUTION_LOAD = 'Beban Pencemaran';
+
 }
