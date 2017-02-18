@@ -1,58 +1,125 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\DetailView;
+use app\components\DetailView;
+use common\vendor\AppLabels;
+use common\vendor\AppConstants;
+use backend\models\Codeset;
+use app\components\ViewButton;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\PpuEmissionSource */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Ppu Emission Sources', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = sprintf("%s %s", AppLabels::BTN_VIEW, $model->ppues_name);
+$this->params['breadcrumbs'][] = ['label' => AppLabels::EMISSION_SOURCE_INVENTORY, 'url' => ['index', 'ppuId' => $model->ppu_id]];
+$this->params['breadcrumbs'][] = ['label' => $model->ppues_name];
 ?>
 <div class="ppu-emission-source-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="page-header">
+        <h1>
+            <?= Html::encode($this->title) ?>
+            <?php if (isset($this->params['subtitle'])): ?>
+                <small>
+                    <i class="ace-icon fa fa-angle-double-right"></i>
+                    <?= $this->params['subtitle']; ?>
+                </small>
+            <?php endif; ?>
+        </h1>
+    </div>
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'ppu_id',
-            'ppues_name',
-            'ppues_chimney_name',
-            'ppues_capacity',
-            'ppues_control_device',
-            'ppues_fuel_name_code',
-            'ppues_total_fuel',
-            'ppues_fuel_unit_code',
-            'ppues_operation_time',
-            'ppues_location',
-            'ppues_coord_ls',
-            'ppues_coord_bt',
-            'ppues_chimney_shape_code',
-            'ppues_chimney_height',
-            'ppues_chimney_diameter',
-            'ppues_hole_position',
-            'ppues_monitoring_data_status_code',
-            'ppues_freq_monitoring_obligation_code',
-            'ppues_ref',
-            'created_by',
-            'created_at',
-            'updated_by',
-            'updated_at',
-        ],
-    ]) ?>
+
+    <div class="col-xs-12 col-sm-6">
+        <div class="widget-box">
+            <div class="widget-header">
+                <h4 class="widget-title"> <?= AppLabels::EMISSION_SOURCE ?> </h4>
+            </div>
+            <div class="widget-body">
+                <div class="widget-main">
+                    <?= DetailView::widget([
+                        'model' => $model,
+                        'options' => [
+                            'excluded' => ['ppu_id','ppues_chimney_name','ppues_chimney_shape_code','ppues_chimney_height','ppues_chimney_diameter','ppues_hole_position','ppues_fuel_name_code','ppues_total_fuel','ppues_fuel_unit_code','ppues_location','ppues_coord_ls', 'ppues_coord_bt'],
+                            'converter' => [
+                                'ppues_monitoring_data_status_code' => [AppConstants::FORMAT_TYPE_VARIABLE, Codeset::getCodesetValue(AppConstants::CODESET_NAME_MONITORING_DATA_STATUS_CODE, $model->ppues_monitoring_data_status_code)],
+                                'ppues_freq_monitoring_obligation_code' => [AppConstants::FORMAT_TYPE_VARIABLE, Codeset::getCodesetValue(AppConstants::CODESET_NAME_FREQ_MONITORING_OBLIGATION_CODE, $model->ppues_freq_monitoring_obligation_code)],
+                            ]
+                        ]
+                    ]); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-6">
+        <div class="widget-box">
+            <div class="widget-header">
+                <h4 class="widget-title"> <?= AppLabels::CHIMNEY ?> </h4>
+            </div>
+            <div class="widget-body">
+                <div class="widget-main">
+                    <?= DetailView::widget([
+                        'model' => $model,
+                        'options' => [
+                            'excluded' => ['ppues_name','ppues_capacity','ppues_control_device','ppues_operation_time','ppues_monitoring_data_status_code','ppues_freq_monitoring_obligation_code','ppues_ref','ppu_id','ppues_fuel_name_code','ppues_total_fuel','ppues_fuel_unit_code','ppues_location','ppues_coord_ls', 'ppues_coord_bt'],
+                            'converter' => [
+                                'ppues_chimney_shape_code' => [AppConstants::FORMAT_TYPE_VARIABLE, Codeset::getCodesetValue(AppConstants::CODESET_NAME_CHIMNEY_SHAPE_CODE, $model->ppues_chimney_shape_code)],
+                            ]
+                        ]
+                    ]); ?>
+
+                </div>
+            </div>
+        </div>
+        <hr/>
+    </div>
+
+
+
+    <div class="col-xs-12 col-sm-3">
+        <div class="widget-box">
+            <div class="widget-header">
+                <h4 class="widget-title"> <?= AppLabels::FUEL ?> </h4>
+            </div>
+            <div class="widget-body">
+                <div class="widget-main">
+                    <?= DetailView::widget([
+                        'model' => $model,
+                        'options' => [
+                            'excluded' => ['ppues_name','ppues_capacity','ppues_control_device','ppues_operation_time','ppues_monitoring_data_status_code','ppues_freq_monitoring_obligation_code','ppues_ref','ppu_id','ppues_chimney_name','ppues_chimney_shape_code','ppues_chimney_height','ppues_chimney_diameter','ppues_hole_position','ppues_location','ppues_coord_ls', 'ppues_coord_bt'],
+                            'converter' => [
+                                'ppues_fuel_name_code' => [AppConstants::FORMAT_TYPE_VARIABLE, Codeset::getCodesetValue(AppConstants::CODESET_NAME_FUEL_NAME_CODE, $model->ppues_fuel_name_code)],
+                                'ppues_fuel_unit_code' => [AppConstants::FORMAT_TYPE_VARIABLE, Codeset::getCodesetValue(AppConstants::CODESET_NAME_FUEL_UNIT_CODE, $model->ppues_fuel_unit_code)],
+                            ]
+                        ]
+                    ]); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-3">
+        <div class="widget-box">
+            <div class="widget-header">
+                <h4 class="widget-title"> <?= AppLabels::LOCATION ?> </h4>
+            </div>
+            <div class="widget-body">
+                <div class="widget-main">
+                    <?= DetailView::widget([
+                        'model' => $model,
+                        'options' => [
+                            'excluded' => ['ppues_name','ppues_capacity','ppues_control_device','ppues_operation_time','ppues_monitoring_data_status_code','ppues_freq_monitoring_obligation_code','ppues_ref','ppu_id','ppues_chimney_name','ppues_chimney_shape_code','ppues_chimney_height','ppues_chimney_diameter','ppues_hole_position','ppues_fuel_name_code','ppues_total_fuel','ppues_fuel_unit_code'],
+                        ]
+                    ]); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12">
+        <?= ViewButton::widget(['model' => $model]); ?>
+    </div>
 
 </div>
+

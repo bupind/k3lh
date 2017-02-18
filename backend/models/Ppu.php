@@ -3,7 +3,6 @@
 namespace backend\models;
 
 use common\vendor\AppLabels;
-use Yii;
 use common\vendor\AppConstants;
 
 /**

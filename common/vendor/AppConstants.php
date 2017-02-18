@@ -49,6 +49,7 @@ class AppConstants {
     const ACTIVE_FORM_WIDGET_TEMPLATE = '{label}{input}<span class="help-block">{error}{hint}</span>';
     const ACTIVE_FORM_WIDGET_TEMPLATE_EXTRA = '{label} <div id="{wrapper_id}" class="input-group input-large"><div class="input-group">{input}<span class="input-group-btn">{extra}</span></div><span class="help-block">{error}{hint}</span></div>';
     const ACTIVE_FORM_CLASS_LABEL_COL_3 = 'col-sm-3 control-label no-padding-right';
+    const ACTIVE_FORM_CLASS_LABEL_COL_4 = 'col-sm-4 control-label no-padding-right';
     
     const ACTIVE_FORM_CLASS_INPUT_TEXT = 'col-xs-10 col-sm-5';
     const ACTIVE_FORM_CLASS_INPUT_TEXT_UPPERCASE = 'col-xs-10 col-sm-5 uppercase';
@@ -93,6 +94,7 @@ class AppConstants {
     const MODULE_CODE_WORKING_PLAN = 'WORKPLAN';
     const MODULE_CODE_MATURITY_LEVEL = 'MAT_LEV';
     const MODULE_CODE_ENVIRONMENT_PERMIT = 'ENV_PERM';
+    const MODULE_CODE_PPU_EMISSION_SOURCE = 'PPU_EMS_SRC';
     
     // ATTACHMENT TYPE
     const ATTACHMENT_TYPE_IMAGE = 'IMG';
@@ -185,6 +187,11 @@ class AppConstants {
     const CODESET_NAME_POST_TYPE_CODE = 'POST_TYPE_CODE';
     const CODESET_NAME_FORM_TYPE_CODE = 'FORM_TYPE_CODE';
     const CODESET_NAME_ATTRIBUTE_TYPE_CODE = 'ATTRIBUTE_TYPE_CODE';
+    const CODESET_NAME_CHIMNEY_SHAPE_CODE = 'CHIMNEY_SHAPE_CODE';
+    const CODESET_NAME_MONITORING_DATA_STATUS_CODE = 'MONITORING_DATA_STATUS_CODE';
+    const CODESET_NAME_FREQ_MONITORING_OBLIGATION_CODE = 'FREQ_MONITORING_OBLIGATION_CODE';
+    const CODESET_NAME_FUEL_NAME_CODE = 'FUEL_NAME_CODE';
+    const CODESET_NAME_FUEL_UNIT_CODE = 'FUEL_UNIT_CODE';
     const CODESET_WORKING_PLAN_LEGEND = 'WP_LEGEND';
     const CODESET_UNIT_CODE = 'UNIT_CODE';
     

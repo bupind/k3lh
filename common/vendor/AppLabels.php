@@ -273,5 +273,29 @@ class AppLabels {
     const GRK = 'GRK';
     const TECHNICAL_PROVISION = 'Ketentuan Teknis';
     const POLLUTION_LOAD = 'Beban Pencemaran';
+    const EMISSION_SOURCE = 'Sumber Emisi';
+    const CHIMNEY = 'Cerobong';
+    const CAPACITY = 'Kapasitas';
+    const EMISSION_CONTROL_TOOL = 'Alat Pengendali Emisi';
+    const FUEL_NAME = 'Name Bahan Bakar';
+    const TOTAL_FUEL = 'Jumlah Bahan Bakar';
+    const FUEL_UNIT = 'Satuan Bahan Bakar';
+    const OPERATION_TIME = 'Waktu Operasi';
+    const HOUR = 'Jam';
+    const COORDINAT = 'Koordinat';
+    const LS = 'Koordinat LS';
+    const BT = 'Koordinat BT';
+    const SHAPE = 'Bentuk';
+    const HEIGHT = 'Tinggi';
+    const LENGTH = 'Panjang';
+    const M = 'm';
+    const DIAMETER = 'Diameter';
+    const POSITION = 'Posisi';
+    const SAMPLING_HOLE = 'Lubang Sampling';
+    const PPUES_STATUS_PROPER = 'Status Data Pemantauan pada Periode PROPER';
+    const WATCHED = 'Dipantau';
+    const PPUES_MONITORING_OBLIGATION = 'Frekuensi Kewajiban Pemantauan';
+    const FUEL = "Bahan Bakar";
+    const MW = 'MW';
 
 }

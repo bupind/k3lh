@@ -2,52 +2,40 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use common\vendor\AppLabels;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\PpuEmissionSourceSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $model backend\models\PpuEmissionSource */
 
-$this->title = 'Ppu Emission Sources';
+$this->title = AppLabels::EMISSION_SOURCE_INVENTORY;
+$this->params['breadcrumbs'][] = ['label' => AppLabels::AIR_POLLUTION_CONTROL, 'url' => ['/ppu/index']];
+$this->params['breadcrumbs'][] = ['label' => sprintf('%s - %s', $ppuModel->sector->sector_name, $ppuModel->powerPlant->pp_name), 'url' => ['/ppu/update', 'id' => $ppuModel->id]];
+$this->params['breadcrumbs'][] = ['label' => AppLabels::BTN_UPDATE, 'url' => ["/ppu/update/$ppuModel->id"]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ppu-emission-source-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <div class="page-header">
+        <h1><?= Html::encode($this->title) ?></h1>
+    </div>
 
-    <p>
-        <?= Html::a('Create Ppu Emission Source', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <div class="clearfix">
+        <div class="pull-right">
+            <?= Html::a(AppLabels::BTN_ADD, ['create', 'ppuId' => $ppuModel->id], ['class' => 'btn btn-sm btn-success']) ?>
+        </div>
+    </div>
+    <hr/>
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'ppu_id',
             'ppues_name',
             'ppues_chimney_name',
-            'ppues_capacity',
-            // 'ppues_control_device',
-            // 'ppues_fuel_name_code',
-            // 'ppues_total_fuel',
-            // 'ppues_fuel_unit_code',
-            // 'ppues_operation_time',
-            // 'ppues_location',
-            // 'ppues_coord_ls',
-            // 'ppues_coord_bt',
-            // 'ppues_chimney_shape_code',
-            // 'ppues_chimney_height',
-            // 'ppues_chimney_diameter',
-            // 'ppues_hole_position',
-            // 'ppues_monitoring_data_status_code',
-            // 'ppues_freq_monitoring_obligation_code',
-            // 'ppues_ref',
-            // 'created_by',
-            // 'created_at',
-            // 'updated_by',
-            // 'updated_at',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

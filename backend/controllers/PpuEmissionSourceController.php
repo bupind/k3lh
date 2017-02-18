@@ -5,14 +5,15 @@ namespace backend\controllers;
 use Yii;
 use backend\models\PpuEmissionSource;
 use backend\models\PpuEmissionSourceSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\vendor\AppConstants;
+use backend\models\Ppu;
 
 /**
  * PpuEmissionSourceController implements the CRUD actions for PpuEmissionSource model.
  */
-class PpuEmissionSourceController extends Controller
+class PpuEmissionSourceController extends AppController
 {
     /**
      * @inheritdoc
@@ -33,12 +34,20 @@ class PpuEmissionSourceController extends Controller
      * Lists all PpuEmissionSource models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($ppuId)
     {
+
+        if (empty($ppuId)) {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+
+        $ppuModel = Ppu::findOne(['id' => $ppuId]);
+
         $searchModel = new PpuEmissionSourceSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'ppuModel' => $ppuModel,
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -61,15 +70,21 @@ class PpuEmissionSourceController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($ppuId)
     {
+        if (empty($ppuId)) {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+
         $model = new PpuEmissionSource();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->saveTransactional()) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'ppuId' => $ppuId,
             ]);
         }
     }
@@ -84,7 +99,8 @@ class PpuEmissionSourceController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->saveTransactional()) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
@@ -101,7 +117,9 @@ class PpuEmissionSourceController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        if ($this->findModel($id)->delete()) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_DELETE_SUCCESS);
+        }
 
         return $this->redirect(['index']);
     }
