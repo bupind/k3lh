@@ -48,6 +48,7 @@ class AppConstants {
     const ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL = '{label} <div class="col-md-9">{input}<span class="help-inline col-xs-12"><span class="middle">{error}{hint}</span></span></div>';
     const ACTIVE_FORM_WIDGET_TEMPLATE = '{label}{input}<span class="help-block">{error}{hint}</span>';
     const ACTIVE_FORM_WIDGET_TEMPLATE_EXTRA = '{label} <div id="{wrapper_id}" class="input-group input-large"><div class="input-group">{input}<span class="input-group-btn">{extra}</span></div><span class="help-block">{error}{hint}</span></div>';
+    const ACTIVE_FORM_WIDGET_TEMPLATE_INPUT_GROUP = '{label}<div class="input-group">{input}<span class="input-group-addon">{separator}</span>{input2}</div><span class="help-block">{error}{hint}</span>';
     const ACTIVE_FORM_CLASS_LABEL_COL_3 = 'col-md-3 control-label no-padding-right';
     
     const ACTIVE_FORM_CLASS_INPUT_TEXT = 'col-xs-10 col-md-5';
@@ -187,6 +188,7 @@ class AppConstants {
     const CODESET_NAME_ATTRIBUTE_TYPE_CODE = 'ATTRIBUTE_TYPE_CODE';
     const CODESET_WORKING_PLAN_LEGEND = 'WP_LEGEND';
     const CODESET_UNIT_CODE = 'UNIT_CODE';
+    const CODESET_WASTE_WATER_TECHNOLOGY_CODE = 'WWATER_TECH_CODE';
     
     // WEB CONFIG
     const WEB_CONFIG_SALE_EXTERNAL_SALES = 'SALE_EXT_SALES';

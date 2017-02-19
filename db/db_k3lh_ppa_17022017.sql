@@ -2,7 +2,8 @@
 SQLyog Enterprise - MySQL GUI v7.15 
 MySQL - 5.5.25a : Database - k3lh
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -43,7 +44,7 @@ CREATE TABLE `ppa_month` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ppa_setup_permit_id` int(11) NOT NULL,
   `ppam_month` int(2) NOT NULL,
-  `ppam_date` int(2) NOT NULL,
+  `ppam_year` int(4) NOT NULL,
   `ppam_cert_number` varchar(4) DEFAULT NULL,
   `created_by` smallint(5) unsigned NOT NULL,
   `created_at` int(11) NOT NULL,

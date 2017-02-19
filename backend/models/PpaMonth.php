@@ -2,13 +2,16 @@
 
 namespace backend\models;
 
+use common\vendor\AppConstants;
+use common\vendor\AppLabels;
+
 /**
  * This is the model class for table "ppa_month".
  *
  * @property integer $id
  * @property integer $ppa_setup_permit_id
  * @property integer $ppam_month
- * @property integer $ppam_date
+ * @property integer $ppam_year
  * @property string $ppam_cert_number
  * @property integer $created_by
  * @property integer $created_at
@@ -17,7 +20,7 @@ namespace backend\models;
  *
  * @property PpaSetupPermit $ppaSetupPermit
  */
-class PpaMonth extends \yii\db\ActiveRecord {
+class PpaMonth extends AppModel {
     /**
      * @inheritdoc
      */
@@ -30,8 +33,8 @@ class PpaMonth extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['ppa_setup_permit_id', 'ppam_month', 'ppam_date', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'required'],
-            [['ppa_setup_permit_id', 'ppam_month', 'ppam_date', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'integer'],
+            [['ppa_setup_permit_id', 'ppam_month', 'ppam_year'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
+            [['ppa_setup_permit_id', 'ppam_month', 'ppam_year'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
             [['ppam_cert_number'], 'string', 'max' => 4],
             [['ppa_setup_permit_id'], 'exist', 'skipOnError' => true, 'targetClass' => PpaSetupPermit::className(), 'targetAttribute' => ['ppa_setup_permit_id' => 'id']],
         ];
@@ -43,14 +46,10 @@ class PpaMonth extends \yii\db\ActiveRecord {
     public function attributeLabels() {
         return [
             'id' => 'ID',
-            'ppa_setup_permit_id' => 'Ppa Setup Permit ID',
-            'ppam_month' => 'Ppam Month',
-            'ppam_date' => 'Ppam Date',
-            'ppam_cert_number' => 'Ppam Cert Number',
-            'created_by' => 'Created By',
-            'created_at' => 'Created At',
-            'updated_by' => 'Updated By',
-            'updated_at' => 'Updated At',
+            'ppa_setup_permit_id' => AppLabels::SETUP_POINT_PERMIT,
+            'ppam_month' => AppLabels::MONTH,
+            'ppam_year' => AppLabels::YEAR,
+            'ppam_cert_number' => AppLabels::CERTIFIED_NUMBER,
         ];
     }
     

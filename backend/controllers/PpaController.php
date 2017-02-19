@@ -40,7 +40,7 @@ class PpaController extends AppController {
         $model = new Ppa();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
-            $this->redirect('index');
+            $this->redirect(['index']);
         }
     
         $powerPlantList = ['' => AppLabels::PLEASE_SELECT];

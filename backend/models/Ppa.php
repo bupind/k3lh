@@ -65,4 +65,8 @@ class Ppa extends AppModel {
     public function getSector() {
         return $this->hasOne(Sector::className(), ['id' => 'sector_id']);
     }
+    
+    public function getSummary() {
+        return sprintf('%s - %s - %s', $this->sector->sector_name, $this->powerPlant->pp_name, $this->ppa_year);
+    }
 }

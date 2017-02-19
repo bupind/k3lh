@@ -136,6 +136,9 @@ class AppLabels {
     const PERMIT_PUBLISHER = 'Instansi Penerbit Izin';
     const PERMIT_PUBLISH_DATE = 'Tanggal Izin Terbit';
     const PERMIT_END_DATE = 'Tanggal Berakhir Izin';
+    const PERMIT = 'Izin';
+    const CERTIFIED_NUMBER_TEST_RESULT = 'Nomor Sertifikasi Hasil Uji';
+    const CERTIFIED_NUMBER = 'Nomor Sertifikasi';
     
     // MONTH
     const JANUARY = 'Januari';
@@ -282,6 +285,6 @@ class AppLabels {
     const WASTE_WATER_SOURCE = 'Sumber Air Limbah';
     const SETUP_POINT_NAME = 'Nama Titik Penataan';
     const WASTE_WATER_TECHNOLOGY = 'Jenis Teknologi Pengolahan Air Limbah';
-    
+    const WASTE_WATER = 'Air Limbah';
     
 }

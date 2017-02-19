@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use backend\models\Ppa;
+use backend\models\PpaMonth;
 use backend\models\PpaSetupPermit;
 use backend\models\PpaSetupPermitSearch;
 use Yii;
@@ -11,11 +12,15 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
+use yii\base\Model;
 
 /**
  * PpaSetupPermitController implements the CRUD actions for PpaSetupPermit model.
  */
 class PpaSetupPermitController extends AppController {
+    
+    public $ppaModel;
+    
     /**
      * @inheritdoc
      */
@@ -30,26 +35,35 @@ class PpaSetupPermitController extends AppController {
         ];
     }
     
+    public function beforeAction($action) {
+        parent::beforeAction($action);
+        
+        if (in_array($action->id, ['index', 'create'])) {
+            $ppaId = Yii::$app->request->get('ppaId');
+            if (empty($ppaId)) {
+                throw new NotFoundHttpException('The requested page does not exist.');
+            }
+    
+            $this->ppaModel = Ppa::findOne(['id' => $ppaId]);
+        }
+        
+        return true;
+    }
+    
+    
     /**
      * Lists all PpaSetupPermit models.
      * @return mixed
      */
-    public function actionIndex($ppaId) {
-        
-        if (empty($ppaId)) {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
-        
-        $ppaModel = Ppa::findOne(['id' => $ppaId]);
-        
+    public function actionIndex() {
         $searchModel = new PpaSetupPermitSearch();
-        $searchModel->ppa_id = $ppaModel->id;
+        $searchModel->ppa_id = $this->ppaModel->id;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'ppaModel' => $ppaModel
+            'ppaModel' => $this->ppaModel
         ]);
     }
     
@@ -84,21 +98,27 @@ class PpaSetupPermitController extends AppController {
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate($ppaId) {
-    
-        if (empty($ppaId)) {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
+    public function actionCreate() {
         
         $model = new PpaSetupPermit();
+        $startDate = new \DateTime();
+        $startDate->setDate($this->ppaModel->ppa_year - 1, 7, 1);
+        $ppaMonthModels = [];
         
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        for ($i=0; $i<12; $i++) {
+            $ppaMonthModels[] = new PpaMonth();
+        }
+        
+        $requestData = Yii::$app->request->post();
+        if ($model->load($requestData) && Model::loadMultiple($ppaMonthModels, $requestData) && $model->saveTransactional()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
-                'ppaId' => $ppaId
+                'ppaModel' => $this->ppaModel,
+                'startDate' => $startDate,
+                'ppaMonthModels' => $ppaMonthModels
             ]);
         }
     }
@@ -111,13 +131,22 @@ class PpaSetupPermitController extends AppController {
      */
     public function actionUpdate($id) {
         $model = $this->findModel($id);
+        $this->ppaModel = $model->ppa;
+        $ppaMonthModels = $model->ppaMonths;
         
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $startDate = new \DateTime();
+        $startDate->setDate($this->ppaModel->ppa_year - 1, 7, 1);
+    
+        $requestData = Yii::$app->request->post();
+        if ($model->load($requestData) && Model::loadMultiple($ppaMonthModels, $requestData) && $model->saveTransactional()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_UPDATE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'ppaModel' => $this->ppaModel,
+                'startDate' => $startDate,
+                'ppaMonthModels' => $ppaMonthModels
             ]);
         }
     }
