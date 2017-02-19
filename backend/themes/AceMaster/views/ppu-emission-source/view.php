@@ -6,6 +6,7 @@ use common\vendor\AppLabels;
 use common\vendor\AppConstants;
 use backend\models\Codeset;
 use app\components\ViewButton;
+use common\components\helpers\Converter;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\PpuEmissionSource */
@@ -47,6 +48,12 @@ $this->params['breadcrumbs'][] = ['label' => $model->ppues_name];
                             ]
                         ]
                     ]); ?>
+                    <div class="profile-user-info profile-user-info-striped">
+                        <div class="profile-info-row">
+                            <div class="profile-info-name info-large">Bukti Pendukung Tidak Dipantau</div>
+                            <div class="profile-info-value"> <?= Converter::attachment($model->attachmentOwner); ?> </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
