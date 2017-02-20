@@ -139,6 +139,7 @@ class AppLabels {
     const PERMIT = 'Izin';
     const CERTIFIED_NUMBER_TEST_RESULT = 'Nomor Sertifikasi Hasil Uji';
     const CERTIFIED_NUMBER = 'Nomor Sertifikasi';
+    const PARAM = 'Parameter';
     
     // MONTH
     const JANUARY = 'Januari';
@@ -286,5 +287,10 @@ class AppLabels {
     const SETUP_POINT_NAME = 'Nama Titik Penataan';
     const WASTE_WATER_TECHNOLOGY = 'Jenis Teknologi Pengolahan Air Limbah';
     const WASTE_WATER = 'Air Limbah';
-    
+    const QS_CONCENTRATE = 'Baku Mutu Konsentrasi';
+    const QS_UNIT = 'Satuan Baku Mutu';
+    const QS_REFERRED_RULE = 'Peraturan Baku Mutu yang diacu';
+    const QS_MAX_POLLUTION_LOAD = 'Baku Mutu Beban Pencemaran Maksimum';
+    const QS_LOAD_UNIT_CODE = 'Satuan Baku Mutu Beban';
+    const QS_REFERRED_MAX_POLLUTION_LOAD_RULE = 'Peraturan Baku Mutu Beban Pencemaran Maksimum yang diacu';
 }

@@ -3,18 +3,21 @@
 namespace backend\controllers;
 
 use backend\models\Ppa;
-use backend\models\PpaSearch;
+use backend\models\PpaReportBm;
+use backend\models\PpaReportBmSearch;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
 use common\vendor\AppConstants;
-use common\vendor\AppLabels;
-use backend\models\PowerPlant;
 
 /**
- * PpaController implements the CRUD actions for Ppa model.
+ * PpaReportBmController implements the CRUD actions for PpaReportBm model.
  */
-class PpaController extends AppController {
+class PpaReportBmController extends AppController {
+    
+    public $ppaModel;
+    
+    
     /**
      * @inheritdoc
      */
@@ -31,42 +34,36 @@ class PpaController extends AppController {
     
     public function beforeAction($action) {
         parent::beforeAction($action);
-        return $this->rbac();
+        
+        if (in_array($action->id, ['index', 'create'])) {
+            $ppaId = Yii::$app->request->get('ppaId');
+            if (empty($ppaId)) {
+                throw new NotFoundHttpException('The requested page does not exist.');
+            }
+            
+            $this->ppaModel = Ppa::findOne(['id' => $ppaId]);
+        }
+        
+        return true;
     }
     
     /**
-     * Lists all Ppa models.
+     * Lists all PpaReportBm models.
      * @return mixed
      */
     public function actionIndex() {
-        $searchModel = new PpaSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-    
-        $model = new Ppa();
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
-            $this->redirect(['index']);
-        }
-    
-        $powerPlantList = ['' => AppLabels::PLEASE_SELECT];
-        if (!is_null($model->power_plant_id)) {
-            $powerPlantList = PowerPlant::map(new PowerPlant(), 'pp_name', null, true, [
-                'where' => [
-                    ['sector_id' => $model->sector_id]
-                ]
-            ]);
-        }
-    
+        $searchModel = new PpaReportBmSearch();
+        $dataProvider = $searchModel->searchPpa(Yii::$app->request->queryParams, $this->ppaModel->id);
+        
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'model' => $model,
-            'powerPlantList' => $powerPlantList
+            'ppaModel' => $this->ppaModel
         ]);
     }
     
     /**
-     * Displays a single Ppa model.
+     * Displays a single PpaReportBm model.
      * @param integer $id
      * @return mixed
      */
@@ -77,14 +74,14 @@ class PpaController extends AppController {
     }
     
     /**
-     * Finds the Ppa model based on its primary key value.
+     * Finds the PpaReportBm model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Ppa the loaded model
+     * @return PpaReportBm the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id) {
-        if (($model = Ppa::findOne($id)) !== null) {
+        if (($model = PpaReportBm::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
@@ -92,12 +89,12 @@ class PpaController extends AppController {
     }
     
     /**
-     * Creates a new Ppa model.
+     * Creates a new PpaReportBm model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate() {
-        $model = new Ppa();
+        $model = new PpaReportBm();
         
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
@@ -110,7 +107,7 @@ class PpaController extends AppController {
     }
     
     /**
-     * Updates an existing Ppa model.
+     * Updates an existing PpaReportBm model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -122,22 +119,14 @@ class PpaController extends AppController {
             Yii::$app->session->setFlash('success', AppConstants::MSG_UPDATE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-    
-            $powerPlantList = PowerPlant::map(new PowerPlant(), 'pp_name', null, true, [
-                'where' => [
-                    ['sector_id' => $model->sector_id]
-                ]
-            ]);
-            
             return $this->render('update', [
                 'model' => $model,
-                'powerPlantList' => $powerPlantList
             ]);
         }
     }
     
     /**
-     * Deletes an existing Ppa model.
+     * Deletes an existing PpaReportBm model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed

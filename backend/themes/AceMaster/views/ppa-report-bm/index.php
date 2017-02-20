@@ -1,19 +1,19 @@
 <?php
 
-use common\vendor\AppLabels;
-use yii\grid\GridView;
 use yii\helpers\Html;
+use yii\grid\GridView;
+use common\vendor\AppLabels;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\PpaSetupPermitSearch */
+/* @var $searchModel backend\models\PpaReportBmSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $ppaModel \backend\models\Ppa */
 
-$this->title = AppLabels::SETUP_POINT_PERMIT;
+$this->title = AppLabels::BM_REPORT_PARAMETER;
 $this->params['breadcrumbs'][] = ['label' => sprintf('%s - %s', AppLabels::PPA, $ppaModel->getSummary()), 'url' => ['/ppa/update', 'id' => $ppaModel->id]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="ppa-setup-permit-index">
+<div class="ppa-report-bm-index">
 
     <div class="page-header">
         <h1><?= Html::encode($this->title) ?></h1>
@@ -32,19 +32,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'filterModel' => $searchModel,
             'columns' => [
                 ['class' => 'yii\grid\SerialColumn'],
-                
-                'ppasp_wastewater_source',
-                'ppasp_setup_point_name',
-                [
-                    'attribute' => 'ppasp_coord_ls',
-                    'format' => 'html'
-                ],
-                [
-                    'attribute' => 'ppasp_coord_bt',
-                    'format' => 'html'
-                ],
-                'ppasp_permit_number',
-                
+            
+                'ppa_setup_permit_id',
+                'ppar_param_code',
+                'ppar_param_unit_code',
+                'ppar_qs_1',
+            
                 ['class' => 'yii\grid\ActionColumn'],
             ],
         ]); ?>

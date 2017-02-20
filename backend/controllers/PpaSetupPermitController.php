@@ -6,13 +6,11 @@ use backend\models\Ppa;
 use backend\models\PpaMonth;
 use backend\models\PpaSetupPermit;
 use backend\models\PpaSetupPermitSearch;
-use Yii;
-use yii\filters\VerbFilter;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
 use common\vendor\AppConstants;
-use common\vendor\AppLabels;
+use Yii;
 use yii\base\Model;
+use yii\filters\VerbFilter;
+use yii\web\NotFoundHttpException;
 
 /**
  * PpaSetupPermitController implements the CRUD actions for PpaSetupPermit model.
@@ -43,11 +41,11 @@ class PpaSetupPermitController extends AppController {
             if (empty($ppaId)) {
                 throw new NotFoundHttpException('The requested page does not exist.');
             }
-    
+            
             $this->ppaModel = Ppa::findOne(['id' => $ppaId]);
         }
         
-        return true;
+        return $this->rbac();
     }
     
     
@@ -105,7 +103,7 @@ class PpaSetupPermitController extends AppController {
         $startDate->setDate($this->ppaModel->ppa_year - 1, 7, 1);
         $ppaMonthModels = [];
         
-        for ($i=0; $i<12; $i++) {
+        for ($i = 0; $i < 12; $i++) {
             $ppaMonthModels[] = new PpaMonth();
         }
         
@@ -136,7 +134,7 @@ class PpaSetupPermitController extends AppController {
         
         $startDate = new \DateTime();
         $startDate->setDate($this->ppaModel->ppa_year - 1, 7, 1);
-    
+        
         $requestData = Yii::$app->request->post();
         if ($model->load($requestData) && Model::loadMultiple($ppaMonthModels, $requestData) && $model->saveTransactional()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_UPDATE_SUCCESS);
