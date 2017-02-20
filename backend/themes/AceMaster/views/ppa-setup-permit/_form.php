@@ -163,7 +163,7 @@ use kartik\date\DatePicker;
     </div>
 
     <div class="col-xs-12">
-        <?= SubmitButton::widget(['backAction' => 'index', 'isNewRecord' => $model->isNewRecord, 'widget' => true]); ?>
+        <?= SubmitButton::widget(['backAction' => ['index', 'ppaId' => $ppaModel->id], 'isNewRecord' => $model->isNewRecord, 'widget' => true]); ?>
     </div>
     <?php ActiveForm::end(); ?>
 

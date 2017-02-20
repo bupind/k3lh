@@ -83,6 +83,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'options' => [
                     'buttons' => [
                         'create' => Html::a('<i class="ace-icon fa fa-plus bigger-120"></i> ' . AppLabels::BTN_ADD, ['create', 'ppaId' => $model->ppa_id], ['class' => 'btn btn-white btn-success btn-bold']),
+                        'index' => Html::a('<i class="ace-icon fa fa-undo bigger-120 red2"></i> ' . AppLabels::BTN_BACK, ['index', 'ppaId' => $model->ppa_id], ['class' => 'btn btn-white btn-danger btn-bold']),
                     ]
                 ]
             ]); ?>
