@@ -30,16 +30,56 @@ $this->params['breadcrumbs'][] = $this->title;
         </h1>
     </div>
     
-    <?= DetailView::widget([
-        'model' => $model,
-        'options' => [
-            'converter' => [
-                'ppa_id' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->ppa->getSummary()],
-                'ppasp_wastewater_tech_code' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->ppasp_wastewater_tech_code_desc]
-            ]
-        ]
-    ]); ?>
+    <div class="row">
+        <div class="col-xs-12 col-md-4">
+            <h3 class="header smaller lighter green"><?= AppLabels::WASTE_WATER; ?></h3>
+            <?= DetailView::widget([
+                'model' => $model,
+                'options' => [
+                    'order' => [
+                        'ppa_id',
+                        'ppasp_wastewater_source',
+                        'ppasp_setup_point_name',
+                        'ppasp_coord_ls',
+                        'ppasp_coord_bt',
+                        'ppasp_wastewater_tech_code'
+                    ],
+                    'converter' => [
+                        'ppa_id' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->ppa->getSummary()],
+                        'ppasp_wastewater_tech_code' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->ppasp_wastewater_tech_code_desc]
+                    ]
+                ]
+            ]); ?>
+        </div>
+        <div class="col-xs-12 col-md-3">
+            <h3 class="header smaller lighter green"><?= AppLabels::PERMIT; ?></h3>
+            <?= DetailView::widget([
+                'model' => $model,
+                'options' => [
+                    'order' => [
+                        'ppasp_permit_number',
+                        'ppasp_permit_publisher',
+                        'ppasp_permit_publish_date',
+                        'ppasp_permit_end_date',
+                    ]
+                ]
+            ]); ?>
+        </div>
+        <div class="col-xs-12 col-md-5">
+            <h3 class="header smaller lighter green"><?= AppLabels::CERTIFIED_NUMBER_TEST_RESULT; ?></h3>
+            <?php foreach ($model->ppaMonths as $ppaMonth): ?>
+                <div class="col-xs-12 col-sm-4">
+                    <label><strong><?= $ppaMonth->month_label; ?></strong></label>
+                    <p><?= $ppaMonth->ppam_cert_number; ?></p>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
     
-    <?= ViewButton::widget(['model' => $model]); ?>
+    <div class="row">
+        <div class="col-xs-12">
+            <?= ViewButton::widget(['model' => $model]); ?>
+        </div>
+    </div>
 
 </div>
