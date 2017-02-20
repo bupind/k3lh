@@ -3,6 +3,7 @@
 namespace backend\models;
 
 use common\vendor\AppConstants;
+use common\vendor\AppLabels;
 
 /**
  * This is the model class for table "ppucmes_month".
@@ -21,6 +22,7 @@ use common\vendor\AppConstants;
  */
 class PpucmesMonth extends AppModel
 {
+    public $month_label;
     /**
      * @inheritdoc
      */
@@ -35,7 +37,7 @@ class PpucmesMonth extends AppModel
     public function rules()
     {
         return [
-            [['ppu_compulsory_monitored_emission_source_id', 'ppucmesm_month', 'ppucmesm_year', 'ppucmesm_operation_time'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
+            [['ppu_compulsory_monitored_emission_source_id', 'ppucmesm_month', 'ppucmesm_year'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
             [['ppu_compulsory_monitored_emission_source_id', 'ppucmesm_month', 'ppucmesm_year'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
             [['ppucmesm_operation_time'], 'number'],
             [['ppu_compulsory_monitored_emission_source_id'], 'exist', 'skipOnError' => true, 'targetClass' => PpuCompulsoryMonitoredEmissionSource::className(), 'targetAttribute' => ['ppu_compulsory_monitored_emission_source_id' => 'id']],
@@ -49,11 +51,21 @@ class PpucmesMonth extends AppModel
     {
         return [
             'id' => 'ID',
-            'ppu_compulsory_monitored_emission_source_id' => 'Ppu Compulsory Monitored Emission Source ID',
-            'ppucmesm_month' => 'Ppucmesm Month',
-            'ppucmesm_year' => 'Ppucmesm Year',
-            'ppucmesm_operation_time' => 'Ppucmesm Operation Time',
+            'ppu_compulsory_monitored_emission_source_id' => AppLabels::EMISSION_SOURCE_MONITORED,
+            'ppucmesm_month' => AppLabels::MONTH,
+            'ppucmesm_year' => AppLabels::YEAR,
+            'ppucmesm_operation_time' => AppLabels::OPERATION_TIME,
         ];
+    }
+
+    public function afterFind() {
+        parent::afterFind(); 
+
+        $dt = new \DateTime();
+        $dt->setDate($this->ppucmesm_year, $this->ppucmesm_month, 1);
+        $this->month_label = $dt->format('M Y');
+
+        return true;
     }
 
     /**

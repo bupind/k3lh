@@ -297,6 +297,7 @@ class AppLabels {
     const PPUES_MONITORING_OBLIGATION = 'Frekuensi Kewajiban Pemantauan';
     const FUEL = "Bahan Bakar";
     const MW = 'MW';
+    const EMISSION_SOURCE_MONITORED = 'Sumber Emisi Wajib Pantau';
     
 
 }
