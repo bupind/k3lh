@@ -140,7 +140,7 @@ use kartik\date\DatePicker;
                         <?php
                         
                         foreach ($ppaMonthModels as $key => $ppaMonth) {
-                            if (!$ppaModel->isNewRecord) {
+                            if (!$ppaMonth->isNewRecord) {
                                 echo $form->field($ppaMonth, "[$key]id")->hiddenInput()->label(false);
                             }
                             echo $form->field($ppaMonth, "[$key]ppam_month")->hiddenInput(['value' => $startDate->format('m')])->label(false);

@@ -78,7 +78,14 @@ $this->params['breadcrumbs'][] = $this->title;
     
     <div class="row">
         <div class="col-xs-12">
-            <?= ViewButton::widget(['model' => $model]); ?>
+            <?= ViewButton::widget([
+                'model' => $model,
+                'options' => [
+                    'buttons' => [
+                        'create' => Html::a('<i class="ace-icon fa fa-plus bigger-120"></i> ' . AppLabels::BTN_ADD, ['create', 'ppaId' => $model->ppa_id], ['class' => 'btn btn-white btn-success btn-bold']),
+                    ]
+                ]
+            ]); ?>
         </div>
     </div>
 

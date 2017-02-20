@@ -112,7 +112,7 @@ class PpaSetupPermitController extends AppController {
         $requestData = Yii::$app->request->post();
         if ($model->load($requestData) && Model::loadMultiple($ppaMonthModels, $requestData) && $model->saveTransactional()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['create', 'ppaId' => $model->ppa_id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
