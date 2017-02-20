@@ -2,10 +2,8 @@
 
 namespace backend\models;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\PpuCompulsoryMonitoredEmissionSource;
 
 /**
  * PpuCompulsoryMonitoredEmissionSourceSearch represents the model behind the search form about `backend\models\PpuCompulsoryMonitoredEmissionSource`.
@@ -18,8 +16,8 @@ class PpuCompulsoryMonitoredEmissionSourceSearch extends PpuCompulsoryMonitoredE
     public function rules()
     {
         return [
-            [['id', 'ppu_id', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'integer'],
-            [['ppucmes_name', 'ppucmes_freq_monitoring_obligation_code'], 'safe'],
+            [['id', 'ppu_id'], 'integer'],
+            [['ppucmes_name','ppucmes_chimney_name', 'ppucmes_freq_monitoring_obligation_code'], 'safe'],
             [['ppucmes_operation_time'], 'number'],
         ];
     }
@@ -63,10 +61,6 @@ class PpuCompulsoryMonitoredEmissionSourceSearch extends PpuCompulsoryMonitoredE
             'id' => $this->id,
             'ppu_id' => $this->ppu_id,
             'ppucmes_operation_time' => $this->ppucmes_operation_time,
-            'created_by' => $this->created_by,
-            'created_at' => $this->created_at,
-            'updated_by' => $this->updated_by,
-            'updated_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['like', 'ppucmes_name', $this->ppucmes_name])

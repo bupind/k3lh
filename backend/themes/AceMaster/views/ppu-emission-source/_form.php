@@ -11,10 +11,11 @@ use common\components\helpers\Converter;
 /* @var $this yii\web\View */
 /* @var $model backend\models\PpuEmissionSource */
 /* @var $form yii\widgets\ActiveForm */
+/* @var $ppuId int */
 ?>
 
 <?php $form = ActiveForm::begin([
-    'id' => 'ppu-form',
+    'id' => 'ppu-emission-source-form',
     'options' => [
         'class' => 'form-horizontal',
         'role' => 'form',
@@ -195,7 +196,7 @@ use common\components\helpers\Converter;
 
 <div class="row">
     <div class="col-xs-12 form-actions text-center">
-        <?= SubmitLinkButton::widget(['formId' => 'smk3-form', 'backAction' => 'index', 'isNewRecord' => $model->isNewRecord]); ?>
+        <?= SubmitLinkButton::widget(['formId' => 'ppu-emission-source-form', 'backAction' => 'index', 'isNewRecord' => $model->isNewRecord]); ?>
     </div>
 </div>
 

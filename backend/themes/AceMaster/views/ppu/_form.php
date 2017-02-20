@@ -13,6 +13,7 @@ PPUAsset::register($this);
 /* @var $this yii\web\View */
 /* @var $model backend\models\Ppu */
 /* @var $form yii\widgets\ActiveForm */
+/* @var $powerPlantList backend\models\PowerPlant[] */
 ?>
 
 <?php
@@ -55,7 +56,7 @@ $form = ActiveForm::begin([
     <div class="col-xs-12 center">
         <div class="btn-group">
             <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::EMISSION_SOURCE_INVENTORY, ['/ppu-emission-source', 'ppuId' => $model->id], ['class' => 'btn btn-sm btn-success']); ?>
-            <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::ADHERENCE_POINT, '#', ['class' => 'btn btn-sm btn-warning']); ?>
+            <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::ADHERENCE_POINT, ['/ppu-compulsory-monitored-emission-source', 'ppuId' => $model->id], ['class' => 'btn btn-sm btn-warning']); ?>
             <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::ADHERENCE . AppLabels::BM_REPORT_PARAMETER, '#', ['class' => 'btn btn-sm btn-primary']); ?>
             <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::EMISSION_LOAD_CALCULATION, '#', ['class' => 'btn btn-sm btn-default']); ?>
             <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::TECHNICAL_PROVISION, '#', ['class' => 'btn btn-sm btn-info']); ?>

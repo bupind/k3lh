@@ -2,7 +2,7 @@
 
 namespace backend\models;
 
-use Yii;
+use common\vendor\AppConstants;
 
 /**
  * This is the model class for table "ppucmes_month".
@@ -19,7 +19,7 @@ use Yii;
  *
  * @property PpuCompulsoryMonitoredEmissionSource $ppuCompulsoryMonitoredEmissionSource
  */
-class PpucmesMonth extends \yii\db\ActiveRecord
+class PpucmesMonth extends AppModel
 {
     /**
      * @inheritdoc
@@ -35,8 +35,8 @@ class PpucmesMonth extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ppu_compulsory_monitored_emission_source_id', 'ppucmesm_month', 'ppucmesm_year', 'ppucmesm_operation_time', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'required'],
-            [['ppu_compulsory_monitored_emission_source_id', 'ppucmesm_month', 'ppucmesm_year', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'integer'],
+            [['ppu_compulsory_monitored_emission_source_id', 'ppucmesm_month', 'ppucmesm_year', 'ppucmesm_operation_time'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
+            [['ppu_compulsory_monitored_emission_source_id', 'ppucmesm_month', 'ppucmesm_year'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
             [['ppucmesm_operation_time'], 'number'],
             [['ppu_compulsory_monitored_emission_source_id'], 'exist', 'skipOnError' => true, 'targetClass' => PpuCompulsoryMonitoredEmissionSource::className(), 'targetAttribute' => ['ppu_compulsory_monitored_emission_source_id' => 'id']],
         ];
@@ -53,10 +53,6 @@ class PpucmesMonth extends \yii\db\ActiveRecord
             'ppucmesm_month' => 'Ppucmesm Month',
             'ppucmesm_year' => 'Ppucmesm Year',
             'ppucmesm_operation_time' => 'Ppucmesm Operation Time',
-            'created_by' => 'Created By',
-            'created_at' => 'Created At',
-            'updated_by' => 'Updated By',
-            'updated_at' => 'Updated At',
         ];
     }
 

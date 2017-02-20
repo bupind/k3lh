@@ -1,43 +1,40 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\DetailView;
+use app\components\DetailView;
+use common\vendor\AppLabels;
+use common\vendor\AppConstants;
+use backend\models\Codeset;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\PpuCompulsoryMonitoredEmissionSource */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Ppu Compulsory Monitored Emission Sources', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = sprintf("%s %s", AppLabels::BTN_VIEW, $model->ppucmes_name);
+$this->params['breadcrumbs'][] = ['label' => AppLabels::ADHERENCE_POINT, 'url' => ['index', 'ppuId' => $model->ppu_id]];
+$this->params['breadcrumbs'][] = ['label' => $model->ppucmes_name];
 ?>
 <div class="ppu-compulsory-monitored-emission-source-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
+    <div class="page-header">
+        <h1>
+            <?= Html::encode($this->title) ?>
+            <?php if (isset($this->params['subtitle'])): ?>
+                <small>
+                    <i class="ace-icon fa fa-angle-double-right"></i>
+                    <?= $this->params['subtitle']; ?>
+                </small>
+            <?php endif; ?>
+        </h1>
+    </div>
 
     <?= DetailView::widget([
         'model' => $model,
-        'attributes' => [
-            'id',
-            'ppu_id',
-            'ppucmes_name',
-            'ppucmes_operation_time',
-            'ppucmes_freq_monitoring_obligation_code',
-            'created_by',
-            'created_at',
-            'updated_by',
-            'updated_at',
-        ],
-    ]) ?>
+        'options' => [
+            'excluded' => ['ppu_id'],
+            'converter' => [
+                'ppucmes_freq_monitoring_obligation_code' => [AppConstants::FORMAT_TYPE_VARIABLE, Codeset::getCodesetValue(AppConstants::CODESET_NAME_FREQ_MONITORING_OBLIGATION_CODE, $model->ppucmes_freq_monitoring_obligation_code)],
+            ]
+        ]
+    ]); ?>
 
 </div>

@@ -107,7 +107,7 @@ class EnvironmentPermitController extends AppController
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->saveTransactional()) {
-            Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
+            Yii::$app->session->setFlash('success', AppConstants::MSG_UPDATE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             $powerPlantList = PowerPlant::map(new PowerPlant(), 'pp_name', null, true, [

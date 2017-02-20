@@ -1,21 +1,33 @@
 <?php
 
 use yii\helpers\Html;
+use common\vendor\AppLabels;
 
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\PpuCompulsoryMonitoredEmissionSource */
+/* @var $ppuId backend\models\Ppu */
+/* @var $ppuModel backend\models\Ppu */
+/* @var $startDate DateTime */
+/* @var $ppuMonthModels backend\models\PpucmesMonth */
 
-$this->title = 'Create Ppu Compulsory Monitored Emission Source';
-$this->params['breadcrumbs'][] = ['label' => 'Ppu Compulsory Monitored Emission Sources', 'url' => ['index']];
+
+$this->title = sprintf('%s %s', AppLabels::BTN_ADD, AppLabels::ADHERENCE_POINT);
+$this->params['breadcrumbs'][] = ['label' => AppLabels::ADHERENCE_POINT, 'url' => ['index', 'ppuId' => $ppuId]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ppu-compulsory-monitored-emission-source-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="page-header">
+        <h1><?= Html::encode($this->title) ?></h1>
+    </div>
 
     <?= $this->render('_form', [
+        'ppuId' => $ppuId,
+        'ppuModel' => $ppuModel,
         'model' => $model,
+        'startDate' => $startDate,
+        'ppuMonthModels' => $ppuMonthModels,
     ]) ?>
 
 </div>
