@@ -35,8 +35,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 
                 'ppasp_wastewater_source',
                 'ppasp_setup_point_name',
-                'ppasp_coord_ls',
-                'ppasp_coord_bt',
+                [
+                    'attribute' => 'ppasp_coord_ls',
+                    'format' => 'html'
+                ],
+                [
+                    'attribute' => 'ppasp_coord_bt',
+                    'format' => 'html'
+                ],
                 'ppasp_permit_number',
                 
                 ['class' => 'yii\grid\ActionColumn'],
