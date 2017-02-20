@@ -15,6 +15,8 @@ use backend\models\Ppu;
  */
 class PpuEmissionSourceController extends AppController
 {
+
+    public $ppuModel;
     /**
      * @inheritdoc
      */
@@ -30,24 +32,33 @@ class PpuEmissionSourceController extends AppController
         ];
     }
 
+    public function beforeAction($action) {
+        parent::beforeAction($action);
+
+        if (in_array($action->id, ['index', 'create'])) {
+            $ppuId = Yii::$app->request->get('ppuId');
+            if (empty($ppuId)) {
+                throw new NotFoundHttpException('The requested page does not exist.');
+            }
+
+            $this->ppuModel = Ppu::findOne(['id' => $ppuId]);
+        }
+
+        return true;
+    }
+
     /**
      * Lists all PpuEmissionSource models.
      * @return mixed
      */
-    public function actionIndex($ppuId)
+    public function actionIndex()
     {
-
-        if (empty($ppuId)) {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
-
-        $ppuModel = Ppu::findOne(['id' => $ppuId]);
 
         $searchModel = new PpuEmissionSourceSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'ppuModel' => $ppuModel,
+            'ppuModel' => $this->ppuModel,
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -70,11 +81,8 @@ class PpuEmissionSourceController extends AppController
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate($ppuId)
+    public function actionCreate()
     {
-        if (empty($ppuId)) {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
 
         $model = new PpuEmissionSource();
 
@@ -84,7 +92,7 @@ class PpuEmissionSourceController extends AppController
         } else {
             return $this->render('create', [
                 'model' => $model,
-                'ppuId' => $ppuId,
+                'ppuId' => $this->ppuModel->id,
             ]);
         }
     }

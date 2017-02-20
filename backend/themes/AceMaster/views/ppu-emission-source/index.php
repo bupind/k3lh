@@ -8,10 +8,11 @@ use common\vendor\AppLabels;
 /* @var $searchModel backend\models\PpuEmissionSourceSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $model backend\models\PpuEmissionSource */
+/* @var $ppuModel backend\models\Ppu */
 
 $this->title = AppLabels::EMISSION_SOURCE_INVENTORY;
 $this->params['breadcrumbs'][] = ['label' => AppLabels::AIR_POLLUTION_CONTROL, 'url' => ['/ppu/index']];
-$this->params['breadcrumbs'][] = ['label' => sprintf('%s - %s', $ppuModel->sector->sector_name, $ppuModel->powerPlant->pp_name), 'url' => ['/ppu/update', 'id' => $ppuModel->id]];
+$this->params['breadcrumbs'][] = ['label' => sprintf('%s - %s', $ppuModel->sector->sector_name, $ppuModel->powerPlant->pp_name), 'url' => ['/ppu/view', 'id' => $ppuModel->id]];
 $this->params['breadcrumbs'][] = ['label' => AppLabels::BTN_UPDATE, 'url' => ["/ppu/update/$ppuModel->id"]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

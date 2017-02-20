@@ -298,6 +298,15 @@ class AppLabels {
     const FUEL = "Bahan Bakar";
     const MW = 'MW';
     const EMISSION_SOURCE_MONITORED = 'Sumber Emisi Wajib Pantau';
+    const WATCHED_PARAMETER = 'Parameter yang dipantau';
+    const PARAMETER_UNIT = 'Satuan Parameter';
+    const QUALITY_STANDARD = 'Baku Mutu';
+    const QUALITY_STANDARD_UNIT = 'Satuan Baku Mutu';
+    const QUALITY_STANDARD_REF = 'Peraturan Baku Mutu';
+    const MAXIMUM_QS_POLLUTION_LOAD = 'Baku Mutu Beban Pencemaran Maksimum';
+    const QS_LOAD_UNIT = 'Satuan Baku Mutu Beban';
+    const MAXIMUM_QS_POLLUTION_LOAD_REF = 'Peraturan Baku Mutu Pencemaran Maksimum';
+    const PARAMETER_OBLIGATION = 'Ketaatan Parameter';
     
 
 }

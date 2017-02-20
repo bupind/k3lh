@@ -59,7 +59,7 @@ class PpucmesMonth extends AppModel
     }
 
     public function afterFind() {
-        parent::afterFind(); 
+        parent::afterFind();
 
         $dt = new \DateTime();
         $dt->setDate($this->ppucmesm_year, $this->ppucmesm_month, 1);

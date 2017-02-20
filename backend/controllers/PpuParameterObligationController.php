@@ -3,21 +3,18 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\PpuCompulsoryMonitoredEmissionSource;
-use backend\models\PpuCompulsoryMonitoredEmissionSourceSearch;
+use backend\models\PpuParameterObligation;
+use backend\models\PpuParameterObligationSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\vendor\AppConstants;
 use backend\models\Ppu;
-use backend\models\PpucmesMonth;
-use yii\base\Model;
 
 /**
- * PpuCompulsoryMonitoredEmissionSourceController implements the CRUD actions for PpuCompulsoryMonitoredEmissionSource model.
+ * PpuParameterObligationController implements the CRUD actions for PpuParameterObligation model.
  */
-class PpuCompulsoryMonitoredEmissionSourceController extends AppController
+class PpuParameterObligationController extends AppController
 {
-
     public $ppuModel;
     /**
      * @inheritdoc
@@ -34,6 +31,11 @@ class PpuCompulsoryMonitoredEmissionSourceController extends AppController
         ];
     }
 
+    /**
+     * Lists all PpuParameterObligation models.
+     * @return mixed
+     */
+
     public function beforeAction($action) {
         parent::beforeAction($action);
 
@@ -49,15 +51,11 @@ class PpuCompulsoryMonitoredEmissionSourceController extends AppController
         return true;
     }
 
-    /**
-     * Lists all PpuCompulsoryMonitoredEmissionSource models.
-     * @return mixed
-     */
     public function actionIndex()
     {
+        $searchModel = new PpuParameterObligationSearch();
+        $dataProvider = $searchModel->searchPpu(Yii::$app->request->queryParams, $this->ppuModel->id);
 
-        $searchModel = new PpuCompulsoryMonitoredEmissionSourceSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         return $this->render('index', [
             'ppuModel' => $this->ppuModel,
             'searchModel' => $searchModel,
@@ -66,7 +64,7 @@ class PpuCompulsoryMonitoredEmissionSourceController extends AppController
     }
 
     /**
-     * Displays a single PpuCompulsoryMonitoredEmissionSource model.
+     * Displays a single PpuParameterObligation model.
      * @param integer $id
      * @return mixed
      */
@@ -78,40 +76,27 @@ class PpuCompulsoryMonitoredEmissionSourceController extends AppController
     }
 
     /**
-     * Creates a new PpuCompulsoryMonitoredEmissionSource model.
+     * Creates a new PpuParameterObligation model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $startDate = new \DateTime();
-        $startDate->setDate($this->ppuModel->ppu_year - 1, 7, 1);
-        $ppuMonthModels = [];
+        $model = new PpuParameterObligation();
 
-        for ($i=0; $i<12; $i++) {
-            $ppuMonthModels[] = new PpucmesMonth();
-        }
-
-        $model = new PpuCompulsoryMonitoredEmissionSource();
-
-        $requestData = Yii::$app->request->post();
-
-        if ($model->load($requestData) && Model::loadMultiple($ppuMonthModels, $requestData) && $model->saveTransactional()) {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
-                'model' => $model,
                 'ppuId' => $this->ppuModel->id,
-                'ppuModel' => $this->ppuModel,
-                'startDate' => $startDate,
-                'ppuMonthModels' => $ppuMonthModels,
+                'model' => $model,
             ]);
         }
     }
 
     /**
-     * Updates an existing PpuCompulsoryMonitoredEmissionSource model.
+     * Updates an existing PpuParameterObligation model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -119,29 +104,19 @@ class PpuCompulsoryMonitoredEmissionSourceController extends AppController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $this->ppuModel = $model->ppu;
-        $ppuMonthModels = $model->ppucmesMonths;
 
-        $startDate = new \DateTime();
-        $startDate->setDate($this->ppuModel->ppu_year - 1, 7, 1);
-
-        $requestData = Yii::$app->request->post();
-
-        if ($model->load($requestData) && Model::loadMultiple($ppuMonthModels, $requestData) && $model->saveTransactional()) {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_UPDATE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
-                'ppuModel' => $this->ppuModel,
-                'startDate' => $startDate,
-                'ppuMonthModels' => $ppuMonthModels
             ]);
         }
     }
 
     /**
-     * Deletes an existing PpuCompulsoryMonitoredEmissionSource model.
+     * Deletes an existing PpuParameterObligation model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -156,15 +131,15 @@ class PpuCompulsoryMonitoredEmissionSourceController extends AppController
     }
 
     /**
-     * Finds the PpuCompulsoryMonitoredEmissionSource model based on its primary key value.
+     * Finds the PpuParameterObligation model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return PpuCompulsoryMonitoredEmissionSource the loaded model
+     * @return PpuParameterObligation the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = PpuCompulsoryMonitoredEmissionSource::findOne($id)) !== null) {
+        if (($model = PpuParameterObligation::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

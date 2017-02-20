@@ -13,7 +13,9 @@ $this->params['breadcrumbs'][] = AppLabels::BTN_UPDATE;
 ?>
 <div class="ppu-emission-source-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="page-header">
+        <h1><?= Html::encode($this->title) ?></h1>
+    </div>
 
     <?= $this->render('_form', [
         'model' => $model,
