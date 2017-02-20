@@ -5,9 +5,8 @@ use common\vendor\AppConstants;
 
 $template = isset($options['template']) ? $options['template'] : AppConstants::VIEW_BUTTON_TEMPLATE;
 
-$optionAdditionalButtons = isset($options['buttons']) && is_array($options['buttons']) ? $options['buttons'] : [];
+$optionButtons = isset($options['buttons']) && is_array($options['buttons']) ? $options['buttons'] : [];
 $optionBackAction = isset($options['backAction']) && !empty($options['backAction']) ? $options['backAction'] : 'index';
-
 
 $buttons = array_merge([
     'edit' => Html::a('<i class="ace-icon fa fa-pencil bigger-120 blue"></i> ' . AppLabels::BTN_UPDATE, ['update', 'id' => $model->id], ['class' => 'btn btn-white btn-info btn-bold']),
@@ -21,7 +20,7 @@ $buttons = array_merge([
         ]),
     'index' => Html::a('<i class="ace-icon fa fa-undo bigger-120 red2"></i> ' . AppLabels::BTN_BACK, [$optionBackAction], ['class' => 'btn btn-white btn-danger btn-bold']),
     'printing' => Html::a('<i class="ace-icon fa fa-print bigger-120"></i> ' . AppLabels::BTN_PRINT, ['printing', 'id' => $model->id], ['class' => 'btn btn-white btn-primary btn-bold', 'target' => 'blank']),
-], $optionAdditionalButtons);
+], $optionButtons);
 
 ?>
 
