@@ -28,6 +28,10 @@ use common\vendor\AppLabels;
  * @property PpaSetupPermit $ppaSetupPermit
  */
 class PpaReportBm extends AppModel {
+    
+    public $ppar_qs_1_display;
+    public $ppar_qs_2_display;
+    
     /**
      * @inheritdoc
      */
@@ -60,12 +64,23 @@ class PpaReportBm extends AppModel {
             'ppar_param_unit_code' => AppLabels::UNIT,
             'ppar_qs_1' => AppLabels::QS_CONCENTRATE,
             'ppar_qs_2' => '',
+            'ppar_qs_1_display' => AppLabels::QS_CONCENTRATE,
+            'ppar_qs_2_display' => '',
             'ppar_qs_unit_code' => AppLabels::QS_UNIT,
             'ppar_qs_ref' => AppLabels::QS_REFERRED_RULE,
             'ppar_qs_max_pollution_load' => AppLabels::QS_MAX_POLLUTION_LOAD,
             'ppar_qs_load_unit_code' => AppLabels::QS_LOAD_UNIT_CODE,
             'ppar_qs_max_pollution_load_ref' => AppLabels::QS_REFERRED_MAX_POLLUTION_LOAD_RULE,
         ];
+    }
+    
+    public function afterFind() {
+        parent::afterFind();
+        
+        $this->ppar_qs_1_display = $this->ppar_qs_1;
+        $this->ppar_qs_2_display = $this->ppar_qs_2;
+        
+        return true;
     }
     
     /**

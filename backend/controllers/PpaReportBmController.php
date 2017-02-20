@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use backend\models\Ppa;
+use backend\models\PpaInletOutlet;
 use backend\models\PpaReportBm;
 use backend\models\PpaReportBmSearch;
 use Yii;
@@ -95,13 +96,25 @@ class PpaReportBmController extends AppController {
      */
     public function actionCreate() {
         $model = new PpaReportBm();
+        $startDate = new \DateTime();
+        $startDate->setDate($this->ppaModel->ppa_year - 1, 7, 1);
+        $ppaInletModels = $ppaOutletModels = [];
+    
+        for ($i = 0; $i < 12; $i++) {
+            $ppaInletModels[] = new PpaInletOutlet();
+            $ppaOutletModels[] = new PpaInletOutlet();
+        }
         
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['create', 'ppaId' => $this->ppaModel->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'ppaModel' => $this->ppaModel,
+                'startDate' => $startDate,
+                'ppaInletModels' => $ppaInletModels,
+                'ppaOutletModels' => $ppaOutletModels
             ]);
         }
     }

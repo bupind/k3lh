@@ -140,6 +140,7 @@ class AppLabels {
     const CERTIFIED_NUMBER_TEST_RESULT = 'Nomor Sertifikasi Hasil Uji';
     const CERTIFIED_NUMBER = 'Nomor Sertifikasi';
     const PARAM = 'Parameter';
+    const QUALITY_STANDARD = 'Baku Mutu';
     
     // MONTH
     const JANUARY = 'Januari';
