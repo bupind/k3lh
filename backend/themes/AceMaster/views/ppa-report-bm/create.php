@@ -7,8 +7,8 @@ use common\vendor\AppLabels;
 /* @var $model backend\models\PpaReportBm */
 /* @var $ppaModel \backend\models\Ppa */
 /* @var $startDate DateTime */
-/* @var $ppaInletModels \backend\models\PpaInletOutlet[] */
-/* @var $ppaOutletModels \backend\models\PpaInletOutlet[] */
+/* @var $startDateOutlet DateTime */
+/* @var $ppaInletOutletModels \backend\models\PpaInletOutlet[] */
 
 $this->title = sprintf('%s %s', AppLabels::BTN_ADD, AppLabels::BM_REPORT_PARAMETER);
 $this->params['breadcrumbs'][] = ['label' => sprintf('%s - %s', AppLabels::PPA, $ppaModel->getSummary()), 'url' => ['/ppa/update', 'id' => $ppaModel->id]];
@@ -25,8 +25,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'ppaModel' => $ppaModel,
         'startDate' => $startDate,
-        'ppaInletModels' => $ppaInletModels,
-        'ppaOutletModels' => $ppaOutletModels
+        'startDateOutlet' => $startDateOutlet,
+        'ppaInletOutletModels' => $ppaInletOutletModels,
     ]) ?>
 
 </div>

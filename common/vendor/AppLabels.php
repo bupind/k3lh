@@ -278,14 +278,14 @@ class AppLabels {
     // WATER POLLUTION CONTROL
     const PPA = 'PPA';
     const WATER_POLLUTION_CONTROL = 'Form Pengendalian Pencemaran Air';
-    const SETUP_POINT_PERMIT = 'Titik Penataan & Izin';
+    const SETUP_POINT_PERMIT = 'Titik Penaatan & Izin';
     const BM_REPORT_PARAMETER = 'Parameter Pelaporan BM';
     const TECHNICAL_PROVISION = 'Ketentuan Teknis';
     const POLLUTION_LOAD_DECREASE = 'Penurunan Beban Pencemaran';
     const POLLUTION_LOAD_BM = 'PPA BM Beban Pencemaran';
     const POLLUTION_LOAD_ACTUAL = 'PPA Beban Pencemaran Aktual';
     const WASTE_WATER_SOURCE = 'Sumber Air Limbah';
-    const SETUP_POINT_NAME = 'Nama Titik Penataan';
+    const SETUP_POINT_NAME = 'Nama Titik Penaatan';
     const WASTE_WATER_TECHNOLOGY = 'Jenis Teknologi Pengolahan Air Limbah';
     const WASTE_WATER = 'Air Limbah';
     const QS_CONCENTRATE = 'Baku Mutu Konsentrasi';
@@ -294,4 +294,8 @@ class AppLabels {
     const QS_MAX_POLLUTION_LOAD = 'Baku Mutu Beban Pencemaran Maksimum';
     const QS_LOAD_UNIT_CODE = 'Satuan Baku Mutu Beban';
     const QS_REFERRED_MAX_POLLUTION_LOAD_RULE = 'Peraturan Baku Mutu Beban Pencemaran Maksimum yang diacu';
+    const INLET_CONCENTRATE_TITLE = 'Konsentrasi Karakteristik Air Limbah / INLET<br />(sebelum diolah di IPAL)';
+    const OUTLET_CONCENTRATE_TITLE = 'Konsentrasi Titik Penaatan / OUTLET';
+    const INLET_VALUE = 'Nilai Inlet';
+    const OUTLET_VALUE = 'Nilai Outlet';
 }

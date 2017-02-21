@@ -10,6 +10,7 @@ use Yii;
 use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
 use common\vendor\AppConstants;
+use yii\base\Model;
 
 /**
  * PpaReportBmController implements the CRUD actions for PpaReportBm model.
@@ -45,7 +46,7 @@ class PpaReportBmController extends AppController {
             $this->ppaModel = Ppa::findOne(['id' => $ppaId]);
         }
         
-        return true;
+        return $this->rbac();
     }
     
     /**
@@ -98,14 +99,19 @@ class PpaReportBmController extends AppController {
         $model = new PpaReportBm();
         $startDate = new \DateTime();
         $startDate->setDate($this->ppaModel->ppa_year - 1, 7, 1);
-        $ppaInletModels = $ppaOutletModels = [];
+    
+        $startDateOutlet = new \DateTime();
+        $startDateOutlet->setDate($this->ppaModel->ppa_year - 1, 7, 1);
+        
+        $ppaInletOutletModels = [];
     
         for ($i = 0; $i < 12; $i++) {
-            $ppaInletModels[] = new PpaInletOutlet();
-            $ppaOutletModels[] = new PpaInletOutlet();
+            $ppaInletOutletModels[] = new PpaInletOutlet();
+
         }
         
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $requestData = Yii::$app->request->post();
+        if ($model->load($requestData) && Model::loadMultiple($ppaInletOutletModels, $requestData) && $model->saveTransactional()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
             return $this->redirect(['create', 'ppaId' => $this->ppaModel->id]);
         } else {
@@ -113,8 +119,8 @@ class PpaReportBmController extends AppController {
                 'model' => $model,
                 'ppaModel' => $this->ppaModel,
                 'startDate' => $startDate,
-                'ppaInletModels' => $ppaInletModels,
-                'ppaOutletModels' => $ppaOutletModels
+                'startDateOutlet' => $startDateOutlet,
+                'ppaInletOutletModels' => $ppaInletOutletModels,
             ]);
         }
     }
@@ -127,13 +133,27 @@ class PpaReportBmController extends AppController {
      */
     public function actionUpdate($id) {
         $model = $this->findModel($id);
-        
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $ppaModel = $model->ppaSetupPermit->ppa;
+    
+        $startDate = new \DateTime();
+        $startDate->setDate($ppaModel->ppa_year - 1, 7, 1);
+    
+        $startDateOutlet = new \DateTime();
+        $startDateOutlet->setDate($ppaModel->ppa_year - 1, 7, 1);
+    
+        $ppaInletOutletModels = $model->ppaInletOutlets;
+    
+        $requestData = Yii::$app->request->post();
+        if ($model->load($requestData) && Model::loadMultiple($ppaInletOutletModels, $requestData) && $model->saveTransactional()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_UPDATE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'ppaModel' => $ppaModel,
+                'startDate' => $startDate,
+                'startDateOutlet' => $startDateOutlet,
+                'ppaInletOutletModels' => $ppaInletOutletModels,
             ]);
         }
     }

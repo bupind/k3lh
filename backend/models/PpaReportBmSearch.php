@@ -94,6 +94,7 @@ class PpaReportBmSearch extends PpaReportBm {
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'ppa_setup_permit_id' => $this->ppa_setup_permit_id,
             'ppar_qs_1' => $this->ppar_qs_1,
             'ppar_qs_2' => $this->ppar_qs_2,
             'ppar_qs_max_pollution_load' => $this->ppar_qs_max_pollution_load,
