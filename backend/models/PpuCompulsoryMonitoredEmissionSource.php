@@ -26,6 +26,7 @@ use yii\base\Exception;
  */
 class PpuCompulsoryMonitoredEmissionSource extends AppModel
 {
+    public $ppucmes_freq_monitoring_obligation_code_desc;
     /**
      * @inheritdoc
      */
@@ -62,6 +63,14 @@ class PpuCompulsoryMonitoredEmissionSource extends AppModel
             'ppucmes_operation_time' => sprintf("%s (%s/%s)", AppLabels::OPERATION_TIME, AppLabels::HOUR, AppLabels::YEAR),
             'ppucmes_freq_monitoring_obligation_code' => AppLabels::PPUES_MONITORING_OBLIGATION,
         ];
+    }
+
+    public function afterFind() {
+        parent::afterFind();
+
+        $this->ppucmes_freq_monitoring_obligation_code_desc = Codeset::getCodesetValue(AppConstants::CODESET_PPU_AP_FREQ_MONITORING_OBLIGATION_CODE, $this->ppucmes_freq_monitoring_obligation_code);
+
+        return true;
     }
 
     public function saveTransactional()

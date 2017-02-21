@@ -42,6 +42,11 @@ use yii\web\UploadedFile;
  */
 class PpuEmissionSource extends AppModel
 {
+    public $ppues_fuel_name_code_desc;
+    public $ppues_fuel_unit_code_desc;
+    public $ppues_chimney_shape_code_desc;
+    public $ppues_monitoring_data_status_code_desc;
+    public $ppues_freq_monitoring_obligation_code_desc;
     /**
      * @inheritdoc
      */
@@ -140,6 +145,18 @@ class PpuEmissionSource extends AppModel
 
             return FALSE;
         }
+    }
+
+    public function afterFind() {
+        parent::afterFind();
+
+        $this->ppues_fuel_name_code_desc = Codeset::getCodesetValue(AppConstants::CODESET_PPU_ES_FUEL_NAME_CODE, $this->ppues_fuel_name_code);
+        $this->ppues_fuel_unit_code_desc = Codeset::getCodesetValue(AppConstants::CODESET_PPU_ES_FUEL_UNIT_CODE, $this->ppues_fuel_unit_code);
+        $this->ppues_chimney_shape_code_desc = Codeset::getCodesetValue(AppConstants::CODESET_PPU_ES_CHIMNEY_SHAPE_CODE, $this->ppues_chimney_shape_code);
+        $this->ppues_monitoring_data_status_code_desc = Codeset::getCodesetValue(AppConstants::CODESET_PPU_ES_MONITORING_DATA_STATUS_CODE, $this->ppues_monitoring_data_status_code);
+        $this->ppues_freq_monitoring_obligation_code_desc = Codeset::getCodesetValue(AppConstants::CODESET_PPU_ES_FREQ_MONITORING_OBLIGATION_CODE, $this->ppues_freq_monitoring_obligation_code);
+
+        return true;
     }
 
     public function beforeDelete()

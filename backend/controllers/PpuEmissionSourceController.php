@@ -92,7 +92,7 @@ class PpuEmissionSourceController extends AppController
         } else {
             return $this->render('create', [
                 'model' => $model,
-                'ppuId' => $this->ppuModel->id,
+                'ppuModel' => $this->ppuModel,
             ]);
         }
     }
@@ -105,7 +105,9 @@ class PpuEmissionSourceController extends AppController
      */
     public function actionUpdate($id)
     {
+
         $model = $this->findModel($id);
+        $this->ppuModel = $model->ppu;
 
         if ($model->load(Yii::$app->request->post()) && $model->saveTransactional()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_UPDATE_SUCCESS);
@@ -113,6 +115,7 @@ class PpuEmissionSourceController extends AppController
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'ppuModel' => $this->ppuModel,
             ]);
         }
     }

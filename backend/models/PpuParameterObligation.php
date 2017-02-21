@@ -2,8 +2,10 @@
 
 namespace backend\models;
 
+use Yii;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
+use yii\base\Exception;
 
 /**
  * This is the model class for table "ppu_parameter_obligation".
@@ -28,6 +30,12 @@ use common\vendor\AppLabels;
  */
 class PpuParameterObligation extends AppModel
 {
+    public $ppupo_qs_display;
+    public $ppupo_qs_max_pollution_load_display;
+    public $ppupo_parameter_code_desc;
+    public $ppupo_parameter_unit_code_desc;
+    public $ppupo_qs_unit_code_desc;
+    public $ppupo_qs_load_unit_code_desc;
     /**
      * @inheritdoc
      */
@@ -62,12 +70,72 @@ class PpuParameterObligation extends AppModel
             'ppupo_parameter_code' => AppLabels::WATCHED_PARAMETER,
             'ppupo_parameter_unit_code' => AppLabels::PARAMETER_UNIT,
             'ppupo_qs' => AppLabels::QUALITY_STANDARD,
+            'ppupo_qs_display' => AppLabels::QUALITY_STANDARD,
             'ppupo_qs_unit_code' => AppLabels::QUALITY_STANDARD_UNIT,
             'ppupo_qs_ref' => AppLabels::QUALITY_STANDARD_REF,
             'ppupo_qs_max_pollution_load' => AppLabels::MAXIMUM_QS_POLLUTION_LOAD,
+            'ppupo_qs_max_pollution_load_display' => AppLabels::MAXIMUM_QS_POLLUTION_LOAD,
             'ppupo_qs_load_unit_code' => AppLabels::QS_LOAD_UNIT,
             'ppupo_qs_max_pollution_load_ref' => AppLabels::MAXIMUM_QS_POLLUTION_LOAD_REF,
         ];
+    }
+
+    public function afterFind() {
+        parent::afterFind();
+
+        $this->ppupo_qs_display = $this->ppupo_qs;
+        $this->ppupo_qs_max_pollution_load_display = $this->ppupo_qs_max_pollution_load;
+        $this->ppupo_parameter_code_desc = Codeset::getCodesetValue(AppConstants::CODESET_PPU_RBM_PARAM_CODE, $this->ppupo_parameter_code);
+        $this->ppupo_parameter_unit_code_desc = Codeset::getCodesetValue(AppConstants::CODESET_PPU_RBM_PARAM_UNIT_CODE, $this->ppupo_parameter_unit_code);
+        $this->ppupo_qs_unit_code_desc = Codeset::getCodesetValue(AppConstants::CODESET_PPU_RBM_QS_UNIT_CODE, $this->ppupo_qs_unit_code);
+        $this->ppupo_qs_load_unit_code_desc = Codeset::getCodesetValue(AppConstants::CODESET_PPU_RBM_QS_LOAD_UNIT_CODE, $this->ppupo_qs_load_unit_code);
+
+        return true;
+    }
+
+    public function saveTransactional() {
+        $request = Yii::$app->request->post();
+        $transaction = Yii::$app->db->beginTransaction();
+        $errors = [];
+
+        try {
+            $this->load($request);
+            if (!$this->save()) {
+                $errors = array_merge($errors, $this->errors);
+                throw new Exception();
+            }
+
+            $ppuParameterObligationId = $this->id;
+
+            if (isset($request['PpupoMonth'])) {
+                foreach ($request['PpupoMonth'] as $key => $poMonth) {
+                    if (isset($poMonth['id'])) {
+                        $poMonthTuple = PpupoMonth::findOne(['id' => $poMonth['id']]);
+                    } else {
+                        $poMonthTuple = new PpupoMonth();
+                        $poMonthTuple->ppu_parameter_obligation_id = $ppuParameterObligationId;
+                    }
+
+                    if (!$poMonthTuple->load(['PpupoMonth' => $poMonth]) || !$poMonthTuple->save()) {
+                        $errors = array_merge($errors, $poMonthTuple->errors);
+                        throw new Exception();
+                    }
+                }
+            }
+
+            $transaction->commit();
+            return TRUE;
+        } catch (Exception $ex) {
+            $transaction->rollBack();
+            $this->afterFind();
+
+            foreach ($errors as $attr => $errorArr) {
+                $error = join('<br />', $errorArr);
+                Yii::$app->session->addFlash('danger', $error);
+            }
+
+            return FALSE;
+        }
     }
 
     /**

@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use common\vendor\AppLabels;
+use backend\models\PpuEmissionSource;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\PpuParameterObligationSearch */
@@ -34,11 +35,27 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'ppues_name',
-            'ppu_emission_source_id',
-            'ppupo_parameter_code',
-            'ppupo_parameter_unit_code',
+            [
+                'attribute' => 'ppu_emission_source_id',
+                'value' => 'ppuEmissionSource.ppues_name',
+                'filter' => Html::activeDropDownList($searchModel, 'ppu_emission_source_id', PpuEmissionSource::map(new PpuEmissionSource(), 'ppues_name', null, true, [
+                    'andWhere' => [
+                        ['ppu_id' => $ppuModel->id]
+                    ]
+                ]), ['class' => 'chosen-select form-control'])
+            ],
+            [
+                'attribute' => 'ppu_emission_source_id',
+                'value' => 'ppuEmissionSource.ppues_chimney_name',
+            ],
+
+            [
+                'attribute' => 'ppupo_parameter_code',
+                'value' => 'ppupo_parameter_code_desc'
+            ],
+
             'ppupo_qs',
+            'ppupo_qs_ref',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

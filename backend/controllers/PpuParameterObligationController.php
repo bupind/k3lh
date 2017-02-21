@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\PpupoMonth;
 use Yii;
 use backend\models\PpuParameterObligation;
 use backend\models\PpuParameterObligationSearch;
@@ -9,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\vendor\AppConstants;
 use backend\models\Ppu;
+use yii\base\Model;
 
 /**
  * PpuParameterObligationController implements the CRUD actions for PpuParameterObligation model.
@@ -84,13 +86,26 @@ class PpuParameterObligationController extends AppController
     {
         $model = new PpuParameterObligation();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $startDate = new \DateTime();
+        $startDate->setDate($this->ppuModel->ppu_year - 1, 7, 1);
+
+        $ppupoMonth = [];
+
+        for ($i = 0; $i < 12; $i++) {
+            $ppupoMonth[] = new PpupoMonth();
+        }
+
+        $requestData = Yii::$app->request->post();
+
+        if ($model->load($requestData) && Model::loadMultiple($ppupoMonth, $requestData) && $model->saveTransactional()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
-                'ppuId' => $this->ppuModel->id,
+                'ppuModel' => $this->ppuModel,
                 'model' => $model,
+                'startDate' => $startDate,
+                'ppupoMonth' => $ppupoMonth,
             ]);
         }
     }
@@ -105,12 +120,23 @@ class PpuParameterObligationController extends AppController
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $ppuModel = $model->ppuEmissionSource->ppu;
+
+        $startDate = new \DateTime();
+        $startDate->setDate($ppuModel->ppu_year - 1, 7, 1);
+
+        $ppupoMonth = $model->ppupoMonths;
+
+        $requestData = Yii::$app->request->post();
+        if ($model->load($requestData) && Model::loadMultiple($ppupoMonth, $requestData) && $model->save()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_UPDATE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
+                'ppuModel' => $ppuModel,
                 'model' => $model,
+                'startDate' => $startDate,
+                'ppupoMonth' => $ppupoMonth,
             ]);
         }
     }

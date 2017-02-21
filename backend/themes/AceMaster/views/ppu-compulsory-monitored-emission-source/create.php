@@ -13,7 +13,7 @@ use common\vendor\AppLabels;
 
 
 $this->title = sprintf('%s %s', AppLabels::BTN_ADD, AppLabels::ADHERENCE_POINT);
-$this->params['breadcrumbs'][] = ['label' => AppLabels::ADHERENCE_POINT, 'url' => ['index', 'ppuId' => $ppuId]];
+$this->params['breadcrumbs'][] = ['label' => AppLabels::ADHERENCE_POINT, 'url' => ['index', 'ppuId' => $ppuModel->id]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ppu-compulsory-monitored-emission-source-create">
@@ -23,7 +23,6 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <?= $this->render('_form', [
-        'ppuId' => $ppuId,
         'ppuModel' => $ppuModel,
         'model' => $model,
         'startDate' => $startDate,

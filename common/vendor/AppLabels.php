@@ -307,6 +307,7 @@ class AppLabels {
     const QS_LOAD_UNIT = 'Satuan Baku Mutu Beban';
     const MAXIMUM_QS_POLLUTION_LOAD_REF = 'Peraturan Baku Mutu Pencemaran Maksimum';
     const PARAMETER_OBLIGATION = 'Ketaatan Parameter';
+    const CONCENTRATE_TEST_RESULT = 'Konsentrasi Hasil Pengujian';
     
 
 }

@@ -3,8 +3,6 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use common\vendor\AppLabels;
-use common\vendor\AppConstants;
-use backend\models\Codeset;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\PpuCompulsoryMonitoredEmissionSourceSearch */
@@ -41,9 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'ppucmes_operation_time',
             [
                 'attribute' => 'ppucmes_freq_monitoring_obligation_code',
-                'value' => function ($searchModel){
-                    return Codeset::getCodesetValue(AppConstants::CODESET_NAME_FREQ_MONITORING_OBLIGATION_CODE,$searchModel->ppucmes_freq_monitoring_obligation_code);
-                },
+                'value' => 'ppucmes_freq_monitoring_obligation_code_desc'
             ],
 
             ['class' => 'yii\grid\ActionColumn'],

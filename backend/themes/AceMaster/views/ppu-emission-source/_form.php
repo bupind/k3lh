@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use app\components\SubmitLinkButton;
+use app\components\SubmitButton;
 use common\vendor\AppConstants;
 use backend\models\Codeset;
 use common\vendor\AppLabels;
@@ -11,7 +11,7 @@ use common\components\helpers\Converter;
 /* @var $this yii\web\View */
 /* @var $model backend\models\PpuEmissionSource */
 /* @var $form yii\widgets\ActiveForm */
-/* @var $ppuId int */
+/* @var $ppuModel backend\models\Ppu */
 ?>
 
 <?php $form = ActiveForm::begin([
@@ -38,7 +38,7 @@ use common\components\helpers\Converter;
                 <fieldset>
                     <?php
                     if($model->getIsNewRecord()){
-                        echo Html::hiddenInput('ppu_id]', $ppuId);
+                        echo Html::hiddenInput('ppu_id]', $ppuModel->id);
                     }else {
                         echo $form->field($model, 'ppu_id', ['template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE])
                             ->hiddenInput([])->label(false);
@@ -61,11 +61,11 @@ use common\components\helpers\Converter;
                         ->label(null, ['class' => '']);
 
                     echo $form->field($model, 'ppues_monitoring_data_status_code', ['template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE])
-                        ->dropDownList(Codeset::customMap(AppConstants::CODESET_NAME_MONITORING_DATA_STATUS_CODE, 'cset_value'), ['class' => 'input-big form-control'])
+                        ->dropDownList(Codeset::customMap(AppConstants::CODESET_PPU_ES_MONITORING_DATA_STATUS_CODE, 'cset_value'), ['class' => 'input-big form-control'])
                         ->label(null, ['class' => '']);
 
                     echo $form->field($model, 'ppues_freq_monitoring_obligation_code', ['template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE])
-                        ->dropDownList(Codeset::customMap(AppConstants::CODESET_NAME_FREQ_MONITORING_OBLIGATION_CODE, 'cset_value'), ['class' => 'input-big form-control'])
+                        ->dropDownList(Codeset::customMap(AppConstants::CODESET_PPU_ES_FREQ_MONITORING_OBLIGATION_CODE, 'cset_value'), ['class' => 'input-big form-control'])
                         ->label(null, ['class' => '']);
 
                     echo $form->field($model, 'ppues_ref', ['template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE])
@@ -105,7 +105,7 @@ use common\components\helpers\Converter;
                             ->label(null, ['class' => '']);
 
                         echo $form->field($model, 'ppues_chimney_shape_code', ['template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE])
-                            ->dropDownList(Codeset::customMap(AppConstants::CODESET_NAME_CHIMNEY_SHAPE_CODE, 'cset_value'), ['class' => 'input-big form-control'])
+                            ->dropDownList(Codeset::customMap(AppConstants::CODESET_PPU_ES_CHIMNEY_SHAPE_CODE, 'cset_value'), ['class' => 'input-big form-control'])
                             ->label(null, ['class' => '']);
 
                         echo $form->field($model, 'ppues_chimney_height', ['template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE])
@@ -146,7 +146,7 @@ use common\components\helpers\Converter;
 
 
                     echo $form->field($model, 'ppues_fuel_name_code', ['template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE])
-                        ->dropDownList(Codeset::customMap(AppConstants::CODESET_NAME_FUEL_NAME_CODE, 'cset_value'), ['class' => 'input-big form-control'])
+                        ->dropDownList(Codeset::customMap(AppConstants::CODESET_PPU_ES_FUEL_NAME_CODE, 'cset_value'), ['class' => 'input-big form-control'])
                         ->label(null, ['class' => '']);
 
                     echo $form->field($model, 'ppues_total_fuel', ['template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE])
@@ -154,7 +154,7 @@ use common\components\helpers\Converter;
                         ->label(null, ['class' => '']);
 
                     echo $form->field($model, 'ppues_fuel_unit_code', ['template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE])
-                        ->dropDownList(Codeset::customMap(AppConstants::CODESET_NAME_FUEL_UNIT_CODE, 'cset_value'), ['class' => 'input-big form-control'])
+                        ->dropDownList(Codeset::customMap(AppConstants::CODESET_PPU_ES_FUEL_UNIT_CODE, 'cset_value'), ['class' => 'input-big form-control'])
                         ->label(null, ['class' => '']);
 
                     ?>
@@ -194,10 +194,8 @@ use common\components\helpers\Converter;
 </div>
 
 
-<div class="row">
-    <div class="col-xs-12 form-actions text-center">
-        <?= SubmitLinkButton::widget(['formId' => 'ppu-emission-source-form', 'backAction' => 'index', 'isNewRecord' => $model->isNewRecord]); ?>
-    </div>
-</div>
+<div class="col-xs-12">
 
+    <?= SubmitButton::widget(['backAction' => ['index', 'ppuId' => $ppuModel->id], 'isNewRecord' => $model->isNewRecord, 'widget' => true]); ?>
+</div>
 <?php ActiveForm::end(); ?>

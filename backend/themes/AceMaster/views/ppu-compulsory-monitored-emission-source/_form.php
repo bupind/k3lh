@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use app\components\SubmitLinkButton;
+use app\components\SubmitButton;
 use common\vendor\AppConstants;
 use backend\models\Codeset;
 use common\vendor\AppLabels;
@@ -15,7 +15,6 @@ use common\vendor\AppLabels;
 /* @var $startDate DateTime */
 /* @var $endDate DateTime */
 /* @var $ppuMonthModels \backend\models\PpucmesMonth[] */
-/* @var $ppuId int */
 ?>
 
 <?php $form = ActiveForm::begin([
@@ -42,7 +41,7 @@ use common\vendor\AppLabels;
                     <fieldset>
                         <?php
                         if($model->getIsNewRecord()){
-                            echo Html::hiddenInput('ppu_id', $ppuId);
+                            echo Html::hiddenInput('ppu_id', $ppuModel->id);
                         }else {
                             echo $form->field($model, 'ppu_id', ['template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE])
                                 ->hiddenInput([])->label(false);
@@ -61,7 +60,7 @@ use common\vendor\AppLabels;
                             ->label(null, ['class' => '']);
 
                         echo $form->field($model, 'ppucmes_freq_monitoring_obligation_code', ['template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE])
-                            ->dropDownList(Codeset::customMap(AppConstants::CODESET_NAME_FREQ_MONITORING_OBLIGATION_CODE, 'cset_value'), ['class' => 'input-big form-control'])
+                            ->dropDownList(Codeset::customMap(AppConstants::CODESET_PPU_AP_FREQ_MONITORING_OBLIGATION_CODE, 'cset_value'), ['class' => 'input-big form-control'])
                             ->label(null, ['class' => '']);
                         ?>
                     </fieldset>
@@ -106,10 +105,8 @@ use common\vendor\AppLabels;
     </div>
 </div>
 
-<div class="row">
-    <div class="col-xs-12 form-actions text-center">
-        <?= SubmitLinkButton::widget(['formId' => 'ppu-compulsory-monitored-emission-source-form', 'backAction' => 'index', 'isNewRecord' => $model->isNewRecord]); ?>
-    </div>
+<div class="col-xs-12">
+    <?= SubmitButton::widget(['backAction' => ['index', 'ppuId' => $ppuModel->id], 'isNewRecord' => $model->isNewRecord, 'widget' => true]); ?>
 </div>
 
 <?php ActiveForm::end(); ?>

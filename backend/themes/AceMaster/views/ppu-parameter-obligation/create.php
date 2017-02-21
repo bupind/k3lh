@@ -6,10 +6,12 @@ use common\vendor\AppLabels;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\PpuParameterObligation */
-/* @var $ppuId int */
+/* @var $ppuModel backend\models\Ppu */
+/* @var $startDate DateTime */
+/* @var $ppupoMonth \backend\models\PpupoMonth[] */
 
 $this->title = sprintf('%s %s', AppLabels::BTN_ADD, AppLabels::PARAMETER_OBLIGATION);
-$this->params['breadcrumbs'][] = ['label' => AppLabels::PARAMETER_OBLIGATION, 'url' => ['index', 'ppuId' => $ppuId]];
+$this->params['breadcrumbs'][] = ['label' => AppLabels::PARAMETER_OBLIGATION, 'url' => ['index', 'ppuId' => $ppuModel->id]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ppu-parameter-obligation-create">
@@ -19,7 +21,10 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <?= $this->render('_form', [
+        'ppuModel' => $ppuModel,
         'model' => $model,
+        'startDate' => $startDate,
+        'ppupoMonth' => $ppupoMonth,
     ]) ?>
 
 </div>

@@ -102,7 +102,6 @@ class PpuCompulsoryMonitoredEmissionSourceController extends AppController
         } else {
             return $this->render('create', [
                 'model' => $model,
-                'ppuId' => $this->ppuModel->id,
                 'ppuModel' => $this->ppuModel,
                 'startDate' => $startDate,
                 'ppuMonthModels' => $ppuMonthModels,

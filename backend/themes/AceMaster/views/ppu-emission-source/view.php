@@ -4,7 +4,6 @@ use yii\helpers\Html;
 use app\components\DetailView;
 use common\vendor\AppLabels;
 use common\vendor\AppConstants;
-use backend\models\Codeset;
 use app\components\ViewButton;
 use common\components\helpers\Converter;
 
@@ -43,8 +42,8 @@ $this->params['breadcrumbs'][] = ['label' => $model->ppues_name];
                         'options' => [
                             'excluded' => ['ppu_id','ppues_chimney_name','ppues_chimney_shape_code','ppues_chimney_height','ppues_chimney_diameter','ppues_hole_position','ppues_fuel_name_code','ppues_total_fuel','ppues_fuel_unit_code','ppues_location','ppues_coord_ls', 'ppues_coord_bt'],
                             'converter' => [
-                                'ppues_monitoring_data_status_code' => [AppConstants::FORMAT_TYPE_VARIABLE, Codeset::getCodesetValue(AppConstants::CODESET_NAME_MONITORING_DATA_STATUS_CODE, $model->ppues_monitoring_data_status_code)],
-                                'ppues_freq_monitoring_obligation_code' => [AppConstants::FORMAT_TYPE_VARIABLE, Codeset::getCodesetValue(AppConstants::CODESET_NAME_FREQ_MONITORING_OBLIGATION_CODE, $model->ppues_freq_monitoring_obligation_code)],
+                                'ppues_monitoring_data_status_code' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->ppues_monitoring_data_status_code_desc],
+                                'ppues_freq_monitoring_obligation_code' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->ppues_freq_monitoring_obligation_code_desc],
                             ]
                         ]
                     ]); ?>
@@ -71,7 +70,7 @@ $this->params['breadcrumbs'][] = ['label' => $model->ppues_name];
                         'options' => [
                             'excluded' => ['ppues_name','ppues_capacity','ppues_control_device','ppues_operation_time','ppues_monitoring_data_status_code','ppues_freq_monitoring_obligation_code','ppues_ref','ppu_id','ppues_fuel_name_code','ppues_total_fuel','ppues_fuel_unit_code','ppues_location','ppues_coord_ls', 'ppues_coord_bt'],
                             'converter' => [
-                                'ppues_chimney_shape_code' => [AppConstants::FORMAT_TYPE_VARIABLE, Codeset::getCodesetValue(AppConstants::CODESET_NAME_CHIMNEY_SHAPE_CODE, $model->ppues_chimney_shape_code)],
+                                'ppues_chimney_shape_code' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->ppues_chimney_shape_code_desc],
                             ]
                         ]
                     ]); ?>
@@ -96,8 +95,8 @@ $this->params['breadcrumbs'][] = ['label' => $model->ppues_name];
                         'options' => [
                             'excluded' => ['ppues_name','ppues_capacity','ppues_control_device','ppues_operation_time','ppues_monitoring_data_status_code','ppues_freq_monitoring_obligation_code','ppues_ref','ppu_id','ppues_chimney_name','ppues_chimney_shape_code','ppues_chimney_height','ppues_chimney_diameter','ppues_hole_position','ppues_location','ppues_coord_ls', 'ppues_coord_bt'],
                             'converter' => [
-                                'ppues_fuel_name_code' => [AppConstants::FORMAT_TYPE_VARIABLE, Codeset::getCodesetValue(AppConstants::CODESET_NAME_FUEL_NAME_CODE, $model->ppues_fuel_name_code)],
-                                'ppues_fuel_unit_code' => [AppConstants::FORMAT_TYPE_VARIABLE, Codeset::getCodesetValue(AppConstants::CODESET_NAME_FUEL_UNIT_CODE, $model->ppues_fuel_unit_code)],
+                                'ppues_fuel_name_code' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->ppues_fuel_name_code_desc],
+                                'ppues_fuel_unit_code' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->ppues_fuel_unit_code_desc],
                             ]
                         ]
                     ]); ?>

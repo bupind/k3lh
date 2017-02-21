@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = ['label' => $model->ppucmes_name];
                 'options' => [
                     'excluded' => ['ppu_id'],
                     'converter' => [
-                        'ppucmes_freq_monitoring_obligation_code' => [AppConstants::FORMAT_TYPE_VARIABLE, Codeset::getCodesetValue(AppConstants::CODESET_NAME_FREQ_MONITORING_OBLIGATION_CODE, $model->ppucmes_freq_monitoring_obligation_code)]
+                        'ppucmes_freq_monitoring_obligation_code' => [AppConstants::FORMAT_TYPE_VARIABLE, Codeset::getCodesetValue(AppConstants::CODESET_PPU_AP_FREQ_MONITORING_OBLIGATION_CODE, $model->ppucmes_freq_monitoring_obligation_code)]
                     ]
                 ]
             ]); ?>
