@@ -308,6 +308,12 @@ class AppLabels {
     const MAXIMUM_QS_POLLUTION_LOAD_REF = 'Peraturan Baku Mutu Pencemaran Maksimum';
     const PARAMETER_OBLIGATION = 'Ketaatan Parameter';
     const CONCENTRATE_TEST_RESULT = 'Konsentrasi Hasil Pengujian';
-    
+    const PARAMETER = 'Parameter';
+    const COAL_USAGE = 'Pemakaian Batubara';
+    const CARBON_CONTENT = 'Kadar C';
+    const ACTUAL_CARBON_CONTENT = 'Kandungan Actual C';
+    const CO2 = 'CO2';
+    const ANC = 'ANc';
+    const OXIDATION_FACTOR = 'Faktor Oksidasi';
 
 }

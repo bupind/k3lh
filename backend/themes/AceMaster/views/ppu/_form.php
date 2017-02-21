@@ -58,7 +58,7 @@ $form = ActiveForm::begin([
             <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::EMISSION_SOURCE_INVENTORY, ['/ppu-emission-source', 'ppuId' => $model->id], ['class' => 'btn btn-sm btn-success']); ?>
             <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::ADHERENCE_POINT, ['/ppu-compulsory-monitored-emission-source', 'ppuId' => $model->id], ['class' => 'btn btn-sm btn-warning']); ?>
             <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::ADHERENCE . AppLabels::BM_REPORT_PARAMETER, ['/ppu-parameter-obligation', 'ppuId' => $model->id], ['class' => 'btn btn-sm btn-primary']); ?>
-            <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::EMISSION_LOAD_CALCULATION, '#', ['class' => 'btn btn-sm btn-default']); ?>
+            <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::EMISSION_LOAD_CALCULATION, ['/ppu-emission-load-grk', 'ppuId' => $model->id], ['class' => 'btn btn-sm btn-default']); ?>
             <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::TECHNICAL_PROVISION, '#', ['class' => 'btn btn-sm btn-info']); ?>
             <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::POLLUTION_LOAD, '#', ['class' => 'btn btn-sm btn-purple']); ?>
         </div>
