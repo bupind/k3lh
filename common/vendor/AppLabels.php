@@ -141,6 +141,7 @@ class AppLabels {
     const CERTIFIED_NUMBER = 'Nomor Sertifikasi';
     const PARAM = 'Parameter';
     const QUALITY_STANDARD = 'Baku Mutu';
+    const CATEGORY = 'Kategori';
     
     // MONTH
     const JANUARY = 'Januari';

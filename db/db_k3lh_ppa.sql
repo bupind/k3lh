@@ -6,6 +6,7 @@ MySQL - 5.5.25a : Database - k3lh
 
 insert into auth_item (name, type) values
 ('pengendalian-pencemaran-air', 2),
+('pertanyaan-pengendalian-pencemaran-air', 2),
 ('ppa-index', 1),
 ('ppa-create', 1),
 ('ppa-update', 1),
@@ -20,9 +21,16 @@ insert into auth_item (name, type) values
 ('ppa-report-bm-create', 1),
 ('ppa-report-bm-update', 1),
 ('ppa-report-bm-delete', 1),
-('ppa-report-bm-view', 1);
+('ppa-report-bm-view', 1),
+('ppa-question-index', 1),
+('ppa-question-create', 1),
+('ppa-question-update', 1),
+('ppa-question-delete', 1),
+('ppa-question-view', 1);
 
 insert auth_item_child (parent, child) values
+('Administrator', 'pengendalian-pencemaran-air'),
+('Administrator', 'pertanyaan-pengendalian-pencemaran-air'),
 ('pengendalian-pencemaran-air', 'ppa-index'),
 ('pengendalian-pencemaran-air', 'ppa-create'),
 ('pengendalian-pencemaran-air', 'ppa-update'),
@@ -33,12 +41,16 @@ insert auth_item_child (parent, child) values
 ('pengendalian-pencemaran-air', 'ppa-setup-permit-update'),
 ('pengendalian-pencemaran-air', 'ppa-setup-permit-delete'),
 ('pengendalian-pencemaran-air', 'ppa-setup-permit-view'),
-('Administrator', 'pengendalian-pencemaran-air'),
 ('pengendalian-pencemaran-air', 'ppa-report-bm-index'),
 ('pengendalian-pencemaran-air', 'ppa-report-bm-create'),
 ('pengendalian-pencemaran-air', 'ppa-report-bm-update'),
 ('pengendalian-pencemaran-air', 'ppa-report-bm-delete'),
-('pengendalian-pencemaran-air', 'ppa-report-bm-view');
+('pengendalian-pencemaran-air', 'ppa-report-bm-view'),
+('pertanyaan-pengendalian-pencemaran-air', 'ppa-question-index'),
+('pertanyaan-pengendalian-pencemaran-air', 'ppa-question-create'),
+('pertanyaan-pengendalian-pencemaran-air', 'ppa-question-update'),
+('pertanyaan-pengendalian-pencemaran-air', 'ppa-question-delete'),
+('pertanyaan-pengendalian-pencemaran-air', 'ppa-question-view');
 
 insert into auth_item (name, type) values
 ;

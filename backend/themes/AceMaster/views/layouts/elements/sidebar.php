@@ -28,6 +28,13 @@ $navs = [
             ['icon' => 'fa-file-text-o', 'label' => AppLabels::QUESTION, 'url' => ['/smk3-title'], 'controller' => 'smk3-title'],
         ]
     ],
+    [
+        'icon' => 'fa-file-text-o',
+        'label' => AppLabels::PPA,
+        'submenu' => [
+            ['icon' => 'fa-file-text-o', 'label' => AppLabels::QUESTION, 'url' => ['/ppa-question'], 'controller' => 'ppa-question'],
+        ]
+    ],
     ['icon' => 'fa-history', 'label' => AppLabels::LOGIN_HISTORY, 'url' => ['/login-history'], 'controller' => 'login-history'],
     [
         'icon' => 'fa-life-ring',
