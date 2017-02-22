@@ -5,6 +5,7 @@ namespace backend\models;
 use Yii;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
+use yii\base\Exception;
 
 /**
  * This is the model class for table "ppu_emission_load_grk".
@@ -53,6 +54,54 @@ class PpuEmissionLoadGrk extends AppModel
             'ppu_emission_source_id' => AppLabels::EMISSION_SOURCE,
             'ppuelg_parameter' => AppLabels::PARAMETER,
         ];
+    }
+
+    public function saveTransactional()
+    {
+        $request = Yii::$app->request->post();
+        $transaction = Yii::$app->db->beginTransaction();
+        $errors = [];
+
+        try {
+
+            $this->load($request);
+            if (!$this->save()) {
+                $errors = array_merge($errors, $this->errors);
+                throw new Exception();
+            }
+
+            $ppuEmissionLoadGrkId = $this->id;
+
+            if (isset($request['PpuEmissionLoadGrkCalc'])) {
+                foreach ($request['PpuEmissionLoadGrkCalc'] as $key => $ppuCalc) {
+                    if (isset($ppuCalc['id'])) {
+                        $ppuEmLoadGrkCalc = PpuEmissionLoadGrkCalc::findOne(['id' => $ppuCalc['id']]);
+                    } else {
+                        $ppuEmLoadGrkCalc = new PpuEmissionLoadGrkCalc();
+                        $ppuEmLoadGrkCalc->ppu_emission_load_grk_id = $ppuEmissionLoadGrkId;
+                    }
+
+                    if (!$ppuEmLoadGrkCalc->load(['PpuEmissionLoadGrkCalc' => $ppuCalc]) || !$ppuEmLoadGrkCalc->save()) {
+                        $errors = array_merge($errors, $ppuEmLoadGrkCalc->errors);
+                        throw new Exception();
+                    }
+                }
+            }
+
+            $transaction->commit();
+            return TRUE;
+
+        } catch (Exception $e) {
+            $transaction->rollBack();
+            $this->afterFind();
+
+            foreach ($errors as $attr => $errorArr) {
+                $error = join('<br />', $errorArr);
+                Yii::$app->session->addFlash('danger', $error);
+            }
+
+            return FALSE;
+        }
     }
 
     /**

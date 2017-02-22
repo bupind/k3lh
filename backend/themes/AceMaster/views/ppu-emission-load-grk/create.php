@@ -7,6 +7,8 @@ use common\vendor\AppLabels;
 /* @var $this yii\web\View */
 /* @var $model backend\models\PpuEmissionLoadGrk */
 /* @var $ppuModel backend\models\Ppu */
+/* @var $startDate DateTime */
+/* @var $ppuCalc backend\models\PpuEmissionLoadGrkCalc */
 
 $this->title = sprintf('%s %s %s', AppLabels::BTN_ADD, AppLabels::EMISSION_LOAD_CALCULATION, AppLabels::GRK);
 $this->params['breadcrumbs'][] = ['label' => sprintf("%s %s", AppLabels::EMISSION_LOAD_CALCULATION, AppLabels::GRK), 'url' => ['index', 'ppuId' => $ppuModel->id]];
@@ -19,6 +21,8 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <?= $this->render('_form', [
+        'ppuCalc' => $ppuCalc,
+        'startDate' => $startDate,
         'ppuModel' => $ppuModel,
         'model' => $model,
     ]) ?>

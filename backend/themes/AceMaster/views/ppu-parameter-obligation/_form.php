@@ -16,7 +16,7 @@ use backend\models\Codeset;
 ?>
 
 <?php $form = ActiveForm::begin([
-    'id' => 'ppu-compulsory-monitored-emission-source-form',
+    'id' => 'ppu-parameter-obligation-form',
     'options' => [
         'class' => 'form-horizontal calx',
         'role' => 'form',

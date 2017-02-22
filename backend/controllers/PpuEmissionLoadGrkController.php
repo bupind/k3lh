@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\PpuEmissionLoadGrkCalc;
 use Yii;
 use backend\models\PpuEmissionLoadGrk;
 use backend\models\PpuEmissionLoadGrkSearch;
@@ -10,6 +11,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\vendor\AppConstants;
 use backend\models\Ppu;
+use yii\base\Model;
 
 /**
  * PpuEmissionLoadGrkController implements the CRUD actions for PpuEmissionLoadGrk model.
@@ -84,11 +86,24 @@ class PpuEmissionLoadGrkController extends AppController
     {
         $model = new PpuEmissionLoadGrk();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $startDate = new \DateTime();
+        $startDate->setDate($this->ppuModel->ppu_year - 2, 7, 1);
+
+        $ppuCalc = [];
+
+        for ($i = 0; $i < 2; $i++) {
+            $ppuCalc[] = new PpuEmissionLoadGrkCalc();
+        }
+
+        $requestData = Yii::$app->request->post();
+
+        if ($model->load($requestData) && Model::loadMultiple($ppuCalc, $requestData) && $model->saveTransactional()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
+                'ppuCalc' => $ppuCalc,
+                'startDate' => $startDate,
                 'ppuModel' => $this->ppuModel,
                 'model' => $model,
             ]);
@@ -105,11 +120,23 @@ class PpuEmissionLoadGrkController extends AppController
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
+        $ppuModel = $model->ppuEmissionSource->ppu;
+
+        $startDate = new \DateTime();
+        $startDate->setDate($ppuModel->ppu_year - 2, 7, 1);
+
+        $ppuCalc = $model->ppuEmissionLoadGrkCalcs;
+
+        $requestData = Yii::$app->request->post();
+
+        if ($model->load($requestData) && Model::loadMultiple($ppuCalc, $requestData) && $model->saveTransactional()) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_UPDATE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
+                'ppuCalc' => $ppuCalc,
+                'startDate' => $startDate,
+                'ppuModel' => $ppuModel,
                 'model' => $model,
             ]);
         }

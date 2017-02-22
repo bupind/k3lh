@@ -315,5 +315,6 @@ class AppLabels {
     const CO2 = 'CO2';
     const ANC = 'ANc';
     const OXIDATION_FACTOR = 'Faktor Oksidasi';
+    const EMISSION_LOAD = 'Beban Emisi';
 
 }
