@@ -18,7 +18,7 @@ class PpuEmissionSourceSearch extends PpuEmissionSource
     public function rules()
     {
         return [
-            [['id', 'ppu_id', 'ppues_capacity', 'ppues_hole_position', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'integer'],
+            [['id', 'ppu_id', 'ppues_capacity', 'ppues_hole_position'], 'integer'],
             [['ppues_name', 'ppues_chimney_name', 'ppues_control_device', 'ppues_fuel_name_code', 'ppues_fuel_unit_code', 'ppues_location', 'ppues_coord_ls', 'ppues_coord_bt', 'ppues_chimney_shape_code', 'ppues_monitoring_data_status_code', 'ppues_freq_monitoring_obligation_code', 'ppues_ref'], 'safe'],
             [['ppues_total_fuel', 'ppues_operation_time', 'ppues_chimney_height', 'ppues_chimney_diameter'], 'number'],
         ];
@@ -68,10 +68,6 @@ class PpuEmissionSourceSearch extends PpuEmissionSource
             'ppues_chimney_height' => $this->ppues_chimney_height,
             'ppues_chimney_diameter' => $this->ppues_chimney_diameter,
             'ppues_hole_position' => $this->ppues_hole_position,
-            'created_by' => $this->created_by,
-            'created_at' => $this->created_at,
-            'updated_by' => $this->updated_by,
-            'updated_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['like', 'ppues_name', $this->ppues_name])

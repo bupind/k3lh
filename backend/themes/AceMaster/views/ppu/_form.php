@@ -60,7 +60,7 @@ $form = ActiveForm::begin([
             <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::ADHERENCE . AppLabels::BM_REPORT_PARAMETER, ['/ppu-parameter-obligation', 'ppuId' => $model->id], ['class' => 'btn btn-sm btn-primary']); ?>
             <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::EMISSION_LOAD_CALCULATION, ['/ppu-emission-load-grk', 'ppuId' => $model->id], ['class' => 'btn btn-sm btn-default']); ?>
             <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::TECHNICAL_PROVISION, '#', ['class' => 'btn btn-sm btn-info']); ?>
-            <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::POLLUTION_LOAD, '#', ['class' => 'btn btn-sm btn-purple']); ?>
+            <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::POLLUTION_LOAD, ['/ppu/pollution-load', 'id' => $model->id], ['class' => 'btn btn-sm btn-purple']); ?>
         </div>
     </div>
 </div>

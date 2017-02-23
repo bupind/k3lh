@@ -18,7 +18,7 @@ class PpuEmissionLoadGrkSearch extends PpuEmissionLoadGrk
     public function rules()
     {
         return [
-            [['id', 'ppu_emission_source_id', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'integer'],
+            [['id', 'ppu_emission_source_id'], 'integer'],
             [['ppuelg_parameter'], 'safe'],
         ];
     }
@@ -61,10 +61,6 @@ class PpuEmissionLoadGrkSearch extends PpuEmissionLoadGrk
         $query->andFilterWhere([
             'id' => $this->id,
             'ppu_emission_source_id' => $this->ppu_emission_source_id,
-            'created_by' => $this->created_by,
-            'created_at' => $this->created_at,
-            'updated_by' => $this->updated_by,
-            'updated_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['like', 'ppuelg_parameter', $this->ppuelg_parameter]);
@@ -97,10 +93,6 @@ class PpuEmissionLoadGrkSearch extends PpuEmissionLoadGrk
         $query->andFilterWhere([
             'id' => $this->id,
             'ppu_emission_source_id' => $this->ppu_emission_source_id,
-            'created_by' => $this->created_by,
-            'created_at' => $this->created_at,
-            'updated_by' => $this->updated_by,
-            'updated_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['like', 'ppuelg_parameter', $this->ppuelg_parameter]);

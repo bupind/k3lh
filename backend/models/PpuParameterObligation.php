@@ -111,6 +111,7 @@ class PpuParameterObligation extends AppModel
                 foreach ($request['PpupoMonth'] as $key => $poMonth) {
                     if (isset($poMonth['id'])) {
                         $poMonthTuple = PpupoMonth::findOne(['id' => $poMonth['id']]);
+
                     } else {
                         $poMonthTuple = new PpupoMonth();
                         $poMonthTuple->ppu_parameter_obligation_id = $ppuParameterObligationId;

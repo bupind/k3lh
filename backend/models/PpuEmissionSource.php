@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use common\components\helpers\Converter;
 use Yii;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
@@ -39,6 +40,7 @@ use yii\web\UploadedFile;
  * @property Ppu $ppu
  *
  * @property AttachmentOwner $attachmentOwner
+ * @property PpuParameterObligation[] $ppuParameterObligations
  */
 class PpuEmissionSource extends AppModel
 {
@@ -47,6 +49,7 @@ class PpuEmissionSource extends AppModel
     public $ppues_chimney_shape_code_desc;
     public $ppues_monitoring_data_status_code_desc;
     public $ppues_freq_monitoring_obligation_code_desc;
+    public $ppues_attachment_owner;
     /**
      * @inheritdoc
      */
@@ -98,6 +101,7 @@ class PpuEmissionSource extends AppModel
             'ppues_monitoring_data_status_code' => sprintf("%s", AppLabels::PPUES_STATUS_PROPER),
             'ppues_freq_monitoring_obligation_code' => AppLabels::PPUES_MONITORING_OBLIGATION,
             'ppues_ref' => AppLabels::DESCRIPTION,
+            'ppues_attachment_owner' => AppLabels::UNMONITORED_EVIDENCE,
         ];
     }
 
@@ -181,5 +185,13 @@ class PpuEmissionSource extends AppModel
     public function getAttachmentOwner()
     {
         return $this->hasOne(AttachmentOwner::className(), ['atfo_module_pk' => 'id'])->andOnCondition(['atfo_module_code' => AppConstants::MODULE_CODE_PPU_EMISSION_SOURCE]);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPpuParameterObligations()
+    {
+        return $this->hasMany(PpuParameterObligation::className(), ['ppu_emission_source_id' =>  'id']);
     }
 }

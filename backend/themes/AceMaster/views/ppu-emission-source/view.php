@@ -40,6 +40,7 @@ $this->params['breadcrumbs'][] = ['label' => $model->ppues_name];
                     <?= DetailView::widget([
                         'model' => $model,
                         'options' => [
+                            'extraAttributes' => ['ppues_attachment_owner' => Converter::attachment($model->attachmentOwner, [])],
                             'excluded' => ['ppu_id','ppues_chimney_name','ppues_chimney_shape_code','ppues_chimney_height','ppues_chimney_diameter','ppues_hole_position','ppues_fuel_name_code','ppues_total_fuel','ppues_fuel_unit_code','ppues_location','ppues_coord_ls', 'ppues_coord_bt'],
                             'converter' => [
                                 'ppues_monitoring_data_status_code' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->ppues_monitoring_data_status_code_desc],
@@ -47,12 +48,7 @@ $this->params['breadcrumbs'][] = ['label' => $model->ppues_name];
                             ]
                         ]
                     ]); ?>
-                    <div class="profile-user-info profile-user-info-striped">
-                        <div class="profile-info-row">
-                            <div class="profile-info-name info-large">Bukti Pendukung Tidak Dipantau</div>
-                            <div class="profile-info-value"> <?= Converter::attachment($model->attachmentOwner); ?> </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>

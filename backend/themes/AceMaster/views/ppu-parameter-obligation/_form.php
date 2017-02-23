@@ -96,7 +96,7 @@ use backend\models\Codeset;
                             <?php
 
                             foreach ($ppupoMonth as $key => $poMonth) {
-                                if (!$poMonth->isNewRecord) {
+                                if (!$poMonth->getIsNewRecord()) {
                                     echo $form->field($poMonth, "[$key]id")->hiddenInput()->label(false);
                                 }
                                 echo $form->field($poMonth, "[$key]ppupom_month")->hiddenInput(['value' => $startDate->format('m')])->label(false);

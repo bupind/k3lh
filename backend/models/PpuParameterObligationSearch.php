@@ -60,10 +60,6 @@ class PpuParameterObligationSearch extends PpuParameterObligation
             'ppu_emission_source_id' => $this->ppu_emission_source_id,
             'ppupo_qs' => $this->ppupo_qs,
             'ppupo_qs_max_pollution_load' => $this->ppupo_qs_max_pollution_load,
-            'created_by' => $this->created_by,
-            'created_at' => $this->created_at,
-            'updated_by' => $this->updated_by,
-            'updated_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['like', 'ppupo_parameter_code', $this->ppupo_parameter_code])
@@ -103,10 +99,6 @@ class PpuParameterObligationSearch extends PpuParameterObligation
             'ppu_emission_source_id' => $this->ppu_emission_source_id,
             'ppupo_qs' => $this->ppupo_qs,
             'ppupo_qs_max_pollution_load' => $this->ppupo_qs_max_pollution_load,
-            'created_by' => $this->created_by,
-            'created_at' => $this->created_at,
-            'updated_by' => $this->updated_by,
-            'updated_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['like', 'ppupo_parameter_code', $this->ppupo_parameter_code])

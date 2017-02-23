@@ -19,6 +19,9 @@ use common\vendor\AppConstants;
  *
  * @property PowerPlant $powerPlant
  * @property Sector $sector
+ *
+ * @property PpuEmissionSource[] $ppuEmissionSources
+ * @property PpuCompulsoryMonitoredEmissionSource[] $ppuCompulsoryEmissionSources
  */
 class Ppu extends AppModel
 {
@@ -70,5 +73,21 @@ class Ppu extends AppModel
     public function getSector()
     {
         return $this->hasOne(Sector::className(), ['id' => 'sector_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPpuEmissionSources()
+    {
+        return $this->hasMany(PpuEmissionSource::className(), ['ppu_id' =>  'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPpuCompulsoryMonitoredEmissionSources()
+    {
+        return $this->hasMany(PpuCompulsoryMonitoredEmissionSource::className(), ['ppu_id' =>  'id']);
     }
 }

@@ -38,7 +38,7 @@ use common\components\helpers\Converter;
                 <fieldset>
                     <?php
                     if($model->getIsNewRecord()){
-                        echo Html::hiddenInput('ppu_id]', $ppuModel->id);
+                        echo Html::hiddenInput('ppu_id', $ppuModel->id);
                     }else {
                         echo $form->field($model, 'ppu_id', ['template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE])
                             ->hiddenInput([])->label(false);

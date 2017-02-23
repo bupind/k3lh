@@ -127,8 +127,9 @@ class PpuParameterObligationController extends AppController
 
         $ppupoMonth = $model->ppupoMonths;
 
+
         $requestData = Yii::$app->request->post();
-        if ($model->load($requestData) && Model::loadMultiple($ppupoMonth, $requestData) && $model->save()) {
+        if ($model->load($requestData) && Model::loadMultiple($ppupoMonth, $requestData) && $model->saveTransactional()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_UPDATE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

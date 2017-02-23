@@ -5,12 +5,12 @@ namespace backend\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Ppu;
+use backend\models\PpuTechnicalProvision;
 
 /**
- * PpuSearch represents the model behind the search form about `backend\models\Ppu`.
+ * PpuTechnicalProvisionSearch represents the model behind the search form about `backend\models\PpuTechnicalProvision`.
  */
-class PpuSearch extends Ppu
+class PpuTechnicalProvisionSearch extends PpuTechnicalProvision
 {
     /**
      * @inheritdoc
@@ -18,7 +18,7 @@ class PpuSearch extends Ppu
     public function rules()
     {
         return [
-            [['id', 'sector_id', 'power_plant_id', 'ppu_year'], 'integer'],
+            [['id', 'ppu_id'], 'integer'],
         ];
     }
 
@@ -40,7 +40,7 @@ class PpuSearch extends Ppu
      */
     public function search($params)
     {
-        $query = Ppu::find();
+        $query = PpuTechnicalProvision::find();
 
         // add conditions that should always apply here
 
@@ -59,9 +59,7 @@ class PpuSearch extends Ppu
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'sector_id' => $this->sector_id,
-            'power_plant_id' => $this->power_plant_id,
-            'ppu_year' => $this->ppu_year,
+            'ppu_id' => $this->ppu_id,
         ]);
 
         return $dataProvider;

@@ -5,12 +5,12 @@ namespace backend\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Ppu;
+use backend\models\PpuQuestion;
 
 /**
- * PpuSearch represents the model behind the search form about `backend\models\Ppu`.
+ * PpuQuestionSearch represents the model behind the search form about `backend\models\PpuQuestion`.
  */
-class PpuSearch extends Ppu
+class PpuQuestionSearch extends PpuQuestion
 {
     /**
      * @inheritdoc
@@ -18,7 +18,8 @@ class PpuSearch extends Ppu
     public function rules()
     {
         return [
-            [['id', 'sector_id', 'power_plant_id', 'ppu_year'], 'integer'],
+            [['id'], 'integer'],
+            [['ppuq_question_type_code', 'ppuq_question'], 'safe'],
         ];
     }
 
@@ -40,7 +41,7 @@ class PpuSearch extends Ppu
      */
     public function search($params)
     {
-        $query = Ppu::find();
+        $query = PpuQuestion::find();
 
         // add conditions that should always apply here
 
@@ -59,10 +60,10 @@ class PpuSearch extends Ppu
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'sector_id' => $this->sector_id,
-            'power_plant_id' => $this->power_plant_id,
-            'ppu_year' => $this->ppu_year,
         ]);
+
+        $query->andFilterWhere(['like', 'ppuq_question_type_code', $this->ppuq_question_type_code])
+            ->andFilterWhere(['like', 'ppuq_question', $this->ppuq_question]);
 
         return $dataProvider;
     }

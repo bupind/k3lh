@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = ['label' => $model->ppuEmissionSource->ppues_na
     </div>
 
     <div class="row">
-        <div class="col-xs-12 col-md-10">
+        <div class="col-xs-12 col-md-4 col-md-offset-4">
             <h3 class="header smaller lighter green"><?= sprintf("%s %s %s", AppLabels::EMISSION_LOAD_CALCULATION, AppLabels::GRK, $model->ppuEmissionSource->ppues_name); ?></h3>
             <?= DetailView::widget([
                 'model' => $model,
@@ -55,7 +55,7 @@ $this->params['breadcrumbs'][] = ['label' => $model->ppuEmissionSource->ppues_na
             ]); ?>
         </div>
         <?php foreach ($model->ppuEmissionLoadGrkCalcs as $key => $pCalc) { ?>
-            <div class="col-xs-12 col-md-5">
+            <div class="col-xs-12 col-md-6">
                 <div class="row">
                     <div class="col-xs-12">
                         <h3 class="header smaller lighter green"><?= sprintf("%s %s %s %s", AppLabels::EMISSION_LOAD_CALCULATION, AppLabels::GRK, AppLabels::YEAR, $pCalc->ppueglc_year); ?></h3>

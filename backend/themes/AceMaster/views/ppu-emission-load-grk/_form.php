@@ -29,7 +29,7 @@ use backend\models\Codeset;
     ]
 ]); ?>
 
-<div class="col-xs-12 col-md-10">
+<div class="col-xs-12 col-md-4 col-md-offset-4">
     <div class="widget-box">
         <div class="widget-header">
             <h4 class="widget-title"><?= sprintf("%s %s", AppLabels::EMISSION_LOAD_CALCULATION, AppLabels::GRK); ?></h4>
@@ -55,7 +55,7 @@ use backend\models\Codeset;
 <?php
 
 foreach ($ppuCalc as $key => $pCalc) { ?>
-    <div class="col-xs-12 col-md-5">
+    <div class="col-xs-12 col-md-6">
         <div class="widget-box">
             <div class="widget-header">
                 <h4 class="widget-title"><?= sprintf("%s %s %s %s", AppLabels::EMISSION_LOAD_CALCULATION, AppLabels::GRK, AppLabels::YEAR, $startDate->format('Y')); ?></h4>

@@ -316,5 +316,11 @@ class AppLabels {
     const ANC = 'ANc';
     const OXIDATION_FACTOR = 'Faktor Oksidasi';
     const EMISSION_LOAD = 'Beban Emisi';
+    const UNMONITORED_EVIDENCE = 'Bukti Pendukung Tidak Dipantau';
+    const ACTUAL_LOAD_POLLUTION_CALCULATION_RESULT = 'Hasil Perhitungan Beban Pencemaran Aktual';
+    const DATA = 'Data';
+    const TOTAL = 'Total';
+    const KG = 'Kg';
+    const TON = 'Ton';
 
 }
