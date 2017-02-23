@@ -9,9 +9,9 @@ use app\components\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\PpuParameterObligation */
 
-$this->title = sprintf("%s %s %s", AppLabels::BTN_VIEW, AppLabels::PARAMETER_OBLIGATION, $model->ppuEmissionSource->ppues_name);
-$this->params['breadcrumbs'][] = ['label' => AppLabels::PARAMETER_OBLIGATION, 'url' => ['index', 'ppuId' => $model->ppuEmissionSource->ppu_id]];
-$this->params['breadcrumbs'][] = ['label' => $model->ppuEmissionSource->ppues_name];
+$this->title = sprintf("%s %s %s", AppLabels::BTN_VIEW, AppLabels::PARAMETER_OBLIGATION, $model->ppuCompulsoryMonitoredEmissionSource->ppucmes_name);
+$this->params['breadcrumbs'][] = ['label' => AppLabels::PARAMETER_OBLIGATION, 'url' => ['index', 'ppuId' => $model->ppuCompulsoryMonitoredEmissionSource->ppu_id]];
+$this->params['breadcrumbs'][] = ['label' => $model->ppuCompulsoryMonitoredEmissionSource->ppucmes_name];
 ?>
 <div class="ppu-parameter-obligation-view">
 
@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = ['label' => $model->ppuEmissionSource->ppues_na
                 'model' => $model,
                 'options' => [
                     'converter' => [
-                        'ppu_emission_source_id' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->ppuEmissionSource->ppues_name],
+                        'ppu_compulsory_monitored_emission_source_id' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->ppuCompulsoryMonitoredEmissionSource->ppucmes_name],
                         'ppupo_parameter_code' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->ppupo_parameter_code_desc],
                         'ppupo_parameter_unit_code' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->ppupo_parameter_unit_code_desc],
                         'ppupo_qs_unit_code' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->ppupo_qs_unit_code_desc],
@@ -64,8 +64,8 @@ $this->params['breadcrumbs'][] = ['label' => $model->ppuEmissionSource->ppues_na
                 'model' => $model,
                 'options' => [
                     'buttons' => [
-                        'create' => Html::a('<i class="ace-icon fa fa-plus bigger-120"></i> ' . AppLabels::BTN_ADD, ['create', 'ppuId' => $model->ppuEmissionSource->ppu_id], ['class' => 'btn btn-white btn-success btn-bold']),
-                        'index' => Html::a('<i class="ace-icon fa fa-undo bigger-120 red2"></i> ' . AppLabels::BTN_BACK, ['index', 'ppuId' => $model->ppuEmissionSource->ppu_id], ['class' => 'btn btn-white btn-danger btn-bold']),
+                        'create' => Html::a('<i class="ace-icon fa fa-plus bigger-120"></i> ' . AppLabels::BTN_ADD, ['create', 'ppuId' => $model->ppuCompulsoryMonitoredEmissionSource->ppu_id], ['class' => 'btn btn-white btn-success btn-bold']),
+                        'index' => Html::a('<i class="ace-icon fa fa-undo bigger-120 red2"></i> ' . AppLabels::BTN_BACK, ['index', 'ppuId' => $model->ppuCompulsoryMonitoredEmissionSource->ppu_id], ['class' => 'btn btn-white btn-danger btn-bold']),
                     ]
                 ]
             ]); ?>

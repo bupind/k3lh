@@ -62,37 +62,45 @@ $form = ActiveForm::begin([
                         </tr>
                     </thead>
                     <tbody>
-                    <?php $count1 = 0; $count2 = 0; $count3 = 0; ?>
-                    <?php $count4 = 0; $count5 = 0; $count6 = 0; ?>
-                    <?php foreach ($model->ppuCompulsoryMonitoredEmissionSources as $key5 => $ppuCmes) : ; ?>
-                        <?= $form->field($ppuCmes, "[$key5]ppucmes_operation_time")
-                            ->hiddenInput(['data-cell' => "X$count1"])
-                            ->label(false); ?>
-                        <?php $count4 = $count1; $count1++;  ?>
-                    <?php endforeach; ?>
-                    <?php foreach ($model->ppuEmissionSources as $key1 => $ppuEmissionSource) : $keyES=$key1+1; ?>
+                    <?php $count1 = 0;
+                    $count2 = 0;
+                    $count3 = 0;
+                    $count4 = 0;
+                    $count5 = 0;
+                    $otCount = 0; ?>
+                    <?php foreach ($model->ppuCompulsoryMonitoredEmissionSources as $key1 => $ppuCompulsoryMonitoredEmissionSource) : $keyCMES = $key1 + 1; ?>
                         <tr>
                             <td>
-                                <?= $keyES ?>
+                                <?= $keyCMES ?>
                             </td>
                             <td>0</td>
                             <td>
-                                <?= $ppuEmissionSource->ppues_chimney_name ?>
+                                <?= $form->field($ppuCompulsoryMonitoredEmissionSource, "[$key1]ppucmes_operation_time")
+                                    ->hiddenInput(['data-cell' => "X$count1"])
+                                    ->label(false); ?>
+                                <?php $count4 = $count1;
+                                $count1++; ?>
+                                <?= $ppuCompulsoryMonitoredEmissionSource->ppucmes_chimney_name ?>
                             </td>
                         </tr>
-                        <tr>
-                            <?php $monthCount = 0 ?>
-                            <?php foreach ($ppuEmissionSource->ppuParameterObligations as $key2 => $ppuParameterObligation) : $noParam = 1; ?>
-                                <?php if ($ppuParameterObligation->ppupo_parameter_code == "LAJUALIR") { ?>
-                                    <?php foreach ($ppuParameterObligation->ppupoMonths as $key3 => $ppupoMonth) : ?>
-                                        <?= $form->field($ppupoMonth, "[$key3]ppupom_value")
-                                            ->hiddenInput(['data-cell' => "Z$count2"])
-                                            ->label(false); ?>
-                                        <?php $count5 = $count2; $count2++; ?>
-                                    <?php endforeach; ?>
-                                <?php } else { ?>
+                        <?php $noParam = 1; ?>
+                        <?php foreach ($ppuCompulsoryMonitoredEmissionSource->ppuParameterObligations as $key2 => $ppuParameterObligation) : ?>
+                            <?php $monthCount = 0;
+                            $count6 = $key1*12
+                            ?>
+
+                            <?php if ($ppuParameterObligation->ppupo_parameter_code == "LAJUALIR") { ?>
+                                <?php foreach ($ppuParameterObligation->ppupoMonths as $key3 => $ppupoMonth) : ?>
+                                    <?= $form->field($ppupoMonth, "[$key3]ppupom_value")
+                                        ->hiddenInput(['data-cell' => "Z$count2"])
+                                        ->label(false); ?>
+                                    <?php $count2++; ?>
+                                <?php endforeach; ?>
+                            <?php } else { ?>
+                                <tr>
                                     <td></td>
-                                    <td> <?= $noParam ?> </td>
+                                    <td> <?php echo $noParam;
+                                        $noParam++ ?> </td>
                                     <td> <?= $ppuParameterObligation->ppupo_parameter_code_desc ?> </td>
                                     <?php foreach ($ppuParameterObligation->ppupoMonths as $key4 => $ppupoMonth) : ?>
                                         <td>
@@ -102,17 +110,23 @@ $form = ActiveForm::begin([
                                             <?= $form->field($ppupoMonth, "[$key4]ppupom_value")
                                                 ->hiddenInput(['data-cell' => "Y$count3"])
                                                 ->label(false); ?>
-                                            <?php $count6 = $count3; $count3++ ?>
-                                            <?= Html::label("", null, ['data-cell' => "V$key4", 'data-format' => '0,0[.]000', 'data-formula' => "Z$count5*Y$count6*X$count4*0.0036", 'class' => 'control-label']); ?>
-                                           </td>
+                                            <?php $count5 = $count3;
+                                            $count3++ ?>
+                                            <?= Html::label("", null, ['data-cell' => "V$count5", 'data-format' => '0,0[.]000', 'data-formula' => "Z$count6*Y$count5*X$count4*0.0036", 'class' => 'control-label']); ?>
+                                        </td>
+                                        <?php $count6++ ?>
                                     <?php endforeach; ?>
-                                <?php } ?>
-                            <?php endforeach; ?>
-                            <td> <?= Html::label("", null, ['data-cell' => "", 'data-format' => AppConstants::CALX_DATA_FORMAT_THO_DEC, 'data-formula' => "X$key1", 'class' => 'control-label']); ?> </td>
-                            <td> <?= Html::label($monthCount, null, ['class' => 'control-label']); ?> </td>
-                            <td><?= Html::label("", null, ['data-cell' => "A$key1", 'data-format' => '0,0[.]000', 'data-formula' => "SUM(V0:V$monthCount)/$monthCount", 'class' => 'control-label']); ?></td>
-                            <td><?= Html::label("", null, ['data-cell' => "B$key1", 'data-format' => '0,0[.]000', 'data-formula' => "A$key1/1000", 'class' => 'control-label']); ?></td>
-                        </tr>
+
+                                    <td> <?= Html::label("", null, ['data-cell' => "A$otCount", 'data-format' => '0,0[.]000000', 'data-formula' => "X$count4", 'class' => 'control-label']); ?> </td>
+                                    <td> <?= Html::label($monthCount, null, ['class' => 'control-label']); ?> </td>
+                                    <?php $startIndex = ($otCount) * 12;
+                                    $endIndex = $startIndex + 11; ?>
+                                    <td><?= Html::label("", null, ['data-cell' => "B$otCount", 'data-format' => '0,0[.]000', 'data-formula' => "SUM(V$startIndex:V$endIndex)/$monthCount", 'class' => 'control-label']); ?></td>
+                                    <td><?= Html::label("", null, ['data-cell' => "C$otCount", 'data-format' => '0,0[.]000', 'data-formula' => "B$otCount/1000", 'class' => 'control-label']); ?></td>
+                                    <?php $otCount++; ?>
+                                </tr>
+                            <?php } ?>
+                        <?php endforeach; ?>
                     <?php endforeach; ?>
                     </tbody>
                 </table>

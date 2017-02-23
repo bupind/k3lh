@@ -21,7 +21,7 @@ use common\vendor\AppConstants;
  * @property Sector $sector
  *
  * @property PpuEmissionSource[] $ppuEmissionSources
- * @property PpuCompulsoryMonitoredEmissionSource[] $ppuCompulsoryEmissionSources
+ * @property PpuCompulsoryMonitoredEmissionSource[] $ppuCompulsoryMonitoredEmissionSources
  */
 class Ppu extends AppModel
 {

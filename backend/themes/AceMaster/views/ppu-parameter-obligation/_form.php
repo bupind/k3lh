@@ -4,7 +4,7 @@ use yii\widgets\ActiveForm;
 use app\components\SubmitButton;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
-use backend\models\PpuEmissionSource;
+use backend\models\PpuCompulsoryMonitoredEmissionSource;
 use backend\models\Codeset;
 
 /* @var $this yii\web\View */
@@ -37,8 +37,8 @@ use backend\models\Codeset;
             <div class="widget-main">
                 <fieldset>
                     <?php
-                    echo $form->field($model, 'ppu_emission_source_id', ['template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE])
-                        ->dropDownList(PpuEmissionSource::map(new PpuEmissionSource(), 'ppues_name'), ['class' => 'chosen-select form-control'])
+                    echo $form->field($model, 'ppu_compulsory_monitored_emission_source_id', ['template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE])
+                        ->dropDownList(PpuCompulsoryMonitoredEmissionSource::map(new PpuCompulsoryMonitoredEmissionSource(), 'ppucmes_name'), ['class' => 'chosen-select form-control'])
                         ->label(null, ['class' => '']);
 
                     echo $form->field($model, 'ppupo_parameter_code', ['template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE])

@@ -120,7 +120,7 @@ class PpuParameterObligationController extends AppController
     {
         $model = $this->findModel($id);
 
-        $ppuModel = $model->ppuEmissionSource->ppu;
+        $ppuModel = $model->ppuCompulsoryMonitoredEmissionSource->ppu;
 
         $startDate = new \DateTime();
         $startDate->setDate($ppuModel->ppu_year - 1, 7, 1);

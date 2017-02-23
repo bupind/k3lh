@@ -14,7 +14,7 @@ class PpuParameterObligationSearch extends PpuParameterObligation
     public function rules()
     {
         return [
-            [['id', 'ppu_emission_source_id'], 'integer'],
+            [['id', 'ppu_compulsory_monitored_emission_source_id'], 'integer'],
             [['ppupo_parameter_code', 'ppupo_parameter_unit_code', 'ppupo_qs_unit_code', 'ppupo_qs_ref', 'ppupo_qs_load_unit_code', 'ppupo_qs_max_pollution_load_ref'], 'safe'],
             [['ppupo_qs', 'ppupo_qs_max_pollution_load'], 'number'],
         ];
@@ -57,7 +57,7 @@ class PpuParameterObligationSearch extends PpuParameterObligation
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'ppu_emission_source_id' => $this->ppu_emission_source_id,
+            'ppu_compulsory_monitored_emission_source_id' => $this->ppu_compulsory_monitored_emission_source_id,
             'ppupo_qs' => $this->ppupo_qs,
             'ppupo_qs_max_pollution_load' => $this->ppupo_qs_max_pollution_load,
         ]);
@@ -78,8 +78,8 @@ class PpuParameterObligationSearch extends PpuParameterObligation
 
         // add conditions that should always apply here
 
-        $query->joinWith(['ppuEmissionSource es'], true, 'INNER JOIN')
-            ->where(['es.ppu_id' => $ppuId]);
+        $query->joinWith(['ppuCompulsoryMonitoredEmissionSource cmes'], true, 'INNER JOIN')
+            ->where(['cmes.ppu_id' => $ppuId]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -96,7 +96,7 @@ class PpuParameterObligationSearch extends PpuParameterObligation
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'ppu_emission_source_id' => $this->ppu_emission_source_id,
+            'ppu_compulsory_monitored_emission_source_id' => $this->ppu_compulsory_monitored_emission_source_id,
             'ppupo_qs' => $this->ppupo_qs,
             'ppupo_qs_max_pollution_load' => $this->ppupo_qs_max_pollution_load,
         ]);

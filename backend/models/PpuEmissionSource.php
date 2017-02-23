@@ -40,7 +40,6 @@ use yii\web\UploadedFile;
  * @property Ppu $ppu
  *
  * @property AttachmentOwner $attachmentOwner
- * @property PpuParameterObligation[] $ppuParameterObligations
  */
 class PpuEmissionSource extends AppModel
 {
@@ -187,11 +186,5 @@ class PpuEmissionSource extends AppModel
         return $this->hasOne(AttachmentOwner::className(), ['atfo_module_pk' => 'id'])->andOnCondition(['atfo_module_code' => AppConstants::MODULE_CODE_PPU_EMISSION_SOURCE]);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPpuParameterObligations()
-    {
-        return $this->hasMany(PpuParameterObligation::className(), ['ppu_emission_source_id' =>  'id']);
-    }
+
 }

@@ -23,6 +23,7 @@ use yii\base\Exception;
  *
  * @property Ppu $ppu
  * @property PpucmesMonth[] $ppucmesMonths
+ * @property PpuParameterObligation[] $ppuParameterObligations
  */
 class PpuCompulsoryMonitoredEmissionSource extends AppModel
 {
@@ -142,5 +143,13 @@ class PpuCompulsoryMonitoredEmissionSource extends AppModel
     public function getPpucmesMonths()
     {
         return $this->hasMany(PpucmesMonth::className(), ['ppu_compulsory_monitored_emission_source_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPpuParameterObligations()
+    {
+        return $this->hasMany(PpuParameterObligation::className(), ['ppu_compulsory_monitored_emission_source_id' =>  'id']);
     }
 }
