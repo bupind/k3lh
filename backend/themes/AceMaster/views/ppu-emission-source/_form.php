@@ -78,7 +78,7 @@ use common\components\helpers\Converter;
 
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <label class="control-label">Bukti Pendukung Tidak Dipantau</label>
+                            <label class="control-label"><?= AppLabels::UNMONITORED_EVIDENCE ?></label>
                                 <?= Converter::attachment($model->attachmentOwner, ['show_file_upload' => true, 'show_delete_file' => true]); ?>
                         </div>
                     </div>

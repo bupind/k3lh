@@ -322,5 +322,7 @@ class AppLabels {
     const TOTAL = 'Total';
     const KG = 'Kg';
     const TON = 'Ton';
+    const CATEGORY = 'Kategori';
+    const SUPPORTING_EVIDENCE = 'Bukti Pendukung';
 
 }

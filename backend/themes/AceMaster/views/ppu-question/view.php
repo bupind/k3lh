@@ -1,41 +1,41 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\DetailView;
+use app\components\DetailView;
+use app\components\ViewButton;
+use common\vendor\AppConstants;
+use common\vendor\AppLabels;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\PpuQuestion */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Ppu Questions', 'url' => ['index']];
+$this->title = sprintf('%s %s %s', AppLabels::BTN_VIEW, AppLabels::QUESTION, AppLabels::TECHNICAL_PROVISION);
+$this->params['subtitle'] = $model->ppuq_question_type_code_desc;
+$this->params['breadcrumbs'][] = ['label' => sprintf('%s %s', AppLabels::QUESTION, AppLabels::TECHNICAL_PROVISION), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ppu-question-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
+    <div class="page-header">
+        <h1>
+            <?= Html::encode($this->title) ?>
+            <?php if (isset($this->params['subtitle'])): ?>
+                <small>
+                    <i class="ace-icon fa fa-angle-double-right"></i>
+                    <?= $this->params['subtitle']; ?>
+                </small>
+            <?php endif; ?>
+        </h1>
+    </div>
 
     <?= DetailView::widget([
         'model' => $model,
-        'attributes' => [
-            'id',
-            'ppuq_question_type_code',
-            'ppuq_question',
-            'created_by',
-            'created_at',
-            'updated_by',
-            'updated_at',
-        ],
-    ]) ?>
+        'options' => [
+            'converter' => [
+                'ppuq_question_type_code' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->ppuq_question_type_code_desc]
+            ]
+        ]
+    ]); ?>
+    <?= ViewButton::widget(['model' => $model]); ?>
 
 </div>

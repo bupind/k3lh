@@ -1,33 +1,54 @@
 <?php
 
-use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\components\SubmitLinkButton;
+use common\vendor\AppConstants;
+use yii\redactor\widgets\Redactor;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\PpuQuestion */
 /* @var $form yii\widgets\ActiveForm */
 ?>
+<?php
+$form = ActiveForm::begin([
+    'options' => [
+        'class' => 'form-horizontal',
+        'role' => 'form'
+    ],
+]);
+?>
 
-<div class="ppu-question-form">
+<div class="row ppu-question-form">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+        <?php
+        /*echo $form->field($model, 'ppuq_question_type_code', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_4])
+            ->dropDownList(Codeset::customMap(AppConstants::CODESET_PPU_QUESTION_TYPE_CODE), ['class' => AppConstants::ACTIVE_FORM_CLASS_DROPDOWN])
+            ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]); */
+        echo $form->field($model, 'ppuq_question', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+            ->widget(Redactor::className(), [
+                'clientOptions' => [
+                    'imageUpload' => ['/redactor/upload/image'],
+                    'imageUploadCallback' => new \yii\web\JsExpression("
+                        function(image, json) {
+                            image.addClass('img-responsive')
+                        }
+                    "),
+                    'plugins' => ['imagemanager']
+                ]
+            ])
+            ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
 
-    <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'ppuq_question_type_code')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'ppuq_question')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'created_by')->textInput() ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_by')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
-
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        ?>
     </div>
 
-    <?php ActiveForm::end(); ?>
 
 </div>
+
+<div class="row">
+    <div class="col-xs-12 form-actions text-center">
+        <?= SubmitLinkButton::widget(['formId' => 'ppu-question-form', 'backAction' => 'index', 'isNewRecord' => $model->isNewRecord]); ?>
+    </div>
+</div>
+
+<?php ActiveForm::end(); ?>
+

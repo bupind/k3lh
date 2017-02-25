@@ -2,18 +2,22 @@
 
 namespace backend\controllers;
 
+use backend\models\PpuQuestion;
+use backend\models\PpuTechnicalProvisionDetail;
 use Yii;
 use backend\models\PpuTechnicalProvision;
-use backend\models\PpuTechnicalProvisionSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\vendor\AppConstants;
+use yii\base\Model;
+use backend\models\Ppu;
 
 /**
  * PpuTechnicalProvisionController implements the CRUD actions for PpuTechnicalProvision model.
  */
-class PpuTechnicalProvisionController extends Controller
+class PpuTechnicalProvisionController extends AppController
 {
+    public $ppuModel;
     /**
      * @inheritdoc
      */
@@ -29,18 +33,54 @@ class PpuTechnicalProvisionController extends Controller
         ];
     }
 
+    public function beforeAction($action)
+    {
+        parent::beforeAction($action);
+
+        if (in_array($action->id, ['index', 'create'])) {
+            $ppuId = Yii::$app->request->get('ppuId');
+            if (empty($ppuId)) {
+                throw new NotFoundHttpException('The requested page does not exist.');
+            }
+
+            $this->ppuModel = Ppu::findOne(['id' => $ppuId]);
+        }
+
+        return true;
+    }
+
     /**
      * Lists all PpuTechnicalProvision models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PpuTechnicalProvisionSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $ppuQuestions = PpuQuestion::find()->all();
+        $questionCount = PpuQuestion::find()->count();
+        $detailModels = [];
+
+        for ($i=0; $i<$questionCount; $i++) {
+            $detailModels[] = new PpuTechnicalProvisionDetail();
+        }
+
+        if(is_null($ppuTp = PpuTechnicalProvision::findOne(['ppu_id' => $this->ppuModel->id]))){
+            $model = new PpuTechnicalProvision();
+        }else {
+            $model = $this->findModel($ppuTp->id);
+            $detailModels = $model->ppuTechnicalProvisionDetails;
+        }
+
+        $requestData = Yii::$app->request->post();
+        if ($model->load($requestData) && Model::loadMultiple($detailModels, $requestData) &&  $model->saveTransactional()) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
+            $this->redirect('ppu');
+        }
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'ppuId' => $this->ppuModel->id,
+            'detailModels' => $detailModels,
+            'ppuQuestions' => $ppuQuestions,
+            'model' => $model,
         ]);
     }
 
@@ -66,6 +106,7 @@ class PpuTechnicalProvisionController extends Controller
         $model = new PpuTechnicalProvision();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -85,6 +126,7 @@ class PpuTechnicalProvisionController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_UPDATE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
@@ -101,7 +143,9 @@ class PpuTechnicalProvisionController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        if ($this->findModel($id)->delete()) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_DELETE_SUCCESS);
+        }
 
         return $this->redirect(['index']);
     }

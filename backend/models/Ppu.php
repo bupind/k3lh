@@ -22,6 +22,7 @@ use common\vendor\AppConstants;
  *
  * @property PpuEmissionSource[] $ppuEmissionSources
  * @property PpuCompulsoryMonitoredEmissionSource[] $ppuCompulsoryMonitoredEmissionSources
+ * @property PpuTechnicalProvision[] $ppuTechnicalProvisions
  */
 class Ppu extends AppModel
 {
@@ -81,6 +82,14 @@ class Ppu extends AppModel
     public function getPpuEmissionSources()
     {
         return $this->hasMany(PpuEmissionSource::className(), ['ppu_id' =>  'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPpuTechnicalProvisions()
+    {
+        return $this->hasMany(PpuTechnicalProvision::className(), ['ppu_id' =>  'id']);
     }
 
     /**

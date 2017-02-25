@@ -2,37 +2,43 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use common\vendor\AppLabels;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\PpuQuestionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Ppu Questions';
+$this->title = sprintf('%s %s', AppLabels::QUESTION, AppLabels::TECHNICAL_PROVISION);
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ppu-question-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <div class="page-header">
+        <h1><?= Html::encode($this->title) ?></h1>
+    </div>
 
-    <p>
-        <?= Html::a('Create Ppu Question', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+    <div class="clearfix">
+        <div class="pull-right">
+            <?= Html::a(AppLabels::BTN_ADD, ['create'], ['class' => 'btn btn-sm btn-success']) ?>
+        </div>
+    </div>
+    <hr/>
+    <div class="table-responsive">
+        <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'ppuq_question_type_code',
-            'ppuq_question',
-            'created_by',
-            'created_at',
-            // 'updated_by',
-            // 'updated_at',
+                /*[
+                    'attribute' => 'ppuq_question_type_code',
+                    'value' => 'ppuq_question_type_code_desc',
+                    'filter' => Html::activeDropDownList($searchModel, 'ppuq_question_type_code', Codeset::customMap(AppConstants::CODESET_PPU_QUESTION_TYPE_CODE), ['class' => 'chosen-select form-control'])
+                ],*/
+                'ppuq_question:html',
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+                ['class' => 'yii\grid\ActionColumn'],
+            ],
+        ]); ?>
+    </div>
 </div>

@@ -2,7 +2,8 @@
 
 namespace backend\models;
 
-use Yii;
+use common\vendor\AppConstants;
+use common\vendor\AppLabels;
 
 /**
  * This is the model class for table "ppu_question".
@@ -17,8 +18,9 @@ use Yii;
  *
  * @property PpuTechnicalProvisionDetail[] $ppuTechnicalProvisionDetails
  */
-class PpuQuestion extends \yii\db\ActiveRecord
+class PpuQuestion extends AppModel
 {
+    public $ppuq_question_type_code_desc;
     /**
      * @inheritdoc
      */
@@ -33,7 +35,7 @@ class PpuQuestion extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ppuq_question_type_code', 'ppuq_question'], 'required'],
+            [['ppuq_question'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
             [['ppuq_question_type_code'], 'string', 'max' => 10],
             [['ppuq_question'], 'string', 'max' => 255],
         ];
@@ -46,9 +48,17 @@ class PpuQuestion extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'ppuq_question_type_code' => 'Ppuq Question Type Code',
-            'ppuq_question' => 'Ppuq Question',
+            'ppuq_question_type_code' => AppLabels::CATEGORY,
+            'ppuq_question' => AppLabels::QUESTION,
         ];
+    }
+
+    public function afterFind() {
+        parent::afterFind();
+
+        $this->ppuq_question_type_code_desc = Codeset::getCodesetValue(AppConstants::CODESET_PPU_QUESTION_TYPE_CODE, $this->ppuq_question_type_code);
+
+        return true;
     }
 
     /**

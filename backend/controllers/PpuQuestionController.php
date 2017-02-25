@@ -5,14 +5,13 @@ namespace backend\controllers;
 use Yii;
 use backend\models\PpuQuestion;
 use backend\models\PpuQuestionSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use common\vendor\AppConstants;
 /**
  * PpuQuestionController implements the CRUD actions for PpuQuestion model.
  */
-class PpuQuestionController extends Controller
+class PpuQuestionController extends AppController
 {
     /**
      * @inheritdoc
@@ -66,6 +65,7 @@ class PpuQuestionController extends Controller
         $model = new PpuQuestion();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -85,6 +85,7 @@ class PpuQuestionController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_UPDATE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
@@ -101,7 +102,9 @@ class PpuQuestionController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        if ($this->findModel($id)->delete()) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_DELETE_SUCCESS);
+        }
 
         return $this->redirect(['index']);
     }
