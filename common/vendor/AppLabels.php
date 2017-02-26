@@ -324,5 +324,15 @@ class AppLabels {
     const TON = 'Ton';
     const CATEGORY = 'Kategori';
     const SUPPORTING_EVIDENCE = 'Bukti Pendukung';
+    //PPU Ambient
+    const AMBIENT = 'Ambient';
+    const MONITORING = 'Pemantauan';
+    const MONITORING_POINT = 'Titik Pemantauan';
+    const LATITUDE = 'Latitude';
+    const LONGITUDE = 'Longitude';
+    const ENVIRONMENT = 'Lingkungan';
+    const CONFIRM_DATE = 'Tanggal Pengesahan';
+    const PPUA_STATUS_PROPER = 'Status Data Pemantauan pada Periode PROPER';
+    const PPUA_MONITORING_OBLIGATION = 'Frekuensi Kewajiban Pemantauan';
 
 }

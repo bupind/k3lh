@@ -6,22 +6,23 @@ use common\vendor\AppLabels;
 use yii\widgets\ActiveForm;
 use common\vendor\AppConstants;
 use backend\models\Sector;
-use backend\assets\PPUAsset;
+use backend\assets\PPUAAsset;
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\PpuSearch */
+/* @var $searchModel backend\models\PpuAmbientSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-/* @var $model backend\models\Ppu */
+/* @var $model backend\models\PpuAmbient */
 /* @var $powerPlantList backend\models\PowerPlant[] */
 
-PPUAsset::register($this);
+PPUAAsset::register($this);
 $baseUrl = Url::base();
 
 $this->title = AppLabels::AIR_POLLUTION_CONTROL;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="ppu-index">
+<div class="ppu-ambient-index">
+
     <div class="page-header">
         <h1><?= Html::encode($this->title) ?></h1>
     </div>
@@ -57,7 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         echo $form->field($model, 'power_plant_id', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9])
                             ->dropDownList($powerPlantList, ['id' => 'power-plant-list', 'class' => 'input-small chosen-select form-control'])
                             ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
-                        echo $form->field($model, 'ppu_year', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+                        echo $form->field($model, 'ppua_year', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
                             ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly'])
                             ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
 
@@ -93,7 +94,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'attribute' => 'power_plant_id',
                     'value' => 'powerPlant.pp_name'
                 ],
-                'ppu_year',
+                'ppua_year',
 
                 ['class' => 'yii\grid\ActionColumn'],
             ],

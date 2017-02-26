@@ -309,6 +309,7 @@ class SiteController extends AppController {
                                                                         'additionalParameters' => [
                                                                             'children' => [
                                                                                 '3213-1' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Pengendalian Pencemaran Udara', ['/ppu']), 'type' => 'item'],
+                                                                                '3213-2' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Pengendalian Pencemaran Udara Ambient', ['/ppu-ambient']), 'type' => 'item'],
                                                                             ]
                                                                         ]
                                                                     ],

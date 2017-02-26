@@ -48,6 +48,7 @@ class AppConstants {
     const ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL = '{label} <div class="col-sm-9">{input}<span class="help-inline col-xs-12"><span class="middle">{error}{hint}</span></span></div>';
     const ACTIVE_FORM_WIDGET_TEMPLATE = '{label}{input}<span class="help-block">{error}{hint}</span>';
     const ACTIVE_FORM_WIDGET_TEMPLATE_EXTRA = '{label} <div id="{wrapper_id}" class="input-group input-large"><div class="input-group">{input}<span class="input-group-btn">{extra}</span></div><span class="help-block">{error}{hint}</span></div>';
+    const ACTIVE_FORM_WIDGET_TEMPLATE_INPUT_GROUP = '{label}<div class="input-group">{input}<span class="input-group-addon">{separator}</span>{input2}</div><span class="help-block">{error}{hint}</span>';
     const ACTIVE_FORM_CLASS_LABEL_COL_3 = 'col-sm-3 control-label no-padding-right';
     const ACTIVE_FORM_CLASS_LABEL_COL_4 = 'col-sm-4 control-label no-padding-right';
     
@@ -97,6 +98,7 @@ class AppConstants {
     const MODULE_CODE_PPU_EMISSION_SOURCE = 'PPU_EMS_SRC';
     const MODULE_CODE_PPU_EMISSION_LOAD_GRK = 'PPU_EMS_LD_GRK';
     const MODULE_CODE_PPU_TECHNICAL_PROVISION = 'PPU_TECH_PROV';
+    const MODULE_CODE_PPUA_MONITORING_POINT = 'PPUA_MONIT_POIN';
     
     // ATTACHMENT TYPE
     const ATTACHMENT_TYPE_IMAGE = 'IMG';
@@ -204,6 +206,9 @@ class AppConstants {
     const CODESET_PPU_RBM_QS_UNIT_CODE = 'PPU_RBM_QS_UNIT_CODE';
     const CODESET_PPU_RBM_QS_LOAD_UNIT_CODE = 'PPU_RBM_QS_LOAD_UNIT_CODE';
     const CODESET_PPU_QUESTION_TYPE_CODE = 'PPU_QUESTION_TYPE_CODE';
+    //PPU AMBIENT CODESETS NAME
+    const CODESET_PPUA_MP_MONITORING_DATA_STATUS_CODE = 'PPUA_MP_MONITORING_DATA_STATUS_CODE';
+    const CODESET_PPUA_MP_FREQ_MONITORING_OBLIGATION_CODE = 'PPUA_MP_FREQ_MONITORING_OBLIGATION_CODE';
     
     // WEB CONFIG
     const WEB_CONFIG_SALE_EXTERNAL_SALES = 'SALE_EXT_SALES';
