@@ -119,8 +119,18 @@ $this->params['breadcrumbs'][] = ['label' => $model->ppues_name];
         </div>
     </div>
 
-    <div class="col-xs-12 col-sm-12">
-        <?= ViewButton::widget(['model' => $model]); ?>
+    <div class="row">
+        <div class="col-xs-12">
+            <?= ViewButton::widget([
+                'model' => $model,
+                'options' => [
+                    'buttons' => [
+                        'create' => Html::a('<i class="ace-icon fa fa-plus bigger-120"></i> ' . AppLabels::BTN_ADD, ['create', 'ppuId' => $model->ppu_id], ['class' => 'btn btn-white btn-success btn-bold']),
+                        'index' => Html::a('<i class="ace-icon fa fa-undo bigger-120 red2"></i> ' . AppLabels::BTN_BACK, ['index', 'ppuId' => $model->ppu_id], ['class' => 'btn btn-white btn-danger btn-bold']),
+                    ]
+                ]
+            ]); ?>
+        </div>
     </div>
 
 </div>

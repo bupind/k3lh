@@ -5,6 +5,7 @@ use common\vendor\AppLabels;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Ppu */
+/* @var $powerPlantList backend\models\PowerPlant[] */
 
 $this->title = sprintf('%s %s', AppLabels::BTN_UPDATE, AppLabels::AIR_POLLUTION_CONTROL);
 $this->params['breadcrumbs'][] = ['label' => AppLabels::AIR_POLLUTION_CONTROL, 'url' => ['index']];

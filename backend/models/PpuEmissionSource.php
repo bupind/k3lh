@@ -2,7 +2,6 @@
 
 namespace backend\models;
 
-use common\components\helpers\Converter;
 use Yii;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
@@ -112,10 +111,6 @@ class PpuEmissionSource extends AppModel
 
         try {
             $this->load($request);
-
-            if (isset($request['ppu_id'])){
-                $this->ppu_id = $request['ppu_id'];
-            }
 
             if ($this->save()) {
                 if (isset($request['Attachment'])) {
