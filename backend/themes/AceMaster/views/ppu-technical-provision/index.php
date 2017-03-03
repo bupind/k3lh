@@ -14,8 +14,12 @@ use app\components\SubmitButton;
 /* @var $ppuQuestions backend\models\PpuQuestion[] */
 /* @var $detailModels backend\models\PpuTechnicalProvisionDetail[] */
 /* @var $ppuId int */
+/* @var $ppuModel backend\models\Ppu */
 
-$this->title = 'Ppu Technical Provisions';
+$this->title = AppLabels::TECHNICAL_PROVISION;
+$this->params['breadcrumbs'][] = ['label' => AppLabels::AIR_POLLUTION_CONTROL, 'url' => ['/ppu/index']];
+$this->params['breadcrumbs'][] = ['label' => sprintf('%s - %s', $ppuModel->sector->sector_name, $ppuModel->powerPlant->pp_name), 'url' => ['/ppu/view', 'id' => $ppuModel->id]];
+$this->params['breadcrumbs'][] = ['label' => AppLabels::BTN_UPDATE, 'url' => ["/ppu/update/$ppuModel->id"]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -48,7 +52,7 @@ $form = ActiveForm::begin([
                         <tr>
                             <?php
                             if ($model->getIsNewRecord()) {
-                                echo Html::hiddenInput("PpuTechnicalProvision[ppu_id]", $ppuId);
+                                echo Html::hiddenInput("PpuTechnicalProvision[ppu_id]", $ppuModel->id);
                             } else {
                                 echo $form->field($model, 'ppu_id')
                                     ->hiddenInput([])->label(false);
@@ -84,7 +88,7 @@ $form = ActiveForm::begin([
         </div>
 
         <div class="col-xs-12">
-            <?= SubmitButton::widget(['backAction' => ['index', 'ppuId' => $ppuId], 'isNewRecord' => $model->isNewRecord, 'widget' => true]); ?>
+            <?= SubmitButton::widget(['backAction' => ['index', 'ppuId' => $ppuModel->id], 'isNewRecord' => $model->isNewRecord, 'widget' => true]); ?>
         </div>
 
     </div>

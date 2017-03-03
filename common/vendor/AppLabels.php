@@ -334,5 +334,10 @@ class AppLabels {
     const CONFIRM_DATE = 'Tanggal Pengesahan';
     const PPUA_STATUS_PROPER = 'Status Data Pemantauan pada Periode PROPER';
     const PPUA_MONITORING_OBLIGATION = 'Frekuensi Kewajiban Pemantauan';
-
+    //PPU CEMS
+    const CEMS = 'CEMS';
+    const REPORT_BM_AND_CEMS = 'Pelaporan BM dan CEMS';
+    const PPUCEMSRB_LONG_CONST_1 = 'Jumlah data parameter pemantauan harian CEMS selama 3 bulanan';
+    const PPUCEMSRB_LONG_CONST_2 = 'Jumlah data pemantauan yang memenuhi Baku Mutu CEMS';
+    const PERCENTAGE = 'Persentase';
 }

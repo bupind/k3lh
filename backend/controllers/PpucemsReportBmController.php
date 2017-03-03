@@ -2,21 +2,22 @@
 
 namespace backend\controllers;
 
-use backend\models\PpuQuestion;
-use backend\models\PpuTechnicalProvisionDetail;
+use backend\models\PpucemsrbQuarter;
 use Yii;
-use backend\models\PpuTechnicalProvision;
+use backend\models\PpucemsReportBm;
+use backend\models\PpucemsReportBmSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\vendor\AppConstants;
-use yii\base\Model;
 use backend\models\Ppu;
+use yii\base\Model;
 
 /**
- * PpuTechnicalProvisionController implements the CRUD actions for PpuTechnicalProvision model.
+ * PpucemsReportBmController implements the CRUD actions for PpucemsReportBm model.
  */
-class PpuTechnicalProvisionController extends AppController
+class PpucemsReportBmController extends AppController
 {
+
     public $ppuModel;
     /**
      * @inheritdoc
@@ -33,8 +34,7 @@ class PpuTechnicalProvisionController extends AppController
         ];
     }
 
-    public function beforeAction($action)
-    {
+    public function beforeAction($action) {
         parent::beforeAction($action);
 
         if (in_array($action->id, ['index', 'create'])) {
@@ -50,73 +50,84 @@ class PpuTechnicalProvisionController extends AppController
     }
 
     /**
-     * Lists all PpuTechnicalProvision models.
+     * Lists all PpucemsReportBm models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $ppuQuestions = PpuQuestion::find()->all();
-        $questionCount = PpuQuestion::find()->count();
-        $detailModels = [];
-
-        for ($i=0; $i<$questionCount; $i++) {
-            $detailModels[] = new PpuTechnicalProvisionDetail();
-        }
-
-        if(is_null($ppuTp = PpuTechnicalProvision::findOne(['ppu_id' => $this->ppuModel->id]))){
-            $model = new PpuTechnicalProvision();
-        }else {
-            $model = $this->findModel($ppuTp->id);
-            $detailModels = $model->ppuTechnicalProvisionDetails;
-        }
-
-        $requestData = Yii::$app->request->post();
-        if ($model->load($requestData) && Model::loadMultiple($detailModels, $requestData) &&  $model->saveTransactional()) {
-            Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
-            $this->redirect('ppu');
-        }
+        $searchModel = new PpucemsReportBmSearch();
+        $dataProvider = $searchModel->searchPpuEmissionSource(Yii::$app->request->queryParams, $this->ppuModel->id);
 
         return $this->render('index', [
             'ppuModel' => $this->ppuModel,
-            'detailModels' => $detailModels,
-            'ppuQuestions' => $ppuQuestions,
-            'model' => $model,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Displays a single PpuTechnicalProvision model.
+     * Displays a single PpucemsReportBm model.
      * @param integer $id
      * @return mixed
      */
     public function actionView($id)
     {
+        $cemsConstant = [
+            0 => 92,
+            1 => 92,
+            2 => 90,
+            3 => 91,
+        ];
+
         return $this->render('view', [
+            'cemsConstant' => $cemsConstant,
             'model' => $this->findModel($id),
         ]);
     }
 
     /**
-     * Creates a new PpuTechnicalProvision model.
+     * Creates a new PpucemsReportBm model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new PpuTechnicalProvision();
+        $model = new PpucemsReportBm();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $startDate = new \DateTime();
+        $startDate->setDate($this->ppuModel->ppu_year - 1, 7, 1);
+
+        $ppucemsrbQuarter = [];
+
+        for ($i = 0; $i < 4; $i++) {
+            $ppucemsrbQuarter[] = new PpucemsrbQuarter();
+        }
+
+        $cemsConstant = [
+            0 => 92,
+            1 => 92,
+            2 => 90,
+            3 => 91,
+        ];
+
+        $requestData = Yii::$app->request->post();
+
+        if ($model->load($requestData) && Model::loadMultiple($ppucemsrbQuarter, $requestData) && $model->saveTransactional()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
+                'cemsConstant' => $cemsConstant,
+                'startDate' => $startDate,
+                'ppuModel' => $this->ppuModel,
+                'ppucemsrbQuarter' => $ppucemsrbQuarter,
                 'model' => $model,
             ]);
         }
     }
 
     /**
-     * Updates an existing PpuTechnicalProvision model.
+     * Updates an existing PpucemsReportBm model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -125,18 +136,36 @@ class PpuTechnicalProvisionController extends AppController
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $ppuModel = $model->ppuEmissionSource->ppu;
+
+        $cemsConstant = [
+            0 => 92,
+            1 => 92,
+            2 => 90,
+            3 => 91,
+        ];
+
+        $ppucemsrbQuarter = $model->ppucemsrbQuarters;
+
+        $startDate = new \DateTime();
+        $startDate->setDate($ppuModel->ppu_year - 1, 7, 1);
+
+        if ($model->load(Yii::$app->request->post()) && $model->saveTransactional()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_UPDATE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
+                'cemsConstant' => $cemsConstant,
+                'startDate' => $startDate,
+                'ppuModel' => $ppuModel,
+                'ppucemsrbQuarter' => $ppucemsrbQuarter,
                 'model' => $model,
             ]);
         }
     }
 
     /**
-     * Deletes an existing PpuTechnicalProvision model.
+     * Deletes an existing PpucemsReportBm model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -151,15 +180,15 @@ class PpuTechnicalProvisionController extends AppController
     }
 
     /**
-     * Finds the PpuTechnicalProvision model based on its primary key value.
+     * Finds the PpucemsReportBm model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return PpuTechnicalProvision the loaded model
+     * @return PpucemsReportBm the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = PpuTechnicalProvision::findOne($id)) !== null) {
+        if (($model = PpucemsReportBm::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
