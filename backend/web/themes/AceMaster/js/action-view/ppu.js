@@ -6,6 +6,7 @@ jQuery(document).ready(function () {
         sb = new StringBuilder(),
         form = $('#ppu-form');
 
+
     $(document).on('change', '.sector-list', function(){
         var powerPlantList = $('#power-plant-list');
 

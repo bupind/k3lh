@@ -2,22 +2,22 @@
 
 namespace backend\controllers;
 
-use Yii;
+use backend\models\PpucemsReportBm;
 use backend\models\PpuEmissionSource;
-use backend\models\PpuEmissionSourceSearch;
+use Yii;
+use backend\models\PpucemsrbParameterReport;
+use backend\models\PpucemsrbParameterReportSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\vendor\AppConstants;
+use common\vendor\AppLabels;
 use backend\models\Ppu;
-use yii\helpers\Json;
-use backend\models\Codeset;
 
 /**
- * PpuEmissionSourceController implements the CRUD actions for PpuEmissionSource model.
+ * PpucemsrbParameterReportController implements the CRUD actions for PpucemsrbParameterReport model.
  */
-class PpuEmissionSourceController extends AppController
+class PpucemsrbParameterReportController extends AppController
 {
-
     public $ppuModel;
     /**
      * @inheritdoc
@@ -49,27 +49,13 @@ class PpuEmissionSourceController extends AppController
         return true;
     }
 
-    public function actionAjaxEmission() {
-        $requestData = Yii::$app->request->post();
-        $parameters = PpuEmissionSource::find()->select(['id', 'ppues_chimney_name', 'ppues_chimney_height', 'ppues_chimney_diameter', 'ppues_hole_position', 'ppues_fuel_name_code', 'ppues_capacity', 'ppues_operation_time' ])->where(['id' => $requestData['ppu_emission_source_id']])->all();
-        foreach($parameters as $key => $param){
-            $param->ppues_fuel_name_code = Codeset::getCodesetValue(AppConstants::CODESET_PPU_ES_FUEL_NAME_CODE, $param->ppues_fuel_name_code);
-        }
-        if (!empty($parameters)) {
-            return Json::encode(['parameters' => $parameters]);
-        }
-
-        return Json::encode(false);
-    }
-
     /**
-     * Lists all PpuEmissionSource models.
+     * Lists all PpucemsrbParameterReport models.
      * @return mixed
      */
     public function actionIndex()
     {
-
-        $searchModel = new PpuEmissionSourceSearch();
+        $searchModel = new PpucemsrbParameterReportSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -80,63 +66,86 @@ class PpuEmissionSourceController extends AppController
     }
 
     /**
-     * Displays a single PpuEmissionSource model.
+     * Displays a single PpucemsrbParameterReport model.
      * @param integer $id
      * @return mixed
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+
+        $emissionSourceModel = PpuEmissionSource::findOne($model->ppu_emission_source_id);
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'emissionSourceModel' => $emissionSourceModel,
+            'model' => $model,
         ]);
     }
 
     /**
-     * Creates a new PpuEmissionSource model.
+     * Creates a new PpucemsrbParameterReport model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-
-        $model = new PpuEmissionSource();
+        $model = new PpucemsrbParameterReport();
 
         if ($model->load(Yii::$app->request->post()) && $model->saveTransactional()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            $parameterList = ['' => AppLabels::PLEASE_SELECT];
+            if (!is_null($model->ppu_emission_source_id)) {
+                $parameterList = PpucemsReportBm::map(new PpucemsReportBm(), 'ppucemsrb_parameter_code', null, true, [
+                    'where' => [
+                        ['ppu_emission_source_id' => $model->ppu_emission_source_id]
+                    ]
+                ]);
+            }
+
             return $this->render('create', [
-                'model' => $model,
+                'parameterList' => $parameterList,
                 'ppuModel' => $this->ppuModel,
+                'model' => $model,
             ]);
         }
     }
 
     /**
-     * Updates an existing PpuEmissionSource model.
+     * Updates an existing PpucemsrbParameterReport model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
      */
     public function actionUpdate($id)
     {
-
         $model = $this->findModel($id);
-        $this->ppuModel = $model->ppu;
+        $this->ppuModel = $model->ppuEmissionSource->ppu;
 
-        if ($model->load(Yii::$app->request->post()) && $model->saveTransactional()) {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_UPDATE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            $parameterList = ['' => AppLabels::PLEASE_SELECT];
+            if (!is_null($model->ppu_emission_source_id)) {
+                $parameterList = PpucemsReportBm::map(new PpucemsReportBm(), 'ppucemsrb_parameter_code', null, true, [
+                    'where' => [
+                        ['ppu_emission_source_id' => $model->ppu_emission_source_id]
+                    ]
+                ]);
+            }
+
             return $this->render('update', [
-                'model' => $model,
+                'parameterList' => $parameterList,
                 'ppuModel' => $this->ppuModel,
+                'model' => $model,
             ]);
         }
     }
 
     /**
-     * Deletes an existing PpuEmissionSource model.
+     * Deletes an existing PpucemsrbParameterReport model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -151,15 +160,15 @@ class PpuEmissionSourceController extends AppController
     }
 
     /**
-     * Finds the PpuEmissionSource model based on its primary key value.
+     * Finds the PpucemsrbParameterReport model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return PpuEmissionSource the loaded model
+     * @return PpucemsrbParameterReport the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = PpuEmissionSource::findOne($id)) !== null) {
+        if (($model = PpucemsrbParameterReport::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

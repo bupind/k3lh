@@ -340,4 +340,7 @@ class AppLabels {
     const PPUCEMSRB_LONG_CONST_1 = 'Jumlah data parameter pemantauan harian CEMS selama 3 bulanan';
     const PPUCEMSRB_LONG_CONST_2 = 'Jumlah data pemantauan yang memenuhi Baku Mutu CEMS';
     const PERCENTAGE = 'Persentase';
+    const AVERAGE_CONCENTRATION = 'Konsentrasi rata-rata';
+    const BARISTAND_CALC_RESULT = 'Hasil Pengukuran Baristand';
+    const MGNM3_UNIT = 'mg/Nm3';
 }

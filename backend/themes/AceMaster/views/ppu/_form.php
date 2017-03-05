@@ -71,7 +71,7 @@ $form = ActiveForm::begin([
     <div class="col-xs-12 center">
         <div class="btn-group">
             <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::ADHERENCE ." ". AppLabels::BM_REPORT_PARAMETER . " " . AppLabels::CEMS, ['/ppucems-report-bm', 'ppuId' => $model->id], ['class' => 'btn btn-sm btn-success']); ?>
-            <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' .  AppLabels::ADHERENCE ." ". AppLabels::BM_REPORT_PARAMETER, '#', ['class' => 'btn btn-sm btn-warning']); ?>
+            <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' .  AppLabels::REPORT." ". AppLabels::PARAMETER, ['/ppucemsrb-parameter-report', 'ppuId' => $model->id], ['class' => 'btn btn-sm btn-warning']); ?>
            </div>
     </div>
 </div>

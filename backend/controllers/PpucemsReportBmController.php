@@ -11,6 +11,8 @@ use yii\filters\VerbFilter;
 use common\vendor\AppConstants;
 use backend\models\Ppu;
 use yii\base\Model;
+use yii\helpers\Json;
+use backend\models\Codeset;
 
 /**
  * PpucemsReportBmController implements the CRUD actions for PpucemsReportBm model.
@@ -83,6 +85,19 @@ class PpucemsReportBmController extends AppController
             'cemsConstant' => $cemsConstant,
             'model' => $this->findModel($id),
         ]);
+    }
+
+    public function actionAjaxParameter() {
+        $requestData = Yii::$app->request->post();
+        $parameters = PpucemsReportBm::find()->select(['id', 'ppucemsrb_parameter_code'])->where(['ppu_emission_source_id' => $requestData['ppu_emission_source_id']])->all();
+        foreach($parameters as $key => $param){
+            $param->ppucemsrb_parameter_code = Codeset::getCodesetValue(AppConstants::CODESET_PPUCEMS_RBM_PARAM_CODE, $param->ppucemsrb_parameter_code);
+        }
+        if (!empty($parameters)) {
+            return Json::encode(['parameters' => $parameters]);
+        }
+
+        return Json::encode(false);
     }
 
     /**

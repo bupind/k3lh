@@ -3,20 +3,21 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use common\vendor\AppLabels;
-use backend\models\PpuCompulsoryMonitoredEmissionSource;
+use backend\models\PpucemsReportBm;
+use backend\models\PpuEmissionSource;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\PpuParameterObligationSearch */
+/* @var $searchModel backend\models\PpucemsrbParameterReportSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $ppuModel backend\models\Ppu */
 
-$this->title = sprintf("%s %s", AppLabels::ADHERENCE, AppLabels::BM_REPORT_PARAMETER);
+$this->title = sprintf("%s %s", AppLabels::REPORT, AppLabels::PARAMETER);
 $this->params['breadcrumbs'][] = ['label' => AppLabels::AIR_POLLUTION_CONTROL, 'url' => ['/ppu/index']];
 $this->params['breadcrumbs'][] = ['label' => sprintf('%s - %s', $ppuModel->sector->sector_name, $ppuModel->powerPlant->pp_name), 'url' => ['/ppu/view', 'id' => $ppuModel->id]];
 $this->params['breadcrumbs'][] = ['label' => AppLabels::BTN_UPDATE, 'url' => ["/ppu/update/$ppuModel->id"]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="ppu-parameter-obligation-index">
+<div class="ppucemsrb-parameter-report-index">
 
     <div class="page-header">
         <h1><?= Html::encode($this->title) ?></h1>
@@ -28,7 +29,6 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
     <hr/>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -36,26 +36,21 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             [
-                'attribute' => 'ppu_compulsory_monitored_emission_source_id',
-                'value' => 'ppuCompulsoryMonitoredEmissionSource.ppucmes_name',
-                'filter' => Html::activeDropDownList($searchModel, 'ppu_compulsory_monitored_emission_source_id', PpuCompulsoryMonitoredEmissionSource::map(new PpuCompulsoryMonitoredEmissionSource(), 'ppucmes_name', null, true, [
+                'attribute' => 'ppu_emission_source_id',
+                'value' => 'ppuEmissionSource.ppues_name',
+                'filter' => Html::activeDropDownList($searchModel, 'ppu_emission_source_id', PpuEmissionSource::map(new PpuEmissionSource(), 'ppues_name', null, true, [
                     'andWhere' => [
                         ['ppu_id' => $ppuModel->id]
                     ]
                 ]), ['class' => 'chosen-select form-control'])
             ],
-            [
-                'attribute' => 'ppu_compulsory_monitored_emission_source_id',
-                'value' => 'ppuCompulsoryMonitoredEmissionSource.ppucmes_chimney_name',
-            ],
 
             [
-                'attribute' => 'ppupo_parameter_code',
-                'value' => 'ppupo_parameter_code_desc'
-            ],
-
-            'ppupo_qs',
-            'ppupo_qs_ref',
+            'attribute' => 'ppucems_report_bm_id',
+            'value' => 'ppucemsReportBm.ppucemsrb_parameter_code_desc',
+            'filter' => Html::activeDropDownList($searchModel, 'ppucems_report_bm_id', PpucemsReportBm::map(new PpucemsReportBm(), 'ppucemsrb_parameter_code', null, true, [
+            ]), ['class' => 'chosen-select form-control'])
+        ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
