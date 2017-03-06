@@ -57,7 +57,7 @@ $form = ActiveForm::begin([
         <div class="btn-group">
             <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::SETUP_POINT_PERMIT, ['/ppa-setup-permit', 'ppaId' => $model->id], ['class' => 'btn btn-sm btn-success']); ?>
             <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::BM_REPORT_PARAMETER, ['/ppa-report-bm', 'ppaId' => $model->id], ['class' => 'btn btn-sm btn-warning']); ?>
-            <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::TECHNICAL_PROVISION, '#', ['class' => 'btn btn-sm btn-primary']); ?>
+            <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::TECHNICAL_PROVISION, ['/ppa-technical-provision', 'ppaId' => $model->id], ['class' => 'btn btn-sm btn-primary']); ?>
             <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::POLLUTION_LOAD_DECREASE, '#', ['class' => 'btn btn-sm btn-default']); ?>
             <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::POLLUTION_LOAD_BM, '#', ['class' => 'btn btn-sm btn-info']); ?>
             <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::POLLUTION_LOAD_ACTUAL, '#', ['class' => 'btn btn-sm btn-purple']); ?>

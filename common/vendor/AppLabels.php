@@ -299,4 +299,8 @@ class AppLabels {
     const OUTLET_CONCENTRATE_TITLE = 'Konsentrasi Titik Penaatan / OUTLET';
     const INLET_VALUE = 'Nilai Inlet';
     const OUTLET_VALUE = 'Nilai Outlet';
+    const LABORATORIUM = 'Laboratorium';
+    const LABOR_TEST_MONTH = 'Bulan Pengujian';
+    const LABOR_ACCREDITATION_NUMBER_TITLE = 'Nomor akreditasi laboratorium penguji/laboratorium rujukan Gubernur';
+    const LABOR_ACCREDITATION_END_DATE_TITLE = 'Tanggal Berakhir Akreditasi laboratorium';
 }

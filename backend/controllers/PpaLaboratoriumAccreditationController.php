@@ -2,7 +2,7 @@
 
 namespace backend\controllers;
 
-use backend\models\PpaLaboratorium;
+use backend\models\PpaLaboratoriumAccreditation;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
@@ -10,9 +10,9 @@ use common\vendor\AppConstants;
 use yii\helpers\Json;
 
 /**
- * PpaLaboratoriumController implements the CRUD actions for PpaLaboratorium model.
+ * PpaLaboratoriumAccreditationController implements the CRUD actions for PpaLaboratoriumAccreditation model.
  */
-class PpaLaboratoriumController extends AppController {
+class PpaLaboratoriumAccreditationController extends AppController {
     /**
      * @inheritdoc
      */
@@ -33,14 +33,14 @@ class PpaLaboratoriumController extends AppController {
     }
     
     /**
-     * Finds the PpaLaboratorium model based on its primary key value.
+     * Finds the PpaLaboratoriumAccreditation model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return PpaLaboratorium the loaded model
+     * @return PpaLaboratoriumAccreditation the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id) {
-        if (($model = PpaLaboratorium::findOne($id)) !== null) {
+        if (($model = PpaLaboratoriumAccreditation::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
@@ -48,7 +48,7 @@ class PpaLaboratoriumController extends AppController {
     }
     
     /**
-     * Deletes an existing PpaLaboratorium model.
+     * Deletes an existing PpaLaboratoriumAccreditation model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -59,7 +59,7 @@ class PpaLaboratoriumController extends AppController {
         if ($this->findModel($id)->delete()) {
             return Json::encode(true);
         }
-        
+    
         return Json::encode(false);
     }
 }

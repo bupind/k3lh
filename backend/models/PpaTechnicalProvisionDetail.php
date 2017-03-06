@@ -2,7 +2,8 @@
 
 namespace backend\models;
 
-use Yii;
+use common\vendor\AppConstants;
+use common\vendor\AppLabels;
 
 /**
  * This is the model class for table "ppa_technical_provision_detail".
@@ -17,59 +18,57 @@ use Yii;
  *
  * @property PpaQuestion $ppaQuestion
  * @property PpaTechnicalProvision $ppaTechnicalProvision
+ * @property AttachmentOwner[] $attachmentOwners
  */
-class PpaTechnicalProvisionDetail extends \yii\db\ActiveRecord
-{
+class PpaTechnicalProvisionDetail extends AppModel {
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'ppa_technical_provision_detail';
     }
-
+    
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            [['ppa_technical_provision_id', 'ppa_question_id', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'required'],
-            [['ppa_technical_provision_id', 'ppa_question_id', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'integer'],
+            [['ppa_technical_provision_id', 'ppa_question_id'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
+            [['ppa_technical_provision_id', 'ppa_question_id'], 'integer'],
             [['ppa_question_id'], 'exist', 'skipOnError' => true, 'targetClass' => PpaQuestion::className(), 'targetAttribute' => ['ppa_question_id' => 'id']],
             [['ppa_technical_provision_id'], 'exist', 'skipOnError' => true, 'targetClass' => PpaTechnicalProvision::className(), 'targetAttribute' => ['ppa_technical_provision_id' => 'id']],
         ];
     }
-
+    
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
-            'ppa_technical_provision_id' => 'Ppa Technical Provision ID',
-            'ppa_question_id' => 'Ppa Question ID',
-            'created_by' => 'Created By',
-            'created_at' => 'Created At',
-            'updated_by' => 'Updated By',
-            'updated_at' => 'Updated At',
+            'ppa_technical_provision_id' => AppLabels::TECHNICAL_PROVISION,
+            'ppa_question_id' => AppLabels::QUESTION,
         ];
     }
-
+    
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPpaQuestion()
-    {
+    public function getPpaQuestion() {
         return $this->hasOne(PpaQuestion::className(), ['id' => 'ppa_question_id']);
     }
-
+    
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPpaTechnicalProvision()
-    {
+    public function getPpaTechnicalProvision() {
         return $this->hasOne(PpaTechnicalProvision::className(), ['id' => 'ppa_technical_provision_id']);
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAttachmentOwners() {
+        return $this->hasMany(AttachmentOwner::className(), ['atfo_module_pk' => 'id'])->andOnCondition(['atfo_module_code' => AppConstants::MODULE_CODE_PPA_TECH_PROVISION]);
     }
 }

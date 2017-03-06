@@ -2,7 +2,8 @@
 
 namespace backend\models;
 
-use Yii;
+use common\vendor\AppConstants;
+use common\vendor\AppLabels;
 
 /**
  * This is the model class for table "ppa_laboratorium_test".
@@ -19,51 +20,42 @@ use Yii;
  *
  * @property PpaLaboratorium $ppaLaboratorium
  */
-class PpaLaboratoriumTest extends \yii\db\ActiveRecord
-{
+class PpaLaboratoriumTest extends AppModel {
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'ppa_laboratorium_test';
     }
-
+    
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            [['ppa_laboratorium_id', 'test_month', 'test_year', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'required'],
-            [['ppa_laboratorium_id', 'test_month', 'test_year', 'test_value', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'integer'],
+            [['ppa_laboratorium_id', 'test_month', 'test_year'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
+            [['ppa_laboratorium_id', 'test_month', 'test_year', 'test_value'], 'integer'],
             [['ppa_laboratorium_id'], 'exist', 'skipOnError' => true, 'targetClass' => PpaLaboratorium::className(), 'targetAttribute' => ['ppa_laboratorium_id' => 'id']],
         ];
     }
-
+    
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
-            'ppa_laboratorium_id' => 'Ppa Laboratorium ID',
-            'test_month' => 'Test Month',
-            'test_year' => 'Test Year',
-            'test_value' => 'Test Value',
-            'created_by' => 'Created By',
-            'created_at' => 'Created At',
-            'updated_by' => 'Updated By',
-            'updated_at' => 'Updated At',
+            'ppa_laboratorium_id' => AppLabels::LABORATORIUM,
+            'test_month' => AppLabels::MONTH,
+            'test_year' => AppLabels::YEAR,
+            'test_value' => AppLabels::VALUE,
         ];
     }
-
+    
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPpaLaboratorium()
-    {
+    public function getPpaLaboratorium() {
         return $this->hasOne(PpaLaboratorium::className(), ['id' => 'ppa_laboratorium_id']);
     }
 }

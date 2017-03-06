@@ -27,6 +27,11 @@ class PpaQuestionController extends AppController {
         ];
     }
     
+    public function beforeAction($action) {
+        parent::beforeAction($action);
+        return $this->rbac();
+    }
+    
     /**
      * Lists all PpaQuestion models.
      * @return mixed
