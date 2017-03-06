@@ -12,12 +12,14 @@ use common\components\helpers\Converter;
 /* @var $model backend\models\PpuEmissionSource */
 /* @var $form yii\widgets\ActiveForm */
 /* @var $ppuModel backend\models\Ppu */
+/* @var $startDate DateTime */
+/* @var $ppuMonthModels \backend\models\PpuesMonth[] */
 ?>
 
 <?php $form = ActiveForm::begin([
     'id' => 'ppu-emission-source-form',
     'options' => [
-        'class' => 'form-horizontal',
+        'class' => 'form-horizontal calx',
         'role' => 'form',
         'enctype' => 'multipart/form-data'
     ],
@@ -56,9 +58,11 @@ use common\components\helpers\Converter;
                         ->textInput(['maxlength' => true, 'class' => 'form-control'])
                         ->label(null, ['class' => '']);
 
-                    echo $form->field($model, 'ppues_operation_time', ['template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE])
-                        ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly'])
+                    echo $form->field($model, 'ppues_operation_time_display', ['template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE])
+                        ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly','disabled' => true ,'data-cell' => 'AA1', 'data-formula' => "SUM(B0:B11)",'data-format' => AppConstants::CALX_DATA_FORMAT_THO_DEC])
                         ->label(null, ['class' => '']);
+
+                    echo $form->field($model, 'ppues_operation_time')->hiddenInput(['data-cell' => 'A1', 'data-formula' => 'AA1', 'data-format' => AppConstants::CALX_DATA_FORMAT_PLAIN_DEC])->label(false);
 
                     echo $form->field($model, 'ppues_monitoring_data_status_code', ['template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE])
                         ->dropDownList(Codeset::customMap(AppConstants::CODESET_PPU_ES_MONITORING_DATA_STATUS_CODE, 'cset_value'), ['class' => 'input-big form-control'])
@@ -188,6 +192,48 @@ use common\components\helpers\Converter;
 
                     ?>
                 </fieldset>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-xs-12 col-sm-12">
+    <div class="widget-box">
+        <div class="widget-header">
+            <h4 class="widget-title"> <?= sprintf("%s %s", AppLabels::OPERATION_TIME, "(Kosongkan jika Status Data Pemantauan pada periode PROPER Tidak Dipantau)"); ?> </h4>
+        </div>
+        <div class="widget-body">
+            <div class="widget-main">
+                <fieldset>
+                    <?php
+
+                    foreach ($ppuMonthModels as $key => $ppuMonth) {
+
+                        echo $form->field($ppuMonth, "[$key]ppuesm_month")->hiddenInput(['value' => $startDate->format('m')])->label(false);
+                        echo $form->field($ppuMonth, "[$key]ppuesm_year")->hiddenInput(['value' => $startDate->format('Y')])->label(false);
+                        if (!$model->getIsNewRecord()) {
+                            echo $form->field($ppuMonth, "[$key]id")->hiddenInput()->label(false);
+                            echo $form->field($ppuMonth, "[$key]ppuesm_operation_time", [
+                                'template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE,
+                                'options' => ['class' => 'col-xs-12 col-sm-4']
+                            ])
+                                ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly', 'data-cell' => "B$key"])
+                                ->label($startDate->format('M Y'), ['class' => '']);
+                        }else {
+                            echo $form->field($ppuMonth, "[$key]ppuesm_operation_time", [
+                                'template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE,
+                                'options' => ['class' => 'col-xs-12 col-sm-4']
+                            ])
+                                ->textInput(['maxlength' => true, 'value' => 0, 'class' => 'form-control numbersOnly', 'data-cell' => "B$key"])
+                                ->label($startDate->format('M Y'), ['class' => '']);
+                        }
+
+                        $startDate->add(new \DateInterval('P1M'));
+                    }
+
+                    ?>
+                </fieldset>
+
             </div>
         </div>
     </div>

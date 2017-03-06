@@ -119,6 +119,16 @@ $this->params['breadcrumbs'][] = ['label' => $model->ppues_name];
         </div>
     </div>
 
+    <div class="col-xs-12 col-md-12">
+        <h3 class="header smaller lighter green"><?= AppLabels::OPERATION_TIME; ?></h3>
+        <?php foreach ($model->ppuesMonths as $ppuMonth): ?>
+            <div class="col-xs-12 col-sm-4">
+                <label><strong><?= $ppuMonth->month_label; ?></strong></label>
+                <p><?= $ppuMonth->ppuesm_operation_time; ?></p>
+            </div>
+        <?php endforeach; ?>
+    </div>
+
     <div class="row">
         <div class="col-xs-12">
             <?= ViewButton::widget([

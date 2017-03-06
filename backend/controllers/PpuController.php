@@ -43,7 +43,7 @@ class PpuController extends AppController
         $model = new Ppu();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
-            $this->redirect('ppu');
+            $this->redirect('index');
         }
 
         $powerPlantList = ['' => AppLabels::PLEASE_SELECT];

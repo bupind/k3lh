@@ -79,7 +79,7 @@ class AppModel extends \yii\db\ActiveRecord {
         try {
             return parent::delete();
         } catch (\Exception $ex) {
-//            Yii::$app->session->addFlash('danger', $ex->getMessage());
+            Yii::$app->session->addFlash('danger', $ex->getMessage());
             Yii::$app->session->addFlash('danger', AppConstants::ERR_INTEGRITY_CONSTRAINT_VIOLATION);
             return false;
         }

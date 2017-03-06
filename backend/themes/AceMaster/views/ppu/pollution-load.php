@@ -68,28 +68,28 @@ $form = ActiveForm::begin([
                     $count4 = 0;
                     $count5 = 0;
                     $otCount = 0; ?>
-                    <?php foreach ($model->ppuCompulsoryMonitoredEmissionSources as $key1 => $ppuCompulsoryMonitoredEmissionSource) : $keyCMES = $key1 + 1; ?>
+                    <?php foreach ($model->ppuEmissionSources as $key1 => $ppuEmissionSource) : $keyCMES = $key1 + 1; ?>
                         <tr>
                             <td>
                                 <?= $keyCMES ?>
                             </td>
                             <td>0</td>
                             <td>
-                                <?= $form->field($ppuCompulsoryMonitoredEmissionSource, "[$key1]ppucmes_operation_time")
+                                <?= $form->field($ppuEmissionSource, "[$key1]ppues_operation_time")
                                     ->hiddenInput(['data-cell' => "X$count1"])
                                     ->label(false); ?>
                                 <?php $count4 = $count1;
                                 $count1++; ?>
-                                <?= $ppuCompulsoryMonitoredEmissionSource->ppucmes_chimney_name ?>
+                                <?= $ppuEmissionSource->ppues_chimney_name ?>
                             </td>
                         </tr>
                         <?php $noParam = 1; ?>
-                        <?php foreach ($ppuCompulsoryMonitoredEmissionSource->ppuParameterObligations as $key2 => $ppuParameterObligation) : ?>
+                        <?php foreach ($ppuEmissionSource->ppuParameterObligations as $key2 => $ppuParameterObligation) : ?>
                             <?php $monthCount = 0;
                             $count6 = $key1*12
                             ?>
 
-                            <?php if ($ppuParameterObligation->ppupo_parameter_code == "LAJUALIR") { ?>
+                            <?php if ($ppuParameterObligation->ppupo_parameter_code == AppConstants::PPU_RBM_PARAM_CODE_LAJUALIR) { ?>
                                 <?php foreach ($ppuParameterObligation->ppupoMonths as $key3 => $ppupoMonth) : ?>
                                     <?= $form->field($ppupoMonth, "[$key3]ppupom_value")
                                         ->hiddenInput(['data-cell' => "Z$count2"])
@@ -121,8 +121,8 @@ $form = ActiveForm::begin([
                                     <td> <?= Html::label($monthCount, null, ['class' => 'control-label']); ?> </td>
                                     <?php $startIndex = ($otCount) * 12;
                                     $endIndex = $startIndex + 11; ?>
-                                    <td><?= Html::label("", null, ['data-cell' => "B$otCount", 'data-format' => '0,0[.]000', 'data-formula' => "SUM(V$startIndex:V$endIndex)/$monthCount", 'class' => 'control-label']); ?></td>
-                                    <td><?= Html::label("", null, ['data-cell' => "C$otCount", 'data-format' => '0,0[.]000', 'data-formula' => "B$otCount/1000", 'class' => 'control-label']); ?></td>
+                                    <td><?= Html::label("", null, ['data-cell' => "B$otCount", 'data-format' => '0,0[.]00000', 'data-formula' => "SUM(V$startIndex:V$endIndex)/$monthCount", 'class' => 'control-label']); ?></td>
+                                    <td><?= Html::label("", null, ['data-cell' => "C$otCount", 'data-format' => '0,0[.]00000000', 'data-formula' => "B$otCount/1000", 'class' => 'control-label']); ?></td>
                                     <?php $otCount++; ?>
                                 </tr>
                             <?php } ?>

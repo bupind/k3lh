@@ -99,4 +99,17 @@ class Ppu extends AppModel
     {
         return $this->hasMany(PpuCompulsoryMonitoredEmissionSource::className(), ['ppu_id' =>  'id']);
     }
+
+    public function sqlTest(){
+        $result = [];
+        $emissionSourceModel = $this->ppuEmissionSources;
+        foreach($emissionSourceModel as $key => $emissionSource){
+            $parameterReport = $emissionSource->ppucemsrbParameterReports;
+
+            $ppuParameterObligation = PpuParameterObligation::find()->where([
+                'ppupo_parameter_code' => AppConstants::PPU_RBM_PARAM_CODE_LAJUALIR,
+                'ppu_emission_source_id' => $emissionSource->id,
+            ])->one();
+        }
+    }
 }

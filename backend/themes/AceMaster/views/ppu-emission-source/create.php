@@ -7,6 +7,8 @@ use common\vendor\AppLabels;
 /* @var $this yii\web\View */
 /* @var $model backend\models\PpuEmissionSource */
 /* @var $ppuModel backend\models\Ppu */
+/* @var $startDate DateTime */
+/* @var $ppuMonthModels \backend\models\PpuesMonth[] */
 
 $this->title = sprintf('%s %s', AppLabels::BTN_ADD, AppLabels::EMISSION_SOURCE_INVENTORY);
 $this->params['breadcrumbs'][] = ['label' => AppLabels::EMISSION_SOURCE_INVENTORY, 'url' => ['index', 'ppuId' => $ppuModel->id]];
@@ -20,6 +22,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= $this->render('_form', [
         'model' => $model,
         'ppuModel' => $ppuModel,
+        'startDate' => $startDate,
+        'ppuMonthModels' => $ppuMonthModels,
     ]) ?>
 
 </div>

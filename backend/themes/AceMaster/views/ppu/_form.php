@@ -56,7 +56,6 @@ $form = ActiveForm::begin([
     <div class="col-xs-12 center">
         <div class="btn-group">
             <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::EMISSION_SOURCE_INVENTORY, ['/ppu-emission-source', 'ppuId' => $model->id], ['class' => 'btn btn-sm btn-success']); ?>
-            <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::ADHERENCE_POINT, ['/ppu-compulsory-monitored-emission-source', 'ppuId' => $model->id], ['class' => 'btn btn-sm btn-warning']); ?>
             <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::ADHERENCE ." ". AppLabels::BM_REPORT_PARAMETER, ['/ppu-parameter-obligation', 'ppuId' => $model->id], ['class' => 'btn btn-sm btn-primary']); ?>
             <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::EMISSION_LOAD_CALCULATION, ['/ppu-emission-load-grk', 'ppuId' => $model->id], ['class' => 'btn btn-sm btn-default']); ?>
             <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::TECHNICAL_PROVISION, ['/ppu-technical-provision', 'ppuId' => $model->id], ['class' => 'btn btn-sm btn-info']); ?>
@@ -72,6 +71,7 @@ $form = ActiveForm::begin([
         <div class="btn-group">
             <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::ADHERENCE ." ". AppLabels::BM_REPORT_PARAMETER . " " . AppLabels::CEMS, ['/ppucems-report-bm', 'ppuId' => $model->id], ['class' => 'btn btn-sm btn-success']); ?>
             <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' .  AppLabels::REPORT." ". AppLabels::PARAMETER, ['/ppucemsrb-parameter-report', 'ppuId' => $model->id], ['class' => 'btn btn-sm btn-warning']); ?>
+            <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' .  AppLabels::EMISSION_LOAD_CALCULATION." ". AppLabels::CEMS, ['/ppucems-emission-load', 'ppuId' => $model->id], ['class' => 'btn btn-sm btn-primary']); ?>
            </div>
     </div>
 </div>
@@ -80,6 +80,10 @@ $form = ActiveForm::begin([
     <div class="col-xs-12 form-actions text-center">
         <?= SubmitLinkButton::widget(['formId' => 'ppu-form', 'backAction' => 'index', 'isNewRecord' => $model->isNewRecord]); ?>
     </div>
+</div>
+
+<div class="col-md-12">
+    <?= $model->sqlTest(); ?>
 </div>
 
 <?php ActiveForm::end(); ?>

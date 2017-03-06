@@ -11,7 +11,7 @@ use common\vendor\AppLabels;
 
 $this->title = sprintf("%s %s", AppLabels::BTN_UPDATE, AppLabels::PARAMETER_OBLIGATION);
 $this->params['breadcrumbs'][] = ['label' => AppLabels::PARAMETER_OBLIGATION, 'url' => ['index', 'ppuId' => $ppuModel->id]];
-$this->params['breadcrumbs'][] = ['label' => $model->ppuCompulsoryMonitoredEmissionSource->ppucmes_name, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => $model->ppuEmissionSource->ppues_name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = AppLabels::BTN_UPDATE;
 ?>
 <div class="ppu-parameter-obligation-update">

@@ -39,9 +39,13 @@ use yii\web\UploadedFile;
  * @property Ppu $ppu
  *
  * @property AttachmentOwner $attachmentOwner
+ * @property PpucemsrbParameterReport[] $ppucemsrbParameterReports
+ * @property PpuParameterObligation[] $ppuParameterObligations
+ * @property PpuesMonth[] $ppuesMonths;
  */
 class PpuEmissionSource extends AppModel
 {
+    public $ppues_operation_time_display;
     public $ppues_fuel_name_code_desc;
     public $ppues_fuel_unit_code_desc;
     public $ppues_chimney_shape_code_desc;
@@ -62,7 +66,7 @@ class PpuEmissionSource extends AppModel
     public function rules()
     {
         return [
-            [['ppu_id', 'ppues_name', 'ppues_chimney_name', 'ppues_capacity', 'ppues_control_device', 'ppues_fuel_name_code', 'ppues_total_fuel', 'ppues_fuel_unit_code', 'ppues_operation_time', 'ppues_location', 'ppues_coord_ls', 'ppues_coord_bt', 'ppues_chimney_shape_code', 'ppues_chimney_height', 'ppues_chimney_diameter', 'ppues_hole_position', 'ppues_monitoring_data_status_code', 'ppues_freq_monitoring_obligation_code'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
+            [['ppu_id', 'ppues_name', 'ppues_chimney_name', 'ppues_capacity', 'ppues_control_device', 'ppues_fuel_name_code', 'ppues_total_fuel', 'ppues_fuel_unit_code', 'ppues_location', 'ppues_coord_ls', 'ppues_coord_bt', 'ppues_chimney_shape_code', 'ppues_chimney_height', 'ppues_chimney_diameter', 'ppues_hole_position', 'ppues_monitoring_data_status_code', 'ppues_freq_monitoring_obligation_code'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
             [['ppu_id', 'ppues_capacity', 'ppues_hole_position'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
             [['ppues_total_fuel', 'ppues_operation_time', 'ppues_chimney_height', 'ppues_chimney_diameter'], 'number'],
             [['ppues_name', 'ppues_chimney_name', 'ppues_location'], 'string', 'max' => 150],
@@ -89,6 +93,7 @@ class PpuEmissionSource extends AppModel
             'ppues_total_fuel' => sprintf("%s /%s", AppLabels::TOTAL_FUEL, AppLabels::YEAR),
             'ppues_fuel_unit_code' => AppLabels::FUEL_UNIT,
             'ppues_operation_time' => sprintf("%s (%s/%s)", AppLabels::OPERATION_TIME, AppLabels::HOUR, AppLabels::YEAR),
+            'ppues_operation_time_display' => sprintf("%s (%s/%s)", AppLabels::OPERATION_TIME, AppLabels::HOUR, AppLabels::YEAR),
             'ppues_location' => AppLabels::LOCATION,
             'ppues_coord_ls' => AppLabels::LS,
             'ppues_coord_bt' => AppLabels::BT,
@@ -112,6 +117,7 @@ class PpuEmissionSource extends AppModel
         try {
             $this->load($request);
 
+
             if ($this->save()) {
                 if (isset($request['Attachment'])) {
                     $attachmentMdl = new Attachment();
@@ -127,6 +133,24 @@ class PpuEmissionSource extends AppModel
             }else{
                 $errors = array_merge($errors, $this->errors);
                 throw new Exception();
+            }
+
+            $ppuEmissionSourceId = $this->id;
+
+            if (isset($request['PpuesMonth'])) {
+                foreach ($request['PpuesMonth'] as $key => $ppuMonth) {
+                    if (isset($ppuMonth['id'])) {
+                        $ppuesMonthTuple = PpuesMonth::findOne(['id' => $ppuMonth['id']]);
+                    } else {
+                        $ppuesMonthTuple = new PpuesMonth();
+                        $ppuesMonthTuple->ppu_emission_source_id = $ppuEmissionSourceId;
+                    }
+
+                    if (!$ppuesMonthTuple->load(['PpuesMonth' => $ppuMonth]) || !$ppuesMonthTuple->save()) {
+                        $errors = array_merge($errors, $ppuesMonthTuple->errors);
+                        throw new Exception();
+                    }
+                }
             }
 
             $transaction->commit();
@@ -148,6 +172,7 @@ class PpuEmissionSource extends AppModel
     public function afterFind() {
         parent::afterFind();
 
+        $this->ppues_operation_time_display = $this->ppues_operation_time;
         $this->ppues_fuel_name_code_desc = Codeset::getCodesetValue(AppConstants::CODESET_PPU_ES_FUEL_NAME_CODE, $this->ppues_fuel_name_code);
         $this->ppues_fuel_unit_code_desc = Codeset::getCodesetValue(AppConstants::CODESET_PPU_ES_FUEL_UNIT_CODE, $this->ppues_fuel_unit_code);
         $this->ppues_chimney_shape_code_desc = Codeset::getCodesetValue(AppConstants::CODESET_PPU_ES_CHIMNEY_SHAPE_CODE, $this->ppues_chimney_shape_code);
@@ -159,8 +184,13 @@ class PpuEmissionSource extends AppModel
 
     public function beforeDelete()
     {
-        $attachment = $this->attachmentOwner->attachment;
-        $attachment->delete();
+        $attachment = $this->attachmentOwner;
+        if(!is_null($attachment)){
+            $attachment = $attachment->attachment;
+        }
+        if(!is_null($attachment)){
+            $attachment->delete();
+        }
         return parent::beforeDelete();
     }
 
@@ -179,6 +209,30 @@ class PpuEmissionSource extends AppModel
     public function getAttachmentOwner()
     {
         return $this->hasOne(AttachmentOwner::className(), ['atfo_module_pk' => 'id'])->andOnCondition(['atfo_module_code' => AppConstants::MODULE_CODE_PPU_EMISSION_SOURCE]);
+    }
+
+    /**
+ * @return \yii\db\ActiveQuery
+ */
+    public function getPpucemsrbParameterReports()
+    {
+        return $this->hasMany(PpucemsrbParameterReport::className(), ['ppu_emission_source_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPpuParameterObligations()
+    {
+        return $this->hasMany(PpuParameterObligation::className(), ['ppu_emission_source_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPpuesMonths()
+    {
+        return $this->hasMany(PpuesMonth::className(), ['ppu_emission_source_id' => 'id']);
     }
 
 

@@ -85,4 +85,53 @@ class PpuEmissionSourceSearch extends PpuEmissionSource
 
         return $dataProvider;
     }
+
+    public function searchPpu($params, $ppuId)
+    {
+        $query = PpuEmissionSource::find();
+
+        // add conditions that should always apply here
+
+        $query->joinWith(['ppu p'], true, 'INNER JOIN')
+            ->where(['p.id' => $ppuId]);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to return any records when validation fails
+            // $query->where('0=1');
+            return $dataProvider;
+        }
+
+        // grid filtering conditions
+        $query->andFilterWhere([
+            'id' => $this->id,
+            'ppu_id' => $this->ppu_id,
+            'ppues_capacity' => $this->ppues_capacity,
+            'ppues_total_fuel' => $this->ppues_total_fuel,
+            'ppues_operation_time' => $this->ppues_operation_time,
+            'ppues_chimney_height' => $this->ppues_chimney_height,
+            'ppues_chimney_diameter' => $this->ppues_chimney_diameter,
+            'ppues_hole_position' => $this->ppues_hole_position,
+        ]);
+
+        $query->andFilterWhere(['like', 'ppues_name', $this->ppues_name])
+            ->andFilterWhere(['like', 'ppues_chimney_name', $this->ppues_chimney_name])
+            ->andFilterWhere(['like', 'ppues_control_device', $this->ppues_control_device])
+            ->andFilterWhere(['like', 'ppues_fuel_name_code', $this->ppues_fuel_name_code])
+            ->andFilterWhere(['like', 'ppues_fuel_unit_code', $this->ppues_fuel_unit_code])
+            ->andFilterWhere(['like', 'ppues_location', $this->ppues_location])
+            ->andFilterWhere(['like', 'ppues_coord_ls', $this->ppues_coord_ls])
+            ->andFilterWhere(['like', 'ppues_coord_bt', $this->ppues_coord_bt])
+            ->andFilterWhere(['like', 'ppues_chimney_shape_code', $this->ppues_chimney_shape_code])
+            ->andFilterWhere(['like', 'ppues_monitoring_data_status_code', $this->ppues_monitoring_data_status_code])
+            ->andFilterWhere(['like', 'ppues_freq_monitoring_obligation_code', $this->ppues_freq_monitoring_obligation_code])
+            ->andFilterWhere(['like', 'ppues_ref', $this->ppues_ref]);
+
+        return $dataProvider;
+    }
 }

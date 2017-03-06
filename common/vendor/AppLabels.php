@@ -343,4 +343,5 @@ class AppLabels {
     const AVERAGE_CONCENTRATION = 'Konsentrasi rata-rata';
     const BARISTAND_CALC_RESULT = 'Hasil Pengukuran Baristand';
     const MGNM3_UNIT = 'mg/Nm3';
+    const SECTION_AREA = 'Luas Penampang';
 }

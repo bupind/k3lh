@@ -4,7 +4,7 @@ use yii\widgets\ActiveForm;
 use app\components\SubmitButton;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
-use backend\models\PpuCompulsoryMonitoredEmissionSource;
+use backend\models\PpuEmissionSource;
 use backend\models\Codeset;
 
 /* @var $this yii\web\View */
@@ -37,8 +37,8 @@ use backend\models\Codeset;
             <div class="widget-main">
                 <fieldset>
                     <?php
-                    echo $form->field($model, 'ppu_compulsory_monitored_emission_source_id', ['template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE])
-                        ->dropDownList(PpuCompulsoryMonitoredEmissionSource::map(new PpuCompulsoryMonitoredEmissionSource(), 'ppucmes_name'), ['class' => 'chosen-select form-control'])
+                    echo $form->field($model, 'ppu_emission_source_id', ['template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE])
+                        ->dropDownList(PpuEmissionSource::map(new PpuEmissionSource(), 'ppues_name'), ['class' => 'chosen-select form-control'])
                         ->label(null, ['class' => '']);
 
                     echo $form->field($model, 'ppupo_parameter_code', ['template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE])
@@ -84,42 +84,42 @@ use backend\models\Codeset;
 </div>
 
 <div class="col-xs-12 col-md-6">
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="widget-box">
-                <div class="widget-header text-center">
-                    <h4 class="widget-title"><?= AppLabels::CONCENTRATE_TEST_RESULT; ?></h4>
-                </div>
-                <div class="widget-body">
-                    <div class="widget-main">
-                        <fieldset>
-                            <?php
+<div class="row">
+    <div class="col-xs-12">
+        <div class="widget-box">
+            <div class="widget-header text-center">
+                <h4 class="widget-title"><?= AppLabels::CONCENTRATE_TEST_RESULT; ?></h4>
+            </div>
+            <div class="widget-body">
+                <div class="widget-main">
+                    <fieldset>
+                        <?php
 
-                            foreach ($ppupoMonth as $key => $poMonth) {
-                                if (!$poMonth->getIsNewRecord()) {
-                                    echo $form->field($poMonth, "[$key]id")->hiddenInput()->label(false);
-                                }
-                                echo $form->field($poMonth, "[$key]ppupom_month")->hiddenInput(['value' => $startDate->format('m')])->label(false);
-                                echo $form->field($poMonth, "[$key]ppupom_year")->hiddenInput(['value' => $startDate->format('Y')])->label(false);
-                                echo $form->field($poMonth, "[$key]ppupom_value_display", [
-                                    'template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE,
-                                    'options' => ['class' => 'col-xs-12 col-sm-4']
-                                ])
-                                    ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly', 'data-cell' => "AA$key", 'data-format' => AppConstants::CALX_DATA_FORMAT_THO_DEC])
-                                    ->label($startDate->format('M Y'), ['class' => '']);
-                                echo $form->field($poMonth, "[$key]ppupom_value")->hiddenInput(['data-cell' => "A$key", 'data-format' => AppConstants::CALX_DATA_FORMAT_PLAIN_DEC, 'data-formula' => "AA$key"])->label(false);
-
-                                $startDate->add(new \DateInterval('P1M'));
+                        foreach ($ppupoMonth as $key => $poMonth) {
+                            if (!$poMonth->getIsNewRecord()) {
+                                echo $form->field($poMonth, "[$key]id")->hiddenInput()->label(false);
                             }
+                            echo $form->field($poMonth, "[$key]ppupom_month")->hiddenInput(['value' => $startDate->format('m')])->label(false);
+                            echo $form->field($poMonth, "[$key]ppupom_year")->hiddenInput(['value' => $startDate->format('Y')])->label(false);
+                            echo $form->field($poMonth, "[$key]ppupom_value_display", [
+                                'template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE,
+                                'options' => ['class' => 'col-xs-12 col-sm-4']
+                            ])
+                                ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly', 'data-cell' => "AA$key", 'data-format' => AppConstants::CALX_DATA_FORMAT_THO_DEC])
+                                ->label($startDate->format('M Y'), ['class' => '']);
+                            echo $form->field($poMonth, "[$key]ppupom_value")->hiddenInput(['data-cell' => "A$key", 'data-format' => AppConstants::CALX_DATA_FORMAT_PLAIN_DEC, 'data-formula' => "AA$key"])->label(false);
 
-                            ?>
-                        </fieldset>
-                    </div>
+                            $startDate->add(new \DateInterval('P1M'));
+                        }
+
+                        ?>
+                    </fieldset>
                 </div>
             </div>
         </div>
     </div>
 </div>
+</div><
 
 
 <div class="col-xs-12">

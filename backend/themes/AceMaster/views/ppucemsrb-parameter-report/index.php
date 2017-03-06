@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
             'attribute' => 'ppucems_report_bm_id',
             'value' => 'ppucemsReportBm.ppucemsrb_parameter_code_desc',
-            'filter' => Html::activeDropDownList($searchModel, 'ppucems_report_bm_id', PpucemsReportBm::map(new PpucemsReportBm(), 'ppucemsrb_parameter_code', null, true, [
+            'filter' => Html::activeDropDownList($searchModel, 'ppucems_report_bm_id', PpucemsReportBm::map(new PpucemsReportBm(), 'ppucemsrb_parameter_code_desc', null, 'ppucemsrb_parameter_code', [
             ]), ['class' => 'chosen-select form-control'])
         ],
 

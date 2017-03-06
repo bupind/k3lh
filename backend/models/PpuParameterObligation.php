@@ -11,7 +11,7 @@ use yii\base\Exception;
  * This is the model class for table "ppu_parameter_obligation".
  *
  * @property integer $id
- * @property integer $ppu_compulsory_monitored_emission_source_id
+ * @property integer $ppu_emission_source_id
  * @property string $ppupo_parameter_code
  * @property string $ppupo_parameter_unit_code
  * @property string $ppupo_qs
@@ -25,7 +25,7 @@ use yii\base\Exception;
  * @property integer $updated_by
  * @property integer $updated_at
  *
- * @property PpuCompulsoryMonitoredEmissionSource $ppuCompulsoryMonitoredEmissionSource
+ * @property PpuEmissionSource $ppuEmissionSource
  * @property PpupoMonth[] $ppupoMonths
  */
 class PpuParameterObligation extends AppModel
@@ -50,12 +50,12 @@ class PpuParameterObligation extends AppModel
     public function rules()
     {
         return [
-            [['ppu_compulsory_monitored_emission_source_id', 'ppupo_parameter_code', 'ppupo_qs', 'ppupo_qs_unit_code', 'ppupo_qs_ref', 'ppupo_qs_max_pollution_load', 'ppupo_qs_load_unit_code', 'ppupo_qs_max_pollution_load_ref'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
-            [['ppu_compulsory_monitored_emission_source_id'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
+            [['ppu_emission_source_id', 'ppupo_parameter_code', 'ppupo_qs', 'ppupo_qs_unit_code', 'ppupo_qs_ref', 'ppupo_qs_max_pollution_load', 'ppupo_qs_load_unit_code', 'ppupo_qs_max_pollution_load_ref'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
+            [['ppu_emission_source_id'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
             [['ppupo_qs', 'ppupo_qs_max_pollution_load'], 'number'],
             [['ppupo_parameter_code', 'ppupo_parameter_unit_code', 'ppupo_qs_unit_code', 'ppupo_qs_load_unit_code'], 'string', 'max' => 10],
             [['ppupo_qs_ref', 'ppupo_qs_max_pollution_load_ref'], 'string', 'max' => 255],
-            [['ppu_compulsory_monitored_emission_source_id'], 'exist', 'skipOnError' => true, 'targetClass' => PpuCompulsoryMonitoredEmissionSource::className(), 'targetAttribute' => ['ppu_compulsory_monitored_emission_source_id' => 'id']],
+            [['ppu_emission_source_id'], 'exist', 'skipOnError' => true, 'targetClass' => PpuEmissionSource::className(), 'targetAttribute' => ['ppu_emission_source_id' => 'id']],
         ];
     }
 
@@ -66,7 +66,7 @@ class PpuParameterObligation extends AppModel
     {
         return [
             'id' => 'ID',
-            'ppu_compulsory_monitored_emission_source_id' => AppLabels::EMISSION_SOURCE,
+            'ppu_emission_source_id' => AppLabels::EMISSION_SOURCE,
             'ppupo_parameter_code' => AppLabels::WATCHED_PARAMETER,
             'ppupo_parameter_unit_code' => AppLabels::PARAMETER_UNIT,
             'ppupo_qs' => AppLabels::QUALITY_STANDARD,
@@ -142,9 +142,9 @@ class PpuParameterObligation extends AppModel
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPpuCompulsoryMonitoredEmissionSource()
+    public function getPpuEmissionSource()
     {
-        return $this->hasOne(PpuCompulsoryMonitoredEmissionSource::className(), ['id' => 'ppu_compulsory_monitored_emission_source_id']);
+        return $this->hasOne(PpuEmissionSource::className(), ['id' => 'ppu_emission_source_id']);
     }
 
     /**
