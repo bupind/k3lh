@@ -6,6 +6,7 @@ use common\vendor\AppConstants;
 use common\vendor\AppLabels;
 use Yii;
 use yii\base\Exception;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "ppucems_report_bm".
@@ -27,6 +28,7 @@ use yii\base\Exception;
 class PpucemsReportBm extends AppModel
 {
     public $ppucemsrb_parameter_code_desc;
+    public $ppucmes_report_bm_attachment_owner;
     /**
      * @inheritdoc
      */
@@ -61,6 +63,7 @@ class PpucemsReportBm extends AppModel
             'ppucemsrb_ref' => AppLabels::DESCRIPTION,
             'ppucemsrb_sec_ref' => AppLabels::DESCRIPTION,
             'ppucemsrb_parameter_code_desc' => AppLabels::PARAMETER,
+            'ppucmes_report_bm_attachment_owner' => AppLabels::DESCRIPTION,
         ];
     }
 
@@ -71,7 +74,19 @@ class PpucemsReportBm extends AppModel
 
         try {
             $this->load($request);
-            if (!$this->save()) {
+            if ($this->save()) {
+                if (isset($request['Attachment'])) {
+                    $attachmentMdl = new Attachment();
+
+                    $attachmentMdl->load($request['Attachment']);
+                    $attachmentMdl->file = UploadedFile::getInstance($attachmentMdl, "file");
+
+                    if (!is_null($attachmentMdl->file) && !$attachmentMdl->saveAttachment(AppConstants::MODULE_CODE_PPUCEMS_REPORT_BM, $this->id)) {
+                        $errors = array_merge($errors, $attachmentMdl->errors);
+                        throw new Exception;
+                    }
+                }
+            }else{
                 $errors = array_merge($errors, $this->errors);
                 throw new Exception();
             }
@@ -116,6 +131,18 @@ class PpucemsReportBm extends AppModel
        $this->ppucemsrb_parameter_code_desc = Codeset::getCodesetValue(AppConstants::CODESET_PPUCEMS_RBM_PARAM_CODE, $this->ppucemsrb_parameter_code);
 
         return true;
+    }
+
+    public function beforeDelete()
+    {
+        $attachment = $this->attachmentOwner;
+        if(!is_null($attachment)){
+            $attachment = $attachment->attachment;
+        }
+        if(!is_null($attachment)){
+            $attachment->delete();
+        }
+        return parent::beforeDelete();
     }
 
     /**

@@ -151,7 +151,7 @@ class PpucemsReportBmController extends AppController
     {
         $model = $this->findModel($id);
 
-        $ppuModel = $model->ppuEmissionSource->ppu;
+        $this->ppuModel = $model->ppuEmissionSource->ppu;
 
         $cemsConstant = [
             0 => 92,
@@ -163,7 +163,7 @@ class PpucemsReportBmController extends AppController
         $ppucemsrbQuarter = $model->ppucemsrbQuarters;
 
         $startDate = new \DateTime();
-        $startDate->setDate($ppuModel->ppu_year - 1, 7, 1);
+        $startDate->setDate($this->ppuModel->ppu_year - 1, 7, 1);
 
         if ($model->load(Yii::$app->request->post()) && $model->saveTransactional()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_UPDATE_SUCCESS);
@@ -172,7 +172,7 @@ class PpucemsReportBmController extends AppController
             return $this->render('update', [
                 'cemsConstant' => $cemsConstant,
                 'startDate' => $startDate,
-                'ppuModel' => $ppuModel,
+                'ppuModel' => $this->ppuModel,
                 'ppucemsrbQuarter' => $ppucemsrbQuarter,
                 'model' => $model,
             ]);
@@ -187,11 +187,16 @@ class PpucemsReportBmController extends AppController
      */
     public function actionDelete($id)
     {
-        if ($this->findModel($id)->delete()) {
+
+        $model = $this->findModel($id);
+
+        $this->ppuModel = $model->ppuEmissionSource->ppu;
+
+        if ($model->delete()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_DELETE_SUCCESS);
         }
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index', 'ppuId' => $this->ppuModel->id]);
     }
 
     /**

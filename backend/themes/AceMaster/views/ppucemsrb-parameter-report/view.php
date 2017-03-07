@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use common\vendor\AppLabels;
 use common\vendor\AppConstants;
 use app\components\DetailView;
+use app\components\ViewButton;
 /* @var $this yii\web\View */
 /* @var $model backend\models\PpucemsrbParameterReport */
 /* @var $emissionSourceModel backend\models\PpuEmissionSource */
@@ -38,6 +39,7 @@ $this->params['breadcrumbs'][] = ['label' => $model->ppucemsReportBm->ppucemsrb_
                     <?= DetailView::widget([
                         'model' => $model,
                         'options' => [
+                            'excluded' => ['ppucemsrbpr_month'],
                             'converter' => [
                                 'ppu_emission_source_id' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->ppuEmissionSource->ppues_name],
                                 'ppucems_report_bm_id' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->ppucemsReportBm->ppucemsrb_parameter_code_desc],
@@ -70,6 +72,20 @@ $this->params['breadcrumbs'][] = ['label' => $model->ppucemsReportBm->ppucemsrb_
 
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <?= ViewButton::widget([
+                'model' => $model,
+                'options' => [
+                    'buttons' => [
+                        'create' => Html::a('<i class="ace-icon fa fa-plus bigger-120"></i> ' . AppLabels::BTN_ADD, ['create', 'ppuId' => $model->ppuEmissionSource->ppu_id], ['class' => 'btn btn-white btn-success btn-bold']),
+                        'index' => Html::a('<i class="ace-icon fa fa-undo bigger-120 red2"></i> ' . AppLabels::BTN_BACK, ['index', 'ppuId' => $model->ppuEmissionSource->ppu_id], ['class' => 'btn btn-white btn-danger btn-bold']),
+                    ]
+                ]
+            ]); ?>
         </div>
     </div>
 

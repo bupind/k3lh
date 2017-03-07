@@ -30,6 +30,7 @@ use common\components\helpers\Converter;
     ]
 ]); ?>
 
+
 <div class="col-xs-12 col-sm-6">
     <div class="widget-box">
         <div class="widget-header">
@@ -59,10 +60,10 @@ use common\components\helpers\Converter;
                         ->label(null, ['class' => '']);
 
                     echo $form->field($model, 'ppues_operation_time_display', ['template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE])
-                        ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly','disabled' => true ,'data-cell' => 'AA1', 'data-formula' => "SUM(B0:B11)",'data-format' => AppConstants::CALX_DATA_FORMAT_THO_DEC])
+                        ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly','disabled' => true ,'data-cell' => 'AA1', 'data-formula' => "SUM(B0:B11)", 'data-format' => '0,0[.]000000]'])
                         ->label(null, ['class' => '']);
 
-                    echo $form->field($model, 'ppues_operation_time')->hiddenInput(['data-cell' => 'A1', 'data-formula' => 'AA1', 'data-format' => AppConstants::CALX_DATA_FORMAT_PLAIN_DEC])->label(false);
+                    echo $form->field($model, 'ppues_operation_time')->hiddenInput(['data-cell' => 'A1', 'data-formula' => 'AA1', 'data-format' => '0[.]000000'])->label(false);
 
                     echo $form->field($model, 'ppues_monitoring_data_status_code', ['template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE])
                         ->dropDownList(Codeset::customMap(AppConstants::CODESET_PPU_ES_MONITORING_DATA_STATUS_CODE, 'cset_value'), ['class' => 'input-big form-control'])

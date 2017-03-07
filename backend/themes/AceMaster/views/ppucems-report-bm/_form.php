@@ -22,6 +22,7 @@ use common\components\helpers\Converter;
     'options' => [
         'class' => 'form-horizontal calx',
         'role' => 'form',
+        'enctype' => 'multipart/form-data',
     ],
     'fieldConfig' => [
         'options' => [
@@ -142,9 +143,7 @@ use common\components\helpers\Converter;
                             }
                         }
 
-                        echo $form->field($model, 'ppucemsrb_sec_ref', ['template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE])
-                            ->textInput(['maxlength' => true, 'class' => 'form-control'])
-                            ->label(null, ['class' => '']);
+                        echo Converter::attachment($model->attachmentOwner, ['show_file_upload' => true, 'show_delete_file' => true]);
 
                         ?>
                     </fieldset>

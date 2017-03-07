@@ -4,7 +4,6 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
-use app\components\SubmitLinkButton;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Ppu */

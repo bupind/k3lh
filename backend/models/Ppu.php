@@ -21,7 +21,6 @@ use common\vendor\AppConstants;
  * @property Sector $sector
  *
  * @property PpuEmissionSource[] $ppuEmissionSources
- * @property PpuCompulsoryMonitoredEmissionSource[] $ppuCompulsoryMonitoredEmissionSources
  * @property PpuTechnicalProvision[] $ppuTechnicalProvisions
  */
 class Ppu extends AppModel
@@ -92,24 +91,148 @@ class Ppu extends AppModel
         return $this->hasMany(PpuTechnicalProvision::className(), ['ppu_id' =>  'id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPpuCompulsoryMonitoredEmissionSources()
-    {
-        return $this->hasMany(PpuCompulsoryMonitoredEmissionSource::className(), ['ppu_id' =>  'id']);
-    }
 
-    public function sqlTest(){
-        $result = [];
-        $emissionSourceModel = $this->ppuEmissionSources;
-        foreach($emissionSourceModel as $key => $emissionSource){
-            $parameterReport = $emissionSource->ppucemsrbParameterReports;
+    public function getPpuEmissionLoadData(){
+        $finalResult = [];
+        $startDate = new \DateTime();
+        $startDate->setDate($this->ppu_year - 1, 7, 1);
 
-            $ppuParameterObligation = PpuParameterObligation::find()->where([
+        $ppuEmissionSourceModel = PpuEmissionSource::find()->where([
+            'ppu_id' => $this->id,
+        ])->all();
+
+        //EMISSION LOOP
+        foreach($ppuEmissionSourceModel as $key1 => $pesModel){
+            $id = $key1+1;
+            $count = 0;
+            $temp = [];
+            $emissionRadius = $pesModel->ppues_chimney_diameter/2;
+            $emissionWide = pi() * $emissionRadius * $emissionRadius;
+            $emissionWide = number_format($emissionWide, 2);
+
+            $ppucemsReportBmModel = PpucemsReportBm::find()->where([
+                'ppu_emission_source_id' => $pesModel->id
+            ])->all();
+
+
+            $ppuParameterObligationModel = PpuParameterObligation::find()->where([
+                'ppu_emission_source_id' => $pesModel->id,
                 'ppupo_parameter_code' => AppConstants::PPU_RBM_PARAM_CODE_LAJUALIR,
-                'ppu_emission_source_id' => $emissionSource->id,
             ])->one();
+
+            $lajuAlirData = null;
+
+            if(!is_null($ppuParameterObligationModel)) {
+                $lajuAlirData = PpupoMonth::find()->where([
+                    'ppu_parameter_obligation_id' => $ppuParameterObligationModel->id,
+                ])->all();
+            }
+
+            $operationTimeData = PpuesMonth::find()->where([
+                'ppu_emission_source_id' => $pesModel->id,
+            ])->all();
+
+            //PARAMETER LOOP
+            foreach($ppucemsReportBmModel as $key2 => $prbModel){
+                if($count == 0){
+                    $temp[] = $id;
+                    $temp[] = $pesModel->ppues_name;
+                    $temp[] = $pesModel->ppues_chimney_name;
+                    $temp[] = $emissionWide;
+                    $count++;
+                }else{
+                    for($i=0; $i<4; $i++){
+                        $temp[] = '';
+                    }
+                }
+                $temp[] = $prbModel->ppucemsrb_parameter_code_desc;
+                $emissionLoadTotal = 0;
+
+                //MONTH LOOP
+                for($i=0; $i<12; $i++) {
+                    $ppuParameterReportModel = PpucemsrbParameterReport::find()->where([
+                        'ppu_emission_source_id' => $pesModel->id,
+                        'ppucems_report_bm_id' => $prbModel->id,
+                        'ppucemsrbpr_month' => intval($startDate->format('m')),
+                        'ppucemsrbpr_year' => intval($startDate->format('Y')),
+                    ])->average('ppucemsrbpr_avg_concentration');
+
+                    $result = $ppuParameterReportModel * $emissionWide;
+
+                    if(!is_null($lajuAlirData)) {
+                        $result *= $lajuAlirData[$key2]->ppupom_value;
+                    }else{
+                        //ERROR EXCEPTION IF LAJU ALIR IS EMPTY
+                        exit;
+                    }
+
+                    $result *= pow(10, -7);
+                    $result *= 3.6;
+
+                    if($operationTimeData[$key2]->ppuesm_operation_time != 0){
+                        $result *= $operationTimeData[$key2]->ppuesm_operation_time;
+                    }
+
+                    $result = number_format($result, 3);
+                    $emissionLoadTotal+=$result;
+                    $temp[] = $result;
+
+                    $startDate->add(new \DateInterval('P1M'));
+                }
+
+                $startDate->setDate($this->ppu_year - 1, 7, 1);
+                $temp[] = $emissionLoadTotal;
+                $finalResult[] = $temp;
+                $temp = [];
+            }
+
+            //SPACE MAKER
+            for($i=0; $i<18; $i++){
+                $temp[] = "";
+            }
+            $finalResult[] = $temp;
+            $temp = [];
+
+            //LAJU ALIR
+            for($i=0; $i<4; $i++){
+                $temp[] = '';
+            }
+
+
+
+            if(!is_null($ppuParameterObligationModel)) {
+                $lajuAlirData = PpupoMonth::find()->where([
+                    'ppu_parameter_obligation_id' => $ppuParameterObligationModel->id,
+                ])->all();
+
+                $temp[] = 'Laju Alir';
+
+                foreach ($lajuAlirData as $key4 => $lajuAlir) {
+                    $temp[] = $lajuAlir->ppupom_value;
+                }
+
+                $temp[] = '';
+
+                $finalResult[] = $temp;
+                $temp = [];
+
+                //SPACE MAKER
+                for($i=0; $i<18; $i++){
+                    $temp[] = "";
+                }
+                $finalResult[] = $temp;
+                $temp = [];
+
+                //SPACE MAKER
+                for($i=0; $i<18; $i++){
+                    $temp[] = "";
+                }
+                $finalResult[] = $temp;
+            }
+
+
         }
+
+        return $finalResult;
     }
 }

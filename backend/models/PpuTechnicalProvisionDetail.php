@@ -59,8 +59,13 @@ class PpuTechnicalProvisionDetail extends AppModel
 
     public function beforeDelete()
     {
-        $attachment = $this->attachmentOwner->attachment;
-        $attachment->delete();
+        $attachment = $this->attachmentOwner;
+        if(!is_null($attachment)){
+            $attachment = $attachment->attachment;
+        }
+        if(!is_null($attachment)){
+            $attachment->delete();
+        }
         return parent::beforeDelete();
     }
 

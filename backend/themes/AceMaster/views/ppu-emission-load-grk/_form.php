@@ -6,7 +6,6 @@ use app\components\SubmitButton;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
 use backend\models\PpuEmissionSource;
-use backend\models\Codeset;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\PpuEmissionLoadGrk */
@@ -97,7 +96,7 @@ foreach ($ppuCalc as $key => $pCalc) { ?>
                             ->label(null, ['class' => '']);
 
                         echo Html::label("Beban Emisi (Ton)", null,['class' => 'control-label'] );
-                        echo Html::textInput("EMISSION_LOAD", null, ['data-cell' => "G$key", 'data-format' => AppConstants::CALX_DATA_FORMAT_THO_DEC,'data-formula' => "A$key*C$key*F$key*D$key/E$key", 'readOnly' => true, 'class' => 'form-control']);
+                        echo Html::textInput("EMISSION_LOAD", null, ['data-cell' => "G$key", 'data-format' => AppConstants::CALX_DATA_FORMAT_THO_DEC,'data-formula' => "A$key*C$key*F$key*D$key/E$key", 'disabled' => true, 'class' => 'form-control']);
 
                         ?>
                     </fieldset>

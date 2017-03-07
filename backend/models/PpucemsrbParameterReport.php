@@ -14,6 +14,8 @@ use yii\base\Exception;
  * @property integer $id
  * @property integer $ppu_emission_source_id
  * @property integer $ppucems_report_bm_id
+ * @property integer $ppucemsrbpr_month
+ * @property integer $ppucemsrbpr_year
  * @property string $ppucemsrbpr_quarter
  * @property string $ppucemsrbpr_calc_date
  * @property string $ppucemsrbpr_avg_concentration
@@ -50,8 +52,8 @@ class PpucemsrbParameterReport extends AppModel
     public function rules()
     {
         return [
-            [['ppu_emission_source_id', 'ppucems_report_bm_id', 'ppucemsrbpr_quarter', 'ppucemsrbpr_calc_date', 'ppucemsrbpr_avg_concentration', 'ppucemsrbpr_calc_result', 'ppucemsrbpr_operation_time', 'ppucemsrbpr_qs', 'ppucemsrbpr_qs_unit_code', 'ppucemsrbpr_ref'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
-            [['ppu_emission_source_id', 'ppucems_report_bm_id', 'ppucemsrbpr_operation_time'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
+            [['ppu_emission_source_id', 'ppucems_report_bm_id', 'ppucemsrbpr_month','ppucemsrbpr_year', 'ppucemsrbpr_quarter', 'ppucemsrbpr_calc_date', 'ppucemsrbpr_avg_concentration', 'ppucemsrbpr_calc_result', 'ppucemsrbpr_operation_time', 'ppucemsrbpr_qs', 'ppucemsrbpr_qs_unit_code', 'ppucemsrbpr_ref'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
+            [['ppu_emission_source_id', 'ppucems_report_bm_id','ppucemsrbpr_month', 'ppucemsrbpr_year', 'ppucemsrbpr_operation_time'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
             [['ppucemsrbpr_calc_date'], 'safe'],
             [['ppucemsrbpr_avg_concentration', 'ppucemsrbpr_calc_result', 'ppucemsrbpr_qs'], 'number'],
             [['ppucemsrbpr_quarter'], 'string', 'max' => 30],
@@ -71,6 +73,8 @@ class PpucemsrbParameterReport extends AppModel
             'id' => 'ID',
             'ppu_emission_source_id' => AppLabels::EMISSION_SOURCE,
             'ppucems_report_bm_id' => AppLabels::PARAMETER,
+            'ppucemsrbpr_month' => AppLabels::MONTH,
+            'ppucemsrbpr_year' => AppLabels::YEAR,
             'ppucemsrbpr_quarter' => AppLabels::QUARTER,
             'ppucemsrbpr_calc_date' => AppLabels::DATE,
             'ppucemsrbpr_avg_concentration' => sprintf("%s (%s)", AppLabels::AVERAGE_CONCENTRATION, AppLabels::MGNM3_UNIT),
@@ -95,6 +99,8 @@ class PpucemsrbParameterReport extends AppModel
             $this->load($request);
 
             $date = $this->ppucemsrbpr_calc_date;
+            $this->ppucemsrbpr_month = $this->convertToMonth($date);
+            $this->ppucemsrbpr_year = $this->convertToYear($date);
             $this->ppucemsrbpr_quarter = $this->convertToQuarter($date);
             if (!$this->save()) {
                 $errors = array_merge($errors, $this->errors);
@@ -114,6 +120,20 @@ class PpucemsrbParameterReport extends AppModel
 
             return FALSE;
         }
+    }
+
+    public function convertToMonth($date){
+        $data = explode("-", $date);
+        $month = intval($data[1]);
+
+        return $month;
+    }
+
+    public function convertToYear($date){
+        $data = explode("-", $date);
+        $month = intval($data[2]);
+
+        return $month;
     }
 
     public function convertToQuarter($date){

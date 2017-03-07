@@ -344,4 +344,6 @@ class AppLabels {
     const BARISTAND_CALC_RESULT = 'Hasil Pengukuran Baristand';
     const MGNM3_UNIT = 'mg/Nm3';
     const SECTION_AREA = 'Luas Penampang';
+    const EMISSION_LOAD_CALCULATION_RESULT = 'Hasil Perhitungan Beban Emisi';
+    const MONITORED_PARAMETER = 'Parameter yang dipantau';
 }

@@ -149,6 +149,22 @@ class PpuController extends AppController
         ]);
     }
 
+    public function actionEmissionLoadCalc($id)
+    {
+        $model = $this->findModel($id);
+
+        $startDate = new \DateTime();
+        $startDate->setDate($model->ppu_year - 1, 7, 1);
+
+        $finalResult = $model->getPpuEmissionLoadData();
+
+        return $this->render('emission-load-calc', [
+            'finalResult' => $finalResult,
+            'startDate' => $startDate,
+            'model' => $model,
+        ]);
+    }
+
     /**
      * Finds the Ppu model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

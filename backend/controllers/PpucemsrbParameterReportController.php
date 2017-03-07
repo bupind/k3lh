@@ -56,7 +56,7 @@ class PpucemsrbParameterReportController extends AppController
     public function actionIndex()
     {
         $searchModel = new PpucemsrbParameterReportSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->searchPpu(Yii::$app->request->queryParams, $this->ppuModel->id);
 
         return $this->render('index', [
             'ppuModel' => $this->ppuModel,
@@ -123,7 +123,7 @@ class PpucemsrbParameterReportController extends AppController
         $model = $this->findModel($id);
         $this->ppuModel = $model->ppuEmissionSource->ppu;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->saveTransactional()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_UPDATE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -152,11 +152,14 @@ class PpucemsrbParameterReportController extends AppController
      */
     public function actionDelete($id)
     {
-        if ($this->findModel($id)->delete()) {
+        $model = $this->findModel($id);
+        $this->ppuModel = $model->ppuEmissionSource->ppu;
+
+        if ($model->delete()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_DELETE_SUCCESS);
         }
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index', 'ppuId' => $this->ppuModel->id]);
     }
 
     /**

@@ -5,6 +5,7 @@ use app\components\ViewButton;
 use common\vendor\AppLabels;
 use common\vendor\AppConstants;
 use app\components\DetailView;
+use common\components\helpers\Converter;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\PpucemsReportBm */
@@ -70,7 +71,8 @@ $this->params['breadcrumbs'][] = ['label' => $model->ppuEmissionSource->ppues_na
                 <?= DetailView::widget([
                     'model' => $model,
                     'options' => [
-                        'excluded' => ['ppu_emission_source_id', 'ppucemsrb_parameter_code', 'ppucemsrb_ref'],
+                        'extraAttributes' => ['ppucmes_report_bm_attachment_owner' => Converter::attachment($model->attachmentOwner, [])],
+                        'excluded' => ['ppu_emission_source_id', 'ppucemsrb_parameter_code', 'ppucemsrb_ref', 'ppucemsrb_sec_ref'],
                     ]
                 ]); ?>
             </div>

@@ -150,11 +150,14 @@ class PpuParameterObligationController extends AppController
      */
     public function actionDelete($id)
     {
-        if ($this->findModel($id)->delete()) {
+        $model = $this->findModel($id);
+        $this->ppuModel = $model->ppuEmissionSource->ppu;
+
+        if ($model->delete()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_DELETE_SUCCESS);
         }
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index', 'ppuId' =>  $this->ppuModel->id]);
     }
 
     /**

@@ -6,7 +6,6 @@ use backend\models\PpuEmissionLoadGrkCalc;
 use Yii;
 use backend\models\PpuEmissionLoadGrk;
 use backend\models\PpuEmissionLoadGrkSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\vendor\AppConstants;
@@ -120,10 +119,10 @@ class PpuEmissionLoadGrkController extends AppController
     {
         $model = $this->findModel($id);
 
-        $ppuModel = $model->ppuEmissionSource->ppu;
+        $this->ppuModel = $model->ppuEmissionSource->ppu;
 
         $startDate = new \DateTime();
-        $startDate->setDate($ppuModel->ppu_year - 2, 7, 1);
+        $startDate->setDate($this->ppuModel->ppu_year - 2, 7, 1);
 
         $ppuCalc = $model->ppuEmissionLoadGrkCalcs;
 
@@ -136,7 +135,7 @@ class PpuEmissionLoadGrkController extends AppController
             return $this->render('update', [
                 'ppuCalc' => $ppuCalc,
                 'startDate' => $startDate,
-                'ppuModel' => $ppuModel,
+                'ppuModel' => $this->ppuModel,
                 'model' => $model,
             ]);
         }
@@ -150,11 +149,14 @@ class PpuEmissionLoadGrkController extends AppController
      */
     public function actionDelete($id)
     {
-        if ($this->findModel($id)->delete()) {
+        $model = $this->findModel($id);
+
+        $this->ppuModel = $model->ppuEmissionSource->ppu;
+        if ($model->delete()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_DELETE_SUCCESS);
         }
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index', 'ppuId' =>  $this->ppuModel->id]);
     }
 
     /**
