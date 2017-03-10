@@ -11,7 +11,7 @@ use yii\helpers\Html;
 
 $this->title = sprintf('%s %s', AppLabels::BTN_VIEW, AppLabels::SETUP_POINT_PERMIT);
 $this->params['breadcrumbs'][] = ['label' => sprintf('%s - %s', AppLabels::PPA, $model->ppa->getSummary()), 'url' => ['/ppa/update', 'id' => $model->ppa->id]];
-$this->params['breadcrumbs'][] = ['label' => AppLabels::SETUP_POINT_PERMIT, 'url' => ['index', 'ppaId' => $model->ppaSetupPermit->ppa->id]];
+$this->params['breadcrumbs'][] = ['label' => AppLabels::SETUP_POINT_PERMIT, 'url' => ['index', 'ppaId' => $model->ppa->id]];
 $this->params['subtitle'] = $model->ppasp_wastewater_source;
 $this->params['breadcrumbs'][] = $this->title;
 ?>

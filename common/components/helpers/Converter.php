@@ -114,7 +114,7 @@ class Converter extends Component {
             
             if (isset($options['show_delete_file']) && $options['show_delete_file'] == true) {
                 $link .= ' ';
-                $link .= Html::button('<i class="ace-icon fa fa-trash bigger-110 icon-only"></i>', ['class' => 'btn btn-minier btn-danger btn-delete-attachment', 'data-id' => $attachmentOwner->attachment_id, 'data-upload' => true, 'data-index' => $index]);
+                $link .= Html::button('<i class="ace-icon fa fa-trash bigger-110 icon-only"></i>', ['class' => 'btn btn-minier btn-danger btn-delete-attachment', 'data-id' => $attachmentOwner->attachment_id, 'data-upload' => 'true', 'data-index' => $index]);
             }
             $link .= Html::endTag('div');
             

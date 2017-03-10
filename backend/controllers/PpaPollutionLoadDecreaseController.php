@@ -2,10 +2,10 @@
 
 namespace backend\controllers;
 
+use backend\models\PpaPollutionLoadDecrease;
+use backend\models\PpaPollutionLoadDecreaseSearch;
+use backend\models\PpaPollutionLoadDecreaseYear;
 use backend\models\Ppa;
-use backend\models\PpaInletOutlet;
-use backend\models\PpaReportBm;
-use backend\models\PpaReportBmSearch;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
@@ -13,12 +13,11 @@ use common\vendor\AppConstants;
 use yii\base\Model;
 
 /**
- * PpaReportBmController implements the CRUD actions for PpaReportBm model.
+ * PpaPollutionLoadDecreaseController implements the CRUD actions for PpaPollutionLoadDecrease model.
  */
-class PpaReportBmController extends AppController {
+class PpaPollutionLoadDecreaseController extends AppController {
     
     public $ppaModel;
-    
     
     /**
      * @inheritdoc
@@ -50,12 +49,12 @@ class PpaReportBmController extends AppController {
     }
     
     /**
-     * Lists all PpaReportBm models.
+     * Lists all PpaPollutionLoadDecrease models.
      * @return mixed
      */
     public function actionIndex() {
-        $searchModel = new PpaReportBmSearch();
-        $dataProvider = $searchModel->searchPpa(Yii::$app->request->queryParams, $this->ppaModel->id);
+        $searchModel = new PpaPollutionLoadDecreaseSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -65,7 +64,7 @@ class PpaReportBmController extends AppController {
     }
     
     /**
-     * Displays a single PpaReportBm model.
+     * Displays a single PpaPollutionLoadDecrease model.
      * @param integer $id
      * @return mixed
      */
@@ -76,14 +75,14 @@ class PpaReportBmController extends AppController {
     }
     
     /**
-     * Finds the PpaReportBm model based on its primary key value.
+     * Finds the PpaPollutionLoadDecrease model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return PpaReportBm the loaded model
+     * @return PpaPollutionLoadDecrease the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id) {
-        if (($model = PpaReportBm::findOne($id)) !== null) {
+        if (($model = PpaPollutionLoadDecrease::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
@@ -91,82 +90,72 @@ class PpaReportBmController extends AppController {
     }
     
     /**
-     * Creates a new PpaReportBm model.
+     * Creates a new PpaPollutionLoadDecrease model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate() {
-        $model = new PpaReportBm();
-        $startDate = new \DateTime();
-        $startDate->setDate($this->ppaModel->ppa_year - 1, 7, 1);
+        $model = new PpaPollutionLoadDecrease();
     
-        $startDateOutlet = new \DateTime();
-        $startDateOutlet->setDate($this->ppaModel->ppa_year - 1, 7, 1);
+        $startYear = new \DateTime();
+        $startYear->setDate($this->ppaModel->ppa_year - 3, 1, 1);
         
-        $ppaInletOutletModels = [];
-    
-        for ($i = 0; $i < 12; $i++) {
-            $ppaInletOutletModels[] = new PpaInletOutlet();
-
+        $ppaLDYearModels = [];
+        for ($i=0; $i<4; $i++) {
+            $ppaLDYearModels[] = new PpaPollutionLoadDecreaseYear();
         }
-        
+    
         $requestData = Yii::$app->request->post();
-        if ($model->load($requestData) && Model::loadMultiple($ppaInletOutletModels, $requestData) && $model->saveTransactional()) {
+        if ($model->load($requestData) && Model::loadMultiple($ppaLDYearModels, $requestData) && $model->saveTransactional()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
-            return $this->redirect(['create', 'ppaId' => $this->ppaModel->id]);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
                 'ppaModel' => $this->ppaModel,
-                'startDate' => $startDate,
-                'startDateOutlet' => $startDateOutlet,
-                'ppaInletOutletModels' => $ppaInletOutletModels,
+                'startYear' => $startYear,
+                'ppaLDYearModels' => $ppaLDYearModels
             ]);
         }
     }
     
     /**
-     * Updates an existing PpaReportBm model.
+     * Updates an existing PpaPollutionLoadDecrease model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
      */
     public function actionUpdate($id) {
         $model = $this->findModel($id);
-        $ppaModel = $model->ppaSetupPermit->ppa;
     
-        $startDate = new \DateTime();
-        $startDate->setDate($ppaModel->ppa_year - 1, 7, 1);
+        $startYear = new \DateTime();
+        $startYear->setDate($model->ppa->ppa_year - 3, 1, 1);
     
-        $startDateOutlet = new \DateTime();
-        $startDateOutlet->setDate($ppaModel->ppa_year - 1, 7, 1);
-    
-        $ppaInletOutletModels = $model->ppaInletOutlets;
+        $ppaLDYearModels = $model->ppaPollutionLoadDecreaseYears;
     
         $requestData = Yii::$app->request->post();
-        if ($model->load($requestData) && Model::loadMultiple($ppaInletOutletModels, $requestData) && $model->saveTransactional()) {
+        if ($model->load($requestData) && Model::loadMultiple($ppaLDYearModels, $requestData) && $model->saveTransactional()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_UPDATE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
-                'ppaModel' => $ppaModel,
-                'startDate' => $startDate,
-                'startDateOutlet' => $startDateOutlet,
-                'ppaInletOutletModels' => $ppaInletOutletModels,
+                'ppaModel' => $model->ppa,
+                'startYear' => $startYear,
+                'ppaLDYearModels' => $ppaLDYearModels
             ]);
         }
     }
     
     /**
-     * Deletes an existing PpaReportBm model.
+     * Deletes an existing PpaPollutionLoadDecrease model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
      */
     public function actionDelete($id) {
         $model = $this->findModel($id);
-        $ppa = $model->ppaSetupPermit->ppa;
+        $ppa = $model->ppa;
         if ($model->delete()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_DELETE_SUCCESS);
         }

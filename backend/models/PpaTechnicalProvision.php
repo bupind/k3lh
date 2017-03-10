@@ -167,6 +167,19 @@ class PpaTechnicalProvision extends AppModel {
         }
     }
     
+    public function beforeDelete() {
+        parent::beforeDelete();
+        
+        foreach ($this->ppaTechnicalProvisionDetails as $ppaTechnicalProvisionDetail) {
+            if (!empty($ppaTechnicalProvisionDetail->attachmentOwners)) {
+                foreach ($ppaTechnicalProvisionDetail->attachmentOwners as $attachmentOwner) {
+                    $attachmentOwner->attachment->delete();
+                }
+            }
+        }
+    }
+    
+    
     /**
      * @return \yii\db\ActiveQuery
      */

@@ -303,4 +303,6 @@ class AppLabels {
     const LABOR_TEST_MONTH = 'Bulan Pengujian';
     const LABOR_ACCREDITATION_NUMBER_TITLE = 'Nomor akreditasi laboratorium penguji/laboratorium rujukan Gubernur';
     const LABOR_ACCREDITATION_END_DATE_TITLE = 'Tanggal Berakhir Akreditasi laboratorium';
+    const PPA_POLL_LOAD_ACTIVITY_TITLE = 'Kegiatan Penurunan Beban Pencemaran Air';
+    const PPA_POLL_LOAD_CALC_EVIDENCE_TITLE = 'Bukti Perhitungan';
 }

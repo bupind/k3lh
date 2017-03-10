@@ -156,10 +156,12 @@ class PpaSetupPermitController extends AppController {
      * @return mixed
      */
     public function actionDelete($id) {
-        if ($this->findModel($id)->delete()) {
+        $model = $this->findModel($id);
+        $ppa = $model->ppa;
+        if ($model->delete()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_DELETE_SUCCESS);
         }
         
-        return $this->redirect(['index']);
+        return $this->redirect(['index', 'ppaId' => $ppa->id]);
     }
 }

@@ -161,6 +161,16 @@ class WorkingPlan extends AppModel {
         }
     }
     
+    public function beforeDelete() {
+        parent::beforeDelete();
+        
+        foreach ($this->workingPlanDetails as $workingPlanDetail) {
+            $workingPlanDetail->delete();
+        }
+        
+        return true;
+    }
+    
     /**
      * @return \yii\db\ActiveQuery
      */

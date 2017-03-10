@@ -79,6 +79,16 @@ class WorkingPlanDetail extends AppModel {
         return true;
     }
     
+    public function beforeDelete() {
+        parent::beforeDelete();
+        
+        if (!is_null($this->attachmentOwner)) {
+            $this->attachmentOwner->attachment->delete();
+        }
+        
+        return true;
+    }
+    
     /**
      * @return \yii\db\ActiveQuery
      */
