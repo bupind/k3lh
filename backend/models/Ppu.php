@@ -186,12 +186,14 @@ class Ppu extends AppModel
                 $temp = [];
             }
 
-            //SPACE MAKER
-            for($i=0; $i<18; $i++){
-                $temp[] = "";
+            if(!is_null($ppuParameterObligationModel)) {
+                //SPACE MAKER
+                for ($i = 0; $i < 18; $i++) {
+                    $temp[] = "";
+                }
+                $finalResult[] = $temp;
+                $temp = [];
             }
-            $finalResult[] = $temp;
-            $temp = [];
 
             //LAJU ALIR
             for($i=0; $i<4; $i++){
@@ -214,23 +216,7 @@ class Ppu extends AppModel
                 $temp[] = '';
 
                 $finalResult[] = $temp;
-                $temp = [];
-
-                //SPACE MAKER
-                for($i=0; $i<18; $i++){
-                    $temp[] = "";
-                }
-                $finalResult[] = $temp;
-                $temp = [];
-
-                //SPACE MAKER
-                for($i=0; $i<18; $i++){
-                    $temp[] = "";
-                }
-                $finalResult[] = $temp;
             }
-
-
         }
 
         return $finalResult;

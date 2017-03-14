@@ -31,6 +31,11 @@ class PpuAmbientController extends AppController
         ];
     }
 
+    public function beforeAction($action) {
+        parent::beforeAction($action);
+        return $this->rbac();
+    }
+
     /**
      * Lists all PpuAmbient models.
      * @return mixed
@@ -43,7 +48,7 @@ class PpuAmbientController extends AppController
         $model = new PpuAmbient();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
-            $this->redirect('ppu-ambient');
+            $this->redirect('ppu-ambient/index');
         }
 
         $powerPlantList = ['' => AppLabels::PLEASE_SELECT];

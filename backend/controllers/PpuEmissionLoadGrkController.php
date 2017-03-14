@@ -45,7 +45,7 @@ class PpuEmissionLoadGrkController extends AppController
             $this->ppuModel = Ppu::findOne(['id' => $ppuId]);
         }
 
-        return true;
+        return $this->rbac();
     }
 
     /**

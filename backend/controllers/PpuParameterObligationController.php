@@ -50,7 +50,7 @@ class PpuParameterObligationController extends AppController
             $this->ppuModel = Ppu::findOne(['id' => $ppuId]);
         }
 
-        return true;
+        return $this->rbac();
     }
 
     public function actionIndex()

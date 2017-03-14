@@ -46,7 +46,7 @@ class PpuTechnicalProvisionController extends AppController
             $this->ppuModel = Ppu::findOne(['id' => $ppuId]);
         }
 
-        return true;
+        return $this->rbac();
     }
 
     /**
@@ -63,17 +63,25 @@ class PpuTechnicalProvisionController extends AppController
             $detailModels[] = new PpuTechnicalProvisionDetail();
         }
 
+
         if(is_null($ppuTp = PpuTechnicalProvision::findOne(['ppu_id' => $this->ppuModel->id]))){
             $model = new PpuTechnicalProvision();
         }else {
             $model = $this->findModel($ppuTp->id);
             $detailModels = $model->ppuTechnicalProvisionDetails;
+            if(count($detailModels) != $questionCount ){
+                for($i=0; $i<(abs(count($detailModels)-$questionCount)); $i++){
+                    $newPpuTpD = new PpuTechnicalProvisionDetail();
+                    $detailModels[] = $newPpuTpD;
+                }
+            }
         }
 
         $requestData = Yii::$app->request->post();
         if ($model->load($requestData) && Model::loadMultiple($detailModels, $requestData) &&  $model->saveTransactional()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
-            $this->redirect('ppu');
+            $id = $this->ppuModel->id;
+            $this->redirect(['index', 'ppuId' => $id]);
         }
 
         return $this->render('index', [

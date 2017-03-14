@@ -31,6 +31,11 @@ class PpuController extends AppController
         ];
     }
 
+    public function beforeAction($action) {
+        parent::beforeAction($action);
+        return $this->rbac();
+    }
+
     /**
      * Lists all Ppu models.
      * @return mixed
@@ -43,7 +48,7 @@ class PpuController extends AppController
         $model = new Ppu();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
-            $this->redirect('index');
+            $this->redirect('ppu/index');
         }
 
         $powerPlantList = ['' => AppLabels::PLEASE_SELECT];

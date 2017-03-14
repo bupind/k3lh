@@ -70,7 +70,7 @@ $form = ActiveForm::begin([
                                     <?= $keyQ ?>
                                 </td>
                                 <td>
-                                    <?php if (!$model->getIsNewRecord()) { ?>
+                                    <?php if (!$detailModels[$key]->getIsNewRecord()) { ?>
                                         <?= $form->field($detailModels[$key], "[$key]id")->hiddenInput()->label(false); ?>
                                     <?php  } ?>
                                     <?= $form->field($detailModels[$key], "[$key]ppu_question_id")->hiddenInput(['value' => $question->id])->label(false); ?>
@@ -88,7 +88,7 @@ $form = ActiveForm::begin([
         </div>
 
         <div class="col-xs-12">
-            <?= SubmitButton::widget(['backAction' => ['index', 'ppuId' => $ppuModel->id], 'isNewRecord' => $model->isNewRecord, 'widget' => true]); ?>
+            <?= SubmitButton::widget(['backAction' => "ppu/update/$ppuModel->id", 'isNewRecord' => $model->isNewRecord, 'widget' => true]); ?>
         </div>
 
     </div>

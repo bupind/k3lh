@@ -28,6 +28,11 @@ class PpuQuestionController extends AppController
         ];
     }
 
+    public function beforeAction($action) {
+        parent::beforeAction($action);
+        return $this->rbac();
+    }
+
     /**
      * Lists all PpuQuestion models.
      * @return mixed

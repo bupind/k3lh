@@ -45,7 +45,7 @@ class PpuaParameterObligationController extends AppController
             $this->ppuaModel = PpuAmbient::findOne(['id' => $ppuaId]);
         }
 
-        return true;
+        return $this->rbac();
     }
 
     /**
@@ -149,11 +149,14 @@ class PpuaParameterObligationController extends AppController
      */
     public function actionDelete($id)
     {
-        if ($this->findModel($id)->delete()) {
+        $model = $this->findModel($id);
+
+        $this->ppuaModel = $model->ppuaMonitoringPoint->ppuAmbient;
+        if ($model->delete()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_DELETE_SUCCESS);
         }
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index', 'ppuaId' =>  $this->ppuaModel->id]);
     }
 
     /**
