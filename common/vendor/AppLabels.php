@@ -341,7 +341,6 @@ class AppLabels {
     const EMISSION_SOURCE_MONITORED = 'Sumber Emisi Wajib Pantau';
     const WATCHED_PARAMETER = 'Parameter yang dipantau';
     const PARAMETER_UNIT = 'Satuan Parameter';
-    const QUALITY_STANDARD = 'Baku Mutu';
     const QUALITY_STANDARD_UNIT = 'Satuan Baku Mutu';
     const QUALITY_STANDARD_REF = 'Peraturan Baku Mutu';
     const MAXIMUM_QS_POLLUTION_LOAD = 'Baku Mutu Beban Pencemaran Maksimum';
@@ -363,7 +362,6 @@ class AppLabels {
     const TOTAL = 'Total';
     const KG = 'Kg';
     const TON = 'Ton';
-    const CATEGORY = 'Kategori';
     const SUPPORTING_EVIDENCE = 'Bukti Pendukung';
     //PPU Ambient
     const AMBIENT = 'Ambient';
