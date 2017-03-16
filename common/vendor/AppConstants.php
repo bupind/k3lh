@@ -50,8 +50,6 @@ class AppConstants {
     const ACTIVE_FORM_WIDGET_TEMPLATE_EXTRA = '{label} <div id="{wrapper_id}" class="input-group input-large"><div class="input-group">{input}<span class="input-group-btn">{extra}</span></div><span class="help-block">{error}{hint}</span></div>';
     const ACTIVE_FORM_WIDGET_TEMPLATE_INPUT_GROUP = '{label}<div class="input-group">{input}<span class="input-group-addon">{separator}</span>{input2}</div><span class="help-block">{error}{hint}</span>';
     const ACTIVE_FORM_CLASS_LABEL_COL_3 = 'col-md-3 control-label no-padding-right';
-    const ACTIVE_FORM_WIDGET_TEMPLATE_INPUT_GROUP = '{label}<div class="input-group">{input}<span class="input-group-addon">{separator}</span>{input2}</div><span class="help-block">{error}{hint}</span>';
-    const ACTIVE_FORM_CLASS_LABEL_COL_3 = 'col-sm-3 control-label no-padding-right';
     const ACTIVE_FORM_CLASS_LABEL_COL_4 = 'col-sm-4 control-label no-padding-right';
 
     const ACTIVE_FORM_CLASS_INPUT_TEXT = 'col-xs-10 col-md-5';

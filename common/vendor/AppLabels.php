@@ -299,11 +299,9 @@ class AppLabels {
     const AIR_POLLUTION_CONTROL = 'Form Pengendalian Pencemaran Udara';
     const EMISSION_SOURCE_INVENTORY = 'Inventarisasi Sumber Emisi';
     const ADHERENCE_POINT = 'Titik Penaatan';
-    const BM_REPORT_PARAMETER = 'Parameter Pelaporan BM';
     const ADHERENCE = 'Ketaatan';
     const EMISSION_LOAD_CALCULATION = 'Perhitungan Beban Emisi';
     const GRK = 'GRK';
-    const TECHNICAL_PROVISION = 'Ketentuan Teknis';
     const POLLUTION_LOAD = 'Beban Pencemaran';
     const EMISSION_SOURCE = 'Sumber Emisi';
     const CHIMNEY = 'Cerobong';
@@ -315,8 +313,6 @@ class AppLabels {
     const OPERATION_TIME = 'Waktu Operasi';
     const HOUR = 'Jam';
     const COORDINAT = 'Koordinat';
-    const LS = 'Koordinat LS';
-    const BT = 'Koordinat BT';
     const SHAPE = 'Bentuk';
     const HEIGHT = 'Tinggi';
     const LENGTH = 'Panjang';
