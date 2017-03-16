@@ -114,7 +114,7 @@ class Converter extends Component {
             
             if (isset($options['show_delete_file']) && $options['show_delete_file'] == true) {
                 $link .= ' ';
-                $link .= Html::button('<i class="ace-icon fa fa-trash bigger-110 icon-only"></i>', ['class' => 'btn btn-minier btn-danger btn-delete-attachment', 'data-id' => $attachmentOwner->attachment_id, 'data-index' => $index]);
+                $link .= Html::button('<i class="ace-icon fa fa-trash bigger-110 icon-only"></i>', ['class' => 'btn btn-minier btn-danger btn-delete-attachment', 'data-id' => $attachmentOwner->attachment_id, 'data-upload' => 'true', 'data-index' => $index]);
             }
             $link .= Html::endTag('div');
             
@@ -130,6 +130,35 @@ class Converter extends Component {
             } else {
                 return AppConstants::MSG_DATA_NOT_FOUND;
             }
+        }
+    }
+    
+    /* @var $attachmentOwners AttachmentOwner[] */
+    public static function attachments($attachmentOwners, $options = []) {
+        $index = isset($options['index']) ? $options['index'] : null;
+        $inputName = !is_null($index) ? "Attachment[$index][files][]" : "Attachment[files][]";
+    
+        if (isset($options['show_file_upload']) && $options['show_file_upload'] == true) {
+            $link = '';
+            if (!empty($attachmentOwners)) {
+                foreach ($attachmentOwners as $key => $attachmentOwner) {
+                    $link .= Html::beginTag('div', ['id' => "att_$index$key"]);
+                    $link .= Html::a($attachmentOwner->attachment->atf_filename, sprintf('%s/uploads/%s/%s', \Yii::getAlias(AppConstants::THEME_BASE_URL), strtolower($attachmentOwner->attachment->atf_location), $attachmentOwner->attachment->atf_filename), ['target' => '_blank']);
+            
+                    if (isset($options['show_delete_file']) && $options['show_delete_file'] == true) {
+                        $link .= ' ';
+                        $link .= Html::button('<i class="ace-icon fa fa-trash bigger-110 icon-only"></i>', ['class' => 'btn btn-minier btn-danger btn-delete-attachment', 'data-id' => $attachmentOwner->attachment_id, 'data-index' => $index . $key]);
+                    }
+                    $link .= Html::endTag('div');
+                }
+            }
+            
+            $input = Html::hiddenInput($inputName);
+            $input .= Html::fileInput($inputName, null, ['multiple' => true]);
+    
+            return $link . $input;
+        } else {
+            return AppConstants::MSG_DATA_NOT_FOUND;
         }
     }
     

@@ -21,7 +21,7 @@ class PPAAsset extends AssetBundle {
     public $baseUrl = AppConstants::THEME_BASE_URL;
     public $css = [];
     public $js = [
-        'js/action-view/ppa.js'
+        'js/action-view/ppa.js',
     ];
     public $depends = [
         'yii\web\JqueryAsset'

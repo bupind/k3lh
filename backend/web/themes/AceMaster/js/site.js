@@ -124,6 +124,7 @@ jQuery(function($) {
         if (confirm('Dokumen akan terhapus secara permanen. Teruskan?')) {
             var id = $(this).data('id'),
                 index = $(this).data('index') === undefined ? '' : $(this).data('index'),
+                showUploadFile = $(this).data('upload') === undefined ? false : $(this).data('upload'),
                 wrapper = $('#att_' + index),
                 inputName = index == '' ? 'Attachment[file]' : 'Attachment['+ index +'][file]';
 
@@ -134,8 +135,10 @@ jQuery(function($) {
                 data: {id: id},
                 success: function(data) {
                     if (data !== false) {
-                        sb.append('<input name="'+ inputName +'" value="" type="hidden">');
-                        sb.append('<input name="'+ inputName +'" type="file">');
+                        if (showUploadFile) {
+                            sb.append('<input name="'+ inputName +'" value="" type="hidden">');
+                            sb.append('<input name="'+ inputName +'" type="file">');
+                        }
 
                         wrapper.empty().append(sb.toString());
                     } else {
@@ -179,11 +182,11 @@ $(document).ready(function(){
         return this;
     };
 
-    $('.uppercase').exists(function () {
+    $(document).on('focus', '.uppercase', function(){
         $.each($('.uppercase'), function(){ $(this).setUppercase(); });
     });
-    
-    $('.numbersOnly').exists(function () {
+
+    $(document).on('focus', '.numbersOnly', function(){
         $.each($('.numbersOnly'), function(){ $(this).numbersOnly(); });
     });
 

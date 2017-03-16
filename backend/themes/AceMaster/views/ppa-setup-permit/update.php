@@ -11,7 +11,7 @@ use common\vendor\AppLabels;
 
 $this->title = sprintf('%s %s', AppLabels::BTN_UPDATE, AppLabels::SETUP_POINT_PERMIT);
 $this->params['breadcrumbs'][] = ['label' => sprintf('%s - %s', AppLabels::PPA, $ppaModel->getSummary()), 'url' => ['/ppa/update', 'id' => $ppaModel->id]];
-$this->params['breadcrumbs'][] = ['label' => AppLabels::SETUP_POINT_PERMIT, 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => AppLabels::SETUP_POINT_PERMIT, 'url' => ['index', 'ppaId' => $ppaModel->id]];
 $this->params['breadcrumbs'][] = ['label' => $model->ppasp_wastewater_source, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = AppLabels::BTN_UPDATE;
 ?>

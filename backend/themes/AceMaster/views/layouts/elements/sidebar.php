@@ -30,6 +30,13 @@ $navs = [
     ],
     [
         'icon' => 'fa-file-text-o',
+        'label' => AppLabels::PPA,
+        'submenu' => [
+            ['icon' => 'fa-file-text-o', 'label' => AppLabels::QUESTION, 'url' => ['/ppa-question'], 'controller' => 'ppa-question'],
+        ]
+    ],
+    [
+        'icon' => 'fa-file-text-o',
         'label' => AppLabels::PPU,
         'submenu' => [
             ['icon' => 'fa-file-text-o', 'label' => AppLabels::QUESTION, 'url' => ['/ppu-question'], 'controller' => 'ppu-question'],

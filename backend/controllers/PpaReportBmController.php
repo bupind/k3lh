@@ -3,12 +3,14 @@
 namespace backend\controllers;
 
 use backend\models\Ppa;
+use backend\models\PpaInletOutlet;
 use backend\models\PpaReportBm;
 use backend\models\PpaReportBmSearch;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
 use common\vendor\AppConstants;
+use yii\base\Model;
 
 /**
  * PpaReportBmController implements the CRUD actions for PpaReportBm model.
@@ -44,7 +46,7 @@ class PpaReportBmController extends AppController {
             $this->ppaModel = Ppa::findOne(['id' => $ppaId]);
         }
         
-        return true;
+        return $this->rbac();
     }
     
     /**
@@ -95,13 +97,30 @@ class PpaReportBmController extends AppController {
      */
     public function actionCreate() {
         $model = new PpaReportBm();
+        $startDate = new \DateTime();
+        $startDate->setDate($this->ppaModel->ppa_year - 1, 7, 1);
+    
+        $startDateOutlet = new \DateTime();
+        $startDateOutlet->setDate($this->ppaModel->ppa_year - 1, 7, 1);
         
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $ppaInletOutletModels = [];
+    
+        for ($i = 0; $i < 12; $i++) {
+            $ppaInletOutletModels[] = new PpaInletOutlet();
+
+        }
+        
+        $requestData = Yii::$app->request->post();
+        if ($model->load($requestData) && Model::loadMultiple($ppaInletOutletModels, $requestData) && $model->saveTransactional()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['create', 'ppaId' => $this->ppaModel->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'ppaModel' => $this->ppaModel,
+                'startDate' => $startDate,
+                'startDateOutlet' => $startDateOutlet,
+                'ppaInletOutletModels' => $ppaInletOutletModels,
             ]);
         }
     }
@@ -114,13 +133,27 @@ class PpaReportBmController extends AppController {
      */
     public function actionUpdate($id) {
         $model = $this->findModel($id);
-        
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $ppaModel = $model->ppaSetupPermit->ppa;
+    
+        $startDate = new \DateTime();
+        $startDate->setDate($ppaModel->ppa_year - 1, 7, 1);
+    
+        $startDateOutlet = new \DateTime();
+        $startDateOutlet->setDate($ppaModel->ppa_year - 1, 7, 1);
+    
+        $ppaInletOutletModels = $model->ppaInletOutlets;
+    
+        $requestData = Yii::$app->request->post();
+        if ($model->load($requestData) && Model::loadMultiple($ppaInletOutletModels, $requestData) && $model->saveTransactional()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_UPDATE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'ppaModel' => $ppaModel,
+                'startDate' => $startDate,
+                'startDateOutlet' => $startDateOutlet,
+                'ppaInletOutletModels' => $ppaInletOutletModels,
             ]);
         }
     }
@@ -132,10 +165,12 @@ class PpaReportBmController extends AppController {
      * @return mixed
      */
     public function actionDelete($id) {
-        if ($this->findModel($id)->delete()) {
+        $model = $this->findModel($id);
+        $ppa = $model->ppaSetupPermit->ppa;
+        if ($model->delete()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_DELETE_SUCCESS);
         }
         
-        return $this->redirect(['index']);
+        return $this->redirect(['index', 'ppaId' => $ppa->id]);
     }
 }

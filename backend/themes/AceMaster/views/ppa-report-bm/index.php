@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use common\vendor\AppLabels;
+use backend\models\PpaSetupPermit;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\PpaReportBmSearch */
@@ -32,11 +33,22 @@ $this->params['breadcrumbs'][] = $this->title;
             'filterModel' => $searchModel,
             'columns' => [
                 ['class' => 'yii\grid\SerialColumn'],
-            
-                'ppa_setup_permit_id',
-                'ppar_param_code',
-                'ppar_param_unit_code',
+    
+                [
+                    'attribute' => 'ppa_setup_permit_id',
+                    'value' => 'ppaSetupPermit.ppasp_setup_point_name',
+                    'filter' => Html::activeDropDownList($searchModel, 'ppa_setup_permit_id', PpaSetupPermit::map(new PpaSetupPermit(), 'ppasp_setup_point_name', null, true, [
+                        'andWhere' => [
+                            ['ppa_id' => $ppaModel->id]
+                        ]
+                    ]), ['class' => 'chosen-select form-control'])
+                ],
+                [
+                    'attribute' => 'ppar_param_code',
+                    'value' => 'ppar_param_code_desc'
+                ],
                 'ppar_qs_1',
+                'ppar_qs_ref',
             
                 ['class' => 'yii\grid\ActionColumn'],
             ],

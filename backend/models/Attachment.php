@@ -31,6 +31,11 @@ class Attachment extends AppModel {
     public $image_file;
     
     /**
+     * @var UploadedFile[]
+     */
+    public $image_files;
+    
+    /**
      * @var UploadedFile
      */
     public $file;
@@ -56,17 +61,35 @@ class Attachment extends AppModel {
             [['atf_filesize'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
             [['atf_filename', 'atf_location'], 'string', 'max' => 255],
             [['atf_filetype'], 'string', 'max' => 50],
+                        
             [['image_file'], 'file', 'skipOnEmpty' => true,
                 'extensions' => 'png, jpg, jpeg',
                 'wrongExtension' => AppConstants::VALIDATE_WRONG_EXTENSION,
-                'checkExtensionByMimeType' => false
+                'checkExtensionByMimeType' => false,
             ],
-            [['file', 'files'], 'file', 'skipOnEmpty' => true,
-                'extensions' => ['pdf', 'xlsx', 'xls'],
+            [['image_files'], 'file', 'skipOnEmpty' => true,
+                'extensions' => 'png, jpg, jpeg',
+                'wrongExtension' => AppConstants::VALIDATE_WRONG_EXTENSION,
+                'checkExtensionByMimeType' => false,
+                'maxFiles' => 5,
+                'tooMany' => AppConstants::VALIDATE_TOO_MANY
+            ],
+
+            [['file'], 'file', 'skipOnEmpty' => true,
+                'extensions' => ['pdf', 'xlsx', 'xls', 'doc', 'docx'],
                 'wrongExtension' => AppConstants::VALIDATE_WRONG_EXTENSION,
                 'checkExtensionByMimeType' => false,
                 'maxSize' => 1024000,
-                'tooBig' => AppConstants::VALIDATE_TOO_BIG
+                'tooBig' => AppConstants::VALIDATE_TOO_BIG,
+            ],
+            [['files'], 'file', 'skipOnEmpty' => true,
+                'extensions' => ['pdf', 'xlsx', 'xls', 'doc', 'docx'],
+                'wrongExtension' => AppConstants::VALIDATE_WRONG_EXTENSION,
+                'checkExtensionByMimeType' => false,
+                'maxSize' => 1024000,
+                'tooBig' => AppConstants::VALIDATE_TOO_BIG,
+                'maxFiles' => 5,
+                'tooMany' => AppConstants::VALIDATE_TOO_MANY
             ],
         ];
     }
@@ -106,7 +129,7 @@ class Attachment extends AppModel {
             $this->atf_filename = $file->name;
             $this->atf_filetype = $file->extension;
             $this->atf_location = $moduleCode;
-    
+                
             if (($newFilename = $this->upload($attachmentType)) !== false) {
                 $this->atf_filename = $newFilename;
                 $this->save();
@@ -121,6 +144,24 @@ class Attachment extends AppModel {
             }
         }
         
+        return false;
+    }
+    
+    public function saveMultipleAttachments($moduleCode, $modulePk, $attachmentType = AppConstants::ATTACHMENT_TYPE_FILE) {
+        $files = $attachmentType == AppConstants::ATTACHMENT_TYPE_FILE ? $this->files : $this->image_files;
+        
+        if (!empty($files)) {
+            foreach ($files as $file) {
+                $attachment = new Attachment();
+                $attachment->file = $file;
+                if (!$attachment->saveAttachment($moduleCode, $modulePk, $attachmentType)) {
+                    return false;
+                }
+            }
+            
+            return true;
+        }
+    
         return false;
     }
     
@@ -140,6 +181,8 @@ class Attachment extends AppModel {
                 $newFilename = sprintf('%s_%s', strtotime('now'), str_replace(' ', '_', $this->file->name));
                 $this->file->saveAs($uploadDir . $newFilename);
             }
+            
+            sleep(1);
             
             return $newFilename;
         } else {

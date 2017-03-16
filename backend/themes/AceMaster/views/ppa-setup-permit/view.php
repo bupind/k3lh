@@ -5,14 +5,13 @@ use app\components\ViewButton;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
 use yii\helpers\Html;
-use common\components\helpers\Converter;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\PpaSetupPermit */
 
 $this->title = sprintf('%s %s', AppLabels::BTN_VIEW, AppLabels::SETUP_POINT_PERMIT);
 $this->params['breadcrumbs'][] = ['label' => sprintf('%s - %s', AppLabels::PPA, $model->ppa->getSummary()), 'url' => ['/ppa/update', 'id' => $model->ppa->id]];
-$this->params['breadcrumbs'][] = ['label' => AppLabels::SETUP_POINT_PERMIT, 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => AppLabels::SETUP_POINT_PERMIT, 'url' => ['index', 'ppaId' => $model->ppa->id]];
 $this->params['subtitle'] = $model->ppasp_wastewater_source;
 $this->params['breadcrumbs'][] = $this->title;
 ?>

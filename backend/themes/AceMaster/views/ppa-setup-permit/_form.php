@@ -13,7 +13,6 @@ use kartik\date\DatePicker;
 /* @var $form yii\widgets\ActiveForm */
 /* @var $ppaModel \backend\models\Ppa */
 /* @var $startDate DateTime */
-/* @var $endDate DateTime */
 /* @var $ppaMonthModels \backend\models\PpaMonth[] */
 
 ?>
