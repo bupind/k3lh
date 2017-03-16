@@ -298,7 +298,7 @@ class SiteController extends AppController {
                                                                         'icon-class' => 'blue',
                                                                         'additionalParameters' => [
                                                                             'children' => [
-                                                                                '3212-1' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form Pengendalian Pencemaran Air', 'type' => 'item'],
+                                                                                '3212-1' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . AppLabels::WATER_POLLUTION_CONTROL, ['/ppa']), 'type' => 'item'],
                                                                             ]
                                                                         ]
                                                                     ],

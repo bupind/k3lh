@@ -7,6 +7,7 @@ $template = isset($options['template']) ? $options['template'] : AppConstants::V
 
 $optionButtons = isset($options['buttons']) && is_array($options['buttons']) ? $options['buttons'] : [];
 $optionBackAction = isset($options['backAction']) && !empty($options['backAction']) ? $options['backAction'] : 'index';
+
 $buttons = array_merge([
     'edit' => Html::a('<i class="ace-icon fa fa-pencil bigger-120 blue"></i> ' . AppLabels::BTN_UPDATE, ['update', 'id' => $model->id], ['class' => 'btn btn-white btn-info btn-bold']),
     'create' => Html::a('<i class="ace-icon fa fa-plus bigger-120"></i> ' . AppLabels::BTN_ADD, ['create'], ['class' => 'btn btn-white btn-success btn-bold']),
