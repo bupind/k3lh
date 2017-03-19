@@ -142,6 +142,7 @@ class AppLabels {
     const PARAM = 'Parameter';
     const QUALITY_STANDARD = 'Baku Mutu';
     const CATEGORY = 'Kategori';
+    const DATA_COUNT = 'Jumlah Data';
     
     // MONTH
     const JANUARY = 'Januari';
@@ -305,4 +306,14 @@ class AppLabels {
     const LABOR_ACCREDITATION_END_DATE_TITLE = 'Tanggal Berakhir Akreditasi laboratorium';
     const PPA_POLL_LOAD_ACTIVITY_TITLE = 'Kegiatan Penurunan Beban Pencemaran Air';
     const PPA_POLL_LOAD_CALC_EVIDENCE_TITLE = 'Bukti Perhitungan';
+    
+    const PPA_NO_DATA_DEBIT = 'No Data Debit';
+    const PPA_NO_DATA_DEBIT_FULL = 'No Data Debit / Produksi / Satuan BM Beban';
+    const POLLUTION_LOAD_BM_CALC_RESULT_TITLE = 'Hasil Perhitungan Beban Pencemaran<br />(Debit x Konsentrasi) / satuan produksi atau bahan baku';
+    const POLLUTION_LOAD_ACTUAL_CALC_RESULT_TITLE = 'Hasil Perhitungan Beban Pencemaran Aktual (Gram/bulan)<br />(Debit x Konsentrasi)';
+    const DEBIT_UNIT = 'Satuan Debit';
+    const PRODUCTION_UNIT = 'Satuan Produksi';
+    const POLLUTION_LOAD_TOTAL_GRAM = 'Beban Pencemaran Total<br />(Gram/periode)';
+    const POLLUTION_LOAD_TOTAL_KG = 'Beban Pencemaran Total<br />(Kg/periode)';
+    const POLLUTION_LOAD_TOTAL_TON = 'Beban Pencemaran Total<br />(Ton/periode)';
 }

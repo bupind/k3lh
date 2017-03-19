@@ -149,4 +149,28 @@ class PpaController extends AppController {
         
         return $this->redirect(['index']);
     }
+    
+    public function actionPollutionLoad($id) {
+        $model = $this->findModel($id);
+        
+        $startDate = new \DateTime();
+        $startDate->setDate($model->ppa_year - 1, 7, 1);
+        
+        return $this->render('pollution-load', [
+            'model' => $model,
+            'startDate' => $startDate
+        ]);
+    }
+    
+    public function actionPollutionLoadActual($id) {
+        $model = $this->findModel($id);
+        
+        $startDate = new \DateTime();
+        $startDate->setDate($model->ppa_year - 1, 7, 1);
+        
+        return $this->render('pollution-load-actual', [
+            'model' => $model,
+            'startDate' => $startDate
+        ]);
+    }
 }

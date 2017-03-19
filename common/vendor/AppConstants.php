@@ -199,6 +199,8 @@ class AppConstants {
     
     // PPA RBM PARAM
     const PPA_RBM_PARAM_PH = 'PH';
+    const PPA_RBM_PARAM_DEBIT = 'DBT';
+    const PPA_RBM_PARAM_PRODUCTION = 'PRD';
     
     // WEB CONFIG
     const WEB_CONFIG_SALE_EXTERNAL_SALES = 'SALE_EXT_SALES';
@@ -211,6 +213,10 @@ class AppConstants {
     // FORM TYPE
     const FORM_TYPE_K3 = 'K3';
     const FORM_TYPE_LH = 'LH';
+    
+    // QS LOAD UNIT CODE
+    const QS_LOAD_UNIT_CODE_GRAM_PER_M3 = 'GR_P_M3';
+    const QS_LOAD_UNIT_CODE_TON_PER_MONTH = 'TON_P_M';
     
     // ATTRIBUTE TYPE
     const ATTRIBUTE_TYPE_TARGET = 'TGT';

@@ -27,6 +27,10 @@ use yii\base\Exception;
  * @property integer $updated_at
  *
  * @property PpaMonth[] $ppaMonths
+ * @property PpaReportBm[] $ppaReportBms
+ * @property PpaReportBm[] $ppaReportBmsNoFooterParams
+ * @property PpaReportBm $ppaReportBmDebit
+ * @property PpaReportBm $ppaReportBmProduction
  * @property Ppa $ppa
  */
 class PpaSetupPermit extends AppModel {
@@ -143,6 +147,27 @@ class PpaSetupPermit extends AppModel {
      */
     public function getPpaMonths() {
         return $this->hasMany(PpaMonth::className(), ['ppa_setup_permit_id' => 'id']);
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPpaReportBms() {
+        return $this->hasMany(PpaReportBm::className(), ['ppa_setup_permit_id' => 'id']);
+    }
+    
+    public function getPpaReportBmsNoFooterParams() {
+        return $this->hasMany(PpaReportBm::className(), ['ppa_setup_permit_id' => 'id'])
+            ->andOnCondition("ppar_param_code != '" . AppConstants::PPA_RBM_PARAM_DEBIT . "'")
+            ->andOnCondition("ppar_param_code != '" . AppConstants::PPA_RBM_PARAM_PRODUCTION . "'");
+    }
+    
+    public function getPpaReportBmDebit() {
+        return $this->hasOne(PpaReportBm::className(), ['ppa_setup_permit_id' => 'id'])->andWhere(['ppar_param_code' => AppConstants::PPA_RBM_PARAM_DEBIT]);
+    }
+    
+    public function getPpaReportBmProduction() {
+        return $this->hasOne(PpaReportBm::className(), ['ppa_setup_permit_id' => 'id'])->andWhere(['ppar_param_code' => AppConstants::PPA_RBM_PARAM_PRODUCTION]);
     }
     
     /**
