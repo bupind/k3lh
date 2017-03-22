@@ -71,8 +71,18 @@ class PpaController extends AppController {
      * @return mixed
      */
     public function actionView($id) {
+        $model = $this->findModel($id);
+    
+        $startDate = new \DateTime();
+        $startDate->setDate($model->ppa_year - 1, 7, 1);
+    
+        $startDateOutlet = new \DateTime();
+        $startDateOutlet->setDate($model->ppa_year - 1, 7, 1);
+        
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'startDate' => $startDate,
+            'startDateOutlet' => $startDateOutlet
         ]);
     }
     
