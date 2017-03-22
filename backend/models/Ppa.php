@@ -20,6 +20,7 @@ use common\vendor\AppLabels;
  * @property PowerPlant $powerPlant
  * @property Sector $sector
  * @property PpaSetupPermit[] $setupPermits
+ * @property PpaTechnicalProvision $technicalProvision
  */
 class Ppa extends AppModel {
     /**
@@ -72,6 +73,13 @@ class Ppa extends AppModel {
      */
     public function getSetupPermits() {
         return $this->hasMany(PpaSetupPermit::className(), ['ppa_id' => 'id']);
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTechnicalProvision() {
+        return $this->hasOne(PpaTechnicalProvision::className(), ['ppa_id' => 'id']);
     }
     
     public function getSummary() {
