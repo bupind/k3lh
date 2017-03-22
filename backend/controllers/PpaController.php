@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
 use backend\models\PowerPlant;
+use backend\models\Codeset;
 
 /**
  * PpaController implements the CRUD actions for Ppa model.
@@ -76,13 +77,12 @@ class PpaController extends AppController {
         $startDate = new \DateTime();
         $startDate->setDate($model->ppa_year - 1, 7, 1);
     
-        $startDateOutlet = new \DateTime();
-        $startDateOutlet->setDate($model->ppa_year - 1, 7, 1);
+        $questionGroups = Codeset::getCodesetAll(AppConstants::CODESET_PPA_QUESTION_TYPE_CODE);
         
         return $this->render('view', [
             'model' => $model,
             'startDate' => $startDate,
-            'startDateOutlet' => $startDateOutlet
+            'questionGroups' => $questionGroups
         ]);
     }
     
