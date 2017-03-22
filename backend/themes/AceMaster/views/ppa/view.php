@@ -9,7 +9,6 @@ use common\vendor\AppLabels;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Ppa */
 /* @var $startDate DateTime */
-/* @var $startDateOutlet DateTime */
 
 $this->title = sprintf('%s %s', AppLabels::BTN_VIEW, AppLabels::WATER_POLLUTION_CONTROL);
 $this->params['subtitle'] = $model->getSummary();
@@ -69,13 +68,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 </ul>
                 <div class="tab-content">
                     <div id="setup-permit" class="tab-pane fade active in">
-                        <?= $this->render('_setup_permit', ['model' => $model, 'startDate' => $startDate]); ?>
+                        <?= $this->render('_setup_permit', ['model' => $model, 'startDate' => clone $startDate]); ?>
                     </div>
                     <div id="report-bm" class="tab-pane fade">
-                        <?= $this->render('_report_bm', ['model' => $model, 'startDate' => $startDate, 'startDateOutlet' => $startDateOutlet]); ?>
+                        <?= $this->render('_report_bm', ['model' => $model, 'startDate' => clone $startDate, 'startDateOutlet' => clone $startDate]); ?>
                     </div>
                     <div id="technical-prov" class="tab-pane fade">
-                        technical prov
+                        <?= $this->render('_technical_provision', ['model' => $model, 'startDate' => clone $startDate]); ?>
                     </div>
                     <div id="poll-load" class="tab-pane fade">
                         poll load
