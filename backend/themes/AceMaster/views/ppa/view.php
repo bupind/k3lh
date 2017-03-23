@@ -78,13 +78,13 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?= $this->render('_technical_provision', ['model' => $model, 'startDate' => clone $startDate, 'questionGroups' => $questionGroups]); ?>
                     </div>
                     <div id="poll-load" class="tab-pane fade">
-                        poll load
+                        <?= $this->render('_pollution_load_decrease', ['model' => $model, 'startDate' => clone $startDate]); ?>
                     </div>
                     <div id="poll-load-bm" class="tab-pane fade">
-                        poll load bm
+                        <?= $this->render('_pollution_load_bm', ['model' => $model, 'startDate' => clone $startDate]); ?>
                     </div>
                     <div id="poll-load-actual" class="tab-pane fade">
-                        poll load actual
+                        <?= $this->render('_pollution_load_actual', ['model' => $model, 'startDate' => clone $startDate]); ?>
                     </div>
                 </div>
             </div>

@@ -138,7 +138,7 @@ class Converter extends Component {
         $index = isset($options['index']) ? $options['index'] : null;
         $inputName = !is_null($index) ? "Attachment[$index][files][]" : "Attachment[files][]";
     
-        if (isset($options['show_file_upload']) && $options['show_file_upload'] == true) {
+        if (!empty($attachmentOwners)) {
             $link = '';
             if (!empty($attachmentOwners)) {
                 foreach ($attachmentOwners as $key => $attachmentOwner) {
@@ -152,13 +152,24 @@ class Converter extends Component {
                     $link .= Html::endTag('div');
                 }
             }
-            
-            $input = Html::hiddenInput($inputName);
-            $input .= Html::fileInput($inputName, null, ['multiple' => true]);
     
-            return $link . $input;
+            if (isset($options['show_file_upload']) && $options['show_file_upload'] == true) {
+                $input = Html::hiddenInput($inputName);
+                $input .= Html::fileInput($inputName, null, ['multiple' => true]);
+    
+                return $link . $input;
+            } else {
+                return $link;
+            }
         } else {
-            return AppConstants::MSG_DATA_NOT_FOUND;
+            if (isset($options['show_file_upload']) && $options['show_file_upload'] == true) {
+                $input = Html::hiddenInput($inputName);
+                $input .= Html::fileInput($inputName, null, ['multiple' => true]);
+    
+                return $input;
+            } else {
+                return AppConstants::MSG_DATA_NOT_FOUND;
+            }
         }
     }
     

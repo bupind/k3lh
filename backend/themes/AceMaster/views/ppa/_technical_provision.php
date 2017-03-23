@@ -112,13 +112,7 @@ $index = 0;
                         <tr>
                             <td><?= $no++; ?>.</td>
                             <td><?= $question; ?></td>
-                            <td>
-                                <?= Converter::attachments($model->technicalProvision->ppaTechnicalProvisionDetails[$index]->attachmentOwners, [
-                                    'show_file_upload' => true,
-                                    'show_delete_file' => true,
-                                    'index' => $index
-                                ]); ?>
-                            </td>
+                            <td><?= Converter::attachments($model->technicalProvision->ppaTechnicalProvisionDetails[$index]->attachmentOwners); ?></td>
                         </tr>
                         <?php $index++; endforeach; ?>
                     </tbody>

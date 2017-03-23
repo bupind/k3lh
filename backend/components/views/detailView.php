@@ -5,6 +5,7 @@
     $order = isset($options['order']) && is_array($options['order']) ? $options['order'] : [];
     $extraAttributes = isset($options['extraAttributes']) && is_array($options['extraAttributes']) ? $options['extraAttributes'] : [];
     $labels = isset($options['labels']) && is_array($options['labels']) ? $options['labels'] : [];
+    $bottomSpace = isset($options['bottom-space']) ? $options['bottom-space'] : 'space-20';
     
     $attributes = array_merge($model->attributes, $extraAttributes);
     if (!empty($order)) {
@@ -50,4 +51,4 @@
         <?php endif; ?>
     <?php endforeach; ?>
 </div>
-<div class="space-20"></div>
+<div class="<?= $bottomSpace ?>"></div>
