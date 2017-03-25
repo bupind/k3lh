@@ -8,7 +8,7 @@ use common\vendor\AppLabels;
 /* @var $powerPlantList \backend\models\PowerPlant[] */
 
 $this->title = sprintf('%s %s', AppLabels::BTN_UPDATE, AppLabels::WATER_POLLUTION_CONTROL);
-$this->params['breadcrumbs'][] = ['label' => AppLabels::ROADMAP_PROGRAM, 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => AppLabels::WATER_POLLUTION_CONTROL, 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => sprintf('%s - %s', $model->sector->sector_name, $model->powerPlant->pp_name), 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = AppLabels::BTN_UPDATE;
 ?>

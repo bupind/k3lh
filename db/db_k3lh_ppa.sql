@@ -83,6 +83,15 @@ insert auth_item_child (parent, child) values
 insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_description`,`cset_parent_pk`,`cset_order`,`created_at`,`updated_at`,`created_by`,`updated_by`) values (34,'QS_LOAD_UNIT_CODE','GR_P_M3','Gram/m3','Gram/m3','',NULL,1489745755,1489745755,8,8);
 insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_description`,`cset_parent_pk`,`cset_order`,`created_at`,`updated_at`,`created_by`,`updated_by`) values (35,'QS_LOAD_UNIT_CODE','KG_P_TON','Kg/Ton','Kg/Ton','',NULL,1489745788,1489745788,8,8);
 
+insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_description`,`cset_parent_pk`,`cset_order`,`created_at`,`updated_at`,`created_by`,`updated_by`) values (36,'PPABA_MONITORING_FREQUENCY','NON','Tidak Wajib Dipantau','Tidak Wajib Dipantau','',6,1490422256,1490422256,8,8);
+insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_description`,`cset_parent_pk`,`cset_order`,`created_at`,`updated_at`,`created_by`,`updated_by`) values (37,'PPABA_MONITORING_FREQUENCY','1M','1 Bulan Sekali','1 Bulan Sekali','',1,1490422281,1490422281,8,8);
+insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_description`,`cset_parent_pk`,`cset_order`,`created_at`,`updated_at`,`created_by`,`updated_by`) values (38,'PPABA_MONITORING_FREQUENCY','3M','3 Bulan Sekali','3 Bulan Sekali','',2,1490422296,1490422296,8,8);
+insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_description`,`cset_parent_pk`,`cset_order`,`created_at`,`updated_at`,`created_by`,`updated_by`) values (39,'PPABA_MONITORING_FREQUENCY','6M','6 Bulan Sekali','6 Bulan Sekali','',3,1490422310,1490422310,8,8);
+insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_description`,`cset_parent_pk`,`cset_order`,`created_at`,`updated_at`,`created_by`,`updated_by`) values (40,'PPABA_MONITORING_FREQUENCY','1Y','1 Tahun Sekali','1 Tahun Sekali','',4,1490422326,1490422326,8,8);
+insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_description`,`cset_parent_pk`,`cset_order`,`created_at`,`updated_at`,`created_by`,`updated_by`) values (41,'PPABA_MONITORING_FREQUENCY','3Y','3 Tahun Sekali','3 Tahun Sekali','',5,1490422344,1490422344,8,8);
+insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_description`,`cset_parent_pk`,`cset_order`,`created_at`,`updated_at`,`created_by`,`updated_by`) values (42,'PPABA_MONITORING_STATUS_PERIOD','Y','Dipantau','Dipantau','',1,1490422399,1490422399,8,8);
+insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_description`,`cset_parent_pk`,`cset_order`,`created_at`,`updated_at`,`created_by`,`updated_by`) values (43,'PPABA_MONITORING_STATUS_PERIOD','N','Tidak Dipantau','Tidak Dipantau','',2,1490422413,1490422413,8,8);
+
 /*!40101 SET NAMES utf8 */;
 
 /*!40101 SET SQL_MODE=''*/;

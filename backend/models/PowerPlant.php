@@ -56,4 +56,8 @@ class PowerPlant extends AppModel {
     public function getSector() {
         return $this->hasOne(Sector::className(), ['id' => 'sector_id']);
     }
+    
+    public function getSummary() {
+        return sprintf('%s: %s, %s: %s', AppLabels::SECTOR, $this->sector->sector_name, AppLabels::POWER_PLANT, $this->pp_name);
+    }
 }

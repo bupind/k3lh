@@ -279,6 +279,7 @@ class AppLabels {
     
     // WATER POLLUTION CONTROL
     const PPA = 'PPA';
+    const PPA_BA = 'PPA Badan Air';
     const WATER_POLLUTION_CONTROL = 'Form Pengendalian Pencemaran Air';
     const SETUP_POINT_PERMIT = 'Titik Penaatan & Izin';
     const BM_REPORT_PARAMETER = 'Parameter Pelaporan BM';
@@ -318,4 +319,13 @@ class AppLabels {
     const POLLUTION_LOAD_TOTAL_TON = 'Beban Pencemaran Total<br />(Ton/periode)';
     
     const WATER_POLLUTION_CONTROL_BA = 'Form PPA BAdan Air';
+    const MONITORING_POINT = 'Titik Pemantauan';
+    const MONITORING_POINT_NAME = 'Nama Titik Pemantauan';
+    const LATITUDE = 'Latitude';
+    const LONGITUDE = 'Longitude';
+    const ENVIRONMENT_DOCUMENT_NAME = 'Nama Dokumen Lingkungan';
+    const ENVIRONMENT_DOCUMENT_VALIDATOR = 'Institusi Pengesahan Dokumen Lingkungan';
+    const VALIDATE_DATE = 'Tanggal Pengesahan';
+    const MONITORING_FREQUENCY = 'Frekuensi Kewajiban Pemantauan';
+    const MONITORING_STATUS_PERIOD = 'Status Data Pemantauan pada Periode';
 }
