@@ -47,8 +47,7 @@ class PpaBaController extends AppController {
             }
         }
         
-        return true;
-//        return $this->rbac();
+        return $this->rbac();
     }
     
     /**

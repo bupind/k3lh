@@ -2,20 +2,20 @@
 
 namespace backend\controllers;
 
-use backend\models\PpaBa;
-use backend\models\PpaBaMonth;
-use backend\models\PpaBaMonitoringPoint;
-use backend\models\PpaBaMonitoringPointSearch;
 use Yii;
-use yii\filters\VerbFilter;
+use backend\models\PpaBa;
+use backend\models\PpaBaConcentration;
+use backend\models\PpaBaReportBm;
+use backend\models\PpaBaReportBmSearch;
 use yii\web\NotFoundHttpException;
+use yii\filters\VerbFilter;
 use common\vendor\AppConstants;
 use yii\base\Model;
 
 /**
- * PpaBaMonitoringPointController implements the CRUD actions for PpaBaMonitoringPoint model.
+ * PpaBaReportBmController implements the CRUD actions for PpaBaReportBm model.
  */
-class PpaBaMonitoringPointController extends AppController {
+class PpaBaReportBmController extends AppController {
     
     /* @var $ppaBaModel PpaBa */
     public $ppaBaModel;
@@ -50,13 +50,12 @@ class PpaBaMonitoringPointController extends AppController {
     }
     
     /**
-     * Lists all PpaBaMonitoringPoint models.
+     * Lists all PpaBaReportBm models.
      * @return mixed
      */
     public function actionIndex() {
-        $searchModel = new PpaBaMonitoringPointSearch();
-        $searchModel->ppa_ba_id = $this->ppaBaModel->id;
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $searchModel = new PpaBaReportBmSearch();
+        $dataProvider = $searchModel->searchPpaBa(Yii::$app->request->queryParams, $this->ppaBaModel->id);
         
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -66,7 +65,7 @@ class PpaBaMonitoringPointController extends AppController {
     }
     
     /**
-     * Displays a single PpaBaMonitoringPoint model.
+     * Displays a single PpaBaReportBm model.
      * @param integer $id
      * @return mixed
      */
@@ -77,14 +76,14 @@ class PpaBaMonitoringPointController extends AppController {
     }
     
     /**
-     * Finds the PpaBaMonitoringPoint model based on its primary key value.
+     * Finds the PpaBaReportBm model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return PpaBaMonitoringPoint the loaded model
+     * @return PpaBaReportBm the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id) {
-        if (($model = PpaBaMonitoringPoint::findOne($id)) !== null) {
+        if (($model = PpaBaReportBm::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
@@ -92,71 +91,74 @@ class PpaBaMonitoringPointController extends AppController {
     }
     
     /**
-     * Creates a new PpaBaMonitoringPoint model.
+     * Creates a new PpaBaReportBm model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate() {
-        $model = new PpaBaMonitoringPoint();
+        $model = new PpaBaReportBm();
         $startDate = new \DateTime();
         $startDate->setDate($this->ppaBaModel->ppaba_year - 1, 7, 1);
-        $ppaBaMonthModels = [];
+    
+        $ppaBaConcentrationModels = [];
     
         for ($i = 0; $i < 12; $i++) {
-            $ppaBaMonthModels[] = new PpaBaMonth();
+            $ppaBaConcentrationModels[] = new PpaBaConcentration();
+        
         }
     
         $requestData = Yii::$app->request->post();
-        if ($model->load($requestData) && Model::loadMultiple($ppaBaMonthModels, $requestData) && $model->saveTransactional()) {
+        if ($model->load($requestData) && Model::loadMultiple($ppaBaConcentrationModels, $requestData) && $model->saveTransactional()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
-            return $this->redirect(['create', 'ppaBaId' => $model->ppa_ba_id]);
+            return $this->redirect(['create', 'ppaBaId' => $this->ppaBaModel->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
                 'ppaBaModel' => $this->ppaBaModel,
                 'startDate' => $startDate,
-                'ppaBaMonthModels' => $ppaBaMonthModels
+                'ppaBaConcentrationModels' => $ppaBaConcentrationModels,
             ]);
         }
     }
     
     /**
-     * Updates an existing PpaBaMonitoringPoint model.
+     * Updates an existing PpaBaReportBm model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
      */
     public function actionUpdate($id) {
         $model = $this->findModel($id);
-        $this->ppaBaModel = $model->ppaBa;
-        $ppaBaMonthModels = $model->ppaBaMonths;
+        $ppaBaModel = $model->ppaBaMonitoringPoint->ppaBa;
     
         $startDate = new \DateTime();
-        $startDate->setDate($this->ppaBaModel->ppaba_year - 1, 7, 1);
+        $startDate->setDate($ppaBaModel->ppaba_year - 1, 7, 1);
+    
+        $ppaBaConcentrationModels = $model->ppaBaConcentrations;
     
         $requestData = Yii::$app->request->post();
-        if ($model->load($requestData) && Model::loadMultiple($ppaBaMonthModels, $requestData) && $model->saveTransactional()) {
+        if ($model->load($requestData) && Model::loadMultiple($ppaBaConcentrationModels, $requestData) && $model->saveTransactional()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_UPDATE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
-                'ppaBaModel' => $this->ppaBaModel,
+                'ppaBaModel' => $ppaBaModel,
                 'startDate' => $startDate,
-                'ppaBaMonthModels' => $ppaBaMonthModels
+                'ppaBaConcentrationModels' => $ppaBaConcentrationModels,
             ]);
         }
     }
     
     /**
-     * Deletes an existing PpaBaMonitoringPoint model.
+     * Deletes an existing PpaBaReportBm model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
      */
     public function actionDelete($id) {
         $model = $this->findModel($id);
-        $ppaBa = $model->ppaBa;
+        $ppaBa = $model->ppaBaMonitoringPoint->ppaBa;
         if ($model->delete()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_DELETE_SUCCESS);
         }

@@ -328,4 +328,5 @@ class AppLabels {
     const VALIDATE_DATE = 'Tanggal Pengesahan';
     const MONITORING_FREQUENCY = 'Frekuensi Kewajiban Pemantauan';
     const MONITORING_STATUS_PERIOD = 'Status Data Pemantauan pada Periode';
+    const PPA_BA_CONCENTRATION_TITLE = 'Konsentrasi<br />Titik Pemantauan Badan Air Penerima / Sungai / Laut';
 }

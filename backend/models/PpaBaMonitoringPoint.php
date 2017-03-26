@@ -28,6 +28,10 @@ use yii\base\Exception;
  *
  * @property PpaBa $ppaBa
  * @property PpaBaMonth[] $ppaBaMonths
+ * @property PpaBaReportBm[] $ppaBaReportBms
+ * @property PpaBaReportBm[] $ppaBaReportBmsNoFooterParams
+ * @property PpaBaReportBm $ppaBaReportBmDebit
+ * @property PpaBaReportBm $ppaBaReportBmProduction
  */
 class PpaBaMonitoringPoint extends AppModel {
     /**
@@ -145,5 +149,26 @@ class PpaBaMonitoringPoint extends AppModel {
      */
     public function getPpaBaMonths() {
         return $this->hasMany(PpaBaMonth::className(), ['ppa_ba_monitoring_point_id' => 'id']);
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPpaBaReportBms() {
+        return $this->hasMany(PpaBaReportBm::className(), ['ppa_ba_monitoring_point_id' => 'id']);
+    }
+    
+    public function getPpaBaReportBmsNoFooterParams() {
+        return $this->hasMany(PpaBaReportBm::className(), ['ppa_ba_monitoring_point_id' => 'id'])
+            ->andOnCondition("ppabar_param_code != '" . AppConstants::PPA_RBM_PARAM_DEBIT . "'")
+            ->andOnCondition("ppabar_param_code != '" . AppConstants::PPA_RBM_PARAM_PRODUCTION . "'");
+    }
+    
+    public function getPpaBaReportBmDebit() {
+        return $this->hasOne(PpaBaReportBm::className(), ['ppa_ba_monitoring_point_id' => 'id'])->andWhere(['ppabar_param_code' => AppConstants::PPA_RBM_PARAM_DEBIT]);
+    }
+    
+    public function getPpaBaReportBmProduction() {
+        return $this->hasOne(PpaBaReportBm::className(), ['ppa_ba_monitoring_point_id' => 'id'])->andWhere(['ppabar_param_code' => AppConstants::PPA_RBM_PARAM_PRODUCTION]);
     }
 }
