@@ -2,7 +2,7 @@
 SQLyog Enterprise - MySQL GUI v7.15 
 MySQL - 5.5.5-10.1.19-MariaDB : Database - k3lh
 *********************************************************************
-*/
+*/
 
 /*!40101 SET NAMES utf8 */;
 
@@ -14,6 +14,29 @@ MySQL - 5.5.5-10.1.19-MariaDB : Database - k3lh
 CREATE DATABASE /*!32312 IF NOT EXISTS*/`k3lh` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
 USE `k3lh`;
+
+/*Table structure for table `codeset` */
+
+DROP TABLE IF EXISTS `codeset`;
+
+CREATE TABLE `codeset` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `cset_name` varchar(150) NOT NULL,
+  `cset_code` varchar(50) NOT NULL,
+  `cset_value` varchar(255) NOT NULL,
+  `cset_description` text,
+  `cset_parent_pk` varchar(50) DEFAULT NULL,
+  `cset_order` int(2) DEFAULT NULL,
+  `created_at` int(11) DEFAULT NULL,
+  `updated_at` int(11) DEFAULT NULL,
+  `created_by` smallint(5) unsigned DEFAULT NULL,
+  `updated_by` smallint(5) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
+
+/*Data for the table `codeset` */
+
+insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_description`,`cset_parent_pk`,`cset_order`,`created_at`,`updated_at`,`created_by`,`updated_by`) values (1,'WEB_CONFIG','ALLOWED_IP','127.0.0.1; ::1; 36.68.179.127; 36.77.140.14; 36.77.110.187','IP Address yang diijinkan untuk akses aplikasi. Pisahkan berdasarkan titik koma. Cth: 127.0.01; 128.1.1.2','',6,1462779626,1462786889,5,5),(2,'POST_TYPE_CODE','PAGE','Halaman','','',NULL,1474948722,1474948722,8,8),(3,'POST_TYPE_CODE','NEWS','Berita','','',NULL,1475051416,1475051416,8,8),(4,'FORM_TYPE_CODE','K3','K3','K3','',NULL,1482483701,1482483701,8,8),(5,'FORM_TYPE_CODE','LH','Lingkungan Hidup','Lingkungan Hidup','',NULL,1482483722,1482483722,8,8),(6,'ATTRIBUTE_TYPE_CODE','TGT','Target','','',NULL,1482729769,1482729769,8,8),(7,'ATTRIBUTE_TYPE_CODE','PHDR','Header','','',1,1482729801,1482729801,8,8),(8,'ATTRIBUTE_TYPE_CODE','PSHDR','Sub Header','','',2,1482729814,1482729814,8,8),(9,'ATTRIBUTE_TYPE_CODE','PITEM','Item','','',3,1482729825,1482729825,8,8),(10,'WP_LEGEND','1','Persiapan Program (TOR, RAB)','','',NULL,1484796129,1484796129,8,8),(11,'WP_LEGEND','2','Proses Pengadaan Barang / Jasa','','',NULL,1484796147,1484796147,8,8),(12,'WP_LEGEND','3','Pelaksanaan Program','','',NULL,1484796162,1484796162,8,8),(13,'WP_LEGEND','4','Monitoring Evaluasi','','',NULL,1484796174,1484796174,8,8),(14,'WP_LEGEND','5','Penyusunan Laporan','','',NULL,1484796190,1484796190,8,8),(15,'PPU_ES_CHIMNEY_SHAPE_CODE','SQR','Kotak','Bentuk Cerobong','',NULL,1487361038,1487676283,8,8),(16,'PPU_ES_CHIMNEY_SHAPE_CODE','CYL','Silinder','Bentuk Cerobong','',NULL,1487361112,1487676301,8,8),(17,'PPU_ES_CHIMNEY_SHAPE_CODE','CON','Kerucut','Bentuk Cerobong','',NULL,1487361142,1487676294,8,8),(18,'PPU_ES_MONITORING_DATA_STATUS_CODE','WATCHED','Dipantau','Status data pemantauan pada PPU','',NULL,1487416822,1487676321,8,8),(19,'PPU_ES_MONITORING_DATA_STATUS_CODE','NWATCHED','Tidak Dipantau','Status data pemantauan pada PPU','',NULL,1487416843,1487676327,8,8),(20,'PPU_ES_FREQ_MONITORING_OBLIGATION_CODE','FMOC1','1 Tahun 2 Kali','Frekuensi Kewajiban Pemantauan pada PPU','',NULL,1487417000,1487676312,8,8),(21,'PPU_ES_FUEL_NAME_CODE','FNC1','Batubara','Nama Bahan Bakar','',NULL,1487417127,1487676341,8,8),(22,'PPU_ES_FUEL_UNIT_CODE','FUC1','kg','Satuan Bahan Bakar','',NULL,1487417150,1487676352,8,8),(23,'PPU_RBM_PARAM_CODE','PRPC1','NO2','Parameter code for RBM','',NULL,1487669901,1487669901,8,8),(24,'PPU_RBM_PARAM_CODE','PRPC2','SO2','Parameter code for RBM','',NULL,1487669918,1487669918,8,8),(25,'PPU_RBM_PARAM_UNIT_CODE','PRPUC1','(m3/detik)','Parameter unit code for RBM','',NULL,1487669953,1487669953,8,8),(26,'PPU_RBM_QS_UNIT_CODE','PRQUC1','mg/Nm3','QS unit code for RBM','',NULL,1487669996,1487669996,8,8),(27,'PPU_RBM_QS_LOAD_UNIT_CODE','PRQLUC1','kg/ton','QS load unit code for RBM','',NULL,1487670022,1487670022,8,8),(28,'PPU_AP_FREQ_MONITORING_OBLIGATION_CODE','PAFMOC1','1 Tahun 2 Kali','AP Frequency monitoring','',NULL,1487677803,1487677803,8,8),(29,'PPU_RBM_PARAM_CODE','LAJUALIR','Laju Alir','Laju AIr RBM','',NULL,1487775070,1487775070,8,8),(30,'PPU_RBM_PARAM_CODE','PRPC3','Opasitas','','',NULL,1487842345,1487842345,8,8),(31,'PPU_RBM_PARAM_CODE','PRPC4','Partikulat','','',NULL,1487842359,1487842359,8,8),(32,'PPU_RBM_QS_UNIT_CODE','PRQUC2','%','','',NULL,1487842427,1487842427,8,8),(33,'PPUA_MP_MONITORING_DATA_STATUS_CODE','PMMDSC1','3 Bulan Sekali','','',NULL,1488135214,1488135214,8,8),(34,'PPUA_MP_FREQ_MONITORING_OBLIGATION_CODE','PMFMOC1','Dipantau','','',NULL,1488135240,1488135240,8,8),(35,'PPUA_RBM_PARAM_CODE','PRPC1','SO2','','',NULL,1488185215,1488185215,8,8),(36,'PPUA_RBM_PARAM_CODE','PRPC2','NO2','','',NULL,1488185226,1488185226,8,8),(37,'PPUA_RBM_PARAM_CODE','PRPC3','TSP','','',NULL,1488185234,1488185234,8,8),(38,'PPUA_RBM_PARAM_CODE','PRPC4','PM10','','',NULL,1488185245,1488185245,8,8),(39,'PPUA_RBM_PARAM_CODE','PRPC5','CO','','',NULL,1488185253,1488185253,8,8),(40,'PPUA_RBM_QS_UNIT_CODE','PRQUC1','gram/m3','','',NULL,1488185284,1488185284,8,8),(41,'PPUA_RBM_QS_LOAD_UNIT_CODE','PRQLUC1','gram/m3','','',NULL,1488185298,1488185298,8,8),(42,'PPUCEMS_RBM_PARAM_CODE','PRPC1','SOx','','',NULL,1488389277,1488389277,8,8),(43,'PPUCEMS_RBM_PARAM_CODE','PRPC2','NOx','','',NULL,1488389286,1488389286,8,8),(44,'PPUCEMS_RBM_PARAM_CODE','PRPC3','Partikulat','','',NULL,1488389298,1488389298,8,8),(45,'PPUCEMS_RBM_PARAM_REPORT_QS_UNIT_CODE','PRPRQUC1','mg/Nm3','','',NULL,1488572218,1488572218,8,8);
 
 /*Table structure for table `ppu` */
 
@@ -447,185 +470,3 @@ insert  into `ppupo_month`(`id`,`ppu_parameter_obligation_id`,`ppupom_month`,`pp
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-
-insert into auth_item (name, type) values
-('ppu-ambient', 2),
-('ppu-ambient-index', 1),
-('ppu-ambient-create', 1),
-('ppu-ambient-update', 1),
-('ppu-ambient-delete', 1),
-('ppu-ambient-view', 1);
-
-insert auth_item_child (parent, child) values
-('ppu-ambient', 'ppu-ambient-index'),
-('ppu-ambient', 'ppu-ambient-create'),
-('ppu-ambient', 'ppu-ambient-update'),
-('ppu-ambient', 'ppu-ambient-delete'),
-('ppu-ambient', 'ppu-ambient-view'),
-('Administrator', 'ppu-ambient');
-
-insert into auth_item (name, type) values
-('ppu-titik-pemantauan-ambient', 2),
-('ppua-monitoring-point-index', 1),
-('ppua-monitoring-point-create', 1),
-('ppua-monitoring-point-update', 1),
-('ppua-monitoring-point-delete', 1),
-('ppua-monitoring-point-view', 1);
-
-insert auth_item_child (parent, child) values
-('ppu-titik-pemantauan-ambient', 'ppua-monitoring-point-index'),
-('ppu-titik-pemantauan-ambient', 'ppua-monitoring-point-create'),
-('ppu-titik-pemantauan-ambient', 'ppua-monitoring-point-update'),
-('ppu-titik-pemantauan-ambient', 'ppua-monitoring-point-delete'),
-('ppu-titik-pemantauan-ambient', 'ppua-monitoring-point-view'),
-('Administrator', 'ppu-titik-pemantauan-ambient');
-
-insert into auth_item (name, type) values
-('ppu-ketaatan-parameter-ambient', 2),
-('ppua-parameter-obligation-index', 1),
-('ppua-parameter-obligation-create', 1),
-('ppua-parameter-obligation-update', 1),
-('ppua-parameter-obligation-delete', 1),
-('ppua-parameter-obligation-view', 1);
-
-insert auth_item_child (parent, child) values
-('ppu-ketaatan-parameter-ambient', 'ppua-parameter-obligation-index'),
-('ppu-ketaatan-parameter-ambient', 'ppua-parameter-obligation-create'),
-('ppu-ketaatan-parameter-ambient', 'ppua-parameter-obligation-update'),
-('ppu-ketaatan-parameter-ambient', 'ppua-parameter-obligation-delete'),
-('ppu-ketaatan-parameter-ambient', 'ppua-parameter-obligation-view'),
-('Administrator', 'ppu-ketaatan-parameter-ambient');
-
-insert into auth_item (name, type) values
-('ppu-pelaporan-parameter-cems', 2),
-('ppucemsrb-parameter-report-index', 1),
-('ppucemsrb-parameter-report-create', 1),
-('ppucemsrb-parameter-report-update', 1),
-('ppucemsrb-parameter-report-delete', 1),
-('ppucemsrb-parameter-report-view', 1);
-
-insert auth_item_child (parent, child) values
-('ppu-pelaporan-parameter-cems', 'ppucemsrb-parameter-report-index'),
-('ppu-pelaporan-parameter-cems', 'ppucemsrb-parameter-report-create'),
-('ppu-pelaporan-parameter-cems', 'ppucemsrb-parameter-report-update'),
-('ppu-pelaporan-parameter-cems', 'ppucemsrb-parameter-report-delete'),
-('ppu-pelaporan-parameter-cems', 'ppucemsrb-parameter-report-view'),
-('Administrator', 'ppu-pelaporan-parameter-cems');
-
-insert into auth_item (name, type) values
-('ppu-pelaporan-bm-cems', 2),
-('ppucems-report-bm-index', 1),
-('ppucems-report-bm-create', 1),
-('ppucems-report-bm-update', 1),
-('ppucems-report-bm-delete', 1),
-('ppucems-report-bm-view', 1);
-
-insert auth_item_child (parent, child) values
-('ppu-pelaporan-bm-cems', 'ppucems-report-bm-index'),
-('ppu-pelaporan-bm-cems', 'ppucems-report-bm-create'),
-('ppu-pelaporan-bm-cems', 'ppucems-report-bm-update'),
-('ppu-pelaporan-bm-cems', 'ppucems-report-bm-delete'),
-('ppu-pelaporan-bm-cems', 'ppucems-report-bm-view'),
-('Administrator', 'ppu-pelaporan-bm-cems');
-
-insert into auth_item (name, type) values
-('ppu', 2),
-('ppu-index', 1),
-('ppu-create', 1),
-('ppu-update', 1),
-('ppu-delete', 1),
-('ppu-view', 1),
-('ppu-pollution-load', 1),
-('ppu-emission-load-calc', 1);
-
-insert auth_item_child (parent, child) values
-('ppu', 'ppu-index'),
-('ppu', 'ppu-create'),
-('ppu', 'ppu-update'),
-('ppu', 'ppu-delete'),
-('ppu', 'ppu-view'),
-('ppu', 'ppu-pollution-load'),
-('ppu', 'ppu-emission-load-calc'),
-('Administrator', 'ppu');
-
-insert into auth_item (name, type) values
-('ppu-perhitungan-beban-emisi-grk', 2),
-('ppu-emission-load-grk-index', 1),
-('ppu-emission-load-grk-create', 1),
-('ppu-emission-load-grk-update', 1),
-('ppu-emission-load-grk-delete', 1),
-('ppu-emission-load-grk-view', 1);
-
-insert auth_item_child (parent, child) values
-('ppu-perhitungan-beban-emisi-grk', 'ppu-emission-load-grk-index'),
-('ppu-perhitungan-beban-emisi-grk', 'ppu-emission-load-grk-create'),
-('ppu-perhitungan-beban-emisi-grk', 'ppu-emission-load-grk-update'),
-('ppu-perhitungan-beban-emisi-grk', 'ppu-emission-load-grk-delete'),
-('ppu-perhitungan-beban-emisi-grk', 'ppu-emission-load-grk-view'),
-('Administrator', 'ppu-perhitungan-beban-emisi-grk');
-
-insert into auth_item (name, type) values
-('ppu-pertanyaan', 2),
-('ppu-question-index', 1),
-('ppu-question-create', 1),
-('ppu-question-update', 1),
-('ppu-question-delete', 1),
-('ppu-question-view', 1);
-
-insert auth_item_child (parent, child) values
-('ppu-pertanyaan', 'ppu-question-index'),
-('ppu-pertanyaan', 'ppu-question-create'),
-('ppu-pertanyaan', 'ppu-question-update'),
-('ppu-pertanyaan', 'ppu-question-delete'),
-('ppu-pertanyaan', 'ppu-question-view'),
-('Administrator', 'ppu-pertanyaan');
-
-insert into auth_item (name, type) values
-('ppu-ketentuan-teknis', 2),
-('ppu-technical-provision-index', 1),
-('ppu-technical-provision-create', 1),
-('ppu-technical-provision-update', 1),
-('ppu-technical-provision-delete', 1),
-('ppu-technical-provision-view', 1);
-
-insert auth_item_child (parent, child) values
-('ppu-ketentuan-teknis', 'ppu-technical-provision-index'),
-('ppu-ketentuan-teknis', 'ppu-technical-provision-create'),
-('ppu-ketentuan-teknis', 'ppu-technical-provision-update'),
-('ppu-ketentuan-teknis', 'ppu-technical-provision-delete'),
-('ppu-ketentuan-teknis', 'ppu-technical-provision-view'),
-('Administrator', 'ppu-ketentuan-teknis');
-
-insert into auth_item (name, type) values
-('ppu-sumber-emisi', 2),
-('ppu-emission-source-ajax-emission', 1),
-('ppu-emission-source-index', 1),
-('ppu-emission-source-create', 1),
-('ppu-emission-source-update', 1),
-('ppu-emission-source-delete', 1),
-('ppu-emission-source-view', 1);
-
-insert auth_item_child (parent, child) values
-('ppu-sumber-emisi', 'ppu-emission-source-index'),
-('ppu-sumber-emisi', 'ppu-emission-source-create'),
-('ppu-sumber-emisi', 'ppu-emission-source-update'),
-('ppu-sumber-emisi', 'ppu-emission-source-delete'),
-('ppu-sumber-emisi', 'ppu-emission-source-view'),
-('ppu-sumber-emisi', 'ppu-emission-source-ajax-emission'),
-('Administrator', 'ppu-sumber-emisi');
-
-insert into auth_item (name, type) values
-('ppu-ketaatan-parameter-pelaporan-bm', 2),
-('ppu-parameter-obligation-index', 1),
-('ppu-parameter-obligation-create', 1),
-('ppu-parameter-obligation-update', 1),
-('ppu-parameter-obligation-delete', 1),
-('ppu-parameter-obligation-view', 1);
-
-insert auth_item_child (parent, child) values
-('ppu-ketaatan-parameter-pelaporan-bm', 'ppu-parameter-obligation-index'),
-('ppu-ketaatan-parameter-pelaporan-bm', 'ppu-parameter-obligation-create'),
-('ppu-ketaatan-parameter-pelaporan-bm', 'ppu-parameter-obligation-update'),
-('ppu-ketaatan-parameter-pelaporan-bm', 'ppu-parameter-obligation-delete'),
-('ppu-ketaatan-parameter-pelaporan-bm', 'ppu-parameter-obligation-view'),
-('Administrator', 'ppu-ketaatan-parameter-pelaporan-bm');
