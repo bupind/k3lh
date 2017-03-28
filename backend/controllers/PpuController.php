@@ -75,8 +75,14 @@ class PpuController extends AppController
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+
+        $startDate = new \DateTime();
+        $startDate->setDate($model->ppu_year - 1, 7, 1);
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'startDate' => $startDate,
         ]);
     }
 

@@ -21,7 +21,19 @@ input.typeahead, input.tt-query, input.tt-hint, .tt-suggestion { font-size: 14px
 }
 
 .profile-info-name.info-large { width: 150px; }
-.table-responsive { overflow-x: visible; }
+.table-responsive { overflow-x: visible; overflow-y: visible; }
+.table-responsive td { white-space: nowrap; }
+@media screen and (min-width: 320px) {
+    .table-responsive {
+        width: 100%;
+        margin-bottom: 15px;
+        overflow-x: auto;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+        border: 1px solid #DDD;
+    }
+}
 
 .working_plan {}
 .working_plan .progress_1 { background: #A5A5A5; }

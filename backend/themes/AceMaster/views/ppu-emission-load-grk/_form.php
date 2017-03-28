@@ -6,6 +6,7 @@ use app\components\SubmitButton;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
 use backend\models\PpuEmissionSource;
+use common\components\helpers\Converter;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\PpuEmissionLoadGrk */
@@ -20,6 +21,7 @@ use backend\models\PpuEmissionSource;
     'options' => [
         'class' => 'form-horizontal calx',
         'role' => 'form',
+        'enctype' => 'multipart/form-data',
     ],
     'fieldConfig' => [
         'options' => [
@@ -98,7 +100,8 @@ foreach ($ppuCalc as $key => $pCalc) { ?>
                         echo Html::label("Beban Emisi (Ton)", null,['class' => 'control-label'] );
                         echo Html::textInput("EMISSION_LOAD", null, ['data-cell' => "G$key", 'data-format' => AppConstants::CALX_DATA_FORMAT_THO_DEC,'data-formula' => "A$key*C$key*F$key*D$key/E$key", 'disabled' => true, 'class' => 'form-control']);
 
-                        ?>
+                        echo Html::label(AppLabels::ATTACHMENT_SUPPORTING_EVIDENCE, null, ['style' => 'margin-top:20px']);
+                        echo Converter::attachment($pCalc->attachmentOwner, ['show_file_upload' => true, 'show_delete_file' => true, 'index' => $key]); ?>
                     </fieldset>
                 </div>
             </div>

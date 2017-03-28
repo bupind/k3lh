@@ -112,6 +112,7 @@ class PpucemsrbQuarter extends AppModel
 
         $this->quarter_label = sprintf("%s %s-%s", AppLabels::QUARTER, $this->ppucemsrbq_quarter, $this->ppucemsrbq_year );
 
+
         return true;
     }
 

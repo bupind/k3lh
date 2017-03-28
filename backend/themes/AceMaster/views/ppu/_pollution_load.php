@@ -10,16 +10,10 @@ use common\vendor\AppLabels;
 /* @var $form yii\widgets\ActiveForm */
 /* @var $startDate DateTime */
 ?>
-
-<?php
-$this->title = sprintf('%s %s', AppLabels::BTN_VIEW, AppLabels::POLLUTION_LOAD);
-$this->params['breadcrumbs'][] = ['label' => AppLabels::BTN_UPDATE, 'url' => ['/ppu/update', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = $this->title;
-?>
     <div class="ppu-pollution-load">
 
         <div class="page-header">
-            <h1><?= Html::encode($this->title) ?></h1>
+            <h1><?= Html::encode(sprintf("%s %s", AppLabels::BTN_VIEW, AppLabels::POLLUTION_LOAD)) ?></h1>
         </div>
 
     </div>
@@ -44,21 +38,21 @@ $form = ActiveForm::begin([
             <div class="table-responsive">
                 <table id="table-pollution-load" class="<?= AppConstants::TABLE_CLASS_DEFAULT_SMALL; ?>">
                     <thead>
-                        <tr>
-                            <th rowspan="2"><?= AppLabels::NUMBER_SHORT ?></th>
-                            <th rowspan="2"><?= sprintf("%s %s", AppLabels::NUMBER_SHORT, "Param"); ?></th>
-                            <th rowspan="2"><?= sprintf("%s %s", AppLabels::NAME, AppLabels::EMISSION_SOURCE); ?></th>
-                            <th colspan="12" class="center"><?= AppLabels::ACTUAL_LOAD_POLLUTION_CALCULATION_RESULT?></th>
-                            <th rowspan="2"><?= AppLabels::OPERATION_TIME ?></th>
-                            <th rowspan="2"><?= sprintf("%s %s", AppLabels::AMOUNT, AppLabels::DATA); ?></th>
-                            <th rowspan="2"><?= sprintf("%s %s/%s", AppLabels::TOTAL, AppLabels::KG, AppLabels::YEAR); ?></th>
-                            <th rowspan="2"><?= sprintf("%s %s/%s", AppLabels::TOTAL, AppLabels::TON, AppLabels::YEAR); ?></th>
-                        </tr>
-                        <tr>
-                            <?php for($i=0; $i<12; $i++){ ?>
-                                <th><?= $startDate->format('M-Y') ?></th>
+                    <tr>
+                        <th rowspan="2"><?= AppLabels::NUMBER_SHORT ?></th>
+                        <th rowspan="2"><?= sprintf("%s %s", AppLabels::NUMBER_SHORT, "Param"); ?></th>
+                        <th rowspan="2"><?= sprintf("%s %s", AppLabels::NAME, AppLabels::EMISSION_SOURCE); ?></th>
+                        <th colspan="12" class="center"><?= AppLabels::ACTUAL_LOAD_POLLUTION_CALCULATION_RESULT?></th>
+                        <th rowspan="2"><?= AppLabels::OPERATION_TIME ?></th>
+                        <th rowspan="2"><?= sprintf("%s %s", AppLabels::AMOUNT, AppLabels::DATA); ?></th>
+                        <th rowspan="2"><?= sprintf("%s %s/%s", AppLabels::TOTAL, AppLabels::KG, AppLabels::YEAR); ?></th>
+                        <th rowspan="2"><?= sprintf("%s %s/%s", AppLabels::TOTAL, AppLabels::TON, AppLabels::YEAR); ?></th>
+                    </tr>
+                    <tr>
+                        <?php for($i=0; $i<12; $i++){ ?>
+                            <th><?= $startDate->format('M-Y') ?></th>
                             <?php $startDate->add(new \DateInterval('P1M')); } ?>
-                        </tr>
+                    </tr>
                     </thead>
                     <tbody>
                     <?php $count1 = 0;
@@ -132,7 +126,5 @@ $form = ActiveForm::begin([
             </div>
         </div>
     </div>
-
-
 
 <?php ActiveForm::end(); ?>
