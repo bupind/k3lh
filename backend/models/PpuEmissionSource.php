@@ -41,6 +41,8 @@ use yii\web\UploadedFile;
  * @property AttachmentOwner $attachmentOwner
  * @property PpucemsrbParameterReport[] $ppucemsrbParameterReports
  * @property PpuParameterObligation[] $ppuParameterObligations
+ * @property PpuEmissionLoadGrk[] $ppuEmissionLoadGrks
+ * @property PpucemsReportBm[] $ppucemsReportBms
  * @property PpuesMonth[] $ppuesMonths;
  */
 class PpuEmissionSource extends AppModel
@@ -225,6 +227,22 @@ class PpuEmissionSource extends AppModel
     public function getPpuParameterObligations()
     {
         return $this->hasMany(PpuParameterObligation::className(), ['ppu_emission_source_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPpuEmissionLoadGrks()
+    {
+        return $this->hasMany(PpuEmissionLoadGrk::className(), ['ppu_emission_source_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPpucemsReportBms()
+    {
+        return $this->hasMany(PpucemsReportBm::className(), ['ppu_emission_source_id' => 'id']);
     }
 
     /**

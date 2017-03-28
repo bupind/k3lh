@@ -96,6 +96,10 @@ use kartik\date\DatePicker;
                         echo $form->field($model, 'ppua_freq_monitoring_obligation_code', ['template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE])
                             ->dropDownList(Codeset::customMap(AppConstants::CODESET_PPUA_MP_FREQ_MONITORING_OBLIGATION_CODE, 'cset_value'), ['class' => 'input-big form-control'])
                             ->label(null, ['class' => '']);
+
+                        echo $form->field($model, 'ppua_ref', ['template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE])
+                            ->textInput(['maxlength' => true, 'class' => 'form-control'])
+                            ->label(null, ['class' => '']);
                         ?>
 
                     </fieldset>

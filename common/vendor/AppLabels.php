@@ -324,6 +324,10 @@ class AppLabels {
     const TON = 'Ton';
     const CATEGORY = 'Kategori';
     const SUPPORTING_EVIDENCE = 'Bukti Pendukung';
+    const OPERATIONAL_TIME = 'Jam Operasional';
+    const SAMPLE = 'Sampel';
+    const SEMESTER = 'Semester';
+    const ATTACHMENT_SUPPORTING_EVIDENCE = 'Lampiran Bukti Pendukung';
     //PPU Ambient
     const AMBIENT = 'Ambient';
     const MONITORING = 'Pemantauan';
@@ -346,4 +350,9 @@ class AppLabels {
     const SECTION_AREA = 'Luas Penampang';
     const EMISSION_LOAD_CALCULATION_RESULT = 'Hasil Perhitungan Beban Emisi';
     const MONITORED_PARAMETER = 'Parameter yang dipantau';
+    const CEMS_MONITORED_OBLIGATION = 'Ketaatan Parameter CEMS';
+    const SHORT_PERCENT = '%';
+    const DIMENSION = 'Dimensi';
+    const MEASUREMENT_TIME = 'Waktu Pengukuran';
+    const DAILY = 'Harian';
 }

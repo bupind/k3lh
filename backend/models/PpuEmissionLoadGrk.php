@@ -2,10 +2,12 @@
 
 namespace backend\models;
 
+
 use Yii;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
 use yii\base\Exception;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "ppu_emission_load_grk".
@@ -59,6 +61,7 @@ class PpuEmissionLoadGrk extends AppModel
     public function saveTransactional()
     {
         $request = Yii::$app->request->post();
+
         $transaction = Yii::$app->db->beginTransaction();
         $errors = [];
 
@@ -81,7 +84,19 @@ class PpuEmissionLoadGrk extends AppModel
                         $ppuEmLoadGrkCalc->ppu_emission_load_grk_id = $ppuEmissionLoadGrkId;
                     }
 
-                    if (!$ppuEmLoadGrkCalc->load(['PpuEmissionLoadGrkCalc' => $ppuCalc]) || !$ppuEmLoadGrkCalc->save()) {
+                    if ($ppuEmLoadGrkCalc->load(['PpuEmissionLoadGrkCalc' => $ppuCalc]) && $ppuEmLoadGrkCalc->save()) {
+                        if (isset($request['Attachment'][$key])) {
+                            $attachmentMdl = new Attachment();
+
+                            $attachmentMdl->load($request['Attachment'][$key]);
+                            $attachmentMdl->file = UploadedFile::getInstance($attachmentMdl, "[$key]file");
+
+                            if (!is_null($attachmentMdl->file) && !$attachmentMdl->saveAttachment(AppConstants::MODULE_CODE_PPU_LOAD_CALCULATION_GRK, $ppuEmLoadGrkCalc->id)) {
+                                $errors = array_merge($errors, $attachmentMdl->errors);
+                                throw new Exception;
+                            }
+                        }
+                    }else{
                         $errors = array_merge($errors, $ppuEmLoadGrkCalc->errors);
                         throw new Exception();
                     }
@@ -118,13 +133,5 @@ class PpuEmissionLoadGrk extends AppModel
     public function getPpuEmissionLoadGrkCalcs()
     {
         return $this->hasMany(PpuEmissionLoadGrkCalc::className(), ['ppu_emission_load_grk_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getAttachmentOwner()
-    {
-        return $this->hasOne(AttachmentOwner::className(), ['atfo_module_pk' => 'id'])->andOnCondition(['atfo_module_code' => AppConstants::MODULE_CODE_PPU_EMISSION_LOAD_GRK]);
     }
 }

@@ -21,12 +21,14 @@ use yii\base\Exception;
  * @property string $ppua_confirm_date
  * @property string $ppua_freq_monitoring_obligation_code
  * @property string $ppua_monitoring_data_status_code
+ * @property string $ppua_ref
  * @property integer $created_by
  * @property integer $created_at
  * @property integer $updated_by
  * @property integer $updated_at
  *
  * @property PpuAmbient $ppuAmbient
+ * @property PpuaParameterObligation[] $ppuaParameterObligations
  */
 class PpuaMonitoringPoint extends AppModel
 {
@@ -51,6 +53,7 @@ class PpuaMonitoringPoint extends AppModel
             [['ppua_confirm_date'], 'safe'],
             [['ppua_monitoring_location', 'ppua_code_location', 'ppua_env_doc_name', 'ppua_institution'], 'string', 'max' => 100],
             [['ppua_coord_latitude', 'ppua_coord_longitude'], 'string', 'max' => 20],
+            [['ppua_ref'], 'string', 'max' => 200],
             [['ppua_freq_monitoring_obligation_code', 'ppua_monitoring_data_status_code'], 'string', 'max' => 10],
             [['ppu_ambient_id'], 'exist', 'skipOnError' => true, 'targetClass' => PpuAmbient::className(), 'targetAttribute' => ['ppu_ambient_id' => 'id']],
         ];
@@ -73,6 +76,7 @@ class PpuaMonitoringPoint extends AppModel
             'ppua_confirm_date' => sprintf("%s %s %s", AppLabels::CONFIRM_DATE, AppLabels::DOCUMENTS, AppLabels::ENVIRONMENT),
             'ppua_freq_monitoring_obligation_code' => AppLabels::PPUA_MONITORING_OBLIGATION,
             'ppua_monitoring_data_status_code' => AppLabels::PPUA_STATUS_PROPER,
+            'ppua_ref' => AppLabels::DESCRIPTION,
         ];
     }
 
@@ -127,6 +131,14 @@ class PpuaMonitoringPoint extends AppModel
     public function getPpuAmbient()
     {
         return $this->hasOne(PpuAmbient::className(), ['id' => 'ppu_ambient_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPpuaParameterObligations()
+    {
+        return $this->hasMany(PpuaParameterObligation::className(), ['ppua_monitoring_point_id' => 'id']);
     }
 
 }

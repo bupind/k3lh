@@ -91,6 +91,10 @@ class Ppu extends AppModel
         return $this->hasMany(PpuTechnicalProvision::className(), ['ppu_id' =>  'id']);
     }
 
+    public function getSummary() {
+        return sprintf('%s - %s - %s', $this->sector->sector_name, $this->powerPlant->pp_name, $this->ppu_year);
+    }
+
 
     public function getPpuEmissionLoadData(){
         $finalResult = [];

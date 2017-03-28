@@ -6,6 +6,7 @@ use common\vendor\AppLabels;
 use common\vendor\AppConstants;
 use app\components\DetailView;
 use yii\widgets\ActiveForm;
+use common\components\helpers\Converter;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\PpuEmissionLoadGrk */
@@ -62,6 +63,7 @@ $this->params['breadcrumbs'][] = ['label' => $model->ppuEmissionSource->ppues_na
                         <?= DetailView::widget([
                             'model' => $pCalc,
                             'options' => [
+                                'extraAttributes' => ['ppuel_attachment_owner' => Converter::attachment($pCalc->attachmentOwner, [])],
                                 'excluded' => [
                                     'ppu_emission_load_grk_id',
                                     'ppueglc_year',

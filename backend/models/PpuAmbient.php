@@ -57,6 +57,10 @@ class PpuAmbient extends AppModel
         ];
     }
 
+    public function getSummary() {
+        return sprintf('%s - %s - %s', $this->sector->sector_name, $this->powerPlant->pp_name, $this->ppua_year);
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
