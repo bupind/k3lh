@@ -144,6 +144,8 @@ class AppLabels {
     const CATEGORY = 'Kategori';
 
 
+    const DATA_COUNT = 'Jumlah Data';
+
     // MONTH
     const JANUARY = 'Januari';
     const FEBRUARY = 'Februari';
@@ -279,6 +281,7 @@ class AppLabels {
 
     // WATER POLLUTION CONTROL
     const PPA = 'PPA';
+    const PPA_BA = 'PPA Badan Air';
     const WATER_POLLUTION_CONTROL = 'Form Pengendalian Pencemaran Air';
     const SETUP_POINT_PERMIT = 'Titik Penaatan & Izin';
     const BM_REPORT_PARAMETER = 'Parameter Pelaporan BM';
@@ -394,4 +397,26 @@ class AppLabels {
     const DIMENSION = 'Dimensi';
     const MEASUREMENT_TIME = 'Waktu Pengukuran';
     const DAILY = 'Harian';
+
+    const PPA_NO_DATA_DEBIT = 'No Data Debit';
+    const PPA_NO_DATA_DEBIT_FULL = 'No Data Debit / Produksi / Satuan BM Beban';
+    const POLLUTION_LOAD_BM_CALC_RESULT_TITLE = 'Hasil Perhitungan Beban Pencemaran<br />(Debit x Konsentrasi) / satuan produksi atau bahan baku';
+    const POLLUTION_LOAD_ACTUAL_CALC_RESULT_TITLE = 'Hasil Perhitungan Beban Pencemaran Aktual (Gram/bulan)<br />(Debit x Konsentrasi)';
+    const DEBIT_UNIT = 'Satuan Debit';
+    const PRODUCTION_UNIT = 'Satuan Produksi';
+    const POLLUTION_LOAD_TOTAL_GRAM = 'Beban Pencemaran Total<br />(Gram/periode)';
+    const POLLUTION_LOAD_TOTAL_KG = 'Beban Pencemaran Total<br />(Kg/periode)';
+    const POLLUTION_LOAD_TOTAL_TON = 'Beban Pencemaran Total<br />(Ton/periode)';
+
+    const WATER_POLLUTION_CONTROL_BA = 'Form PPA BAdan Air';
+    const MONITORING_POINT = 'Titik Pemantauan';
+    const MONITORING_POINT_NAME = 'Nama Titik Pemantauan';
+    const LATITUDE = 'Latitude';
+    const LONGITUDE = 'Longitude';
+    const ENVIRONMENT_DOCUMENT_NAME = 'Nama Dokumen Lingkungan';
+    const ENVIRONMENT_DOCUMENT_VALIDATOR = 'Institusi Pengesahan Dokumen Lingkungan';
+    const VALIDATE_DATE = 'Tanggal Pengesahan';
+    const MONITORING_FREQUENCY = 'Frekuensi Kewajiban Pemantauan';
+    const MONITORING_STATUS_PERIOD = 'Status Data Pemantauan pada Periode';
+    const PPA_BA_CONCENTRATION_TITLE = 'Konsentrasi<br />Titik Pemantauan Badan Air Penerima / Sungai / Laut';
 }

@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
         
     <div class="row">
-        <div class="col-xs-12 col-md-8 col-md-offset-2">
+        <div class="col-xs-12">
             <div class="widget-box">
                 <div class="widget-header">
                     <h4 class="widget-title"><?= AppLabels::BTN_ADD; ?></h4>

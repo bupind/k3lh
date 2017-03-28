@@ -47,14 +47,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]
             ]); ?>
         </div>
-        <div class="col-xs-12 col-md-6">
+        <div class="col-xs-12 col-md-6 calx">
             <div class="row">
                 <div class="col-xs-12">
                     <h3 class="header smaller lighter green"><?= AppLabels::INLET_CONCENTRATE_TITLE; ?></h3>
                     <?php foreach ($model->ppaInletOutlets as $ppaInlet): ?>
                         <div class="col-xs-12 col-sm-4">
                             <label><strong><?= $ppaInlet->month_label; ?></strong></label>
-                            <p><?= $ppaInlet->ppaio_inlet_value; ?></p>
+                            <p data-format="0,0[.]000000000000"><?= $ppaInlet->ppaio_inlet_value; ?></p>
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -65,7 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php foreach ($model->ppaInletOutlets as $ppaOutlet): ?>
                         <div class="col-xs-12 col-sm-4">
                             <label><strong><?= $ppaOutlet->month_label; ?></strong></label>
-                            <p><?= $ppaOutlet->ppaio_outlet_value; ?></p>
+                            <p data-format="0,0[.]000000000000"><?= $ppaOutlet->ppaio_outlet_value; ?></p>
                         </div>
                     <?php endforeach; ?>
                 </div>

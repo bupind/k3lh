@@ -121,9 +121,9 @@ ReportBMAsset::register($this);
                                         'template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE,
                                         'options' => ['class' => 'col-xs-12 col-sm-4']
                                     ])
-                                        ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly', 'data-cell' => "AA$key", 'data-format' => AppConstants::CALX_DATA_FORMAT_THO_DEC])
+                                        ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly', 'data-cell' => "AA$key", 'data-format' => '0,0[.]000000000000'])
                                         ->label($startDate->format('M Y'), ['class' => '']);
-                                    echo $form->field($ppaInlet, "[$key]ppaio_inlet_value")->hiddenInput(['data-cell' => "A$key", 'data-format' => AppConstants::CALX_DATA_FORMAT_PLAIN_DEC, 'data-formula' => "AA$key"])->label(false);
+                                    echo $form->field($ppaInlet, "[$key]ppaio_inlet_value")->hiddenInput(['data-cell' => "A$key", 'data-format' => '0[.]000000000000', 'data-formula' => "AA$key"])->label(false);
             
                                     $startDate->add(new \DateInterval('P1M'));
                                 }
@@ -147,12 +147,12 @@ ReportBMAsset::register($this);
                                 <?php
         
                                 foreach ($ppaInletOutletModels as $key => $ppaOutlet) {
-                                    echo $form->field($ppaOutlet, "[$key]ppaio_outlet_value")->hiddenInput(['data-cell' => "B$key", 'data-format' => AppConstants::CALX_DATA_FORMAT_PLAIN_DEC, 'data-formula' => "BB$key"])->label(false);
+                                    echo $form->field($ppaOutlet, "[$key]ppaio_outlet_value")->hiddenInput(['data-cell' => "B$key", 'data-format' => '0[.]000000000000', 'data-formula' => "BB$key"])->label(false);
                                     echo $form->field($ppaOutlet, "[$key]ppaio_outlet_value_display", [
                                         'template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE,
                                         'options' => ['class' => 'col-xs-12 col-sm-4']
                                     ])
-                                        ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly', 'data-cell' => "BB$key", 'data-format' => AppConstants::CALX_DATA_FORMAT_THO_DEC])
+                                        ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly', 'data-cell' => "BB$key", 'data-format' => '0,0[.]000000000000'])
                                         ->label($startDateOutlet->format('M Y'), ['class' => '']);
     
                                     $startDateOutlet->add(new \DateInterval('P1M'));

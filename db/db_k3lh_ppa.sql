@@ -12,6 +12,8 @@ insert into auth_item (name, type) values
 ('ppa-update', 1),
 ('ppa-delete', 1),
 ('ppa-view', 1),
+('ppa-pollution-load', 1),
+('ppa-pollution-load-actual', 1),
 ('ppa-setup-permit-index', 1),
 ('ppa-setup-permit-create', 1),
 ('ppa-setup-permit-update', 1),
@@ -38,7 +40,22 @@ insert into auth_item (name, type) values
 ('ppa-pollution-load-decrease-create', 1),
 ('ppa-pollution-load-decrease-update', 1),
 ('ppa-pollution-load-decrease-delete', 1),
-('ppa-pollution-load-decrease-view', 1);
+('ppa-pollution-load-decrease-view', 1),
+('ppa-ba-index', 1),
+('ppa-ba-create', 1),
+('ppa-ba-update', 1),
+('ppa-ba-delete', 1),
+('ppa-ba-view', 1),
+('ppa-ba-monitoring-point-index', 1),
+('ppa-ba-monitoring-point-create', 1),
+('ppa-ba-monitoring-point-update', 1),
+('ppa-ba-monitoring-point-delete', 1),
+('ppa-ba-monitoring-point-view', 1),
+('ppa-ba-report-bm-index', 1),
+('ppa-ba-report-bm-create', 1),
+('ppa-ba-report-bm-update', 1),
+('ppa-ba-report-bm-delete', 1),
+('ppa-ba-report-bm-view', 1);
 
 insert auth_item_child (parent, child) values
 ('Administrator', 'pengendalian-pencemaran-air'),
@@ -48,6 +65,8 @@ insert auth_item_child (parent, child) values
 ('pengendalian-pencemaran-air', 'ppa-update'),
 ('pengendalian-pencemaran-air', 'ppa-delete'),
 ('pengendalian-pencemaran-air', 'ppa-view'),
+('pengendalian-pencemaran-air', 'ppa-pollution-load'),
+('pengendalian-pencemaran-air', 'ppa-pollution-load-actual'),
 ('pengendalian-pencemaran-air', 'ppa-setup-permit-index'),
 ('pengendalian-pencemaran-air', 'ppa-setup-permit-create'),
 ('pengendalian-pencemaran-air', 'ppa-setup-permit-update'),
@@ -69,12 +88,39 @@ insert auth_item_child (parent, child) values
 ('pengendalian-pencemaran-air', 'ppa-pollution-load-decrease-create'),
 ('pengendalian-pencemaran-air', 'ppa-pollution-load-decrease-update'),
 ('pengendalian-pencemaran-air', 'ppa-pollution-load-decrease-delete'),
-('pengendalian-pencemaran-air', 'ppa-pollution-load-decrease-view')
+('pengendalian-pencemaran-air', 'ppa-pollution-load-decrease-view'),
+('pengendalian-pencemaran-air', 'ppa-ba-index'),
+('pengendalian-pencemaran-air', 'ppa-ba-create'),
+('pengendalian-pencemaran-air', 'ppa-ba-update'),
+('pengendalian-pencemaran-air', 'ppa-ba-delete'),
+('pengendalian-pencemaran-air', 'ppa-ba-view'),
+('pengendalian-pencemaran-air', 'ppa-ba-monitoring-point-index'),
+('pengendalian-pencemaran-air', 'ppa-ba-monitoring-point-create'),
+('pengendalian-pencemaran-air', 'ppa-ba-monitoring-point-update'),
+('pengendalian-pencemaran-air', 'ppa-ba-monitoring-point-delete'),
+('pengendalian-pencemaran-air', 'ppa-ba-monitoring-point-view'),
+('pengendalian-pencemaran-air', 'ppa-ba-report-bm-index'),
+('pengendalian-pencemaran-air', 'ppa-ba-report-bm-create'),
+('pengendalian-pencemaran-air', 'ppa-ba-report-bm-update'),
+('pengendalian-pencemaran-air', 'ppa-ba-report-bm-delete'),
+('pengendalian-pencemaran-air', 'ppa-ba-report-bm-view')
 ('pertanyaan-pengendalian-pencemaran-air', 'ppa-question-index'),
 ('pertanyaan-pengendalian-pencemaran-air', 'ppa-question-create'),
 ('pertanyaan-pengendalian-pencemaran-air', 'ppa-question-update'),
 ('pertanyaan-pengendalian-pencemaran-air', 'ppa-question-delete'),
 ('pertanyaan-pengendalian-pencemaran-air', 'ppa-question-view');
+
+insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_description`,`cset_parent_pk`,`cset_order`,`created_at`,`updated_at`,`created_by`,`updated_by`) values (34,'QS_LOAD_UNIT_CODE','GR_P_M3','Gram/m3','Gram/m3','',NULL,1489745755,1489745755,8,8);
+insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_description`,`cset_parent_pk`,`cset_order`,`created_at`,`updated_at`,`created_by`,`updated_by`) values (35,'QS_LOAD_UNIT_CODE','KG_P_TON','Kg/Ton','Kg/Ton','',NULL,1489745788,1489745788,8,8);
+
+insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_description`,`cset_parent_pk`,`cset_order`,`created_at`,`updated_at`,`created_by`,`updated_by`) values (36,'PPABA_MONITORING_FREQUENCY','NON','Tidak Wajib Dipantau','Tidak Wajib Dipantau','',6,1490422256,1490422256,8,8);
+insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_description`,`cset_parent_pk`,`cset_order`,`created_at`,`updated_at`,`created_by`,`updated_by`) values (37,'PPABA_MONITORING_FREQUENCY','1M','1 Bulan Sekali','1 Bulan Sekali','',1,1490422281,1490422281,8,8);
+insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_description`,`cset_parent_pk`,`cset_order`,`created_at`,`updated_at`,`created_by`,`updated_by`) values (38,'PPABA_MONITORING_FREQUENCY','3M','3 Bulan Sekali','3 Bulan Sekali','',2,1490422296,1490422296,8,8);
+insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_description`,`cset_parent_pk`,`cset_order`,`created_at`,`updated_at`,`created_by`,`updated_by`) values (39,'PPABA_MONITORING_FREQUENCY','6M','6 Bulan Sekali','6 Bulan Sekali','',3,1490422310,1490422310,8,8);
+insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_description`,`cset_parent_pk`,`cset_order`,`created_at`,`updated_at`,`created_by`,`updated_by`) values (40,'PPABA_MONITORING_FREQUENCY','1Y','1 Tahun Sekali','1 Tahun Sekali','',4,1490422326,1490422326,8,8);
+insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_description`,`cset_parent_pk`,`cset_order`,`created_at`,`updated_at`,`created_by`,`updated_by`) values (41,'PPABA_MONITORING_FREQUENCY','3Y','3 Tahun Sekali','3 Tahun Sekali','',5,1490422344,1490422344,8,8);
+insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_description`,`cset_parent_pk`,`cset_order`,`created_at`,`updated_at`,`created_by`,`updated_by`) values (42,'PPABA_MONITORING_STATUS_PERIOD','Y','Dipantau','Dipantau','',1,1490422399,1490422399,8,8);
+insert  into `codeset`(`id`,`cset_name`,`cset_code`,`cset_value`,`cset_description`,`cset_parent_pk`,`cset_order`,`created_at`,`updated_at`,`created_by`,`updated_by`) values (43,'PPABA_MONITORING_STATUS_PERIOD','N','Tidak Dipantau','Tidak Dipantau','',2,1490422413,1490422413,8,8);
 
 /*!40101 SET NAMES utf8 */;
 
@@ -116,8 +162,8 @@ CREATE TABLE `ppa_inlet_outlet` (
   `ppa_report_bm_id` int(11) NOT NULL,
   `ppaio_month` int(2) DEFAULT NULL,
   `ppaio_year` int(4) DEFAULT NULL,
-  `ppaio_inlet_value` decimal(14,5) DEFAULT NULL,
-  `ppaio_outlet_value` decimal(14,5) DEFAULT NULL,
+  `ppaio_inlet_value` decimal(21,12) DEFAULT NULL,
+  `ppaio_outlet_value` decimal(21,12) DEFAULT NULL,
   `created_by` smallint(5) unsigned NOT NULL,
   `created_at` int(11) NOT NULL,
   `updated_by` smallint(5) unsigned NOT NULL,
@@ -129,7 +175,7 @@ CREATE TABLE `ppa_inlet_outlet` (
 
 /*Data for the table `ppa_inlet_outlet` */
 
-insert  into `ppa_inlet_outlet`(`id`,`ppa_report_bm_id`,`ppaio_month`,`ppaio_year`,`ppaio_inlet_value`,`ppaio_outlet_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1,2,7,2016,'6.30000','6.11000',8,1487653232,8,1487662500),(2,2,8,2016,'6.18000','7.88000',8,1487653232,8,1487662500),(3,2,9,2016,'7.40000','7.30000',8,1487653232,8,1487662500),(4,2,10,2016,'6.90000','6.80000',8,1487653232,8,1487662500),(5,2,11,2016,'6.27000','6.29000',8,1487653232,8,1487662500),(6,2,12,2016,'7.24000','8.33000',8,1487653232,8,1487662500),(7,2,1,2017,'6.11000','6.15000',8,1487653232,8,1487662500),(8,2,2,2017,'7.88000','6.20000',8,1487653232,8,1487662500),(9,2,3,2017,'8.02000','8.90000',8,1487653232,8,1487662500),(10,2,4,2017,'6.89000','8.33000',8,1487653232,8,1487662500),(11,2,5,2017,'0.00000','0.00000',8,1487653232,8,1487662500),(12,2,6,2017,'0.00000','0.00000',8,1487653232,8,1487662500),(13,3,7,2016,'1.00000','2.00000',8,1487663739,8,1487663739),(14,3,8,2016,'2.00000','4.00000',8,1487663739,8,1487663739),(15,3,9,2016,'3.00000','4.00000',8,1487663739,8,1487663739),(16,3,10,2016,'3.00000','1.00000',8,1487663739,8,1487663739),(17,3,11,2016,'2.00000','2.00000',8,1487663739,8,1487663739),(18,3,12,2016,'1.00000','3.00000',8,1487663739,8,1487663739),(19,3,1,2017,'0.00000','1.00000',8,1487663739,8,1487663739),(20,3,2,2017,'3.00000','5.00000',8,1487663739,8,1487663739),(21,3,3,2017,'6.00000','4.00000',8,1487663739,8,1487663739),(22,3,4,2017,'0.00000','1.00000',8,1487663739,8,1487663739),(23,3,5,2017,NULL,NULL,8,1487663739,8,1487663739),(24,3,6,2017,NULL,NULL,8,1487663739,8,1487663739),(25,4,7,2016,'2.00000','3.00000',8,1487663840,8,1487663840),(26,4,8,2016,'2.00000','1.00000',8,1487663840,8,1487663840),(27,4,9,2016,'2.00000','2.00000',8,1487663840,8,1487663840),(28,4,10,2016,'3.00000','1.00000',8,1487663840,8,1487663840),(29,4,11,2016,'2.00000','1.00000',8,1487663840,8,1487663840),(30,4,12,2016,'2.00000','4.00000',8,1487663840,8,1487663840),(31,4,1,2017,'1.30000','0.26000',8,1487663840,8,1487663840),(32,4,2,2017,'1.30000','0.00000',8,1487663840,8,1487663840),(33,4,3,2017,'0.90000','1.50000',8,1487663840,8,1487663840),(34,4,4,2017,'0.30000','0.40000',8,1487663840,8,1487663840),(35,4,5,2017,NULL,NULL,8,1487663840,8,1487663840),(36,4,6,2017,NULL,NULL,8,1487663840,8,1487663840),(37,5,7,2016,NULL,'635.29000',8,1487664152,8,1487664152),(38,5,8,2016,NULL,'286.59000',8,1487664152,8,1487664152),(39,5,9,2016,NULL,'931.86000',8,1487664152,8,1487664152),(40,5,10,2016,NULL,'2351.51000',8,1487664152,8,1487664152),(41,5,11,2016,NULL,'1494.31000',8,1487664152,8,1487664152),(42,5,12,2016,NULL,'733.74000',8,1487664152,8,1487664152),(43,5,1,2017,NULL,'1649.41000',8,1487664152,8,1487664152),(44,5,2,2017,NULL,'3331.89000',8,1487664152,8,1487664152),(45,5,3,2017,NULL,'3742.53000',8,1487664152,8,1487664152),(46,5,4,2017,NULL,'1649.41000',8,1487664152,8,1487664152),(47,5,5,2017,NULL,NULL,8,1487664152,8,1487664152),(48,5,6,2017,NULL,NULL,8,1487664152,8,1487664152);
+insert  into `ppa_inlet_outlet`(`id`,`ppa_report_bm_id`,`ppaio_month`,`ppaio_year`,`ppaio_inlet_value`,`ppaio_outlet_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1,2,7,2016,'6.300000000000','6.110000000000',8,1487653232,8,1487662500),(2,2,8,2016,'6.180000000000','7.880000000000',8,1487653232,8,1487662500),(3,2,9,2016,'7.400000000000','7.300000000000',8,1487653232,8,1487662500),(4,2,10,2016,'6.900000000000','6.800000000000',8,1487653232,8,1487662500),(5,2,11,2016,'6.270000000000','6.290000000000',8,1487653232,8,1487662500),(6,2,12,2016,'7.240000000000','8.330000000000',8,1487653232,8,1487662500),(7,2,1,2017,'6.110000000000','6.150000000000',8,1487653232,8,1487662500),(8,2,2,2017,'7.880000000000','6.200000000000',8,1487653232,8,1487662500),(9,2,3,2017,'8.020000000000','8.900000000000',8,1487653232,8,1487662500),(10,2,4,2017,'6.890000000000','8.330000000000',8,1487653232,8,1487662500),(11,2,5,2017,'0.000000000000','0.000000000000',8,1487653232,8,1487662500),(12,2,6,2017,'0.000000000000','0.000000000000',8,1487653232,8,1487662500),(13,3,7,2016,'1.000000000000','2.000000000000',8,1487663739,8,1487663739),(14,3,8,2016,'2.000000000000','4.000000000000',8,1487663739,8,1487663739),(15,3,9,2016,'3.000000000000','4.000000000000',8,1487663739,8,1487663739),(16,3,10,2016,'3.000000000000','1.000000000000',8,1487663739,8,1487663739),(17,3,11,2016,'2.000000000000','2.000000000000',8,1487663739,8,1487663739),(18,3,12,2016,'1.000000000000','3.000000000000',8,1487663739,8,1487663739),(19,3,1,2017,'0.000000000000','1.000000000000',8,1487663739,8,1487663739),(20,3,2,2017,'3.000000000000','5.000000000000',8,1487663739,8,1487663739),(21,3,3,2017,'6.000000000000','4.000000000000',8,1487663739,8,1487663739),(22,3,4,2017,'0.000000000000','1.000000000000',8,1487663739,8,1487663739),(23,3,5,2017,NULL,NULL,8,1487663739,8,1487663739),(24,3,6,2017,NULL,NULL,8,1487663739,8,1487663739),(25,4,7,2016,'2.000000000000','3.000000000000',8,1487663840,8,1487663840),(26,4,8,2016,'2.000000000000','1.000000000000',8,1487663840,8,1487663840),(27,4,9,2016,'2.000000000000','2.000000000000',8,1487663840,8,1487663840),(28,4,10,2016,'3.000000000000','1.000000000000',8,1487663840,8,1487663840),(29,4,11,2016,'2.000000000000','1.000000000000',8,1487663840,8,1487663840),(30,4,12,2016,'2.000000000000','4.000000000000',8,1487663840,8,1487663840),(31,4,1,2017,'1.300000000000','0.260000000000',8,1487663840,8,1487663840),(32,4,2,2017,'1.300000000000','0.000000000000',8,1487663840,8,1487663840),(33,4,3,2017,'0.900000000000','1.500000000000',8,1487663840,8,1487663840),(34,4,4,2017,'0.300000000000','0.400000000000',8,1487663840,8,1487663840),(35,4,5,2017,NULL,NULL,8,1487663840,8,1487663840),(36,4,6,2017,NULL,NULL,8,1487663840,8,1487663840),(37,5,7,2016,'0.000000000000','635.293333333336',8,1487664152,8,1489899689),(38,5,8,2016,'0.000000000000','286.589655172404',8,1487664152,8,1489899689),(39,5,9,2016,'0.000000000000','931.862068965520',8,1487664152,8,1489899689),(40,5,10,2016,'0.000000000000','2351.510344827590',8,1487664152,8,1489899689),(41,5,11,2016,'0.000000000000','1494.310344827570',8,1487664152,8,1489899689),(42,5,12,2016,'0.000000000000','733.737931034492',8,1487664152,8,1489899689),(43,5,1,2017,'0.000000000000','1649.406666666660',8,1487664152,8,1489899689),(44,5,2,2017,'0.000000000000','3331.892857142840',8,1487664152,8,1489899689),(45,5,3,2017,'0.000000000000','3742.526666666670',8,1487664152,8,1489899689),(46,5,4,2017,'0.000000000000','1649.406666666660',8,1487664152,8,1489899689),(47,5,5,2017,'0.000000000000','0.000000000000',8,1487664152,8,1489899689),(48,5,6,2017,'0.000000000000','0.000000000000',8,1487664152,8,1489899689),(49,6,7,2016,'121252677.000000000000','121252677.000000000000',8,1489745021,8,1489745021),(50,6,8,2016,'124272600.000000000000','124272600.000000000000',8,1489745021,8,1489745021),(51,6,9,2016,'130266044.000000000000','130266044.000000000000',8,1489745021,8,1489745021),(52,6,10,2016,'116507959.000000000000','116507959.000000000000',8,1489745021,8,1489745021),(53,6,11,2016,'74002945.000000000000','74002945.000000000000',8,1489745021,8,1489745021),(54,6,12,2016,'83155246.000000000000','83155246.000000000000',8,1489745021,8,1489745021),(55,6,1,2017,'77516070.000000000000','77516070.000000000000',8,1489745021,8,1489745021),(56,6,2,2017,'89188125.000000000000','89188125.000000000000',8,1489745021,8,1489745021),(57,6,3,2017,'63281098.000000000000','63281098.000000000000',8,1489745021,8,1489745021),(58,6,4,2017,'49570318.000000000000','49570318.000000000000',8,1489745021,8,1489745021),(59,6,5,2017,NULL,NULL,8,1489745021,8,1489745021),(60,6,6,2017,NULL,NULL,8,1489745021,8,1489745021);
 
 /*Table structure for table `ppa_laboratorium` */
 
@@ -173,7 +219,7 @@ CREATE TABLE `ppa_laboratorium_accreditation` (
 
 /*Data for the table `ppa_laboratorium_accreditation` */
 
-insert  into `ppa_laboratorium_accreditation`(`id`,`ppa_laboratorium_id`,`lacc_number`,`lacc_end_date`,`lacc_remark`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (8,4,'LI-047-IN','2017-03-10','',8,1488604474,8,1488604474);
+insert  into `ppa_laboratorium_accreditation`(`id`,`ppa_laboratorium_id`,`lacc_number`,`lacc_end_date`,`lacc_remark`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (8,4,'LI-047-IN','2017-03-10','',8,1488604474,8,1489491325);
 
 /*Table structure for table `ppa_laboratorium_test` */
 
@@ -196,7 +242,7 @@ CREATE TABLE `ppa_laboratorium_test` (
 
 /*Data for the table `ppa_laboratorium_test` */
 
-insert  into `ppa_laboratorium_test`(`id`,`ppa_laboratorium_id`,`test_month`,`test_year`,`test_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (37,4,7,2016,NULL,8,1488604474,8,1488604474),(38,4,8,2016,1,8,1488604474,8,1488604474),(39,4,9,2016,NULL,8,1488604474,8,1488604474),(40,4,10,2016,NULL,8,1488604474,8,1488604474),(41,4,11,2016,1,8,1488604474,8,1488604474),(42,4,12,2016,NULL,8,1488604474,8,1488604474),(43,4,1,2017,NULL,8,1488604474,8,1488604474),(44,4,2,2017,NULL,8,1488604474,8,1488604474),(45,4,3,2017,NULL,8,1488604474,8,1488604474),(46,4,4,2017,NULL,8,1488604474,8,1488604474),(47,4,5,2017,NULL,8,1488604474,8,1488604474),(48,4,6,2017,NULL,8,1488604474,8,1488604474);
+insert  into `ppa_laboratorium_test`(`id`,`ppa_laboratorium_id`,`test_month`,`test_year`,`test_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (37,4,7,2016,NULL,8,1488604474,8,1489491325),(38,4,8,2016,1,8,1488604474,8,1489491325),(39,4,9,2016,NULL,8,1488604474,8,1489491325),(40,4,10,2016,NULL,8,1488604474,8,1489491325),(41,4,11,2016,1,8,1488604474,8,1489491325),(42,4,12,2016,NULL,8,1488604474,8,1489491325),(43,4,1,2017,NULL,8,1488604474,8,1489491325),(44,4,2,2017,NULL,8,1488604474,8,1489491325),(45,4,3,2017,NULL,8,1488604474,8,1489491325),(46,4,4,2017,NULL,8,1488604474,8,1489491325),(47,4,5,2017,NULL,8,1488604474,8,1489491325),(48,4,6,2017,NULL,8,1488604474,8,1489491325);
 
 /*Table structure for table `ppa_month` */
 
@@ -215,7 +261,7 @@ CREATE TABLE `ppa_month` (
   PRIMARY KEY (`id`),
   KEY `FK_ppa_month_permit` (`ppa_setup_permit_id`),
   CONSTRAINT `FK_ppa_month_permit` FOREIGN KEY (`ppa_setup_permit_id`) REFERENCES `ppa_setup_permit` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 /*Data for the table `ppa_month` */
 
@@ -238,7 +284,7 @@ CREATE TABLE `ppa_pollution_load_decrease` (
   PRIMARY KEY (`id`),
   KEY `FK_ppa_pollution_load_decrease_ppa` (`ppa_id`),
   CONSTRAINT `FK_ppa_pollution_load_decrease_ppa` FOREIGN KEY (`ppa_id`) REFERENCES `ppa` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `ppa_pollution_load_decrease` */
 
@@ -258,7 +304,7 @@ CREATE TABLE `ppa_pollution_load_decrease_year` (
   PRIMARY KEY (`id`),
   KEY `FK_ppa_pollution_load_decrease_year` (`ppa_pollution_load_decrease_id`),
   CONSTRAINT `FK_ppa_pollution_load_decrease_year` FOREIGN KEY (`ppa_pollution_load_decrease_id`) REFERENCES `ppa_pollution_load_decrease` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `ppa_pollution_load_decrease_year` */
 
@@ -308,7 +354,7 @@ CREATE TABLE `ppa_report_bm` (
 
 /*Data for the table `ppa_report_bm` */
 
-insert  into `ppa_report_bm`(`id`,`ppa_setup_permit_id`,`ppar_param_code`,`ppar_param_unit_code`,`ppar_qs_1`,`ppar_qs_2`,`ppar_qs_unit_code`,`ppar_qs_ref`,`ppar_qs_max_pollution_load`,`ppar_qs_load_unit_code`,`ppar_qs_max_pollution_load_ref`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (2,1,'PH','','6.00','9.00','','PermenLH 08/2009',NULL,'TON_P_M','',8,1487653232,8,1487662500),(3,1,'TSS',NULL,'100.00',NULL,'MG_P_L','PermenLH 08/2009',NULL,'TON_P_M','',8,1487663739,8,1487663739),(4,1,'OIL_FAT',NULL,'10.00',NULL,'MG_P_L','PermenLH 08/2009',NULL,'TON_P_M','',8,1487663840,8,1487663840),(5,1,'DBT','M3_P_M',NULL,NULL,'','',NULL,'','',8,1487664152,8,1487664152);
+insert  into `ppa_report_bm`(`id`,`ppa_setup_permit_id`,`ppar_param_code`,`ppar_param_unit_code`,`ppar_qs_1`,`ppar_qs_2`,`ppar_qs_unit_code`,`ppar_qs_ref`,`ppar_qs_max_pollution_load`,`ppar_qs_load_unit_code`,`ppar_qs_max_pollution_load_ref`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (2,1,'PH','','6.00','9.00','','PermenLH 08/2009',NULL,'TON_P_M','',8,1487653232,8,1487662500),(3,1,'TSS',NULL,'100.00',NULL,'MG_P_L','PermenLH 08/2009',NULL,'TON_P_M','',8,1487663739,8,1487663739),(4,1,'OIL_FAT',NULL,'10.00',NULL,'MG_P_L','PermenLH 08/2009',NULL,'TON_P_M','',8,1487663840,8,1487663840),(5,1,'DBT','M3_P_M',NULL,NULL,'','',NULL,'','',8,1487664152,8,1489899689),(6,1,'PRD','MW_P_M',NULL,NULL,'','',NULL,'','',8,1489745020,8,1489745020);
 
 /*Table structure for table `ppa_setup_permit` */
 
@@ -333,7 +379,7 @@ CREATE TABLE `ppa_setup_permit` (
   PRIMARY KEY (`id`),
   KEY `FK_ppa_setup_permit_ppa` (`ppa_id`),
   CONSTRAINT `FK_ppa_setup_permit_ppa` FOREIGN KEY (`ppa_id`) REFERENCES `ppa` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `ppa_setup_permit` */
 
@@ -357,7 +403,7 @@ CREATE TABLE `ppa_technical_provision` (
 
 /*Data for the table `ppa_technical_provision` */
 
-insert  into `ppa_technical_provision`(`id`,`ppa_id`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (3,1,8,1488517482,8,1488604474);
+insert  into `ppa_technical_provision`(`id`,`ppa_id`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (3,1,8,1488517482,8,1489491324);
 
 /*Table structure for table `ppa_technical_provision_detail` */
 
@@ -380,7 +426,7 @@ CREATE TABLE `ppa_technical_provision_detail` (
 
 /*Data for the table `ppa_technical_provision_detail` */
 
-insert  into `ppa_technical_provision_detail`(`id`,`ppa_technical_provision_id`,`ppa_question_id`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (25,3,1,8,1488517483,8,1488604474),(26,3,5,8,1488517485,8,1488604474),(27,3,4,8,1488517487,8,1488604474),(28,3,2,8,1488517487,8,1488604474),(29,3,3,8,1488517487,8,1488604474),(30,3,6,8,1488517487,8,1488604474),(31,3,9,8,1488517487,8,1488604474),(32,3,7,8,1488517487,8,1488604474),(33,3,11,8,1488517487,8,1488604474),(34,3,10,8,1488517487,8,1488604474),(35,3,8,8,1488517487,8,1488604474),(36,3,12,8,1488517487,8,1488604474);
+insert  into `ppa_technical_provision_detail`(`id`,`ppa_technical_provision_id`,`ppa_question_id`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (25,3,1,8,1488517483,8,1489491325),(26,3,5,8,1488517485,8,1489491325),(27,3,4,8,1488517487,8,1489491325),(28,3,2,8,1488517487,8,1489491325),(29,3,3,8,1488517487,8,1489491326),(30,3,6,8,1488517487,8,1489491326),(31,3,9,8,1488517487,8,1489491326),(32,3,7,8,1488517487,8,1489491326),(33,3,11,8,1488517487,8,1489491326),(34,3,10,8,1488517487,8,1489491326),(35,3,8,8,1488517487,8,1489491326),(36,3,12,8,1488517487,8,1489491326);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

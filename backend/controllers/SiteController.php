@@ -299,6 +299,7 @@ class SiteController extends AppController {
                                                                         'additionalParameters' => [
                                                                             'children' => [
                                                                                 '3212-1' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . AppLabels::WATER_POLLUTION_CONTROL, ['/ppa']), 'type' => 'item'],
+                                                                                '3212-2' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . AppLabels::WATER_POLLUTION_CONTROL_BA, ['/ppa-ba', '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                             ]
                                                                         ]
                                                                     ],
