@@ -1,5 +1,5 @@
 /*
-SQLyog Enterprise - MySQL GUI v7.15
+SQLyog Enterprise - MySQL GUI v7.15 
 MySQL - 5.5.5-10.1.19-MariaDB : Database - k3lh
 *********************************************************************
 */
@@ -12,6 +12,8 @@ MySQL - 5.5.5-10.1.19-MariaDB : Database - k3lh
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 CREATE DATABASE /*!32312 IF NOT EXISTS*/`k3lh` /*!40100 DEFAULT CHARACTER SET latin1 */;
+
+USE `k3lh`;
 
 /*Table structure for table `ppu` */
 
@@ -253,6 +255,7 @@ CREATE TABLE `ppua_monitoring_point` (
   `ppua_confirm_date` date NOT NULL,
   `ppua_freq_monitoring_obligation_code` varchar(10) NOT NULL,
   `ppua_monitoring_data_status_code` varchar(10) NOT NULL,
+  `ppua_ref` varchar(200) DEFAULT NULL,
   `created_by` smallint(5) unsigned NOT NULL,
   `created_at` int(11) NOT NULL,
   `updated_by` smallint(5) unsigned NOT NULL,
@@ -260,9 +263,11 @@ CREATE TABLE `ppua_monitoring_point` (
   PRIMARY KEY (`id`),
   KEY `FK_ppua_monitoring_point` (`ppu_ambient_id`),
   CONSTRAINT `FK_ppua_monitoring_point` FOREIGN KEY (`ppu_ambient_id`) REFERENCES `ppu_ambient` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `ppua_monitoring_point` */
+
+insert  into `ppua_monitoring_point`(`id`,`ppu_ambient_id`,`ppua_monitoring_location`,`ppua_code_location`,`ppua_coord_latitude`,`ppua_coord_longitude`,`ppua_env_doc_name`,`ppua_institution`,`ppua_confirm_date`,`ppua_freq_monitoring_obligation_code`,`ppua_monitoring_data_status_code`,`ppua_ref`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1,2,'ASH DISPOSAL','LOCATION','05 31\' 28,4\"','105 21\'23,0\"','ANDAL PLTU TARAHAN 2x100 MW LAMPUNG SELATAN PROPINSI LAMPUNG','DEPARTEMEN PERTAMBANGAN DAN ENERGI','2017-03-21','PMFMOC1','PMMDSC1','ad',8,1490643184,8,1490643184),(2,2,'DUSUN GOTONG ROYONG','LOCATION','05 31\' 28,4\"','105 21\'23,0\"','ANDAL PLTU TARAHAN 2x100 MW LAMPUNG SELATAN PROPINSI LAMPUNG','DEPARTEMEN PERTAMBANGAN DAN ENERGI','2017-03-10','PMFMOC1','PMMDSC1','ad',8,1490644577,8,1490644577);
 
 /*Table structure for table `ppua_parameter_obligation` */
 
@@ -285,9 +290,11 @@ CREATE TABLE `ppua_parameter_obligation` (
   PRIMARY KEY (`id`),
   KEY `FK_ppua_parameter_obligation_monitoring_point` (`ppua_monitoring_point_id`),
   CONSTRAINT `FK_ppua_parameter_obligation_monitoring_point` FOREIGN KEY (`ppua_monitoring_point_id`) REFERENCES `ppua_monitoring_point` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `ppua_parameter_obligation` */
+
+insert  into `ppua_parameter_obligation`(`id`,`ppua_monitoring_point_id`,`ppuapo_parameter_code`,`ppuapo_qs`,`ppuapo_qs_unit_code`,`ppuapo_qs_ref`,`ppuapo_qs_max_pollution_load`,`ppuapo_qs_load_unit_code`,`ppuapo_qs_max_pollution_load_ref`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1,1,'PRPC1','900.00','PRQUC1','PP RI NO 41 TH 1999','500.00','PRQLUC1','PP RI NO 41 TH 1999',8,1490644354,8,1490644354),(2,1,'PRPC2','400.00','PRQUC1','PP RI NO 41 TH 1999','500.00','PRQLUC1','PP RI NO 41 TH 1999',8,1490644535,8,1490644535),(3,2,'PRPC1','900.00','PRQUC1','PP RI NO 41 TH 1999','500.00','PRQLUC1','PP RI NO 41 TH 1999',8,1490644618,8,1490644618),(4,2,'PRPC2','400.00','PRQUC1','PP RI NO 41 TH 1999','500.00','PRQLUC1','PP RI NO 41 TH 1999',8,1490644654,8,1490644654);
 
 /*Table structure for table `ppuapo_month` */
 
@@ -306,9 +313,11 @@ CREATE TABLE `ppuapo_month` (
   PRIMARY KEY (`id`),
   KEY `FK_ppuapo_month_parameter_obligation` (`ppua_parameter_obligation_id`),
   CONSTRAINT `FK_ppuapo_month_parameter_obligation` FOREIGN KEY (`ppua_parameter_obligation_id`) REFERENCES `ppua_parameter_obligation` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=latin1;
 
 /*Data for the table `ppuapo_month` */
+
+insert  into `ppuapo_month`(`id`,`ppua_parameter_obligation_id`,`ppuapom_month`,`ppuapom_year`,`ppuapom_value`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1,1,7,2016,'12.74',8,1490644354,8,1490644354),(2,1,8,2016,NULL,8,1490644354,8,1490644354),(3,1,9,2016,NULL,8,1490644354,8,1490644354),(4,1,10,2016,'6.20',8,1490644354,8,1490644354),(5,1,11,2016,NULL,8,1490644354,8,1490644354),(6,1,12,2016,NULL,8,1490644354,8,1490644354),(7,1,1,2017,'20.00',8,1490644354,8,1490644354),(8,1,2,2017,NULL,8,1490644354,8,1490644354),(9,1,3,2017,NULL,8,1490644354,8,1490644354),(10,1,4,2017,NULL,8,1490644354,8,1490644354),(11,1,5,2017,NULL,8,1490644354,8,1490644354),(12,1,6,2017,NULL,8,1490644354,8,1490644354),(13,2,7,2016,'20.00',8,1490644535,8,1490644535),(14,2,8,2016,NULL,8,1490644535,8,1490644535),(15,2,9,2016,NULL,8,1490644535,8,1490644535),(16,2,10,2016,'1.73',8,1490644535,8,1490644535),(17,2,11,2016,NULL,8,1490644535,8,1490644535),(18,2,12,2016,NULL,8,1490644535,8,1490644535),(19,2,1,2017,'3.03',8,1490644535,8,1490644535),(20,2,2,2017,NULL,8,1490644535,8,1490644535),(21,2,3,2017,NULL,8,1490644535,8,1490644535),(22,2,4,2017,NULL,8,1490644535,8,1490644535),(23,2,5,2017,NULL,8,1490644535,8,1490644535),(24,2,6,2017,NULL,8,1490644535,8,1490644535),(25,3,7,2016,'12.97',8,1490644618,8,1490644618),(26,3,8,2016,NULL,8,1490644618,8,1490644618),(27,3,9,2016,NULL,8,1490644618,8,1490644618),(28,3,10,2016,'16.34',8,1490644618,8,1490644618),(29,3,11,2016,NULL,8,1490644618,8,1490644618),(30,3,12,2016,NULL,8,1490644618,8,1490644618),(31,3,1,2017,'20.00',8,1490644618,8,1490644618),(32,3,2,2017,NULL,8,1490644618,8,1490644618),(33,3,3,2017,NULL,8,1490644618,8,1490644618),(34,3,4,2017,NULL,8,1490644618,8,1490644618),(35,3,5,2017,NULL,8,1490644618,8,1490644618),(36,3,6,2017,NULL,8,1490644618,8,1490644618),(37,4,7,2016,'20.00',8,1490644654,8,1490644654),(38,4,8,2016,NULL,8,1490644654,8,1490644654),(39,4,9,2016,NULL,8,1490644654,8,1490644654),(40,4,10,2016,'5.11',8,1490644654,8,1490644654),(41,4,11,2016,NULL,8,1490644654,8,1490644654),(42,4,12,2016,NULL,8,1490644654,8,1490644654),(43,4,1,2017,'8.16',8,1490644654,8,1490644654),(44,4,2,2017,NULL,8,1490644654,8,1490644654),(45,4,3,2017,NULL,8,1490644654,8,1490644654),(46,4,4,2017,NULL,8,1490644654,8,1490644654),(47,4,5,2017,NULL,8,1490644654,8,1490644654),(48,4,6,2017,NULL,8,1490644654,8,1490644654);
 
 /*Table structure for table `ppucems_report_bm` */
 
