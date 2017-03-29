@@ -10,9 +10,9 @@ use common\vendor\AppLabels;
 /* @var $model backend\models\PpaBa */
 /* @var $startDate DateTime */
 
-$this->title = sprintf('%s %s', AppLabels::BTN_VIEW, AppLabels::PPA_BA);
+$this->title = sprintf('%s %s', AppLabels::BTN_VIEW, AppLabels::WATER_POLLUTION_CONTROL_BA);
 $this->params['subtitle'] = $model->getSummary();
-$this->params['breadcrumbs'][] = ['label' => AppLabels::PPA_BA, 'url' => ['index', '_ppId' => $model->power_plant_id]];
+$this->params['breadcrumbs'][] = ['label' => AppLabels::WATER_POLLUTION_CONTROL_BA, 'url' => ['index', '_ppId' => $model->power_plant_id]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ppa-ba-view">

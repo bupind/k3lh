@@ -16,6 +16,10 @@ use backend\models\Codeset;
  * PpaController implements the CRUD actions for Ppa model.
  */
 class PpaController extends AppController {
+    
+    /* @var $powerPlantModel \backend\models\PowerPlant */
+    public $powerPlantModel;
+    
     /**
      * @inheritdoc
      */
@@ -32,6 +36,16 @@ class PpaController extends AppController {
     
     public function beforeAction($action) {
         parent::beforeAction($action);
+        
+        if (in_array($action->id, ['index'])) {
+            $powerPlantId = Yii::$app->request->get('_ppId');
+            if (($powerPlant = PowerPlant::findOne($powerPlantId)) !== null) {
+                $this->powerPlantModel = $powerPlant;
+            } else {
+                throw new NotFoundHttpException('The requested page does not exist.');
+            }
+        }
+        
         return $this->rbac();
     }
     
@@ -41,6 +55,8 @@ class PpaController extends AppController {
      */
     public function actionIndex() {
         $searchModel = new PpaSearch();
+        $searchModel->sector_id = $this->powerPlantModel->sector_id;
+        $searchModel->power_plant_id = $this->powerPlantModel->id;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
     
         $model = new Ppa();
@@ -49,20 +65,11 @@ class PpaController extends AppController {
             $this->redirect(['index']);
         }
     
-        $powerPlantList = ['' => AppLabels::PLEASE_SELECT];
-        if (!is_null($model->power_plant_id)) {
-            $powerPlantList = PowerPlant::map(new PowerPlant(), 'pp_name', null, true, [
-                'where' => [
-                    ['sector_id' => $model->sector_id]
-                ]
-            ]);
-        }
-    
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'model' => $model,
-            'powerPlantList' => $powerPlantList
+            'powerPlantModel' => $this->powerPlantModel
         ]);
     }
     
