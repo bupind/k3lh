@@ -71,6 +71,7 @@ use common\vendor\AppLabels;
                     </tr>
                 <?php endforeach; ?>
 
+                <?php if (!is_null($setupPermit->ppaReportBmDebit)): ?>
                 <tr>
                     <td class="text-center"><?= $setupPermit->ppaReportBmDebit->ppar_param_code_desc; ?></td>
         
@@ -89,6 +90,9 @@ use common\vendor\AppLabels;
                     <td class="text-center"><?= $setupPermit->ppaReportBmDebit->ppar_qs_load_unit_code_desc; ?></td>
                     <td class="text-center"><?= $setupPermit->ppaReportBmDebit->ppar_qs_max_pollution_load_ref; ?></td>
                 </tr>
+                <?php endif; ?>
+
+                <?php if (!is_null($setupPermit->ppaReportBmProduction)): ?>
                 <tr>
                     <td class="text-center"><?= $setupPermit->ppaReportBmProduction->ppar_param_code_desc; ?></td>
         
@@ -107,6 +111,7 @@ use common\vendor\AppLabels;
                     <td class="text-center"><?= $setupPermit->ppaReportBmProduction->ppar_qs_load_unit_code_desc; ?></td>
                     <td class="text-center"><?= $setupPermit->ppaReportBmProduction->ppar_qs_max_pollution_load_ref; ?></td>
                 </tr>
+                <?php endif; ?>
             <?php endforeach; ?>
             </tbody>
         </table>
