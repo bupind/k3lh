@@ -13,7 +13,7 @@ use yii\helpers\Url;
 /* @var $searchModel backend\models\PpuSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $model backend\models\Ppu */
-/* @var $powerPlantList backend\models\PowerPlant[] */
+/* @var $powerPlantModel backend\models\PowerPlant */
 
 PPUAsset::register($this);
 $baseUrl = Url::base();
@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <div class="row">
-        <div class="col-xs-12 col-md-8 col-md-offset-2">
+        <div class="col-xs-4">
             <div class="widget-box">
                 <div class="widget-header">
                     <h4 class="widget-title"> <?= AppLabels::BTN_ADD ?> </h4>
@@ -40,23 +40,13 @@ $this->params['breadcrumbs'][] = $this->title;
                             'options' => [
                                 'class' => 'form-inline',
                                 'role' => 'form'
-                            ],
-                            'fieldConfig' => [
-                                'options' => [
-                                    'tag' => 'div',
-                                    'class' => 'form-group col-xs-12 col-md-4'
-                                ]
                             ]
                         ]); ?>
 
                         <?php
 
-                        echo $form->field($model, 'sector_id', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9])
-                            ->dropDownList(Sector::map(new Sector(), 'sector_name'), ['class' => 'sector-list input-small chosen-select form-control'])
-                            ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
-                        echo $form->field($model, 'power_plant_id', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9])
-                            ->dropDownList($powerPlantList, ['id' => 'power-plant-list', 'class' => 'input-small chosen-select form-control'])
-                            ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+                        echo $form->field($model, 'sector_id')->hiddenInput(['value' => $powerPlantModel->sector_id])->error(false)->label(false);
+                        echo $form->field($model, 'power_plant_id')->hiddenInput(['value' => $powerPlantModel->id])->error(false)->label(false);
                         echo $form->field($model, 'ppu_year', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
                             ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly'])
                             ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);

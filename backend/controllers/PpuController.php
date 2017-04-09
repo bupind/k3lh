@@ -19,6 +19,10 @@ class PpuController extends AppController
     /**
      * @inheritdoc
      */
+
+    public $powerPlantModel;
+
+
     public function behaviors()
     {
         return [
@@ -33,6 +37,16 @@ class PpuController extends AppController
 
     public function beforeAction($action) {
         parent::beforeAction($action);
+
+        if (in_array($action->id, ['index'])) {
+            $powerPlantId = Yii::$app->request->get('_ppId');
+            if (($powerPlant = PowerPlant::findOne($powerPlantId)) !== null) {
+                $this->powerPlantModel = $powerPlant;
+            } else {
+                throw new NotFoundHttpException('The requested page does not exist.');
+            }
+        }
+
         return $this->rbac();
     }
 
@@ -43,28 +57,21 @@ class PpuController extends AppController
     public function actionIndex()
     {
         $searchModel = new PpuSearch();
+        $searchModel->sector_id = $this->powerPlantModel->sector_id;
+        $searchModel->power_plant_id = $this->powerPlantModel->id;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         $model = new Ppu();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
-            $this->redirect('ppu/index');
-        }
-
-        $powerPlantList = ['' => AppLabels::PLEASE_SELECT];
-        if (!is_null($model->power_plant_id)) {
-            $powerPlantList = PowerPlant::map(new PowerPlant(), 'pp_name', null, true, [
-                'where' => [
-                    ['sector_id' => $model->sector_id]
-                ]
-            ]);
+            $this->redirect(['index', '_ppId' => $model->power_plant_id]);
         }
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'model' => $model,
-            'powerPlantList' => $powerPlantList,
+            'powerPlantModel' => $this->powerPlantModel,
         ]);
     }
 

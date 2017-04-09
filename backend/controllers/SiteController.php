@@ -309,8 +309,8 @@ class SiteController extends AppController {
                                                                         'icon-class' => 'blue',
                                                                         'additionalParameters' => [
                                                                             'children' => [
-                                                                                '3213-1' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Pengendalian Pencemaran Udara', ['/ppu']), 'type' => 'item'],
-                                                                                '3213-2' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Pengendalian Pencemaran Udara Ambient', ['/ppu-ambient']), 'type' => 'item'],
+                                                                                '3213-1' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . AppLabels::AIR_POLLUTION_CONTROL , ['/ppu', '_ppId' => $powerPlant->id]), 'type' => 'item'],
+                                                                                '3213-2' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . AppLabels::AIR_POLLUTION_CONTROL . AppLabels::AMBIENT , ['/ppu-ambient', '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                             ]
                                                                         ]
                                                                     ],
