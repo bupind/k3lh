@@ -34,6 +34,10 @@ use yii\base\Exception;
  * @property PpaBaReportBm $ppaBaReportBmProduction
  */
 class PpaBaMonitoringPoint extends AppModel {
+    
+    public $ppabamp_monitoring_frequency_code_desc;
+    public $ppabamp_monitoring_status_code_desc;
+    
     /**
      * @inheritdoc
      */
@@ -133,6 +137,8 @@ class PpaBaMonitoringPoint extends AppModel {
         parent::afterFind();
         
         $this->ppabamp_validation_date = Yii::$app->formatter->asDate($this->ppabamp_validation_date, AppConstants::FORMAT_DATE_PHP);
+        $this->ppabamp_monitoring_frequency_code_desc = Codeset::getCodesetValue(AppConstants::CODESET_PPABA_MONITORING_FREQUENCY, $this->ppabamp_monitoring_frequency_code);
+        $this->ppabamp_monitoring_status_code_desc = Codeset::getCodesetValue(AppConstants::CODESET_PPABA_MONITORING_STATUS_PERIOD, $this->ppabamp_monitoring_status_code);
         
         return true;
     }

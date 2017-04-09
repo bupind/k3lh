@@ -416,4 +416,5 @@ class AppLabels {
     const MONITORING_FREQUENCY = 'Frekuensi Kewajiban Pemantauan';
     const MONITORING_STATUS_PERIOD = 'Status Data Pemantauan pada Periode';
     const PPA_BA_CONCENTRATION_TITLE = 'Konsentrasi<br />Titik Pemantauan Badan Air Penerima / Sungai / Laut';
+    const PPA_ENVIRONMENT_DOCUMENT_TITLE = 'Dokumen Lingkungan / Izin Lingkungan';
 }
