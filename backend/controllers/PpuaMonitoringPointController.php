@@ -54,7 +54,7 @@ class PpuaMonitoringPointController extends AppController
     public function actionIndex()
     {
         $searchModel = new PpuaMonitoringPointSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->searchPpua(Yii::$app->request->queryParams, $this->ppuaModel->id);
 
         return $this->render('index', [
             'ppuaModel' => $this->ppuaModel,

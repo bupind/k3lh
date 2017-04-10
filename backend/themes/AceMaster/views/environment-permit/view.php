@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 /* @var $model backend\models\EnvironmentPermit */
 
 $this->title = sprintf('%s %s', AppLabels::BTN_VIEW, AppLabels::ENVIRONMENT_PERMIT);
-$this->params['breadcrumbs'][] = ['label' => AppLabels::ENVIRONMENT_PERMIT, 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => AppLabels::ENVIRONMENT_PERMIT, 'url' => ['index', '_ppId' => $model->power_plant_id]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -53,6 +53,7 @@ $form = ActiveForm::begin([
             'excluded' => ['form_type_code'],
             'converter' => [
                 'sector_id' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->sector->sector_name],
+                'power_plant_id' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->powerPlant->pp_name]
             ]
         ]
     ]); ?>

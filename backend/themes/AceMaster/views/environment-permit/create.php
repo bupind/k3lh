@@ -7,9 +7,9 @@ use common\vendor\AppLabels;
 /* @var $this yii\web\View */
 /* @var $model backend\models\EnvironmentPermit */
 /* @var $firstDetail backend\models\EnvironmentPermitDetail */
-/* @var $powerPlantList [backend\models\PowerPlant] */
+/* @var $powerPlantModel backend\models\PowerPlant */
 
-$this->title = sprintf("%s %s", AppLabels::BTN_ADD, AppLabels::ENVIRONMENT_PERMIT);
+$this->title = sprintf("%s %s", AppLabels::BTN_ADD, AppLabels::ENVIRONMENT_PERMIT, $powerPlantModel->getSummary());
 $this->params['breadcrumbs'][] = ['label' => AppLabels::ENVIRONMENT_PERMIT, 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -21,8 +21,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'firstDetail' => $firstDetail,
-        'powerPlantList' => $powerPlantList,
         'model' => $model,
+        'powerPlantModel' => $powerPlantModel,
     ]) ?>
 
 </div>

@@ -73,4 +73,43 @@ class PpuaMonitoringPointSearch extends PpuaMonitoringPoint
 
         return $dataProvider;
     }
+
+    public function searchPpua($params, $ppuaId)
+    {
+        $query = PpuaMonitoringPoint::find();
+
+        // add conditions that should always apply here
+        $query->joinWith(['ppuAmbient pa'], true, 'INNER JOIN')
+            ->where(['pa.id' => $ppuaId]);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to return any records when validation fails
+            // $query->where('0=1');
+            return $dataProvider;
+        }
+
+        // grid filtering conditions
+        $query->andFilterWhere([
+            'id' => $this->id,
+            'ppu_ambient_id' => $this->ppu_ambient_id,
+            'ppua_confirm_date' => $this->ppua_confirm_date,
+        ]);
+
+        $query->andFilterWhere(['like', 'ppua_monitoring_location', $this->ppua_monitoring_location])
+            ->andFilterWhere(['like', 'ppua_code_location', $this->ppua_code_location])
+            ->andFilterWhere(['like', 'ppua_coord_latitude', $this->ppua_coord_latitude])
+            ->andFilterWhere(['like', 'ppua_coord_longitude', $this->ppua_coord_longitude])
+            ->andFilterWhere(['like', 'ppua_env_doc_name', $this->ppua_env_doc_name])
+            ->andFilterWhere(['like', 'ppua_institution', $this->ppua_institution])
+            ->andFilterWhere(['like', 'ppua_freq_monitoring_obligation_code', $this->ppua_freq_monitoring_obligation_code])
+            ->andFilterWhere(['like', 'ppua_monitoring_data_status_code', $this->ppua_monitoring_data_status_code]);
+
+        return $dataProvider;
+    }
 }

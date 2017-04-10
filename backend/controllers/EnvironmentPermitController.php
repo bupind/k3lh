@@ -8,7 +8,6 @@ use backend\models\EnvironmentPermit;
 use backend\models\EnvironmentPermitSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use common\vendor\AppLabels;
 use common\vendor\AppConstants;
 use backend\models\PowerPlant;
 
@@ -20,6 +19,8 @@ class EnvironmentPermitController extends AppController
     /**
      * @inheritdoc
      */
+    public $powerPlantModel;
+
     public function behaviors()
     {
         return [
@@ -39,17 +40,30 @@ class EnvironmentPermitController extends AppController
 
     public function beforeAction($action) {
         parent::beforeAction($action);
+
+        if (in_array($action->id, ['index', 'create', 'update'])) {
+            $powerPlantId = Yii::$app->request->get('_ppId');
+            if (($powerPlant = PowerPlant::findOne($powerPlantId)) !== null) {
+                $this->powerPlantModel = $powerPlant;
+            } else {
+                throw new NotFoundHttpException('The requested page does not exist.');
+            }
+        }
+
         return $this->rbac();
     }
 
     public function actionIndex()
     {
         $searchModel = new EnvironmentPermitSearch();
+        $searchModel->sector_id = $this->powerPlantModel->sector_id;
+        $searchModel->power_plant_id = $this->powerPlantModel->id;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'powerPlantModel' => $this->powerPlantModel,
         ]);
     }
 
@@ -79,19 +93,11 @@ class EnvironmentPermitController extends AppController
             Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            $powerPlantList = ['' => AppLabels::PLEASE_SELECT];
-            if (!is_null($model->power_plant_id)) {
-                $powerPlantList = PowerPlant::map(new PowerPlant(), 'pp_name', null, true, [
-                    'where' => [
-                        ['sector_id' => $model->sector_id]
-                    ]
-                ]);
-            }
 
             return $this->render('create', [
                 'firstDetail' => $firstDetail,
-                'powerPlantList' => $powerPlantList,
                 'model' => $model,
+                'powerPlantModel' => $this->powerPlantModel
             ]);
         }
     }
@@ -110,14 +116,9 @@ class EnvironmentPermitController extends AppController
             Yii::$app->session->setFlash('success', AppConstants::MSG_UPDATE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            $powerPlantList = PowerPlant::map(new PowerPlant(), 'pp_name', null, true, [
-                'where' => [
-                    ['sector_id' => $model->sector_id]
-                ]
-            ]);
 
             return $this->render('update', [
-                'powerPlantList' => $powerPlantList,
+                'powerPlantModel' => $this->powerPlantModel,
                 'model' => $model,
             ]);
         }

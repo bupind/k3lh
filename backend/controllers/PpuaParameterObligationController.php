@@ -55,7 +55,7 @@ class PpuaParameterObligationController extends AppController
     public function actionIndex()
     {
         $searchModel = new PpuaParameterObligationSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->searchPpua(Yii::$app->request->queryParams, $this->ppuaModel->id);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
