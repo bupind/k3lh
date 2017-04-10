@@ -11,7 +11,7 @@ use backend\models\PpuaMonitoringPoint;
 /* @var $ppuaModel backend\models\PpuAmbient */
 
 $this->title = sprintf("%s %s", AppLabels::ADHERENCE, AppLabels::BM_REPORT_PARAMETER);
-$this->params['breadcrumbs'][] = ['label' => sprintf("%s %s", AppLabels::AIR_POLLUTION_CONTROL, AppLabels::AMBIENT), 'url' => ['/ppu-ambient/index']];
+$this->params['breadcrumbs'][] = ['label' => sprintf("%s %s", AppLabels::AIR_POLLUTION_CONTROL, AppLabels::AMBIENT), 'url' => ['/ppu-ambient/index', '_ppId' => $ppuaModel->power_plant_id]];
 $this->params['breadcrumbs'][] = ['label' => sprintf('%s - %s', $ppuaModel->sector->sector_name, $ppuaModel->powerPlant->pp_name), 'url' => ['/ppu-ambient/view', 'id' => $ppuaModel->id]];
 $this->params['breadcrumbs'][] = ['label' => AppLabels::BTN_UPDATE, 'url' => ["/ppu-ambient/update", 'id' => $ppuaModel->id]];
 $this->params['breadcrumbs'][] = $this->title;

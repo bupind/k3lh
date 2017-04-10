@@ -4,7 +4,6 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 use backend\assets\EnvironmentPermitAsset;
-use backend\models\Sector;
 use common\vendor\AppConstants;
 use app\components\SubmitLinkButton;
 use common\vendor\AppLabels;
@@ -14,7 +13,7 @@ use common\components\helpers\Converter;
 /* @var $this yii\web\View */
 /* @var $model backend\models\EnvironmentPermit */
 /* @var $form yii\widgets\ActiveForm */
-/* @var $powerPlantList [backend\models\PowerPlant] */
+/* @var $powerPlantModel backend\models\PowerPlant */
 /* @var $firstDetail backend\models\EnvironmentPermitDetail */
 
 EnvironmentPermitAsset::register($this);
@@ -45,13 +44,8 @@ $form = ActiveForm::begin([
     <div class="col-xs-12 col-md-6 col-md-offset-3">
         <?php
 
-        echo $form->field($model, 'sector_id', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
-            ->dropDownList(Sector::map(new Sector(), 'sector_name'), ['class' => 'sector-list ' . AppConstants::ACTIVE_FORM_CLASS_DROPDOWN])
-            ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
-
-        echo $form->field($model, 'power_plant_id', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
-            ->dropDownList($powerPlantList, ['id' => 'power-plant-list', 'class' => AppConstants::ACTIVE_FORM_CLASS_DROPDOWN])
-            ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+        echo $form->field($model, 'sector_id')->hiddenInput(['value' => $powerPlantModel->sector_id])->error(false)->label(false);
+        echo $form->field($model, 'power_plant_id')->hiddenInput(['value' => $powerPlantModel->id])->error(false)->label(false);
 
         echo $form->field($model, 'ep_year', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
             ->textInput(['maxlength' => true, 'class' => AppConstants::ACTIVE_FORM_CLASS_INPUT_TEXT_NUMBERSONLY])

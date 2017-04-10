@@ -62,7 +62,7 @@ class PpuAmbientController extends AppController
         $model = new PpuAmbient();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
-            $this->redirect('ppu-ambient/index');
+            $this->redirect(['ppu-ambient/index', '_ppId' => $model->power_plant_id]);
         }
 
         return $this->render('index', [
@@ -124,15 +124,8 @@ class PpuAmbientController extends AppController
             Yii::$app->session->setFlash('success', AppConstants::MSG_UPDATE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            $powerPlantList = PowerPlant::map(new PowerPlant(), 'pp_name', null, true, [
-                'where' => [
-                    ['sector_id' => $model->sector_id]
-                ]
-            ]);
-
             return $this->render('update', [
                 'model' => $model,
-                'powerPlantList' => $powerPlantList,
             ]);
         }
     }

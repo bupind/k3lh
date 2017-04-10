@@ -8,7 +8,6 @@ use backend\models\PpuSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\vendor\AppConstants;
-use common\vendor\AppLabels;
 use backend\models\PowerPlant;
 
 /**
@@ -126,15 +125,8 @@ class PpuController extends AppController
             Yii::$app->session->setFlash('success', AppConstants::MSG_UPDATE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            $powerPlantList = PowerPlant::map(new PowerPlant(), 'pp_name', null, true, [
-                'where' => [
-                    ['sector_id' => $model->sector_id]
-                ]
-            ]);
-
             return $this->render('update', [
                 'model' => $model,
-                'powerPlantList' => $powerPlantList,
             ]);
         }
     }
