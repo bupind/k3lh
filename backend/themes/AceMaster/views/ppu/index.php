@@ -4,8 +4,6 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use common\vendor\AppLabels;
 use yii\widgets\ActiveForm;
-use common\vendor\AppConstants;
-use backend\models\Sector;
 use backend\assets\PPUAsset;
 use yii\helpers\Url;
 
@@ -18,7 +16,7 @@ use yii\helpers\Url;
 PPUAsset::register($this);
 $baseUrl = Url::base();
 
-$this->title = AppLabels::AIR_POLLUTION_CONTROL;
+$this->title = sprintf('%s %s', AppLabels::AIR_POLLUTION_CONTROL, $powerPlantModel->getSummary());
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ppu-index">
@@ -27,37 +25,35 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <div class="row">
-        <div class="col-xs-4">
+        <div class="col-xs-12">
             <div class="widget-box">
-                <div class="widget-header">
-                    <h4 class="widget-title"> <?= AppLabels::BTN_ADD ?> </h4>
+                <div class="widget-header widget-header-small">
+                    <h5 class="widget-title lighter"><?= AppLabels::BTN_ADD; ?></h5>
                 </div>
-
                 <div class="widget-body">
-                    <div class="widget-main row">
+                    <div class="widget-main">
                         <?php $form = ActiveForm::begin([
                             'id' => 'ppu-form',
                             'options' => [
                                 'class' => 'form-inline',
                                 'role' => 'form'
-                            ]
+                            ],
                         ]); ?>
 
                         <?php
 
                         echo $form->field($model, 'sector_id')->hiddenInput(['value' => $powerPlantModel->sector_id])->error(false)->label(false);
                         echo $form->field($model, 'power_plant_id')->hiddenInput(['value' => $powerPlantModel->id])->error(false)->label(false);
-                        echo $form->field($model, 'ppu_year', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
-                            ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly'])
-                            ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
 
+                        echo $form->field($model, 'ppu_year')
+                            ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly text-right'])
+                            ->label(null, ['class' => 'inline'])
+                            ->error(false);
+
+
+
+                        echo Html::submitButton('<i class="ace-icon fa fa-check bigger-110"></i> ' . AppLabels::BTN_ADD, ['class' => 'btn btn-info btn-sm']);
                         ?>
-
-                        <div class="form-actions col-xs-12 center no-margin no-padding">
-                            <div class="space-6"></div>
-                            <?= Html::submitButton('<i class="ace-icon fa fa-check bigger-110"></i> ' . AppLabels::BTN_ADD, ['class' => 'btn btn-info btn-sm']); ?>
-                        </div>
-
                         <?php ActiveForm::end(); ?>
                     </div>
                 </div>
@@ -73,16 +69,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'filterModel' => $searchModel,
             'columns' => [
                 ['class' => 'yii\grid\SerialColumn'],
-
-                [
-                    'attribute' => 'sector_id',
-                    'value' => 'sector.sector_name',
-                    'filter' => Html::activeDropDownList($searchModel, 'sector_id', Sector::map(new Sector(), 'sector_name'), ['class' => 'chosen-select form-control'])
-                ],
-                [
-                    'attribute' => 'power_plant_id',
-                    'value' => 'powerPlant.pp_name'
-                ],
                 'ppu_year',
 
                 ['class' => 'yii\grid\ActionColumn'],

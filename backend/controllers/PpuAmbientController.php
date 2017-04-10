@@ -8,7 +8,6 @@ use backend\models\PpuAmbientSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\vendor\AppConstants;
-use common\vendor\AppLabels;
 use backend\models\PowerPlant;
 
 /**
@@ -19,6 +18,9 @@ class PpuAmbientController extends AppController
     /**
      * @inheritdoc
      */
+
+    public $powerPlantModel;
+
     public function behaviors()
     {
         return [
@@ -33,6 +35,16 @@ class PpuAmbientController extends AppController
 
     public function beforeAction($action) {
         parent::beforeAction($action);
+
+        if (in_array($action->id, ['index'])) {
+            $powerPlantId = Yii::$app->request->get('_ppId');
+            if (($powerPlant = PowerPlant::findOne($powerPlantId)) !== null) {
+                $this->powerPlantModel = $powerPlant;
+            } else {
+                throw new NotFoundHttpException('The requested page does not exist.');
+            }
+        }
+
         return $this->rbac();
     }
 
@@ -43,6 +55,8 @@ class PpuAmbientController extends AppController
     public function actionIndex()
     {
         $searchModel = new PpuAmbientSearch();
+        $searchModel->sector_id = $this->powerPlantModel->sector_id;
+        $searchModel->power_plant_id = $this->powerPlantModel->id;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         $model = new PpuAmbient();
@@ -51,20 +65,11 @@ class PpuAmbientController extends AppController
             $this->redirect('ppu-ambient/index');
         }
 
-        $powerPlantList = ['' => AppLabels::PLEASE_SELECT];
-        if (!is_null($model->power_plant_id)) {
-            $powerPlantList = PowerPlant::map(new PowerPlant(), 'pp_name', null, true, [
-                'where' => [
-                    ['sector_id' => $model->sector_id]
-                ]
-            ]);
-        }
-
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'model' => $model,
-            'powerPlantList' => $powerPlantList,
+            'powerPlantModel' => $this->powerPlantModel,
         ]);
     }
 

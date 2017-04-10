@@ -408,7 +408,7 @@ class AppLabels {
     const POLLUTION_LOAD_TOTAL_KG = 'Beban Pencemaran Total<br />(Kg/periode)';
     const POLLUTION_LOAD_TOTAL_TON = 'Beban Pencemaran Total<br />(Ton/periode)';
 
-    const WATER_POLLUTION_CONTROL_BA = 'Form PPA BAdan Air';
+    const WATER_POLLUTION_CONTROL_BA = 'Form PPA Badan Air';
     const MONITORING_POINT_NAME = 'Nama Titik Pemantauan';
     const ENVIRONMENT_DOCUMENT_NAME = 'Nama Dokumen Lingkungan';
     const ENVIRONMENT_DOCUMENT_VALIDATOR = 'Institusi Pengesahan Dokumen Lingkungan';

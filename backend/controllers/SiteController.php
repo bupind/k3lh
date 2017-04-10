@@ -310,7 +310,7 @@ class SiteController extends AppController {
                                                                         'additionalParameters' => [
                                                                             'children' => [
                                                                                 '3213-1' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . AppLabels::AIR_POLLUTION_CONTROL , ['/ppu', '_ppId' => $powerPlant->id]), 'type' => 'item'],
-                                                                                '3213-2' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . AppLabels::AIR_POLLUTION_CONTROL . AppLabels::AMBIENT , ['/ppu-ambient', '_ppId' => $powerPlant->id]), 'type' => 'item'],
+                                                                                '3213-2' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . AppLabels::AIR_POLLUTION_CONTROL ." " . AppLabels::AMBIENT , ['/ppu-ambient', '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                             ]
                                                                         ]
                                                                     ],
