@@ -139,11 +139,12 @@ class PpuController extends AppController
      */
     public function actionDelete($id)
     {
-        if ($this->findModel($id)->delete()) {
+        $model = $this->findModel($id);
+        if ($model->delete()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_DELETE_SUCCESS);
         }
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index', '_ppId' => $model->power_plant_id]);
     }
 
     public function actionPollutionLoad($id)
