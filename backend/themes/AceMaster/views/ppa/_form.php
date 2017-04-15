@@ -58,7 +58,7 @@ $form = ActiveForm::begin([
 
 <div class="row">
     <div class="col-xs-12 form-actions text-center">
-        <?= SubmitLinkButton::widget(['formId' => 'ppa-form', 'backAction' => 'index', 'isNewRecord' => $model->isNewRecord]); ?>
+        <?= SubmitLinkButton::widget(['formId' => 'ppa-form', 'backAction' => ['index', '_ppId' => $model->power_plant_id], 'isNewRecord' => $model->isNewRecord]); ?>
     </div>
 </div>
 

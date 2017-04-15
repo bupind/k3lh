@@ -320,6 +320,7 @@ class SiteController extends AppController {
                                                                         'icon-class' => 'blue',
                                                                         'additionalParameters' => [
                                                                             'children' => [
+                                                                                '3214-1' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . AppLabels::SELF_ASSESSMENT, ['/plb3-self-assessment', '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                                 '3214' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form Pengelolaan Limbah B3', 'type' => 'item'],
                                                                             ]
                                                                         ]

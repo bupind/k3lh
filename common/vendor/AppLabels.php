@@ -417,4 +417,32 @@ class AppLabels {
     const MONITORING_STATUS_PERIOD = 'Status Data Pemantauan pada Periode';
     const PPA_BA_CONCENTRATION_TITLE = 'Konsentrasi<br />Titik Pemantauan Badan Air Penerima / Sungai / Laut';
     const PPA_ENVIRONMENT_DOCUMENT_TITLE = 'Dokumen Lingkungan / Izin Lingkungan';
+    
+    // PLB3
+    const SELF_ASSESSMENT = 'Form Self Assessment';
+    const COMPANY_PROFILE = 'Profil Perusahaan';
+    const B3_WASTE_MANAGEMENT = 'Pengelolaan Limbah B3';
+    const PLB3 = 'PLB3';
+    const COMPANY_NAME = 'Nama Perusahaan';
+    const ACTIVITY_LOCATION_ADDRESS = 'Alamat Lokasi Kegiatan';
+    const PHONE_FAX = 'Telp / Fax';
+    const MAIN_COMPANY_ADDRESS = 'Alamat Kantor Induk';
+    const HOLDING_COMPANY_NAME = 'Nama Holding Company';
+    const HOLDING_COMPANY_OFFICE_ADDRESS = 'Alamat Kantor Holding Company';
+    const COMPANY_ESTABLISHED_YEAR = 'Tahun Beroperasi Perusahaan';
+    const INDUSTRY_FIELD = 'Jenis Industri';
+    const CAPITAL_STATUS = 'Status Permodalan';
+    const AREA_FACTORY = 'Luas Area Pabrik / Lokasi Kegiatan';
+    const NUMBER_OF_EMPLOYEES = 'Jumlah Karyawan';
+    const PRODUCTION_CAPACITY = 'Kapasitas Produksi';
+    const INSTALLED = 'Terpasang';
+    const RAW_MATERIAL = 'Bahan Baku Utama';
+    const ADJUVANT_MATERIAL = 'Bahan Penolong';
+    const PRODUCTION_PROCESS = 'Proses Produksi';
+    const EXPORT_MARKETING_PERCENTAGE = 'Prosentase Pemasaran Export';
+    const LOCAL_MARKETING_PERCENTAGE = 'Prosentase Pemasaran Domestik / Lokal';
+    const ENVIRONMENT_DOCUMENT_OWNED = 'Dokumen Lingkungan yang dimiliki';
+    const CONTACT_NAME = 'Nama Personal Kontak';
+    const MOBILE_PHONE = 'Nomor HP';
+    const CONTACT_EMAIL = 'E-mail Personal Kontak';
 }
