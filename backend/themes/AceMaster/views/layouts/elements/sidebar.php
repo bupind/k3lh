@@ -42,6 +42,13 @@ $navs = [
             ['icon' => 'fa-file-text-o', 'label' => AppLabels::QUESTION, 'url' => ['/ppu-question'], 'controller' => 'ppu-question'],
         ]
     ],
+    [
+        'icon' => 'fa-file-text-o',
+        'label' => AppLabels::PLB3,
+        'submenu' => [
+            ['icon' => 'fa-file-text-o', 'label' => AppLabels::QUESTION, 'url' => ['/plb3-question'], 'controller' => 'plb3-question'],
+        ]
+    ],
     ['icon' => 'fa-history', 'label' => AppLabels::LOGIN_HISTORY, 'url' => ['/login-history'], 'controller' => 'login-history'],
     [
         'icon' => 'fa-life-ring',

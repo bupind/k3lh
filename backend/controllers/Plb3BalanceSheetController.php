@@ -45,7 +45,7 @@ class Plb3BalanceSheetController extends AppController
             }
         }
 
-        return TRUE;
+        return $this->rbac();
     }
 
     /**

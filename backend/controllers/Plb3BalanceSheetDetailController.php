@@ -48,7 +48,7 @@ class Plb3BalanceSheetDetailController extends AppController
             $this->plb3bs_model = Plb3BalanceSheet::findOne(['id' => $plb3bsId]);
         }
 
-        return TRUE;
+        return $this->rbac();
     }
 
     /**

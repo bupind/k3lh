@@ -442,4 +442,7 @@ class AppLabels {
     const TREATMENT = 'Perlakuan';
     const LAST_PERIOD = 'Periode Sebelumnya';
     const SETUP = 'Penataan';
+
+    //PLB3_CHECKLIST
+    const PLB3 = 'PLB3';
 }
