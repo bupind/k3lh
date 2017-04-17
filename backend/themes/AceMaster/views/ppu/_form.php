@@ -12,7 +12,6 @@ PPUAsset::register($this);
 /* @var $this yii\web\View */
 /* @var $model backend\models\Ppu */
 /* @var $form yii\widgets\ActiveForm */
-/* @var $powerPlantList backend\models\PowerPlant[] */
 ?>
 
 <?php

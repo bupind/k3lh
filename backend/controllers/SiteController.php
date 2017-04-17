@@ -320,7 +320,7 @@ class SiteController extends AppController {
                                                                         'icon-class' => 'blue',
                                                                         'additionalParameters' => [
                                                                             'children' => [
-                                                                                '3214' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form Pengelolaan Limbah B3', 'type' => 'item'],
+                                                                                '3214-1' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . AppLabels::PERCENTAGE . " " . AppLabels::BALANCE_SHEET . " " . AppLabels::WASTE . " " . AppLabels::B3 , ['/plb3-balance-sheet', '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                             ]
                                                                         ]
                                                                     ]

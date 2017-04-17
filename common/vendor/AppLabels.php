@@ -417,4 +417,29 @@ class AppLabels {
     const MONITORING_STATUS_PERIOD = 'Status Data Pemantauan pada Periode';
     const PPA_BA_CONCENTRATION_TITLE = 'Konsentrasi<br />Titik Pemantauan Badan Air Penerima / Sungai / Laut';
     const PPA_ENVIRONMENT_DOCUMENT_TITLE = 'Dokumen Lingkungan / Izin Lingkungan';
+
+    //PLB3_BALANCE_SHEET
+    const BALANCE_SHEET = 'Neraca';
+    const LB3 = 'LB3';
+    const WASTE = 'Limbah';
+    const B3 = 'B3';
+    const WASTE_TYPE = 'Jenis Limbah';
+    const WASTE_SOURCE = 'Sumber Limbah';
+    const WASTE_UNIT = 'Satuan';
+    const PREVIOUS_WASTE = 'Limbah Periode sebelumnya';
+    const MANIFEST_CODE = 'Kode Manifest';
+    const GENERATED = 'Dihasilkan';
+    const TPS_STORED = 'Disimpan di TPS';
+    const SELF_USED = 'Dimanfaatkan Sendiri';
+    const SELF_PROCESSED = 'Diolah Sendiri';
+    const SELF_DUMPED = 'Ditimbun Sendiri';
+    const THIRD_PARTY = 'Diserahkan Kepihak Ketiga Berizin';
+    const UNMANAGED = 'Tidak Dikelola';
+    const DOMINANT = 'Dominan';
+    const ASH_DISPOSAL = 'Ash Disposal';
+    const NON = 'Non';
+    const WAREHOUSE = 'Gudang';
+    const TREATMENT = 'Perlakuan';
+    const LAST_PERIOD = 'Periode Sebelumnya';
+    const SETUP = 'Penataan';
 }
