@@ -445,4 +445,5 @@ class AppLabels {
 
     //PLB3_CHECKLIST
     const PLB3 = 'PLB3';
+    const CHECKLIST = 'Ceklist';
 }
