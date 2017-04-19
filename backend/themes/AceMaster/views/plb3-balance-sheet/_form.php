@@ -12,7 +12,7 @@ use common\vendor\AppLabels;
 
 <?php
 $form = ActiveForm::begin([
-    'id' => 'plb3-balace-sheet-form',
+    'id' => 'plb3-balance-sheet-form',
     'options' => [
         'role' => 'form'
     ],

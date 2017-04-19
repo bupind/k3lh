@@ -2,21 +2,20 @@
 
 namespace backend\controllers;
 
-use backend\models\Codeset;
-use common\vendor\AppConstants;
 use Yii;
-use yii\helpers\Json;
-use backend\models\Plb3Question;
-use backend\models\Plb3QuestionSearch;
+use backend\models\Plb3Checklist;
+use backend\models\Plb3ChecklistSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use common\vendor\AppLabels;
+use backend\models\PowerPlant;
+use common\vendor\AppConstants;
 
 /**
- * Plb3QuestionController implements the CRUD actions for Plb3Question model.
+ * Plb3ChecklistController implements the CRUD actions for Plb3Checklist model.
  */
-class Plb3QuestionController extends AppController
+class Plb3ChecklistController extends AppController
 {
+    public $powerPlantModel;
     /**
      * @inheritdoc
      */
@@ -34,26 +33,46 @@ class Plb3QuestionController extends AppController
 
     public function beforeAction($action) {
         parent::beforeAction($action);
+
+        if (in_array($action->id, ['index'])) {
+            $powerPlantId = Yii::$app->request->get('_ppId');
+            if (($powerPlant = PowerPlant::findOne($powerPlantId)) !== null) {
+                $this->powerPlantModel = $powerPlant;
+            } else {
+                throw new NotFoundHttpException('The requested page does not exist.');
+            }
+        }
+
         return $this->rbac();
     }
 
     /**
-     * Lists all Plb3Question models.
+     * Lists all Plb3Checklist models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new Plb3QuestionSearch();
+        $searchModel = new Plb3ChecklistSearch();
+        $searchModel->sector_id = $this->powerPlantModel->sector_id;
+        $searchModel->power_plant_id = $this->powerPlantModel->id;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        $model = new Plb3Checklist();
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
+            $this->redirect(['index', '_ppId' => $model->power_plant_id]);
+        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'model' => $model,
+            'powerPlantModel' => $this->powerPlantModel,
         ]);
     }
 
     /**
-     * Displays a single Plb3Question model.
+     * Displays a single Plb3Checklist model.
      * @param integer $id
      * @return mixed
      */
@@ -65,39 +84,26 @@ class Plb3QuestionController extends AppController
     }
 
     /**
-     * Creates a new Plb3Question model.
+     * Creates a new Plb3Checklist model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Plb3Question();
+        $model = new Plb3Checklist();
 
-        if ($model->load(Yii::$app->request->post()) && $model->saveTransactional()) {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            $questionTypeList = ['' => AppLabels::PLEASE_SELECT];
-
             return $this->render('create', [
                 'model' => $model,
-                'questionTypeList' => $questionTypeList,
             ]);
         }
     }
 
-    public function actionAjaxQuestionType() {
-        $requestData = Yii::$app->request->post();
-        $questionTypes = Codeset::find()->select(['id', 'cset_value', 'cset_code'])->where(['cset_name' => sprintf("%s_%s", "PLB3_QUESTION_TYPE_CODE", $requestData['plb3_form_type_code'])])->all();
-        if (!empty($questionTypes)) {
-            return Json::encode(['question_types' => $questionTypes]);
-        }
-
-        return Json::encode(false);
-    }
-
     /**
-     * Updates an existing Plb3Question model.
+     * Updates an existing Plb3Checklist model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -110,39 +116,38 @@ class Plb3QuestionController extends AppController
             Yii::$app->session->setFlash('success', AppConstants::MSG_UPDATE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            $questionTypeList = Codeset::customMap(sprintf("%s_%s", 'PLB3_QUESTION_TYPE_CODE', $model->plb3_form_type_code));
             return $this->render('update', [
                 'model' => $model,
-                'questionTypeList' => $questionTypeList,
             ]);
         }
     }
 
     /**
-     * Deletes an existing Plb3Question model.
+     * Deletes an existing Plb3Checklist model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
      */
     public function actionDelete($id)
     {
-        if ($this->findModel($id)->delete()) {
+        $model = $this->findModel($id);
+        if ($model->delete()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_DELETE_SUCCESS);
         }
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index', '_ppId' => $model->power_plant_id]);
     }
 
     /**
-     * Finds the Plb3Question model based on its primary key value.
+     * Finds the Plb3Checklist model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Plb3Question the loaded model
+     * @return Plb3Checklist the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Plb3Question::findOne($id)) !== null) {
+        if (($model = Plb3Checklist::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

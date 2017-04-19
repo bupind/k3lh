@@ -446,4 +446,12 @@ class AppLabels {
     //PLB3_CHECKLIST
     const PLB3 = 'PLB3';
     const CHECKLIST = 'Ceklist';
+    const INDUSTRIAL_SECTOR = 'Sektor Industri';
+    const ASSESSMENT_TEAM = 'Tim Penilai';
+    const ASSESSMENT_DATE = 'Tanggal Penilaian';
+    const TPS = 'TPS';
+    const LANDFILL = 'LandFill';
+    const THIRDPARTY = 'Pihak Ketiga';
+    const TERMS = 'Ketentuan';
+    const OBLIGATION = 'Pentaatan';
 }

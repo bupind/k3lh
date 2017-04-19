@@ -321,6 +321,7 @@ class SiteController extends AppController {
                                                                         'additionalParameters' => [
                                                                             'children' => [
                                                                                 '3214-1' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . AppLabels::PERCENTAGE . " " . AppLabels::BALANCE_SHEET . " " . AppLabels::WASTE . " " . AppLabels::B3 , ['/plb3-balance-sheet', '_ppId' => $powerPlant->id]), 'type' => 'item'],
+                                                                                '3214-2' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . AppLabels::CHECKLIST . " " . AppLabels::WASTE , ['/plb3-checklist', '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                             ]
                                                                         ]
                                                                     ]

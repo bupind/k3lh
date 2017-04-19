@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'attribute' => 'plb3_question_type_code',
                     'value' => 'plb3_question_type_code_desc',
-                    'filter' => Html::activeDropDownList($searchModel, 'plb3_question_type_code', Codeset::customMap(AppConstants::CODESET_PLB3_QUESTION_TYPE_CODE), ['class' => 'chosen-select form-control'])
+                    'filter' => false,
                 ],
                 'plb3_question:html',
 

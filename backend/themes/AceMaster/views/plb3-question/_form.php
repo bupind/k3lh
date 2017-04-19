@@ -1,17 +1,24 @@
 <?php
 
+use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\components\SubmitLinkButton;
 use common\vendor\AppConstants;
 use yii\redactor\widgets\Redactor;
 use backend\models\Codeset;
+use backend\assets\Plb3QuestionAsset;
+use yii\helpers\Url;
 
+Plb3QuestionAsset::register($this);
+$baseUrl = Url::base();
 /* @var $this yii\web\View */
 /* @var $model backend\models\Plb3Question */
 /* @var $form yii\widgets\ActiveForm */
+/* @var $questionTypeList string[] */
 ?>
 
 <?php
+echo Html::hiddenInput('baseUrl', $baseUrl, ['id' => 'baseUrl']);
 $form = ActiveForm::begin([
     'options' => [
         'class' => 'form-horizontal',
@@ -26,12 +33,13 @@ $form = ActiveForm::begin([
         /*echo $form->field($model, 'ppuq_question_type_code', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_4])
             ->dropDownList(Codeset::customMap(AppConstants::CODESET_PPU_QUESTION_TYPE_CODE), ['class' => AppConstants::ACTIVE_FORM_CLASS_DROPDOWN])
             ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]); */
+
         echo $form->field($model, 'plb3_form_type_code', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_4])
-            ->dropDownList(Codeset::customMap(AppConstants::CODESET_PLB3_CHECKLIST_FORM_TYPE_CODE), ['class' => AppConstants::ACTIVE_FORM_CLASS_DROPDOWN])
+            ->dropDownList(Codeset::customMap(AppConstants::CODESET_PLB3_CHECKLIST_FORM_TYPE_CODE), ['class' => 'form-type-list ' . AppConstants::ACTIVE_FORM_CLASS_DROPDOWN])
             ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
 
         echo $form->field($model, 'plb3_question_type_code', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_4])
-            ->dropDownList(Codeset::customMap(AppConstants::CODESET_PLB3_QUESTION_TYPE_CODE), ['class' => AppConstants::ACTIVE_FORM_CLASS_DROPDOWN])
+            ->dropDownList($questionTypeList, ['id' => 'plb3-question-type', 'class' => AppConstants::ACTIVE_FORM_CLASS_DROPDOWN])
             ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
 
         echo $form->field($model, 'plb3_question', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])

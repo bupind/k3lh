@@ -57,10 +57,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 </ul>
                 <div class="tab-content">
                     <div id="dominant-ash-disposal" class="tab-pane fade active in">
-                        <?= $this->render('_balance_sheet_detail_view', ['plb3bsdMonth' => $plb3bsdMonth, 'bst' => 'AD', 'model' => $model, 'startDate' => clone $startDate]); ?>
+                        <?= $this->render('_balance_sheet_detail_view', ['plb3bsdMonth' => $plb3bsdMonth, 'bst' => AppConstants::FORM_TYPE_AD, 'model' => $model, 'startDate' => clone $startDate]); ?>
                     </div>
                     <div id="non-dominant-warehouse" class="tab-pane fade">
-                        <?= $this->render('_balance_sheet_detail_view', ['plb3bsdMonth' => $plb3bsdMonth,'bst' => 'GD', 'model' => $model, 'startDate' => clone $startDate]); ?>
+                        <?= $this->render('_balance_sheet_detail_view', ['plb3bsdMonth' => $plb3bsdMonth,'bst' => AppConstants::FORM_TYPE_GD, 'model' => $model, 'startDate' => clone $startDate]); ?>
                     </div>
                 </div>
 

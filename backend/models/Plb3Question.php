@@ -2,6 +2,8 @@
 
 namespace backend\models;
 
+use Yii;
+use yii\base\Exception;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
 
@@ -41,6 +43,52 @@ class Plb3Question extends AppModel
         ];
     }
 
+    public function saveTransactional() {
+
+        $request = Yii::$app->request->post();
+        $transaction = Yii::$app->db->beginTransaction();
+        $errors = [];
+
+        try {
+            $this->load($request);
+            if (!$this->save()) {
+                $errors = array_merge($errors, $this->errors);
+                throw new Exception();
+            }
+
+            $plb3ChecklistDetails = Plb3ChecklistDetail::find()->select(['id'])->where(['plb3cd_form_type_code' => $this->plb3_form_type_code])->all();
+
+            foreach($plb3ChecklistDetails as $key => $plb3Detail) {
+                $plb3Answer = new Plb3ChecklistAnswer();
+                $plb3Answer->plb3_checklist_detail_id = $plb3Detail->id;
+                $plb3Answer->plb3_question_id = $this->id;
+                $plb3Answer->plb3ca_answer = 0;
+                if (!$plb3Answer->save()) {
+                    $errors = array_merge($errors, $plb3Answer->errors);
+                    throw new Exception();
+                }
+            }
+
+            $transaction->commit();
+            return TRUE;
+        } catch (Exception $ex) {
+            $transaction->rollBack();
+
+            foreach ($errors as $attr => $errorArr) {
+                $error = join('<br />', $errorArr);
+                Yii::$app->session->addFlash('danger', $error);
+            }
+
+            return FALSE;
+        }
+    }
+
+    public function findQuestion($id){
+        $question = Plb3Question::find()->where(['id' => $id])->one();
+
+        return $question->plb3_question;
+    }
+
     /**
      * @inheritdoc
      */
@@ -58,7 +106,7 @@ class Plb3Question extends AppModel
         parent::afterFind();
 
         $this->plb3_form_type_code_desc = Codeset::getCodesetValue(AppConstants::CODESET_PLB3_CHECKLIST_FORM_TYPE_CODE, $this->plb3_form_type_code);
-        $this->plb3_question_type_code_desc = Codeset::getCodesetValue(AppConstants::CODESET_PLB3_QUESTION_TYPE_CODE, $this->plb3_question_type_code);
+        $this->plb3_question_type_code_desc = Codeset::getCodesetValue(sprintf("%s_%s", 'PLB3_QUESTION_TYPE_CODE', $this->plb3_form_type_code), $this->plb3_question_type_code);
 
         return true;
     }
