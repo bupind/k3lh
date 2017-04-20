@@ -62,21 +62,25 @@ $index = 0;
                 ->textInput(['maxlength' => true, 'class' => 'form-control'])
                 ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
         ?>
-        <div class="col-xs-12 col-md-9 col-md-offset-3">
-            <?php
+        <div>
+            <label class="col-md-3 control-label no-padding-right"><?= AppLabels::ASSESSMENT_DATE ?></label>
+            <div class="col-md-9">
+
+                <?php
                 echo DatePicker::widget([
                     'model' => $model,
                     'attribute' => "plb3cd_assessment_date",
                     'id' => 'date1',
                     'type' => DatePicker::TYPE_INPUT,
-                    'options' => ['placeholder' => AppLabels::DATE, 'class' => AppConstants::ACTIVE_FORM_CLASS_INPUT_TEXT_DATEPICKER],
+                    'options' => ['class' => 'form-control'],
                     'pluginOptions' => [
                         'autoclose' => true,
                         'format' => 'dd-mm-yyyy',
                         'todayHighlight' => 'true'
                     ],
                 ])
-            ?>
+                ?>
+            </div>
         </div>
     </div>
 
