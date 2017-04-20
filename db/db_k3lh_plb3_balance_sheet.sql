@@ -12,10 +12,6 @@ MySQL - 5.5.5-10.1.19-MariaDB : Database - k3lh
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`k3lh` /*!40100 DEFAULT CHARACTER SET latin1 */;
-
-USE `k3lh`;
-
 /*Table structure for table `plb3_balance_sheet` */
 
 DROP TABLE IF EXISTS `plb3_balance_sheet`;
