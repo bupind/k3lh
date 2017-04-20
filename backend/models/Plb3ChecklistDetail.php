@@ -26,6 +26,7 @@ use yii\web\UploadedFile;
  *
  * @property Plb3ChecklistAnswer[] $plb3ChecklistAnswers
  * @property Plb3Checklist $plb3Checklist
+ * @property Plb3ChecklistAnswer $plb3ChecklistAnswerByQuestion
  */
 class Plb3ChecklistDetail extends AppModel
 {
@@ -157,10 +158,14 @@ class Plb3ChecklistDetail extends AppModel
 
     /**
      * @return \yii\db\ActiveQuery
-     */
+*/
     public function getPlb3Checklist()
     {
         return $this->hasOne(Plb3Checklist::className(), ['id' => 'plb3_checklist_id']);
+    }
+
+    public function getPlb3ChecklistAnswerByQuestion($questionId){
+        return Plb3ChecklistAnswer::find()->where(['plb3_checklist_detail_id' => $this->id, 'plb3_question_id' => $questionId])->one();
     }
 
 

@@ -18,8 +18,8 @@ class EnvironmentPermitSearch extends EnvironmentPermit
     public function rules()
     {
         return [
-            [['id', 'sector_id', 'power_plant_id', 'ep_year', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'integer'],
-            [['ep_quarter'], 'safe'],
+            [['id', 'sector_id', 'power_plant_id', 'ep_year'], 'integer'],
+            [['ep_quarter', 'ep_district', 'ep_province', 'ep_env_ministry'], 'safe'],
         ];
     }
 
@@ -63,13 +63,12 @@ class EnvironmentPermitSearch extends EnvironmentPermit
             'sector_id' => $this->sector_id,
             'power_plant_id' => $this->power_plant_id,
             'ep_year' => $this->ep_year,
-            'created_by' => $this->created_by,
-            'created_at' => $this->created_at,
-            'updated_by' => $this->updated_by,
-            'updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', 'ep_quarter', $this->ep_quarter]);
+        $query->andFilterWhere(['like', 'ep_quarter', $this->ep_quarter])
+            ->andFilterWhere(['like', 'ep_district', $this->ep_district])
+            ->andFilterWhere(['like', 'ep_province', $this->ep_province])
+            ->andFilterWhere(['like', 'ep_env_ministry', $this->ep_env_ministry]);
 
         return $dataProvider;
     }

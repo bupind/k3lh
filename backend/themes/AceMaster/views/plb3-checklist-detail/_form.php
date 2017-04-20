@@ -119,24 +119,18 @@ $index = 0;
                                         <?= Converter::attachment($answerModels[$index]->attachmentOwner, ['show_file_upload' => true, 'show_delete_file' => true, 'index' => $index]); ?>
                                     </td>
                                 <?php } else { ?>
-                                    <?php $ans = null; foreach($answerModels as $keyM => $answer) : ?>
-                                        <?php if($answer->plb3_question_id == $plb3QuestionId) {$ans = $answer;} ?>
-                                    <?php endforeach; ?>
-                                    <?php if(!is_null($ans)) { ?>
                                         <td colspan="1" class="text-center">
-                                            <?= Html::activeHiddenInput($ans, "[$index]id"); ?>
-                                            <?= Html::activeHiddenInput($ans, "[$index]plb3_question_id"); ?>
-                                            <?= Html::activeHiddenInput($ans, "[$index]plb3_checklist_detail_id"); ?>
-                                            <?= Html::activeRadio($ans, "[$index]plb3ca_answer", ['label' => '', 'value' => 1, 'uncheck' => null]); ?>
+                                            <?= Html::activeHiddenInput($answerModels[$plb3QuestionId], "[$index]id"); ?>
+                                            <?= Html::activeHiddenInput($answerModels[$plb3QuestionId], "[$index]plb3_question_id"); ?>
+                                            <?= Html::activeHiddenInput($answerModels[$plb3QuestionId], "[$index]plb3_checklist_detail_id"); ?>
+                                            <?= Html::activeRadio($answerModels[$plb3QuestionId], "[$index]plb3ca_answer", ['label' => '', 'value' => 1, 'uncheck' => null]); ?>
                                         </td>
                                         <td colspan="1" class="text-center">
-                                            <?= Html::activeRadio($ans, "[$index]plb3ca_answer", ['label' => '', 'value' => 0, 'uncheck' => null]); ?>
+                                            <?= Html::activeRadio($answerModels[$plb3QuestionId], "[$index]plb3ca_answer", ['label' => '', 'value' => 0, 'uncheck' => null]); ?>
                                         </td>
                                         <td class="text-center">
-                                            <?= Converter::attachment($ans->attachmentOwner, ['show_file_upload' => true, 'show_delete_file' => true, 'index' => $index]); ?>
+                                            <?= Converter::attachment($answerModels[$plb3QuestionId]->attachmentOwner, ['show_file_upload' => true, 'show_delete_file' => true, 'index' => $index]); ?>
                                         </td>
-                                    <?php } ?>
-
                                 <?php } ?>
                                 <?php $index++; ?>
                             </tr>

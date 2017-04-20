@@ -278,6 +278,8 @@ class AppLabels {
     const CAPACITY_LIMIT = 'Batasan Kapasitas';
     const CAPACITY_REALIZATION = 'Realisasi Kapasitas';
     const PRODUCTION = 'Produksi';
+    const DISTRICT = 'Kabupaten';
+    const ENVIRONMENT_MINISTRY = 'Menteri Lingkungan Hidup';
 
     // WATER POLLUTION CONTROL
     const PPA = 'PPA';

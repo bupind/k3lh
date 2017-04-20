@@ -10,7 +10,7 @@ use common\vendor\AppLabels;
 /* @var $powerPlantModel backend\models\PowerPlant */
 
 $this->title = sprintf("%s %s", AppLabels::BTN_ADD, AppLabels::ENVIRONMENT_PERMIT, $powerPlantModel->getSummary());
-$this->params['breadcrumbs'][] = ['label' => AppLabels::ENVIRONMENT_PERMIT, 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => AppLabels::ENVIRONMENT_PERMIT, 'url' => ['index', '_ppId' => $powerPlantModel->id]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="environment-permit-create">

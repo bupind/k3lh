@@ -55,6 +55,18 @@ $form = ActiveForm::begin([
             ->textInput(['maxlength' => true, 'class' => AppConstants::ACTIVE_FORM_CLASS_INPUT_TEXT])
             ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
 
+        echo $form->field($model, 'ep_district', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+            ->textInput(['maxlength' => true, 'class' => 'form-control'])
+            ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+
+        echo $form->field($model, 'ep_province', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+            ->textInput(['maxlength' => true, 'class' => 'form-control'])
+            ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+
+        echo $form->field($model, 'ep_env_ministry', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+            ->textInput(['maxlength' => true, 'class' => 'form-control'])
+            ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+
         ?>
     </div>
 </div>

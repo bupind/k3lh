@@ -16,6 +16,9 @@ use yii\web\UploadedFile;
  * @property integer $power_plant_id
  * @property integer $ep_year
  * @property string $ep_quarter
+ * @property string $ep_district
+ * @property string $ep_province
+ * @property string $ep_env_ministry
  * @property integer $created_by
  * @property integer $created_at
  * @property integer $updated_by
@@ -44,6 +47,7 @@ class EnvironmentPermit extends AppModel
             [['sector_id', 'power_plant_id', 'ep_year', 'ep_quarter'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
             [['sector_id', 'power_plant_id', 'ep_year'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
             [['ep_quarter'], 'string', 'max' => 2],
+            [['ep_district', 'ep_province', 'ep_env_ministry'], 'string', 'max' => 50],
             [['power_plant_id'], 'exist', 'skipOnError' => true, 'targetClass' => PowerPlant::className(), 'targetAttribute' => ['power_plant_id' => 'id']],
             [['sector_id'], 'exist', 'skipOnError' => true, 'targetClass' => Sector::className(), 'targetAttribute' => ['sector_id' => 'id']],
         ];
@@ -60,6 +64,9 @@ class EnvironmentPermit extends AppModel
             'power_plant_id' => AppLabels::POWER_PLANT,
             'ep_year' => AppLabels::YEAR,
             'ep_quarter' => AppLabels::QUARTER,
+            'ep_district' => AppLabels::DISTRICT,
+            'ep_province' => AppLabels::PROVINCE,
+            'ep_env_ministry' => AppLabels::ENVIRONMENT_MINISTRY,
         ];
     }
 

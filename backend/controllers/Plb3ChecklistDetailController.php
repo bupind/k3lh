@@ -158,7 +158,15 @@ class Plb3ChecklistDetailController extends AppController
         $model->plb3cd_form_type_code = $pct;
 
         $questionGroups = Codeset::getCodesetAll(sprintf("%s_%s", "PLB3_QUESTION_TYPE_CODE", $pct));
-        $answerModels = $model->plb3ChecklistAnswers;
+
+        $answerModels = [];
+        foreach(Plb3Question::find()->all() as $key => $question){
+            $answerModels[$question->id] = $model->getPlb3ChecklistAnswerByQuestion($question->id);
+        }
+
+        if(Yii::$app->request->isPost){
+            $answerModels = array_values($answerModels);
+        }
 
         $question = new Plb3Question();
 
