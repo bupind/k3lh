@@ -13,7 +13,7 @@ use common\vendor\AppLabels;
 
 $this->title = sprintf('%s %s', AppLabels::BTN_VIEW, AppLabels::WATER_POLLUTION_CONTROL);
 $this->params['subtitle'] = $model->getSummary();
-$this->params['breadcrumbs'][] = ['label' => AppLabels::WATER_POLLUTION_CONTROL, 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => AppLabels::WATER_POLLUTION_CONTROL, 'url' => ['index', '_ppId' => $model->power_plant_id]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ppa-view">

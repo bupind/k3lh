@@ -46,7 +46,20 @@ $navs = [
         'icon' => 'fa-file-text-o',
         'label' => AppLabels::PLB3,
         'submenu' => [
-            ['icon' => 'fa-file-text-o', 'label' => AppLabels::QUESTION, 'url' => ['/plb3-question'], 'controller' => 'plb3-question'],
+            [
+                'icon' => 'fa-lock',
+                'label' => AppLabels::SELF_ASSESSMENT_SHORT,
+                'submenu' => [
+                    ['icon' => 'fa-file-text-o', 'label' => AppLabels::QUESTION, 'url' => ['/plb3-sa-question'], 'controller' => 'plb3-sa-question', 'rbac' => false],
+                ]
+            ],
+            [
+                'icon' => 'fa-lock',
+                'label' => 'Evaluasi',
+                'submenu' => [
+                    ['icon' => 'fa-file-text-o', 'label' => AppLabels::QUESTION, 'url' => ['/plb3-question'], 'controller' => 'plb3-question'],
+                ]
+            ]
         ]
     ],
     ['icon' => 'fa-history', 'label' => AppLabels::LOGIN_HISTORY, 'url' => ['/login-history'], 'controller' => 'login-history'],

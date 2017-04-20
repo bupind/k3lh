@@ -5,29 +5,29 @@ namespace backend\models;
 use Yii;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
-
 /**
- * This is the model class for table "ppa_ba".
+ * This is the model class for table "plb3_self_assessment".
  *
  * @property integer $id
  * @property integer $sector_id
  * @property integer $power_plant_id
- * @property integer $ppaba_year
+ * @property integer $plb3_year
  * @property integer $created_by
  * @property integer $created_at
  * @property integer $updated_by
  * @property integer $updated_at
  *
- * @property PowerPlant $powerPlant
+ * @property Plb3SaCompanyProfile[] $plb3SaCompanyProfiles
  * @property Sector $sector
- * @property PpaBaMonitoringPoint[] $ppaBaMonitoringPoints
+ * @property PowerPlant $powerPlant
+ * @property Plb3SaForm[] $plb3SaForms
  */
-class PpaBa extends AppModel {
+class Plb3SelfAssessment extends AppModel {
     /**
      * @inheritdoc
      */
     public static function tableName() {
-        return 'ppa_ba';
+        return 'plb3_self_assessment';
     }
     
     /**
@@ -35,9 +35,9 @@ class PpaBa extends AppModel {
      */
     public function rules() {
         return [
-            [['sector_id', 'power_plant_id', 'ppaba_year'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
-            [['sector_id', 'power_plant_id', 'ppaba_year'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
-            [['ppaba_year'], 'string', 'max' => 4],
+            [['sector_id', 'power_plant_id', 'plb3_year'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
+            [['sector_id', 'power_plant_id', 'plb3_year'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
+            [['plb3_year'], 'string', 'max' => 4],
             [['sector_id'], 'exist', 'skipOnError' => true, 'targetClass' => Sector::className(), 'targetAttribute' => ['sector_id' => 'id']],
             [['power_plant_id'], 'exist', 'skipOnError' => true, 'targetClass' => PowerPlant::className(), 'targetAttribute' => ['power_plant_id' => 'id']],
         ];
@@ -51,15 +51,22 @@ class PpaBa extends AppModel {
             'id' => 'ID',
             'sector_id' => AppLabels::SECTOR,
             'power_plant_id' => AppLabels::POWER_PLANT,
-            'ppaba_year' => AppLabels::YEAR,
+            'plb3_year' => AppLabels::YEAR,
         ];
     }
     
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPowerPlant() {
-        return $this->hasOne(PowerPlant::className(), ['id' => 'power_plant_id']);
+    public function getPlb3SaCompanyProfiles() {
+        return $this->hasMany(Plb3SaCompanyProfile::className(), ['plb3_self_assessment_id' => 'id']);
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPlb3SaForms() {
+        return $this->hasMany(Plb3SaForm::className(), ['plb3_self_assessment_id' => 'id']);
     }
     
     /**
@@ -72,11 +79,11 @@ class PpaBa extends AppModel {
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPpaBaMonitoringPoints() {
-        return $this->hasMany(PpaBaMonitoringPoint::className(), ['ppa_ba_id' => 'id']);
+    public function getPowerPlant() {
+        return $this->hasOne(PowerPlant::className(), ['id' => 'power_plant_id']);
     }
     
     public function getSummary() {
-        return sprintf('%s - %s - %s', $this->sector->sector_name, $this->powerPlant->pp_name, $this->ppaba_year);
+        return sprintf('%s - %s - %s', $this->sector->sector_name, $this->powerPlant->pp_name, $this->plb3_year);
     }
 }

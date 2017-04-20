@@ -142,9 +142,10 @@ class AppLabels {
     const PARAM = 'Parameter';
     const QUALITY_STANDARD = 'Baku Mutu';
     const CATEGORY = 'Kategori';
-
-
+    const IS_QUESTION = 'Merupakan Pertanyaan?';
     const DATA_COUNT = 'Jumlah Data';
+    const YES_NO = 'Ya / Tidak';
+    const PERFORMANCE = 'Kinerja';
 
     // MONTH
     const JANUARY = 'Januari';
@@ -456,4 +457,43 @@ class AppLabels {
     const THIRDPARTY = 'Pihak Ketiga';
     const TERMS = 'Ketentuan';
     const OBLIGATION = 'Pentaatan';
+    
+    // PLB3
+    const SELF_ASSESSMENT = 'Form Self Assessment';
+    const SELF_ASSESSMENT_SHORT = 'Form SA';
+    const COMPANY_PROFILE = 'Profil Perusahaan';
+    const B3_WASTE_MANAGEMENT = 'Pengelolaan Limbah B3';
+    const COMPANY_NAME = 'Nama Perusahaan';
+    const ACTIVITY_LOCATION_ADDRESS = 'Alamat Lokasi Kegiatan';
+    const PHONE_FAX = 'Telp / Fax';
+    const MAIN_COMPANY_ADDRESS = 'Alamat Kantor Induk';
+    const HOLDING_COMPANY_NAME = 'Nama Holding Company';
+    const HOLDING_COMPANY_OFFICE_ADDRESS = 'Alamat Kantor Holding Company';
+    const COMPANY_ESTABLISHED_YEAR = 'Tahun Beroperasi Perusahaan';
+    const INDUSTRY_FIELD = 'Jenis Industri';
+    const CAPITAL_STATUS = 'Status Permodalan';
+    const AREA_FACTORY = 'Luas Area Pabrik / Lokasi Kegiatan';
+    const NUMBER_OF_EMPLOYEES = 'Jumlah Karyawan';
+    const PRODUCTION_CAPACITY = 'Kapasitas Produksi';
+    const INSTALLED = 'Terpasang';
+    const RAW_MATERIAL = 'Bahan Baku Utama';
+    const ADJUVANT_MATERIAL = 'Bahan Penolong';
+    const PRODUCTION_PROCESS = 'Proses Produksi';
+    const EXPORT_MARKETING_PERCENTAGE = 'Prosentase Pemasaran Export';
+    const LOCAL_MARKETING_PERCENTAGE = 'Prosentase Pemasaran Domestik / Lokal';
+    const ENVIRONMENT_DOCUMENT_OWNED = 'Dokumen Lingkungan yang dimiliki';
+    const CONTACT_NAME = 'Nama Personal Kontak';
+    const MOBILE_PHONE = 'Nomor HP';
+    const CONTACT_EMAIL = 'E-mail Personal Kontak';
+    const IMPLEMENTATION_OF_B3_WASTE_MANAGEMENT = 'Pelaksanaan Pengelolaan Limbah B3';
+    
+    const PLB3_STATIC_QUESTION_HEADER = 'a. Pendataan dan identifikasi jenis dan volume limbah B3';
+    const PLB3_STATIC_QUESTION_1 = '- Telah melakukan identifikasi jenis limbah B3';
+    const PLB3_STATIC_QUESTION_2 = '- Telah melakukan pencatatan jenis dan volume limbah B3';
+    const PLB3_STATIC_QUESTION_3 = '- Telah melakukan pendataan pengelolaan lanjut limbah B3';
+    
+    const PLB3_STATIC_QUESTION_QUARTER_HEADER = 'b. Pelaporan kegiatan pengelolaan limbah B3';
+    const PLB3_STATIC_QUESTION_QUARTER_1 = '- KLH';
+    const PLB3_STATIC_QUESTION_QUARTER_2 = '- Provinsi';
+    const PLB3_STATIC_QUESTION_QUARTER_3 = '- Kabupaten / Kota';
 }
