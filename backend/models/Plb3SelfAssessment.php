@@ -20,6 +20,7 @@ use common\vendor\AppLabels;
  * @property Plb3SaCompanyProfile[] $plb3SaCompanyProfiles
  * @property Sector $sector
  * @property PowerPlant $powerPlant
+ * @property Plb3SaForm[] $plb3SaForms
  */
 class Plb3SelfAssessment extends AppModel {
     /**
@@ -59,6 +60,13 @@ class Plb3SelfAssessment extends AppModel {
      */
     public function getPlb3SaCompanyProfiles() {
         return $this->hasMany(Plb3SaCompanyProfile::className(), ['plb3_self_assessment_id' => 'id']);
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPlb3SaForms() {
+        return $this->hasMany(Plb3SaForm::className(), ['plb3_self_assessment_id' => 'id']);
     }
     
     /**

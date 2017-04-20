@@ -142,9 +142,10 @@ class AppLabels {
     const PARAM = 'Parameter';
     const QUALITY_STANDARD = 'Baku Mutu';
     const CATEGORY = 'Kategori';
-
-
+    const IS_QUESTION = 'Merupakan Pertanyaan?';
     const DATA_COUNT = 'Jumlah Data';
+    const YES_NO = 'Ya / Tidak';
+    const PERFORMANCE = 'Kinerja';
 
     // MONTH
     const JANUARY = 'Januari';
@@ -420,6 +421,7 @@ class AppLabels {
     
     // PLB3
     const SELF_ASSESSMENT = 'Form Self Assessment';
+    const SELF_ASSESSMENT_SHORT = 'Form SA';
     const COMPANY_PROFILE = 'Profil Perusahaan';
     const B3_WASTE_MANAGEMENT = 'Pengelolaan Limbah B3';
     const PLB3 = 'PLB3';
@@ -445,4 +447,15 @@ class AppLabels {
     const CONTACT_NAME = 'Nama Personal Kontak';
     const MOBILE_PHONE = 'Nomor HP';
     const CONTACT_EMAIL = 'E-mail Personal Kontak';
+    const IMPLEMENTATION_OF_B3_WASTE_MANAGEMENT = 'Pelaksanaan Pengelolaan Limbah B3';
+    
+    const PLB3_STATIC_QUESTION_HEADER = 'a. Pendataan dan identifikasi jenis dan volume limbah B3';
+    const PLB3_STATIC_QUESTION_1 = '- Telah melakukan identifikasi jenis limbah B3';
+    const PLB3_STATIC_QUESTION_2 = '- Telah melakukan pencatatan jenis dan volume limbah B3';
+    const PLB3_STATIC_QUESTION_3 = '- Telah melakukan pendataan pengelolaan lanjut limbah B3';
+    
+    const PLB3_STATIC_QUESTION_QUARTER_HEADER = 'b. Pelaporan kegiatan pengelolaan limbah B3';
+    const PLB3_STATIC_QUESTION_QUARTER_1 = '- KLH';
+    const PLB3_STATIC_QUESTION_QUARTER_2 = '- Provinsi';
+    const PLB3_STATIC_QUESTION_QUARTER_3 = '- Kabupaten / Kota';
 }

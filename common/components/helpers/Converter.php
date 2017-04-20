@@ -136,7 +136,9 @@ class Converter extends Component {
     /* @var $attachmentOwners AttachmentOwner[] */
     public static function attachments($attachmentOwners, $options = []) {
         $index = isset($options['index']) ? $options['index'] : null;
-        $inputName = !is_null($index) ? "Attachment[$index][files][]" : "Attachment[files][]";
+        $name = isset($options['name']) ? $options['name'] : 'Attachment';
+        $inputName = !is_null($index) ? "[$index][files][]" : "[files][]";
+        $inputName = $name . $inputName;
     
         if (!empty($attachmentOwners)) {
             $link = '';

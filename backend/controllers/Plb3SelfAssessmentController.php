@@ -9,6 +9,8 @@ use Yii;
 use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
 use common\vendor\AppConstants;
+use backend\models\Codeset;
+use backend\models\Plb3SaQuestion;
 
 /**
  * Plb3SelfAssessmentController implements the CRUD actions for Plb3SelfAssessment model.
@@ -77,8 +79,33 @@ class Plb3SelfAssessmentController extends AppController {
      * @return mixed
      */
     public function actionView($id) {
+        $model = $this->findModel($id);
+    
+        $startDate = new \DateTime();
+        $startDate->setDate($model->plb3_year - 1, 7, 1);
+    
+        $questionGroups = Codeset::getCodesetAll(AppConstants::CODESET_PLB3_SA_QUESTION_CATEGORY_CODE);
+    
+        $plb3Form = $model->plb3SaForms[0];
+    
+        $plb3SaFormDetailStaticModel = $plb3Form->plb3SaFormDetailStatic;
+        $plb3SaFormDetailStaticQuarterModels = $plb3Form->plb3SaFormDetailStaticQuarters;
+        
+        $plb3SaFormDetailModels = [];
+        foreach (Plb3SaQuestion::find()->all() as $key => $question) {
+            $detailModel = $plb3Form->getPlb3SaFormDetailByQuestion($question->id);
+            if (!is_null($detailModel)) {
+                $plb3SaFormDetailModels[$question->id] = $detailModel;
+            }
+        }
+        
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'startDate' => $startDate,
+            'questionGroups' => $questionGroups,
+            'plb3SaFormDetailModels' => $plb3SaFormDetailModels,
+            'plb3SaFormDetailStaticModel' => $plb3SaFormDetailStaticModel,
+            'plb3SaFormDetailStaticQuarterModels' => $plb3SaFormDetailStaticQuarterModels,
         ]);
     }
     

@@ -64,17 +64,6 @@ class PpaTechnicalProvisionController extends AppController {
     }
     
     /**
-     * Displays a single PpaTechnicalProvision model.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionView($id) {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-    
-    /**
      * Finds the PpaTechnicalProvision model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id

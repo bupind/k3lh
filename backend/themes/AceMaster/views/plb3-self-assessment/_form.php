@@ -43,7 +43,7 @@ $form = ActiveForm::begin([
     <div class="col-xs-12 center">
         <div class="btn-group">
             <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::COMPANY_PROFILE, ['/plb3-sa-company-profile', 'plb3SAId' => $model->id], ['class' => 'btn btn-sm btn-success']); ?>
-            <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::B3_WASTE_MANAGEMENT, ['/ppa-ba-report-bm', 'plb3SAId' => $model->id], ['class' => 'btn btn-sm btn-warning']); ?>
+            <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::B3_WASTE_MANAGEMENT, ['/plb3-sa-form', 'plb3SAId' => $model->id], ['class' => 'btn btn-sm btn-warning']); ?>
         </div>
     </div>
 </div>
