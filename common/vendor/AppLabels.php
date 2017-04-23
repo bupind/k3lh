@@ -500,4 +500,5 @@ class AppLabels {
     const PLB3_STATIC_QUESTION_QUARTER_1 = '- KLH';
     const PLB3_STATIC_QUESTION_QUARTER_2 = '- Provinsi';
     const PLB3_STATIC_QUESTION_QUARTER_3 = '- Kabupaten / Kota';
+    const EVALUATION = 'Evaluasi';
 }
