@@ -3,7 +3,6 @@
 namespace backend\models;
 
 use Yii;
-use yii\db\Command;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
 use yii\base\Exception;
@@ -15,7 +14,7 @@ use yii\base\Exception;
  * @property integer $sector_id
  * @property integer $power_plant_id
  * @property integer $smk3_year
- * @property integer $smk3_quarter
+ * @property string $smk3_auditor
  * @property integer $created_by
  * @property integer $created_at
  * @property integer $updated_by
@@ -41,9 +40,9 @@ class Smk3 extends AppModel
     public function rules()
     {
         return [
-            [['sector_id', 'power_plant_id', 'smk3_year', 'smk3_quarter'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
+            [['sector_id', 'power_plant_id', 'smk3_year', 'smk3_auditor'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
             [['sector_id', 'power_plant_id', 'smk3_year'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
-            [['smk3_quarter'], 'string', 'max' => 2],
+            [['smk3_auditor'], 'string'],
             [['power_plant_id'], 'exist', 'skipOnError' => true, 'targetClass' => PowerPlant::className(), 'targetAttribute' => ['power_plant_id' => 'id']],
             [['sector_id'], 'exist', 'skipOnError' => true, 'targetClass' => Sector::className(), 'targetAttribute' => ['sector_id' => 'id']],
         ];
@@ -58,8 +57,8 @@ class Smk3 extends AppModel
             'id' => 'ID',
             'sector_id' => AppLabels::SECTOR,
             'power_plant_id' => AppLabels::POWER_PLANT,
-            'smk3_year' => AppLabels::YEAR,
-            'smk3_quarter' => AppLabels::QUARTER,
+            'smk3_year' => AppLabels::PERIOD,
+            'smk3_auditor' => AppLabels::AUDITOR,
         ];
     }
 

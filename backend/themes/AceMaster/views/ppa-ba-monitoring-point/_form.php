@@ -1,6 +1,5 @@
 <?php
 
-use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\components\SubmitButton;
 use common\vendor\AppConstants;
@@ -54,11 +53,11 @@ USE backend\models\Codeset;
                             'template' => Yii::t('app', AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE_INPUT_GROUP, [
                                 'separator' => '<i class="fa fa-map"></i>',
                                 'input2' => $form->field($model, 'ppabamp_coord_long', ['template' => '{input}'])
-                                    ->textInput(['maxlength' => true, 'class' => 'form-control', 'placeholder' => $model->getAttributeLabel('ppabamp_coord_long')])
+                                    ->textInput(['maxlength' => true, 'class' => 'form-control', 'placeholder' => "Long (Cth: 05&deg; 31' 20,6)"])
                                     ->label(false)
                             ])
                         ])
-                            ->textInput(['maxlength' => true, 'class' => 'form-control', 'placeholder' => $model->getAttributeLabel('ppabamp_coord_lat')])
+                            ->textInput(['maxlength' => true, 'class' => 'form-control', 'placeholder' => "Lat (Cth: 05&deg; 31' 20,6)"])
                             ->label(AppLabels::COORDINATE, ['class' => '']);
 
                         echo $form->field($model, 'ppabamp_monitoring_frequency_code', ['template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE])

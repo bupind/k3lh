@@ -7,9 +7,9 @@ use backend\assets\BudgetmonitoringAsset;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
 use app\components\SubmitLinkButton;
-use backend\models\Sector;
 use app\components\DetailView;
 
+/* @var $model backend\models\BudgetMonitoring */
 /* @var $this yii\web\View */
 
 BudgetmonitoringAsset::register($this);
@@ -113,7 +113,10 @@ $form = ActiveForm::begin([
                                 <?= Html::activeTextInput($month, "[$key][$key1]bmv_realization_value_display", ['data-format' => AppConstants::CALX_DATA_FORMAT_THO, 'data-rel' => 'tooltip', 'data-placement' => 'top', 'title' => $month->bmv_plan_value, 'data-cell' => "$alphabet$alphabet$key", 'class' => 'text-right tooltip-info form-control numbersOnly']); ?>
                             </td>
                         <?php } else{ ?>
-                            <td><?= Html::activeTextInput($month, "[$key][$key1]bmv_realization_value", ['readOnly' => 'true', 'data-format' => '0,0', 'data-cell' => "$alphabet$key", 'class' => 'form-control numbersOnly']); ?></td>
+                            <td>
+                                <?= Html::activeHiddenInput($month, "[$key][$key1]bmv_realization_value", ['data-cell' => "$alphabet$key", 'data-format' => '0', 'data-formula' => "$alphabet$alphabet$key"]); ?>
+                                <?= Html::activeTextInput($month, "[$key][$key1]bmv_realization_value_display", ['data-format' => AppConstants::CALX_DATA_FORMAT_THO, 'data-rel' => 'tooltip', 'data-placement' => 'top', 'title' => '0', 'data-cell' => "$alphabet$alphabet$key", 'class' => 'text-right tooltip-info form-control numbersOnly']); ?>
+                            </td>
                         <?php } ?>
                     <?php  endforeach; ?>
 
@@ -122,7 +125,7 @@ $form = ActiveForm::begin([
             </tbody>
             <tfoot>
             <tr>
-                <td colspan="2" width="20%" class="center"><?= AppLabels::ACCUMULATION; ?></td>
+                <td colspan="2" width="20%" class="center"><?= AppLabels::AMOUNT; ?></td>
                 <td width="10%" class="text-right"><?= Html::label('', null, ['data-format' => AppConstants::CALX_DATA_FORMAT_CURRENCY, 'id' => 'bmd_total']); ?></td>
                 <td colspan="1" class="text-right"><?= Html::label('', null, ['data-format' => AppConstants::CALX_DATA_FORMAT_CURRENCY, 'data-cell' => 'O1', 'id' => 'bmv_total_jan']); ?></td>
                 <td colspan="1" class="text-right"><?= Html::label('', null, ['data-format' => AppConstants::CALX_DATA_FORMAT_CURRENCY, 'data-cell' => 'P1', 'id' => 'bmv_total_feb']); ?></td>

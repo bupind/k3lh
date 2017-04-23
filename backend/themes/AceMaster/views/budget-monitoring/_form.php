@@ -16,6 +16,7 @@ $baseUrl = Url::base();
 /* @var $this yii\web\View */
 /* @var $model backend\models\BudgetMonitoring */
 /* @var $form yii\widgets\ActiveForm */
+/* @var $model backend\models\PowerPlant[] */
 ?>
 
 <?php
@@ -121,7 +122,7 @@ $form = ActiveForm::begin([
             </tbody>
             <tfoot>
             <tr>
-                <td colspan="2" width="20%" class="center"><?= AppLabels::ACCUMULATION; ?></td>
+                <td colspan="2" width="20%" class="center"><?= AppLabels::AMOUNT; ?></td>
                 <td width="10%" class="text-right"><?= Html::label('', null, ['data-format' => AppConstants::CALX_DATA_FORMAT_CURRENCY, 'id' => 'bmd_total']); ?></td>
                 <td colspan="1" class="text-right"><?= Html::label('', null, ['data-format' => AppConstants::CALX_DATA_FORMAT_CURRENCY, 'data-cell' => 'O1', 'id' => 'bmv_total_jan']); ?></td>
                 <td colspan="1" class="text-right"><?= Html::label('', null, ['data-format' => AppConstants::CALX_DATA_FORMAT_CURRENCY, 'data-cell' => 'P1', 'id' => 'bmv_total_feb']); ?></td>

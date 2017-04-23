@@ -44,7 +44,7 @@ class RoadmapK3lItem extends AppModel {
             [['roadmap_k3l_id', 'roadmap_k3l_attribute_id'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
             [['roadmap_k3l_id', 'roadmap_k3l_attribute_id', 'item_value_how_much', 'item_order'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
             [['item_value_where', 'item_value_who', 'item_value_how_many'], 'string'],
-            [['item_value_when'], 'string', 'max' => 150],
+            [['item_value_when'], 'safe'],
             [['roadmap_k3l_id'], 'exist', 'skipOnError' => true, 'targetClass' => RoadmapK3l::className(), 'targetAttribute' => ['roadmap_k3l_id' => 'id']],
             [['roadmap_k3l_attribute_id'], 'exist', 'skipOnError' => true, 'targetClass' => RoadmapK3lAttribute::className(), 'targetAttribute' => ['roadmap_k3l_attribute_id' => 'id']],
         ];
@@ -67,11 +67,20 @@ class RoadmapK3lItem extends AppModel {
             'item_order' => AppLabels::ORDER
         ];
     }
+
+    public function beforeSave($insert)
+    {
+        parent::beforeSave($insert);
+        $this->item_value_when = \Yii::$app->formatter->asDate($this->item_value_when, AppConstants::FORMAT_DB_DATE_PHP);
+
+        return true;
+    }
     
     public function afterFind() {
         parent::afterFind();
         
         $this->item_value_how_much_display = $this->item_value_how_much;
+        $this->item_value_when = \Yii::$app->formatter->asDate($this->item_value_when);
     }
     
     /**

@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'value' => 'powerPlant.pp_name'
                 ],
                 'smk3_year',
-                'smk3_quarter',
+                'smk3_auditor',
 
                 ['class' => 'yii\grid\ActionColumn'],
             ],

@@ -1,6 +1,5 @@
 <?php
 
-use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\components\SubmitButton;
 use common\vendor\AppConstants;
@@ -55,11 +54,11 @@ use kartik\date\DatePicker;
                                 'template' => Yii::t('app', AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE_INPUT_GROUP, [
                                     'separator' => '<i class="fa fa-map"></i>',
                                     'input2' => $form->field($model, 'ppasp_coord_bt', ['template' => '{input}'])
-                                                    ->textInput(['maxlength' => true, 'class' => 'form-control', 'placeholder' => $model->getAttributeLabel('ppasp_coord_bt')])
+                                                    ->textInput(['maxlength' => true, 'class' => 'form-control', 'placeholder' => "BT (Cth: 05&deg; 31' 20,6)"])
                                                     ->label(false)
                                 ])
                             ])
-                            ->textInput(['maxlength' => true, 'class' => 'form-control', 'placeholder' => $model->getAttributeLabel('ppasp_coord_ls')])
+                            ->textInput(['maxlength' => true, 'class' => 'form-control', 'placeholder' => "LS (Cth: 05&deg; 31' 20,6)"])
                             ->label(AppLabels::COORDINATE, ['class' => '']);
 
                         echo $form->field($model, 'ppasp_wastewater_tech_code', ['template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE])

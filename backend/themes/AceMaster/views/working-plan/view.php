@@ -80,7 +80,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <tr>
                                         <?php for ($i=1; $i<=3; $i++): ?>
                                             <?php for ($j=1; $j<=4; $j++): ?>
-                                                <td class="progress_<?= isset($detail->monthly_progress[$i][$j]) ? $detail->monthly_progress[$i][$j] : ''; ?>"></td>
+                                                <td class="text-center progress_<?= isset($detail->monthly_progress[$i][$j]) ? $detail->monthly_progress[$i][$j] : ''; ?>">W<?= $j ?></td>
                                             <?php endfor; ?>
                                         <?php endfor; ?>
                                     </tr>
@@ -93,7 +93,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <tr>
                                         <?php for ($i=4; $i<=6; $i++): ?>
                                             <?php for ($j=1; $j<=4; $j++): ?>
-                                                <td class="progress_<?= isset($detail->monthly_progress[$i][$j]) ? $detail->monthly_progress[$i][$j] : ''; ?>"></td>
+                                                <td class="text-center progress_<?= isset($detail->monthly_progress[$i][$j]) ? $detail->monthly_progress[$i][$j] : ''; ?>">W<?= $j ?></td>
                                             <?php endfor; ?>
                                         <?php endfor; ?>
                                     </tr>
@@ -106,7 +106,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <tr>
                                         <?php for ($i=7; $i<=9; $i++): ?>
                                             <?php for ($j=1; $j<=4; $j++): ?>
-                                                <td class="progress_<?= isset($detail->monthly_progress[$i][$j]) ? $detail->monthly_progress[$i][$j] : ''; ?>"></td>
+                                                <td class="text-center progress_<?= isset($detail->monthly_progress[$i][$j]) ? $detail->monthly_progress[$i][$j] . '' : ''; ?>">W<?= $j ?></td>
                                             <?php endfor; ?>
                                         <?php endfor; ?>
                                     </tr>
@@ -119,7 +119,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <tr>
                                         <?php for ($i=10; $i<=12; $i++): ?>
                                             <?php for ($j=1; $j<=4; $j++): ?>
-                                                <td class="progress_<?= isset($detail->monthly_progress[$i][$j]) ? $detail->monthly_progress[$i][$j] : ''; ?>"></td>
+                                                <td class="text-center progress_<?= isset($detail->monthly_progress[$i][$j]) ? $detail->monthly_progress[$i][$j] : ''; ?>">W<?= $j ?></td>
                                             <?php endfor; ?>
                                         <?php endfor; ?>
                                     </tr>

@@ -115,7 +115,7 @@ $form = ActiveForm::begin([
                 </tbody>
                 <tfoot>
                 <tr>
-                    <td rowspan="2" colspan="2" width="20%" class="center"><?= AppLabels::ACCUMULATION; ?></td>
+                    <td rowspan="2" colspan="2" width="20%" class="center"><?= AppLabels::AMOUNT; ?></td>
                     <td rowspan="2" width="10%" class="text-right"><?= Html::label('', null, ['data-format' => AppConstants::CALX_DATA_FORMAT_CURRENCY, 'id' => 'bmd_total']); ?></td>
                     <td class="text-center"><?= AppLabels::PLAN ?></td>
                     <td colspan="1" class="text-right"><?= Html::label('', null, ['data-format' => AppConstants::CALX_DATA_FORMAT_CURRENCY, 'data-cell' => 'O1', 'id' => 'bmv_total_jan']); ?></td>
@@ -147,7 +147,7 @@ $form = ActiveForm::begin([
                     <td colspan="1" class="text-right"><?= Html::label('', null, ['data-format' => AppConstants::CALX_DATA_FORMAT_CURRENCY, 'data-cell' => 'ZZZ1', 'id' => 'bmv_total_dec1']); ?></td>
                 </tr>
                 <tr>
-                    <td rowspan="2" colspan="3" width="20%" class="center"><?= AppLabels::ACCUMULATION_MONTH; ?></td>
+                    <td rowspan="3" colspan="3" width="20%" class="center"><?= AppLabels::ACCUMULATION_MONTH; ?></td>
                     <td class="text-center"><?= AppLabels::PLAN ?></td>
                     <td colspan="1" class="text-right"><?= Html::label('', null, ['data-format' => AppConstants::CALX_DATA_FORMAT_CURRENCY, 'data-cell' => 'O2', 'id' => 'bmv_total_month_jan']); ?></td>
                     <td colspan="1" class="text-right"><?= Html::label('', null, ['data-format' => AppConstants::CALX_DATA_FORMAT_CURRENCY, 'data-cell' => 'P2', 'id' => 'bmv_total_month_feb']); ?></td>
@@ -176,6 +176,21 @@ $form = ActiveForm::begin([
                     <td colspan="1" class="text-right"><?= Html::label('', null, ['data-format' => AppConstants::CALX_DATA_FORMAT_CURRENCY, 'data-cell' => 'XXX2', 'id' => 'bmv_total_month_oct1']); ?></td>
                     <td colspan="1" class="text-right"><?= Html::label('', null, ['data-format' => AppConstants::CALX_DATA_FORMAT_CURRENCY, 'data-cell' => 'YYY2', 'id' => 'bmv_total_month_nov1']); ?></td>
                     <td colspan="1" class="text-right"><?= Html::label('', null, ['data-format' => AppConstants::CALX_DATA_FORMAT_CURRENCY, 'data-cell' => 'ZZZ2', 'id' => 'bmv_total_month_dec1']); ?></td>
+                </tr>
+                <tr>
+                    <td class="text-center"><?= AppLabels::PERCENTAGE ?></td>
+                    <td colspan="1" class="text-right"><?= Html::label('', null, ['data-format' => '0[.]00%', 'data-cell' => 'OOOO2', 'data-formula' => 'OOO2/O2']); ?></td>
+                    <td colspan="1" class="text-right"><?= Html::label('', null, ['data-format' => '0[.]00%', 'data-cell' => 'PPPP2', 'data-formula' => 'PPP2/P2']); ?></td>
+                    <td colspan="1" class="text-right"><?= Html::label('', null, ['data-format' => '0[.]00%', 'data-cell' => 'QQQQ2', 'data-formula' => 'QQQ2/Q2']); ?></td>
+                    <td colspan="1" class="text-right"><?= Html::label('', null, ['data-format' => '0[.]00%', 'data-cell' => 'RRRR2', 'data-formula' => 'RRR2/R2']); ?></td>
+                    <td colspan="1" class="text-right"><?= Html::label('', null, ['data-format' => '0[.]00%', 'data-cell' => 'SSSS2', 'data-formula' => 'SSS2/S2']); ?></td>
+                    <td colspan="1" class="text-right"><?= Html::label('', null, ['data-format' => '0[.]00%', 'data-cell' => 'TTTT2', 'data-formula' => 'TTT2/T2']); ?></td>
+                    <td colspan="1" class="text-right"><?= Html::label('', null, ['data-format' => '0[.]00%', 'data-cell' => 'UUUU2', 'data-formula' => 'UUU2/U2']); ?></td>
+                    <td colspan="1" class="text-right"><?= Html::label('', null, ['data-format' => '0[.]00%', 'data-cell' => 'VVVV2', 'data-formula' => 'VVV2/V2']); ?></td>
+                    <td colspan="1" class="text-right"><?= Html::label('', null, ['data-format' => '0[.]00%', 'data-cell' => 'WWWW2', 'data-formula' => 'WWW2/W2']); ?></td>
+                    <td colspan="1" class="text-right"><?= Html::label('', null, ['data-format' => '0[.]00%', 'data-cell' => 'XXXX2', 'data-formula' => 'XXX2/X2']); ?></td>
+                    <td colspan="1" class="text-right"><?= Html::label('', null, ['data-format' => '0[.]00%', 'data-cell' => 'YYYY2', 'data-formula' => 'YYY2/Y2']); ?></td>
+                    <td colspan="1" class="text-right"><?= Html::label('', null, ['data-format' => '0[.]00%', 'data-cell' => 'ZZZZ2', 'data-formula' => 'ZZZ2/Z2']); ?></td>
                 </tr>
                 </tfoot>
             </table>

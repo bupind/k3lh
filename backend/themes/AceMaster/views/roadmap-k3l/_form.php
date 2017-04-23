@@ -10,13 +10,16 @@ use common\vendor\AppLabels;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
+use kartik\widgets\DatePicker;
 
 RoadmapAsset::register($this);
+DatePicker::widget(['name' => 'hide', 'options' => ['class' => 'hidden']]);
 $baseUrl = Url::base();
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\RoadmapK3l */
 /* @var $form yii\widgets\ActiveForm */
+/* @var $powerPlantList backend\models\PowerPlant[] */
 ?>
 
 <?php
@@ -139,7 +142,20 @@ $form = ActiveForm::begin([
                                         <?= Html::activeHiddenInput($item, "[$key]id"); ?>
                                         <?= $item->roadmapK3lAttribute->attr_text; ?>
                                     </td>
-                                    <td><?= Html::activeTextInput($item, "[$key]item_value_when", ['class' => 'form-control']); ?></td>
+                                    <td><?php
+                                        echo DatePicker::widget([
+                                            'model' => $item,
+                                            'attribute' => "[$key]item_value_when",
+                                            'id' => 'date1',
+                                            'type' => DatePicker::TYPE_INPUT,
+                                            'options' => ['class' => 'form-control'],
+                                            'pluginOptions' => [
+                                                'autoclose' => true,
+                                                'format' => 'dd-mm-yyyy',
+                                                'todayHighlight' => 'true'
+                                            ],
+                                        ])
+                                        ?></td>
                                     <td><?= Html::activeTextarea($item, "[$key]item_value_where", ['class' => 'form-control']); ?></td>
                                     <td><?= Html::activeTextarea($item, "[$key]item_value_who", ['class' => 'form-control']); ?></td>
                                     <td><?= Html::activeTextarea($item, "[$key]item_value_how_many", ['class' => 'form-control']); ?></td>

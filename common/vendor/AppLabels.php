@@ -231,7 +231,7 @@ class AppLabels {
     const META_KEYWORD = 'Meta Keyword';
     
     // SECTOR
-    const SECTOR = 'Sektor';
+    const SECTOR = 'Unit Kerja';
     
     // POWER PLANT
     const POWER_PLANT = 'Pembangkit Listrik';
@@ -266,6 +266,10 @@ class AppLabels {
     const SUITABILITY = 'Kesesuaian';
     const SUITABLE = 'Sesuai';
     const NO = 'Tidak';
+    const AUDITOR = 'Auditor';
+    const IGNORED = 'Abaikan';
+    const AUDIT_RESULT = 'Hasil Audit';
+    const EFFICIENCY = 'Efisiensi';
     
     // MATURITY LEVEL
     const MATURITY_LEVEL = 'Maturity Level';

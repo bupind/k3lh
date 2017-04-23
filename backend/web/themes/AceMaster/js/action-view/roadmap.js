@@ -171,7 +171,7 @@ jQuery(document).ready(function () {
             sb.append('</td>');
             sb.append('<td>');
                 sb.append('<input name="RoadmapK3lItem['+ itemIndex +'][roadmap_k3l_attribute_id]" type="hidden" value="'+ id +'">');
-                sb.append('<input class="form-control" name="RoadmapK3lItem['+ itemIndex +'][item_value_when]" type="text" maxlength="150">');
+                sb.append('<input type="text" class="form-control krajee-datepicker" name="RoadmapK3lItem['+ itemIndex +'][item_value_when]" />');
             sb.append('</td>');
             sb.append('<td>');
                 sb.append('<textarea class="form-control" name="RoadmapK3lItem['+ itemIndex +'][item_value_where]"></textarea>');
@@ -201,7 +201,14 @@ jQuery(document).ready(function () {
         sb.append('</tr>');
 
         programTbody.append(sb.toString());
+
         sb.clear();
+
+        $('.krajee-datepicker').kvDatepicker({
+            format: "dd-mm-yyyy",
+            autoclose: true,
+            todayHighlight: 'true'
+        });
 
         form.calx('update').calx('calculate');
     }

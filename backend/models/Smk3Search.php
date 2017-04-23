@@ -2,10 +2,8 @@
 
 namespace backend\models;
 
-use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Smk3;
 
 /**
  * Smk3Search represents the model behind the search form about `backend\models\Smk3`.
@@ -18,7 +16,7 @@ class Smk3Search extends Smk3
     public function rules()
     {
         return [
-            [['id', 'sector_id', 'power_plant_id', 'smk3_year', 'smk3_quarter', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'integer'],
+            [['id', 'sector_id', 'power_plant_id', 'smk3_year', 'smk3_auditor', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'integer'],
         ];
     }
 
@@ -62,12 +60,10 @@ class Smk3Search extends Smk3
             'sector_id' => $this->sector_id,
             'power_plant_id' => $this->power_plant_id,
             'smk3_year' => $this->smk3_year,
-            'smk3_quarter' => $this->smk3_quarter,
-            'created_by' => $this->created_by,
-            'created_at' => $this->created_at,
-            'updated_by' => $this->updated_by,
-            'updated_at' => $this->updated_at,
+            'smk3_auditor' => $this->smk3_auditor,
         ]);
+
+        $query->andFilterWhere(['like', 'smk3_auditor', $this->smk3_auditor]);
 
         return $dataProvider;
     }

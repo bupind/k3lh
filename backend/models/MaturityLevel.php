@@ -73,9 +73,11 @@ class MaturityLevel extends AppModel {
                 if (isset($detail['id'])) {
                     $detailMdl = MaturityLevelDetail::findOne(['id' => $detail['id']]);
                 } else {
+
                     $detailMdl = new MaturityLevelDetail();
                     $detailMdl->maturity_level_id = $maturityLevelId;
                 }
+
         
                 if ($detailMdl->load(['MaturityLevelDetail' => $detail]) && $detailMdl->save()) {
                     if (isset($request['Attachment'][$key])) {

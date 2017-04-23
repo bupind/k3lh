@@ -36,8 +36,8 @@ input.typeahead, input.tt-query, input.tt-hint, .tt-suggestion { font-size: 14px
 }
 
 .working_plan {}
-.working_plan .progress_1 { background: #A5A5A5; }
-.working_plan .progress_2 { background: #44546A; }
-.working_plan .progress_3 { background: #FF0000; }
-.working_plan .progress_4 { background: #70AD47; }
-.working_plan .progress_5 { background: #7030A0; }
+.working_plan .progress_1 { background: #A5A5A5; color: #FFFFFF;}
+.working_plan .progress_2 { background: #44546A; color: #FFFFFF;}
+.working_plan .progress_3 { background: #FF0000; color: #FFFFFF;}
+.working_plan .progress_4 { background: #70AD47; color: #FFFFFF;}
+.working_plan .progress_5 { background: #7030A0; color: #FFFFFF;}
