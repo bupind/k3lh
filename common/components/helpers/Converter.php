@@ -104,6 +104,20 @@ class Converter extends Component {
         }
     }
     
+    public static function attachmentExtLink($label, $attachmentOwner, $options = []) {
+        if (!is_null($attachmentOwner)) {
+            $link = Html::beginTag('div');
+            $link .= $label;
+            $link .= ' ';
+            $link .= Html::a('<i class="ace-icon fa fa-external-link  bigger-110 icon-only"></i>', sprintf('%s/uploads/%s/%s', \Yii::getAlias(AppConstants::THEME_BASE_URL), strtolower($attachmentOwner->attachment->atf_location), $attachmentOwner->attachment->atf_filename), ['target' => '_blank', 'class' => 'btn btn-minier btn-info']);
+            $link .= Html::endTag('div');
+    
+            return $link;
+        } else {
+            return AppConstants::MSG_DATA_NOT_FOUND;
+        }
+    }
+    
     /* @var $attachmentOwner AttachmentOwner */
     public static function attachment($attachmentOwner, $options = []) {
         $index = isset($options['index']) ? $options['index'] : null;
