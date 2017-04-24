@@ -5,6 +5,7 @@ use app\components\ViewButton;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
 use yii\helpers\Html;
+use common\components\helpers\Converter;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\PpaSetupPermit */
@@ -64,12 +65,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]
             ]); ?>
         </div>
-        <div class="col-xs-12 col-md-5">
+        <div class="col-xs-12 col-md-4">
             <h3 class="header smaller lighter green"><?= AppLabels::CERTIFIED_NUMBER_TEST_RESULT; ?></h3>
             <?php foreach ($model->ppaMonths as $ppaMonth): ?>
                 <div class="col-xs-12 col-sm-4">
-                    <label><strong><?= $ppaMonth->month_label; ?></strong></label>
-                    <p><?= $ppaMonth->ppam_cert_number; ?></p>
+                    <div class="col-xs-12">
+                        <label><strong><?= $ppaMonth->month_label; ?></strong></label>
+                    </div>
+                    <?= Converter::attachmentExtLink($ppaMonth->ppam_cert_number, $ppaMonth->attachmentOwner, ['show_file_upload' => false, 'show_delete_file' => false]); ?>
                 </div>
             <?php endforeach; ?>
         </div>

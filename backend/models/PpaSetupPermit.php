@@ -6,6 +6,7 @@ use Yii;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
 use yii\base\Exception;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "ppa_setup_permit".
@@ -101,7 +102,19 @@ class PpaSetupPermit extends AppModel {
                         $ppaMonthMdl->ppa_setup_permit_id = $ppaSetupPermitId;
                     }
     
-                    if (!$ppaMonthMdl->load(['PpaMonth' => $ppaMonth]) || !$ppaMonthMdl->save()) {
+                    if ($ppaMonthMdl->load(['PpaMonth' => $ppaMonth]) && $ppaMonthMdl->save()) {
+                        if (isset($request['Attachment'][$key])) {
+                            $attachmentMdl = new Attachment();
+
+                            $attachmentMdl->load($request['Attachment'][$key]);
+                            $attachmentMdl->file = UploadedFile::getInstance($attachmentMdl, "[$key]file");
+
+                            if (!is_null($attachmentMdl->file) && !$attachmentMdl->saveAttachment(AppConstants::MODULE_CODE_PPA_SETUP_PERMIT_CERT_NUMB, $ppaMonthMdl->id)) {
+                                $errors = array_merge($errors, $attachmentMdl->errors);
+                                throw new Exception;
+                            }
+                        }
+                    }else{
                         $errors = array_merge($errors, $ppaMonthMdl->errors);
                         throw new Exception();
                     }
@@ -141,7 +154,22 @@ class PpaSetupPermit extends AppModel {
         
         return true;
     }
-    
+
+    public function beforeDelete()
+    {
+        $setupDetail = $this->ppaMonths;
+        foreach($setupDetail as $keyD => $detail){
+            $attachment = $detail->attachmentOwner;
+            if (!is_null($attachment)) {
+                $attachment = $attachment->attachment;
+            }
+            if (!is_null($attachment)) {
+                $attachment->delete();
+            }
+        }
+        return parent::beforeDelete();
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */

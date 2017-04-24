@@ -19,6 +19,7 @@ use common\vendor\AppLabels;
  * @property integer $updated_at
  *
  * @property PpaSetupPermit $ppaSetupPermit
+ * @property AttachmentOwner $attachmentOwner
  */
 class PpaMonth extends AppModel {
     
@@ -65,11 +66,31 @@ class PpaMonth extends AppModel {
         
         return true;
     }
+
+    public function beforeDelete()
+    {
+        $attachment = $this->attachmentOwner;
+        if(!is_null($attachment)){
+            $attachment = $attachment->attachment;
+        }
+        if(!is_null($attachment)){
+            $attachment->delete();
+        }
+        return parent::beforeDelete();
+    }
     
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getPpaSetupPermit() {
         return $this->hasOne(PpaSetupPermit::className(), ['id' => 'ppa_setup_permit_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAttachmentOwner()
+    {
+        return $this->hasOne(AttachmentOwner::className(), ['atfo_module_pk' => 'id'])->andOnCondition(['atfo_module_code' => AppConstants::MODULE_CODE_PPA_SETUP_PERMIT_CERT_NUMB]);
     }
 }

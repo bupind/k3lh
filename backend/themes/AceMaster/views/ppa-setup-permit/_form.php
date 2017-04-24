@@ -6,6 +6,7 @@ use common\vendor\AppConstants;
 use common\vendor\AppLabels;
 use backend\models\Codeset;
 use kartik\date\DatePicker;
+use common\components\helpers\Converter;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\PpaSetupPermit */
@@ -21,7 +22,8 @@ use kartik\date\DatePicker;
     $form = ActiveForm::begin([
         'options' => [
             'class' => 'form-horizontal',
-            'role' => 'form'
+            'role' => 'form',
+            'enctype' => 'multipart/form-data',
         ],
         'fieldConfig' => [
             'options' => [
@@ -143,13 +145,20 @@ use kartik\date\DatePicker;
                             }
                             echo $form->field($ppaMonth, "[$key]ppam_month")->hiddenInput(['value' => $startDate->format('m')])->label(false);
                             echo $form->field($ppaMonth, "[$key]ppam_year")->hiddenInput(['value' => $startDate->format('Y')])->label(false);
-                            echo $form->field($ppaMonth, "[$key]ppam_cert_number", [
+                        ?>
+                        <div class="col-xs-12 col-sm-4">
+                            <?= $form->field($ppaMonth, "[$key]ppam_cert_number", [
                                     'template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE,
-                                    'options' => ['class' => 'col-xs-12 col-sm-4']
                                 ])
                                 ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly'])
-                                ->label($startDate->format('M Y'), ['class' => '']);
-                            
+                                ->label($startDate->format('M Y'), ['class' => '']); ?>
+                            <?php if($model->getIsNewRecord()){ ?>
+                                <?= Converter::attachment($ppaMonth->attachmentOwner, ['show_file_upload' => true, 'show_delete_file' => true, 'index' => $key]); ?>
+                            <?php }else{ ?>
+                                <?= Converter::attachmentExtLink('', $ppaMonth->attachmentOwner, ['show_file_upload' => false, 'show_delete_file' => false]); ?>
+                            <?php } ?>
+                        </div>
+                        <?php
                             $startDate->add(new \DateInterval('P1M'));
                         }
                         
