@@ -1,6 +1,5 @@
 <?php
 
-use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\components\SubmitButton;
 use common\vendor\AppConstants;
@@ -21,6 +20,9 @@ use common\vendor\AppConstants;
         ]);
 
         echo $form->field($model, 'sector_name', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9])
+            ->textInput(['maxlength' => true, 'class' => AppConstants::ACTIVE_FORM_CLASS_INPUT_TEXT, 'autofocus' => true])
+            ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+        echo $form->field($model, 'sector_code', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9])
             ->textInput(['maxlength' => true, 'class' => AppConstants::ACTIVE_FORM_CLASS_INPUT_TEXT, 'autofocus' => true])
             ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
         

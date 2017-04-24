@@ -105,6 +105,7 @@ class AppConstants {
     const MODULE_CODE_PPUA_MONITORING_POINT = 'PPUA_MONIT_POIN';
     const MODULE_CODE_PPUCEMS_REPORT_BM = 'PPUCEMS_RBM';
     const MODULE_CODE_PLB3_CHECKLIST = 'PLB3_CHECKLIST';
+    const MODULE_CODE_SKKO_DOCUMENT = 'SKKO_DOCUMENT';
     
     const MODULE_CODE_PLB3_SA = 'PLB3_SA';
     const MODULE_CODE_PLB3_SA_STATIC = 'PLB3_SA_STATIC';
@@ -315,7 +316,9 @@ class AppConstants {
     const EMAIL_SUBJECT_DEPOSIT = 'Request Deposit';
     const EMAIL_SUBJECT_WITHDRAWAL = 'Request Penarikan';
     const EMAIL_SUBJECT_TRANSFER_GAME = 'Request Transfer Game';
-    
+
+    //SECTOR_CONSTANT
+    const SECTOR_CONSTANT_PARENT_OFFICE = 'KTR_IDK';
     public static $yesNoList = [
         'Y' => 'Ya',
         'N' => 'Tidak',

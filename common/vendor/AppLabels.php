@@ -501,4 +501,9 @@ class AppLabels {
     const PLB3_STATIC_QUESTION_QUARTER_2 = '- Provinsi';
     const PLB3_STATIC_QUESTION_QUARTER_3 = '- Kabupaten / Kota';
     const EVALUATION = 'Evaluasi';
+
+
+    //SKKO
+    const SKKO_NUMBER = 'No. PAO/SKKO/AI';
+    const SKKO = 'SKKO / SKI';
 }

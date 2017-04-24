@@ -69,6 +69,7 @@ class SiteController extends AppController {
     }
     
     public function actionTreeMainOffice() {
+        $sector = Sector::findOne(['sector_code' => AppConstants::SECTOR_CONSTANT_PARENT_OFFICE]);
         $dataMainOffice = [
             'road-map' => [
                 'text' => 'Road Map K3L KITSBS',
@@ -133,7 +134,7 @@ class SiteController extends AppController {
                             'icon-class' => 'blue',
                             'additionalParameters' => [
                                 'children' => [
-                                    'skko' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Dokument SKKO / SKI', 'type' => 'item'],
+                                    'skko' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Dokumen SKKO / SKI', ['/skko', '_sId' => $sector->id]), 'type' => 'item'],
                                 ]
                             ]
                         ],
