@@ -4,6 +4,9 @@ namespace backend\models;
 
 use common\vendor\AppLabels;
 use common\vendor\AppConstants;
+use Yii;
+use yii\base\Exception;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "environment_permit_detail".
@@ -22,6 +25,7 @@ use common\vendor\AppConstants;
  *
  * @property EnvironmentPermit $environmentPermit
  * @property AttachmentOwner $attachmentOwner
+ * @property EnvironmentPermitReport[] $environmentPermitReports
  */
 class EnvironmentPermitDetail extends AppModel
 {
@@ -67,11 +71,58 @@ class EnvironmentPermitDetail extends AppModel
         ];
     }
 
+    public function saveTransactional()
+    {
+        $request = Yii::$app->request->post();
+        $transaction = Yii::$app->db->beginTransaction();
+        $errors = [];
+
+        try {
+            $this->load($request);
+
+            if ($this->save()) {
+                if (isset($request['Attachment'])) {
+                    $attachmentMdl = new Attachment();
+
+                    $attachmentMdl->load($request['Attachment']);
+                    $attachmentMdl->file = UploadedFile::getInstance($attachmentMdl, "file");
+
+                    if (!is_null($attachmentMdl->file) && !$attachmentMdl->saveAttachment(AppConstants::MODULE_CODE_ENVIRONMENT_PERMIT, $this->id)) {
+                        $errors = array_merge($errors, $attachmentMdl->errors);
+                        throw new Exception;
+                    }
+                }
+            }else{
+                $errors = array_merge($errors, $this->errors);
+                throw new Exception();
+            }
+
+            $transaction->commit();
+            return TRUE;
+
+        } catch (Exception $e) {
+            $transaction->rollBack();
+            $this->afterFind();
+
+            foreach ($errors as $attr => $errorArr) {
+                $error = join('<br />', $errorArr);
+                Yii::$app->session->addFlash('danger', $error);
+            }
+
+            return FALSE;
+        }
+    }
+
 
     public function beforeDelete()
     {
-        $attachment = $this->attachmentOwner->attachment;
-        $attachment->delete();
+        $attachment = $this->attachmentOwner;
+        if(!is_null($attachment)){
+            $attachment = $attachment->attachment;
+        }
+        if(!is_null($attachment)){
+            $attachment->delete();
+        }
         return parent::beforeDelete();
     }
 
@@ -99,6 +150,14 @@ class EnvironmentPermitDetail extends AppModel
     public function getEnvironmentPermit()
     {
         return $this->hasOne(EnvironmentPermit::className(), ['id' => 'environment_permit_id']);
+    }
+
+    /**
+ * @return \yii\db\ActiveQuery
+ */
+    public function getEnvironmentPermitReports()
+    {
+        return $this->hasMany(EnvironmentPermitReport::className(), ['environment_permit_id' =>  'id']);
     }
 
     /**

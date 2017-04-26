@@ -96,7 +96,7 @@ $form = ActiveForm::begin([
                     <td>
                         <?= Converter::attachment($skkoDetail->attachmentOwner, ['show_file_upload' => true, 'show_delete_file' => true, 'index' => $keyD]); ?>
                     </td>
-                    <td><?= Html::button(AppLabels::BTN_DELETE, ['class' => 'btn btn-xs btn-pink btn-remove-ajax', 'data-id' => $skkoDetail->id, 'data-controller' => 'skko-detail']); ?></td>
+                    <td><?= Html::button(AppLabels::BTN_DELETE, ['class' => 'btn btn-xs btn-pink btn-remove', 'data-id' => $skkoDetail->id, 'data-controller' => 'skko-detail']); ?></td>
                 </tr>
                 <?php $index++; ?>
             <?php endforeach; ?>

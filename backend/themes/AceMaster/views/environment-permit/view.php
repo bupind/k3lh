@@ -4,34 +4,16 @@ use yii\helpers\Html;
 use common\vendor\AppLabels;
 use common\vendor\AppConstants;
 use app\components\DetailView;
-use app\components\ViewButton;
-use common\components\helpers\Converter;
-use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\EnvironmentPermit */
 
 $this->title = sprintf('%s %s', AppLabels::BTN_VIEW, AppLabels::ENVIRONMENT_PERMIT);
+$this->params['subtitle'] = $model->getSummary();
 $this->params['breadcrumbs'][] = ['label' => AppLabels::ENVIRONMENT_PERMIT, 'url' => ['index', '_ppId' => $model->power_plant_id]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<?php
-$form = ActiveForm::begin([
-    'id' => 'environment-permit-form',
-    'options' => [
-        'class' => 'calx form-horizontal',
-        'role' => 'form',
-        'enctype' => 'multipart/form-data'
-    ],
-    'fieldConfig' => [
-        'options' => [
-            'tag' => 'div'
-        ]
-    ]
-]);
-
-?>
 
 <div class="environment-permit-view">
 
@@ -47,54 +29,44 @@ $form = ActiveForm::begin([
         </h1>
     </div>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'options' => [
-            'excluded' => ['form_type_code'],
-            'converter' => [
-                'sector_id' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->sector->sector_name],
-                'power_plant_id' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->powerPlant->pp_name]
-            ]
-        ]
-    ]); ?>
-
     <div class="row">
-        <div class="col-xs-12">
-            <table id="table-environment-permit" class="<?= AppConstants::TABLE_CLASS_DEFAULT_SMALL; ?>">
-
-                <thead>
-                <tr>
-                    <th><?= AppLabels::NUMBER_SHORT ?></th>
-                    <th><?= sprintf("%s %s %s", AppLabels::NAME, AppLabels::DOCUMENTS, AppLabels::ENVIRONMENT_PERMIT) ?></th>
-                    <th><?= sprintf("%s %s %s", AppLabels::INSTITUTION, AppLabels::VERIFICATION, AppLabels::ENVIRONMENT_PERMIT) ?></th>
-                    <th><?= sprintf("%s %s %s %s", AppLabels::DATE, AppLabels::VERIFICATION, AppLabels::DOCUMENTS, AppLabels::ENVIRONMENT_PERMIT) ?></th>
-                    <th><?= sprintf("%s %s", AppLabels::CAPACITY_LIMIT, AppLabels::PRODUCTION) ?></th>
-                    <th><?= sprintf("%s %s", AppLabels::CAPACITY_REALIZATION, AppLabels::PRODUCTION) ?></th>
-                    <th>Dampak penting yang dikelola</th>
-                </tr>
-                </thead>
-
-                <tbody>
-                <?php foreach ($model->environmentPermitDetails as $key => $detail): $key+=1; ?>
-                    <tr>
-                        <td><?= $key ?></td>
-                        <td class="text-center"><?= Html::label($detail->ep_document_name, null, [ 'class' => 'control-label']); ?></td>
-                        <td class="text-center"><?= Html::label($detail->ep_institution, null, [ 'class' => 'control-label']); ?></td>
-                        <td class="text-center"><?= Html::label($detail->ep_date, null, [ 'class' => 'control-label']); ?></td>
-                        <td class="text-center"><?= Html::label($detail->ep_limit_capacity, null, [ 'data-cell' => "A$key", 'data-format' => AppConstants::CALX_DATA_FORMAT_THO, 'class' => 'control-label']); ?></td>
-                        <td class="text-center"><?= Html::label($detail->ep_realization_capacity, null, [ 'data-cell' => "B$key", 'data-format' => AppConstants::CALX_DATA_FORMAT_THO, 'class' => 'control-label']); ?></td>
-                        <td><span class="col-sm-6"><?= Converter::attachment($detail->attachmentOwner); ?></span></td>
-                    </tr>
-                <?php  endforeach; ?>
-
-                </tbody>
-
-            </table>
+        <div class="col-xs-6 col-xs-offset-3">
+            <?= DetailView::widget([
+                'model' => $model,
+                'options' => [
+                    'converter' => [
+                        'sector_id' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->sector->sector_name],
+                        'power_plant_id' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->powerPlant->pp_name],
+                    ]
+                ]
+            ]); ?>
         </div>
     </div>
 
-    <?= ViewButton::widget(['model' => $model]); ?>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="tabbable">
+                <h3 class="header smaller lighter green"><?= AppLabels::ENVIRONMENT_PERMIT ?></h3>
+                <ul id="myTab" class="nav nav-tabs">
+                    <li class="active">
+                        <?= Html::a('<i class="green ace-icon fa fa-bars bigger-120"></i> ' . AppLabels::DOCUMENT_VALIDATION, '#environment-permit-detail', ['data-toggle' => 'tab', 'aria-expanded' => 'true']); ?>
+                    </li>
+                    <li>
+                        <?= Html::a('<i class="green ace-icon fa fa-bars bigger-120"></i> ' . AppLabels::REPORTING, '#environment-permit-report', ['data-toggle' => 'tab', 'aria-expanded' => 'true']); ?>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div id="environment-permit-detail" class="tab-pane fade active in">
+                        <?= $this->render('_environment_permit_detail', ['model' => $model]); ?>
+                    </div>
+                    <div id="environment-permit-report" class="tab-pane fade">
+                        <?= $this->render('_environment_permit_report', ['model' => $model]); ?>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 </div>
 
-<?php ActiveForm::end(); ?>

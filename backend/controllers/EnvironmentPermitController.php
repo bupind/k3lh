@@ -2,7 +2,6 @@
 
 namespace backend\controllers;
 
-use backend\models\EnvironmentPermitDetail;
 use Yii;
 use backend\models\EnvironmentPermit;
 use backend\models\EnvironmentPermitSearch;
@@ -41,7 +40,7 @@ class EnvironmentPermitController extends AppController
     public function beforeAction($action) {
         parent::beforeAction($action);
 
-        if (in_array($action->id, ['index', 'create', 'update'])) {
+        if (in_array($action->id, ['index', 'create',])) {
             $powerPlantId = Yii::$app->request->get('_ppId');
             if (($powerPlant = PowerPlant::findOne($powerPlantId)) !== null) {
                 $this->powerPlantModel = $powerPlant;
@@ -60,10 +59,18 @@ class EnvironmentPermitController extends AppController
         $searchModel->power_plant_id = $this->powerPlantModel->id;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        $model = new EnvironmentPermit();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
+            $this->redirect(['index', '_ppId' => $model->power_plant_id]);
+        }
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'powerPlantModel' => $this->powerPlantModel,
+            'model' => $model,
         ]);
     }
 
@@ -87,9 +94,8 @@ class EnvironmentPermitController extends AppController
     public function actionCreate()
     {
         $model = new EnvironmentPermit();
-        $firstDetail = new EnvironmentPermitDetail();
 
-        if ($model->load(Yii::$app->request->post()) && $model->saveTransactional()) {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -97,7 +103,6 @@ class EnvironmentPermitController extends AppController
             return $this->render('create', [
                 'firstDetail' => $firstDetail,
                 'model' => $model,
-                'powerPlantModel' => $this->powerPlantModel
             ]);
         }
     }
@@ -112,13 +117,12 @@ class EnvironmentPermitController extends AppController
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->saveTransactional()) {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_UPDATE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
 
             return $this->render('update', [
-                'powerPlantModel' => $this->powerPlantModel,
                 'model' => $model,
             ]);
         }

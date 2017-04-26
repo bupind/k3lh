@@ -6,9 +6,9 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
 /**
- * EnvironmentPermitSearch represents the model behind the search form about `backend\models\EnvironmentPermit`.
+ * EnvironmentPermitDetailSearch represents the model behind the search form about `backend\models\EnvironmentPermitDetail`.
  */
-class EnvironmentPermitSearch extends EnvironmentPermit
+class EnvironmentPermitDetailSearch extends EnvironmentPermitDetail
 {
     /**
      * @inheritdoc
@@ -16,7 +16,8 @@ class EnvironmentPermitSearch extends EnvironmentPermit
     public function rules()
     {
         return [
-            [['id', 'sector_id', 'power_plant_id', 'ep_year'], 'integer'],
+            [['id', 'environment_permit_id', 'ep_limit_capacity', 'ep_realization_capacity', 'created_by', 'created_at', 'updated_by', 'updated_at'], 'integer'],
+            [['ep_document_name', 'ep_institution', 'ep_date'], 'safe'],
         ];
     }
 
@@ -38,7 +39,7 @@ class EnvironmentPermitSearch extends EnvironmentPermit
      */
     public function search($params)
     {
-        $query = EnvironmentPermit::find();
+        $query = EnvironmentPermitDetail::find();
 
         // add conditions that should always apply here
 
@@ -57,10 +58,14 @@ class EnvironmentPermitSearch extends EnvironmentPermit
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'sector_id' => $this->sector_id,
-            'power_plant_id' => $this->power_plant_id,
-            'ep_year' => $this->ep_year,
+            'environment_permit_id' => $this->environment_permit_id,
+            'ep_date' => $this->ep_date,
+            'ep_limit_capacity' => $this->ep_limit_capacity,
+            'ep_realization_capacity' => $this->ep_realization_capacity,
         ]);
+
+        $query->andFilterWhere(['like', 'ep_document_name', $this->ep_document_name])
+            ->andFilterWhere(['like', 'ep_institution', $this->ep_institution]);
 
         return $dataProvider;
     }

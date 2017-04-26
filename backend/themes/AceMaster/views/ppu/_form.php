@@ -4,7 +4,6 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
-use app\components\SubmitLinkButton;
 use backend\assets\PPUAsset;
 
 PPUAsset::register($this);
@@ -63,12 +62,6 @@ $form = ActiveForm::begin([
             <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' .  AppLabels::REPORT." ". AppLabels::PARAMETER, ['/ppucemsrb-parameter-report', 'ppuId' => $model->id], ['class' => 'btn btn-sm btn-warning']); ?>
             <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' .  AppLabels::EMISSION_LOAD_CALCULATION." ". AppLabels::CEMS, ['/ppu/emission-load-calc', 'id' => $model->id], ['class' => 'btn btn-sm btn-primary']); ?>
            </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-xs-12 form-actions text-center">
-        <?= SubmitLinkButton::widget(['formId' => 'ppu-form', 'backAction' => 'index', 'isNewRecord' => $model->isNewRecord]); ?>
     </div>
 </div>
 

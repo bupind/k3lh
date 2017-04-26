@@ -2,25 +2,27 @@
 
 namespace backend\controllers;
 
-use backend\models\EnvironmentPermit;
+use backend\models\EnvironmentPermitDistrict;
+use backend\models\EnvironmentPermitMinistry;
+use backend\models\EnvironmentPermitProvince;
 use Yii;
-use backend\models\EnvironmentPermitDetail;
-use backend\models\EnvironmentPermitDetailSearch;
+use backend\models\EnvironmentPermitReport;
+use backend\models\EnvironmentPermitReportSearch;
+use yii\base\Model;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\helpers\Json;
 use common\vendor\AppConstants;
+use backend\models\EnvironmentPermit;
 
 /**
- * EnvironmentPermitDetailController implements the CRUD actions for EnvironmentPermitDetail model.
+ * EnvironmentPermitReportController implements the CRUD actions for EnvironmentPermitReport model.
  */
-class EnvironmentPermitDetailController extends AppController
+class EnvironmentPermitReportController extends AppController
 {
     /**
      * @inheritdoc
      */
     public $epModel;
-
     public function behaviors()
     {
         return [
@@ -49,12 +51,12 @@ class EnvironmentPermitDetailController extends AppController
     }
 
     /**
-     * Lists all EnvironmentPermitDetail models.
+     * Lists all EnvironmentPermitReport models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new EnvironmentPermitDetailSearch();
+        $searchModel = new EnvironmentPermitReportSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -65,39 +67,58 @@ class EnvironmentPermitDetailController extends AppController
     }
 
     /**
-     * Displays a single EnvironmentPermitDetail model.
+     * Displays a single EnvironmentPermitReport model.
      * @param integer $id
      * @return mixed
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $districtModel = $model->environmentPermitDistricts;
+        $provinceModel = $model->environmentPermitProvinces;
+        $ministryModel = $model->environmentPermitMinistrys;
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'districtModel' => $districtModel,
+            'provinceModel' => $provinceModel,
+            'ministryModel' => $ministryModel,
         ]);
     }
 
     /**
-     * Creates a new EnvironmentPermitDetail model.
+     * Creates a new EnvironmentPermitReport model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new EnvironmentPermitDetail();
+        $model = new EnvironmentPermitReport();
+        $districtModel = [];
+        $districtModel[] = new EnvironmentPermitDistrict();
+        $provinceModel = [];
+        $provinceModel[] = new EnvironmentPermitProvince();
+        $ministryModel = [];
+        $ministryModel[] = new EnvironmentPermitMinistry();
 
-        if ($model->load(Yii::$app->request->post()) && $model->saveTransactional()){
+        $requestData = Yii::$app->request->post();
+
+        if ($model->load($requestData) && Model::loadMultiple($districtModel, $requestData) && Model::loadMultiple($provinceModel, $requestData) && Model::loadMultiple($ministryModel, $requestData) && $model->saveTransactional()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
-                'epModel' => $this->epModel,
                 'model' => $model,
+                'epModel' => $this->epModel,
+                'districtModel' => $districtModel,
+                'provinceModel' => $provinceModel,
+                'ministryModel' => $ministryModel,
             ]);
         }
     }
 
     /**
-     * Updates an existing EnvironmentPermitDetail model.
+     * Updates an existing EnvironmentPermitReport model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -106,19 +127,28 @@ class EnvironmentPermitDetailController extends AppController
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->saveTransactional()) {
+        $districtModel = $model->environmentPermitDistricts;
+        $provinceModel = $model->environmentPermitProvinces;
+        $ministryModel = $model->environmentPermitMinistrys;
+
+        $requestData = Yii::$app->request->post();
+
+        if ($model->load($requestData) && Model::loadMultiple($districtModel, $requestData) && Model::loadMultiple($provinceModel, $requestData) && Model::loadMultiple($ministryModel, $requestData) && $model->saveTransactional()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_UPDATE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
-                'epModel' => $this->epModel,
                 'model' => $model,
+                'epModel' => $this->epModel,
+                'districtModel' => $districtModel,
+                'provinceModel' => $provinceModel,
+                'ministryModel' => $ministryModel,
             ]);
         }
     }
 
     /**
-     * Deletes an existing EnvironmentPermitDetail model.
+     * Deletes an existing EnvironmentPermitReport model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -133,26 +163,16 @@ class EnvironmentPermitDetailController extends AppController
         return $this->redirect(['index', 'epId' => $model->environment_permit_id]);
     }
 
-    public function actionAjaxDelete() {
-        $requestData = Yii::$app->request->post();
-        $id = $requestData['id'];
-        if ($this->findModel($id)->delete()) {
-            return Json::encode(true);
-        }
-
-        return Json::encode(false);
-    }
-
     /**
-     * Finds the EnvironmentPermitDetail model based on its primary key value.
+     * Finds the EnvironmentPermitReport model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return EnvironmentPermitDetail the loaded model
+     * @return EnvironmentPermitReport the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = EnvironmentPermitDetail::findOne($id)) !== null) {
+        if (($model = EnvironmentPermitReport::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

@@ -5,12 +5,11 @@ use common\vendor\AppLabels;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\EnvironmentPermit */
-/* @var $powerPlantModel backend\models\PowerPlant */
 
-$this->title = sprintf("%s %s", AppLabels::BTN_UPDATE, AppLabels::ENVIRONMENT_PERMIT);
-$this->params['breadcrumbs'][] = ['label' => 'Environment Permits', 'url' => ['index', '_ppId' => $powerPlantModel->id]];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = sprintf('%s %s', AppLabels::BTN_UPDATE, AppLabels::AIR_POLLUTION_CONTROL);
+$this->params['breadcrumbs'][] = ['label' => AppLabels::AIR_POLLUTION_CONTROL, 'url' => ['index', '_ppId' => $model->power_plant_id]];
+$this->params['breadcrumbs'][] = ['label' => sprintf('%s - %s', $model->sector->sector_name, $model->powerPlant->pp_name), 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = AppLabels::BTN_UPDATE;
 ?>
 <div class="environment-permit-update">
 
@@ -20,7 +19,6 @@ $this->params['breadcrumbs'][] = 'Update';
 
     <?= $this->render('_form', [
         'model' => $model,
-        'powerPlantModel' => $powerPlantModel,
     ]) ?>
 
 </div>
