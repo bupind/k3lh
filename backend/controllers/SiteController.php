@@ -342,7 +342,7 @@ class SiteController extends AppController {
                                                                         'icon-class' => 'blue',
                                                                         'additionalParameters' => [
                                                                             'children' => [
-                                                                                '3221' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form Penilaian DRKPL', 'type' => 'item'],
+                                                                                '3221' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Penilaian DRKPL', ['/beyond-obedience', 'bot' => AppConstants::FORM_TYPE_DRKPL, '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                             ]
                                                                         ]
                                                                     ],
@@ -352,7 +352,7 @@ class SiteController extends AppController {
                                                                         'icon-class' => 'blue',
                                                                         'additionalParameters' => [
                                                                             'children' => [
-                                                                                '3222' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form Penilaian SML', 'type' => 'item'],
+                                                                                '3222' => ['text' =>  Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Penilaian SML', ['/beyond-obedience', 'bot' => AppConstants::FORM_TYPE_SML, '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                             ]
                                                                         ]
                                                                     ],
@@ -363,7 +363,7 @@ class SiteController extends AppController {
                                                                         'additionalParameters' => [
                                                                             'children' => [
                                                                                 '3223-1' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form Program Efisiensi Energi', 'type' => 'item'],
-                                                                                '3223-2' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form Penilaian Efisiensi Energi', 'type' => 'item'],
+                                                                                '3223-2' => ['text' =>  Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Penilaian Efisiensi Energi', ['/beyond-obedience', 'bot' => AppConstants::FORM_TYPE_EE, '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                             ]
                                                                         ]
                                                                     ],
@@ -374,7 +374,7 @@ class SiteController extends AppController {
                                                                         'additionalParameters' => [
                                                                             'children' => [
                                                                                 '3224-1' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form Program PP Limbah B3', 'type' => 'item'],
-                                                                                '3224-2' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form Penilaian PP Limbah B3', 'type' => 'item'],
+                                                                                '3224-2' => ['text' =>  Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Penilaian PP Limbah B3', ['/beyond-obedience', 'bot' => AppConstants::FORM_TYPE_PPLB3, '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                             ]
                                                                         ]
                                                                     ],
@@ -385,7 +385,7 @@ class SiteController extends AppController {
                                                                         'additionalParameters' => [
                                                                             'children' => [
                                                                                 '3225-1' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form Program 3R Limbah Padat Non B3', 'type' => 'item'],
-                                                                                '3225-2' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form Penilaian 3R Limbah Padat Non B3', 'type' => 'item'],
+                                                                                '3225-2' => ['text' =>  Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Penilaian 3R Limbah Padat Non B3', ['/beyond-obedience', 'bot' => AppConstants::FORM_TYPE_PPLNB3, '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                             ]
                                                                         ]
                                                                     ],
@@ -396,7 +396,7 @@ class SiteController extends AppController {
                                                                         'additionalParameters' => [
                                                                             'children' => [
                                                                                 '3226-1' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form Program Pengurangan Pencemaran Udara', 'type' => 'item'],
-                                                                                '3226-2' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form Penilaian Pengurangan Pencemaran Udara', 'type' => 'item'],
+                                                                                '3226-2' => ['text' =>  Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Penilaian Pengurangan Pencemaran Udara', ['/beyond-obedience', 'bot' => AppConstants::FORM_TYPE_PGPU, '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                             ]
                                                                         ]
                                                                     ],
@@ -407,7 +407,7 @@ class SiteController extends AppController {
                                                                         'additionalParameters' => [
                                                                             'children' => [
                                                                                 '3227-1' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form Program Efisiensi Air & Penurunan Beban Pencemaran', 'type' => 'item'],
-                                                                                '3227-2' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form Penilaian Efisiensi Air & Penurunan Beban Pencemaran', 'type' => 'item'],
+                                                                                '3227-2' => ['text' =>  Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Penilaian Efisiensi Air & Penurunan Beban Pencemaran', ['/beyond-obedience', 'bot' => AppConstants::FORM_TYPE_KA, '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                             ]
                                                                         ]
                                                                     ],
@@ -418,7 +418,7 @@ class SiteController extends AppController {
                                                                         'additionalParameters' => [
                                                                             'children' => [
                                                                                 '3228-1' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form Program Keanekaragaman Hayati', 'type' => 'item'],
-                                                                                '3228-2' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form Penilaian Keanekaragaman Hayati', 'type' => 'item'],
+                                                                                '3228-2' => ['text' =>  Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Penilaian Keanekaragaman Hayati', ['/beyond-obedience', 'bot' => AppConstants::FORM_TYPE_KH, '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                             ]
                                                                         ]
                                                                     ],
@@ -429,7 +429,7 @@ class SiteController extends AppController {
                                                                         'additionalParameters' => [
                                                                             'children' => [
                                                                                 '3229-1' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form Program COMDEV', 'type' => 'item'],
-                                                                                '3229-2' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form Penilaian COMDEV', 'type' => 'item'],
+                                                                                '3229-2' => ['text' =>  Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Penilaian COMDEV', ['/beyond-obedience', 'bot' => AppConstants::FORM_TYPE_CD, '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                             ]
                                                                         ]
                                                                     ]

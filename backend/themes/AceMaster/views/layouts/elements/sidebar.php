@@ -1,7 +1,5 @@
 <?php
-use yii\helpers\Html; 
 use common\vendor\AppLabels;
-use common\vendor\AppConstants;
 use app\components\Nav;
 
 $navs = [
@@ -40,6 +38,13 @@ $navs = [
         'label' => AppLabels::PPU,
         'submenu' => [
             ['icon' => 'fa-file-text-o', 'label' => AppLabels::QUESTION, 'url' => ['/ppu-question'], 'controller' => 'ppu-question'],
+        ]
+    ],
+    [
+        'icon' => 'fa-file-text-o',
+        'label' => AppLabels::BEYOND_OBEDIENCE,
+        'submenu' => [
+            ['icon' => 'fa-file-text-o', 'label' => AppLabels::QUESTION, 'url' => ['/bo-assessment-aspect'], 'controller' => 'bo-assessment-aspect'],
         ]
     ],
     [

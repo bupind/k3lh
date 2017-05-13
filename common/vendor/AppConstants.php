@@ -270,6 +270,9 @@ class AppConstants {
 
     const PPA_RBM_PARAM_DEBIT = 'DBT';
     const PPA_RBM_PARAM_PRODUCTION = 'PRD';
+
+    //BEYOND OBEDIENCE
+    const CODESET_NAME_BO_FORM_TYPE_CODE = 'BO_FORM_TYPE_CODE';
     
     // PLB3 SELF ASSESSMENT
     const PLB3_SA_QUESTION_CATEGORY_GENERAL = 'GNRL';
@@ -286,12 +289,24 @@ class AppConstants {
     // FORM TYPE
     const FORM_TYPE_K3 = 'K3';
     const FORM_TYPE_LH = 'LH';
+
     const FORM_TYPE_AD = 'AD';
     const FORM_TYPE_GD = 'GD';
+
     const FORM_TYPE_TPS = 'PCFTC1';
     const FORM_TYPE_LF = 'PCFTC2';
     const FORM_TYPE_PK = 'PCFTC3';
-    
+
+    const FORM_TYPE_DRKPL = 'DRKPL';
+    const FORM_TYPE_EE = 'EE';
+    const FORM_TYPE_PPLB3 = 'PPLB3';
+    const FORM_TYPE_PGPU = 'PGPU';
+    const FORM_TYPE_KA = 'KA';
+    const FORM_TYPE_SML = 'SML';
+    const FORM_TYPE_PPLNB3 = 'PPLNB3';
+    const FORM_TYPE_KH = 'KH';
+    const FORM_TYPE_CD = 'CD';
+
     // QS LOAD UNIT CODE
     const QS_LOAD_UNIT_CODE_GRAM_PER_M3 = 'GR_P_M3';
     const QS_LOAD_UNIT_CODE_TON_PER_MONTH = 'TON_P_M';

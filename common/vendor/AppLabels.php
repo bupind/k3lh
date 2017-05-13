@@ -508,4 +508,8 @@ class AppLabels {
     //SKKO
     const SKKO_NUMBER = 'No. PAO/SKKO/AI';
     const SKKO = 'SKKO / SKI';
+
+    //BEYOND OBEDIENCE
+    const BEYOND_OBEDIENCE = 'Melebihi Ketaatan';
+    const ASSESSMENT_ASPECT = 'Aspek Penilaian';
 }
