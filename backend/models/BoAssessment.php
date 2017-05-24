@@ -39,7 +39,7 @@ class BoAssessment extends AppModel
     public function rules()
     {
         return [
-            [['beyond_obedience_id', 'boas_criteria_id', 'boa_value'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
+            [['beyond_obedience_id', 'boas_criteria_id'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
             [['beyond_obedience_id', 'boas_criteria_id'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
             [['boa_value'], 'number'],
             [['boa_ref'], 'string', 'max' => 200],

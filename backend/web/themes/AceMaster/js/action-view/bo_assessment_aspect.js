@@ -4,7 +4,10 @@
 jQuery(document).ready(function () {
     var baseUrl = $('#baseUrl').val(),
         sb = new StringBuilder(),
-        criteriaDiv = $('#criteriaDiv');
+        criteriaDiv = $('#criteriaDiv'),
+        buttonName = "criteria"+(criteriaDiv.find('.cDiv').size());
+
+    $('.addCriteriaButton').attr('id', buttonName);
 
     $('.addCriteriaButton').click(function(){
         currentCriteriaNo = takeNumber($(this).attr('id'), 8);
