@@ -467,6 +467,7 @@ class AppLabels {
     // PLB3
     const SELF_ASSESSMENT = 'Form Self Assessment';
     const SELF_ASSESSMENT_SHORT = 'Form SA';
+    const EVALUATION = 'Evaluasi';
     const COMPANY_PROFILE = 'Profil Perusahaan';
     const B3_WASTE_MANAGEMENT = 'Pengelolaan Limbah B3';
     const COMPANY_NAME = 'Nama Perusahaan';
@@ -502,7 +503,6 @@ class AppLabels {
     const PLB3_STATIC_QUESTION_QUARTER_1 = '- KLH';
     const PLB3_STATIC_QUESTION_QUARTER_2 = '- Provinsi';
     const PLB3_STATIC_QUESTION_QUARTER_3 = '- Kabupaten / Kota';
-    const EVALUATION = 'Evaluasi';
 
 
     //SKKO

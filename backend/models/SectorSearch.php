@@ -38,7 +38,7 @@ class SectorSearch extends Sector {
      */
     public function search($params) {
         $query = Sector::find();
-        $sort = ['defaultOrder' => ['sector_name' => SORT_ASC]];
+        $sort = ['defaultOrder' => ['sector_order' => SORT_ASC]];
         
         // add conditions that should always apply here
         

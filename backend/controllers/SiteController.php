@@ -159,7 +159,7 @@ class SiteController extends AppController {
         $sectors = [];
         
         if ($user->isAdmin()) {
-            $sectors = Sector::find()->all();
+            $sectors = Sector::find()->orderBy(['sector_order' => SORT_ASC])->all();
         } else {
             foreach ($user->userSectors as $userSector) {
                 $sectors[] = $userSector->sector;
@@ -913,7 +913,7 @@ class SiteController extends AppController {
                 $items['type'] = 'item';
             }
     
-            $dataSector[$sector->id] = $items;
+            $dataSector[$sector->sector_order] = $items;
         }
     
         $json = Json::encode($dataSector);
