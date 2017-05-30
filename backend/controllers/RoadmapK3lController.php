@@ -125,6 +125,37 @@ class RoadmapK3lController extends AppController {
         }
     }
     
+    public function actionExport($rmt = null) {
+        if (is_null($rmt)) {
+            $rmt = AppConstants::FORM_TYPE_K3;
+        }
+    
+        $rmt = strtoupper($rmt);
+        $searchModel = new RoadmapK3lSearch();
+        $searchModel->form_type_code = $rmt;
+    
+        if ($searchModel->load(Yii::$app->request->post()) && $searchModel->export()) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_GENERATE_FILE_SUCCESS);
+            return $this->redirect(['/download/excel', 'filename' => $searchModel->filename]);
+        } else {
+            $title = Codeset::getCodesetValue(AppConstants::CODESET_NAME_FORM_TYPE_CODE, $rmt);
+            $powerPlantList = ['' => AppLabels::PLEASE_SELECT];
+            if (!is_null($searchModel->power_plant_id)) {
+                $powerPlantList = PowerPlant::map(new PowerPlant(), 'pp_name', null, true, [
+                    'where' => [
+                        ['sector_id' => $searchModel->sector_id]
+                    ]
+                ]);
+            }
+    
+            return $this->render('export', [
+                'searchModel' => $searchModel,
+                'title' => $title,
+                'powerPlantList' => $powerPlantList
+            ]);
+        }
+    }
+    
     /**
      * Updates an existing roadmap-k3l model.
      * If update is successful, the browser will be redirected to the 'view' page.

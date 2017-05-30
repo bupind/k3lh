@@ -22,6 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="clearfix">
         <div class="pull-right">
             <?= Html::a(AppLabels::BTN_ADD, ['create', 'rmt' => $rmt], ['class' => 'btn btn-sm btn-success']) ?>
+            <?= Html::a(AppLabels::BTN_DOWNLOAD_EXCEL, ['export', 'rmt' => $rmt], ['class' => 'btn btn-sm btn-primary']) ?>
         </div>
     </div>
     <hr/>

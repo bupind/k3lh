@@ -34,6 +34,10 @@ class AppConstants {
 //    const APP_FRONTEND_BASE_URL = '/';
     const IMG_RESPONSIVE = 'img-responsive';
     
+    // COMMON
+    const DEFAULT_YEAR_RANGE = 5;
+    
+    // LAYOUT
     const GRID_TEMPLATE_DEFAULT = '<div class="hidden-sm hidden-xs btn-group">{view} {update} {delete}</div><div class="hidden-md hidden-lg"><div class="inline pos-rel"><button data-position="auto" data-toggle="dropdown" class="btn btn-minier btn-primary dropdown-toggle" aria-expanded="false"><i class="ace-icon fa fa-cog icon-only bigger-110"></i></button><ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close"><li>{view_xs}</li><li>{update_xs}</li><li>{delete_xs}</li></ul></div></div>';
     const GRID_TEMPLATE_VIEW_ONLY = '<div class="hidden-sm hidden-xs btn-group">{view}</div><div class="hidden-md hidden-lg"><div class="inline pos-rel"><button data-position="auto" data-toggle="dropdown" class="btn btn-minier btn-primary dropdown-toggle" aria-expanded="false"><i class="ace-icon fa fa-cog icon-only bigger-110"></i></button><ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close"><li>{view_xs}</li></ul></div></div>';
     const GRID_TEMPLATE_DELETE_ONLY = '<div class="hidden-sm hidden-xs btn-group">{delete}</div><div class="hidden-md hidden-lg"><div class="inline pos-rel"><button data-position="auto" data-toggle="dropdown" class="btn btn-minier btn-primary dropdown-toggle" aria-expanded="false"><i class="ace-icon fa fa-cog icon-only bigger-110"></i></button><ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close"><li>{delete_xs}</li></ul></div></div>';
@@ -88,6 +92,8 @@ class AppConstants {
     const THEME_PRINT_CSS = '@app/web/themes/AceMaster/css/print.css';
     const THEME_IMG_PATH = '@web/themes/AceMaster/img/';
     const THEME_UPLOADED_IMG_PATH = '@web/themes/AceMaster/uploads/images/';
+    const THEME_EXCEL_EXPORT_DIR = '@app/web/themes/AceMaster/excels/';
+    const THEME_EXCEL_EXPORT_PATH = '@web/themes/AceMaster/excels/';
     
     const MYSQL_SEARCH_FROM_UNIXTIME = 'FROM_UNIXTIME({field}, "%Y-%m-%d")';
     
@@ -156,6 +162,8 @@ class AppConstants {
     const MSG_UPDATE_SUCCESS = 'Data berhasil diubah.';
     const MSG_DELETE_SUCCESS = 'Data berhasil dihapus.';
     const MSG_IMPORT_SUCCESS = 'Data berhasil diimport.';
+    const MSG_GENERATE_FILE_SUCCESS = 'File berhasil dibuat.';
+    const MSG_DOWNLOAD_SUCCESS = 'File berhasil diunduh.';
     const MSG_EMPTY_PLEASE_ADD = 'Data kosong. Silahkan tambahkan data terlebih dahulu.';
     const MSG_DATA_NOT_FOUND = 'Data tidak ditemukan.';
     
@@ -167,6 +175,7 @@ class AppConstants {
     const ERR_INCORRECT_AMOUNT = 'Jumlah tidak benar.';
     const ERR_PROCESS_FAILED = 'Proses gagal.';
     const ERR_PROCESS_FAILED_TRY_AGAIN_LATER = 'Proses gagal. Silahkan coba beberapa saat lagi.';
+    const ERR_DOWNLOAD_FAILED = 'Unduh file gagal.';
     
     // WARNING
     const WARNING_LOAD_FAILED = 'WARNING: Load Multiple %s Failed.';
@@ -340,6 +349,13 @@ class AppConstants {
 
     //SECTOR_CONSTANT
     const SECTOR_CONSTANT_PARENT_OFFICE = 'KTR_IDK';
+    
+    // REPORT
+    const REPORT_NAME_ROADMAP = 'report_roadmap_%s.xlsx';
+    
+    // PHPEXCEL
+    const PHPEXCEL_FORMAT_CURRENCY = 'Rp #,##0.00';
+    
     public static $yesNoList = [
         'Y' => 'Ya',
         'N' => 'Tidak',

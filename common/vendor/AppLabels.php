@@ -29,6 +29,8 @@ class AppLabels {
     const BTN_SEARCH = 'Cari';
     const BTN_RESET = 'Ulangi';
     const BTN_INSERT = 'Sisipkan';
+    const BTN_DOWNLOAD_EXCEL = 'Unduh Excel';
+    const BTN_EXPORT = 'Ekspor';
     const PLEASE_SELECT = '- Silahkan Pilih -';
     
     // ALERT
@@ -146,6 +148,7 @@ class AppLabels {
     const DATA_COUNT = 'Jumlah Data';
     const YES_NO = 'Ya / Tidak';
     const PERFORMANCE = 'Kinerja';
+    const DOWNLOAD = 'Unduh';
 
     // MONTH
     const JANUARY = 'Januari';
@@ -504,7 +507,6 @@ class AppLabels {
     const PLB3_STATIC_QUESTION_QUARTER_2 = '- Provinsi';
     const PLB3_STATIC_QUESTION_QUARTER_3 = '- Kabupaten / Kota';
 
-
     //SKKO
     const SKKO_NUMBER = 'No. PAO/SKKO/AI';
     const SKKO = 'SKKO / SKI';
@@ -512,4 +514,9 @@ class AppLabels {
     //BEYOND OBEDIENCE
     const BEYOND_OBEDIENCE = 'Melebihi Ketaatan';
     const ASSESSMENT_ASPECT = 'Aspek Penilaian';
+    
+    //PHPEXCEL
+    const PHPEXCEL_SIGN_CITY = 'Palembang';
+    const PHPEXCEL_SIGN_DETERMINED_BY = 'Ditetapkan Oleh,';
+    const PHPEXCEL_SIGN_DOT_LINE = '………………………………………………';
 }

@@ -60,7 +60,7 @@ class RoadmapK3l extends AppModel {
             'form_type_code_desc' => AppLabels::FORM_TYPE,
             'sector_id' => AppLabels::SECTOR,
             'power_plant_id' => AppLabels::POWER_PLANT,
-            'k3l_year' => AppLabels::YEAR,
+            'k3l_year' => AppLabels::YEAR
         ];
     }
     

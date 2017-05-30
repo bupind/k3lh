@@ -28,7 +28,8 @@
         "mpdf/mpdf": "@dev",
         "2amigos/yii2-ckeditor-widget": "dev-master",
         "iutbay/yii2-kcfinder": "dev-master",
-        "yiidoc/yii2-redactor": "*"
+        "yiidoc/yii2-redactor": "*",
+        "phpoffice/phpexcel": "dev-develop"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

@@ -67,12 +67,14 @@ class RoadmapK3lItem extends AppModel {
             'item_order' => AppLabels::ORDER
         ];
     }
-
-    public function beforeSave($insert)
-    {
+    
+    public function beforeSave($insert) {
         parent::beforeSave($insert);
-        $this->item_value_when = \Yii::$app->formatter->asDate($this->item_value_when, AppConstants::FORMAT_DB_DATE_PHP);
-
+        
+        if ($this->roadmapK3lAttribute->attr_type_code == AppConstants::ATTRIBUTE_TYPE_PROGRAM_ITEM) {
+            $this->item_value_when = \Yii::$app->formatter->asDate($this->item_value_when, AppConstants::FORMAT_DB_DATE_PHP);
+        }
+        
         return true;
     }
     
