@@ -105,7 +105,7 @@ class BudgetMonitoring extends AppModel{
                             } else {
                                 $monthTuple = new BudgetMonitoringMonth();
                                 $monthTuple->budget_monitoring_detail_id = $detailTuple->id;
-                                $monthTuple->bmv_month = $key2 + 1;
+                                $monthTuple->bmv_month = $key2;
                             }
 
                             if (!$monthTuple->load(['BudgetMonitoringMonth' => $month]) || !$monthTuple->save()) {

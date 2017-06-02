@@ -16,7 +16,7 @@ $baseUrl = Url::base();
 /* @var $this yii\web\View */
 /* @var $model backend\models\BudgetMonitoring */
 /* @var $form yii\widgets\ActiveForm */
-/* @var $model backend\models\PowerPlant[] */
+/* @var $model backend\models\BudgetMonitoring */
 ?>
 
 <?php
@@ -93,8 +93,8 @@ $form = ActiveForm::begin([
                 <?php
                 for($i=1; $i<=12; $i++){
                     $alphabet = $model->toAlphabet($i);$one = 1; ?>
-                    <td><?= Html::textInput("BudgetMonitoringMonth[0][$i][bmv_plan_value_display]", null, ['data-cell' => "$alphabet" . '0', 'data-format' => AppConstants::CALX_DATA_FORMAT_THO, 'class' => 'form-control numbersOnly']); ?></td>
-                    <?= Html::hiddenInput("BudgetMonitoringMonth[0][$i][bmv_plan_value]", null, ['data-cell' => "$alphabet$alphabet" . '0', 'data-formula' => "$alphabet$one"]) ?>
+                    <td><?= Html::textInput("BudgetMonitoringMonth[0][$i][bmv_plan_value_display]", null, ['data-cell' => "$alphabet$alphabet" . '0', 'data-format' => AppConstants::CALX_DATA_FORMAT_THO, 'class' => 'form-control numbersOnly']); ?>
+                    <?= Html::hiddenInput("BudgetMonitoringMonth[0][$i][bmv_plan_value]", null, ['data-cell' => "$alphabet" . '0', 'data-formula' => "$alphabet$alphabet" . "0"]) ?></td>
 
                 <?php } ?> <td><button type="button" class="btn btn-xs btn-danger btn-remove">Hapus</button></td>
             <?php } ?>

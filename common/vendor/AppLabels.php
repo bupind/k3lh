@@ -519,4 +519,7 @@ class AppLabels {
     const PHPEXCEL_SIGN_CITY = 'Palembang';
     const PHPEXCEL_SIGN_DETERMINED_BY = 'Ditetapkan Oleh,';
     const PHPEXCEL_SIGN_DOT_LINE = '………………………………………………';
+
+    //Excel
+    const CURRENCY_IDR_SHORT = 'Rp';
 }

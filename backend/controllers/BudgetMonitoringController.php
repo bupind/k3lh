@@ -2,12 +2,9 @@
 
 namespace backend\controllers;
 
-use backend\models\BudgetMonitoringDetail;
-use backend\models\BudgetMonitoringMonth;
 use Yii;
 use backend\models\BudgetMonitoring;
 use backend\models\BudgetMonitoringSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\vendor\AppConstants;
@@ -113,6 +110,21 @@ class BudgetMonitoringController extends AppController
                 'powerPlantList' => $powerPlantList,
             ]);
         }
+    }
+
+    public function actionExport($id, $rmt = null) {
+        if (is_null($rmt)) {
+            $rmt = AppConstants::FORM_TYPE_K3;
+        }
+
+
+        $rmt = strtoupper($rmt);
+        $searchModel = new BudgetMonitoringSearch();
+        $searchModel->form_type_code = $rmt;
+
+        $searchModel->export($id);
+        return $this->redirect(['/download/excel', 'filename' => $searchModel->filename]);
+
     }
 
     /**

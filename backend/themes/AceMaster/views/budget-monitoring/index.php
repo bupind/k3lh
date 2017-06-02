@@ -19,8 +19,14 @@ $buttons = array_merge([
     'realization_xs' => function ($url, $model) {
         return Html::a('<span class="orange"><i class="ace-icon fa fa-fire bigger-120"></i></span>', $url, ['class' => 'tooltip-warning', 'data-rel' => 'tooltip', 'data-original-title' => AppLabels::REALIZATION, 'data' => ['method' => 'post']]);
     },
+    'export' => function ($url, $model) {
+        return Html::a('<i class="ace-icon fa fa-cloud-download bigger-120"></i> ' . AppLabels::BTN_EXPORT, $url, ['class' => 'btn btn-xs', 'data' => ['method' => 'post']]);
+    },
+    'export_xs' => function ($url, $model) {
+        return Html::a('<span class="blue"><i class="ace-icon fa fa-cloud-download bigger-120"></i></span>', $url, ['class' => 'tooltip-warning', 'data-rel' => 'tooltip', 'data-original-title' => AppLabels::BTN_EXPORT, 'data' => ['method' => 'post']]);
+    },
 ], $actionColumn->buttons);
-$template = Yii::t('app', \common\vendor\AppConstants::GRID_TEMPLATE_DEFAULT_EXTRA, ['additional_buttons' => '{realization}', 'additional_buttons_xs' => '<li>{realization_xs}</li>']);
+$template = Yii::t('app', \common\vendor\AppConstants::GRID_TEMPLATE_DEFAULT_EXTRA, ['additional_buttons' => '{realization}{export}', 'additional_buttons_xs' => '<li>{realization_xs}</li><li>{export_xs}</li>']);
 ?>
 <div class="budget-monitoring-index">
 
