@@ -8,7 +8,6 @@ use backend\models\CodesetSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\vendor\AppConstants;
-
 /**
  * CodesetController implements the CRUD actions for Codeset model.
  */

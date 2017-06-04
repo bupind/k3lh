@@ -522,4 +522,8 @@ class AppLabels {
 
     //Excel
     const CURRENCY_IDR_SHORT = 'Rp';
+
+    //BEYOND OBEDIENCE PROGRAM
+    const RESULT = 'Hasil';
+    const ABSOLUTE = 'Absolut';
 }

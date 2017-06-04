@@ -18,7 +18,7 @@ use app\components\SubmitButton;
 
 <?php
 $form = ActiveForm::begin([
-    'id' => 'plb3-balance-sheet-detail-form',
+    'id' => 'beyond-obedience-form',
     'options' => [
         'class' => 'calx form-horizontal',
         'role' => 'form'
