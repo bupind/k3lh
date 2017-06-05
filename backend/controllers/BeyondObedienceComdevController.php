@@ -2,21 +2,22 @@
 
 namespace backend\controllers;
 
-use backend\models\BopDetail;
+use backend\models\BocDetail;
 use Yii;
-use backend\models\BeyondObedienceProgram;
-use backend\models\BeyondObedienceProgramSearch;
+use backend\models\BeyondObedienceComdev;
+use backend\models\BeyondObedienceComdevSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\vendor\AppConstants;
-use backend\models\PowerPlant;
 use backend\models\Codeset;
 use yii\helpers\Json;
+use backend\models\PowerPlant;
 use yii\base\Model;
+
 /**
- * BeyondObedienceProgramController implements the CRUD actions for BeyondObedienceProgram model.
+ * BeyondObedienceComdevController implements the CRUD actions for BeyondObedienceComdev model.
  */
-class BeyondObedienceProgramController extends AppController
+class BeyondObedienceComdevController extends AppController
 {
     public $powerPlantModel;
     /**
@@ -34,6 +35,11 @@ class BeyondObedienceProgramController extends AppController
         ];
     }
 
+    /**
+     * Lists all BeyondObedienceComdev models.
+     * @return mixed
+     */
+
     public function beforeAction($action) {
         parent::beforeAction($action);
 
@@ -49,44 +55,40 @@ class BeyondObedienceProgramController extends AppController
         return $this->rbac();
     }
 
-    /**
-     * Lists all BeyondObedienceProgram models.
-     * @return mixed
-     */
-    public function actionIndex($bopt)
+    public function actionIndex($boct)
     {
-        if (is_null($bopt)) {
-            $bopt = AppConstants::FORM_TYPE_KA;
+        if (is_null($boct)) {
+            $boct = AppConstants::FORM_TYPE_CD;
         }
 
-        $searchModel = new BeyondObedienceProgramSearch();
+        $searchModel = new BeyondObedienceComdevSearch();
         $searchModel->sector_id = $this->powerPlantModel->sector_id;
         $searchModel->power_plant_id = $this->powerPlantModel->id;
-        $searchModel->bop_form_type_code = $bopt;
+        $searchModel->boc_form_type_code = $boct;
 
-        $title = Codeset::getCodesetValue(AppConstants::CODESET_NAME_BO_FORM_TYPE_CODE, $bopt);
+        $title = Codeset::getCodesetValue(AppConstants::CODESET_NAME_BO_FORM_TYPE_CODE, $boct);
+
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'bopt' => $bopt,
+            'boct' => $boct,
             'title' => $title,
             'powerPlantModel' => $this->powerPlantModel,
         ]);
     }
 
     /**
-     * Displays a single BeyondObedienceProgram model.
+     * Displays a single BeyondObedienceComdev model.
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id, $bopt)
+    public function actionView($id, $boct)
     {
-
         $model = $this->findModel($id);
 
-        $title = Codeset::getCodesetValue(AppConstants::CODESET_NAME_BO_FORM_TYPE_CODE, $bopt);
+        $title = Codeset::getCodesetValue(AppConstants::CODESET_NAME_BO_FORM_TYPE_CODE, $boct);
 
         return $this->render('view', [
             'model' => $model,
@@ -95,32 +97,32 @@ class BeyondObedienceProgramController extends AppController
     }
 
     /**
-     * Creates a new BeyondObedienceProgram model.
+     * Creates a new BeyondObedienceComdev model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate($bopt)
+    public function actionCreate($boct)
     {
-        if (is_null($bopt)) {
-            $bopt = AppConstants::FORM_TYPE_KA;
+        if (is_null($boct)) {
+            $boct = AppConstants::FORM_TYPE_KA;
         }
-        $model = new BeyondObedienceProgram();
+        $model = new BeyondObedienceComdev();
 
         $detailModels = [];
 
-        $detailModels[] = new BopDetail();
+        $detailModels[] = new BocDetail();
         $requestData = Yii::$app->request->post();
 
         if ($model->load($requestData) && Model::loadMultiple($detailModels, $requestData) && $model->saveTransactional()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
-            return $this->redirect(['view', 'bopt' => $model->bop_form_type_code, 'id' => $model->id]);
+            return $this->redirect(['view', 'boct' => $model->boc_form_type_code, 'id' => $model->id]);
         } else {
 
-            $title = Codeset::getCodesetValue(AppConstants::CODESET_NAME_BO_FORM_TYPE_CODE, $bopt);
+            $title = Codeset::getCodesetValue(AppConstants::CODESET_NAME_BO_FORM_TYPE_CODE, $boct);
 
             return $this->render('create', [
                 'model' => $model,
-                'bopt' => $bopt,
+                'boct' => $boct,
                 'title' => $title,
                 'detailModels' => $detailModels,
                 'powerPlantModel' => $this->powerPlantModel,
@@ -129,29 +131,29 @@ class BeyondObedienceProgramController extends AppController
     }
 
     /**
-     * Updates an existing BeyondObedienceProgram model.
+     * Updates an existing BeyondObedienceComdev model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id, $bopt)
+    public function actionUpdate($id, $boct)
     {
         $model = $this->findModel($id);
 
-        $detailModels = $model->bopDetails;
+        $detailModels = $model->bocDetails;
 
         $requestData = Yii::$app->request->post();
 
         if ($model->load($requestData) && $model->saveTransactional()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_UPDATE_SUCCESS);
-            return $this->redirect(['view', 'bopt' => $model->bop_form_type_code, 'id' => $model->id]);
+            return $this->redirect(['view', 'boct' => $model->boc_form_type_code, 'id' => $model->id]);
         } else {
 
-            $title = Codeset::getCodesetValue(AppConstants::CODESET_NAME_BO_FORM_TYPE_CODE, $bopt);
+            $title = Codeset::getCodesetValue(AppConstants::CODESET_NAME_BO_FORM_TYPE_CODE, $boct);
 
             return $this->render('update', [
                 'model' => $model,
-                'bopt' => $bopt,
+                'boct' => $boct,
                 'title' => $title,
                 'detailModels' => $detailModels,
                 'powerPlantModel' => $this->powerPlantModel,
@@ -160,7 +162,7 @@ class BeyondObedienceProgramController extends AppController
     }
 
     /**
-     * Deletes an existing BeyondObedienceProgram model.
+     * Deletes an existing BeyondObedienceComdev model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -172,7 +174,7 @@ class BeyondObedienceProgramController extends AppController
             Yii::$app->session->setFlash('success', AppConstants::MSG_DELETE_SUCCESS);
         }
 
-        return $this->redirect(['index', '_ppId' => $model->power_plant_id, 'bopt' => $model->bop_form_type_code] );
+        return $this->redirect(['index', '_ppId' => $model->power_plant_id, 'boct' => $model->boc_form_type_code] );
     }
 
     public function actionAjaxCodeset() {
@@ -186,15 +188,15 @@ class BeyondObedienceProgramController extends AppController
     }
 
     /**
-     * Finds the BeyondObedienceProgram model based on its primary key value.
+     * Finds the BeyondObedienceComdev model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return BeyondObedienceProgram the loaded model
+     * @return BeyondObedienceComdev the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = BeyondObedienceProgram::findOne($id)) !== null) {
+        if (($model = BeyondObedienceComdev::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

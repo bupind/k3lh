@@ -526,4 +526,11 @@ class AppLabels {
     //BEYOND OBEDIENCE PROGRAM
     const RESULT = 'Hasil';
     const ABSOLUTE = 'Absolut';
+
+    //BEYOND OBEDIENCE COMDEV
+    const COMDEV = 'Community Development';
+    const PUBLIC_INCOME = 'Pendapatan Masyarakat';
+    const BOC_IMPACT = 'Sebaran Dampak';
+    const BOC_EFFORT = 'Kebelangsungan Usaha';
+    const BOC_BUDGET = 'Anggaran';
 }

@@ -543,7 +543,7 @@ class SiteController extends AppController {
                                                             'additionalParameters' => [
                                                                 'children' => [
                                                                     '44391' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Penilaian Comdev (Lamp V, Permen LH 03/2014)', ['/beyond-obedience', 'bot' => AppConstants::FORM_TYPE_CD, '_ppId' => $powerPlant->id]), 'type' => 'item'],
-                                                                    '44392' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form Program Comdev', 'type' => 'item'],
+                                                                    '44392' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Program Comdev', ['/beyond-obedience-comdev', 'boct' => AppConstants::FORM_TYPE_CD, '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                     '44393' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Dokumen Social Mapping', 'type' => 'item'],
                                                                     '44394' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Laporan Comdev', 'type' => 'item'],
                                                                 ]
