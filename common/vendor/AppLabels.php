@@ -538,4 +538,19 @@ class AppLabels {
     const IPN_INSTANCE = 'Instansi / Lembaga';
     const IPN_PHONE_NUMBER = 'No. Telepon';
     const FORM_IPN = 'Nomor Telepon Penting';
+
+    //SLO GENERATOR
+    const SLO = 'SLO';
+    const FORM_SLO_GENERATOR = 'SLO Pembangkit';
+    const SG_GENERATOR_UNIT = 'Unit Pembangkit';
+    const SG_POWER_INSTALLED = 'Daya Terpasang (MW)';
+    const OPERATION = 'Operasi';
+    const SG_GENERATOR_STATUS = 'Status Pembangkit';
+    const SG_SLO_NUMBER = 'Nomor SLO';
+    const PUBLISHED = 'Terbit';
+    const SG_END = 'Berakhir';
+    const SG_MAX_EXTENSION = 'Maks. Perpanjangan';
+    const PUBLISHER = 'Penerbit';
+
+
 }

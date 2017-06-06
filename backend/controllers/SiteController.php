@@ -596,7 +596,7 @@ class SiteController extends AppController {
                                                             'icon-class' => 'blue',
                                                             'additionalParameters' => [
                                                                 'children' => [
-                                                                    '55221' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form eviden SMK3 per kategori', 'type' => 'item'],
+                                                                    '55221' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Monitoring SLO Pembangkit', ['/slo-generator', '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                     '55222' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload SLO', 'type' => 'item'],
                                                                 ]
                                                             ]

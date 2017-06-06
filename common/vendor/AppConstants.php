@@ -131,6 +131,7 @@ class AppConstants {
     const FORMAT_DATE = 'd-m-Y';
     const FORMAT_DB_DATE = 'Y-m-d';
     const FORMAT_DATE_PHP = 'php:d-m-Y';
+    const FORMAT_DATE_PHP_SHOW_MONTH = 'php:d M Y';
     const FORMAT_DATETIME_PHP = 'php:d-m-Y H:i';
     const FORMAT_DB_DATE_PHP = 'php:Y-m-d';
     const FORMAT_DB_DATETIME_PHP = 'php:Y-m-d H:i:s';
@@ -283,6 +284,9 @@ class AppConstants {
     //BEYOND OBEDIENCE
     const CODESET_NAME_BO_FORM_TYPE_CODE = 'BO_FORM_TYPE_CODE';
     const CODESET_BOP_UNIT_CODE = 'BOP_UNIT_CODE';
+
+    //SLO GENERATOR
+    const CODESET_SLOG_GEN_UNIT_CODE = 'SLOG_GEN_UNIT_CODE';
     
     // PLB3 SELF ASSESSMENT
     const PLB3_SA_QUESTION_CATEGORY_GENERAL = 'GNRL';
