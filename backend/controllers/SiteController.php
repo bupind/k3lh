@@ -613,7 +613,7 @@ class SiteController extends AppController {
                                                             ]
                                                         ],
                                                         'sertifikasi-k3-personil' => [
-                                                            'text' => '',
+                                                            'text' => 'Sertifikasi K3 Personil',
                                                             'type' => 'folder',
                                                             'icon-class' => 'blue',
                                                             'additionalParameters' => [
@@ -942,7 +942,7 @@ class SiteController extends AppController {
                                                             'icon-class' => 'blue',
                                                             'additionalParameters' => [
                                                                 'children' => [
-                                                                    '55651' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form Nomor Telepon Penting', 'type' => 'item'],
+                                                                    '55651' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Nomor Telepon Penting', ['/important-phone-number', '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                 ]
                                                             ]
                                                         ],

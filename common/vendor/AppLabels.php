@@ -533,4 +533,9 @@ class AppLabels {
     const BOC_IMPACT = 'Sebaran Dampak';
     const BOC_EFFORT = 'Kebelangsungan Usaha';
     const BOC_BUDGET = 'Anggaran';
+
+    //IMPORTANT PHONE NUMBER
+    const IPN_INSTANCE = 'Instansi / Lembaga';
+    const IPN_PHONE_NUMBER = 'No. Telepon';
+    const FORM_IPN = 'Nomor Telepon Penting';
 }
