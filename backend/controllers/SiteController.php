@@ -804,7 +804,7 @@ class SiteController extends AppController {
                                                             'icon-class' => 'blue',
                                                             'additionalParameters' => [
                                                                 'children' => [
-                                                                    '554171' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form valuasi Tanggap Darurat', 'type' => 'item'],
+                                                                    '554171' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Evaluasi Tanggap Darurat', ['/emergency-response', '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                     '554172' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Dokumentasi', 'type' => 'item'],
                                                                 ]
                                                             ]

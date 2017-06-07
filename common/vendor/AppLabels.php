@@ -552,5 +552,17 @@ class AppLabels {
     const SG_MAX_EXTENSION = 'Maks. Perpanjangan';
     const PUBLISHER = 'Penerbit';
 
+    //SLO TOOLS
+
+    //EMERGENCY RESPONSE
+    const FORM_EMERGENCY_RESPONSE = 'Evaluasi Pelatihan dan Simulasi Tanggap Darurat';
+    const ER_TRAINING_NAME = 'Nama Pelatihan / Simulasi';
+    const PARTICIPANT = 'Peserta';
+    const ER_TEAM = 'Bagian / Tim';
+    const ER_TIME = 'Waktu (menit)';
+    const ER_VICTIM = 'Korban (org)';
+    const ER_LOSS = 'Kerugian (Rp)';
+    const ER_FAILURE_DETAIL = 'Aneka Kegagalan';
+    const ER_UPLOAD = 'Upload Skenario';
 
 }
