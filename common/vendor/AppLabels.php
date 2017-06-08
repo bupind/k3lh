@@ -565,4 +565,11 @@ class AppLabels {
     const ER_FAILURE_DETAIL = 'Aneka Kegagalan';
     const ER_UPLOAD = 'Upload Skenario';
 
+    //SAFETY CAMPAIGN
+    const SC_CAMPAIGN = 'Jenis Kampanye K3';
+    const CAMPAIGNER = 'Campaigner';
+    const PART = 'Bagian';
+    const DOCUMENTATION = 'Dokumentasi';
+    const FORM_SAFETY_CAMPAIGN = 'Monitoring Safety Campaign';
+
 }

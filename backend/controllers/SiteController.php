@@ -847,7 +847,7 @@ class SiteController extends AppController {
                                                             'icon-class' => 'blue',
                                                             'additionalParameters' => [
                                                                 'children' => [
-                                                                    '55531' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form Monitoring Safety Campaign', 'type' => 'item'],
+                                                                    '55531' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Monitoring Safety Campaign', ['/safety-campaign', '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                     '55532' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Dokumentasi Safety Campaign', 'type' => 'item'],
                                                                 ]
                                                             ]

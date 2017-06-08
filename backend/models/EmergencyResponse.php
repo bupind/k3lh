@@ -128,22 +128,6 @@ class EmergencyResponse extends AppModel
                 throw new Exception();
             }
 
-            $bocId = $this->id;
-
-            if (isset($request['BocDetail'])) {
-                foreach ($request['BocDetail'] as $keyD => $detail) {
-                    if (isset($detail['id'])) {
-                        $boDetailTuple = BocDetail::findOne(['id' => $detail['id']]);
-                    } else {
-                        $boDetailTuple = new BocDetail();
-                        $boDetailTuple->beyond_obedience_comdev_id = $bocId;
-                    }
-                    if (!$boDetailTuple->load(['BocDetail' => $detail]) || !$boDetailTuple->save()) {
-                        $errors = array_merge($errors, $boDetailTuple->errors);
-                        throw new Exception();
-                    }
-                }
-            }
             $transaction->commit();
             return TRUE;
         } catch (Exception $ex) {
