@@ -541,7 +541,7 @@ class AppLabels {
 
     //SLO GENERATOR
     const SLO = 'SLO';
-    const FORM_SLO_GENERATOR = 'SLO Pembangkit';
+    const FORM_SLO_GENERATOR = 'Monitoring SLO Pembangkit';
     const SG_GENERATOR_UNIT = 'Unit Pembangkit';
     const SG_POWER_INSTALLED = 'Daya Terpasang (MW)';
     const OPERATION = 'Operasi';
@@ -553,6 +553,15 @@ class AppLabels {
     const PUBLISHER = 'Penerbit';
 
     //SLO TOOLS
+    const ST_LOCATION = 'Lokasi (Kota / Kabupaten)';
+    const ST_CATEGORY = 'Kategori Peralatan';
+    const ST_TYPE = 'Jenis Peralatan';
+    const ST_VALIDATION = 'Nomor Pengesahan';
+    const ST_CHECK1 = 'Riksa Uji 1';
+    const ST_CHECK2 = 'Riksa Uji 2';
+    const ST_NEXT_CHECK = 'Riksa Uji Berikutnya';
+    const ST_CERTIFICATE_PUBLISHER = 'Penerbit Sertifikasi';
+    const FORM_SLO_TOOLS = 'Monitoring Sertifikasi Bejana Bertekanan';
 
     //EMERGENCY RESPONSE
     const FORM_EMERGENCY_RESPONSE = 'Evaluasi Pelatihan dan Simulasi Tanggap Darurat';

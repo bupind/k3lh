@@ -16,8 +16,8 @@ class SloGeneratorSearch extends SloGenerator
     public function rules()
     {
         return [
-            [['id', 'sector_id', 'power_plant_id', 'sg_year'], 'integer'],
-            [['generator_unit', 'generator_status','sg_form_month_type_code', 'sg_year', 'sg_number', 'sg_published', 'sg_end', 'sg_max_extension', 'sg_publisher'], 'safe'],
+            [['sg_year', 'id', 'sector_id', 'power_plant_id', 'sg_year'], 'integer'],
+            [['generator_unit', 'generator_status','sg_form_month_type_code', 'sg_number', 'sg_published', 'sg_end', 'sg_max_extension', 'sg_publisher'], 'safe'],
             [['power_installed'], 'number'],
         ];
     }
