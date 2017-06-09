@@ -36,6 +36,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     'converter' => [
                         'sector_id' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->sector->sector_name],
                         'power_plant_id' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->powerPlant->pp_name],
+                        'generator_status' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->generator_status_desc],
+                        'sg_form_month_type_code' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->sg_form_month_type_code_desc],
                     ]
                 ]
             ]);

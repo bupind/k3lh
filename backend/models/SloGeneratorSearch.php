@@ -17,7 +17,7 @@ class SloGeneratorSearch extends SloGenerator
     {
         return [
             [['id', 'sector_id', 'power_plant_id', 'sg_year'], 'integer'],
-            [['generator_unit', 'generator_status', 'sg_number', 'sg_published', 'sg_end', 'sg_max_extension', 'sg_publisher'], 'safe'],
+            [['generator_unit', 'generator_status','sg_form_month_type_code', 'sg_year', 'sg_number', 'sg_published', 'sg_end', 'sg_max_extension', 'sg_publisher'], 'safe'],
             [['power_installed'], 'number'],
         ];
     }
@@ -63,6 +63,7 @@ class SloGeneratorSearch extends SloGenerator
             'power_plant_id' => $this->power_plant_id,
             'power_installed' => $this->power_installed,
             'sg_year' => $this->sg_year,
+            'sg_operation_year' => $this->sg_operation_year,
             'sg_published' => $this->sg_published,
             'sg_end' => $this->sg_end,
             'sg_max_extension' => $this->sg_max_extension,
@@ -70,6 +71,7 @@ class SloGeneratorSearch extends SloGenerator
 
         $query->andFilterWhere(['like', 'generator_unit', $this->generator_unit])
             ->andFilterWhere(['like', 'generator_status', $this->generator_status])
+            ->andFilterWhere(['like', 'sg_form_month_type_code', $this->sg_form_month_type_code])
             ->andFilterWhere(['like', 'sg_number', $this->sg_number])
             ->andFilterWhere(['like', 'sg_publisher', $this->sg_publisher]);
 

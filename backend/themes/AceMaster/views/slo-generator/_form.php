@@ -46,6 +46,15 @@ $index = 0;
             echo $form->field($powerPlantModel, 'pp_name', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
                 ->textInput([ 'class' =>  'form-control text-center', 'disabled' => true])
                 ->label(AppLabels::POWER_PLANT, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+
+            echo $form->field($model, "sg_year", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+                ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly text-right'])
+                ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+
+            echo$form->field($model, "sg_form_month_type_code", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+                ->dropDownList(Codeset::customMap(AppConstants::CODESET_FORM_MONTH_TYPE_CODE, 'cset_value'), ['class' => 'input-big form-control'])
+                ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+
             ?>
         </div>
     </div>
@@ -65,7 +74,7 @@ $index = 0;
 
             echo $form->field($model, 'power_installed')->hiddenInput(['data-cell' => 'A1', 'data-formula' => 'AA1', 'data-format' => AppConstants::CALX_DATA_FORMAT_PLAIN])->label(false);
 
-            echo $form->field($model, "sg_year", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+            echo $form->field($model, "sg_operation_year", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
                 ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly text-right'])
                 ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
 
