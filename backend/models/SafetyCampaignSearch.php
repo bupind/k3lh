@@ -43,6 +43,8 @@ class SafetyCampaignSearch extends SafetyCampaign
 
         // add conditions that should always apply here
 
+        $powerPlant = PowerPlant::find()->where(['id' => $params['_ppId']])->one();
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -58,8 +60,8 @@ class SafetyCampaignSearch extends SafetyCampaign
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'sector_id' => $this->sector_id,
-            'power_plant_id' => $this->power_plant_id,
+            'sector_id' => $powerPlant->sector_id,
+            'power_plant_id' => $powerPlant->id,
             'sc_date' => $this->sc_date,
             'sc_amount' => $this->sc_amount,
         ]);

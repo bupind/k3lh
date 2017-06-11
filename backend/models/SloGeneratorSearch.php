@@ -44,6 +44,8 @@ class SloGeneratorSearch extends SloGenerator
 
         // add conditions that should always apply here
 
+        $powerPlant = PowerPlant::find()->where(['id' => $params['_ppId']])->one();
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -59,8 +61,8 @@ class SloGeneratorSearch extends SloGenerator
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'sector_id' => $this->sector_id,
-            'power_plant_id' => $this->power_plant_id,
+            'sector_id' => $powerPlant->sector_id,
+            'power_plant_id' => $powerPlant->id,
             'power_installed' => $this->power_installed,
             'sg_year' => $this->sg_year,
             'sg_operation_year' => $this->sg_operation_year,

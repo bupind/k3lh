@@ -43,6 +43,8 @@ class SloToolsSearch extends SloTools
 
         // add conditions that should always apply here
 
+        $powerPlant = PowerPlant::find()->where(['id' => $params['_ppId']])->one();
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -58,8 +60,8 @@ class SloToolsSearch extends SloTools
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'sector_id' => $this->sector_id,
-            'power_plant_id' => $this->power_plant_id,
+            'sector_id' => $powerPlant->sector_id,
+            'power_plant_id' => $powerPlant->id,
             'st_year' => $this->st_year,
             'st_published' => $this->st_published,
             'st_check1' => $this->st_check1,
