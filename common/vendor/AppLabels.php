@@ -615,5 +615,24 @@ class AppLabels {
     const FORM_COMPETENCY_CERTIFICATION = 'Sertifikasi Kompetensi';
     const CERTIFICATION = 'Sertifikasi';
 
+    //MONITORING APAR
+    const FORM_MONITORING_APAR = 'Monitoring APAR/APAB';
+    const MA_EXTINGUISH_MEDIA = 'Media Pemadam Api';
+    const MA_FIRE_RATING = 'Rating Api';
+    const MA_FIRE_CLASS = 'Kelas Kebakaran';
+    const MA_WEIGHT = 'Berat (KG)';
+    const MA_WORKING_PRESSURE = 'Tekanan Kerja (Bar)';
+    const MA_TUBE = 'Tabung';
+    const MA_NOZZLE = 'Nozzle';
+    const MA_HANDLE = 'Handle';
+    const MA_PIN = 'Pin';
+    const MA_TRIANGLE = 'Segitiga APAR';
+    const MA_IK = 'IK APAR/APAB';
+    const MA_CARD = 'Kartu Gantung';
+    const MA_HEIGHT = 'Tinggi < 1.25m';
+    const MA_DISTANCE = 'Jarak < 15m';
+    const MA_OFFICER = 'Diisi oleh';
+    const MA_ACTIVITY = 'Aktifitas';
+
 
 }
