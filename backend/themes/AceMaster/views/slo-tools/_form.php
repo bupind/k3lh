@@ -14,7 +14,7 @@ use kartik\date\DatePicker;
 ?>
 <?php
 $form = ActiveForm::begin([
-    'id' => 'slo-generator-form',
+    'id' => 'slo-tools-form',
     'options' => [
         'class' => 'calx form-horizontal',
         'role' => 'form'

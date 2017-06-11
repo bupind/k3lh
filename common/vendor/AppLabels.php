@@ -581,4 +581,14 @@ class AppLabels {
     const DOCUMENTATION = 'Dokumentasi';
     const FORM_SAFETY_CAMPAIGN = 'Monitoring Safety Campaign';
 
+    //COMPETENCY CERTIFICATION
+    const CC_POSITION = 'Jabatan';
+    const CC_WORK_UNIT = 'Unit Kerja';
+    const CC_TYPE = 'Jenis Sertifikasi';
+    const CC_CERTIFICATE_PUBLISHER = 'Penerbit Sertifikasi';
+    const PJK3 = 'PJK3';
+    const FORM_COMPETENCY_CERTIFICATION = 'Sertifikasi Kompetensi';
+    const CERTIFICATION = 'Sertifikasi';
+
+
 }
