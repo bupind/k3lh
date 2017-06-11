@@ -149,6 +149,7 @@ class AppLabels {
     const YES_NO = 'Ya / Tidak';
     const PERFORMANCE = 'Kinerja';
     const DOWNLOAD = 'Unduh';
+    const INFORMATION = 'Informasi';
 
     // MONTH
     const JANUARY = 'Januari';
@@ -514,6 +515,30 @@ class AppLabels {
     //BEYOND OBEDIENCE
     const BEYOND_OBEDIENCE = 'Melebihi Ketaatan';
     const ASSESSMENT_ASPECT = 'Aspek Penilaian';
+    
+    // WORKING PERMIT
+    const FORM_WORKING_PERMIT = 'Form Izin Kerja';
+    const WORKING_PERMIT = 'Izin Kerja';
+    const WP_REGISTRATION_NUMBER = 'Nomor RegIstrasi Ijin Kerja - Nomor PTW';
+    const WP_COMPANY_DEPARTMENT = 'Perusahaan / Bagian';
+    const WP_LEADER = 'Pimpinan Bagian yg melaksanakan Pekerjaan';
+    const WP_SUPERVISOR = 'Pengawas Pelaksanaan Pekerjaan / Supervisi';
+    const WP_PLN_NOE = 'Jumlah Karyawan PLN Sektor';
+    const WP_OUTSOURCE_NOE = 'Jumlah Karyawan Outsource / Mitra Kerja';
+    const WP_WORK_DURATION = 'Lama Pelaksanaan';
+    const WP_JOB_CLASSIFICATION = 'Klasifikasi Pekerjaan';
+    const WP_K3_RULES = 'Peraturan K3 yang Dijelaskan';
+    const WP_SELF_PROTECTION = 'Alat Pelindung Diri (APD) yang Harus Digunakan';
+    const WP_DANGEROUS_WORK_TYPE = 'Jenis Pekerjaan Berbahaya';
+    
+    const REVISION_NUMBER = 'No. Revisi';
+    const PAGE = 'Halaman';
+    const WORK_TYPE = 'Jenis Pekerjaan';
+    const WORK_DETAIL = 'Rincian Pekerjaan';
+    const WORK_LOCATION = 'Lokasi Pekerjaan';
+    const WORK_DURATION = 'Durasi Kerja';
+    const SUBMIT_DATE = 'Tanggal Pengajuan';
+    const PERSONNEL = 'Personil';
     
     //PHPEXCEL
     const PHPEXCEL_SIGN_CITY = 'Palembang';

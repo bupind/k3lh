@@ -644,7 +644,7 @@ class SiteController extends AppController {
                                                                         'icon-class' => 'blue',
                                                                         'additionalParameters' => [
                                                                             'children' => [
-                                                                                '553111' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form Izin Kerja', 'type' => 'item'],
+                                                                                '553111' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . AppLabels::FORM_WORKING_PERMIT, ['/working-permit', '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                                 '553112' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Kontrak Kerja/ Perintah Kerja', 'type' => 'item'],
                                                                                 '553113' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Identitas Penanggungjawab', 'type' => 'item'],
                                                                             ]

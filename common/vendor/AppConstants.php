@@ -26,6 +26,7 @@ class AppConstants {
     
     // APP CONFIG
     const DELIMITER = '#|#';
+    const CONCAT = '|!|';
     const LIMIT_PER_PAGE = 20;
     const INVOICE_FORMAT = '{module}/{date}/{number}';
     const APP_BACKEND_BASE_URL = '/k3lh/adminpanel'; // localhost
@@ -209,6 +210,7 @@ class AppConstants {
     
     // HINT MESSAGES
     const HINT_LEAVE_EMPTY = 'Kosongkan kolom ini jika tidak ada perubahan.';
+    const HINT_ONE_PER_ROW = "Satu data per baris.";
     
     //INFO MESSAGES
     const INFO_PLEASE_INPUT_ACCOUNT_CREDENTIAL = 'Silahkan masukkan info akun';
@@ -235,6 +237,18 @@ class AppConstants {
     
     const CODESET_PLB3_SA_QUESTION_CATEGORY_CODE = 'PLB3_SA_QUESTION_CATEGORY';
     const CODESET_PLB3_SA_QUESTION_INPUT_TYPE_CODE = 'PLB3_SA_QUESTION_INPUT_TYPE';
+    
+    const CODESET_WORKING_PERMIT_JOB_CLASSIFICATION = 'WP_JOB_CLASSIFICATION';
+    const CODESET_WORKING_PERMIT_K3_RULES = 'WP_K3_RULES';
+    const CODESET_WORKING_PERMIT_SELF_PROTECTION = 'WP_SELF_PROTECTION';
+    const CODESET_WORKING_PERMIT_DANGEROUS_WORK = 'WP_DANGEROUS_WORK';
+    
+    const WP_JOB_CLASSIFICATION_OTHER = 'JCO';
+    const WP_K3_RULES_OTHER = 'RO';
+    const WP_SELF_PROTECTION_FIRE_TYPE = 'SP9';
+    const WP_SELF_PROTECTION_OTHER = 'SPO';
+    const WP_DANGEROUS_WORK_CRITICAL_AREA = 'DW1';
+    const WP_DANGEROUS_WORK_OHTER = 'DWO';
 
     // PPA RBM PARAM
     const PPA_RBM_PARAM_PH = 'PH';
