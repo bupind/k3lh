@@ -420,7 +420,6 @@ CREATE TABLE `competency_certification` (
   `power_plant_id` int(11) NOT NULL,
   `cc_name` varchar(100) NOT NULL,
   `cc_position` varchar(100) NOT NULL,
-  `cc_work_unit` varchar(100) NOT NULL,
   `cc_type` varchar(100) NOT NULL,
   `cc_number` varchar(100) NOT NULL,
   `cc_date` date NOT NULL,
@@ -439,7 +438,7 @@ CREATE TABLE `competency_certification` (
 
 /*Data for the table `competency_certification` */
 
-insert  into `competency_certification`(`id`,`sector_id`,`power_plant_id`,`cc_name`,`cc_position`,`cc_work_unit`,`cc_type`,`cc_number`,`cc_date`,`cc_certificate_publisher`,`cc_pjk3`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1,10,6,'Personil 1','Jabatan 1','Unit Kerja 2','Jenis 1','NO 1','2017-06-12','Penerbit 1','PJK 1',8,1497153918,8,1497153932);
+insert  into `competency_certification`(`id`,`sector_id`,`power_plant_id`,`cc_name`,`cc_position`,`cc_type`,`cc_number`,`cc_date`,`cc_certificate_publisher`,`cc_pjk3`,`created_by`,`created_at`,`updated_by`,`updated_at`) values (1,10,6,'Personil 1','Jabatan 1','Jenis 1','NO 1','2017-06-12','Penerbit 1','PJK 1',8,1497153918,8,1497153932);
 
 /*Table structure for table `emergency_response` */
 
