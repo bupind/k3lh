@@ -14,7 +14,6 @@ use Yii;
  * @property integer $power_plant_id
  * @property string $cc_name
  * @property string $cc_position
- * @property string $cc_work_unit
  * @property string $cc_type
  * @property string $cc_number
  * @property string $cc_date
@@ -44,10 +43,10 @@ class CompetencyCertification extends AppModel
     public function rules()
     {
         return [
-            [['sector_id', 'power_plant_id', 'cc_name', 'cc_position', 'cc_work_unit', 'cc_type', 'cc_number', 'cc_date', 'cc_certificate_publisher', 'cc_pjk3'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
+            [['sector_id', 'power_plant_id', 'cc_name', 'cc_position', 'cc_type', 'cc_number', 'cc_date', 'cc_certificate_publisher', 'cc_pjk3'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
             [['sector_id', 'power_plant_id'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
             [['cc_date'], 'safe'],
-            [['cc_name', 'cc_position', 'cc_work_unit', 'cc_type', 'cc_number', 'cc_certificate_publisher', 'cc_pjk3'], 'string', 'max' => 100],
+            [['cc_name', 'cc_position', 'cc_type', 'cc_number', 'cc_certificate_publisher', 'cc_pjk3'], 'string', 'max' => 100],
             [['power_plant_id'], 'exist', 'skipOnError' => true, 'targetClass' => PowerPlant::className(), 'targetAttribute' => ['power_plant_id' => 'id']],
             [['sector_id'], 'exist', 'skipOnError' => true, 'targetClass' => Sector::className(), 'targetAttribute' => ['sector_id' => 'id']],
         ];
@@ -64,7 +63,6 @@ class CompetencyCertification extends AppModel
             'power_plant_id' => AppLabels::POWER_PLANT,
             'cc_name' => AppLabels::NAME,
             'cc_position' => AppLabels::CC_POSITION,
-            'cc_work_unit' => AppLabels::CC_WORK_UNIT,
             'cc_type' => AppLabels::CC_TYPE,
             'cc_number' => AppLabels::NUMBER,
             'cc_date' => AppLabels::DATE,

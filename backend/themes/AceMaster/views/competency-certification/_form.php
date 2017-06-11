@@ -52,10 +52,6 @@ $index = 0;
                 ->textInput(['maxlength' => true, 'class' => 'form-control'])
                 ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
 
-            echo $form->field($model, "cc_work_unit", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
-                ->textInput(['maxlength' => true, 'class' => 'form-control'])
-                ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
-
             echo $form->field($model, "cc_type", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
                 ->textInput(['maxlength' => true, 'class' => 'form-control'])
                 ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);

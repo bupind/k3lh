@@ -17,7 +17,7 @@ class CompetencyCertificationSearch extends CompetencyCertification
     {
         return [
             [['id', 'sector_id', 'power_plant_id'], 'integer'],
-            [['cc_name', 'cc_position', 'cc_work_unit', 'cc_type', 'cc_number', 'cc_date', 'cc_certificate_publisher', 'cc_pjk3'], 'safe'],
+            [['cc_name', 'cc_position', 'cc_type', 'cc_number', 'cc_date', 'cc_certificate_publisher', 'cc_pjk3'], 'safe'],
         ];
     }
 
@@ -67,7 +67,6 @@ class CompetencyCertificationSearch extends CompetencyCertification
 
         $query->andFilterWhere(['like', 'cc_name', $this->cc_name])
             ->andFilterWhere(['like', 'cc_position', $this->cc_position])
-            ->andFilterWhere(['like', 'cc_work_unit', $this->cc_work_unit])
             ->andFilterWhere(['like', 'cc_type', $this->cc_type])
             ->andFilterWhere(['like', 'cc_number', $this->cc_number])
             ->andFilterWhere(['like', 'cc_certificate_publisher', $this->cc_certificate_publisher])

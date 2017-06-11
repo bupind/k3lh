@@ -14,10 +14,10 @@ $this->params['breadcrumbs'][] = $this->title;
 $actionColumn = Yii::$container->get('yii\grid\ActionColumn');
 $buttons = array_merge($actionColumn->buttons, [
     'update' => function ($url, $model) {
-        return Html::a('<i class="ace-icon fa fa-pencil bigger-120"></i> ' . AppLabels::BTN_UPDATE, ['slo-tools/update', '_ppId' => $model->powerPlant->id,  'id' => $model->id], ['class' => 'btn btn-xs btn-info']);
+        return Html::a('<i class="ace-icon fa fa-pencil bigger-120"></i> ' . AppLabels::BTN_UPDATE, ['competency-certification/update', '_ppId' => $model->powerPlant->id,  'id' => $model->id], ['class' => 'btn btn-xs btn-info']);
     },
     'update_xs' => function ($url, $model) {
-        return Html::a('<span class="green"><i class="ace-icon fa fa-pencil bigger-120"></i></span>', ['slo-tools/update', '_ppId' => $model->powerPlant->id, 'id' => $model->id], ['class' => 'tooltip-success', 'data-rel' => 'tooltip', 'data-original-title' => AppLabels::BTN_UPDATE]);
+        return Html::a('<span class="green"><i class="ace-icon fa fa-pencil bigger-120"></i></span>', ['competency-certification/update', '_ppId' => $model->powerPlant->id, 'id' => $model->id], ['class' => 'tooltip-success', 'data-rel' => 'tooltip', 'data-original-title' => AppLabels::BTN_UPDATE]);
     },
 
 ]);
@@ -43,7 +43,6 @@ $buttons = array_merge($actionColumn->buttons, [
 
             'cc_name',
             'cc_position',
-            'cc_work_unit',
 
             [
                 'class' => 'yii\grid\ActionColumn',
