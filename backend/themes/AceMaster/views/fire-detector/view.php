@@ -7,20 +7,20 @@ use app\components\ViewButton;
 use common\vendor\AppConstants;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\MonitoringApar */
+/* @var $model backend\models\FireDetector */
 
-$this->title = sprintf("%s %s", AppLabels::BTN_VIEW, $model->ma_location);
-$this->params['breadcrumbs'][] = ['label' => sprintf("Form %s", AppLabels::FORM_MONITORING_APAR), 'url' => ['index', '_ppId' => $model->power_plant_id]];
+$this->title = sprintf("%s %s", AppLabels::BTN_VIEW, $model->fd_location);
+$this->params['breadcrumbs'][] = ['label' => sprintf("Form %s", AppLabels::FORM_FIRE_DETECTOR), 'url' => ['index', '_ppId' => $model->power_plant_id]];
 $this->params['breadcrumbs'][] = $this->title;
 
 $startDate = new \DateTime();
 $startDate->setDate(2000, 1, 1);
 ?>
-<div class="monitoring-apar-view">
+<div class="fire-detector-view">
 
     <div class="page-header">
         <h1>
-            <?= Html::encode(sprintf("%s %s", sprintf("Form %s", AppLabels::FORM_IPN), $this->title)) ?>
+            <?= Html::encode(sprintf("%s %s", sprintf("Form %s", AppLabels::FORM_FIRE_DETECTOR), $this->title)) ?>
             <?php if (isset($this->params['subtitle'])): ?>
                 <small>
                     <i class="ace-icon fa fa-angle-double-right"></i>
@@ -39,17 +39,10 @@ $startDate->setDate(2000, 1, 1);
                     'converter' => [
                         'sector_id' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->sector->sector_name],
                         'power_plant_id' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->powerPlant->pp_name],
-                        'ma_form_month_type_code' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->ma_form_month_type_code_desc],
-                        'ma_tube_condition_code' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->ma_tube_condition_desc],
-                        'ma_handle_condition_code' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->ma_handle_condition_desc],
-                        'ma_nozzle_condition_code' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->ma_nozzle_condition_desc],
-                        'ma_pin_condition_code' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->ma_pin_condition_desc],
-                        'ma_technical_triangle' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->ma_technical_triangle_desc],
-                        'ma_technical_ik' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->ma_technical_ik_desc],
-                        'ma_technical_card' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->ma_technical_card_desc],
-                        'ma_technical_height' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->ma_technical_height_desc],
-                        'ma_technical_dis' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->ma_technical_dis_desc],
-                        'ma_fire_class' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->ma_fire_class_desc],
+                        'fd_form_month_type_code' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->fd_form_month_type_code_desc],
+                        'fd_floor_code' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->fd_floor_code_desc],
+                        'fd_detector_type_code' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->fd_detector_type_code_desc],
+                        'fd_alarm_zone_code' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->fd_alarm_zone_code_desc],
                     ]
                 ]
             ]);
@@ -59,17 +52,16 @@ $startDate->setDate(2000, 1, 1);
         <div class="col-xs-12 col-md-6">
             <div class="col-xs-12">
                 <h3 class="header smaller lighter green"><?= "Pengecekan Bulanan Berat vs Tekanan (KG/BAR)" ?></h3>
-                <?php foreach ($model->maMonths as $month): ?>
+                <?php foreach ($model->fdDetails as $month): ?>
                     <div class="col-xs-12 col-sm-4">
                         <label><strong><?= $startDate->format('M'); ?></strong></label>
-                        <p><?= $month->mam_value; ?></p>
+                        <p><?= $month->fdd_monthly_test_code_desc; ?></p>
                     </div>
-                    <?php $startDate->add(new \DateInterval('P1M')); endforeach; ?>
+
+                <?php $startDate->add(new \DateInterval('P1M')); endforeach; ?>
             </div>
         </div>
     </div>
-
-
 
     <div class="row">
         <div class="col-xs-12">

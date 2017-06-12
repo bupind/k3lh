@@ -783,7 +783,7 @@ class SiteController extends AppController {
                                                             'icon-class' => 'blue',
                                                             'additionalParameters' => [
                                                                 'children' => [
-                                                                    '554151' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form Monitoring Detector Alarm', 'type' => 'item'],
+                                                                    '554151' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Monitoring Detector Alarm', ['/fire-detector', '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                 ]
                                                             ]
                                                         ],

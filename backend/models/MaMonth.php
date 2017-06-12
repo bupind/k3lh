@@ -20,7 +20,6 @@ use common\vendor\AppLabels;
  */
 class MaMonth extends AppModel
 {
-    public $month_label;
     /**
      * @inheritdoc
      */
@@ -54,15 +53,6 @@ class MaMonth extends AppModel
         ];
     }
 
-    public function afterFind() {
-        parent::afterFind();
-
-        $dt = new \DateTime();
-        $dt->setDate(2000, 1, 1);
-        $this->month_label = $dt->format('M');
-
-        return true;
-    }
 
     /**
      * @return \yii\db\ActiveQuery

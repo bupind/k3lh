@@ -634,5 +634,15 @@ class AppLabels {
     const MA_OFFICER = 'Diisi oleh';
     const MA_ACTIVITY = 'Aktifitas';
 
-
+    //FIRE DETECTOR
+    const FORM_FIRE_DETECTOR = 'Monitoring Fire Detector';
+    const FLOOR = 'Lantai';
+    const FD_DETECTOR_TYPE = 'Tipe Detektor';
+    const FD_ALARM_ZONE = 'Zona Alarm';
+    const FD_INSTALLATION = 'Pemasangan';
+    const FD_DETECTOR_PHYSIC = 'Fisik Detektor';
+    const FD_WIRING_CONDITION = 'Kondisi Wiring';
+    const FD_LAST_CHECK = 'Last Checked';
+    const FD_TEST_RESULT_RECORD = 'Catatan Hasil Pengujian';
+    const FDD_DATE = 'Tanggal Pengecekan';
 }

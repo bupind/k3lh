@@ -16,7 +16,7 @@ use kartik\date\DatePicker;
 
 <?php
 $form = ActiveForm::begin([
-    'id' => 'important-phone-number-form',
+    'id' => 'monitoring-apar-form',
     'options' => [
         'class' => 'calx form-horizontal',
         'role' => 'form'
