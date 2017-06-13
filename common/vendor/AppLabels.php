@@ -663,4 +663,14 @@ class AppLabels {
     const ENOUGH = 'Cukup';
     const BAD = 'Kurang';
     const NOTE = 'Catatan';
+
+    //K3L PROBLEM
+    const FORM_K3L_PROBLEM = 'Permasalahan K3L';
+    const KP_PROBLEM_NUMBER = 'ID Masalah/Isu';
+    const KP_PROBLEM_DESCRIPTION = 'Permasalahan/Isu';
+    const KP_MITIGATION_PLAN = 'Rencana Mitigasi';
+    const KP_MITIGATION_DATELINE_DATE = 'Deadline Mitigasi';
+    const KP_STATUS = 'Open/Close';
+    const KP_PROGRESS = '% Progress';
+
 }
