@@ -760,7 +760,7 @@ class SiteController extends AppController {
                                                             'icon-class' => 'blue',
                                                             'additionalParameters' => [
                                                                 'children' => [
-                                                                    '554131' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form Checklist Hydrant', 'type' => 'item'],
+                                                                    '554131' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Checklist Hydrant', ['/hydrant-checklist', '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                     '554132' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form Pengujian Hydrant', 'type' => 'item'],
                                                                     '554133' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Hydrant', 'type' => 'item'],
                                                                 ]

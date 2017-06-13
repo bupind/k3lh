@@ -652,4 +652,15 @@ class AppLabels {
     const WORK_AREA = 'Area Kerja';
     const TEST_DATE = 'Tanggal Pengujian';
     const EXECUTOR = 'Pelaksana';
+
+    //HYDRANT CHECKLIST
+    const HYDRANT = 'Hydrant';
+    const HC_NUMBER = 'Hydrant No.';
+    const FORM_CHECKLIST_HYDRANT = 'Checklist Hydrant';
+    const INSPECTION = 'Inspeksi';
+    const CONDITION = 'Kondisi';
+    const GOOD = 'Baik';
+    const ENOUGH = 'Cukup';
+    const BAD = 'Kurang';
+    const NOTE = 'Catatan';
 }

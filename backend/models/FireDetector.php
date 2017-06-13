@@ -147,7 +147,7 @@ class FireDetector extends AppModel
     public function afterFind() {
 
         if(!$this->fd_last_check == '') {
-            $this->fd_last_check = Yii::$app->formatter->asDate($this->fd_last_check, AppConstants::FORMAT_DB_DATE_PHP);
+            $this->fd_last_check = Yii::$app->formatter->asDate($this->fd_last_check, AppConstants::FORMAT_DATE_PHP_SHOW_MONTH);
         }
 
         $this->fd_floor_code_desc = Codeset::getCodesetValue(AppConstants::CODESET_FD_FLOOR_TYPE, $this->fd_floor_code);

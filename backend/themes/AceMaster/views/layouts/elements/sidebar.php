@@ -42,6 +42,13 @@ $navs = [
     ],
     [
         'icon' => 'fa-file-text-o',
+        'label' => AppLabels::HYDRANT,
+        'submenu' => [
+            ['icon' => 'fa-file-text-o', 'label' => AppLabels::ITEM, 'url' => ['/hydrant-question'], 'controller' => 'hydrant-question'],
+        ]
+    ],
+    [
+        'icon' => 'fa-file-text-o',
         'label' => AppLabels::BEYOND_OBEDIENCE,
         'submenu' => [
             ['icon' => 'fa-file-text-o', 'label' => AppLabels::QUESTION, 'url' => ['/bo-assessment-aspect'], 'controller' => 'bo-assessment-aspect'],
