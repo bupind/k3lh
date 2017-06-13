@@ -645,4 +645,11 @@ class AppLabels {
     const FD_LAST_CHECK = 'Last Checked';
     const FD_TEST_RESULT_RECORD = 'Catatan Hasil Pengujian';
     const FDD_DATE = 'Tanggal Pengecekan';
+
+    //WORKING_ENV_DATA
+    const FORM_WORK_ENV_DATA = 'Data Lingkungan Kerja';
+    const TEST_RESULT = 'Hasil Pengujian';
+    const WORK_AREA = 'Area Kerja';
+    const TEST_DATE = 'Tanggal Pengujian';
+    const EXECUTOR = 'Pelaksana';
 }

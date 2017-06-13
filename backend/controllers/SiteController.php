@@ -912,7 +912,7 @@ class SiteController extends AppController {
                                                             'icon-class' => 'blue',
                                                             'additionalParameters' => [
                                                                 'children' => [
-                                                                    '55621' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form Data Lingkungan Kerja', 'type' => 'item'],
+                                                                    '55621' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Data Lingkungan Kerja', ['/working-env-data', '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                 ]
                                                             ]
                                                         ],

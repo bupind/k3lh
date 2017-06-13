@@ -2,22 +2,25 @@
 
 namespace backend\controllers;
 
-use backend\models\Sector;
-use backend\models\SkkoDetail;
+use backend\models\WevDetail;
 use Yii;
-use backend\models\Skko;
-use backend\models\SkkoSearch;
+use backend\models\WorkingEnvData;
+use backend\models\WorkingEnvDataSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\vendor\AppConstants;
+use backend\models\PowerPlant;
 use yii\base\Model;
+use backend\models\Codeset;
+use yii\helpers\Json;
+
 
 /**
- * SkkoController implements the CRUD actions for Skko model.
+ * WorkingEnvDataController implements the CRUD actions for WorkingEnvData model.
  */
-class SkkoController extends AppController
+class WorkingEnvDataController extends AppController
 {
-    public $sectorModel;
+    public $powerPlantModel;
     /**
      * @inheritdoc
      */
@@ -36,10 +39,10 @@ class SkkoController extends AppController
     public function beforeAction($action) {
         parent::beforeAction($action);
 
-        if (in_array($action->id, ['index', 'create', 'update', 'view'])) {
-            $sectorId = Yii::$app->request->get('_sId');
-            if (($sector = Sector::findOne($sectorId)) !== null) {
-                $this->sectorModel = $sector;
+        if (in_array($action->id, ['index', 'create', 'update'])) {
+            $powerPlantId = Yii::$app->request->get('_ppId');
+            if (($powerPlant = PowerPlant::findOne($powerPlantId)) !== null) {
+                $this->powerPlantModel = $powerPlant;
             } else {
                 throw new NotFoundHttpException('The requested page does not exist.');
             }
@@ -49,23 +52,23 @@ class SkkoController extends AppController
     }
 
     /**
-     * Lists all Skko models.
+     * Lists all WorkingEnvData models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new SkkoSearch();
+        $searchModel = new WorkingEnvDataSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'sectorModel' => $this->sectorModel,
+            'powerPlantModel' => $this->powerPlantModel,
         ]);
     }
 
     /**
-     * Displays a single Skko model.
+     * Displays a single WorkingEnvData model.
      * @param integer $id
      * @return mixed
      */
@@ -73,42 +76,41 @@ class SkkoController extends AppController
     {
         $model = $this->findModel($id);
 
-        $detailModel = $model->skkoDetails;
-
+        $detailModel = $model->wevDetails;
         return $this->render('view', [
-            'model' => $model,
+            'model' => $this->findModel($id),
             'detailModel' => $detailModel,
-            'sectorModel' => $this->sectorModel,
         ]);
     }
 
     /**
-     * Creates a new Skko model.
+     * Creates a new WorkingEnvData model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Skko();
+        $model = new WorkingEnvData();
+
         $detailModel = [];
-        $detailModel[] = new SkkoDetail();
+        $detailModel[] = new WevDetail();
 
         $requestData = Yii::$app->request->post();
 
         if ($model->load($requestData) && Model::loadMultiple($detailModel, $requestData)&& $model->saveTransactional()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
-            return $this->redirect(['view', 'id' => $model->id, '_sId' => $this->sectorModel->id]);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
-                'sectorModel' => $this->sectorModel,
+                'powerPlantModel' => $this->powerPlantModel,
                 'detailModel' => $detailModel,
             ]);
         }
     }
 
     /**
-     * Updates an existing Skko model.
+     * Updates an existing WorkingEnvData model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -117,24 +119,22 @@ class SkkoController extends AppController
     {
         $model = $this->findModel($id);
 
-        $detailModel = $model->skkoDetails;
+        $detailModel = $model->wevDetails;
 
-        $requestData = Yii::$app->request->post();
-
-        if ($model->load($requestData) && $model->saveTransactional()) {
+        if ($model->load(Yii::$app->request->post()) && $model->saveTransactional()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_UPDATE_SUCCESS);
-            return $this->redirect(['view', 'id' => $model->id, '_sId' => $this->sectorModel->id]);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
-                'sectorModel' => $this->sectorModel,
+                'powerPlantModel' => $this->powerPlantModel,
                 'detailModel' => $detailModel,
             ]);
         }
     }
 
     /**
-     * Deletes an existing Skko model.
+     * Deletes an existing WorkingEnvData model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -146,19 +146,29 @@ class SkkoController extends AppController
             Yii::$app->session->setFlash('success', AppConstants::MSG_DELETE_SUCCESS);
         }
 
-        return $this->redirect(['index', '_sId' => $model->sector_id]);
+        return $this->redirect(['index', '_ppId' => $model->power_plant_id]);
+    }
+
+    public function actionAjaxCodeset() {
+        $requestData = Yii::$app->request->post();
+        $codesets = Codeset::find()->select(['id', 'cset_code', 'cset_value'])->where(['cset_name' => $requestData['cset_name']])->all();
+        if (!empty($codesets)) {
+            return Json::encode(['codesets' => $codesets]);
+        }
+
+        return Json::encode(false);
     }
 
     /**
-     * Finds the Skko model based on its primary key value.
+     * Finds the WorkingEnvData model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Skko the loaded model
+     * @return WorkingEnvData the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Skko::findOne($id)) !== null) {
+        if (($model = WorkingEnvData::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
