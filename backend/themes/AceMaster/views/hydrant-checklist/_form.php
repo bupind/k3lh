@@ -17,7 +17,7 @@ use kartik\date\DatePicker;
 
 <?php
 $form = ActiveForm::begin([
-    'id' => 'important-phone-number-form',
+    'id' => 'hydrant-checklist-form',
     'options' => [
         'class' => 'calx form-horizontal',
         'role' => 'form'

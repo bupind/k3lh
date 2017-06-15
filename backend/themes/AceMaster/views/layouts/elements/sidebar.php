@@ -49,6 +49,13 @@ $navs = [
     ],
     [
         'icon' => 'fa-file-text-o',
+        'label' => AppLabels::HOUSEKEEPING,
+        'submenu' => [
+            ['icon' => 'fa-file-text-o', 'label' => AppLabels::ITEM, 'url' => ['/housekeeping-question'], 'controller' => 'housekeeping-question'],
+        ]
+    ],
+    [
+        'icon' => 'fa-file-text-o',
         'label' => AppLabels::BEYOND_OBEDIENCE,
         'submenu' => [
             ['icon' => 'fa-file-text-o', 'label' => AppLabels::QUESTION, 'url' => ['/bo-assessment-aspect'], 'controller' => 'bo-assessment-aspect'],

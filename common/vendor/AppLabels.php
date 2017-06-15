@@ -673,4 +673,18 @@ class AppLabels {
     const KP_STATUS = 'Open/Close';
     const KP_PROGRESS = '% Progress';
 
+    //HOUSEKEEPING
+    const FORM_HOUSEKEEPING_QUESTION = 'Pertanyaan Housekeeping';
+    const SUBTITLE = 'Subtitle';
+    const HOUSEKEEPING = 'Housekeeping';
+    const HQ_CRITERIA_1 = 'Kriteria Nilai 5';
+    const HQ_CRITERIA_2 = 'Kriteria Nilai 4';
+    const HQ_CRITERIA_3 = 'Kriteria Nilai 3';
+    const HQ_CRITERIA_4 = 'Kriteria Nilai 2';
+    const HQ_CRITERIA_5 = 'Kriteria Nilai 1';
+    const HI_UNIT = 'Unit';
+    const FORM_HOUSEKEEPING_IMPLEMENTATION = 'Implementasi Housekeeping';
+    const QUALITY = 'Kualitas';
+    const RECOMMENDATION = 'Rekomendasi';
+
 }
