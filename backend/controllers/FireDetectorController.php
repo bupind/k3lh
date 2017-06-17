@@ -1,6 +1,8 @@
 <?php
 
 namespace backend\controllers;
+use backend\models\FcdDetail;
+use backend\models\FdCheckDate;
 use backend\models\FdDetail;
 use yii\base\Model;
 use Yii;
@@ -35,7 +37,7 @@ class FireDetectorController extends AppController
     public function beforeAction($action) {
         parent::beforeAction($action);
 
-        if (in_array($action->id, ['index', 'create', 'update'])) {
+        if (in_array($action->id, ['index', 'create', 'update', 'date'])) {
             $powerPlantId = Yii::$app->request->get('_ppId');
             if (($powerPlant = PowerPlant::findOne($powerPlantId)) !== null) {
                 $this->powerPlantModel = $powerPlant;
@@ -123,6 +125,32 @@ class FireDetectorController extends AppController
                 'model' => $model,
                 'powerPlantModel' => $this->powerPlantModel,
                 'monthModel' => $monthModel,
+            ]);
+        }
+    }
+
+    public function actionDate($ppId)
+    {
+        $model = FdCheckDate::find()->where(['power_plant_id' => $ppId])->one();
+        if(is_null($model)){
+            $model = new FdCheckDate();
+            $monthModel = [];
+
+            for($i = 0; $i<12; $i++){
+                $monthModel[] = new FcdDetail();
+            }
+        }else{
+            $monthModel = $model->fcdDetails;
+        }
+
+        if ($model->load(Yii::$app->request->post()) && $model->saveTransactional()) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_UPDATE_SUCCESS);
+            return $this->redirect(['index', '_ppId' => $model->power_plant_id]);
+        } else {
+            return $this->render('date', [
+                'model' => $model,
+                'monthModel' => $monthModel,
+                'powerPlantModel' => $this->powerPlantModel,
             ]);
         }
     }

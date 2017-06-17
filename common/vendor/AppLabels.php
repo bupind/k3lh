@@ -687,4 +687,5 @@ class AppLabels {
     const QUALITY = 'Kualitas';
     const RECOMMENDATION = 'Rekomendasi';
 
+
 }

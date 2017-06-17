@@ -64,6 +64,8 @@ class HousekeepingQuestion extends AppModel
 
             $housekeepingQuestionId = $this->id;
 
+            $housekeepingImplementation = HousekeepingImplementation::find()->select(['id'])->all();
+
             if (isset($request['HqDetail'])) {
                 foreach ($request['HqDetail'] as $key => $detail) {
                     if (isset($detail['id'])) {
@@ -76,22 +78,26 @@ class HousekeepingQuestion extends AppModel
                     if (!$detailTuple->load(['HqDetail' => $detail]) || !$detailTuple->save()) {
                         $errors = array_merge($errors, $detailTuple->errors);
                         throw new Exception();
+                    }else {
+
+                        foreach ($housekeepingImplementation as $keyI => $implementation) {
+                            $hiDetail = new HiDetail();
+                            $hiDetail->housekeeping_implementation_id = $implementation->id;
+                            $hiDetail->hq_detail_id = $detailTuple->id;
+                            $hiDetail->hi_quality_value = '0';
+                            $hiDetail->hi_criteria_value = '0';
+                            if (!$hiDetail->save()) {
+                                $errors = array_merge($errors, $hiDetail->errors);
+                                throw new Exception();
+                            }
+                        }
                     }
                 }
             }
-            /*
-            $hydrantChecklist = HydrantChecklist::find()->select(['id'])->all();
 
-            foreach($hydrantChecklist as $key => $checklist) {
-                $hcDetail = new HcDetail();
-                $hcDetail->hydrant_checklist_id = $checklist->id;
-                $hcDetail->hydrant_question_id = $this->id;
-                $hcDetail->hcd_answer = 2;
-                if (!$hcDetail->save()) {
-                    $errors = array_merge($errors, $hcDetail->errors);
-                    throw new Exception();
-                }
-            }*/
+
+
+
 
             $transaction->commit();
             return TRUE;
