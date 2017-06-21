@@ -72,8 +72,68 @@ $index = 0;
                 ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly text-right', 'data-cell' => 'AA1', 'data-format' => AppConstants::CALX_DATA_FORMAT_DEC])
                 ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
 
-            echo $form->field($model, 'power_installed')->hiddenInput(['data-cell' => 'A1', 'data-formula' => 'AA1', 'data-format' => AppConstants::CALX_DATA_FORMAT_PLAIN])->label(false);
+            echo $form->field($model, 'power_installed')->hiddenInput(['data-cell' => 'A1', 'data-formula' => 'AA1', 'data-format' => AppConstants::CALX_DATA_FORMAT_DEC])->label(false);
+            ?>
+        </div>
+    </div>
 
+    <hr/>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-6 col-md-offset-3">
+            <?php
+                echo $form->field($model, "sg_machine_name", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+                ->textInput(['maxlength' => true, 'class' => 'form-control'])
+                ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+
+                echo $form->field($model, "sg_machine_code", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+                ->textInput(['maxlength' => true, 'class' => 'form-control'])
+                ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+
+                echo$form->field($model, "sg_machine_brand", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+                ->dropDownList(Codeset::customMap(AppConstants::CODESET_SLOG_MACHINE_BRAND, 'cset_value'), ['class' => 'input-big form-control'])
+                ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+
+                echo $form->field($model, "sg_machine_type", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+                ->textInput(['maxlength' => true, 'class' => 'form-control'])
+                ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+
+                echo $form->field($model, "sg_machine_serial_number", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+                ->textInput(['maxlength' => true, 'class' => 'form-control'])
+                ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+            ?>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-6 col-md-offset-3">
+            <?php
+                echo$form->field($model, "sg_generator_brand", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+                    ->dropDownList(Codeset::customMap(AppConstants::CODESET_SLOG_GENERATOR_BRAND, 'cset_value'), ['class' => 'input-big form-control'])
+                    ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+
+                echo $form->field($model, "sg_generator_type", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+                    ->textInput(['maxlength' => true, 'class' => 'form-control'])
+                    ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+
+                echo $form->field($model, "sg_generator_serial_number", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+                    ->textInput(['maxlength' => true, 'class' => 'form-control'])
+                    ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+
+                echo$form->field($model, "sg_boiler_brand", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+                    ->dropDownList(Codeset::customMap(AppConstants::CODESET_SLOG_BOILER_BRAND, 'cset_value'), ['class' => 'input-big form-control'])
+                    ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+            ?>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-6 col-md-offset-3">
+            <?php
             echo $form->field($model, "sg_operation_year", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
                 ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly text-right'])
                 ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);

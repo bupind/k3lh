@@ -38,6 +38,9 @@ $this->params['breadcrumbs'][] = $this->title;
                         'power_plant_id' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->powerPlant->pp_name],
                         'generator_status' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->generator_status_desc],
                         'sg_form_month_type_code' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->sg_form_month_type_code_desc],
+                        'sg_machine_brand' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->sg_machine_brand_desc],
+                        'sg_generator_brand' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->sg_generator_brand_desc],
+                        'sg_boiler_brand' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->sg_boiler_brand_desc],
                     ]
                 ]
             ]);

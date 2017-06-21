@@ -303,6 +303,10 @@ class AppConstants {
     //SLO GENERATOR
     const CODESET_SLOG_GEN_UNIT_CODE = 'SLOG_GEN_UNIT_CODE';
     const CODESET_FORM_MONTH_TYPE_CODE = 'FORM_MONTH_TYPE_CODE';
+    const CODESET_SLOG_MACHINE_BRAND = 'SLOG_MACHINE_BRAND';
+    const CODESET_SLOG_GENERATOR_BRAND = 'SLOG_GEN_BRAND';
+    const CODESET_SLOG_BOILER_BRAND = 'SLOG_BOILER_BRAND';
+
 
     //SLO TOOLS
     const CODESET_SLOT_GEN_STATUS_CODE = 'SLOT_GEN_CODE';
@@ -396,7 +400,11 @@ class AppConstants {
     
     // REPORT
     const REPORT_NAME_ROADMAP = 'report_roadmap_%s.xlsx';
-    
+    const REPORT_NAME_BUDGET_MONITORING = 'report_monitoring_anggaran_%s.xlsx';
+    const REPORT_NAME_IMPORTANT_PN = 'report_nomor_telepon_penting_%s.xlsx';
+    const REPORT_NAME_SLO_GENERATOR = 'report_monitoring_slo_pembangkit_%s.xlsx';
+
+
     // PHPEXCEL
     const PHPEXCEL_FORMAT_CURRENCY = 'Rp #,##0.00';
     

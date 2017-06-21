@@ -90,7 +90,7 @@ class BudgetMonitoringSearch extends BudgetMonitoring
 
         //main excel setup
         $objPHPExcel = new \PHPExcel();
-        $filename = sprintf(AppConstants::REPORT_NAME_ROADMAP, Date('dmYHis'));
+        $filename = sprintf(AppConstants::REPORT_NAME_BUDGET_MONITORING, Date('dmYHis'));
         $defaultStyleArray = [
             'font' => [
                 'size' => 10

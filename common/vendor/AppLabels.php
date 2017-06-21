@@ -576,6 +576,13 @@ class AppLabels {
     const SG_END = 'Berakhir';
     const SG_MAX_EXTENSION = 'Maks. Perpanjangan';
     const PUBLISHER = 'Penerbit';
+    const MACHINE = 'Mesin';
+    const GENERATOR = 'Generator';
+    const BRAND = 'Merk';
+    const SG_MACHINE = 'Mesin/Turbine';
+    const SG_BOILER = 'Boiler/Trafo Step Up';
+    const SERIAL_NUMBER = 'Seri';
+
 
     //SLO TOOLS
     const ST_LOCATION = 'Lokasi (Kota / Kabupaten)';
