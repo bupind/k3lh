@@ -403,6 +403,7 @@ class AppConstants {
     const REPORT_NAME_BUDGET_MONITORING = 'report_monitoring_anggaran_%s.xlsx';
     const REPORT_NAME_IMPORTANT_PN = 'report_nomor_telepon_penting_%s.xlsx';
     const REPORT_NAME_SLO_GENERATOR = 'report_monitoring_slo_pembangkit_%s.xlsx';
+    const REPORT_NAME_SLO_TOOLS = 'report_monitoring_slo_peralatan_%s.xlsx';
 
 
     // PHPEXCEL

@@ -128,6 +128,12 @@ class SloTools extends AppModel
         return true;
     }
 
+    public function toAlphabet($number){
+        $alphabet = range('A', 'Z');
+
+        return ($alphabet[$number]);
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */

@@ -9,7 +9,7 @@ use backend\models\Codeset;
 
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\RoadmapK3lSearch */
+/* @var $searchModel backend\models\SloGeneratorSearch */
 /* @var $powerPlantModel backend\models\PowerPlant */
 
 $this->title = sprintf('%s %s', AppLabels::BTN_DOWNLOAD_EXCEL, AppLabels::FORM_SLO_GENERATOR);
