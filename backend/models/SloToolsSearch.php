@@ -137,7 +137,7 @@ class SloToolsSearch extends SloTools
 
         //header
         $activeSheet->mergeCells('B1:H2');
-        $activeSheet->setCellValue('B1', "MONITORING SERTIFIKASI LAIK OPERASI (SLO)");
+        $activeSheet->setCellValue('B1', "MONITORING SERTIFIKAS BEJANA BERTEKANAN");
         $activeSheet->mergeCells('N1:N2');
         $activeSheet->setCellValue('N1', sprintf("Periode: %s %s", Codeset::getCodesetValue(AppConstants::CODESET_FORM_MONTH_TYPE_CODE,$this->st_form_month_type_code) , $this->st_year));
 
