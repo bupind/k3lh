@@ -640,6 +640,7 @@ class AppLabels {
     const MA_DISTANCE = 'Jarak < 15m';
     const MA_OFFICER = 'Diisi oleh';
     const MA_ACTIVITY = 'Aktifitas';
+    const MA_NUMBER = 'Nomor APAR / APAB';
 
     //FIRE DETECTOR
     const FORM_FIRE_DETECTOR = 'Monitoring Fire Detector';

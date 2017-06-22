@@ -7,6 +7,7 @@ use app\components\SubmitButton;
 use yii\redactor\widgets\Redactor;
 use backend\models\Codeset;
 use kartik\date\DatePicker;
+use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\MonitoringApar */
 /* @var $form yii\widgets\ActiveForm */
@@ -260,6 +261,9 @@ $startDate->setDate(2000, 1, 1);
                                 foreach ($monthModel as $keyM => $month) {
                                     if (!$model->getIsNewRecord()) {
                                         echo $form->field($month, "[$keyM]id")->hiddenInput()->label(false);
+                                        echo $form->field($month, "[$keyM]mam_month")->hiddenInput()->label(false);
+                                    }else{
+                                        echo Html::hiddenInput("MaMonth[$keyM][mam_month]", ($keyM+1), [  'class' => 'form-control']);
                                     }
 
                                     echo $form->field($month, "[$keyM]mam_value", [

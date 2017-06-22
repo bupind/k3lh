@@ -175,6 +175,12 @@ class MonitoringApar extends AppModel
         return true;
     }
 
+    public function toAlphabet($number){
+        $alphabet = range('A', 'Z');
+
+        return ($alphabet[$number]);
+    }
+
     public function afterFind() {
         if(!$this->ma_noting_date == '') {
             $this->ma_noting_date = Yii::$app->formatter->asDate($this->ma_noting_date, AppConstants::FORMAT_DATE_PHP_SHOW_MONTH);

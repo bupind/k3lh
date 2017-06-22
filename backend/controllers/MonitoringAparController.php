@@ -36,7 +36,7 @@ class MonitoringAparController extends AppController
     public function beforeAction($action) {
         parent::beforeAction($action);
 
-        if (in_array($action->id, ['index', 'create', 'update'])) {
+        if (in_array($action->id, ['index', 'create', 'update', 'export'])) {
             $powerPlantId = Yii::$app->request->get('_ppId');
             if (($powerPlant = PowerPlant::findOne($powerPlantId)) !== null) {
                 $this->powerPlantModel = $powerPlant;
@@ -142,6 +142,21 @@ class MonitoringAparController extends AppController
         }
 
         return $this->redirect(['index', '_ppId' => $model->power_plant_id]);
+    }
+
+    public function actionExport() {
+
+        $searchModel = new MonitoringAparSearch();
+
+        if ($searchModel->load(Yii::$app->request->post()) && $searchModel->export()) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_GENERATE_FILE_SUCCESS);
+            return $this->redirect(['/download/excel', 'filename' => $searchModel->filename]);
+        } else {
+            return $this->render('export', [
+                'searchModel' => $searchModel,
+                'powerPlantModel' => $this->powerPlantModel,
+            ]);
+        }
     }
 
     /**

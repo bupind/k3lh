@@ -10,6 +10,7 @@ use common\vendor\AppLabels;
  *
  * @property integer $id
  * @property integer $monitoring_apar_id
+ * @property integer $mam_month
  * @property string $mam_value
  * @property integer $created_by
  * @property integer $created_at
@@ -34,8 +35,8 @@ class MaMonth extends AppModel
     public function rules()
     {
         return [
-            [['monitoring_apar_id', 'mam_value'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
-            [['monitoring_apar_id'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
+            [['mam_month', 'monitoring_apar_id', 'mam_value'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
+            [['mam_month', 'monitoring_apar_id'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
             [['mam_value'], 'string', 'max' => 10],
             [['monitoring_apar_id'], 'exist', 'skipOnError' => true, 'targetClass' => MonitoringApar::className(), 'targetAttribute' => ['monitoring_apar_id' => 'id']],
         ];
@@ -49,6 +50,7 @@ class MaMonth extends AppModel
         return [
             'id' => 'ID',
             'monitoring_apar_id' => AppLabels::FORM_MONITORING_APAR,
+            'mam_month' => AppLabels::MONTH,
             'mam_value' => AppLabels::VALUE,
         ];
     }
