@@ -603,7 +603,7 @@ class AppLabels {
     const ER_TIME = 'Waktu (menit)';
     const ER_VICTIM = 'Korban (org)';
     const ER_LOSS = 'Kerugian (Rp)';
-    const ER_FAILURE_DETAIL = 'Aneka Kegagalan';
+    const ER_FAILURE_DETAIL = 'Analisa Kegagalan';
     const ER_UPLOAD = 'Upload Skenario';
 
     //SAFETY CAMPAIGN
