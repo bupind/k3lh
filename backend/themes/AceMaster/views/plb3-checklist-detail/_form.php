@@ -75,7 +75,7 @@ $index = 0;
                     'options' => ['class' => 'form-control'],
                     'pluginOptions' => [
                         'autoclose' => true,
-                        'format' => 'dd-mm-yyyy',
+                        'format' => AppConstants::FORMAT_DATE_DATEPICKER,
                         'todayHighlight' => 'true'
                     ],
                 ])

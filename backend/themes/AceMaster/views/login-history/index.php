@@ -5,6 +5,7 @@ use yii\grid\GridView;
 use backend\models\User;
 use kartik\widgets\DatePicker;
 use common\vendor\AppLabels;
+use common\vendor\AppConstants;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\LoginHistorySearch */
@@ -58,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'options' => ['placeholder' => 'Tanggal'],
                         'pluginOptions' => [
                             'autoclose' => true,
-                            'format' => 'dd-mm-yyyy',
+                            'format' => AppConstants::FORMAT_DATE_DATEPICKER,
                             'todayHighlight' => true
                         ]
                     ])

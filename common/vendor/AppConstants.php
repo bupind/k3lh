@@ -59,11 +59,14 @@ class AppConstants {
 
     const ACTIVE_FORM_CLASS_INPUT_TEXT = 'col-xs-10 col-md-5';
     const ACTIVE_FORM_CLASS_INPUT_TEXT_UPPERCASE = 'col-xs-10 col-md-5 uppercase';
-    const ACTIVE_FORM_CLASS_INPUT_TEXT_NUMBERSONLY = 'col-xs-10 col-md-5 numbersOnly';
+    const ACTIVE_FORM_CLASS_INPUT_TEXT_NUMBERSONLY = 'col-xs-10 col-md-5 numbersOnly text-right';
     const ACTIVE_FORM_CLASS_INPUT_TEXT_DATEPICKER = 'col-xs-10 col-md-5 date-picker';
     const ACTIVE_FORM_CLASS_TEXTAREA = 'col-xs-10 col-md-9';
     const ACTIVE_FORM_CLASS_DROPDOWN = 'col-xs-10 col-md-5 chosen-select form-control';
-    const ACTIVE_FORM_CLASS_FILE_IMAGE = 'col-xs-10 col-md-5 file-input-image';
+    const ACTIVE_FORM_CLASS_FILE_SINGLE = 'col-xs-10 col-md-5 file-input-single';
+    const ACTIVE_FORM_CLASS_FILE_MULTIPLE = 'col-xs-10 col-md-5 file-input-multiple';
+    const CLASS_FILE_SINGLE = 'file-input-single';
+    const CLASS_FILE_MULTIPLE = 'file-input-multiple';
     
     const ACTIVE_FORM_MODAL_CLASS_INPUT_TEXT = 'col-xs-12';
     const ACTIVE_FORM_MODAL_CLASS_INPUT_TEXT_UPPERCASE = 'col-xs-12 uppercase';
@@ -124,6 +127,8 @@ class AppConstants {
     const MODULE_CODE_PLB3_SA = 'PLB3_SA';
     const MODULE_CODE_PLB3_SA_STATIC = 'PLB3_SA_STATIC';
     const MODULE_CODE_PLB3_SA_STATIC_QUARTERLY = 'PLB3_SA_STATIC_Q';
+    
+    const MODULE_CODE_PROJECT_TRACKING = 'PROJECT_TRACKING';
 
     // ATTACHMENT TYPE
     const ATTACHMENT_TYPE_IMAGE = 'IMG';
@@ -132,6 +137,7 @@ class AppConstants {
     // FORMAT
     const FORMAT_DATE = 'd-m-Y';
     const FORMAT_DB_DATE = 'Y-m-d';
+    const FORMAT_DATE_DATEPICKER = 'dd-mm-yyyy';
     const FORMAT_DATE_PHP = 'php:d-m-Y';
     const FORMAT_DATE_PHP_SHOW_MONTH = 'php:d M Y';
     const FORMAT_DATETIME_PHP = 'php:d-m-Y H:i';
@@ -154,6 +160,8 @@ class AppConstants {
     const FORMAT_TYPE_VARIABLE = 'VAR';
     const FORMAT_TYPE_PERCENTAGE = 'PCT';
     const FORMAT_TYPE_FILE = 'FILE';
+    const FORMAT_TYPE_OPEN_CLOSE = 'OC';
+    const FORMAT_TYPE_HIGH_LOW = 'HL';
     
     // LOGIN STATUS
     const LOGIN_STATUS_FAILED = 'LOGIN FAILED';
@@ -179,6 +187,7 @@ class AppConstants {
     const ERR_PROCESS_FAILED = 'Proses gagal.';
     const ERR_PROCESS_FAILED_TRY_AGAIN_LATER = 'Proses gagal. Silahkan coba beberapa saat lagi.';
     const ERR_DOWNLOAD_FAILED = 'Unduh file gagal.';
+    const ERR_UPLOAD_FAILED = "Unggah file gagal.<br />Pastikan semua file telah memenuhi syarat ketentuan unggah.";
     
     // WARNING
     const WARNING_LOAD_FAILED = 'WARNING: Load Multiple %s Failed.';
@@ -188,7 +197,7 @@ class AppConstants {
     const VALIDATE_INTEGER = '{attribute} harus berupa angka.';
     const VALIDATE_UNIQUE = '{attribute} sudah pernah digunakan.';
     const VALIDATE_TOO_SHORT = '{attribute} minimal {min} karakter.';
-    const VALIDATE_TOO_LONG = '{attribute} maksimal {min} karakter.';
+    const VALIDATE_TOO_LONG = '{attribute} maksimal {max} karakter.';
     const VALIDATE_EMAIL = '{attribute} harus benar.';
     const VALIDATE_MIN_VALUE = '{attribute} minimal {compareValue}.';
     const VALIDATE_LARGER_THAN = '{attribute} harus lebih besar dari {compareValue}.';
@@ -211,6 +220,8 @@ class AppConstants {
     // HINT MESSAGES
     const HINT_LEAVE_EMPTY = 'Kosongkan kolom ini jika tidak ada perubahan.';
     const HINT_ONE_PER_ROW = "Satu data per baris.";
+    const HINT_UPLOAD_FILE = "Jenis file yang diizinkan adalah pdf, xlsx, xls, doc, docx.<br/>Ukuran file maksimal 1MB.";
+    const HINT_UPLOAD_FILES = "Jenis file yang diizinkan adalah pdf, xlsx, xls, doc, docx.<br/>Maksimal 5 file dalam sekali upload.<br/>Ukuran file maksimal 1MB.";
     
     //INFO MESSAGES
     const INFO_PLEASE_INPUT_ACCOUNT_CREDENTIAL = 'Silahkan masukkan info akun';
@@ -242,6 +253,8 @@ class AppConstants {
     const CODESET_WORKING_PERMIT_K3_RULES = 'WP_K3_RULES';
     const CODESET_WORKING_PERMIT_SELF_PROTECTION = 'WP_SELF_PROTECTION';
     const CODESET_WORKING_PERMIT_DANGEROUS_WORK = 'WP_DANGEROUS_WORK';
+    
+    const CODESET_PROJECT_TRACKING_LIST = 'PROJECT_TRACKING_LIST';
     
     const WP_JOB_CLASSIFICATION_OTHER = 'JCO';
     const WP_K3_RULES_OTHER = 'RO';
@@ -383,6 +396,10 @@ class AppConstants {
     // PHPEXCEL
     const PHPEXCEL_FORMAT_CURRENCY = 'Rp #,##0.00';
     
+    // HTML
+    const HTML_ORDERED_LIST = 'ol';
+    const HTML_UNORDERED_LIST = 'ul';
+    
     public static $yesNoList = [
         'Y' => 'Ya',
         'N' => 'Tidak',
@@ -429,6 +446,16 @@ class AppConstants {
     public static $rnrList = [
         'R' => 'R',
         'NR' => 'NR'
+    ];
+    
+    public static $lowHighList = [
+        'L' => 'Rendah',
+        'H' => 'Tinggi'
+    ];
+    
+    public static $openCloseList = [
+        'O' => 'Open',
+        'C' => 'Close'
     ];
     
 }

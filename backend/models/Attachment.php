@@ -105,7 +105,9 @@ class Attachment extends AppModel {
             'atf_filetype' => AppLabels::FILETYPE,
             'atf_location' => AppLabels::LOCATION,
             'image_file' => AppLabels::IMAGE_FILE,
-            'file' => AppLabels::FILE
+            'file' => AppLabels::FILE,
+            'image_files' => AppLabels::IMAGE_FILES,
+            'files' => AppLabels::FILES,
         ];
     }
     
@@ -149,8 +151,9 @@ class Attachment extends AppModel {
     
     public function saveMultipleAttachments($moduleCode, $modulePk, $attachmentType = AppConstants::ATTACHMENT_TYPE_FILE) {
         $files = $attachmentType == AppConstants::ATTACHMENT_TYPE_FILE ? $this->files : $this->image_files;
+        $validated = $attachmentType == AppConstants::ATTACHMENT_TYPE_FILE ? $this->validate(['files']) : $this->validate(['image_files']);
         
-        if (!empty($files)) {
+        if ($validated && !empty($files)) {
             foreach ($files as $file) {
                 $attachment = new Attachment();
                 $attachment->file = $file;
