@@ -82,6 +82,12 @@ class SafetyCampaign extends AppModel
         ];
     }
 
+    public function toAlphabet($number){
+        $alphabet = range('A', 'Z');
+
+        return ($alphabet[$number]);
+    }
+
     public function saveTransactional() {
 
         $request = Yii::$app->request->post();

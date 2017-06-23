@@ -407,6 +407,7 @@ class AppConstants {
     const REPORT_NAME_CC = 'report_sertifikasi_kompetensi_%s.xlsx';
     const REPORT_NAME_MONITORING_APAR = 'report_monitoring_apar_%s.xlsx';
     const REPORT_NAME_EMERGENCY_RESPONSE = 'report_simulasi_tanggap_darurat_%s.xlsx';
+    const REPORT_NAME_SAFETY_CAMPAIGN = 'report_safety_campaign_%s.xlsx';
 
 
     // PHPEXCEL
