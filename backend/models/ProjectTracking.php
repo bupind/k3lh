@@ -102,7 +102,7 @@ class ProjectTracking extends AppModel {
         parent::beforeSave($insert);
         
         $requestData = Yii::$app->request->post();
-        $this->pt_report_to_code = join(',', $requestData['ProjectTracking']['pt_report_to_code_array']);
+        $this->pt_report_to_code = !empty($requestData['ProjectTracking']['pt_report_to_code_array']) ? join(',', $requestData['ProjectTracking']['pt_report_to_code_array']) : '';
         
         return true;
     }
@@ -124,8 +124,8 @@ class ProjectTracking extends AppModel {
         $this->pt_report_to_code_view = $this->converterOwnerToView($this->pt_report_to_code_array);
         $this->pt_owner_code_desc = Codeset::getCodesetValue(AppConstants::CODESET_PROJECT_TRACKING_LIST, $this->pt_owner_code);
         $this->pt_controller_code_desc = Codeset::getCodesetValue(AppConstants::CODESET_PROJECT_TRACKING_LIST, $this->pt_controller_code);
-        $this->start_date = Yii::$app->formatter->asDate($this->firstActivity->ptd_start_date, AppConstants::FORMAT_DATE_PHP);
-        $this->end_date = Yii::$app->formatter->asDate($this->lastActivity->end_date, AppConstants::FORMAT_DATE_PHP);
+        $this->start_date = !empty($this->firstActivity->ptd_start_date) ? Yii::$app->formatter->asDate($this->firstActivity->ptd_start_date, AppConstants::FORMAT_DATE_PHP) : '';
+        $this->end_date = !empty($this->lastActivity->end_date) ? Yii::$app->formatter->asDate($this->lastActivity->end_date, AppConstants::FORMAT_DATE_PHP) : '';
         
         return true;
     }
