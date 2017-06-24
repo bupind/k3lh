@@ -132,7 +132,7 @@ $index = 0;
                 <thead>
                     <tr>
                         <th colspan="2" class="center">
-                            PERMASALAHAN LIINGKUNGAN
+                            <?= AppLabels::KP_ENVIRONMENT_PROBLEM ?>
                         </th>
                     </tr>
                 </thead>
@@ -142,7 +142,7 @@ $index = 0;
                             E0
                         </td>
                         <td>
-                            Regulasi & Kebijakan Lingkungan
+                            <?= AppLabels::KP_E_CONSTANT_1 ?>
                         </td>
                     </tr>
                     <tr>
@@ -150,7 +150,7 @@ $index = 0;
                             E1
                         </td>
                         <td>
-                            Dokumen Lingkungan & Perizinan Lingkungan
+                            <?= AppLabels::KP_E_CONSTANT_2 ?>
                         </td>
                     </tr>
                     <tr>
@@ -158,7 +158,7 @@ $index = 0;
                             E2
                         </td>
                         <td>
-                            Pemantauan Lingkungan
+                            <?= AppLabels::KP_E_CONSTANT_3 ?>
                         </td>
                     </tr>
                     <tr>
@@ -166,7 +166,7 @@ $index = 0;
                             E3
                         </td>
                         <td>
-                            Pengelolaan Lingkungan
+                            <?= AppLabels::KP_E_CONSTANT_4 ?>
                         </td>
                     </tr>
                     <tr>
@@ -174,7 +174,7 @@ $index = 0;
                             E4
                         </td>
                         <td>
-                            Laporan Lingkungan
+                            <?= AppLabels::KP_E_CONSTANT_5 ?>
                         </td>
                     </tr>
                     <tr>
@@ -182,7 +182,7 @@ $index = 0;
                             E5
                         </td>
                         <td>
-                            Kompetensi Lingkungan
+                            <?= AppLabels::KP_E_CONSTANT_6 ?>
                         </td>
                     </tr>
                     <tr>
@@ -190,7 +190,7 @@ $index = 0;
                             E6
                         </td>
                         <td>
-                            Pelatihan Lingkungan
+                            <?= AppLabels::KP_E_CONSTANT_7 ?>
                         </td>
                     </tr>
                     <tr>
@@ -198,7 +198,7 @@ $index = 0;
                             E7
                         </td>
                         <td>
-                            Sistem Manajemen terkait Lingkungan
+                            <?= AppLabels::KP_E_CONSTANT_8 ?>
                         </td>
                     </tr>
                     <tr>
@@ -206,7 +206,7 @@ $index = 0;
                             E8
                         </td>
                         <td>
-                            Permasalahan lingkungan lain
+                            <?= AppLabels::KP_E_CONSTANT_9 ?>
                         </td>
                     </tr>
                 </tbody>
@@ -219,7 +219,7 @@ $index = 0;
                 <thead>
                     <tr>
                         <th colspan="2" class="center">
-                            PERMASALAHAN K3
+                            <?= AppLabels::FORM_K3L_PROBLEM ?>
                         </th>
                     </tr>
                 </thead>
@@ -229,7 +229,7 @@ $index = 0;
                             S0
                         </td>
                         <td>
-                            Kebijakan & Regulasi K3
+                            <?= AppLabels::KP_S_CONSTANT_1 ?>
                         </td>
                     </tr>
                     <tr>
@@ -237,7 +237,7 @@ $index = 0;
                             S1
                         </td>
                         <td>
-                            Dokumen K3 dan Prizinan K3
+                            <?= AppLabels::KP_S_CONSTANT_2 ?>
                         </td>
                     </tr>
                     <tr>
@@ -245,7 +245,7 @@ $index = 0;
                             S2
                         </td>
                         <td>
-                            Sertifikasi K3
+                            <?= AppLabels::KP_S_CONSTANT_3 ?>
                         </td>
                     </tr>
                     <tr>
@@ -253,7 +253,7 @@ $index = 0;
                             S3
                         </td>
                         <td>
-                            Laporan K3
+                            <?= AppLabels::KP_S_CONSTANT_4 ?>
                         </td>
                     </tr>
                     <tr>
@@ -261,7 +261,7 @@ $index = 0;
                             S4
                         </td>
                         <td>
-                            Kompetensi K3
+                            <?= AppLabels::KP_S_CONSTANT_5 ?>
                         </td>
                     </tr>
                     <tr>
@@ -269,7 +269,7 @@ $index = 0;
                             S5
                         </td>
                         <td>
-                            Pelatihan K3
+                            <?= AppLabels::KP_S_CONSTANT_6 ?>
                         </td>
                     </tr>
                     <tr>
@@ -277,7 +277,7 @@ $index = 0;
                             S6
                         </td>
                         <td>
-                            Sistem Manajemen terkait K3
+                            <?= AppLabels::KP_S_CONSTANT_7 ?>
                         </td>
                     </tr>
                     <tr>
@@ -285,7 +285,7 @@ $index = 0;
                             S7
                         </td>
                         <td>
-                            Permasalahan K3 lain
+                            <?= AppLabels::KP_S_CONSTANT_8 ?>
                         </td>
                     </tr>
                 </tbody>

@@ -680,7 +680,24 @@ class AppLabels {
     const KP_MITIGATION_DATELINE_DATE = 'Deadline Mitigasi';
     const KP_STATUS = 'Open/Close';
     const KP_PROGRESS = '% Progress';
-
+    const KP_ENVIRONMENT_PROBLEM = 'Permasalahan Lingkungan';
+    const KP_E_CONSTANT_1 = 'Regulasi & Kebijakan Lingkungan';
+    const KP_E_CONSTANT_2 = 'Dokumen Lingkungan & Perizinan Lingkungan';
+    const KP_E_CONSTANT_3 = 'Pemantauan Lingkungan';
+    const KP_E_CONSTANT_4 = 'Pengelolaan Lingkungan';
+    const KP_E_CONSTANT_5 = 'Laporan Lingkungan';
+    const KP_E_CONSTANT_6 = 'Kompetensi Lingkungan';
+    const KP_E_CONSTANT_7 = 'Pelatihan Lingkungan';
+    const KP_E_CONSTANT_8 = 'Sistem Manajemen terkait Lingkungan';
+    const KP_E_CONSTANT_9 = 'Permasalahan lingkungan lain';
+    const KP_S_CONSTANT_1 = 'Kebijakan & Regulasi K3';
+    const KP_S_CONSTANT_2 = 'Dokumen K3 dan Prizinan K3';
+    const KP_S_CONSTANT_3 = 'Sertifikasi K3';
+    const KP_S_CONSTANT_4 = 'Laporan K3';
+    const KP_S_CONSTANT_5 = 'Kompetensi K3';
+    const KP_S_CONSTANT_6 = 'Pelatihan K3';
+    const KP_S_CONSTANT_7 = 'Sistem Manajemen terkait K3';
+    const KP_S_CONSTANT_8 = 'Permasalahan K3 lain';
     //HOUSEKEEPING
     const FORM_HOUSEKEEPING_QUESTION = 'Pertanyaan Housekeeping';
     const SUBTITLE = 'Subtitle';
