@@ -122,8 +122,12 @@ class BudgetMonitoringController extends AppController
         $searchModel = new BudgetMonitoringSearch();
         $searchModel->form_type_code = $rmt;
 
-        $searchModel->export($id);
-        return $this->redirect(['/download/excel', 'filename' => $searchModel->filename]);
+        if ($searchModel->export($id)) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_GENERATE_FILE_SUCCESS);
+            return $this->redirect(['/download/excel', 'filename' => $searchModel->filename]);
+        }else{
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
 
     }
 

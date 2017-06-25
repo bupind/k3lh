@@ -698,6 +698,7 @@ class AppLabels {
     const KP_S_CONSTANT_6 = 'Pelatihan K3';
     const KP_S_CONSTANT_7 = 'Sistem Manajemen terkait K3';
     const KP_S_CONSTANT_8 = 'Permasalahan K3 lain';
+
     //HOUSEKEEPING
     const FORM_HOUSEKEEPING_QUESTION = 'Pertanyaan Housekeeping';
     const SUBTITLE = 'Subtitle';
