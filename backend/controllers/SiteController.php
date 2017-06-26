@@ -568,7 +568,7 @@ class SiteController extends AppController {
                                                 'icon-class' => 'blue',
                                                 'additionalParameters' => [
                                                     'children' => [
-                                                        '5511' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload dokumen HIRADC', 'type' => 'item'],
+                                                        '5511' => ['text' => Html::a('<i class="ace-icon fa fa-upload blue"></i> ' . AppLabels::UPLOAD_HIRADC, ['/common-upload', 'utc' => AppConstants::CODESET_COMMON_UPLOAD_TYPE_CODE_HIRADC, '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                     ]
                                                 ]
                                             ],
@@ -1037,9 +1037,9 @@ class SiteController extends AppController {
                                                 'icon-class' => 'blue',
                                                 'additionalParameters' => [
                                                     'children' => [
-                                                        '6621' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form Project Tracking', 'type' => 'item'],
-                                                        '6622' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Term of Refference /TOR', 'type' => 'item'],
-                                                        '6623' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Rencana Anggaran Biaya/RAB', 'type' => 'item'],
+                                                        '6621' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . AppLabels::FORM_PROJECT_TRACKING, ['/project-tracking', '_ppId' => $powerPlant->id]), 'type' => 'item'],
+                                                        '6622' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . AppLabels::UPLOAD_TOR, ['/upload/', '_ppId' => $powerPlant->id]), 'type' => 'item'],
+                                                        '6623' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . AppLabels::UPLOAD_RAB, ['/project-tracking', '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                     ]
                                                 ]
                                             ],

@@ -185,8 +185,10 @@ class AppLabels {
     const FILESIZE = 'Ukuran File';
     const FILETYPE = 'Jenis File';
     const IMAGE_FILE = 'File Gambar';
+    const IMAGE_FILES = 'File-file Gambar';
     const FILE = 'File';
-    
+    const FILES = 'File-file';
+
     // AUTH
     const AUTH = 'Otorisasi';
     const AUTH_ITEM = 'Item Otorisasi';
@@ -713,5 +715,30 @@ class AppLabels {
     const QUALITY = 'Kualitas';
     const RECOMMENDATION = 'Rekomendasi';
 
+    // PROJECT TRACKING
+    const FORM_PROJECT_TRACKING = 'Form Project Tracking';
+    const PROJECT_TRACKING = 'Project Tracking';
+    const PT_AO_AI_NO = 'AO / AI No.';
+    const PT_EASY_IMPACT = 'Easy / Impact';
+    const PT_SUPPORTED_KPI = "Supported KPI's";
+    const PT_STEP = 'Project Step';
+    const PT_PIC = 'Penanggung Jawab';
+    const PT_DURATION = 'Durasi (d)';
+    const PT_RESUME = 'Project Resume';
+
+    const GOAL = 'Tujuan Akhir';
+    const OWNER = 'Pemilik';
+    const REPORT_PERIOD = 'Periode Laporan';
+    const REPORT_TO = 'Lapor Kepada';
+    const ESTIMATED_PROJECT_VALUE = 'Estimasi Nilai Proyek (IDR)';
+    const PROGRESS = 'Tahapan';
+    const PROGRESS_ACCUMULATION = 'Akumulasi Tahapan';
+    const ACTIVITY = 'Aktifitas';
+
+    // UPLOAD
+    const UPLOAD = 'Unggah';
+    const UPLOAD_TOR = 'Unggah Term of Reference / TOR';
+    const UPLOAD_RAB = 'Unggah Rencanan Anggaran Biaya / RAB';
+    const UPLOAD_HIRADC = 'Unggah Dokumen HIRADC';
 
 }

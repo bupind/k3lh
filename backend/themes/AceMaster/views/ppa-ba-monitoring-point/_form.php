@@ -101,7 +101,7 @@ USE backend\models\Codeset;
                                     'type' => DatePicker::TYPE_COMPONENT_APPEND,
                                     'pluginOptions' => [
                                         'autoclose' => true,
-                                        'format' => 'dd-mm-yyyy',
+                                        'format' => AppConstants::FORMAT_DATE_DATEPICKER,
                                         'todayHighlight' => true
                                     ]
                                 ]

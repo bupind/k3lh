@@ -86,7 +86,7 @@ $form = ActiveForm::begin([
                                     'type' => DatePicker::TYPE_INPUT,
                                     'pluginOptions' => [
                                         'autoclose' => true,
-                                        'format' => 'dd-mm-yyyy',
+                                        'format' => AppConstants::FORMAT_DATE_DATEPICKER,
                                         'todayHighlight' => true
                                     ]
                                 ]

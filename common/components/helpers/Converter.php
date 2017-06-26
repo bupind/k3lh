@@ -20,6 +20,10 @@ class Converter extends Component {
             switch ($formatType) {
                 case AppConstants::FORMAT_TYPE_YES_NO:
                     return isset(AppConstants::$yesNoList[$value]) ? AppConstants::$yesNoList[$value] : '-';
+                case AppConstants::FORMAT_TYPE_OPEN_CLOSE:
+                    return isset(AppConstants::$openCloseList[$value]) ? AppConstants::$openCloseList[$value] : '-';
+                case AppConstants::FORMAT_TYPE_HIGH_LOW:
+                    return isset(AppConstants::$lowHighList[$value]) ? AppConstants::$lowHighList[$value] : '-';
             }
         }
         
@@ -138,7 +142,7 @@ class Converter extends Component {
             
             if (isset($options['show_file_upload']) && $options['show_file_upload'] == true) {
                 $input = Html::hiddenInput($inputName);
-                $input .= Html::fileInput($inputName);
+                $input .= Html::fileInput($inputName, null, ['class' => AppConstants::CLASS_FILE_SINGLE]);
                 
                 return $input;
             } else {
@@ -156,22 +160,20 @@ class Converter extends Component {
     
         if (!empty($attachmentOwners)) {
             $link = '';
-            if (!empty($attachmentOwners)) {
-                foreach ($attachmentOwners as $key => $attachmentOwner) {
-                    $link .= Html::beginTag('div', ['id' => "att_$index$key"]);
-                    $link .= Html::a($attachmentOwner->attachment->atf_filename, sprintf('%s/uploads/%s/%s', \Yii::getAlias(AppConstants::THEME_BASE_URL), strtolower($attachmentOwner->attachment->atf_location), $attachmentOwner->attachment->atf_filename), ['target' => '_blank']);
-            
-                    if (isset($options['show_delete_file']) && $options['show_delete_file'] == true) {
-                        $link .= ' ';
-                        $link .= Html::button('<i class="ace-icon fa fa-trash bigger-110 icon-only"></i>', ['class' => 'btn btn-minier btn-danger btn-delete-attachment', 'data-id' => $attachmentOwner->attachment_id, 'data-index' => $index . $key]);
-                    }
-                    $link .= Html::endTag('div');
+            foreach ($attachmentOwners as $key => $attachmentOwner) {
+                $link .= Html::beginTag('div', ['id' => "att_$index$key"]);
+                $link .= Html::a($attachmentOwner->attachment->atf_filename, sprintf('%s/uploads/%s/%s', \Yii::getAlias(AppConstants::THEME_BASE_URL), strtolower($attachmentOwner->attachment->atf_location), $attachmentOwner->attachment->atf_filename), ['target' => '_blank']);
+        
+                if (isset($options['show_delete_file']) && $options['show_delete_file'] == true) {
+                    $link .= ' ';
+                    $link .= Html::button('<i class="ace-icon fa fa-trash bigger-110 icon-only"></i>', ['class' => 'btn btn-minier btn-danger btn-delete-attachment', 'data-id' => $attachmentOwner->attachment_id, 'data-index' => $index . $key]);
                 }
+                $link .= Html::endTag('div');
             }
     
             if (isset($options['show_file_upload']) && $options['show_file_upload'] == true) {
                 $input = Html::hiddenInput($inputName);
-                $input .= Html::fileInput($inputName, null, ['multiple' => true]);
+                $input .= Html::fileInput($inputName, null, ['multiple' => true, 'class' => AppConstants::CLASS_FILE_MULTIPLE]);
     
                 return $link . $input;
             } else {
@@ -180,7 +182,7 @@ class Converter extends Component {
         } else {
             if (isset($options['show_file_upload']) && $options['show_file_upload'] == true) {
                 $input = Html::hiddenInput($inputName);
-                $input .= Html::fileInput($inputName, null, ['multiple' => true]);
+                $input .= Html::fileInput($inputName, null, ['multiple' => true, 'class' => AppConstants::CLASS_FILE_MULTIPLE]);
     
                 return $input;
             } else {
@@ -215,6 +217,28 @@ class Converter extends Component {
         }
         
         return $result;
+    }
+    
+    public static function toHtmlList($listType, $sources) {
+        $tags = Html::beginTag($listType);
+        
+        foreach ($sources as $source) {
+            $tags .= Html::beginTag('li');
+            $tags .= $source;
+            $tags .= Html::endTag('li');
+        }
+        
+        $tags .= Html::endTag($listType);
+        
+        return \Yii::$app->formatter->asHtml($tags);
+    }
+    
+    public static function calx($value, $tag, $options) {
+        $tags = Html::beginTag($tag, $options);
+        $tags .= $value;
+        $tags .= Html::endTag($tag);
+    
+        return $tags;
     }
     
 }

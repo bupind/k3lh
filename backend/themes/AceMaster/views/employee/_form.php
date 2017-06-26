@@ -43,7 +43,7 @@ use common\vendor\AppConstants;
                 ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
             
             echo $form->field($model, 'joined_date', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9])
-                ->textInput(['maxlength' => true, 'class' => AppConstants::ACTIVE_FORM_CLASS_INPUT_TEXT_DATEPICKER, 'data-date-format' => 'dd-mm-yyyy'])
+                ->textInput(['maxlength' => true, 'class' => AppConstants::ACTIVE_FORM_CLASS_INPUT_TEXT_DATEPICKER, 'data-date-format' => AppConstants::FORMAT_DATE_DATEPICKER])
                 ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
             
             echo SubmitButton::widget(['backAction' => 'index', 'isNewRecord' => $model->isNewRecord]);

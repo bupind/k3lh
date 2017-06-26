@@ -53,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'options' => ['placeholder' => 'Tanggal'],
                         'pluginOptions' => [
                             'autoclose' => true,
-                            'format' => 'dd-mm-yyyy',
+                            'format' => AppConstants::FORMAT_DATE_DATEPICKER,
                             'todayHighlight' => true
                         ]
                     ])

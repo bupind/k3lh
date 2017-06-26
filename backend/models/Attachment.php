@@ -21,6 +21,7 @@ use common\vendor\AppLabels;
  * @property integer $updated_by
  * @property integer $updated_at
  *
+ * @property AttachmentOwner $attachmentOwner
  * @property AttachmentOwner[] $attachmentOwners
  */
 class Attachment extends AppModel {
@@ -105,8 +106,18 @@ class Attachment extends AppModel {
             'atf_filetype' => AppLabels::FILETYPE,
             'atf_location' => AppLabels::LOCATION,
             'image_file' => AppLabels::IMAGE_FILE,
-            'file' => AppLabels::FILE
+            'file' => AppLabels::FILE,
+            'image_files' => AppLabels::IMAGE_FILES,
+            'files' => AppLabels::FILES,
+            'created_by' => AppLabels::CREATED_BY,
+            'created_at' => AppLabels::CREATED_AT,
         ];
+    }
+    
+    public function afterFind() {
+        parent::afterFind();
+        
+        $this->created_at = Yii::$app->formatter->asDatetime($this->created_at, AppConstants::FORMAT_DATETIME_PHP);
     }
     
     public function beforeDelete() {
@@ -149,8 +160,9 @@ class Attachment extends AppModel {
     
     public function saveMultipleAttachments($moduleCode, $modulePk, $attachmentType = AppConstants::ATTACHMENT_TYPE_FILE) {
         $files = $attachmentType == AppConstants::ATTACHMENT_TYPE_FILE ? $this->files : $this->image_files;
+        $validated = $attachmentType == AppConstants::ATTACHMENT_TYPE_FILE ? $this->validate(['files']) : $this->validate(['image_files']);
         
-        if (!empty($files)) {
+        if ($validated && !empty($files)) {
             foreach ($files as $file) {
                 $attachment = new Attachment();
                 $attachment->file = $file;
@@ -195,5 +207,12 @@ class Attachment extends AppModel {
      */
     public function getAttachmentOwners() {
         return $this->hasMany(AttachmentOwner::className(), ['attachment_id' => 'id']);
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAttachmentOwner() {
+        return $this->hasOne(AttachmentOwner::className(), ['attachment_id' => 'id']);
     }
 }
