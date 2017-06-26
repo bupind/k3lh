@@ -568,7 +568,7 @@ class SiteController extends AppController {
                                                 'icon-class' => 'blue',
                                                 'additionalParameters' => [
                                                     'children' => [
-                                                        '5511' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload dokumen HIRADC', 'type' => 'item'],
+                                                        '5511' => ['text' => Html::a('<i class="ace-icon fa fa-upload blue"></i> ' . AppLabels::UPLOAD_HIRADC, ['/common-upload', 'utc' => AppConstants::CODESET_COMMON_UPLOAD_TYPE_CODE_HIRADC, '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                     ]
                                                 ]
                                             ],

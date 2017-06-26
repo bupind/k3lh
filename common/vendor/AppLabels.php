@@ -638,7 +638,9 @@ class AppLabels {
     const ACTIVITY = 'Aktifitas';
     
     // UPLOAD
-    const UPLOAD_TOR = 'Upload Term of Reference / TOR';
-    const UPLOAD_RAB = 'Upload Rencanan Anggaran Biaya / RAB';
+    const UPLOAD = 'Unggah';
+    const UPLOAD_TOR = 'Unggah Term of Reference / TOR';
+    const UPLOAD_RAB = 'Unggah Rencanan Anggaran Biaya / RAB';
+    const UPLOAD_HIRADC = 'Unggah Dokumen HIRADC';
 
 }

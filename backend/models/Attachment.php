@@ -21,6 +21,7 @@ use common\vendor\AppLabels;
  * @property integer $updated_by
  * @property integer $updated_at
  *
+ * @property AttachmentOwner $attachmentOwner
  * @property AttachmentOwner[] $attachmentOwners
  */
 class Attachment extends AppModel {
@@ -108,7 +109,15 @@ class Attachment extends AppModel {
             'file' => AppLabels::FILE,
             'image_files' => AppLabels::IMAGE_FILES,
             'files' => AppLabels::FILES,
+            'created_by' => AppLabels::CREATED_BY,
+            'created_at' => AppLabels::CREATED_AT,
         ];
+    }
+    
+    public function afterFind() {
+        parent::afterFind();
+        
+        $this->created_at = Yii::$app->formatter->asDatetime($this->created_at, AppConstants::FORMAT_DATETIME_PHP);
     }
     
     public function beforeDelete() {
@@ -198,5 +207,12 @@ class Attachment extends AppModel {
      */
     public function getAttachmentOwners() {
         return $this->hasMany(AttachmentOwner::className(), ['attachment_id' => 'id']);
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAttachmentOwner() {
+        return $this->hasOne(AttachmentOwner::className(), ['attachment_id' => 'id']);
     }
 }
