@@ -3,7 +3,6 @@
 use app\components\SubmitLinkButton;
 use backend\assets\RoadmapAsset;
 use backend\models\Codeset;
-use backend\models\RoadmapK3lAttribute;
 use backend\models\Sector;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;

@@ -1,6 +1,5 @@
 <?php
 
-use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\components\SubmitButton;
 use kartik\widgets\DatePicker;

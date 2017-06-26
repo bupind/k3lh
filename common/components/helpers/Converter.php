@@ -2,7 +2,6 @@
 namespace common\components\helpers;
 
 use backend\models\AttachmentOwner;
-use common\vendor\AppLabels;
 use yii\helpers\Html;
 use yii\base\Component;
 use common\vendor\AppConstants;

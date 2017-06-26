@@ -3,7 +3,6 @@
 namespace backend\models;
 
 use Yii;
-use yii\base\Exception;
 use Yii\web\UploadedFile;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;

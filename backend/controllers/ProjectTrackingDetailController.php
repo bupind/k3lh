@@ -5,7 +5,6 @@ namespace backend\controllers;
 use backend\models\ProjectTracking;
 use backend\models\ProjectTrackingDetail;
 use backend\models\ProjectTrackingDetailSearch;
-use backend\models\Attachment;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;

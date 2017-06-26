@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 use common\vendor\AppConstants;
-use common\vendor\AppLabels;
 use backend\models\Attachment;
 
 /* @var $attachmentOwners backend\models\AttachmentOwner[] */
