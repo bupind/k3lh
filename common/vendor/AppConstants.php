@@ -410,6 +410,7 @@ class AppConstants {
     const REPORT_NAME_SAFETY_CAMPAIGN = 'report_safety_campaign_%s.xlsx';
     const REPORT_NAME_K3L_PROBLEM = 'report_permasalahan_k3l_%s.xlsx';
     const REPORT_NAME_WORK_ENV_DATA = 'report_monitoring_data_lingkungan_kerja_%s.xlsx';
+    const REPORT_NAME_HYDRANT_CHECKLIST = 'report_checklist_hydrant_%s.xlsx';
 
 
     // PHPEXCEL
