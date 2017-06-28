@@ -740,5 +740,25 @@ class AppLabels {
     const UPLOAD_TOR = 'Unggah Term of Reference / TOR';
     const UPLOAD_RAB = 'Unggah Rencanan Anggaran Biaya / RAB';
     const UPLOAD_HIRADC = 'Unggah Dokumen HIRADC';
+    const UPLOAD_ENVIROMENTAL_POLICY = 'Unggah Kebijakan Lingkungan';
+    const UPLOAD_K3_POLICY = 'Unggah Kebijakan K3';
+    const UPLOAD_IADL = 'Unggah IADL';
+    const UPLOAD_JSA = 'Unggah JSA';
+    const UPLOAD_WORK_SOP = 'Unggah SOP Pekerjaan';
+    const UPLOAD_COMPETENCY_CERTIFICATE = 'Unggah Sertifikat Kompetensi';
+    const UPLOAD_COMPETENCY_SUPERVISOR = 'Unggah Sertifikat Pengawas';
+    const UPLOAD_APD = 'Unggah APD yang disediakan';
+    const UPLOAD_LOTO_ACTIVITY = 'Unggah Aktifitas LOTO';
+    const UPLOAD_APAT = 'Unggah APAT';
+    const UPLOAD_EMERGENCY_TEAM = 'Unggah Tim Tanggap Darurat';
+    const UPLOAD_FIRE_OFFICER_CERTIFICATE = 'Unggah Sertifikat Petugas Kebakaran';
+    const UPLOAD_P3K = 'Unggah Kotak P3K';
+    const UPLOAD_CLINIC = 'Unggah Klinik';
+    const UPLOAD_COMPANY_DOCTOR = 'Unggah Dokter Perusahaan';
+    const UPLOAD_AMBULANCE = 'Unggah Ambulance';
+    const UPLOAD_P3K_OFFICER_CERTIFICATE = 'Unggah Sertifikat Petugas P3K';
+    const UPLOAD_K3_SIGN = 'Unggah Rambu K3';
+    const UPLOAD_INFORMATION_BOARD = 'Unggah Papan Informasi';
+
 
 }

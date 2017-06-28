@@ -196,7 +196,7 @@ class SiteController extends AppController {
                                                 'icon-class' => 'blue',
                                                 'additionalParameters' => [
                                                     'children' => [
-                                                        '1111' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Kebijakan Lingkungan', 'type' => 'item'],
+                                                        '1111' => ['text' => Html::a('<i class="ace-icon fa fa-upload blue"></i> ' . AppLabels::UPLOAD_ENVIROMENTAL_POLICY, ['/common-upload', 'utc' => AppConstants::CODESET_COMMON_UPLOAD_TYPE_CODE_ENVIRONMENT_POLICY, '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                     ]
                                                 ]
                                             ],
@@ -206,7 +206,7 @@ class SiteController extends AppController {
                                                 'icon-class' => 'blue',
                                                 'additionalParameters' => [
                                                     'children' => [
-                                                        '1121' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Kebijakan K3', 'type' => 'item'],
+                                                        '1121' => ['text' => Html::a('<i class="ace-icon fa fa-upload blue"></i> ' . AppLabels::UPLOAD_K3_POLICY, ['/common-upload', 'utc' => AppConstants::CODESET_COMMON_UPLOAD_TYPE_CODE_K3_POLICY, '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                     ]
                                                 ]
                                             ]
@@ -314,7 +314,7 @@ class SiteController extends AppController {
                                                 'icon-class' => 'blue',
                                                 'additionalParameters' => [
                                                     'children' => [
-                                                        '1111' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload IADL', 'type' => 'item'],
+                                                        '1111' => ['text' => Html::a('<i class="ace-icon fa fa-upload blue"></i> ' . AppLabels::UPLOAD_IADL, ['/common-upload', 'utc' => AppConstants::CODESET_COMMON_UPLOAD_TYPE_CODE_IADL, '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                     ]
                                                 ]
                                             ],
@@ -656,7 +656,7 @@ class SiteController extends AppController {
                                                                         'icon-class' => 'blue',
                                                                         'additionalParameters' => [
                                                                             'children' => [
-                                                                                '553121' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload JSA', 'type' => 'item'],
+                                                                                '553121' => ['text' => Html::a('<i class="ace-icon fa fa-upload blue"></i> ' . AppLabels::UPLOAD_JSA, ['/common-upload', 'utc' => AppConstants::CODESET_COMMON_UPLOAD_TYPE_CODE_JSA, '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                             ]
                                                                         ]
                                                                     ],
@@ -666,7 +666,7 @@ class SiteController extends AppController {
                                                                         'icon-class' => 'blue',
                                                                         'additionalParameters' => [
                                                                             'children' => [
-                                                                                '553131' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload SOP Pekerjaan', 'type' => 'item'],
+                                                                                '553131' => ['text' => Html::a('<i class="ace-icon fa fa-upload blue"></i> ' . AppLabels::UPLOAD_WORK_SOP, ['/common-upload', 'utc' => AppConstants::CODESET_COMMON_UPLOAD_TYPE_CODE_WORK_SOP, '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                             ]
                                                                         ]
                                                                     ],
@@ -676,8 +676,8 @@ class SiteController extends AppController {
                                                                         'icon-class' => 'blue',
                                                                         'additionalParameters' => [
                                                                             'children' => [
-                                                                                '553141' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Sertifikat Kompetensi', 'type' => 'item'],
-                                                                                '553142' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Sertifikat Pengawas', 'type' => 'item'],
+                                                                                '553141' => ['text' => Html::a('<i class="ace-icon fa fa-upload blue"></i> ' . AppLabels::UPLOAD_COMPETENCY_CERTIFICATE, ['/common-upload', 'utc' => AppConstants::CODESET_COMMON_UPLOAD_TYPE_CODE_COMPETENCY_CERTIFICATE, '_ppId' => $powerPlant->id]), 'type' => 'item'],
+                                                                                '553142' => ['text' => Html::a('<i class="ace-icon fa fa-upload blue"></i> ' . AppLabels::UPLOAD_COMPETENCY_SUPERVISOR, ['/common-upload', 'utc' => AppConstants::CODESET_COMMON_UPLOAD_TYPE_CODE_COMPETENCY_SUPERVISOR, '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                             ]
                                                                         ]
                                                                     ],
@@ -687,7 +687,7 @@ class SiteController extends AppController {
                                                                         'icon-class' => 'blue',
                                                                         'additionalParameters' => [
                                                                             'children' => [
-                                                                                '553151' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload APD yang disediakan', 'type' => 'item'],
+                                                                                '553151' => ['text' => Html::a('<i class="ace-icon fa fa-upload blue"></i> ' . AppLabels::UPLOAD_APD, ['/common-upload', 'utc' => AppConstants::CODESET_COMMON_UPLOAD_TYPE_CODE_APD, '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                             ]
                                                                         ]
                                                                     ],
@@ -697,7 +697,7 @@ class SiteController extends AppController {
                                                                         'icon-class' => 'blue',
                                                                         'additionalParameters' => [
                                                                             'children' => [
-                                                                                '553161' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Aktivtas LOTO', 'type' => 'item'],
+                                                                                '553161' => ['text' => Html::a('<i class="ace-icon fa fa-upload blue"></i> ' . AppLabels::UPLOAD_LOTO_ACTIVITY, ['/common-upload', 'utc' => AppConstants::CODESET_COMMON_UPLOAD_TYPE_CODE_LOTO, '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                             ]
                                                                         ]
                                                                     ],
@@ -750,7 +750,7 @@ class SiteController extends AppController {
                                                             'icon-class' => 'blue',
                                                             'additionalParameters' => [
                                                                 'children' => [
-                                                                    '554121' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload APAT', 'type' => 'item'],
+                                                                    '554121' => ['text' => Html::a('<i class="ace-icon fa fa-upload blue"></i> ' . AppLabels::UPLOAD_APAT, ['/common-upload', 'utc' => AppConstants::CODESET_COMMON_UPLOAD_TYPE_CODE_APAT, '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                 ]
                                                             ]
                                                         ],
@@ -793,8 +793,8 @@ class SiteController extends AppController {
                                                             'icon-class' => 'blue',
                                                             'additionalParameters' => [
                                                                 'children' => [
-                                                                    '554161' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Tim Tanggap Darurat', 'type' => 'item'],
-                                                                    '554162' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Sertifikat Petugas Kebakaran', 'type' => 'item'],
+                                                                    '554161' => ['text' => Html::a('<i class="ace-icon fa fa-upload blue"></i> ' . AppLabels::UPLOAD_EMERGENCY_TEAM, ['/common-upload', 'utc' => AppConstants::CODESET_COMMON_UPLOAD_TYPE_CODE_EMERGENCY_TEAM, '_ppId' => $powerPlant->id]), 'type' => 'item'],
+                                                                    '554162' => ['text' => Html::a('<i class="ace-icon fa fa-upload blue"></i> ' . AppLabels::UPLOAD_FIRE_OFFICER_CERTIFICATE, ['/common-upload', 'utc' => AppConstants::CODESET_COMMON_UPLOAD_TYPE_CODE_FIRE_OFFICER_CERTIFICATE, '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                 ]
                                                             ]
                                                         ],
@@ -824,7 +824,7 @@ class SiteController extends AppController {
                                                             'icon-class' => 'blue',
                                                             'additionalParameters' => [
                                                                 'children' => [
-                                                                    '55511' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Kotak P3K', 'type' => 'item'],
+                                                                    '55511' => ['text' => Html::a('<i class="ace-icon fa fa-upload blue"></i> ' . AppLabels::UPLOAD_P3K, ['/common-upload', 'utc' => AppConstants::CODESET_COMMON_UPLOAD_TYPE_CODE_P3K, '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                 ]
                                                             ]
                                                         ],
@@ -834,10 +834,10 @@ class SiteController extends AppController {
                                                             'icon-class' => 'blue',
                                                             'additionalParameters' => [
                                                                 'children' => [
-                                                                    '55521' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Klinik', 'type' => 'item'],
-                                                                    '55522' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Dokter Perusahaan', 'type' => 'item'],
-                                                                    '55523' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Ambulance', 'type' => 'item'],
-                                                                    '55524' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Sertifikat Petugas P3K', 'type' => 'item'],
+                                                                    '55521' => ['text' => Html::a('<i class="ace-icon fa fa-upload blue"></i> ' . AppLabels::UPLOAD_CLINIC, ['/common-upload', 'utc' => AppConstants::CODESET_COMMON_UPLOAD_TYPE_CODE_CLINIC, '_ppId' => $powerPlant->id]), 'type' => 'item'],
+                                                                    '55522' => ['text' => Html::a('<i class="ace-icon fa fa-upload blue"></i> ' . AppLabels::UPLOAD_COMPANY_DOCTOR, ['/common-upload', 'utc' => AppConstants::CODESET_COMMON_UPLOAD_TYPE_CODE_COMPANY_DOCTOR, '_ppId' => $powerPlant->id]), 'type' => 'item'],
+                                                                    '55523' => ['text' => Html::a('<i class="ace-icon fa fa-upload blue"></i> ' . AppLabels::UPLOAD_AMBULANCE, ['/common-upload', 'utc' => AppConstants::CODESET_COMMON_UPLOAD_TYPE_CODE_AMBULANCE, '_ppId' => $powerPlant->id]), 'type' => 'item'],
+                                                                    '55524' => ['text' => Html::a('<i class="ace-icon fa fa-upload blue"></i> ' . AppLabels::UPLOAD_P3K_OFFICER_CERTIFICATE, ['/common-upload', 'utc' => AppConstants::CODESET_COMMON_UPLOAD_TYPE_CODE_P3K_OFFICER_CERTIFICATE, '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                 ]
                                                             ]
                                                         ],
@@ -869,8 +869,8 @@ class SiteController extends AppController {
                                                             'icon-class' => 'blue',
                                                             'additionalParameters' => [
                                                                 'children' => [
-                                                                    '55551' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Rambu K3', 'type' => 'item'],
-                                                                    '55552' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Papan Informasi', 'type' => 'item'],
+                                                                    '55551' => ['text' => Html::a('<i class="ace-icon fa fa-upload blue"></i> ' . AppLabels::UPLOAD_K3_SIGN, ['/common-upload', 'utc' => AppConstants::CODESET_COMMON_UPLOAD_TYPE_CODE_K3_SIGN, '_ppId' => $powerPlant->id]), 'type' => 'item'],
+                                                                    '55552' => ['text' => Html::a('<i class="ace-icon fa fa-upload blue"></i> ' . AppLabels::UPLOAD_INFORMATION_BOARD, ['/common-upload', 'utc' => AppConstants::CODESET_COMMON_UPLOAD_TYPE_CODE_INFORMATION_BOARD, '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                 ]
                                                             ]
                                                         ],
