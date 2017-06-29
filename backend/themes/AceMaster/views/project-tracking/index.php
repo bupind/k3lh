@@ -20,10 +20,16 @@ $buttons = array_merge([
         return Html::a('<i class="ace-icon fa fa-bars bigger-120"></i> ' . AppLabels::ACTIVITY, ['/project-tracking-detail', 'ptId' => $model->id], ['class' => 'btn btn-xs btn-warning']);
     },
     'activity_xs' => function ($url, $model) {
-        return Html::a('<span class="orange"><i class="ace-icon fa fa-bars bigger-120"></i></span>', ['/project-tracking-detail', 'ptId' => $model->id], ['class' => 'tooltip-warning', 'data-rel' => 'tooltip', 'data-original-title' => AppLabels::ACTIVITY, 'data' => ['method' => 'post']]);
+        return Html::a('<span class="orange"><i class="ace-icon fa fa-bars bigger-120"></i></span>', ['/project-tracking-detail', 'ptId' => $model->id], ['class' => 'tooltip-warning', 'data-rel' => 'tooltip', 'data-original-title' => AppLabels::BTN_EXPORT, 'data' => ['method' => 'post']]);
+    },
+    'export' => function ($url, $model) {
+        return Html::a('<i class="ace-icon fa fa-file-excel-o bigger-120"></i> ' . AppLabels::BTN_EXPORT, ['export', 'id' => $model->id], ['class' => 'btn btn-xs btn-purple']);
+    },
+    'export_xs' => function ($url, $model) {
+        return Html::a('<span class="purple"><i class="ace-icon fa fa-file-excel-o bigger-120"></i></span>', ['export', 'id' => $model->id], ['class' => 'tooltip-purple', 'data-rel' => 'tooltip', 'data-original-title' => AppLabels::BTN_EXPORT]);
     },
 ], $actionColumn->buttons);
-$template = Yii::t('app', AppConstants::GRID_TEMPLATE_DEFAULT_EXTRA, ['additional_buttons' => '{activity}', 'additional_buttons_xs' => '<li>{activity_xs}</li>']);
+$template = Yii::t('app', AppConstants::GRID_TEMPLATE_DEFAULT_EXTRA, ['additional_buttons' => '{activity} {export}', 'additional_buttons_xs' => '<li>{activity_xs}</li><li>{export_xs}</li>']);
 
 ?>
 <div class="project-tracking-index">
@@ -57,6 +63,7 @@ $template = Yii::t('app', AppConstants::GRID_TEMPLATE_DEFAULT_EXTRA, ['additiona
                 'end_date',
     
                 [   'class' => 'yii\grid\ActionColumn',
+                    'headerOptions' => ['style' => 'width: 30%;'],
                     'template' => $template,
                     'buttons' => $buttons,
                 ],

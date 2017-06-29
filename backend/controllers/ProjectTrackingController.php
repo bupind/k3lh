@@ -135,6 +135,18 @@ class ProjectTrackingController extends AppController {
         }
     }
     
+    public function actionExport($id) {
+        $searchModel = new ProjectTrackingSearch();
+        
+        if ($searchModel->export($id)) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_GENERATE_FILE_SUCCESS);
+            return $this->redirect(['/download/excel', 'filename' => $searchModel->filename]);
+        }else{
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+        
+    }
+    
     /**
      * Deletes an existing ProjectTracking model.
      * If deletion is successful, the browser will be redirected to the 'index' page.

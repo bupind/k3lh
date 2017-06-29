@@ -20,6 +20,7 @@ $buttons = array_merge([
         ]),
     'index' => Html::a('<i class="ace-icon fa fa-undo bigger-120 red2"></i> ' . AppLabels::BTN_BACK, [$optionBackAction], ['class' => 'btn btn-white btn-danger btn-bold']),
     'printing' => Html::a('<i class="ace-icon fa fa-print bigger-120"></i> ' . AppLabels::BTN_PRINT, ['printing', 'id' => $model->id], ['class' => 'btn btn-white btn-primary btn-bold', 'target' => 'blank']),
+    'excel' => Html::a('<i class="ace-icon fa fa-file-excel-o bigger-120"></i> ' . AppLabels::BTN_EXPORT, ['export', 'id' => $model->id], ['class' => 'btn btn-white btn-purple btn-bold']),
 ], $optionButtons);
 
 ?>

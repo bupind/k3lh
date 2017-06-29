@@ -62,7 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'pt_description' => [AppConstants::FORMAT_TYPE_VARIABLE, Yii::$app->formatter->asNtext($model->pt_description)],
                         'pt_owner_code' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->pt_owner_code_desc],
                         'pt_controller_code' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->pt_controller_code_desc],
-                        'pt_report_to_code' => [AppConstants::FORMAT_TYPE_VARIABLE, Converter::toHtmlList(AppConstants::HTML_ORDERED_LIST, $model->pt_report_to_code_view)],
+                        'pt_report_to_code' => [AppConstants::FORMAT_TYPE_VARIABLE, Converter::toHtmlList($model->pt_report_to_code_view, AppConstants::HTML_ORDERED_LIST)],
                         'pt_easy_impact' => [AppConstants::FORMAT_TYPE_VARIABLE, Converter::format($model->pt_easy_impact, AppConstants::FORMAT_TYPE_HIGH_LOW)],
                         'pt_estimated_project_value' => [AppConstants::FORMAT_TYPE_VARIABLE, Converter::calx($model->pt_estimated_project_value, 'label', ['data-format' => AppConstants::CALX_DATA_FORMAT_CURRENCY])],
                     ]
@@ -126,6 +126,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= ViewButton::widget([
                 'model' => $model,
                 'options' => [
+                    'template' => AppConstants::VIEW_BUTTON_TEMPLATE_EXCEL,
                     'buttons' => [
                         'create' => Html::a('<i class="ace-icon fa fa-plus bigger-120"></i> ' . AppLabels::BTN_ADD, ['create', '_ppId' => $model->power_plant_id], ['class' => 'btn btn-white btn-success btn-bold']),
                         'index' => Html::a('<i class="ace-icon fa fa-undo bigger-120 red2"></i> ' . AppLabels::BTN_BACK, ['index', '_ppId' => $model->power_plant_id], ['class' => 'btn btn-white btn-danger btn-bold']),

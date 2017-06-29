@@ -1,10 +1,12 @@
 <?php
 namespace common\components\helpers;
 
+use Yii;
 use backend\models\AttachmentOwner;
 use yii\helpers\Html;
 use yii\base\Component;
 use common\vendor\AppConstants;
+use yii\helpers\Url;
 
 /**
  * Description of Converter
@@ -190,6 +192,20 @@ class Converter extends Component {
         }
     }
     
+    public static function attachmentsFullPath($attachmentOwners) {
+        $result = [];
+        if (!empty($attachmentOwners)) {
+            foreach ($attachmentOwners as $key => $attachmentOwner) {
+                $result[] = [
+                    'label' => $attachmentOwner->attachment->atf_filename,
+                    'path' => sprintf('http://%s%s/uploads/%s/%s', Yii::$app->getRequest()->serverName, \Yii::getAlias(AppConstants::THEME_BASE_URL), strtolower($attachmentOwner->attachment->atf_location), $attachmentOwner->attachment->atf_filename)
+                ];
+            }
+        }
+        
+        return $result;
+    }
+    
     public static function toRoman($number) {
         $lookup = [
             1000 => 'M',
@@ -218,16 +234,29 @@ class Converter extends Component {
         return $result;
     }
     
-    public static function toHtmlList($listType, $sources) {
-        $tags = Html::beginTag($listType);
+    public static function toHtmlList($sources, $listType = null) {
+        switch ($listType) {
+            case AppConstants::HTML_ORDERED_LIST:
+            case AppConstants::HTML_UNORDERED_LIST:
+    
+                $tags = Html::beginTag($listType);
         
-        foreach ($sources as $source) {
-            $tags .= Html::beginTag('li');
-            $tags .= $source;
-            $tags .= Html::endTag('li');
+                foreach ($sources as $source) {
+                    $tags .= Html::beginTag('li');
+                    $tags .= $source;
+                    $tags .= Html::endTag('li');
+                }
+        
+                $tags .= Html::endTag($listType);
+                
+                break;
+            default:
+                $tags = '';
+                foreach ($sources as $key => $source) {
+                    $tags .= sprintf("%s. %s\n", $key+1, $source);
+                }
         }
         
-        $tags .= Html::endTag($listType);
         
         return \Yii::$app->formatter->asHtml($tags);
     }

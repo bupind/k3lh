@@ -77,11 +77,8 @@ class AppConstants {
     const VIEW_BUTTON_TEMPLATE = '{edit} {create} {delete} {index}';
     const VIEW_BUTTON_TEMPLATE_NO_ACTION = '{index}';
     const VIEW_BUTTON_TEMPLATE_CREATE_ONLY = '{create} {index}';
-    const VIEW_BUTTON_TEMPLATE_PAYMENT = '{edit} {pay_purchase} {pay_cost} {printing} {delete} {index}';
-    const VIEW_BUTTON_TEMPLATE_POSTED_PAYMENT = '{unpost} {pay_purchase} {pay_cost} {printing} {index}';
     const VIEW_BUTTON_TEMPLATE_PRINT = '{edit} {create} {printing} {delete} {index}';
-    const VIEW_BUTTON_TEMPLATE_POSTED = '{unpost} {create} {index}';
-    const VIEW_BUTTON_TEMPLATE_POSTED_PRINT = '{unpost} {printing} {create} {index}';
+    const VIEW_BUTTON_TEMPLATE_EXCEL = '{excel} {edit} {create} {delete} {index}';
     
     const TABLE_CLASS_DEFAULT = 'table table-bordered table-hover';
     const TABLE_CLASS_DEFAULT_SMALL = 'table table-bordered table-hover small';
@@ -448,6 +445,7 @@ class AppConstants {
     const REPORT_NAME_K3L_PROBLEM = 'report_permasalahan_k3l_%s.xlsx';
     const REPORT_NAME_WORK_ENV_DATA = 'report_monitoring_data_lingkungan_kerja_%s.xlsx';
     const REPORT_NAME_HYDRANT_CHECKLIST = 'report_checklist_hydrant_%s.xlsx';
+    const REPORT_NAME_PROJECT_TRACKING = 'report_project_tracking_%s.xlsx';
 
 
     // PHPEXCEL
