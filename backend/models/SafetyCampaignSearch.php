@@ -7,13 +7,14 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
-
+use common\components\helpers\Converter;
 /**
  * SafetyCampaignSearch represents the model behind the search form about `backend\models\SafetyCampaign`.
  */
 class SafetyCampaignSearch extends SafetyCampaign
 {
     public $filename;
+
     /**
      * @inheritdoc
      */
@@ -80,7 +81,8 @@ class SafetyCampaignSearch extends SafetyCampaign
         return $dataProvider;
     }
 
-    public function export() {
+    public function export()
+    {
 
         $query = SafetyCampaign::find();
 
@@ -122,7 +124,7 @@ class SafetyCampaignSearch extends SafetyCampaign
         $activeSheet->getColumnDimension('A')->setWidth(1);
         $activeSheet->getColumnDimension('B')->setWidth(5);
         $activeSheet->getColumnDimension('C')->setWidth(30);
-        for($i = 2; $i<8; $i++){
+        for ($i = 2; $i < 8; $i++) {
             $activeSheet->getColumnDimension($this->toAlphabet($i))->setWidth(20);
         }
 
@@ -188,24 +190,23 @@ class SafetyCampaignSearch extends SafetyCampaign
 
         $no1 = 4;
         $no2 = 5;
-        for($i = 1; $i<3; $i++){
+        for ($i = 1; $i < 3; $i++) {
             $alphabet = $this->toAlphabet($i);
             $activeSheet->mergeCells("$alphabet$no1:$alphabet$no2");
             $activeSheet->getStyle("$alphabet$no1:$alphabet$no2")->applyFromArray($styleArray);
         }
 
-        for($i = 9; $i<11; $i++){
+        for ($i = 9; $i < 11; $i++) {
             $alphabet = $this->toAlphabet($i);
             $activeSheet->mergeCells("$alphabet$no1:$alphabet$no2");
             $activeSheet->getStyle("$alphabet$no1:$alphabet$no2")->applyFromArray($styleArray);
         }
 
 
-        for($i = 3; $i<9; $i++){
+        for ($i = 3; $i < 9; $i++) {
             $alphabet = $this->toAlphabet($i);
             $activeSheet->getStyle("$alphabet$no2")->applyFromArray($styleArray);
         }
-
 
 
         $activeSheet->mergeCells('D4:G4');
@@ -254,8 +255,8 @@ class SafetyCampaignSearch extends SafetyCampaign
         ];
 
         $rowIndex = 6;
-        foreach($dataProvider->getModels() as $key => $model){
-            $activeSheet->setCellValue('B' . $rowIndex, ($key+1));
+        foreach ($dataProvider->getModels() as $key => $model) {
+            $activeSheet->setCellValue('B' . $rowIndex, ($key + 1));
             $activeSheet->getStyle('B' . $rowIndex)->applyFromArray($styleArray);
             $activeSheet->setCellValue('C' . $rowIndex, $model->sc_campaign_name);
             $activeSheet->getStyle('C' . $rowIndex)->applyFromArray($styleArray);
@@ -273,11 +274,19 @@ class SafetyCampaignSearch extends SafetyCampaign
             $activeSheet->getStyle('I' . $rowIndex)->applyFromArray($styleArray);
             $activeSheet->setCellValue('J' . $rowIndex, $model->sc_result);
             $activeSheet->getStyle('J' . $rowIndex)->applyFromArray($styleArray);
-            $activeSheet->setCellValue('K' . $rowIndex, "Upload");
+
+            if (!empty($model->attachmentOwner)) {
+                $attachment = Converter::attachmentsFullPath($model->attachmentOwner);
+                $activeSheet->setCellValue('K' . $rowIndex, $attachment['label']);
+                $activeSheet->getCell('K' . $rowIndex)->getHyperlink()->setUrl($attachment['path']);
+                $activeSheet->getCell('K' . $rowIndex)->getStyle()->getFont()->getColor()->setARGB(\PHPExcel_Style_Color::COLOR_BLUE);
+                $activeSheet->getCell('K' . $rowIndex)->getStyle()->getAlignment()->setWrapText(true);
+            }
             $activeSheet->getStyle('K' . $rowIndex)->applyFromArray($styleArray);
 
             $rowIndex++;
         }
+
 
         //==========================================================================
 

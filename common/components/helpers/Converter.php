@@ -193,16 +193,23 @@ class Converter extends Component {
     }
     
     public static function attachmentsFullPath($attachmentOwners) {
-        $result = [];
+        $result = null;
         if (!empty($attachmentOwners)) {
-            foreach ($attachmentOwners as $key => $attachmentOwner) {
-                $result[] = [
-                    'label' => $attachmentOwner->attachment->atf_filename,
-                    'path' => sprintf('http://%s%s/uploads/%s/%s', Yii::$app->getRequest()->serverName, \Yii::getAlias(AppConstants::THEME_BASE_URL), strtolower($attachmentOwner->attachment->atf_location), $attachmentOwner->attachment->atf_filename)
+            if(is_array($attachmentOwners)){
+                $result = [];
+                foreach ($attachmentOwners as $key => $attachmentOwner) {
+                    $result[] = [
+                        'label' => $attachmentOwner->attachment->atf_filename,
+                        'path' => sprintf('http://%s%s/uploads/%s/%s', Yii::$app->getRequest()->serverName, \Yii::getAlias(AppConstants::THEME_BASE_URL), strtolower($attachmentOwner->attachment->atf_location), $attachmentOwner->attachment->atf_filename)
+                    ];
+                }
+            }else{
+                $result = [
+                    'label' => $attachmentOwners->attachment->atf_filename,
+                    'path' => sprintf('http://%s%s/uploads/%s/%s', Yii::$app->getRequest()->serverName, \Yii::getAlias(AppConstants::THEME_BASE_URL), strtolower($attachmentOwners->attachment->atf_location), $attachmentOwners->attachment->atf_filename)
                 ];
             }
         }
-        
         return $result;
     }
     

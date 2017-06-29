@@ -7,6 +7,7 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
+use common\components\helpers\Converter;
 
 /**
  * EmergencyResponseSearch represents the model behind the search form about `backend\models\EmergencyResponse`.
@@ -270,7 +271,13 @@ class EmergencyResponseSearch extends EmergencyResponse
             $activeSheet->getStyle('I' . $rowIndex)->applyFromArray($styleArray);
             $activeSheet->setCellValue('J' . $rowIndex, $model->er_date);
             $activeSheet->getStyle('J' . $rowIndex)->applyFromArray($styleArray);
-            $activeSheet->setCellValue('K' . $rowIndex, "Upload");
+            if (!empty($model->attachmentOwner)) {
+                $attachment = Converter::attachmentsFullPath($model->attachmentOwner);
+                $activeSheet->setCellValue('K' . $rowIndex, $attachment['label']);
+                $activeSheet->getCell('K' . $rowIndex)->getHyperlink()->setUrl($attachment['path']);
+                $activeSheet->getCell('K' . $rowIndex)->getStyle()->getFont()->getColor()->setARGB(\PHPExcel_Style_Color::COLOR_BLUE);
+                $activeSheet->getCell('K' . $rowIndex)->getStyle()->getAlignment()->setWrapText(true);
+            }
             $activeSheet->getStyle('K' . $rowIndex)->applyFromArray($styleArray);
             $activeSheet->setCellValue('L' . $rowIndex, $model->er_evaluation_time);
             $activeSheet->getStyle('L' . $rowIndex)->applyFromArray($styleArray);
