@@ -5,6 +5,9 @@ namespace backend\models;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
 use Yii;
+use yii\web\UploadedFile;
+use yii\base\Exception;
+
 
 /**
  * This is the model class for table "competency_certification".
@@ -26,6 +29,7 @@ use Yii;
  *
  * @property PowerPlant $powerPlant
  * @property Sector $sector
+ * @property AttachmentOwner[] $attachmentOwner
  */
 class CompetencyCertification extends AppModel
 {
@@ -52,6 +56,45 @@ class CompetencyCertification extends AppModel
         ];
     }
 
+    public function saveTransactional() {
+        $request = Yii::$app->request->post();
+        $transaction = Yii::$app->db->beginTransaction();
+        $errors = [];
+
+        try {
+            $this->load($request);
+            if ($this->save()) {
+                if (isset($request['Attachment'])) {
+                    $attachmentMdl = new Attachment();
+                    $attachmentMdl->load($request['Attachment']);
+                    $attachmentMdl->files = UploadedFile::getInstances($attachmentMdl, "files");
+
+                    if (!empty($attachmentMdl->files) && !$attachmentMdl->saveMultipleAttachments(AppConstants::MODULE_CODE_COMPETENCY_CERTIFICATION, $this->id)) {
+                        $errors = array_merge($errors, [[AppConstants::ERR_UPLOAD_FAILED]]);
+                        throw new Exception;
+                    }
+                } else {
+                    $errors = array_merge($errors, $this->errors);
+                    throw new Exception();
+                }
+            }
+
+            $transaction->commit();
+            return TRUE;
+
+        } catch (Exception $e) {
+            $transaction->rollBack();
+            $this->afterFind();
+
+            foreach ($errors as $attr => $errorArr) {
+                $error = join('<br />', $errorArr);
+                Yii::$app->session->addFlash('danger', $error);
+            }
+
+            return FALSE;
+        }
+    }
+
     /**
      * @inheritdoc
      */
@@ -68,6 +111,7 @@ class CompetencyCertification extends AppModel
             'cc_date' => AppLabels::DATE,
             'cc_certificate_publisher' => AppLabels::CC_CERTIFICATE_PUBLISHER,
             'cc_pjk3' => AppLabels::PJK3,
+            'files' => AppLabels::FILES,
         ];
     }
 
@@ -109,5 +153,12 @@ class CompetencyCertification extends AppModel
     public function getSector()
     {
         return $this->hasOne(Sector::className(), ['id' => 'sector_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAttachmentOwners() {
+        return $this->hasMany(AttachmentOwner::className(), ['atfo_module_pk' => 'id'])->andOnCondition(['atfo_module_code' => AppConstants::MODULE_CODE_COMPETENCY_CERTIFICATION]);
     }
 }

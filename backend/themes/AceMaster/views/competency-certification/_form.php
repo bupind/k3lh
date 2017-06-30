@@ -5,18 +5,22 @@ use common\vendor\AppConstants;
 use common\vendor\AppLabels;
 use app\components\SubmitButton;
 use kartik\date\DatePicker;
+use common\components\helpers\Converter;
+use backend\assets\FileUploadAsset;
+
 /* @var $this yii\web\View */
 /* @var $model backend\models\CompetencyCertification */
 /* @var $form yii\widgets\ActiveForm */
 /* @var $powerPlantModel backend\models\PowerPlant */
-
+FileUploadAsset::register($this);
 ?>
 <?php
 $form = ActiveForm::begin([
     'id' => 'competency-certification-form',
     'options' => [
         'class' => 'calx form-horizontal',
-        'role' => 'form'
+        'role' => 'form',
+        'enctype' => 'multipart/form-data',
     ],
     'fieldConfig' => [
         'options' => [
@@ -65,6 +69,18 @@ $index = 0;
                 ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
 
             ?>
+            <label class="col-md-3 control-label no-padding-right"><?= $model->getAttributeLabel('files'); ?></label>
+            <div class="col-md-9">
+                <?= Converter::attachments($model->attachmentOwners, [
+                    'show_file_upload' => true,
+                    'show_delete_file' => true
+                ]); ?>
+                <span class="help-inline col-xs-12 col-md-7">
+                        <span class="middle">
+                            <div class="hint-block"><?= AppConstants::HINT_UPLOAD_FILES; ?></div>
+                        </span>
+                    </span>
+            </div>
         </div>
 
         <div class="col-xs-12 col-md-4">
