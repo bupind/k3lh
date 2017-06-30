@@ -6,7 +6,7 @@ use Yii;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
 use yii\base\Exception;
-
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "housekeeping_implementation".
@@ -24,10 +24,13 @@ use yii\base\Exception;
  *
  * @property HiDetail[] $hiDetails
  * @property PowerPlant $powerPlant
+ * @property AttachmentOwner[] $attachmentOwners
  * @property Sector $sector
  */
 class HousekeepingImplementation extends AppModel
 {
+    public $files;
+
     /**
      * @inheritdoc
      */
@@ -63,6 +66,7 @@ class HousekeepingImplementation extends AppModel
             'hi_unit' => AppLabels::HI_UNIT,
             'hi_date' => AppLabels::DATE,
             'hi_auditor' => AppLabels::AUDITOR,
+            'files' => AppLabels::FILES,
         ];
     }
 
@@ -74,7 +78,18 @@ class HousekeepingImplementation extends AppModel
 
         try {
             $this->load($request);
-            if (!$this->save()) {
+            if ($this->save()) {
+                if (isset($request['Attachment'])) {
+                    $attachmentMdl = new Attachment();
+                    $attachmentMdl->load($request['Attachment']);
+                    $attachmentMdl->files = UploadedFile::getInstances($attachmentMdl, "files");
+
+                    if (!empty($attachmentMdl->files) && !$attachmentMdl->saveMultipleAttachments(AppConstants::MODULE_CODE_HOUSEKEEPING_IMPLEMENTATION, $this->id)) {
+                        $errors = array_merge($errors, [[AppConstants::ERR_UPLOAD_FAILED]]);
+                        throw new Exception;
+                    }
+                }
+            }else {
                 $errors = array_merge($errors, $this->errors);
                 throw new Exception();
             }
@@ -155,5 +170,12 @@ class HousekeepingImplementation extends AppModel
 
     public function getHiDetailByQuestion($detailId){
         return HiDetail::find()->where(['housekeeping_implementation_id' => $this->id, 'hq_detail_id' => $detailId])->one();
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAttachmentOwners() {
+        return $this->hasMany(AttachmentOwner::className(), ['atfo_module_pk' => 'id'])->andOnCondition(['atfo_module_code' => AppConstants::MODULE_CODE_HOUSEKEEPING_IMPLEMENTATION]);
     }
 }

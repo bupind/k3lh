@@ -5,6 +5,7 @@ use app\components\DetailView;
 use common\vendor\AppLabels;
 use app\components\ViewButton;
 use common\vendor\AppConstants;
+use common\components\helpers\Converter;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\HousekeepingImplementation */
@@ -43,7 +44,10 @@ $totalQuality = 0;
                     'converter' => [
                         'sector_id' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->sector->sector_name],
                         'power_plant_id' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->powerPlant->pp_name],
-                    ]
+                    ],
+                    'extraAttributes' => [
+                        'files' => Converter::attachments($model->attachmentOwners)
+                    ],
                 ]
             ]);
             ?>
