@@ -5,6 +5,8 @@ namespace backend\models;
 use Yii;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
+use yii\web\UploadedFile;
+use yii\base\Exception;
 
 /**
  * This is the model class for table "slo_generator".
@@ -39,6 +41,7 @@ use common\vendor\AppLabels;
  *
  * @property PowerPlant $powerPlant
  * @property Sector $sector
+ * @property AttachmentOwner[] $attachmentOwners
  */
 class SloGenerator extends AppModel
 {
@@ -48,6 +51,7 @@ class SloGenerator extends AppModel
     public $sg_machine_brand_desc;
     public $sg_generator_brand_desc;
     public $sg_boiler_brand_desc;
+    public $files;
 
     /**
      * @inheritdoc
@@ -105,7 +109,47 @@ class SloGenerator extends AppModel
             'sg_generator_type' => sprintf("%s %s", AppLabels::TYPE, AppLabels::GENERATOR),
             'sg_generator_serial_number' => sprintf("%s %s", AppLabels::SERIAL_NUMBER, AppLabels::GENERATOR),
             'sg_boiler_brand' => sprintf("%s %s", AppLabels::BRAND, AppLabels::SG_BOILER),
+            'files' => AppLabels::FILES,
         ];
+    }
+
+    public function saveTransactional() {
+        $request = Yii::$app->request->post();
+        $transaction = Yii::$app->db->beginTransaction();
+        $errors = [];
+
+        try {
+            $this->load($request);
+            if ($this->save()) {
+                if (isset($request['Attachment'])) {
+                    $attachmentMdl = new Attachment();
+                    $attachmentMdl->load($request['Attachment']);
+                    $attachmentMdl->files = UploadedFile::getInstances($attachmentMdl, "files");
+
+                    if (!empty($attachmentMdl->files) && !$attachmentMdl->saveMultipleAttachments(AppConstants::MODULE_CODE_SLO_GENERATOR, $this->id)) {
+                        $errors = array_merge($errors, [[AppConstants::ERR_UPLOAD_FAILED]]);
+                        throw new Exception;
+                    }
+                } else {
+                    $errors = array_merge($errors, $this->errors);
+                    throw new Exception();
+                }
+            }
+
+            $transaction->commit();
+            return TRUE;
+
+        } catch (Exception $e) {
+            $transaction->rollBack();
+            $this->afterFind();
+
+            foreach ($errors as $attr => $errorArr) {
+                $error = join('<br />', $errorArr);
+                Yii::$app->session->addFlash('danger', $error);
+            }
+
+            return FALSE;
+        }
     }
 
     public function beforeSave($insert) {
@@ -165,5 +209,12 @@ class SloGenerator extends AppModel
     public function getSector()
     {
         return $this->hasOne(Sector::className(), ['id' => 'sector_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAttachmentOwners() {
+        return $this->hasMany(AttachmentOwner::className(), ['atfo_module_pk' => 'id'])->andOnCondition(['atfo_module_code' => AppConstants::MODULE_CODE_SLO_GENERATOR]);
     }
 }
