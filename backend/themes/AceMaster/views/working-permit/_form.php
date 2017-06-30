@@ -8,11 +8,15 @@ use common\vendor\AppLabels;
 use kartik\widgets\DatePicker;
 use kartik\widgets\DateTimePicker;
 use backend\models\Codeset;
+use common\components\helpers\Converter;
+use backend\assets\FileUploadAsset;
+
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\WorkingPermit */
 /* @var $form yii\widgets\ActiveForm */
 /* @var $powerPlantModel \backend\models\PowerPlant */
+FileUploadAsset::register($this);
 ?>
 
 <div class="row working-permit-form">
@@ -20,7 +24,8 @@ use backend\models\Codeset;
     $form = ActiveForm::begin([
         'options' => [
             'class' => 'form-horizontal calx',
-            'role' => 'form'
+            'role' => 'form',
+            'enctype' => 'multipart/form-data',
         ],
         'fieldConfig' => [
             'options' => [
@@ -299,6 +304,33 @@ use backend\models\Codeset;
                                         return sprintf('<div class="checkbox col-xs-6">%s</div>', $checkbox);
                                     }
                                 ]); ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="widget-box">
+                    <div class="widget-header">
+                        <h4 class="widget-title"><?= AppLabels::FILES; ?></h4>
+                    </div>
+                    <div class="widget-body">
+                        <div class="widget-main">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <?= Converter::attachments($model->attachmentOwners, [
+                                        'show_file_upload' => true,
+                                        'show_delete_file' => true
+                                    ]); ?>
+                                    <span class="help-inline col-xs-12 col-md-7">
+                                    <span class="middle">
+                                        <div class="hint-block"><?= AppConstants::HINT_UPLOAD_FILES; ?></div>
+                                    </span>
+                                </span>
+                                </div>
                             </div>
                         </div>
                     </div>

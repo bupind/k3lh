@@ -5,6 +5,7 @@ use app\components\DetailView;
 use app\components\ViewButton;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
+use common\components\helpers\Converter;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\WorkingPermit */
@@ -55,13 +56,15 @@ $this->params['breadcrumbs'][] = $this->title;
                         'wp_k3_rules',
                         'wp_self_protection',
                         'wp_dangerous_work_type',
+                        'files',
                     ],
                     'excluded' => [
                         'sector_id',
                         'power_plant_id'
                     ],
                     'extraAttributes' => [
-                        'work_duration' => $model->work_duration
+                        'work_duration' => $model->work_duration,
+                        'files' => Converter::attachments($model->attachmentOwners),
                     ],
                     'converter' => [
                         'wp_work_details' => [AppConstants::FORMAT_TYPE_VARIABLE, Yii::$app->formatter->asNtext($model->wp_work_details)],

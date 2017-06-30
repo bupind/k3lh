@@ -5,6 +5,8 @@ namespace backend\models;
 use Yii;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
+use yii\base\Exception;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "working_permit".
@@ -39,6 +41,7 @@ use common\vendor\AppLabels;
  *
  * @property PowerPlant $powerPlant
  * @property Sector $sector
+ * @property AttachmentOwner[] $attachmentOwners
  */
 class WorkingPermit extends AppModel {
     
@@ -52,6 +55,7 @@ class WorkingPermit extends AppModel {
     public $k3_rules_array = [];
     public $self_protection_array = [];
     public $dangerous_work_array = [];
+    public $files;
     
     /**
      * @inheritdoc
@@ -111,6 +115,7 @@ class WorkingPermit extends AppModel {
             'k3_rules_text' => AppLabels::WP_K3_RULES,
             'self_protection_text' => AppLabels::WP_SELF_PROTECTION,
             'dangerous_work_text' => AppLabels::WP_DANGEROUS_WORK_TYPE,
+            'files' => AppLabels::FILES,
         ];
     }
     
@@ -186,6 +191,45 @@ class WorkingPermit extends AppModel {
         
         return $text;
     }
+
+    public function saveTransactional() {
+        $request = Yii::$app->request->post();
+        $transaction = Yii::$app->db->beginTransaction();
+        $errors = [];
+
+        try {
+            $this->load($request);
+            if ($this->save()) {
+                if (isset($request['Attachment'])) {
+                    $attachmentMdl = new Attachment();
+                    $attachmentMdl->load($request['Attachment']);
+                    $attachmentMdl->files = UploadedFile::getInstances($attachmentMdl, "files");
+
+                    if (!empty($attachmentMdl->files) && !$attachmentMdl->saveMultipleAttachments(AppConstants::MODULE_CODE_WORKING_PERMIT, $this->id)) {
+                        $errors = array_merge($errors, [[AppConstants::ERR_UPLOAD_FAILED]]);
+                        throw new Exception;
+                    }
+                } else {
+                    $errors = array_merge($errors, $this->errors);
+                    throw new Exception();
+                }
+            }
+
+            $transaction->commit();
+            return TRUE;
+
+        } catch (Exception $e) {
+            $transaction->rollBack();
+            $this->afterFind();
+
+            foreach ($errors as $attr => $errorArr) {
+                $error = join('<br />', $errorArr);
+                Yii::$app->session->addFlash('danger', $error);
+            }
+
+            return FALSE;
+        }
+    }
     
     private function toWPArray($string) {
         $array = [];
@@ -214,5 +258,12 @@ class WorkingPermit extends AppModel {
      */
     public function getSector() {
         return $this->hasOne(Sector::className(), ['id' => 'sector_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAttachmentOwners() {
+        return $this->hasMany(AttachmentOwner::className(), ['atfo_module_pk' => 'id'])->andOnCondition(['atfo_module_code' => AppConstants::MODULE_CODE_WORKING_PERMIT]);
     }
 }

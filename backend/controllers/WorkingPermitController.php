@@ -100,7 +100,7 @@ class WorkingPermitController extends AppController {
         $model->sector_id = $this->powerPlantModel->sector_id;
         $model->power_plant_id = $this->powerPlantModel->id;
         
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->saveTransactional()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -121,7 +121,7 @@ class WorkingPermitController extends AppController {
         $model = $this->findModel($id);
         $powerPlantModel = $model->powerPlant;
         
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->saveTransactional()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_UPDATE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

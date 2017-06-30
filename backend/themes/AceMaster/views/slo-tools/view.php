@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     'extraAttributes' => [
                         'files' => Converter::attachments($model->attachmentOwners)
-            ],
+                    ],
                 ]
             ]);
             ?>
