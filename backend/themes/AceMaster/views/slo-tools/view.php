@@ -5,6 +5,7 @@ use app\components\DetailView;
 use common\vendor\AppLabels;
 use app\components\ViewButton;
 use common\vendor\AppConstants;
+use common\components\helpers\Converter;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\SloTools */
@@ -40,7 +41,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         'st_form_month_type_code' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->st_form_month_type_code_desc],
                         'st_category' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->st_category_desc],
                         'st_next_check' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->st_next_check_desc],
-                    ]
+                    ],
+                    'extraAttributes' => [
+                        'files' => Converter::attachments($model->attachmentOwners)
+            ],
                 ]
             ]);
             ?>

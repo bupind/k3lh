@@ -5,7 +5,8 @@ namespace backend\models;
 use Yii;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
-
+use yii\web\UploadedFile;
+use yii\base\Exception;
 /**
  * This is the model class for table "slo_tools".
  *
@@ -32,6 +33,7 @@ use common\vendor\AppLabels;
  * @property integer $updated_at
  *
  * @property Sector $sector
+ * @property AttachmentOwner[] $attachmentOwners
  * @property PowerPlant $powerPlant
  */
 class SloTools extends AppModel
@@ -40,6 +42,8 @@ class SloTools extends AppModel
     public $st_category_desc;
     public $st_form_month_type_code_desc;
     public $st_next_check_desc;
+    public $files;
+
 
     /**
      * @inheritdoc
@@ -66,6 +70,45 @@ class SloTools extends AppModel
         ];
     }
 
+    public function saveTransactional() {
+        $request = Yii::$app->request->post();
+        $transaction = Yii::$app->db->beginTransaction();
+        $errors = [];
+
+        try {
+            $this->load($request);
+            if ($this->save()) {
+                if (isset($request['Attachment'])) {
+                    $attachmentMdl = new Attachment();
+                    $attachmentMdl->load($request['Attachment']);
+                    $attachmentMdl->files = UploadedFile::getInstances($attachmentMdl, "files");
+
+                    if (!empty($attachmentMdl->files) && !$attachmentMdl->saveMultipleAttachments(AppConstants::MODULE_CODE_SLO_TOOLS, $this->id)) {
+                        $errors = array_merge($errors, [[AppConstants::ERR_UPLOAD_FAILED]]);
+                        throw new Exception;
+                    }
+                } else {
+                    $errors = array_merge($errors, $this->errors);
+                    throw new Exception();
+                }
+            }
+
+            $transaction->commit();
+            return TRUE;
+
+        } catch (Exception $e) {
+            $transaction->rollBack();
+            $this->afterFind();
+
+            foreach ($errors as $attr => $errorArr) {
+                $error = join('<br />', $errorArr);
+                Yii::$app->session->addFlash('danger', $error);
+            }
+
+            return FALSE;
+        }
+    }
+
     /**
      * @inheritdoc
      */
@@ -89,6 +132,7 @@ class SloTools extends AppModel
             'st_certificate_publisher' => AppLabels::ST_CERTIFICATE_PUBLISHER,
             'st_form_month_type_code' => AppLabels::MONTH,
             'st_year' => AppLabels::YEAR,
+            'files' => AppLabels::FILES,
         ];
     }
 
@@ -148,5 +192,12 @@ class SloTools extends AppModel
     public function getPowerPlant()
     {
         return $this->hasOne(PowerPlant::className(), ['id' => 'power_plant_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAttachmentOwners() {
+        return $this->hasMany(AttachmentOwner::className(), ['atfo_module_pk' => 'id'])->andOnCondition(['atfo_module_code' => AppConstants::MODULE_CODE_SLO_TOOLS]);
     }
 }

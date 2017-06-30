@@ -6,18 +6,21 @@ use common\vendor\AppLabels;
 use app\components\SubmitButton;
 use backend\models\Codeset;
 use kartik\date\DatePicker;
+use common\components\helpers\Converter;
+use backend\assets\FileUploadAsset;
 /* @var $this yii\web\View */
 /* @var $model backend\models\SloTools */
 /* @var $form yii\widgets\ActiveForm */
 /* @var $powerPlantModel backend\models\PowerPlant */
-
+FileUploadAsset::register($this);
 ?>
 <?php
 $form = ActiveForm::begin([
     'id' => 'slo-tools-form',
     'options' => [
         'class' => 'calx form-horizontal',
-        'role' => 'form'
+        'role' => 'form',
+        'enctype' => 'multipart/form-data',
     ],
     'fieldConfig' => [
         'options' => [
@@ -38,18 +41,18 @@ $index = 0;
             echo $form->field($model, 'power_plant_id')->hiddenInput(['value' => $powerPlantModel->id])->error(false)->label(false);
 
             echo $form->field($powerPlantModel->sector, 'sector_name', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
-                ->textInput([ 'class' => 'form-control text-center', 'disabled' => true])
+                ->textInput(['class' => 'form-control text-center', 'disabled' => true])
                 ->label(AppLabels::SECTOR, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
 
             echo $form->field($powerPlantModel, 'pp_name', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
-                ->textInput([ 'class' =>  'form-control text-center', 'disabled' => true])
+                ->textInput(['class' => 'form-control text-center', 'disabled' => true])
                 ->label(AppLabels::POWER_PLANT, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
 
             echo $form->field($model, "st_year", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
                 ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly text-right'])
                 ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
 
-            echo$form->field($model, "st_form_month_type_code", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+            echo $form->field($model, "st_form_month_type_code", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
                 ->dropDownList(Codeset::customMap(AppConstants::CODESET_FORM_MONTH_TYPE_CODE, 'cset_value'), ['class' => 'input-big form-control'])
                 ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
 
@@ -61,11 +64,11 @@ $index = 0;
                 ->textInput(['maxlength' => true, 'class' => 'form-control'])
                 ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
 
-            echo$form->field($model, "st_generator_status", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+            echo $form->field($model, "st_generator_status", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
                 ->dropDownList(Codeset::customMap(AppConstants::CODESET_SLOT_GEN_STATUS_CODE, 'cset_value'), ['class' => 'input-big form-control'])
                 ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
 
-            echo$form->field($model, "st_category", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+            echo $form->field($model, "st_category", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
                 ->dropDownList(Codeset::customMap(AppConstants::CODESET_SLOT_CATEGORY_CODE, 'cset_value'), ['class' => 'input-big form-control'])
                 ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
 
@@ -86,6 +89,18 @@ $index = 0;
                 ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
 
             ?>
+            <label class="col-md-3 control-label no-padding-right"><?= $model->getAttributeLabel('files'); ?></label>
+            <div class="col-md-9">
+                <?= Converter::attachments($model->attachmentOwners, [
+                    'show_file_upload' => true,
+                    'show_delete_file' => true
+                ]); ?>
+                <span class="help-inline col-xs-12 col-md-7">
+                        <span class="middle">
+                            <div class="hint-block"><?= AppConstants::HINT_UPLOAD_FILES; ?></div>
+                        </span>
+                    </span>
+            </div>
         </div>
 
         <div class="col-xs-12 col-md-4">
@@ -153,6 +168,7 @@ $index = 0;
             </div>
         </div>
     </div>
+
 
     <hr/>
 

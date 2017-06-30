@@ -5,6 +5,7 @@ use app\components\DetailView;
 use common\vendor\AppLabels;
 use app\components\ViewButton;
 use common\vendor\AppConstants;
+use common\components\helpers\Converter;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\SloGenerator */
@@ -41,7 +42,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         'sg_machine_brand' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->sg_machine_brand_desc],
                         'sg_generator_brand' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->sg_generator_brand_desc],
                         'sg_boiler_brand' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->sg_boiler_brand_desc],
-                    ]
+                    ],
+                    'extraAttributes' => [
+                        'files' => Converter::attachments($model->attachmentOwners)
+                    ],
                 ]
             ]);
             ?>
