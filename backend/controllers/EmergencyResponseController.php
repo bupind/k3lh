@@ -34,7 +34,7 @@ class EmergencyResponseController extends AppController
     public function beforeAction($action) {
         parent::beforeAction($action);
 
-        if (in_array($action->id, ['index', 'create', 'update'])) {
+        if (in_array($action->id, ['index', 'create', 'update', 'export'])) {
             $powerPlantId = Yii::$app->request->get('_ppId');
             if (($powerPlant = PowerPlant::findOne($powerPlantId)) !== null) {
                 $this->powerPlantModel = $powerPlant;
@@ -134,6 +134,7 @@ class EmergencyResponseController extends AppController
     public function actionExport() {
 
         $searchModel = new EmergencyResponseSearch();
+        $searchModel->power_plant_id = $this->powerPlantModel->id;
 
         if ($searchModel->export()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_GENERATE_FILE_SUCCESS);

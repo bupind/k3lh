@@ -147,6 +147,7 @@ class MonitoringAparController extends AppController
     public function actionExport() {
 
         $searchModel = new MonitoringAparSearch();
+        $searchModel->power_plant_id = $this->powerPlantModel->id;
 
         if ($searchModel->load(Yii::$app->request->post()) && $searchModel->export()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_GENERATE_FILE_SUCCESS);

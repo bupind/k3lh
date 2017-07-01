@@ -87,7 +87,9 @@ class EmergencyResponseSearch extends EmergencyResponse
 
     public function export() {
 
-        $query = EmergencyResponse::find();
+        $query = EmergencyResponse::find()->where([
+            'power_plant_id' => $this->power_plant_id,
+        ]);
 
         // add conditions that should always apply here
 

@@ -655,6 +655,10 @@ class AppLabels {
     const FD_LAST_CHECK = 'Last Checked';
     const FD_TEST_RESULT_RECORD = 'Catatan Hasil Pengujian';
     const FDD_DATE = 'Tanggal Pengecekan';
+    const FD_NUMBER = 'Nomor Detector';
+    const FD_VISUAL_CHECK = 'Pengecekan Visual';
+    const FD_TEST_NORMAL_ABNORMAL = 'Pengujian Bulanan (Normal/ Abnormal)';
+    const CHECK_DATE = 'Tanggal Pengecekan';
 
     //WORKING_ENV_DATA
     const FORM_WORK_ENV_DATA = 'Data Lingkungan Kerja';

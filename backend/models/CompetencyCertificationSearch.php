@@ -81,7 +81,9 @@ class CompetencyCertificationSearch extends CompetencyCertification
 
     public function export() {
 
-        $query = CompetencyCertification::find();
+        $query = CompetencyCertification::find()->where([
+            'power_plant_id' => $this->power_plant_id,
+        ]);
 
         // add conditions that should always apply here
 

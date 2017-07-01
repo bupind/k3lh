@@ -90,6 +90,7 @@ class SloToolsSearch extends SloTools
 
         $query = SloTools::find()->where(
             [
+                'power_plant_id' => $this->power_plant_id,
                 'st_form_month_type_code' => $this->st_form_month_type_code,
                 'st_year' => $this->st_year,
             ]);

@@ -39,6 +39,10 @@ class FireDetector extends AppModel
     public $fd_floor_code_desc;
     public $fd_detector_type_code_desc;
     public $fd_alarm_zone_code_desc;
+    public $fd_detector_physic_desc;
+    public $fd_installation_desc;
+    public $fd_wiring_condition_desc;
+    public $fd_last_check_desc;
 
     /**
      * @inheritdoc
@@ -56,10 +60,9 @@ class FireDetector extends AppModel
         return [
             [['sector_id', 'power_plant_id', 'fd_year', 'fd_form_month_type_code', 'fd_floor_code', 'fd_location', 'fd_detector_type_code', 'fd_alarm_zone_code'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
             [['sector_id', 'power_plant_id', 'fd_year'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
-            [['fd_installation', 'fd_wiring_condition', 'fd_test_result_record'], 'string'],
-            [['fd_last_check'], 'safe'],
-            [['fd_form_month_type_code', 'fd_floor_code', 'fd_detector_type_code', 'fd_alarm_zone_code'], 'string', 'max' => 10],
-            [['fd_location', 'fd_detector_physic'], 'string', 'max' => 100],
+            [['fd_test_result_record'], 'string'],
+            [['fd_detector_physic', 'fd_installation', 'fd_wiring_condition', 'fd_last_check', 'fd_form_month_type_code', 'fd_floor_code', 'fd_detector_type_code', 'fd_alarm_zone_code'], 'string', 'max' => 10],
+            [['fd_location'], 'string', 'max' => 100],
             [['power_plant_id'], 'exist', 'skipOnError' => true, 'targetClass' => PowerPlant::className(), 'targetAttribute' => ['power_plant_id' => 'id']],
             [['sector_id'], 'exist', 'skipOnError' => true, 'targetClass' => Sector::className(), 'targetAttribute' => ['sector_id' => 'id']],
         ];
@@ -101,6 +104,7 @@ class FireDetector extends AppModel
             }
 
             $fireDetectorId = $this->id;
+            $fireDetectorFloorType = $this->fd_floor_code;
 
             if (isset($request['FdDetail'])) {
                 foreach ($request['FdDetail'] as $key => $month) {
@@ -110,6 +114,8 @@ class FireDetector extends AppModel
                     } else {
                         $monthTuple = new FdDetail();
                         $monthTuple->fire_detector_id = $fireDetectorId;
+                        $monthTuple->fdd_month = $key+1;
+                        $monthTuple->fdd_floor_type_code = $fireDetectorFloorType;
                     }
 
                     if (!$monthTuple->load(['FdDetail' => $month]) || !$monthTuple->save()) {
@@ -134,26 +140,17 @@ class FireDetector extends AppModel
         }
     }
 
-    public function beforeSave($insert) {
-        parent::beforeSave($insert);
-
-        if(!$this->fd_last_check == '') {
-            $this->fd_last_check = Yii::$app->formatter->asDate($this->fd_last_check, AppConstants::FORMAT_DB_DATE_PHP);
-        }
-
-        return true;
-    }
-
     public function afterFind() {
 
-        if(!$this->fd_last_check == '') {
-            $this->fd_last_check = Yii::$app->formatter->asDate($this->fd_last_check, AppConstants::FORMAT_DATE_PHP_SHOW_MONTH);
-        }
 
         $this->fd_floor_code_desc = Codeset::getCodesetValue(AppConstants::CODESET_FD_FLOOR_TYPE, $this->fd_floor_code);
         $this->fd_detector_type_code_desc = Codeset::getCodesetValue(AppConstants::CODESET_FD_DETECT_TYPE, $this->fd_detector_type_code);
         $this->fd_alarm_zone_code_desc = Codeset::getCodesetValue(AppConstants::CODESET_FD_ALARM_ZONE, $this->fd_alarm_zone_code);
         $this->fd_form_month_type_code_desc = Codeset::getCodesetValue(AppConstants::CODESET_FORM_MONTH_TYPE_CODE, $this->fd_form_month_type_code);
+        $this->fd_detector_physic_desc = Codeset::getCodesetValue(AppConstants::CODESET_FD_DETECTOR_PHYSIC, $this->fd_detector_physic);
+        $this->fd_installation_desc = Codeset::getCodesetValue(AppConstants::CODESET_FD_INSTALLATION, $this->fd_installation);
+        $this->fd_wiring_condition_desc = Codeset::getCodesetValue(AppConstants::CODESET_WIRING_CONDITION, $this->fd_wiring_condition);
+        $this->fd_last_check_desc = Codeset::getCodesetValue(AppConstants::CODESET_LAST_CHECK, $this->fd_last_check);
 
         return true;
     }
@@ -164,6 +161,12 @@ class FireDetector extends AppModel
     public function getFdDetails()
     {
         return $this->hasMany(FdDetail::className(), ['fire_detector_id' => 'id']);
+    }
+
+    public function toAlphabet($number){
+        $alphabet = range('A', 'Z');
+
+        return ($alphabet[$number]);
     }
 
     /**

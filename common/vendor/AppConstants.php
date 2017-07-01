@@ -340,6 +340,10 @@ class AppConstants {
     const CODESET_FD_DETECT_TYPE = 'FD_DETECT_TYPE';
     const CODESET_FD_ALARM_ZONE = 'FD_ALARM_ZONE';
     const CODESET_FD_FLOOR_TYPE = 'FD_FLOOR_TYPE';
+    const CODESET_FD_DETECTOR_PHYSIC = 'FD_DET_PHY';
+    const CODESET_FD_INSTALLATION = 'FD_INSTALLATION';
+    const CODESET_WIRING_CONDITION = 'FD_WIRING_COND';
+    const CODESET_LAST_CHECK = 'FD_LAST_CHECK';
     const CODESET_FDD_TEST_RESULT = 'FDD_TEST_RESULT';
 
     //WORKING ENV DATA
@@ -373,6 +377,14 @@ class AppConstants {
     // PLB3 SELF ASSESSMENT
     const PLB3_SA_QUESTION_CATEGORY_GENERAL = 'GNRL';
     const PLB3_SA_QUESTION_CATEGORY_HAZARD = 'HZRD';
+
+    // FIRE DETECTOR TEST RESULT TYPE
+    const FD_TEST_RESULT_TYPE_NORMAL = 'FTR3';
+    const FD_TEST_RESULT_TYPE_ABNORMAL = 'FTR4';
+    const FD_TEST_RESULT_TYPE_UNKNOWN = 'FTR2';
+    const FD_TEST_RESULT_TYPE_NOT_CHECKED = 'FTR1';
+    const FD_DETECTOR_TYPE_UNKNOWN = 'FDT3';
+    const FD_ALARM_ZONE_UNKNOWN = 'FAZ1';
 
     // WEB CONFIG
     const WEB_CONFIG_SALE_EXTERNAL_SALES = 'SALE_EXT_SALES';
@@ -452,6 +464,7 @@ class AppConstants {
     const REPORT_NAME_WORK_ENV_DATA = 'report_monitoring_data_lingkungan_kerja_%s.xlsx';
     const REPORT_NAME_HYDRANT_CHECKLIST = 'report_checklist_hydrant_%s.xlsx';
     const REPORT_NAME_PROJECT_TRACKING = 'report_project_tracking_%s.xlsx';
+    const REPORT_NAME_FIRE_DETECTOR = 'report_fire_detector_%s.xlsx';
 
 
     // PHPEXCEL

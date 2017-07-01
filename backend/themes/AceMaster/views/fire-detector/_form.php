@@ -74,22 +74,6 @@ $startDate->setDate(2000, 1, 1);
                 ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
 
 
-
-            echo $form->field($model, 'fd_last_check', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
-                ->widget(
-                    DatePicker::className(), [
-                        'model' => $model,
-                        'attribute' => 'fd_last_check',
-                        'type' => DatePicker::TYPE_COMPONENT_APPEND,
-                        'pluginOptions' => [
-                            'autoclose' => true,
-                            'format' => 'dd MM yyyy',
-                            'todayHighlight' => true
-                        ]
-                    ]
-                )
-                ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
-
             echo $form->field($model, 'fd_test_result_record', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
                 ->widget(Redactor::className(), [
                     'clientOptions' => [
@@ -115,36 +99,20 @@ $startDate->setDate(2000, 1, 1);
                     <div class="widget-main">
                         <fieldset>
                             <?php
-                            echo $form->field($model, 'fd_installation', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
-                                ->widget(Redactor::className(), [
-                                    'clientOptions' => [
-                                        'imageUpload' => ['/redactor/upload/image'],
-                                        'imageUploadCallback' => new \yii\web\JsExpression("
-                                            function(image, json) {
-                                                image.addClass('img-responsive')
-                                            }
-                                        "),
-                                        'plugins' => ['imagemanager']
-                                    ]
-                                ])
+                            echo$form->field($model, "fd_installation", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+                                ->dropDownList(Codeset::customMap(AppConstants::CODESET_FD_INSTALLATION, 'cset_value'), ['class' => 'input-big form-control'])
                                 ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
 
-                            echo $form->field($model, "fd_detector_physic", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
-                                ->textInput(['maxlength' => true, 'class' => 'form-control'])
+                            echo$form->field($model, "fd_detector_physic", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+                                ->dropDownList(Codeset::customMap(AppConstants::CODESET_FD_DETECTOR_PHYSIC, 'cset_value'), ['class' => 'input-big form-control'])
                                 ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
 
-                            echo $form->field($model, 'fd_wiring_condition', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
-                                ->widget(Redactor::className(), [
-                                    'clientOptions' => [
-                                        'imageUpload' => ['/redactor/upload/image'],
-                                        'imageUploadCallback' => new \yii\web\JsExpression("
-                                            function(image, json) {
-                                                image.addClass('img-responsive')
-                                            }
-                                        "),
-                                        'plugins' => ['imagemanager']
-                                    ]
-                                ])
+                            echo$form->field($model, "fd_wiring_condition", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+                                ->dropDownList(Codeset::customMap(AppConstants::CODESET_WIRING_CONDITION, 'cset_value'), ['class' => 'input-big form-control'])
+                                ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+
+                            echo$form->field($model, "fd_last_check", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+                                ->dropDownList(Codeset::customMap(AppConstants::CODESET_LAST_CHECK, 'cset_value'), ['class' => 'input-big form-control'])
                                 ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
 
                             ?>
@@ -168,6 +136,8 @@ $startDate->setDate(2000, 1, 1);
                                 foreach ($monthModel as $keyM => $month) {
                                     if (!$model->getIsNewRecord()) {
                                         echo $form->field($month, "[$keyM]id")->hiddenInput()->label(false);
+                                        echo $form->field($month, "[$keyM]fdd_month")->hiddenInput()->label(false);
+                                        echo $form->field($month, "[$keyM]fdd_floor_type_code")->hiddenInput()->label(false);
                                     }
 
                                     echo $form->field($month, "[$keyM]fdd_monthly_test_code", [

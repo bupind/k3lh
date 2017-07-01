@@ -135,6 +135,7 @@ class K3lProblemController extends AppController
     public function actionExport() {
 
         $searchModel = new K3lProblemSearch();
+        $searchModel->power_plant_id = $this->powerPlantModel->id;
 
         if ($searchModel->export()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_GENERATE_FILE_SUCCESS);

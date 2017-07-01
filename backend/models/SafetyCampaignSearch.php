@@ -84,7 +84,9 @@ class SafetyCampaignSearch extends SafetyCampaign
     public function export()
     {
 
-        $query = SafetyCampaign::find();
+        $query = SafetyCampaign::find()->where([
+            'power_plant_id' => $this->power_plant_id,
+        ]);
 
         // add conditions that should always apply here
 

@@ -88,6 +88,7 @@ class SloGeneratorSearch extends SloGenerator
 
         $query = SloGenerator::find()->where(
             [
+                'power_plant_id' => $this->power_plant_id,
                 'sg_form_month_type_code' => $this->sg_form_month_type_code,
                 'sg_year' => $this->sg_year,
             ]);

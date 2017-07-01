@@ -43,6 +43,10 @@ $startDate->setDate(2000, 1, 1);
                         'fd_floor_code' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->fd_floor_code_desc],
                         'fd_detector_type_code' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->fd_detector_type_code_desc],
                         'fd_alarm_zone_code' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->fd_alarm_zone_code_desc],
+                        'fd_installation' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->fd_installation_desc],
+                        'fd_detector_physic' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->fd_detector_physic_desc],
+                        'fd_wiring_condition' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->fd_wiring_condition_desc],
+                        'fd_last_check' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->fd_last_check_desc],
                     ]
                 ]
             ]);

@@ -35,6 +35,7 @@ $buttons = array_merge($actionColumn->buttons, [
         <div class="pull-right">
             <?= Html::a(AppLabels::BTN_ADD, ['create', '_ppId' => $powerPlantModel->id], ['class' => 'btn btn-sm btn-success']) ?>
             <?= Html::a(sprintf("%s %s",AppLabels::BTN_UPDATE, AppLabels::FDD_DATE), ['date', 'ppId' => $powerPlantModel->id, '_ppId' => $powerPlantModel->id], ['class' => 'btn btn-sm btn-primary']) ?>
+            <?= Html::a(AppLabels::BTN_DOWNLOAD_EXCEL, ['export', '_ppId' => $powerPlantModel->id], ['class' => 'btn btn-sm btn-primary']) ?>
         </div>
     </div>
 

@@ -14,7 +14,6 @@ use common\vendor\AppLabels;
 class ImportantPhoneNumberSearch extends ImportantPhoneNumber
 {
     public $filename;
-    public $pp_id;
     /**
      * @inheritdoc
      */
@@ -78,7 +77,9 @@ class ImportantPhoneNumberSearch extends ImportantPhoneNumber
 
     public function export() {
 
-        $query = ImportantPhoneNumber::find();
+        $query = ImportantPhoneNumber::find()->where([
+            'power_plant_id' => $this->power_plant_id,
+        ]);
 
         // add conditions that should always apply here
 
@@ -91,8 +92,6 @@ class ImportantPhoneNumberSearch extends ImportantPhoneNumber
             // $query->where('0=1');
             return $dataProvider;
         }
-
-        $this->pp_id = $dataProvider->getModels()[0]->power_plant_id;
 
         // export to excel
 

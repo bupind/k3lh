@@ -94,7 +94,9 @@ class MonitoringAparSearch extends MonitoringApar
 
     public function export() {
 
-        $query = MonitoringApar::find();
+        $query = MonitoringApar::find()->where([
+            'power_plant_id' => $this->power_plant_id,
+        ]);
 
         // add conditions that should always apply here
 

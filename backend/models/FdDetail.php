@@ -11,6 +11,8 @@ use common\vendor\AppLabels;
  *
  * @property integer $id
  * @property integer $fire_detector_id
+ * @property integer $fdd_month
+ * @property string $fdd_floor_type_code
  * @property string $fdd_monthly_test_code
  * @property integer $created_by
  * @property integer $created_at
@@ -22,6 +24,7 @@ use common\vendor\AppLabels;
 class FdDetail extends AppModel
 {
     public $fdd_monthly_test_code_desc;
+    public $fdd_floor_type_code_desc;
     /**
      * @inheritdoc
      */
@@ -36,9 +39,9 @@ class FdDetail extends AppModel
     public function rules()
     {
         return [
-            [['fire_detector_id'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
-            [['fire_detector_id'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
-            [['fdd_monthly_test_code'], 'string', 'max' => 10],
+            [['fire_detector_id', 'fdd_month'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
+            [['fire_detector_id', 'fdd_month'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
+            [['fdd_monthly_test_code', 'fdd_floor_type_code'], 'string', 'max' => 10],
             [['fire_detector_id'], 'exist', 'skipOnError' => true, 'targetClass' => FireDetector::className(), 'targetAttribute' => ['fire_detector_id' => 'id']],
         ];
     }
@@ -47,7 +50,7 @@ class FdDetail extends AppModel
         parent::afterFind();
 
         $this->fdd_monthly_test_code_desc = Codeset::getCodesetValue(AppConstants::CODESET_FDD_TEST_RESULT, $this->fdd_monthly_test_code);
-
+        $this->fdd_floor_type_code_desc = Codeset::getCodesetValue(AppConstants::CODESET_FD_FLOOR_TYPE, $this->fdd_floor_type_code);
         return true;
     }
 
@@ -59,7 +62,9 @@ class FdDetail extends AppModel
         return [
             'id' => 'ID',
             'fire_detector_id' => AppLabels::FORM_FIRE_DETECTOR,
+            'fdd_month' => AppLabels::MONTH,
             'fdd_monthly_test_code' => AppLabels::MONTH,
+            'fdd_floor_type_code' => AppLabels::FLOOR,
         ];
     }
 

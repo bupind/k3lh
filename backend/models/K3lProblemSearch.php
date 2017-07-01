@@ -82,7 +82,9 @@ class K3lProblemSearch extends K3lProblem
 
     public function export() {
 
-        $query = K3lProblem::find();
+        $query = K3lProblem::find()->where([
+            'power_plant_id' => $this->power_plant_id,
+        ]);
 
         // add conditions that should always apply here
 
