@@ -560,6 +560,8 @@ class AppLabels {
     const BOC_IMPACT = 'Sebaran Dampak';
     const BOC_EFFORT = 'Kebelangsungan Usaha';
     const BOC_BUDGET = 'Anggaran';
+    const PERCENT_COMDEV_SUCCESS = '% Keberhasilan Comdev';
+    const BUDGET_TOTAL = 'Total Anggaran';
 
     //IMPORTANT PHONE NUMBER
     const IPN_INSTANCE = 'Instansi / Lembaga';
