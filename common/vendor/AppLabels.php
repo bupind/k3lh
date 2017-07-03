@@ -718,6 +718,7 @@ class AppLabels {
     const FORM_HOUSEKEEPING_IMPLEMENTATION = 'Implementasi Housekeeping';
     const QUALITY = 'Kualitas';
     const RECOMMENDATION = 'Rekomendasi';
+    const AUDITEE = 'Auditee';
 
     // PROJECT TRACKING
     const FORM_PROJECT_TRACKING = 'Form Project Tracking';

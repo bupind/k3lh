@@ -465,6 +465,7 @@ class AppConstants {
     const REPORT_NAME_HYDRANT_CHECKLIST = 'report_checklist_hydrant_%s.xlsx';
     const REPORT_NAME_PROJECT_TRACKING = 'report_project_tracking_%s.xlsx';
     const REPORT_NAME_FIRE_DETECTOR = 'report_fire_detector_%s.xlsx';
+    const REPORT_NAME_HOUSEKEEPING_IMPLEMENTATION = 'report_housekeeping_implementation_%s.xlsx';
 
 
     // PHPEXCEL

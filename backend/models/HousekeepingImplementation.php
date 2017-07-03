@@ -17,6 +17,7 @@ use yii\web\UploadedFile;
  * @property string $hi_unit
  * @property string $hi_date
  * @property string $hi_auditor
+ * @property string $hi_auditee
  * @property integer $created_by
  * @property integer $created_at
  * @property integer $updated_by
@@ -45,10 +46,10 @@ class HousekeepingImplementation extends AppModel
     public function rules()
     {
         return [
-            [['sector_id', 'power_plant_id', 'hi_unit', 'hi_date', 'hi_auditor'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
+            [['sector_id', 'power_plant_id', 'hi_unit', 'hi_date', 'hi_auditor', 'hi_auditee'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
             [['sector_id', 'power_plant_id'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
             [['hi_date'], 'safe'],
-            [['hi_unit', 'hi_auditor'], 'string', 'max' => 150],
+            [['hi_unit', 'hi_auditor', 'hi_auditee'], 'string', 'max' => 150],
             [['power_plant_id'], 'exist', 'skipOnError' => true, 'targetClass' => PowerPlant::className(), 'targetAttribute' => ['power_plant_id' => 'id']],
             [['sector_id'], 'exist', 'skipOnError' => true, 'targetClass' => Sector::className(), 'targetAttribute' => ['sector_id' => 'id']],
         ];
@@ -66,8 +67,15 @@ class HousekeepingImplementation extends AppModel
             'hi_unit' => AppLabels::HI_UNIT,
             'hi_date' => AppLabels::DATE,
             'hi_auditor' => AppLabels::AUDITOR,
+            'hi_auditee' => AppLabels::AUDITEE,
             'files' => AppLabels::FILES,
         ];
+    }
+
+    public function toAlphabet($number){
+        $alphabet = range('A', 'Z');
+
+        return ($alphabet[$number]);
     }
 
     public function saveTransactional() {

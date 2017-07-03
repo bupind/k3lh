@@ -79,6 +79,10 @@ $totalQuality = 0;
                 echo $form->field($model, "hi_auditor", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
                     ->textInput(['maxlength' => true, 'class' => 'form-control'])
                     ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+
+            echo $form->field($model, "hi_auditee", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+                ->textInput(['maxlength' => true, 'class' => 'form-control'])
+                ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
             ?>
             <label class="col-md-3 control-label no-padding-right"><?= $model->getAttributeLabel('files'); ?></label>
             <div class="col-md-9">
