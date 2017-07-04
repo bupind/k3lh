@@ -149,6 +149,21 @@ class ProjectTrackingDetail extends AppModel {
         
         return true;
     }
+
+    public function beforeDelete()
+    {
+        $attachments = $this->attachmentOwners;
+        foreach($attachments as $keyA => $attachment) {
+            if (!is_null($attachment)) {
+                $attachment = $attachment->attachment;
+            }
+
+            if (!is_null($attachment)) {
+                $attachment->delete();
+            }
+        }
+        return parent::beforeDelete();
+    }
     
     /**
      * @return \yii\db\ActiveQuery

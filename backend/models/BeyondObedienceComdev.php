@@ -6,6 +6,7 @@ use Yii;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
 use yii\base\Exception;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "beyond_obedience_comdev".
@@ -24,6 +25,7 @@ use yii\base\Exception;
  * @property PowerPlant $powerPlant
  * @property Skko $sector
  * @property BocDetail[] $bocDetails
+ * @property AttachmentOwner[] $attachmentOwners
  */
 class BeyondObedienceComdev extends AppModel
 {
@@ -63,6 +65,7 @@ class BeyondObedienceComdev extends AppModel
             'boc_year' => AppLabels::YEAR,
             'boc_production' => AppLabels::PRODUCTION,
             'boc_production_display' => AppLabels::PRODUCTION,
+            'files' => AppLabels::FILES,
         ];
     }
 
@@ -74,9 +77,20 @@ class BeyondObedienceComdev extends AppModel
 
         try {
             $this->load($request);
-            if (!$this->save()) {
-                $errors = array_merge($errors, $this->errors);
-                throw new Exception();
+            if ($this->save()) {
+                if (isset($request['Attachment'])) {
+                    $attachmentMdl = new Attachment();
+                    $attachmentMdl->load($request['Attachment']);
+                    $attachmentMdl->files = UploadedFile::getInstances($attachmentMdl, "files");
+
+                    if (!empty($attachmentMdl->files) && !$attachmentMdl->saveMultipleAttachments(AppConstants::MODULE_CODE_BEYOND_OBEDIENCE_COMDEV, $this->id)) {
+                        $errors = array_merge($errors, [[AppConstants::ERR_UPLOAD_FAILED]]);
+                        throw new Exception;
+                    }
+                } else {
+                    $errors = array_merge($errors, $this->errors);
+                    throw new Exception();
+                }
             }
 
             $bocId = $this->id;
@@ -125,6 +139,21 @@ class BeyondObedienceComdev extends AppModel
         return $this->hasOne(PowerPlant::className(), ['id' => 'power_plant_id']);
     }
 
+    public function beforeDelete()
+    {
+        $attachments = $this->attachmentOwners;
+        foreach($attachments as $keyA => $attachment) {
+            if (!is_null($attachment)) {
+                $attachment = $attachment->attachment;
+            }
+
+            if (!is_null($attachment)) {
+                $attachment->delete();
+            }
+        }
+        return parent::beforeDelete();
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -139,5 +168,12 @@ class BeyondObedienceComdev extends AppModel
     public function getBocDetails()
     {
         return $this->hasMany(BocDetail::className(), ['beyond_obedience_comdev_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAttachmentOwners() {
+        return $this->hasMany(AttachmentOwner::className(), ['atfo_module_pk' => 'id'])->andOnCondition(['atfo_module_code' => AppConstants::MODULE_CODE_BEYOND_OBEDIENCE_COMDEV]);
     }
 }

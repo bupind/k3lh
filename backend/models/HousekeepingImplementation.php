@@ -72,6 +72,21 @@ class HousekeepingImplementation extends AppModel
         ];
     }
 
+    public function beforeDelete()
+    {
+        $attachments = $this->attachmentOwners;
+        foreach($attachments as $keyA => $attachment) {
+            if (!is_null($attachment)) {
+                $attachment = $attachment->attachment;
+            }
+
+            if (!is_null($attachment)) {
+                $attachment->delete();
+            }
+        }
+        return parent::beforeDelete();
+    }
+
     public function toAlphabet($number){
         $alphabet = range('A', 'Z');
 

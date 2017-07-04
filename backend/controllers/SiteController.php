@@ -472,7 +472,7 @@ class SiteController extends AppController {
                                                             'additionalParameters' => [
                                                                 'children' => [
                                                                     '44341' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Penilaian Penurunan Emisi (Lamp V, Permen LH 03/2014)', ['/beyond-obedience', 'bot' => AppConstants::FORM_TYPE_PGPU, '_ppId' => $powerPlant->id]), 'type' => 'item'],
-                                                                    '44342' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Program Penurunan Emisi', ['/beyond-obedience-program', 'bopt' => AppConstants::FORM_TYPE_EE, '_ppId' => $powerPlant->id]), 'type' => 'item'],
+                                                                    '44342' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Program Penurunan Emisi', ['/beyond-obedience-program', 'bopt' => AppConstants::FORM_TYPE_PGPU, '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                     '44343' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Renstra', 'type' => 'item'],
                                                                     '44344' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Audit Energy', 'type' => 'item'],
                                                                     '44345' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Verifikasi Data', 'type' => 'item'],

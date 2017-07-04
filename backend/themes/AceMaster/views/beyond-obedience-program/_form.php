@@ -8,6 +8,9 @@ use app\components\SubmitButton;
 use backend\models\Codeset;
 use backend\assets\BeyondObedienceProgramAsset;
 use yii\helpers\Url;
+use common\components\helpers\Converter;
+use backend\assets\FileUploadAsset;
+
 /* @var $this yii\web\View */
 /* @var $model backend\models\BeyondObedienceProgram */
 /* @var $form yii\widgets\ActiveForm */
@@ -17,6 +20,7 @@ use yii\helpers\Url;
 /* @var $detailModels backend\models\BopDetail[] */
 
 BeyondObedienceProgramAsset::register($this);
+FileUploadAsset::register($this);
 $baseUrl = Url::base();
 
 ?>
@@ -27,7 +31,8 @@ $form = ActiveForm::begin([
     'id' => 'beyond-obedience-program-form',
     'options' => [
         'class' => 'calx form-horizontal',
-        'role' => 'form'
+        'role' => 'form',
+        'enctype' => 'multipart/form-data',
     ],
     'fieldConfig' => [
         'options' => [
@@ -65,6 +70,18 @@ $index = 0;
 
             echo $form->field($model, 'bop_production')->hiddenInput(['data-cell' => 'A1', 'data-formula' => 'AA1', 'data-format' => AppConstants::CALX_DATA_FORMAT_PLAIN])->label(false);
             ?>
+            <label class="col-md-3 control-label no-padding-right"><?= $model->getAttributeLabel('files'); ?></label>
+            <div class="col-md-9">
+                <?= Converter::attachments($model->attachmentOwners, [
+                    'show_file_upload' => true,
+                    'show_delete_file' => true
+                ]); ?>
+                <span class="help-inline col-xs-12 col-md-7">
+                        <span class="middle">
+                            <div class="hint-block"><?= AppConstants::HINT_UPLOAD_FILES; ?></div>
+                        </span>
+                    </span>
+            </div>
         </div>
     </div>
 

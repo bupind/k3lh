@@ -7,6 +7,7 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
+use common\components\helpers\Converter;
 
 /**
  * BeyondObedienceComdevSearch represents the model behind the search form about `backend\models\BeyondObedienceComdev`.
@@ -225,6 +226,8 @@ class BeyondObedienceComdevSearch extends BeyondObedienceComdev
 
         $activeSheet->setCellValue('C' . $rowIndex, $model->boc_production);
 
+        $rowIndex++;$rowIndex++;
+
         //==========================================================================
 
         //footer
@@ -232,6 +235,18 @@ class BeyondObedienceComdevSearch extends BeyondObedienceComdev
         //==========================================================================
 
         //extra footer
+        $activeSheet->setCellValue('B' . $rowIndex, AppLabels::FILES);
+        $rowIndex++;
+        if (!empty($model->attachmentOwners)) {
+            foreach (Converter::attachmentsFullPath($model->attachmentOwners) as $key2 => $attachment) {
+                $activeSheet->setCellValue('B' . $rowIndex, $attachment['label']);
+                $activeSheet->getCell('B' . $rowIndex)->getHyperlink()->setUrl($attachment['path']);
+                $activeSheet->getCell('B' . $rowIndex)->getStyle()->getFont()->getColor()->setARGB(\PHPExcel_Style_Color::COLOR_BLUE);
+                $activeSheet->getCell('B' . $rowIndex)->getStyle()->getAlignment()->setWrapText(true);
+
+                $rowIndex++;
+            }
+        }
 
         $objPHPExcel->removeSheetByIndex($objPHPExcel->getSheetCount() - 1);
         $objPHPExcel->setActiveSheetIndex(0);

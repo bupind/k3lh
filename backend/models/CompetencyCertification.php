@@ -29,7 +29,7 @@ use yii\base\Exception;
  *
  * @property PowerPlant $powerPlant
  * @property Sector $sector
- * @property AttachmentOwner[] $attachmentOwner
+ * @property AttachmentOwner[] $attachmentOwners
  */
 class CompetencyCertification extends AppModel
 {
@@ -131,6 +131,21 @@ class CompetencyCertification extends AppModel
         }
 
         return true;
+    }
+
+    public function beforeDelete()
+    {
+        $attachments = $this->attachmentOwners;
+        foreach($attachments as $keyA => $attachment) {
+            if (!is_null($attachment)) {
+                $attachment = $attachment->attachment;
+            }
+
+            if (!is_null($attachment)) {
+                $attachment->delete();
+            }
+        }
+        return parent::beforeDelete();
     }
 
     public function toAlphabet($number){

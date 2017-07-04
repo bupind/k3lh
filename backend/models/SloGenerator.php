@@ -113,6 +113,21 @@ class SloGenerator extends AppModel
         ];
     }
 
+    public function beforeDelete()
+    {
+        $attachments = $this->attachmentOwners;
+        foreach($attachments as $keyA => $attachment) {
+            if (!is_null($attachment)) {
+                $attachment = $attachment->attachment;
+            }
+
+            if (!is_null($attachment)) {
+                $attachment->delete();
+            }
+        }
+        return parent::beforeDelete();
+    }
+
     public function saveTransactional() {
         $request = Yii::$app->request->post();
         $transaction = Yii::$app->db->beginTransaction();

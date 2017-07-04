@@ -6,6 +6,7 @@ use app\components\ViewButton;
 use common\vendor\AppLabels;
 use common\vendor\AppConstants;
 use yii\widgets\ActiveForm;
+use common\components\helpers\Converter;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\BeyondObedienceComdev */
@@ -59,6 +60,9 @@ $index = 0;
                     'converter' => [
                         'sector_id' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->sector->sector_name],
                         'power_plant_id' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->powerPlant->pp_name],
+                    ],
+                    'extraAttributes' => [
+                        'files' => Converter::attachments($model->attachmentOwners)
                     ]
                 ]
             ]);
