@@ -7,6 +7,7 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
+use common\components\helpers\Converter;
 
 /**
  * SloToolsSearch represents the model behind the search form about `backend\models\SloTools`.
@@ -132,6 +133,7 @@ class SloToolsSearch extends SloTools
         // set column width
         $activeSheet->getColumnDimension('A')->setWidth(1);
         $activeSheet->getColumnDimension('B')->setWidth(5);
+        $activeSheet->getColumnDimension('O')->setWidth(50);
         for($i = 2; $i<14; $i++){
             $activeSheet->getColumnDimension($this->toAlphabet($i))->setWidth(50);
         }
@@ -139,8 +141,8 @@ class SloToolsSearch extends SloTools
         //header
         $activeSheet->mergeCells('B1:H2');
         $activeSheet->setCellValue('B1', "MONITORING SERTIFIKAS BEJANA BERTEKANAN");
-        $activeSheet->mergeCells('N1:N2');
-        $activeSheet->setCellValue('N1', sprintf("Periode: %s %s", Codeset::getCodesetValue(AppConstants::CODESET_FORM_MONTH_TYPE_CODE,$this->st_form_month_type_code) , $this->st_year));
+        $activeSheet->mergeCells('O1:O2');
+        $activeSheet->setCellValue('O1', sprintf("Periode: %s %s", Codeset::getCodesetValue(AppConstants::CODESET_FORM_MONTH_TYPE_CODE,$this->st_form_month_type_code) , $this->st_year));
 
         //header style
         $styleArray = [
@@ -166,7 +168,7 @@ class SloToolsSearch extends SloTools
             ]
         ];
         $activeSheet->getStyle('B1:H2')->applyFromArray($styleArray);
-        $activeSheet->getStyle('N1:N2')->applyFromArray($styleArray);
+        $activeSheet->getStyle('O1:O2')->applyFromArray($styleArray);
 
         //==========================================================================
 
@@ -213,6 +215,7 @@ class SloToolsSearch extends SloTools
         $activeSheet->mergeCells('L5:L6');
         $activeSheet->mergeCells('M5:M6');
         $activeSheet->mergeCells('N4:N6');
+        $activeSheet->mergeCells('O4:O6');
 
         $activeSheet->getStyle("J4:M4")->applyFromArray($styleArray);
         $activeSheet->getStyle("J5:J6")->applyFromArray($styleArray);
@@ -220,6 +223,7 @@ class SloToolsSearch extends SloTools
         $activeSheet->getStyle("L5:L6")->applyFromArray($styleArray);
         $activeSheet->getStyle("M5:M6")->applyFromArray($styleArray);
         $activeSheet->getStyle("N4:N6")->applyFromArray($styleArray);
+        $activeSheet->getStyle("O4:O6")->applyFromArray($styleArray);
 
         $activeSheet->setCellValue('B4', AppLabels::NUMBER_SHORT);
         $activeSheet->setCellValue('C4', AppLabels::SG_GENERATOR_UNIT);
@@ -235,6 +239,7 @@ class SloToolsSearch extends SloTools
         $activeSheet->setCellValue('L5', AppLabels::ST_CHECK2);
         $activeSheet->setCellValue('M5', AppLabels::ST_NEXT_CHECK);
         $activeSheet->setCellValue('N4', AppLabels::ST_CERTIFICATE_PUBLISHER);
+        $activeSheet->setCellValue('O4', AppLabels::FILES);
 
         //body header style
 
@@ -290,9 +295,26 @@ class SloToolsSearch extends SloTools
             $activeSheet->getStyle('M' . $rowIndex)->applyFromArray($styleArray);
             $activeSheet->setCellValue('N' . $rowIndex, $model->st_certificate_publisher);
             $activeSheet->getStyle('N' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('O' . $rowIndex)->applyFromArray($styleArray);
 
 
-            $rowIndex++;
+            if (!empty($model->attachmentOwners)) {
+                foreach (Converter::attachmentsFullPath($model->attachmentOwners) as $key2 => $attachment) {
+                    $activeSheet->setCellValue('O' . $rowIndex, $attachment['label']);
+                    $activeSheet->getCell('O' . $rowIndex)->getHyperlink()->setUrl($attachment['path']);
+                    $activeSheet->getCell('O' . $rowIndex)->getStyle()->getFont()->getColor()->setARGB(\PHPExcel_Style_Color::COLOR_BLUE);
+                    $activeSheet->getCell('O' . $rowIndex)->getStyle()->getAlignment()->setWrapText(true);
+
+                    if ($key2 > 0) {
+                        $activeSheet->mergeCells(sprintf('B%s:N%s', $rowIndex, $rowIndex));
+                        $activeSheet->getStyle('B' . $rowIndex . ':O' . $rowIndex)->applyFromArray($styleArray);
+                    }
+
+                    $rowIndex++;
+                }
+            }else{
+                $rowIndex++;
+            }
         }
 
         //==========================================================================

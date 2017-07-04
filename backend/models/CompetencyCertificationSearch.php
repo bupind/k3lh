@@ -7,6 +7,7 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
+use common\components\helpers\Converter;
 
 /**
  * CompetencyCertificationSearch represents the model behind the search form about `backend\models\CompetencyCertification`.
@@ -129,6 +130,7 @@ class CompetencyCertificationSearch extends CompetencyCertification
         $activeSheet->getColumnDimension('H')->setWidth(40);
         $activeSheet->getColumnDimension('I')->setWidth(50);
         $activeSheet->getColumnDimension('J')->setWidth(50);
+        $activeSheet->getColumnDimension('K')->setWidth(50);
 
         //header
         $activeSheet->mergeCells('B4:C5');
@@ -207,9 +209,11 @@ class CompetencyCertificationSearch extends CompetencyCertification
 
         $activeSheet->mergeCells('I7:I9');
         $activeSheet->mergeCells('J7:J9');
+        $activeSheet->mergeCells('K7:K9');
 
         $activeSheet->getStyle("I7:I9")->applyFromArray($styleArray);
         $activeSheet->getStyle("J7:J9")->applyFromArray($styleArray);
+        $activeSheet->getStyle("K7:K9")->applyFromArray($styleArray);
 
         //body header data
         $activeSheet->setCellValue('B7', AppLabels::NUMBER_SHORT);
@@ -222,6 +226,7 @@ class CompetencyCertificationSearch extends CompetencyCertification
         $activeSheet->setCellValue('H9', AppLabels::DATE);
         $activeSheet->setCellValue('I7', AppLabels::CC_CERTIFICATE_PUBLISHER);
         $activeSheet->setCellValue('J7', AppLabels::PJK3);
+        $activeSheet->setCellValue('K7', AppLabels::FILES);
 
         //==========================================================================
 
@@ -267,8 +272,25 @@ class CompetencyCertificationSearch extends CompetencyCertification
             $activeSheet->getStyle('I' . $rowIndex)->applyFromArray($styleArray);
             $activeSheet->setCellValue('J' . $rowIndex, $model->cc_pjk3);
             $activeSheet->getStyle('J' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('K' . $rowIndex)->applyFromArray($styleArray);
 
-            $rowIndex++;
+            if (!empty($model->attachmentOwners)) {
+                foreach (Converter::attachmentsFullPath($model->attachmentOwners) as $key2 => $attachment) {
+                    $activeSheet->setCellValue('K' . $rowIndex, $attachment['label']);
+                    $activeSheet->getCell('K' . $rowIndex)->getHyperlink()->setUrl($attachment['path']);
+                    $activeSheet->getCell('K' . $rowIndex)->getStyle()->getFont()->getColor()->setARGB(\PHPExcel_Style_Color::COLOR_BLUE);
+                    $activeSheet->getCell('K' . $rowIndex)->getStyle()->getAlignment()->setWrapText(true);
+
+                    if ($key2 > 0) {
+                        $activeSheet->mergeCells(sprintf('B%s:J%s', $rowIndex, $rowIndex));
+                        $activeSheet->getStyle('B' . $rowIndex . ':K' . $rowIndex)->applyFromArray($styleArray);
+                    }
+
+                    $rowIndex++;
+                }
+            }else{
+                $rowIndex++;
+            }
         }
 
         //==========================================================================

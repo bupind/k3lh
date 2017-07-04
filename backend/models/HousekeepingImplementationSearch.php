@@ -7,6 +7,7 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
+use common\components\helpers\Converter;
 
 
 /**
@@ -487,7 +488,10 @@ class HousekeepingImplementationSearch extends HousekeepingImplementation
 
         }
 
+        //==========================================================================
+
         //footer
+
         $activeSheet->getStyle('A' . $rowIndex . ':G' . $rowIndex)->applyFromArray($styleArrayFooter);
         $activeSheet->setCellValue('B' . $rowIndex, AppLabels::AMOUNT);
         $criteriaTotal = number_format($criteriaTotal/$subtitleCount,1);
@@ -495,13 +499,22 @@ class HousekeepingImplementationSearch extends HousekeepingImplementation
         $activeSheet->setCellValue('D' . $rowIndex, $criteriaTotal);
         $activeSheet->setCellValue('F' . $rowIndex, $qualityTotal);
 
-        //==========================================================================
-
-        //footer
-
+        $rowIndex++;$rowIndex++;
         //==========================================================================
 
         //extra footer
+        $activeSheet->setCellValue('B' . $rowIndex, AppLabels::FILES);
+        $rowIndex++;
+        if (!empty($model->attachmentOwners)) {
+            foreach (Converter::attachmentsFullPath($model->attachmentOwners) as $key2 => $attachment) {
+                $activeSheet->setCellValue('B' . $rowIndex, $attachment['label']);
+                $activeSheet->getCell('B' . $rowIndex)->getHyperlink()->setUrl($attachment['path']);
+                $activeSheet->getCell('B' . $rowIndex)->getStyle()->getFont()->getColor()->setARGB(\PHPExcel_Style_Color::COLOR_BLUE);
+                $activeSheet->getCell('B' . $rowIndex)->getStyle()->getAlignment()->setWrapText(true);
+
+                $rowIndex++;
+            }
+        }
 
         $objPHPExcel->removeSheetByIndex($objPHPExcel->getSheetCount() - 1);
         $objPHPExcel->setActiveSheetIndex(0);

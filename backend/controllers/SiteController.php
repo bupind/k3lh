@@ -597,7 +597,6 @@ class SiteController extends AppController {
                                                             'additionalParameters' => [
                                                                 'children' => [
                                                                     '55221' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Monitoring SLO Pembangkit', ['/slo-generator', '_ppId' => $powerPlant->id]), 'type' => 'item'],
-                                                                    '55222' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload SLO', 'type' => 'item'],
                                                                 ]
                                                             ]
                                                         ],
@@ -608,7 +607,6 @@ class SiteController extends AppController {
                                                             'additionalParameters' => [
                                                                 'children' => [
                                                                     '55231' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Monitoring SLO Peralatan', ['/slo-tools', '_ppId' => $powerPlant->id]), 'type' => 'item'],
-                                                                    '55232' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload SLO', 'type' => 'item'],
                                                                 ]
                                                             ]
                                                         ],
@@ -619,7 +617,6 @@ class SiteController extends AppController {
                                                             'additionalParameters' => [
                                                                 'children' => [
                                                                     '55241' => ['text' =>  Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Monitoring Sertifikasi Personil', ['/competency-certification', '_ppId' => $powerPlant->id]), 'type' => 'item'],
-                                                                    '55242' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Sertifikat', 'type' => 'item'],
                                                                 ]
                                                             ]
                                                         ],

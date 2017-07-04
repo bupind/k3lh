@@ -7,6 +7,7 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
+use common\components\helpers\Converter;
 
 /**
  * SloGeneratorSearch represents the model behind the search form about `backend\models\SloGenerator`.
@@ -134,12 +135,13 @@ class SloGeneratorSearch extends SloGenerator
             $activeSheet->getColumnDimension($this->toAlphabet($i))->setWidth(50);
         }
         $activeSheet->getColumnDimension('T')->setWidth(80);
+        $activeSheet->getColumnDimension('U')->setWidth(60);
 
         //header
         $activeSheet->mergeCells('B4:O5');
         $activeSheet->setCellValue('B4', "MONITORING SERTIFIKASI LAIK OPERASI (SLO)");
-        $activeSheet->mergeCells('T4:T5');
-        $activeSheet->setCellValue('T4', sprintf("Periode: %s %s", Codeset::getCodesetValue(AppConstants::CODESET_FORM_MONTH_TYPE_CODE,$this->sg_form_month_type_code) , $this->sg_year));
+        $activeSheet->mergeCells('U4:U5');
+        $activeSheet->setCellValue('U4', sprintf("Periode: %s %s", Codeset::getCodesetValue(AppConstants::CODESET_FORM_MONTH_TYPE_CODE,$this->sg_form_month_type_code) , $this->sg_year));
 
         //header style
         $styleArray = [
@@ -165,7 +167,7 @@ class SloGeneratorSearch extends SloGenerator
             ]
         ];
         $activeSheet->getStyle('B4:O5')->applyFromArray($styleArray);
-        $activeSheet->getStyle('T4:T5')->applyFromArray($styleArray);
+        $activeSheet->getStyle('U4:U5')->applyFromArray($styleArray);
 
         //==========================================================================
 
@@ -208,12 +210,14 @@ class SloGeneratorSearch extends SloGenerator
 
         $activeSheet->mergeCells('Q7:S8');
         $activeSheet->mergeCells('T7:T9');
+        $activeSheet->mergeCells('U7:U9');
         $activeSheet->getStyle("Q7:S8")->applyFromArray($styleArray);
 
         $activeSheet->getStyle("Q9")->applyFromArray($styleArray);
         $activeSheet->getStyle("R9")->applyFromArray($styleArray);
         $activeSheet->getStyle("S9")->applyFromArray($styleArray);
         $activeSheet->getStyle("T7:T9")->applyFromArray($styleArray);
+        $activeSheet->getStyle("U7:U9")->applyFromArray($styleArray);
 
         $activeSheet->setCellValue('B7', AppLabels::NUMBER_SHORT);
         $activeSheet->setCellValue('C7', AppLabels::SG_GENERATOR_UNIT);
@@ -235,6 +239,7 @@ class SloGeneratorSearch extends SloGenerator
         $activeSheet->setCellValue('R9', AppLabels::SG_END);
         $activeSheet->setCellValue('S9', AppLabels::SG_MAX_EXTENSION);
         $activeSheet->setCellValue('T7', AppLabels::PUBLISHER);
+        $activeSheet->setCellValue('U7', AppLabels::FILES);
 
         //body header style
 
@@ -302,9 +307,26 @@ class SloGeneratorSearch extends SloGenerator
             $activeSheet->getStyle('S' . $rowIndex)->applyFromArray($styleArray);
             $activeSheet->setCellValue('T' . $rowIndex, $model->sg_publisher);
             $activeSheet->getStyle('T' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('U' . $rowIndex)->applyFromArray($styleArray);
 
+            if (!empty($model->attachmentOwners)) {
+                foreach (Converter::attachmentsFullPath($model->attachmentOwners) as $key2 => $attachment) {
+                    $activeSheet->setCellValue('U' . $rowIndex, $attachment['label']);
+                    $activeSheet->getCell('U' . $rowIndex)->getHyperlink()->setUrl($attachment['path']);
+                    $activeSheet->getCell('U' . $rowIndex)->getStyle()->getFont()->getColor()->setARGB(\PHPExcel_Style_Color::COLOR_BLUE);
+                    $activeSheet->getCell('U' . $rowIndex)->getStyle()->getAlignment()->setWrapText(true);
 
-            $rowIndex++;
+                    if ($key2 > 0) {
+                        $activeSheet->mergeCells(sprintf('B%s:T%s', $rowIndex, $rowIndex));
+                        $activeSheet->getStyle('B' . $rowIndex . ':U' . $rowIndex)->applyFromArray($styleArray);
+                    }
+
+                    $rowIndex++;
+                }
+            }else{
+                $rowIndex++;
+            }
+
         }
 
         //==========================================================================

@@ -137,8 +137,7 @@ class ProjectTrackingController extends AppController {
     
     public function actionExport($id) {
         $searchModel = new ProjectTrackingSearch();
-        $searchModel->power_plant_id = $this->powerPlantModel->id;
-        
+
         if ($searchModel->export($id)) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_GENERATE_FILE_SUCCESS);
             return $this->redirect(['/download/excel', 'filename' => $searchModel->filename]);
