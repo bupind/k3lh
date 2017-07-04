@@ -40,16 +40,17 @@ $form = ActiveForm::begin([
 ?>
 
 <div class="row skko-form">
-    <div class="col-xs-12 col-md-6 col-md-offset-3">
+    <div class="col-xs-12 col-md-6 col-md-offset-2">
         <?php
         echo $form->field($model, 'sector_id')->hiddenInput(['value' => $sectorModel->id])->error(false)->label(false);
 
         echo $form->field($sectorModel, 'sector_name', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
-            ->textInput([ 'class' => AppConstants::ACTIVE_FORM_CLASS_INPUT_TEXT_NUMBERSONLY . ' text-left', 'disabled' => true])
+            ->textInput([ 'class' => 'form-control text-center', 'disabled' => true])
             ->label(AppLabels::SECTOR, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+
         echo $form->field($model, 'skko_year', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
-            ->textInput(['maxlength' => true, 'class' => AppConstants::ACTIVE_FORM_CLASS_INPUT_TEXT_NUMBERSONLY ])
-            ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+            ->textInput([ 'class' =>  'form-control text-right'])
+            ->label(AppLabels::POWER_PLANT, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
         ?>
     </div>
 </div>
