@@ -330,6 +330,7 @@ class SiteController extends AppController {
                                                             'icon-class' => 'blue',
                                                             'additionalParameters' => [
                                                                 'children' => [
+                                                                    '0' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Izin & Dokumen Lingkungan', ['/environment-permit', '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                     '44211' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA Profil Perusahaan', 'type' => 'item'],
                                                                     '44212' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA Pengesahan Dokumen', 'type' => 'item'],
                                                                     '44213' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Izin Lingkungan', 'type' => 'item'],

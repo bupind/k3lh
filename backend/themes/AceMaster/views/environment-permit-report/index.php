@@ -9,7 +9,7 @@ use common\vendor\AppLabels;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $epModel backend\models\EnvironmentPermit */
 
-$this->title = AppLabels::REPORTING;
+$this->title = sprintf("%s %s", AppLabels::REPORTING, $epModel->powerPlant->getSummary());
 $this->params['breadcrumbs'][] = ['label' => AppLabels::ENVIRONMENT_PERMIT, 'url' => ['/environment-permit/index', '_ppId' => $epModel->power_plant_id]];
 $this->params['breadcrumbs'][] = ['label' => sprintf('%s - %s', $epModel->sector->sector_name, $epModel->powerPlant->pp_name), 'url' => ['/environment-permit/view', 'id' => $epModel->id]];
 $this->params['breadcrumbs'][] = ['label' => AppLabels::BTN_UPDATE, 'url' => ["/environment-permit/update", 'id' => $epModel->id]];

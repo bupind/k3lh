@@ -55,6 +55,7 @@ class EnvironmentPermitDetailController extends AppController
     public function actionIndex()
     {
         $searchModel = new EnvironmentPermitDetailSearch();
+        $searchModel->environment_permit_id = $this->epModel->id;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [

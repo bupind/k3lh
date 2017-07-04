@@ -8,7 +8,7 @@ use common\vendor\AppLabels;
 /* @var $epModel backend\models\EnvironmentPermit */
 
 $this->title = sprintf("%s %s", AppLabels::BTN_UPDATE, AppLabels::ENVIRONMENT_PERMIT);
-$this->params['breadcrumbs'][] = ['label' => 'Environment Permits', 'url' => ['index', 'epId' => $epModel->id]];
+$this->params['breadcrumbs'][] = ['label' => AppLabels::ENVIRONMENT_PERMIT, 'url' => ['index', 'epId' => $epModel->id]];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>

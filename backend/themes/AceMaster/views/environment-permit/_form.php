@@ -22,7 +22,7 @@ $baseUrl = Url::base();
 ?>
 <?php
 $form = ActiveForm::begin([
-    'id' => 'ppu-form',
+    'id' => 'environment-permit-form',
     'options' => [
         'class' => 'calx form-horizontal',
         'role' => 'form'
@@ -35,7 +35,7 @@ $form = ActiveForm::begin([
 ]);
 ?>
 
-<div class="row ppu-form">
+<div class="row environment-permit-form">
     <div class="col-xs-12 col-md-6 col-md-offset-3">
         <?php
         echo $form->field($model, 'ep_year', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
