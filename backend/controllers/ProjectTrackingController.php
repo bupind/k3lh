@@ -136,6 +136,9 @@ class ProjectTrackingController extends AppController {
     }
     
     public function actionExport($id) {
+        $model = $this->findModel($id);
+        $this->powerPlantModel = $model->powerPlant;
+        
         $searchModel = new ProjectTrackingSearch();
 
         if ($searchModel->export($id)) {

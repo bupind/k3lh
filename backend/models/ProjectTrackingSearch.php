@@ -119,7 +119,7 @@ class ProjectTrackingSearch extends ProjectTracking {
         $activeSheet->getColumnDimension('I')->setWidth(35);
         $activeSheet->getColumnDimension('J')->setWidth(35);
     
-        // set row width
+        // set row height
         $activeSheet->getRowDimension('4')->setRowHeight(40);
         $activeSheet->getRowDimension('7')->setRowHeight(5);
     

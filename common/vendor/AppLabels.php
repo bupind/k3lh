@@ -150,6 +150,7 @@ class AppLabels {
     const PERFORMANCE = 'Kinerja';
     const DOWNLOAD = 'Unduh';
     const INFORMATION = 'Informasi';
+    const TIME = 'Waktu';
 
     // MONTH
     const JANUARY = 'Januari';
@@ -532,6 +533,8 @@ class AppLabels {
     const WP_K3_RULES = 'Peraturan K3 yang Dijelaskan';
     const WP_SELF_PROTECTION = 'Alat Pelindung Diri (APD) yang Harus Digunakan';
     const WP_DANGEROUS_WORK_TYPE = 'Jenis Pekerjaan Berbahaya';
+    const WP_SUB_K2LH = 'Sub Bidang K2LH';
+    const WP_SAFETY_DEPARTMENT = 'Dept. Safety/K3';
     
     const REVISION_NUMBER = 'No. Revisi';
     const PAGE = 'Halaman';
@@ -546,6 +549,12 @@ class AppLabels {
     const PHPEXCEL_SIGN_CITY = 'Palembang';
     const PHPEXCEL_SIGN_DETERMINED_BY = 'Ditetapkan Oleh,';
     const PHPEXCEL_SIGN_DOT_LINE = '………………………………………………';
+    const PHPEXCEL_WORKING_PERMIT_DOCUMENT_APPROVAL = 'Pengesahan Dokumen Izin Melaksanakan Pekerjaan';
+    const PHPEXCEL_WORKING_PERMIT_COMPLETION_APPROVAL = 'Pengesahaan Pekerjaan Setelah Selesai Dilaksanakan';
+    const PHPEXCEL_CHECKED_APPROVED_IMPLEMENTED_ISOLATION_IF = 'Diperiksa & Disetujui untuk dilaksanakan Isolasi Lokasi Kerja jika';
+    const PHPEXCEL_CHECKED_APPROVED_RELEASE_ISOLATION = 'Diperiksa & Disetujui untuk dilaksanakan Pelepasan Isolasi Lokasi';
+    const PHPEXCEL_APPROVED_CONTROLLED_BY = 'Disetujui & Dikontrol oleh';
+    const PHPEXCEL_WORKING_PERMIT_FOOTER_NOTE = ' Note : Lembar Putih untuk Pelaksana pekerjaan , Kuning untuk K3, Biru untuk  MCR/PP - JIKA PEKERJAAN SELESAI HARAP WORKING PERMIT SEGERA DI TUTUP / CLOSED';
 
     //Excel
     const CURRENCY_IDR_SHORT = 'Rp';
