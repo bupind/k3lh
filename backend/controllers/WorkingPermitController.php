@@ -132,6 +132,22 @@ class WorkingPermitController extends AppController {
         }
     }
     
+    public function actionExport($id) {
+        $model = $this->findModel($id);
+        $this->powerPlantModel = $model->powerPlant;
+        
+        $searchModel = new WorkingPermitSearch();
+        $searchModel->power_plant_id = $this->powerPlantModel->id;
+        
+        if ($searchModel->export($id)) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_GENERATE_FILE_SUCCESS);
+            return $this->redirect(['/download/excel', 'filename' => $searchModel->filename]);
+        }else{
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+        
+    }
+    
     /**
      * Deletes an existing WorkingPermit model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
