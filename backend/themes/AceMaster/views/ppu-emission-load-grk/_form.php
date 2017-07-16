@@ -40,7 +40,11 @@ use common\components\helpers\Converter;
                 <fieldset>
                     <?php
                         echo $form->field($model, "ppu_emission_source_id", ['template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE])
-                            ->dropDownList(PpuEmissionSource::map(new PpuEmissionSource(), 'ppues_name'), ['class' => 'chosen-select form-control', 'data-cell' => 'Z1'])
+                            ->dropDownList(PpuEmissionSource::map(new PpuEmissionSource(), 'ppues_name',null,false, [
+                                'where' => [
+                                    [ 'ppu_id' => $ppuModel->id]
+                                ]
+                            ]), ['class' => 'chosen-select form-control', 'data-cell' => 'Z1'])
                             ->label(null, ['class' => '']);
 
                         echo $form->field($model, "ppuelg_parameter", ['template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE])

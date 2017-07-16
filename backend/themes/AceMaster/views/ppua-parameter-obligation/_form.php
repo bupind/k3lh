@@ -40,7 +40,11 @@ use backend\models\Codeset;
                     <fieldset>
                         <?php
                         echo $form->field($model, 'ppua_monitoring_point_id', ['template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE])
-                            ->dropDownList(PpuaMonitoringPoint::map(new PpuaMonitoringPoint(), 'ppua_monitoring_location'), ['class' => 'chosen-select form-control'])
+                            ->dropDownList(PpuaMonitoringPoint::map(new PpuaMonitoringPoint(), 'ppua_monitoring_location',null,false, [
+                                'where' => [
+                                    [ 'ppu_ambient_id' => $ppuaModel->id]
+                                ]
+                            ]), ['class' => 'chosen-select form-control'])
                             ->label(null, ['class' => '']);
 
                         echo $form->field($model, 'ppuapo_parameter_code', ['template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE])

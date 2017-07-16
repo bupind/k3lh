@@ -364,6 +364,7 @@ class SiteController extends AppController {
                                                             'icon-class' => 'blue',
                                                             'additionalParameters' => [
                                                                 'children' => [
+                                                                    '3213-1' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . AppLabels::AIR_POLLUTION_CONTROL , ['/ppu', '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                     '44231' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA Inventarisasi Sumber Emisi', 'type' => 'item'],
                                                                     '44232' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA Titik Penatan', 'type' => 'item'],
                                                                     '44233' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA Ketaatan Parameter Pelaporan BM', 'type' => 'item'],

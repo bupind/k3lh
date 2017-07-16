@@ -43,7 +43,11 @@ PpucemsrbParRepAsset::register($this);
                     <fieldset>
                         <?php
                             echo $form->field($model, 'ppu_emission_source_id', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
-                                ->dropDownList(PpuEmissionSource::map(new PpuEmissionSource(), 'ppues_name'), ['class' => 'ppu-emission-source-list ' . AppConstants::ACTIVE_FORM_CLASS_DROPDOWN])
+                                ->dropDownList(PpuEmissionSource::map(new PpuEmissionSource(), 'ppues_name',null,false, [
+                                        'where' => [
+                                                [ 'ppu_id' => $ppuModel->id]
+                                        ]
+                                ]), ['class' => 'ppu-emission-source-list ' . AppConstants::ACTIVE_FORM_CLASS_DROPDOWN])
                                 ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
 
                             echo $form->field($model, 'ppucems_report_bm_id', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
