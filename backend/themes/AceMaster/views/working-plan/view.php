@@ -150,5 +150,13 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
     
-    <?= ViewButton::widget(['model' => $model]); ?>
+    <?= ViewButton::widget([
+        'model' => $model,
+        'options' => [
+            'buttons' => [
+                'create' => Html::a('<i class="ace-icon fa fa-plus bigger-120"></i> ' . AppLabels::BTN_ADD, ['create', 'wpt' => $model->form_type_code_desc], ['class' => 'btn btn-white btn-success btn-bold']),
+                'index' => Html::a('<i class="ace-icon fa fa-undo bigger-120 red2"></i> ' . AppLabels::BTN_BACK, ['index', 'wpt' => $model->form_type_code_desc], ['class' => 'btn btn-white btn-danger btn-bold']),
+            ]
+        ]
+    ]); ?>
 </div>
