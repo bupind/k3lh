@@ -491,7 +491,10 @@ class FireDetectorSearch extends FireDetector
                 }
 
                 $activeSheet->getStyle('V' . $rowIndex)->applyFromArray($styleArray3);
-                $activeSheet->setCellValue('V' . $rowIndex, $detail->fd_test_result_record);
+                $wizard = new \PHPExcel_Helper_HTML();
+                $richText = $wizard->toRichTextObject($detail->fd_test_result_record);
+
+                $activeSheet->setCellValue('V' . $rowIndex, $richText);
                 $rowIndex++;
             }
 

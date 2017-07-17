@@ -287,7 +287,11 @@ class EmergencyResponseSearch extends EmergencyResponse
             $activeSheet->getStyle('M' . $rowIndex)->applyFromArray($styleArray);
             $activeSheet->setCellValue('N' . $rowIndex, $model->er_evaluation_loss);
             $activeSheet->getStyle('N' . $rowIndex)->applyFromArray($styleArray);
-            $activeSheet->setCellValue('O' . $rowIndex, $model->er_failure_detail);
+
+            $wizard = new \PHPExcel_Helper_HTML();
+            $richText = $wizard->toRichTextObject($model->er_failure_detail);
+
+            $activeSheet->setCellValue('O' . $rowIndex, $richText);
             $activeSheet->getStyle('O' . $rowIndex)->applyFromArray($styleArray);
 
 

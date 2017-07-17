@@ -251,9 +251,17 @@ class K3lProblemSearch extends K3lProblem
             $activeSheet->getStyle('A' . $rowIndex)->applyFromArray($styleArray);
             $activeSheet->setCellValue('B' . $rowIndex, $model->kp_date);
             $activeSheet->getStyle('B' . $rowIndex)->applyFromArray($styleArray);
-            $activeSheet->setCellValue('C' . $rowIndex, $model->kp_problem_description);
+
+            $wizard = new \PHPExcel_Helper_HTML();
+            $richText = $wizard->toRichTextObject($model->kp_problem_description);
+
+            $activeSheet->setCellValue('C' . $rowIndex, $richText);
             $activeSheet->getStyle('C' . $rowIndex)->applyFromArray($styleArray);
-            $activeSheet->setCellValue('D' . $rowIndex, $model->kp_mitigation_plan);
+
+            $wizard = new \PHPExcel_Helper_HTML();
+            $richText = $wizard->toRichTextObject($model->kp_mitigation_plan);
+
+            $activeSheet->setCellValue('D' . $rowIndex, $richText);
             $activeSheet->getStyle('D' . $rowIndex)->applyFromArray($styleArray);
             $activeSheet->setCellValue('E' . $rowIndex, $model->kp_mitigation_dateline_date);
             $activeSheet->getStyle('E' . $rowIndex)->applyFromArray($styleArray);

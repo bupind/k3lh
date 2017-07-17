@@ -244,7 +244,11 @@ class HydrantChecklistSearch extends HydrantChecklist
         $activeSheet->mergeCells('A' . $rowIndex . ':H' . ($rowIndex+4));
         $activeSheet->getStyle('A' . $rowIndex . ':H' . ($rowIndex+4))->applyFromArray($styleArray);
         $activeSheet->getStyle('A' . $rowIndex . ':H' . ($rowIndex+4))->getAlignment()->setWrapText(true);
-        $activeSheet->setCellValue('A' . $rowIndex, $model->hc_note);
+
+        $wizard = new \PHPExcel_Helper_HTML();
+        $richText = $wizard->toRichTextObject($model->hc_note);
+
+        $activeSheet->setCellValue('A' . $rowIndex, $richText);
 
         //==========================================================================
 

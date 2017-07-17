@@ -418,7 +418,11 @@ class MonitoringAparSearch extends MonitoringApar
             $activeSheet->getStyle('AE' . $rowIndex)->applyFromArray($styleArray);
             $activeSheet->setCellValue('AF' . $rowIndex, $model->ma_using_date);
             $activeSheet->getStyle('AF' . $rowIndex)->applyFromArray($styleArray);
-            $activeSheet->setCellValue('AG' . $rowIndex, $model->ma_activity);
+
+            $wizard = new \PHPExcel_Helper_HTML();
+            $richText = $wizard->toRichTextObject($model->ma_activity);
+
+            $activeSheet->setCellValue('AG' . $rowIndex, $richText);
             $activeSheet->getStyle('AG' . $rowIndex)->applyFromArray($styleArray);
 
             $rowIndex++;

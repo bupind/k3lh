@@ -198,9 +198,17 @@ class ImportantPhoneNumberSearch extends ImportantPhoneNumber
             $activeSheet->getStyle('A' . $rowIndex)->applyFromArray($styleArray);
             $activeSheet->setCellValue('B' . $rowIndex, $model->ipn_instance_name);
             $activeSheet->getStyle('B' . $rowIndex)->applyFromArray($styleArray);
-            $activeSheet->setCellValue('C' . $rowIndex, Yii::$app->formatter->asParagraphs($model->ipn_phone_number));
+
+            $wizard = new \PHPExcel_Helper_HTML();
+            $richText = $wizard->toRichTextObject($model->ipn_phone_number);
+
+            $activeSheet->setCellValue('C' . $rowIndex, $richText);
             $activeSheet->getStyle('C' . $rowIndex)->applyFromArray($styleArray);
-            $activeSheet->setCellValue('D' . $rowIndex, Yii::$app->formatter->asHtml($model->ipn_address));
+
+            $wizard = new \PHPExcel_Helper_HTML();
+            $richText = $wizard->toRichTextObject($model->ipn_address);
+
+            $activeSheet->setCellValue('D' . $rowIndex, $richText);
             $activeSheet->getStyle('D' . $rowIndex)->applyFromArray($styleArray);
             $rowIndex++;
         }

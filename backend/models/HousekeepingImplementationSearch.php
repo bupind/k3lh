@@ -416,7 +416,9 @@ class HousekeepingImplementationSearch extends HousekeepingImplementation
             //subtitle
             $activeSheet->mergeCells('B' . $rowIndex . ':G' . $rowIndex);
             $activeSheet->setCellValue('A' . $rowIndex, ($subtitleCount+1));
-            $activeSheet->setCellValue('B' . $rowIndex, $question->hqd_subtitle);
+            $wizard = new \PHPExcel_Helper_HTML();
+            $richText = $wizard->toRichTextObject($question->hqd_subtitle);
+            $activeSheet->setCellValue('B' . $rowIndex, $richText);
             $activeSheet->getStyle('A' . $rowIndex)->applyFromArray($styleArray3);
             $activeSheet->getStyle('B' . $rowIndex . ':G' . $rowIndex)->applyFromArray($styleArray4);
             $rowIndex++;
@@ -430,7 +432,11 @@ class HousekeepingImplementationSearch extends HousekeepingImplementation
             $qualityTotal += $detail->hi_quality_value;
             $activeSheet->setCellValue('D' . $rowIndex, $detail->hi_criteria_value);
             $activeSheet->setCellValue('F' . $rowIndex, $detail->hi_quality_value);
-            $activeSheet->setCellValue('G' . $rowIndex, $detail->hi_recommendation);
+
+            $wizard = new \PHPExcel_Helper_HTML();
+            $richText = $wizard->toRichTextObject($detail->hi_recommendation);
+
+            $activeSheet->setCellValue('G' . $rowIndex, $richText);
             $activeSheet->getStyle('D' . $rowIndex)->applyFromArray($center);
             $activeSheet->getStyle('F' . $rowIndex)->applyFromArray($center);
             $activeSheet->getStyle('G' . $rowIndex)->applyFromArray($center);
@@ -438,7 +444,9 @@ class HousekeepingImplementationSearch extends HousekeepingImplementation
             //question content(hq_detail)
             $activeSheet->setCellValue('A' . $rowIndex, "a.");
             $activeSheet->getStyle('A' . $rowIndex)->applyFromArray($center);
-            $activeSheet->setCellValue('B' . $rowIndex, $question->hqd_criteria_1);
+            $wizard = new \PHPExcel_Helper_HTML();
+            $richText = $wizard->toRichTextObject($question->hqd_criteria_1);
+            $activeSheet->setCellValue('B' . $rowIndex, $richText);
             $activeSheet->getStyle('B' . $rowIndex)->applyFromArray($center);
             $activeSheet->setCellValue('C' . $rowIndex, "5");
             $activeSheet->getStyle('C' . $rowIndex)->applyFromArray($center);
@@ -448,7 +456,9 @@ class HousekeepingImplementationSearch extends HousekeepingImplementation
 
             $activeSheet->setCellValue('A' . $rowIndex, "b.");
             $activeSheet->getStyle('A' . $rowIndex)->applyFromArray($center);
-            $activeSheet->setCellValue('B' . $rowIndex, $question->hqd_criteria_2);
+            $wizard = new \PHPExcel_Helper_HTML();
+            $richText = $wizard->toRichTextObject($question->hqd_criteria_2);
+            $activeSheet->setCellValue('B' . $rowIndex,$richText);
             $activeSheet->getStyle('B' . $rowIndex)->applyFromArray($center);
             $activeSheet->setCellValue('C' . $rowIndex, "4");
             $activeSheet->getStyle('C' . $rowIndex)->applyFromArray($center);
@@ -458,7 +468,9 @@ class HousekeepingImplementationSearch extends HousekeepingImplementation
 
             $activeSheet->setCellValue('A' . $rowIndex, "c.");
             $activeSheet->getStyle('A' . $rowIndex)->applyFromArray($center);
-            $activeSheet->setCellValue('B' . $rowIndex, $question->hqd_criteria_3);
+            $wizard = new \PHPExcel_Helper_HTML();
+            $richText = $wizard->toRichTextObject($question->hqd_criteria_3);
+            $activeSheet->setCellValue('B' . $rowIndex, $richText);
             $activeSheet->getStyle('B' . $rowIndex)->applyFromArray($center);
             $activeSheet->setCellValue('C' . $rowIndex, "3");
             $activeSheet->getStyle('C' . $rowIndex)->applyFromArray($center);
@@ -468,7 +480,9 @@ class HousekeepingImplementationSearch extends HousekeepingImplementation
 
             $activeSheet->setCellValue('A' . $rowIndex, "d.");
             $activeSheet->getStyle('A' . $rowIndex)->applyFromArray($center);
-            $activeSheet->setCellValue('B' . $rowIndex, $question->hqd_criteria_4);
+            $wizard = new \PHPExcel_Helper_HTML();
+            $richText = $wizard->toRichTextObject($question->hqd_criteria_4);
+            $activeSheet->setCellValue('B' . $rowIndex, $richText);
             $activeSheet->getStyle('B' . $rowIndex)->applyFromArray($center);
             $activeSheet->setCellValue('C' . $rowIndex, "2");
             $activeSheet->getStyle('C' . $rowIndex)->applyFromArray($center);
@@ -478,7 +492,9 @@ class HousekeepingImplementationSearch extends HousekeepingImplementation
 
             $activeSheet->setCellValue('A' . $rowIndex, "e.");
             $activeSheet->getStyle('A' . $rowIndex)->applyFromArray($center);
-            $activeSheet->setCellValue('B' . $rowIndex, $question->hqd_criteria_5);
+            $wizard = new \PHPExcel_Helper_HTML();
+            $richText = $wizard->toRichTextObject($question->hqd_criteria_5);
+            $activeSheet->setCellValue('B' . $rowIndex, $richText);
             $activeSheet->getStyle('B' . $rowIndex)->applyFromArray($center);
             $activeSheet->setCellValue('C' . $rowIndex, "1");
             $activeSheet->getStyle('C' . $rowIndex)->applyFromArray($center);

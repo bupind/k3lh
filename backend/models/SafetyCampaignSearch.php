@@ -274,7 +274,11 @@ class SafetyCampaignSearch extends SafetyCampaign
             $activeSheet->getStyle('H' . $rowIndex)->applyFromArray($styleArray);
             $activeSheet->setCellValue('I' . $rowIndex, $model->sc_amount);
             $activeSheet->getStyle('I' . $rowIndex)->applyFromArray($styleArray);
-            $activeSheet->setCellValue('J' . $rowIndex, $model->sc_result);
+
+            $wizard = new \PHPExcel_Helper_HTML();
+            $richText = $wizard->toRichTextObject($model->sc_result);
+
+            $activeSheet->setCellValue('J' . $rowIndex, $richText);
             $activeSheet->getStyle('J' . $rowIndex)->applyFromArray($styleArray);
 
             if (!empty($model->attachmentOwner)) {
