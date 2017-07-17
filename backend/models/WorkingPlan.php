@@ -182,6 +182,6 @@ class WorkingPlan extends AppModel {
      * @return \yii\db\ActiveQuery
      */
     public function getWorkingPlanDetails() {
-        return $this->hasMany(WorkingPlanDetail::className(), ['working_plan_id' => 'id']);
+        return $this->hasMany(WorkingPlanDetail::className(), ['working_plan_id' => 'id'])->orderBy(['wpd_order' => SORT_ASC]);
     }
 }

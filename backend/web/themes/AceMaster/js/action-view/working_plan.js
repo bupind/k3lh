@@ -82,6 +82,7 @@ jQuery(document).ready(function () {
             label = $('#' + dropdownId + ' option:selected').text();
 
         insertProgramRow(id, label);
+        itemIndex++;
     });
 
     function insertProgramRow(id, label) {
