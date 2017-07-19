@@ -474,6 +474,8 @@ class AppConstants {
     const REPORT_NAME_BEYOND_OBEDIENCE = 'report_beyond_obedience_%s.xlsx';
     const REPORT_NAME_WORKING_PERMIT = 'report_working_permit_%s.xlsx';
     const REPORT_NAME_WORKING_PLAN = 'report_working_plan_%s.xlsx';
+    const REPORT_NAME_ENVIRONMENT_PERMIT = 'report_environment_permit_%s.xlsx';
+    const REPORT_NAME_COMPANY_PROFILE = 'report_company_profile_%s.xlsx';
 
 
     // PHPEXCEL

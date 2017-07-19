@@ -51,6 +51,7 @@ $form = ActiveForm::begin([
 <div class="row">
     <div class="col-xs-12 center">
         <div class="btn-group">
+            <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::COMPANY_PROFILE, ['/environment-permit-company-profile', 'epId' => $model->id], ['class' => 'btn btn-sm btn-white']); ?>
             <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::DOCUMENT_VALIDATION, ['/environment-permit-detail', 'epId' => $model->id], ['class' => 'btn btn-sm btn-success']); ?>
             <?= Html::a('<i class="ace-icon fa fa-bars"></i> ' . AppLabels::REPORT ." ". AppLabels::BM_REPORT_PARAMETER, ['/environment-permit-report', 'epId' => $model->id], ['class' => 'btn btn-sm btn-primary']); ?>
         </div>

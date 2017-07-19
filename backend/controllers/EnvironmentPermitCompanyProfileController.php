@@ -3,23 +3,24 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\EnvironmentPermit;
-use backend\models\EnvironmentPermitSearch;
+use backend\models\EnvironmentPermitCompanyProfile;
+use backend\models\EnvironmentPermitCompanyProfileSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\vendor\AppConstants;
 use backend\models\PowerPlant;
 
+
+
 /**
- * EnvironmentPermitController implements the CRUD actions for EnvironmentPermit model.
+ * EnvironmentPermitCompanyProfileController implements the CRUD actions for EnvironmentPermitCompanyProfile model.
  */
-class EnvironmentPermitController extends AppController
+class EnvironmentPermitCompanyProfileController extends AppController
 {
+    public $powerPlantModel;
     /**
      * @inheritdoc
      */
-    public $powerPlantModel;
-
     public function behaviors()
     {
         return [
@@ -32,15 +33,10 @@ class EnvironmentPermitController extends AppController
         ];
     }
 
-    /**
-     * Lists all EnvironmentPermit models.
-     * @return mixed
-     */
-
     public function beforeAction($action) {
         parent::beforeAction($action);
 
-        if (in_array($action->id, ['index', 'create',])) {
+        if (in_array($action->id, ['index', 'create', 'update', 'export'])) {
             $powerPlantId = Yii::$app->request->get('_ppId');
             if (($powerPlant = PowerPlant::findOne($powerPlantId)) !== null) {
                 $this->powerPlantModel = $powerPlant;
@@ -52,30 +48,24 @@ class EnvironmentPermitController extends AppController
         return $this->rbac();
     }
 
+    /**
+     * Lists all EnvironmentPermitCompanyProfile models.
+     * @return mixed
+     */
     public function actionIndex()
     {
-        $searchModel = new EnvironmentPermitSearch();
-        $searchModel->sector_id = $this->powerPlantModel->sector_id;
-        $searchModel->power_plant_id = $this->powerPlantModel->id;
+        $searchModel = new EnvironmentPermitCompanyProfileSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        $model = new EnvironmentPermit();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
-            $this->redirect(['index', '_ppId' => $model->power_plant_id]);
-        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'powerPlantModel' => $this->powerPlantModel,
-            'model' => $model,
         ]);
     }
 
     /**
-     * Displays a single EnvironmentPermit model.
+     * Displays a single EnvironmentPermitCompanyProfile model.
      * @param integer $id
      * @return mixed
      */
@@ -87,27 +77,27 @@ class EnvironmentPermitController extends AppController
     }
 
     /**
-     * Creates a new EnvironmentPermit model.
+     * Creates a new EnvironmentPermitCompanyProfile model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new EnvironmentPermit();
+        $model = new EnvironmentPermitCompanyProfile();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-
             return $this->render('create', [
                 'model' => $model,
+                'powerPlantModel' => $this->powerPlantModel,
             ]);
         }
     }
 
     /**
-     * Updates an existing EnvironmentPermit model.
+     * Updates an existing EnvironmentPermitCompanyProfile model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -120,15 +110,15 @@ class EnvironmentPermitController extends AppController
             Yii::$app->session->setFlash('success', AppConstants::MSG_UPDATE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-
             return $this->render('update', [
                 'model' => $model,
+                'powerPlantModel' => $this->powerPlantModel,
             ]);
         }
     }
 
     /**
-     * Deletes an existing EnvironmentPermit model.
+     * Deletes an existing EnvironmentPermitCompanyProfile model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -145,7 +135,7 @@ class EnvironmentPermitController extends AppController
 
     public function actionExport($id) {
 
-        $searchModel = new EnvironmentPermitSearch();
+        $searchModel = new EnvironmentPermitCompanyProfileSearch();
 
         if ($searchModel->export($id)) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_GENERATE_FILE_SUCCESS);
@@ -157,15 +147,15 @@ class EnvironmentPermitController extends AppController
     }
 
     /**
-     * Finds the EnvironmentPermit model based on its primary key value.
+     * Finds the EnvironmentPermitCompanyProfile model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return EnvironmentPermit the loaded model
+     * @return EnvironmentPermitCompanyProfile the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = EnvironmentPermit::findOne($id)) !== null) {
+        if (($model = EnvironmentPermitCompanyProfile::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
