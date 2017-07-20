@@ -476,6 +476,9 @@ class AppConstants {
     const REPORT_NAME_WORKING_PLAN = 'report_working_plan_%s.xlsx';
     const REPORT_NAME_ENVIRONMENT_PERMIT = 'report_environment_permit_%s.xlsx';
     const REPORT_NAME_COMPANY_PROFILE = 'report_company_profile_%s.xlsx';
+    const REPORT_NAME_PPU = 'report_pengendalian_pencemaran_udara_%s.xlsx';
+    const REPORT_NAME_PPU_CEMS = 'report_pengendalian_pencemaran_udara_cems_%s.xlsx';
+    const REPORT_NAME_PPU_AMBIENT = 'report_pengendalian_pencemaran_udara_ambient_%s.xlsx';
 
 
     // PHPEXCEL

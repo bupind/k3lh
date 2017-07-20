@@ -146,6 +146,19 @@ class PpuAmbientController extends AppController
         return $this->redirect(['index', '_ppId' => $model->power_plant_id]);
     }
 
+    public function actionExport($id) {
+
+        $searchModel = new PpuAmbientSearch();
+
+        if ($searchModel->export($id)) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_GENERATE_FILE_SUCCESS);
+            return $this->redirect(['/download/excel', 'filename' => $searchModel->filename]);
+        }else{
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+
+    }
+
     /**
      * Finds the PpuAmbient model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

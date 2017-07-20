@@ -18,6 +18,16 @@ $baseUrl = Url::base();
 
 $this->title = sprintf('%s %s', AppLabels::AIR_POLLUTION_CONTROL, $powerPlantModel->getSummary());
 $this->params['breadcrumbs'][] = $this->title;
+$actionColumn = Yii::$container->get('yii\grid\ActionColumn');
+$buttons = array_merge($actionColumn->buttons, [
+        'export' => function ($url, $model) {
+            return Html::a('<i class="ace-icon fa fa-cloud-download bigger-120"></i> ' . AppLabels::BTN_EXPORT, ['ppu-ambient/export', '_ppId' => $model->powerPlant->id,  'id' => $model->id], ['class' => 'btn btn-xs', 'data' => ['method' => 'post']]);
+        },
+        'export_xs' => function ($url, $model) {
+            return Html::a('<span class="blue"><i class="ace-icon fa fa-cloud-download bigger-120"></i></span>', $url, ['class' => 'tooltip-warning', 'data-rel' => 'tooltip', 'data-original-title' => AppLabels::BTN_EXPORT, 'data' => ['method' => 'post']]);
+        },
+]);
+$template = Yii::t('app', \common\vendor\AppConstants::GRID_TEMPLATE_DEFAULT_EXTRA, ['additional_buttons' => '{export}', 'additional_buttons_xs' => '<li>{export_xs}</li>']);
 ?>
 <div class="ppu-ambient-index">
 
@@ -72,7 +82,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 ['class' => 'yii\grid\SerialColumn'],
                 'ppua_year',
 
-                ['class' => 'yii\grid\ActionColumn'],
+                [
+                    'class' => 'yii\grid\ActionColumn',
+                    'buttons' => $buttons,
+                    'template' => $template,
+                ],
             ],
         ]); ?>
     </div>
