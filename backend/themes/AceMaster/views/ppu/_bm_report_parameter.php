@@ -35,7 +35,9 @@ use common\vendor\AppLabels;
                 <th rowspan="1" colspan="6" class="text-center"><?= sprintf("%s %s %s", AppLabels::SEMESTER, "I", $startDate->format('Y')); ?></th>
             </tr>
             <tr>
-                <?php for ($i=0; $i<12; $i++): ?>
+                <?php
+                $startDate->setDate($model->ppu_year - 1, 7, 1);
+                for ($i=0; $i<12; $i++): ?>
                     <th colspan="1" class="text-right"><?= $startDate->format('M Y'); ?></th>
                     <?php $startDate->add(new \DateInterval('P1M')); endfor; ?>
             </tr>

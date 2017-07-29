@@ -69,6 +69,12 @@ class PpuAmbient extends AppModel
         return $this->hasOne(PowerPlant::className(), ['id' => 'power_plant_id']);
     }
 
+    public function toAlphabet($number){
+        $alphabet = range('A', 'Z');
+
+        return ($alphabet[$number]);
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */

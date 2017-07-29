@@ -23,6 +23,7 @@ use yii\web\UploadedFile;
  *
  * @property PpuEmissionSource $ppuEmissionSource
  * @property PpucemsrbQuarter[] $ppucemsrbQuarters
+ * @property PpucemsrbParameterReport[] $ppucemsrbParameterReports
  * @property AttachmentOwner $attachmentOwner
  */
 class PpucemsReportBm extends AppModel
@@ -159,6 +160,14 @@ class PpucemsReportBm extends AppModel
     public function getPpucemsrbQuarters()
     {
         return $this->hasMany(PpucemsrbQuarter::className(), ['ppucems_report_bm_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPpucemsrbParameterReports()
+    {
+        return $this->hasMany(PpucemsrbParameterReport::className(), ['ppucems_report_bm_id' => 'id']);
     }
 
     public function getAttachmentOwner()

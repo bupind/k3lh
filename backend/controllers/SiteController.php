@@ -364,29 +364,9 @@ class SiteController extends AppController {
                                                             'icon-class' => 'blue',
                                                             'additionalParameters' => [
                                                                 'children' => [
-                                                                    '3213-1' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . AppLabels::AIR_POLLUTION_CONTROL , ['/ppu', '_ppId' => $powerPlant->id]), 'type' => 'item'],
-                                                                    '44231' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA Inventarisasi Sumber Emisi', 'type' => 'item'],
-                                                                    '44232' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA Titik Penatan', 'type' => 'item'],
-                                                                    '44233' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA Ketaatan Parameter Pelaporan BM', 'type' => 'item'],
-                                                                    '44234' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA Beban Emisi GRK', 'type' => 'item'],
-                                                                    '44235' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA Ketentuan Teknis', 'type' => 'item'],
-                                                                    '44236' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA Beban Pencemaran Aktual', 'type' => 'item'],
-                                                                    '44237' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA CEMS Inventarisasi Titik Penaatan', 'type' => 'item'],
-                                                                    '44238' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA Pelaporan & BM CEMS', 'type' => 'item'],
-                                                                    '44239' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA Pelaporan CEMS Sox', 'type' => 'item'],
-                                                                    '442310' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA Pelaporan CEMS Partikulat', 'type' => 'item'],
-                                                                    '442311' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA Pelaporan CEMS Nox', 'type' => 'item'],
-                                                                    '442312' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA Pelaporan CEMS CS2', 'type' => 'item'],
-                                                                    '442313' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA Pelaporan CEMS H2S', 'type' => 'item'],
-                                                                    '442314' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA Pelaporan CEMS Cl2', 'type' => 'item'],
-                                                                    '442315' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA Pelaporan CEMS TRS', 'type' => 'item'],
-                                                                    '442316' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA Pelaporan CEMS ClO3', 'type' => 'item'],
-                                                                    '442317' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA Beban Emisi CEMS', 'type' => 'item'],
-                                                                    '442318' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA Beban Emisi GRK CEMS', 'type' => 'item'],
-                                                                    '442319' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA Ketentuan Teknis CEMS', 'type' => 'item'],
-                                                                    '442320' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA Ambien Titik Pemantauan', 'type' => 'item'],
-                                                                    '442321' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA Ambien Ketaatan Parameter Pelaporan BM', 'type' => 'item'],
-                                                                ]
+                                                                    '44231' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . AppLabels::AIR_POLLUTION_CONTROL , ['/ppu', '_ppId' => $powerPlant->id]), 'type' => 'item'],
+                                                                    '44232' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . AppLabels::AIR_POLLUTION_CONTROL ." " . AppLabels::AMBIENT , ['/ppu-ambient', '_ppId' => $powerPlant->id]), 'type' => 'item'],
+                                                                    ]
                                                             ]
                                                         ],
                                                         'pengelolaan-limbah-b3' => [
