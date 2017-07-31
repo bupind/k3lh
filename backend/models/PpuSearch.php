@@ -787,7 +787,7 @@ class PpuSearch extends Ppu
 
         $activeSheet->mergeCells('D5:E5');
         $activeSheet->mergeCells('D6:E6');
-        $activeSheet->setCellValue('D5', sprintf("%s %s %s", AppLabels::EMISSION_LOAD, AppLabels::YEAR, $startDate->format('Y')));
+        $activeSheet->setCellValue('D5', sprintf("%s %s %s", AppLabels::EMISSION_LOAD, AppLabels::YEAR, intval($startDate->format('Y'))-1));
         $activeSheet->setCellValue('D6', sprintf("%s (%s)", AppLabels::EMISSION_LOAD, AppLabels::TON));
 
         $activeSheet->mergeCells('F5:F6');
@@ -795,7 +795,7 @@ class PpuSearch extends Ppu
 
         $activeSheet->mergeCells('G5:H5');
         $activeSheet->mergeCells('G6:H6');
-        $activeSheet->setCellValue('G5', sprintf("%s %s %s", AppLabels::EMISSION_LOAD, AppLabels::YEAR, intval($startDate->format('Y'))+1));
+        $activeSheet->setCellValue('G5', sprintf("%s %s %s", AppLabels::EMISSION_LOAD, AppLabels::YEAR, intval($startDate->format('Y'))));
         $activeSheet->setCellValue('G6', sprintf("%s (%s)", AppLabels::EMISSION_LOAD, AppLabels::TON));
 
         $activeSheet->mergeCells('I5:I6');
