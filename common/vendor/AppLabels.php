@@ -381,6 +381,7 @@ class AppLabels {
     const TOTAL = 'Total';
     const KG = 'Kg';
     const TON = 'Ton';
+    const CALCULATION = 'Perhitungan';
     const SUPPORTING_EVIDENCE = 'Bukti Pendukung';
     const OPERATIONAL_TIME = 'Jam Operasional';
     const SAMPLE = 'Sampel';

@@ -1688,8 +1688,9 @@ class PpuSearch extends Ppu
         ];
 
         //Getting the model
-        $ppucemsReportBmModel = PpucemsReportBm::find()->where(['ppucemsrb_parameter_code' => $parameter->cset_code])
-            ->joinWith(['ppuEmissionSource es'], true, 'INNER JOIN')->where(['es.ppu_id' => $model->id])->all();
+        $ppucemsReportBmModel = PpucemsReportBm::find()
+            ->joinWith(['ppuEmissionSource es'], true, 'INNER JOIN')
+            ->where(['ppucemsrb_parameter_code' => $parameter->cset_code, 'ppu_id' => $model->id])->all();
 
         $rowIndex = 3;
 
@@ -1826,6 +1827,232 @@ class PpuSearch extends Ppu
         //Creating sheet
         $activeSheet = $objPHPExcel->createSheet($sheetIndex);
         $activeSheet->setTitle(sprintf("%s %s", AppLabels::EMISSION_LOAD_CALCULATION, AppLabels::CEMS));
+
+        //getting model
+        $ppuEmissionSourceModel = $model->ppuEmissionSources;
+
+        //setting startdate
+        $startDate = new \DateTime();
+        $startDate->setDate($model->ppu_year - 1, 7, 1);
+
+        // set dimension
+
+        // set row width
+        $activeSheet->getRowDimension('3')->setRowHeight(15);
+
+        // set column width
+        $activeSheet->getColumnDimension('A')->setWidth(5);
+        $activeSheet->getColumnDimension('B')->setWidth(40);
+        $activeSheet->getColumnDimension('C')->setWidth(40);
+        $activeSheet->getColumnDimension('D')->setWidth(40);
+        $activeSheet->getColumnDimension('E')->setWidth(40);
+        $activeSheet->getColumnDimension('R')->setWidth(30);
+
+        //header style
+        $styleArray = [
+            'font' => [
+                'bold' => true,
+            ],
+            'alignment' => [
+                'horizontal' => \PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
+                'vertical' => \PHPExcel_Style_Alignment::VERTICAL_CENTER,
+                'wrap' => true
+            ],
+            'borders' => [
+                'allborders' => [
+                    'style' => \PHPExcel_Style_Border::BORDER_THIN,
+                    'color' => [
+                        'argb' => \PHPExcel_Style_Color::COLOR_BLACK
+                    ]
+                ]
+            ]
+        ];
+        $activeSheet->mergeCells('A1:B1');
+        $activeSheet->setCellValue('A1', sprintf("%s %s", AppLabels::CALCULATION,AppLabels::EMISSION_LOAD));
+        $activeSheet->getStyle('A1:B1')->applyFromArray($styleArray);
+
+        //==========================================================================
+
+        // body header
+
+        $styleArrayTitle = [
+            'font' => [
+                'bold' => false,
+                'size' => 13,
+                'color' => [
+                    'argb' => \PHPExcel_Style_Color::COLOR_BLACK
+                ]
+            ],
+            'alignment' => [
+                'horizontal' => \PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                'vertical' => \PHPExcel_Style_Alignment::VERTICAL_CENTER,
+                'wrap' => true
+            ],
+            'borders' => [
+                'allborders' => [
+                    'style' => \PHPExcel_Style_Border::BORDER_THIN,
+                    'color' => [
+                        'argb' => \PHPExcel_Style_Color::COLOR_BLACK
+                    ]
+                ]
+            ],
+            'fill' => [
+                'type' => \PHPExcel_Style_Fill::FILL_SOLID,
+                'startcolor' => ['argb' => 'FFF2F2F2']
+            ],
+        ];
+
+
+        $no1 = 3;
+        $no2 = 5;
+        for ($i = 0; $i < 5; $i++) {
+            $alphabet = $this->toAlphabet($i);
+            $activeSheet->mergeCells("$alphabet$no1:$alphabet$no2");
+            $activeSheet->getStyle("$alphabet$no1:$alphabet$no2")->applyFromArray($styleArrayTitle);
+        }
+
+        $activeSheet->mergeCells('F3:Q3');
+        $activeSheet->mergeCells('F4:H4');
+        $activeSheet->mergeCells('I4:K4');
+        $activeSheet->mergeCells('L4:N4');
+        $activeSheet->mergeCells('O4:Q4');
+
+        $activeSheet->mergeCells('R3:R5');
+
+        $activeSheet->setCellValue('A3', AppLabels::NUMBER_SHORT);
+        $activeSheet->setCellValue('B3', sprintf("%s %s", AppLabels::NAME, AppLabels::EMISSION_SOURCE));
+        $activeSheet->setCellValue('C3', sprintf("%s %s", AppLabels::CODE, AppLabels::CHIMNEY));
+        $activeSheet->setCellValue('D3', sprintf("%s (m2)",AppLabels::SECTION_AREA));
+        $activeSheet->setCellValue('E3', AppLabels::WATCHED_PARAMETER);
+        $activeSheet->setCellValue('F3', 'Hasil Perhitungan Beban Emisi (Satuan: Ton/Tahun) (lampirkan bukti perhitungan dan acuan peraturan perhitungan)');
+        $activeSheet->setCellValue('F4', sprintf("%s %s %s", AppLabels::QUARTER ,"3" ,$startDate->format('Y')-1));
+        $activeSheet->setCellValue('I4', sprintf("%s %s %s", AppLabels::QUARTER ,"4" ,$startDate->format('Y')-1));
+        $activeSheet->setCellValue('L4', sprintf("%s %s %s", AppLabels::QUARTER ,"1" ,$startDate->format('Y')));
+        $activeSheet->setCellValue('O4', sprintf("%s %s %s", AppLabels::QUARTER ,"2" ,$startDate->format('Y')));
+
+        $no = 5;
+        for ($i = 5; $i < 17; $i++) {
+            $alphabet = $this->toAlphabet($i);
+            $activeSheet->setCellValue("$alphabet$no", $startDate->format('M-Y'));
+            $activeSheet->getStyle("$alphabet$no")->applyFromArray($styleArrayTitle);
+            $startDate->add(new \DateInterval('P1M'));
+        }
+
+        $activeSheet->setCellValue('R3', sprintf("%s %s (Ton/Tahun)", AppLabels::AMOUNT, AppLabels::EMISSION_LOAD));
+
+        $activeSheet->getStyle('F3:Q3')->applyFromArray($styleArrayTitle);
+        $activeSheet->getStyle('F4:H4')->applyFromArray($styleArrayTitle);
+        $activeSheet->getStyle('I4:K4')->applyFromArray($styleArrayTitle);
+        $activeSheet->getStyle('L4:N4')->applyFromArray($styleArrayTitle);
+        $activeSheet->getStyle('O4:Q4')->applyFromArray($styleArrayTitle);
+        $activeSheet->getStyle('R3:R5')->applyFromArray($styleArrayTitle);
+
+        //body header style
+
+        //==========================================================================
+
+        //body
+        $styleArray = [
+            'alignment' => [
+                'horizontal' => \PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                'vertical' => \PHPExcel_Style_Alignment::VERTICAL_CENTER,
+                'wrap' => true
+            ],
+            'borders' => [
+                'allborders' => [
+                    'style' => \PHPExcel_Style_Border::BORDER_THIN,
+                    'color' => [
+                        'argb' => \PHPExcel_Style_Color::COLOR_BLACK
+                    ]
+                ]
+            ],
+        ];
+
+        $rowIndex = 6;
+        foreach ($ppuEmissionSourceModel as $key => $detail) {
+            $ppucemsReportBm = $detail->ppucemsReportBms;
+
+            $ppuParameterObligation = PpuParameterObligation::find()->where([
+                'ppu_emission_source_id' => $detail->id,
+                'ppupo_parameter_code' => AppConstants::PPU_RBM_PARAM_CODE_LAJUALIR,
+            ])->one();
+            if(!is_null($ppuParameterObligation)) {
+                $ppupoMonths = $ppuParameterObligation->ppupoMonths;
+            }else{
+                $ppupoMonths = null;
+            }
+            $ppuesMonths = $detail->ppuesMonths;
+
+            $activeSheet->setCellValue('A' . $rowIndex, ($key+1));
+            $activeSheet->getStyle('A' . $rowIndex)->applyFromArray($styleArray);
+
+            $activeSheet->setCellValue('B' . $rowIndex, $detail->ppues_name);
+            $activeSheet->getStyle('B' . $rowIndex)->applyFromArray($styleArray);
+
+            $activeSheet->setCellValue('C' . $rowIndex, $detail->ppues_chimney_name);
+            $activeSheet->getStyle('C' . $rowIndex)->applyFromArray($styleArray);
+
+            $sectionArea = $detail->ppues_chimney_diameter/2;
+            $sectionArea = $sectionArea*$sectionArea*pi();
+            $activeSheet->setCellValue('D' . $rowIndex, number_format($sectionArea,2));
+            $activeSheet->getStyle('D' . $rowIndex)->applyFromArray($styleArray);
+
+            foreach($ppucemsReportBm as $keyB => $reportBM){
+                $activeSheet->setCellValue('E' . $rowIndex, $reportBM->ppucemsrb_parameter_code_desc);
+                $activeSheet->getStyle('E' . $rowIndex)->applyFromArray($styleArray);
+
+                $startDate->setDate($model->ppu_year - 1, 7, 1);
+                $columnIndexNumber = \PHPExcel_Cell::columnIndexFromString('F');
+
+                $resultTotal = 0;
+                for($keyQ = 0; $keyQ<12; $keyQ++){
+                    $column = \PHPExcel_Cell::stringFromColumnIndex($columnIndexNumber-1);
+
+                    $month = $startDate->format('m');
+                    $year = $startDate->format('Y');
+                    $average = PpucemsrbParameterReport::find()->where([
+                        'ppu_emission_source_id' => $detail->id,
+                        'ppucems_report_bm_id' => $reportBM->id,
+                        'ppucemsrbpr_year' => $year,
+                        'ppucemsrbpr_month' => $month,
+                    ])->average('ppucemsrbpr_avg_concentration');
+
+
+                    $result = $average*$sectionArea*$ppupoMonths[$keyQ]->ppupom_value*$ppuesMonths[$keyQ]->ppuesm_operation_time*pow(10, -7)*3.6;
+                    $resultTotal+=$result;
+                    $result = number_format($result,3);
+
+                    $activeSheet->setCellValue($column . $rowIndex, $result);
+                    $activeSheet->getStyle($column . $rowIndex)->applyFromArray($styleArray);
+
+                    $columnIndexNumber++;
+                    $startDate->add(new \DateInterval('P1M'));
+                }
+                $activeSheet->setCellValue('R' . $rowIndex, number_format($resultTotal,2));
+                $activeSheet->getStyle('R' . $rowIndex)->applyFromArray($styleArray);
+
+                $rowIndex++;
+            }
+            $rowIndex++;
+
+            if(!is_null($ppupoMonths)) {
+                $activeSheet->setCellValue('E' . $rowIndex, 'Laju Alir');
+                $activeSheet->getStyle('E' . $rowIndex)->applyFromArray($styleArray);
+
+                $columnIndexNumber = \PHPExcel_Cell::columnIndexFromString('F');
+                for ($keyQ = 0; $keyQ < 12; $keyQ++) {
+                    $column = \PHPExcel_Cell::stringFromColumnIndex($columnIndexNumber - 1);
+
+                    $activeSheet->setCellValue($column . $rowIndex, $ppupoMonths[$keyQ]->ppupom_value);
+                    $activeSheet->getStyle($column . $rowIndex)->applyFromArray($styleArray);
+
+                    $columnIndexNumber++;
+                }
+
+                $rowIndex++;
+            }
+            $rowIndex++;
+        }
     }
 
     public function exportCems($id) {
