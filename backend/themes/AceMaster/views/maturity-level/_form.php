@@ -79,7 +79,7 @@ $form = ActiveForm::begin([
                 <?php foreach ($title->maturityLevelQuestions as $keyQuestion => $question): ?>
                     <tr>
                         <td>
-                            <?php if(!$model->getIsNewRecord()) { ?>}
+                            <?php if(isset($detailModels[$index]['id'])) { ?>
                                 <?= $form->field($detailModels[$index], '[' . $index . ']id')->hiddenInput()->label(false); ?>
                             <?php } ?>
                             <?= $form->field($detailModels[$index], '[' . $index . ']maturity_level_question_id')->hiddenInput(['value' => $question->id])->label(false); ?>

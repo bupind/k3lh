@@ -68,6 +68,7 @@ $no = 1;
                         <td colspan="8"><strong><?= $title->title_text; ?></strong></td>
                     </tr>
                     <?php foreach ($title->maturityLevelQuestions as $keyQuestion => $question): ?>
+                        <?php if (isset($detailModels[$index])): ?>
                         <tr>
                             <td><?= $no++; ?>.</td>
                             <td><?= $question->q_action_plan; ?></td>
@@ -87,7 +88,7 @@ $no = 1;
                             </td>
                             <td><?= Converter::attachment($detailModels[$index]->attachmentOwner); ?></td>
                         </tr>
-                    <?php $index++; endforeach; ?>
+                    <?php $index++; endif; endforeach; ?>
                 <?php endforeach; ?>
                 </tbody>
                 <tfoot>
@@ -101,6 +102,11 @@ $no = 1;
         </div>
     </div>
     
-    <?= ViewButton::widget(['model' => $model]); ?>
+    <?= ViewButton::widget([
+        'model' => $model,
+        'options' => [
+            'template' => AppConstants::VIEW_BUTTON_TEMPLATE_EXCEL
+        ]
+    ]); ?>
 
 </div>

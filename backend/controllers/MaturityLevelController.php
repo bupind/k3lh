@@ -121,6 +121,12 @@ class MaturityLevelController extends AppController {
         $model = $this->findModel($id);
         $detailModels = $model->maturityLevelDetails;
         $maturityLevelTitles = MaturityLevelTitle::find()->all();
+        $questionCount = MaturityLevelQuestion::find()->count();
+    
+        for ($i=count($detailModels); $i<$questionCount; $i++) {
+            $detailModels[$i] = new MaturityLevelDetail();
+        }
+        
         $requestData = Yii::$app->request->post();
         
         if ($model->load($requestData) && Model::loadMultiple($detailModels, $requestData) && $model->saveTransactional()) {
@@ -133,6 +139,19 @@ class MaturityLevelController extends AppController {
                 'maturityLevelTitles' => $maturityLevelTitles
             ]);
         }
+    }
+    
+    public function actionExport($id) {
+        $model = $this->findModel($id);
+        $searchModel = new MaturityLevelSearch();
+        
+        if ($searchModel->export($id)) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_GENERATE_FILE_SUCCESS);
+            return $this->redirect(['/download/excel', 'filename' => $searchModel->filename]);
+        }else{
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+        
     }
     
     /**

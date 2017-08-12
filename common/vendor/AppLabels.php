@@ -151,6 +151,7 @@ class AppLabels {
     const DOWNLOAD = 'Unduh';
     const INFORMATION = 'Informasi';
     const TIME = 'Waktu';
+    const PT_PLN_PERSERO = 'PT PLN (Persero) Pembangkitan Sumatera Bagian Selatan';
 
     // MONTH
     const JANUARY = 'Januari';
@@ -282,6 +283,7 @@ class AppLabels {
     const MATURITY_LEVEL = 'Maturity Level';
     const ACTION_PLAN = 'Action Plan';
     const TOTAL_MATURITY = 'Total Nilai Maturity';
+    const MATURITY_LEVEL_REPORT_TITLE = 'Maturity Level K2/K3 & Keamanan';
 
     // ENVIRONMENT PERMIT
     const ENVIRONMENT_PERMIT = 'Izin Lingkungan';
@@ -549,6 +551,8 @@ class AppLabels {
     //PHPEXCEL
     const PHPEXCEL_SIGN_CITY = 'Palembang';
     const PHPEXCEL_SIGN_DETERMINED_BY = 'Ditetapkan Oleh,';
+    const PHPEXCEL_KNOWING = 'Mengetahui,';
+    const PHPEXCEL_CREATED_BY = 'Dibuat oleh,';
     const PHPEXCEL_SIGN_DOT_LINE = '………………………………………………';
     const PHPEXCEL_WORKING_PERMIT_DOCUMENT_APPROVAL = 'Pengesahan Dokumen Izin Melaksanakan Pekerjaan';
     const PHPEXCEL_WORKING_PERMIT_COMPLETION_APPROVAL = 'Pengesahaan Pekerjaan Setelah Selesai Dilaksanakan';
@@ -556,6 +560,8 @@ class AppLabels {
     const PHPEXCEL_CHECKED_APPROVED_RELEASE_ISOLATION = 'Diperiksa & Disetujui untuk dilaksanakan Pelepasan Isolasi Lokasi';
     const PHPEXCEL_APPROVED_CONTROLLED_BY = 'Disetujui & Dikontrol oleh';
     const PHPEXCEL_WORKING_PERMIT_FOOTER_NOTE = ' Note : Lembar Putih untuk Pelaksana pekerjaan , Kuning untuk K3, Biru untuk  MCR/PP - JIKA PEKERJAAN SELESAI HARAP WORKING PERMIT SEGERA DI TUTUP / CLOSED';
+    const GENERAL_MANAGER = 'General Manager';
+    const PRODUCTION_MANAGER = 'Manajer Bidang Produksi';
 
     //Excel
     const CURRENCY_IDR_SHORT = 'Rp';

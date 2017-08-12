@@ -479,7 +479,7 @@ class AppConstants {
     const REPORT_NAME_PPU = 'report_pengendalian_pencemaran_udara_%s.xlsx';
     const REPORT_NAME_PPU_CEMS = 'report_pengendalian_pencemaran_udara_cems_%s.xlsx';
     const REPORT_NAME_PPU_AMBIENT = 'report_pengendalian_pencemaran_udara_ambient_%s.xlsx';
-
+    const REPORT_NAME_MATURITY_LEVEL = 'report_maturity_level_%s.xlsx';
 
     // PHPEXCEL
     const PHPEXCEL_FORMAT_CURRENCY = 'Rp #,##0.00';
