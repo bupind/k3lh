@@ -346,16 +346,12 @@ class SiteController extends AppController {
                                                             'icon-class' => 'blue',
                                                             'additionalParameters' => [
                                                                 'children' => [
-                                                                    '44221' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA Titik Penaatan & Izin', 'type' => 'item'],
-                                                                    '44222' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA Parameter Pelaporan BM', 'type' => 'item'],
-                                                                    '44223' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Debit Air Limbah Harian & Upload PH Harian (upload bulanan)', 'type' => 'item'],
-                                                                    '44224' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA Ketentuan Teknis', 'type' => 'item'],
-                                                                    '44225' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA Penurunan Beban Pencemaran', 'type' => 'item'],
-                                                                    '44226' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA BM Beban Pencemaran', 'type' => 'item'],
-                                                                    '44227' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA Beban Pencemaran Aktual', 'type' => 'item'],
-                                                                    '44228' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA Badan Air Titik Pemantauan', 'type' => 'item'],
-                                                                    '44229' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA Badan Air Parameter Pelaporan BM', 'type' => 'item'],
-                                                                ]
+                                                                    '44221' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . AppLabels::WATER_POLLUTION_CONTROL , ['/ppu', '_ppId' => $powerPlant->id]), 'type' => 'item'],
+                                                                    '44222' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . AppLabels::WATER_POLLUTION_CONTROL ." " . AppLabels::AMBIENT , ['/ppu-ambient', '_ppId' => $powerPlant->id]), 'type' => 'item'],
+                                                                    '44223' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . AppLabels::WATER_POLLUTION_CONTROL , ['/ppu', '_ppId' => $powerPlant->id]), 'type' => 'item'],
+                                                                    '44224' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . AppLabels::WATER_POLLUTION_CONTROL ." " . AppLabels::AMBIENT , ['/ppu-ambient', '_ppId' => $powerPlant->id]), 'type' => 'item'],
+
+                                                                    ]
                                                             ]
                                                         ],
                                                         'pengendalian-pencemaran-udara' => [
