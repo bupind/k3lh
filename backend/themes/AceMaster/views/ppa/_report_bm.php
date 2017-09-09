@@ -17,7 +17,7 @@ use common\vendor\AppLabels;
             <tr>
                 <th rowspan="2" class="text-center"><?= AppLabels::NUMBER_SHORT; ?></th>
                 <th rowspan="2" class="text-center"><?= AppLabels::SETUP_POINT_PERMIT; ?></th>
-                <th rowspan="2" class="text-center"><?= AppLabels::BM_REPORT_PARAMETER; ?></th>
+                <th rowspan="2" colspan="2" class="text-center"><?= AppLabels::BM_REPORT_PARAMETER; ?></th>
                 <th colspan="12" class="text-center"><?= AppLabels::INLET_CONCENTRATE_TITLE; ?></th>
                 <th colspan="12" class="text-center"><?= AppLabels::OUTLET_CONCENTRATE_TITLE; ?></th>
                 <th rowspan="2" colspan="2" class="text-center"><?= AppLabels::QS_CONCENTRATE; ?></th>
@@ -46,7 +46,7 @@ use common\vendor\AppLabels;
                             <td rowspan="<?= $count; ?>" class="text-center"><?= $setupPermit->ppasp_setup_point_name; ?></td>
                         <?php endif; ?>
                         
-                        <td class="text-center"><?= $ppaReportBm->ppar_param_code_desc; ?></td>
+                        <td class="text-center" colspan="2"><?= $ppaReportBm->ppar_param_code_desc; ?></td>
                         
                         <?php foreach ($ppaReportBm->ppaInletOutlets as $keyInlet => $inlet): ?>
                             <td class="text-right" data-format="<?= AppConstants::CALX_DATA_FORMAT_THO_DEC; ?>"><?= $inlet->ppaio_inlet_value; ?></td>
@@ -74,6 +74,7 @@ use common\vendor\AppLabels;
                 <?php if (!is_null($setupPermit->ppaReportBmDebit)): ?>
                 <tr>
                     <td class="text-center"><?= $setupPermit->ppaReportBmDebit->ppar_param_code_desc; ?></td>
+                    <td class="text-center"><?= $setupPermit->ppaReportBmDebit->ppar_param_unit_code_desc; ?></td>
         
                     <?php foreach ($setupPermit->ppaReportBmDebit->ppaInletOutlets as $keyInlet => $inlet): ?>
                         <td class="text-right" data-format="<?= AppConstants::CALX_DATA_FORMAT_THO_DEC; ?>"><?= $inlet->ppaio_inlet_value; ?></td>
@@ -95,6 +96,7 @@ use common\vendor\AppLabels;
                 <?php if (!is_null($setupPermit->ppaReportBmProduction)): ?>
                 <tr>
                     <td class="text-center"><?= $setupPermit->ppaReportBmProduction->ppar_param_code_desc; ?></td>
+                    <td class="text-center"><?= $setupPermit->ppaReportBmProduction->ppar_param_unit_code_desc; ?></td>
         
                     <?php foreach ($setupPermit->ppaReportBmProduction->ppaInletOutlets as $keyInlet => $inlet): ?>
                         <td class="text-right" data-format="<?= AppConstants::CALX_DATA_FORMAT_THO_DEC; ?>"><?= $inlet->ppaio_inlet_value; ?></td>

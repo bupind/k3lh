@@ -37,7 +37,6 @@ class PpaBa extends AppModel {
         return [
             [['sector_id', 'power_plant_id', 'ppaba_year'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
             [['sector_id', 'power_plant_id', 'ppaba_year'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
-            [['ppaba_year'], 'string', 'max' => 4],
             [['sector_id'], 'exist', 'skipOnError' => true, 'targetClass' => Sector::className(), 'targetAttribute' => ['sector_id' => 'id']],
             [['power_plant_id'], 'exist', 'skipOnError' => true, 'targetClass' => PowerPlant::className(), 'targetAttribute' => ['power_plant_id' => 'id']],
         ];

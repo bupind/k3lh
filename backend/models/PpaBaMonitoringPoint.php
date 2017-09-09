@@ -6,6 +6,7 @@ use Yii;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
 use yii\base\Exception;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "ppa_ba_monitoring_point".
@@ -103,7 +104,19 @@ class PpaBaMonitoringPoint extends AppModel {
                         $ppaBaMonthMdl->ppa_ba_monitoring_point_id = $ppaBaMonitoringPointId;
                     }
                     
-                    if (!$ppaBaMonthMdl->load(['PpaBaMonth' => $ppaBaMonth]) || !$ppaBaMonthMdl->save()) {
+                    if ($ppaBaMonthMdl->load(['PpaBaMonth' => $ppaBaMonth]) && $ppaBaMonthMdl->save()) {
+                        if (isset($request['Attachment'][$key])) {
+                            $attachmentMdl = new Attachment();
+        
+                            $attachmentMdl->load($request['Attachment'][$key]);
+                            $attachmentMdl->file = UploadedFile::getInstance($attachmentMdl, "[$key]file");
+        
+                            if (!is_null($attachmentMdl->file) && !$attachmentMdl->saveAttachment(AppConstants::MODULE_CODE_PPA_BA_MONITORING_POINT_CERT_NUMB, $ppaBaMonthMdl->id)) {
+                                $errors = array_merge($errors, $attachmentMdl->errors);
+                                throw new Exception;
+                            }
+                        }
+                    } else {
                         $errors = array_merge($errors, $ppaBaMonthMdl->errors);
                         throw new Exception();
                     }

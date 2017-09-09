@@ -19,6 +19,7 @@ use common\vendor\AppLabels;
  * @property integer $updated_at
  *
  * @property PpaBaMonitoringPoint $ppaBaMonitoringPoint
+ * @property AttachmentOwner $attachmentOwner
  */
 class PpaBaMonth extends AppModel {
     
@@ -71,5 +72,12 @@ class PpaBaMonth extends AppModel {
      */
     public function getPpaBaMonitoringPoint() {
         return $this->hasOne(PpaBaMonitoringPoint::className(), ['id' => 'ppa_ba_monitoring_point_id']);
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAttachmentOwner() {
+        return $this->hasOne(AttachmentOwner::className(), ['atfo_module_pk' => 'id'])->andOnCondition(['atfo_module_code' => AppConstants::MODULE_CODE_PPA_BA_MONITORING_POINT_CERT_NUMB]);
     }
 }

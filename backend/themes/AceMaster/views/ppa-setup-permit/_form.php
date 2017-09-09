@@ -137,32 +137,33 @@ use common\components\helpers\Converter;
             <div class="widget-body">
                 <div class="widget-main">
                     <fieldset>
-                        <?php
-                        
-                        foreach ($ppaMonthModels as $key => $ppaMonth) {
+                        <?php foreach ($ppaMonthModels as $key => $ppaMonth): ?>
+                        <div class="col-xs-12 col-sm-4">
+                            <?php
+
                             if (!$ppaMonth->isNewRecord) {
                                 echo $form->field($ppaMonth, "[$key]id")->hiddenInput()->label(false);
                             }
                             echo $form->field($ppaMonth, "[$key]ppam_month")->hiddenInput(['value' => $startDate->format('m')])->label(false);
                             echo $form->field($ppaMonth, "[$key]ppam_year")->hiddenInput(['value' => $startDate->format('Y')])->label(false);
-                        ?>
-                        <div class="col-xs-12 col-sm-4">
-                            <?= $form->field($ppaMonth, "[$key]ppam_cert_number", [
+                            
+                            echo $form->field($ppaMonth, "[$key]ppam_cert_number", [
                                     'template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE,
                                 ])
                                 ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly'])
-                                ->label($startDate->format('M Y'), ['class' => '']); ?>
-                            <?php if($model->getIsNewRecord()){ ?>
-                                <?= Converter::attachment($ppaMonth->attachmentOwner, ['show_file_upload' => true, 'show_delete_file' => true, 'index' => $key]); ?>
-                            <?php }else{ ?>
-                                <?= Converter::attachmentExtLink('', $ppaMonth->attachmentOwner, ['show_file_upload' => false, 'show_delete_file' => false]); ?>
-                            <?php } ?>
+                                ->label($startDate->format('M Y'), ['class' => '']);
+
+                            if(empty($ppaMonth->attachmentOwner)) {
+                                echo Converter::attachment($ppaMonth->attachmentOwner, ['show_file_upload' => true, 'show_delete_file' => true, 'index' => $key]);
+                                echo '<div class="space-6"></div>';
+                            } else {
+                                echo Converter::attachmentExtLink('', $ppaMonth->attachmentOwner, ['show_file_upload' => false, 'show_delete_file' => false]);
+                                echo '<div class="space-8"></div>';
+                            }
+                            
+                            ?>
                         </div>
-                        <?php
-                            $startDate->add(new \DateInterval('P1M'));
-                        }
-                        
-                        ?>
+                        <?php $startDate->add(new \DateInterval('P1M')); endforeach; ?>
                     </fieldset>
                 </div>
             </div>

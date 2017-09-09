@@ -346,11 +346,8 @@ class SiteController extends AppController {
                                                             'icon-class' => 'blue',
                                                             'additionalParameters' => [
                                                                 'children' => [
-                                                                    '44221' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . AppLabels::WATER_POLLUTION_CONTROL , ['/ppu', '_ppId' => $powerPlant->id]), 'type' => 'item'],
-                                                                    '44222' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . AppLabels::WATER_POLLUTION_CONTROL ." " . AppLabels::AMBIENT , ['/ppu-ambient', '_ppId' => $powerPlant->id]), 'type' => 'item'],
-                                                                    '44223' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . AppLabels::WATER_POLLUTION_CONTROL , ['/ppu', '_ppId' => $powerPlant->id]), 'type' => 'item'],
-                                                                    '44224' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . AppLabels::WATER_POLLUTION_CONTROL ." " . AppLabels::AMBIENT , ['/ppu-ambient', '_ppId' => $powerPlant->id]), 'type' => 'item'],
-
+                                                                    '44221' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . AppLabels::WATER_POLLUTION_CONTROL , ['/ppa', '_ppId' => $powerPlant->id]), 'type' => 'item'],
+                                                                    '44222' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . AppLabels::PPA_BA , ['/ppa-ba', '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                     ]
                                                             ]
                                                         ],

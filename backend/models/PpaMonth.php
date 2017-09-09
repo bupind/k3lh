@@ -89,8 +89,7 @@ class PpaMonth extends AppModel {
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAttachmentOwner()
-    {
+    public function getAttachmentOwner() {
         return $this->hasOne(AttachmentOwner::className(), ['atfo_module_pk' => 'id'])->andOnCondition(['atfo_module_code' => AppConstants::MODULE_CODE_PPA_SETUP_PERMIT_CERT_NUMB]);
     }
 }

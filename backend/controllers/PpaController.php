@@ -191,4 +191,16 @@ class PpaController extends AppController {
             'startDate' => $startDate
         ]);
     }
+    
+    public function actionExport($id) {
+        $searchModel = new PpaSearch();
+        
+        if ($searchModel->export($id)) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_GENERATE_FILE_SUCCESS);
+            return $this->redirect(['/download/excel', 'filename' => $searchModel->filename]);
+        }else{
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+        
+    }
 }

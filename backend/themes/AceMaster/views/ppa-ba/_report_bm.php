@@ -16,7 +16,7 @@ use common\vendor\AppLabels;
             <tr>
                 <th rowspan="2" class="text-center"><?= AppLabels::NUMBER_SHORT; ?></th>
                 <th rowspan="2" class="text-center"><?= AppLabels::MONITORING_POINT_NAME; ?></th>
-                <th rowspan="2" class="text-center"><?= AppLabels::BM_REPORT_PARAMETER; ?></th>
+                <th rowspan="2" colspan="2" class="text-center"><?= AppLabels::BM_REPORT_PARAMETER; ?></th>
                 <th colspan="12" class="text-center"><?= AppLabels::PPA_BA_CONCENTRATION_TITLE; ?></th>
                 <th rowspan="2" colspan="2" class="text-center"><?= AppLabels::QS_CONCENTRATE; ?></th>
                 <th rowspan="2" class="text-center"><?= AppLabels::QS_UNIT; ?></th>
@@ -37,7 +37,7 @@ use common\vendor\AppLabels;
                             <td rowspan="<?= $count; ?>" class="text-center"><?= $monitoringPoint->ppabamp_monitoring_point_name; ?></td>
                         <?php endif; ?>
                         
-                        <td class="text-center"><?= $ppaBaReportBm->ppabar_param_code_desc; ?></td>
+                        <td class="text-center" colspan="2"><?= $ppaBaReportBm->ppabar_param_code_desc; ?></td>
                         
                         <?php foreach ($ppaBaReportBm->ppaBaConcentrations as $keyCon => $concentration): ?>
                             <td class="text-right" data-format="<?= AppConstants::CALX_DATA_FORMAT_THO_DEC; ?>"><?= $concentration->ppabac_value; ?></td>
@@ -58,6 +58,7 @@ use common\vendor\AppLabels;
                 <?php if (!is_null($monitoringPoint->ppaBaReportBmDebit)): ?>
                 <tr>
                     <td class="text-center"><?= $monitoringPoint->ppaBaReportBmDebit->ppabar_param_code_desc; ?></td>
+                    <td class="text-center"><?= $monitoringPoint->ppaBaReportBmDebit->ppabar_param_unit_code_desc; ?></td>
         
                     <?php foreach ($monitoringPoint->ppaBaReportBmDebit->ppaBaConcentrations as $keyCon => $concentration): ?>
                         <td class="text-right" data-format="<?= AppConstants::CALX_DATA_FORMAT_THO_DEC; ?>"><?= $concentration->ppabac_value; ?></td>
@@ -78,6 +79,7 @@ use common\vendor\AppLabels;
                 <?php if (!is_null($monitoringPoint->ppaBaReportBmProduction)): ?>
                 <tr>
                     <td class="text-center"><?= $monitoringPoint->ppaBaReportBmProduction->ppabar_param_code_desc; ?></td>
+                    <td class="text-center"><?= $monitoringPoint->ppaBaReportBmProduction->ppabar_param_unit_code_desc; ?></td>
         
                     <?php foreach ($monitoringPoint->ppaBaReportBmProduction->ppaBaConcentrations as $keyCon => $concentration): ?>
                         <td class="text-right" data-format="<?= AppConstants::CALX_DATA_FORMAT_THO_DEC; ?>"><?= $concentration->ppabac_value; ?></td>

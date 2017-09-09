@@ -68,7 +68,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-xs-12">
-            <?= ViewButton::widget(['model' => $model]); ?>
+            <?= ViewButton::widget([
+                'model' => $model,
+                'options' => [
+                    'template' => AppConstants::VIEW_BUTTON_TEMPLATE_EXCEL
+                ]
+            ]); ?>
         </div>
     </div>
 

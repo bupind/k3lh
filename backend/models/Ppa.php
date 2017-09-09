@@ -109,11 +109,11 @@ class Ppa extends AppModel {
             ];
             
             $dataSet[] = $temp;
-            $reportBms = $setupPermit->ppaReportBmsNoFooterParams;
-            $debit = $setupPermit->ppaReportBmDebit;
-            $debitIOs = $debit->ppaInletOutlets;
-            $production = $setupPermit->ppaReportBmProduction;
-            $productionIOs = $production->ppaInletOutlets;
+            $reportBms = !empty($setupPermit->ppaReportBmsNoFooterParams) ? $setupPermit->ppaReportBmsNoFooterParams : [];
+            $debit = !empty($setupPermit->ppaReportBmDebit) ? $setupPermit->ppaReportBmDebit : [];
+            $debitIOs = !empty($debit->ppaInletOutlets) ? $debit->ppaInletOutlets : [];
+            $production = !empty($setupPermit->ppaReportBmProduction) ? $setupPermit->ppaReportBmProduction : [];
+            $productionIOs = !empty($production->ppaInletOutlets) ? $production->ppaInletOutlets : [];
             
             foreach ($reportBms as $keyBM => $reportBm) {
                 $dataCount = 0;
@@ -179,10 +179,10 @@ class Ppa extends AppModel {
             ];
             
             $dataSet[] = $temp;
-            $reportBms = $setupPermit->ppaReportBmsNoFooterParams;
-            $debit = $setupPermit->ppaReportBmDebit;
-            $debitIOs = $debit->ppaInletOutlets;
-            $production = $setupPermit->ppaReportBmProduction;
+            $reportBms = !empty($setupPermit->ppaReportBmsNoFooterParams) ? $setupPermit->ppaReportBmsNoFooterParams : [];
+            $debit = !empty($setupPermit->ppaReportBmDebit) ? $setupPermit->ppaReportBmDebit : [];
+            $debitIOs = !empty($debit->ppaInletOutlets) ? $debit->ppaInletOutlets : [];
+            $production = !empty($setupPermit->ppaReportBmProduction) ? $setupPermit->ppaReportBmProduction : [];
             
             foreach ($reportBms as $keyBM => $reportBm) {
                 $pollutionLoadTotal = 0;
@@ -204,8 +204,8 @@ class Ppa extends AppModel {
                     }
                 }
                 
-                $temp2[15] = $debit->ppar_param_unit_code_desc;
-                $temp2[] = $production->ppar_param_unit_code_desc;
+                $temp2[15] = !empty($debit->ppar_param_unit_code_desc) ? $debit->ppar_param_unit_code_desc : '';
+                $temp2[] = !empty($production->ppar_param_unit_code_desc) ? $production->ppar_param_unit_code_desc : '';
                 $temp2[] = $pollutionLoadTotal;
                 $temp2[] = $pollutionLoadTotal > 0 ? $pollutionLoadTotal / 1000 : 0;
                 $temp2[] = $pollutionLoadTotal > 0 ? $pollutionLoadTotal / 1000000 : 0;

@@ -109,6 +109,7 @@ class AppConstants {
     const MODULE_CODE_PPA_TECH_PROVISION = 'PPA_TECH_PROV';
     const MODULE_CODE_PPA_POLLUTION_LOAD_DECREASE = 'PPA_POLL_LD';
     const MODULE_CODE_PPA_SETUP_PERMIT_CERT_NUMB = 'PPA_SETUP_CERT_NUM';
+    const MODULE_CODE_PPA_BA_MONITORING_POINT_CERT_NUMB = 'PPA_BA_MON_CERT_NUM';
 
     const MODULE_CODE_PPU_EMISSION_SOURCE = 'PPU_EMS_SRC';
     const MODULE_CODE_PPU_EMISSION_LOAD_GRK = 'PPU_EMS_LD_GRK';
@@ -480,6 +481,8 @@ class AppConstants {
     const REPORT_NAME_PPU_CEMS = 'report_pengendalian_pencemaran_udara_cems_%s.xlsx';
     const REPORT_NAME_PPU_AMBIENT = 'report_pengendalian_pencemaran_udara_ambient_%s.xlsx';
     const REPORT_NAME_MATURITY_LEVEL = 'report_maturity_level_%s.xlsx';
+    const REPORT_NAME_PPA = 'report_pengendalian_pencemaran_air_%s.xlsx';
+    const REPORT_NAME_PPA_BA = 'report_ppa_badan_air_%s.xlsx';
 
     // PHPEXCEL
     const PHPEXCEL_FORMAT_CURRENCY = 'Rp #,##0.00';

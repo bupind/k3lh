@@ -138,4 +138,16 @@ class PpaBaController extends AppController {
     
         return $this->redirect(['index', '_ppId' => $model->power_plant_id]);
     }
+    
+    public function actionExport($id) {
+        $searchModel = new PpaBaSearch();
+        
+        if ($searchModel->export($id)) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_GENERATE_FILE_SUCCESS);
+            return $this->redirect(['/download/excel', 'filename' => $searchModel->filename]);
+        }else{
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+        
+    }
 }

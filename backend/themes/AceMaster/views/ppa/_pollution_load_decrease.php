@@ -9,6 +9,8 @@ use common\components\helpers\Converter;
 /* @var $model \backend\models\Ppa */
 /* @var $startDate DateTime */
 
+$startDate->sub(new \DateInterval('P2Y'));
+
 ?>
 <div class="ppa-pollution-load-decrease-view">
     <div class="table-responsive">

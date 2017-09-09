@@ -6,6 +6,7 @@ use common\vendor\AppConstants;
 use common\vendor\AppLabels;
 use kartik\date\DatePicker;
 USE backend\models\Codeset;
+use common\components\helpers\Converter;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\PpaBaMonitoringPoint */
@@ -20,7 +21,8 @@ USE backend\models\Codeset;
     $form = ActiveForm::begin([
         'options' => [
             'class' => 'form-horizontal',
-            'role' => 'form'
+            'role' => 'form',
+            'enctype' => 'multipart/form-data',
         ],
         'fieldConfig' => [
             'options' => [
@@ -123,25 +125,34 @@ USE backend\models\Codeset;
             <div class="widget-body">
                 <div class="widget-main">
                     <fieldset>
-                        <?php
-                        
-                        foreach ($ppaBaMonthModels as $key => $ppaBaMonth) {
+                        <?php foreach ($ppaBaMonthModels as $key => $ppaBaMonth): ?>
+                        <div class="col-xs-12 col-sm-4">
+                            <?php
+
                             if (!$ppaBaMonth->isNewRecord) {
                                 echo $form->field($ppaBaMonth, "[$key]id")->hiddenInput()->label(false);
                             }
+
                             echo $form->field($ppaBaMonth, "[$key]ppabam_month")->hiddenInput(['value' => $startDate->format('m')])->label(false);
                             echo $form->field($ppaBaMonth, "[$key]ppabam_year")->hiddenInput(['value' => $startDate->format('Y')])->label(false);
+
                             echo $form->field($ppaBaMonth, "[$key]ppabam_cert_number", [
                                 'template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE,
-                                'options' => ['class' => 'col-xs-12 col-sm-4']
                             ])
                                 ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly'])
                                 ->label($startDate->format('M Y'), ['class' => '']);
+
+                            if(empty($ppaBaMonth->attachmentOwner)) {
+                                echo Converter::attachment($ppaBaMonth->attachmentOwner, ['show_file_upload' => true, 'show_delete_file' => true, 'index' => $key]);
+                                echo '<div class="space-6"></div>';
+                            } else {
+                                echo Converter::attachmentExtLink('', $ppaBaMonth->attachmentOwner, ['show_file_upload' => false, 'show_delete_file' => false]);
+                                echo '<div class="space-8"></div>';
+                            }
                             
-                            $startDate->add(new \DateInterval('P1M'));
-                        }
-                        
-                        ?>
+                            ?>
+                        </div>
+                        <?php $startDate->add(new \DateInterval('P1M')); endforeach; ?>
                     </fieldset>
                 </div>
             </div>

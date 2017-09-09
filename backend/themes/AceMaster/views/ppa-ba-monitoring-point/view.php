@@ -5,6 +5,7 @@ use app\components\DetailView;
 use app\components\ViewButton;
 use common\vendor\AppConstants;
 use common\vendor\AppLabels;
+use common\components\helpers\Converter;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\PpaBaMonitoringPoint */
@@ -65,8 +66,10 @@ $this->params['breadcrumbs'][] = $this->title;
             <h3 class="header smaller lighter green"><?= AppLabels::CERTIFIED_NUMBER_TEST_RESULT; ?></h3>
             <?php foreach ($model->ppaBaMonths as $ppaBaMonth): ?>
                 <div class="col-xs-12 col-sm-4">
-                    <label><strong><?= $ppaBaMonth->month_label; ?></strong></label>
-                    <p><?= $ppaBaMonth->ppabam_cert_number; ?></p>
+                    <div class="col-xs-12">
+                        <label><strong><?= $ppaBaMonth->month_label; ?></strong></label>
+                    </div>
+                    <?= Converter::attachmentExtLink($ppaBaMonth->ppabam_cert_number, $ppaBaMonth->attachmentOwner, ['show_file_upload' => false, 'show_delete_file' => false]); ?>
                 </div>
             <?php endforeach; ?>
         </div>

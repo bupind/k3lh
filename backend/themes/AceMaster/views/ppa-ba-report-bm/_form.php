@@ -45,7 +45,11 @@ PpaBaReportBMAsset::register($this);
                         <?php
 
                         echo $form->field($model, 'ppa_ba_monitoring_point_id', ['template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE])
-                            ->dropDownList(PpaBaMonitoringPoint::map(new PpaBaMonitoringPoint(), 'ppabamp_monitoring_point_name'), ['class' => 'chosen-select form-control'])
+                            ->dropDownList(PpaBaMonitoringPoint::map(new PpaBaMonitoringPoint(), 'ppabamp_monitoring_point_name', null, true, [
+                                'where' => [
+                                    ['ppa_ba_id' => $ppaBaModel->id]
+                                ]
+                            ]), ['class' => 'chosen-select form-control'])
                             ->label(null, ['class' => '']);
 
                         echo $form->field($model, 'ppabar_param_code', ['template' => AppConstants::ACTIVE_FORM_WIDGET_TEMPLATE])
