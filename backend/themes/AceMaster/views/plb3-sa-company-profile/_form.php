@@ -39,6 +39,10 @@ use common\vendor\AppConstants;
             ->textarea(['class' => AppConstants::ACTIVE_FORM_CLASS_TEXTAREA])
             ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
 
+        echo $form->field($model, 'profile_main_office_phone_fax', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9])
+            ->textInput(['maxlength' => true, 'class' => AppConstants::ACTIVE_FORM_CLASS_INPUT_TEXT])
+            ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+
         echo $form->field($model, 'profile_holding_name', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9])
             ->textInput(['maxlength' => true, 'class' => AppConstants::ACTIVE_FORM_CLASS_INPUT_TEXT])
             ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);

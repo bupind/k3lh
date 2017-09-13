@@ -17,10 +17,10 @@ use common\vendor\AppLabels;
  * @property integer $updated_by
  * @property integer $updated_at
  *
- * @property Plb3SaCompanyProfile[] $plb3SaCompanyProfiles
+ * @property Plb3SaCompanyProfile $plb3SaCompanyProfile
  * @property Sector $sector
  * @property PowerPlant $powerPlant
- * @property Plb3SaForm[] $plb3SaForms
+ * @property Plb3SaForm $plb3SaForm
  */
 class Plb3SelfAssessment extends AppModel {
     /**
@@ -58,15 +58,15 @@ class Plb3SelfAssessment extends AppModel {
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPlb3SaCompanyProfiles() {
-        return $this->hasMany(Plb3SaCompanyProfile::className(), ['plb3_self_assessment_id' => 'id']);
+    public function getPlb3SaCompanyProfile() {
+        return $this->hasOne(Plb3SaCompanyProfile::className(), ['plb3_self_assessment_id' => 'id']);
     }
     
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPlb3SaForms() {
-        return $this->hasMany(Plb3SaForm::className(), ['plb3_self_assessment_id' => 'id']);
+    public function getPlb3SaForm() {
+        return $this->hasOne(Plb3SaForm::className(), ['plb3_self_assessment_id' => 'id']);
     }
     
     /**

@@ -37,11 +37,19 @@ class Plb3SaCompanyProfileController extends AppController {
         
         if (in_array($action->id, ['index', 'create'])) {
             $plb3SAId = Yii::$app->request->get('plb3SAId');
-            if (empty($plb3SAId)) {
+            $plb3SAModel = Plb3SelfAssessment::findOne(['id' => $plb3SAId]);
+            
+            if (is_null($plb3SAModel)) {
                 throw new NotFoundHttpException('The requested page does not exist.');
             }
+    
+            $this->plb3SAModel = $plb3SAModel;
             
-            $this->plb3SAModel = Plb3SelfAssessment::findOne(['id' => $plb3SAId]);
+            if ($action->id == 'index' && is_null($plb3SAModel->plb3SaCompanyProfile)) {
+                $this->redirect(['create', 'plb3SAId' => $plb3SAId]);
+            } else {
+                $this->redirect(['view', 'id' => $plb3SAModel->plb3SaCompanyProfile->id]);
+            }
         }
         
         return $this->rbac();

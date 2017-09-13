@@ -86,16 +86,18 @@ class Plb3SelfAssessmentController extends AppController {
     
         $questionGroups = Codeset::getCodesetAll(AppConstants::CODESET_PLB3_SA_QUESTION_CATEGORY_CODE);
     
-        $plb3Form = $model->plb3SaForms[0];
+        $plb3Form = $model->plb3SaForm;
+        $plb3SaFormDetailModels = $plb3SaFormDetailStaticQuarterModels = [];
+        $plb3SaFormDetailStaticModel = null;
     
-        $plb3SaFormDetailStaticModel = $plb3Form->plb3SaFormDetailStatic;
-        $plb3SaFormDetailStaticQuarterModels = $plb3Form->plb3SaFormDetailStaticQuarters;
-        
-        $plb3SaFormDetailModels = [];
-        foreach (Plb3SaQuestion::find()->all() as $key => $question) {
-            $detailModel = $plb3Form->getPlb3SaFormDetailByQuestion($question->id);
-            if (!is_null($detailModel)) {
-                $plb3SaFormDetailModels[$question->id] = $detailModel;
+        if (!is_null($plb3Form)) {
+            $plb3SaFormDetailStaticModel = $plb3Form->plb3SaFormDetailStatic;
+            $plb3SaFormDetailStaticQuarterModels = $plb3Form->plb3SaFormDetailStaticQuarters;
+            foreach (Plb3SaQuestion::find()->all() as $key => $question) {
+                $detailModel = $plb3Form->getPlb3SaFormDetailByQuestion($question->id);
+                if (!is_null($detailModel)) {
+                    $plb3SaFormDetailModels[$question->id] = $detailModel;
+                }
             }
         }
         

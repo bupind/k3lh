@@ -32,15 +32,20 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'options' => [
-            'excluded' => ['plb3_self_assessment_id']
+            'excluded' => ['plb3_self_assessment_id'],
+            'converter' => [
+                'profile_contacts_name' => [AppConstants::FORMAT_TYPE_VARIABLE, Yii::$app->formatter->asNtext($model->profile_contacts_name)],
+                'profile_contacts_mobile_phone' => [AppConstants::FORMAT_TYPE_VARIABLE, Yii::$app->formatter->asNtext($model->profile_contacts_mobile_phone)],
+                'profile_contacts_email' => [AppConstants::FORMAT_TYPE_VARIABLE, Yii::$app->formatter->asNtext($model->profile_contacts_email)],
+            ]
         ]
     ]); ?>
     <?= ViewButton::widget([
         'model' => $model,
         'options' => [
             'buttons' => [
-                'create' => Html::a('<i class="ace-icon fa fa-plus bigger-120"></i> ' . AppLabels::BTN_ADD, ['create', 'plb3SAId' => $model->plb3_self_assessment_id], ['class' => 'btn btn-white btn-success btn-bold']),
-                'index' => Html::a('<i class="ace-icon fa fa-undo bigger-120 red2"></i> ' . AppLabels::BTN_BACK, ['index', 'plb3SAId' => $model->plb3_self_assessment_id], ['class' => 'btn btn-white btn-danger btn-bold']),
+                'create' => '',
+                'index' => Html::a('<i class="ace-icon fa fa-undo bigger-120 red2"></i> ' . AppLabels::BTN_BACK, ['/plb3-self-assessment/update', 'id' => $model->plb3_self_assessment_id], ['class' => 'btn btn-white btn-danger btn-bold']),
             ]
         ]
     ]); ?>

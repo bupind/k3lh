@@ -60,14 +60,24 @@ $this->params['breadcrumbs'][] = $this->title;
                 </ul>
                 <div class="tab-content">
                     <div id="company-profile" class="tab-pane fade active in">
+                        <?php if (!is_null($model->plb3SaCompanyProfile)): ?>
                         <?= DetailView::widget([
-                            'model' => $model->plb3SaCompanyProfiles[0],
+                            'model' => $model->plb3SaCompanyProfile,
                             'options' => [
-                                'excluded' => ['plb3_self_assessment_id']
+                                'excluded' => ['plb3_self_assessment_id'],
+                                'converter' => [
+                                    'profile_contacts_name' => [AppConstants::FORMAT_TYPE_VARIABLE, Yii::$app->formatter->asNtext($model->plb3SaCompanyProfile->profile_contacts_name)],
+                                    'profile_contacts_mobile_phone' => [AppConstants::FORMAT_TYPE_VARIABLE, Yii::$app->formatter->asNtext($model->plb3SaCompanyProfile->profile_contacts_mobile_phone)],
+                                    'profile_contacts_email' => [AppConstants::FORMAT_TYPE_VARIABLE, Yii::$app->formatter->asNtext($model->plb3SaCompanyProfile->profile_contacts_email)],
+                                ]
                             ]
                         ]); ?>
+                        <?php else: ?>
+                            <?= AppConstants::MSG_DATA_NOT_FOUND; ?>
+                        <?php endif; ?>
                     </div>
                     <div id="b3-waste-management" class="tab-pane fade">
+                        <?php if (!is_null($model->plb3SaForm)): ?>
                         <?= $this->render('_b3_waste_management', [
                             'model' => $model,
                             'plb3SaFormDetailModels' => $plb3SaFormDetailModels,
@@ -76,6 +86,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             'plb3SaFormDetailStaticModel' => $plb3SaFormDetailStaticModel,
                             'plb3SaFormDetailStaticQuarterModels' => $plb3SaFormDetailStaticQuarterModels,
                         ]); ?>
+                        <?php else: ?>
+                            <?= AppConstants::MSG_DATA_NOT_FOUND; ?>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -84,7 +97,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-xs-12">
-            <?= ViewButton::widget(['model' => $model]); ?>
+            <?= ViewButton::widget([
+                'model' => $model,
+                'options' => [
+                    'template' => AppConstants::VIEW_BUTTON_TEMPLATE_EXCEL
+                ]
+            ]); ?>
         </div>
     </div>
 

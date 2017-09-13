@@ -16,6 +16,7 @@ use yii\base\Exception;
  * @property string $profile_activity_loc_address
  * @property string $profile_phone_fax
  * @property string $profile_main_office_address
+ * @property string $profile_main_office_phone_fax
  * @property string $profile_holding_name
  * @property string $profile_holding_office_address
  * @property string $profile_holding_phone_fax
@@ -59,7 +60,7 @@ class Plb3SaCompanyProfile extends AppModel {
             [['plb3_self_assessment_id'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
             [['profile_activity_loc_address', 'profile_main_office_address', 'profile_holding_office_address', 'profile_production_process', 'profile_environment_document', 'profile_contacts_name', 'profile_contacts_mobile_phone', 'profile_contacts_email', 'profile_company_established_year'], 'string'],
             [['profile_name', 'profile_holding_name'], 'string', 'max' => 255],
-            [['profile_phone_fax', 'profile_holding_phone_fax', 'profile_company_established_year'], 'string', 'max' => 100],
+            [['profile_phone_fax', 'profile_main_office_phone_fax', 'profile_holding_phone_fax', 'profile_company_established_year'], 'string', 'max' => 100],
             [['profile_industry_field', 'profile_capital_status', 'profile_number_of_employees', 'profile_raw_material', 'profile_adjuvant_material', 'profile_export_marketing_percentage', 'profile_local_marketing_percentage'], 'string', 'max' => 150],
             [['profile_area_factory', 'profile_production_capacity_installed', 'profile_production_capacity_realization'], 'string', 'max' => 50],
             [['plb3_self_assessment_id'], 'exist', 'skipOnError' => true, 'targetClass' => Plb3SelfAssessment::className(), 'targetAttribute' => ['plb3_self_assessment_id' => 'id']],
@@ -77,6 +78,7 @@ class Plb3SaCompanyProfile extends AppModel {
             'profile_activity_loc_address' => AppLabels::ACTIVITY_LOCATION_ADDRESS,
             'profile_phone_fax' => AppLabels::PHONE_FAX,
             'profile_main_office_address' => AppLabels::MAIN_COMPANY_ADDRESS,
+            'profile_main_office_phone_fax' => AppLabels::PHONE_FAX,
             'profile_holding_name' => AppLabels::HOLDING_COMPANY_NAME,
             'profile_holding_office_address' => AppLabels::HOLDING_COMPANY_OFFICE_ADDRESS,
             'profile_holding_phone_fax' => AppLabels::PHONE_FAX,
