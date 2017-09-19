@@ -188,7 +188,7 @@ $no = 1;
                 </tr>
             
                 <?php foreach ($questionL2->getChild() as $l3Key => $questionL3): ?>
-                    <?php if ($questionL3->is_question == AppConstants::STATUS_YES): ?>
+                    <?php if (isset($plb3SaFormDetailModels[$questionL3->id]) && $questionL3->is_question == AppConstants::STATUS_YES): ?>
                         <tr>
                             <td>
                                 <?php

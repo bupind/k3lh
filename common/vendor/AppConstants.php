@@ -483,6 +483,7 @@ class AppConstants {
     const REPORT_NAME_MATURITY_LEVEL = 'report_maturity_level_%s.xlsx';
     const REPORT_NAME_PPA = 'report_pengendalian_pencemaran_air_%s.xlsx';
     const REPORT_NAME_PPA_BA = 'report_ppa_badan_air_%s.xlsx';
+    const REPORT_NAME_PLB3_SA = 'report_plb3_sa_%s.xlsx';
 
     // PHPEXCEL
     const PHPEXCEL_FORMAT_CURRENCY = 'Rp #,##0.00';

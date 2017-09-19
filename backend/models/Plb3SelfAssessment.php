@@ -37,7 +37,6 @@ class Plb3SelfAssessment extends AppModel {
         return [
             [['sector_id', 'power_plant_id', 'plb3_year'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
             [['sector_id', 'power_plant_id', 'plb3_year'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
-            [['plb3_year'], 'string', 'max' => 4],
             [['sector_id'], 'exist', 'skipOnError' => true, 'targetClass' => Sector::className(), 'targetAttribute' => ['sector_id' => 'id']],
             [['power_plant_id'], 'exist', 'skipOnError' => true, 'targetClass' => PowerPlant::className(), 'targetAttribute' => ['power_plant_id' => 'id']],
         ];

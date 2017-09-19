@@ -124,10 +124,10 @@ $no = 1;
             <td colspan="3"><?= $questionL1->label; ?></td>
         </tr>
         <?php foreach ($questionL1->getChild() as $l2Key => $questionL2): ?>
-            <?php if ($questionL2->is_question == AppConstants::STATUS_YES): ?>
+            <?php if (isset($plb3SaFormDetailModels[$questionL2->id]) && $questionL2->is_question == AppConstants::STATUS_YES): ?>
                 <tr>
                     <td></td>
-                    <td><?= $questionL2->label; ?></td>
+                    <td><?= $questionL2->label; ?>dd</td>
                     <td><?= PLB3Helper::generateSALabel($plb3SaFormDetailModels[$questionL2->id], $questionL2->input_type_code); ?></td>
                     <td><?= Converter::attachments($plb3SaFormDetailModels[$questionL2->id]->attachmentOwners); ?></td>
                 </tr>
@@ -139,7 +139,7 @@ $no = 1;
                 </tr>
             
                 <?php foreach ($questionL2->getChild() as $l3Key => $questionL3): ?>
-                    <?php if ($questionL3->is_question == AppConstants::STATUS_YES): ?>
+                    <?php if (isset($plb3SaFormDetailModels[$questionL3->id]) && $questionL3->is_question == AppConstants::STATUS_YES): ?>
                         <tr>
                             <td></td>
                             <td><?= $questionL3->label; ?></td>

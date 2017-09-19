@@ -74,4 +74,15 @@ class PLB3Helper extends Component {
         }
     }
     
+    public static function generateSALabelExcel($model, $inputTypeCode) {
+        switch ($inputTypeCode) {
+            case AppConstants::FORMAT_TYPE_YES_NO:
+                return sprintf('%s. %s', Converter::format($model->plb3safd_yes_no, AppConstants::FORMAT_TYPE_YES_NO), \Yii::$app->formatter->asHtml($model->plb3safd_description));
+                break;
+            case AppConstants::FORMAT_TYPE_PERCENTAGE:
+                return $model->plb3safd_percentage . '%';
+                break;
+        }
+    }
+    
 }
