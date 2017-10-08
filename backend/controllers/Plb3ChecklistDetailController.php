@@ -62,6 +62,7 @@ class Plb3ChecklistDetailController extends AppController
         $pct = strtoupper($pct);
         $searchModel = new Plb3ChecklistDetailSearch();
         $searchModel->plb3cd_form_type_code = $pct;
+        $searchModel->plb3_checklist_id = $this->plb3c_model->id;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         $title = Codeset::getCodesetValue(AppConstants::CODESET_NAME_FORM_TYPE_CODE, $pct);

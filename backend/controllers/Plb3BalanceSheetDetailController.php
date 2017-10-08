@@ -64,6 +64,7 @@ class Plb3BalanceSheetDetailController extends AppController
         $bst = strtoupper($bst);
         $searchModel = new Plb3BalanceSheetDetailSearch();
         $searchModel->form_type_code = $bst;
+        $searchModel->plb3_balance_sheet_id = $this->plb3bs_model->id;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         $title = Codeset::getCodesetValue(AppConstants::CODESET_NAME_FORM_TYPE_CODE, $bst);
