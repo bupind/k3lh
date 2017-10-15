@@ -31,7 +31,14 @@ $buttons = array_merge($actionColumn->buttons, [
     'view_xs' => function ($url, $model) {
         return Html::a('<span class="blue"><i class="ace-icon fa fa-eye bigger-120"></i></span>', ['view', 'pct' => $model->plb3cd_form_type_code, 'plb3cId' => $model->plb3Checklist->id, 'id' => $model->id], ['class' => 'tooltip-info', 'data-rel' => 'tooltip', 'data-original-title' => AppLabels::BTN_VIEW]);
     },
+    'export' => function ($url, $model) {
+        return Html::a('<i class="ace-icon fa fa-file-excel-o bigger-120"></i> ' . AppLabels::BTN_EXPORT, ['export', 'id' => $model->id], ['class' => 'btn btn-xs btn-purple']);
+    },
+    'export_xs' => function ($url, $model) {
+        return Html::a('<span class="purple"><i class="ace-icon fa fa-file-excel-o bigger-120"></i></span>', ['export', 'id' => $model->id], ['class' => 'tooltip-purple', 'data-rel' => 'tooltip', 'data-original-title' => AppLabels::BTN_EXPORT]);
+    },
 ]);
+$template = Yii::t('app', AppConstants::GRID_TEMPLATE_DEFAULT_EXTRA, ['additional_buttons' => '{export}', 'additional_buttons_xs' => '<li>{export_xs}</li>']);
 ?>
 <div class="plb3-checklist-detail-index">
 
@@ -58,6 +65,7 @@ $buttons = array_merge($actionColumn->buttons, [
             [
                 'class' => 'yii\grid\ActionColumn',
                 'buttons' => $buttons,
+                'template' => $template,
             ],
         ],
     ]); ?>

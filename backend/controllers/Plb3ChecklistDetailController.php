@@ -206,6 +206,19 @@ class Plb3ChecklistDetailController extends AppController
         return $this->redirect(['index', 'plb3cId' =>  $model->plb3Checklist->id, 'pct' => $model->plb3cd_form_type_code]);
     }
 
+    public function actionExport($id) {
+
+        $searchModel = new Plb3ChecklistDetailSearch();
+
+        if ($searchModel->export($id)) {
+            Yii::$app->session->setFlash('success', AppConstants::MSG_GENERATE_FILE_SUCCESS);
+            return $this->redirect(['/download/excel', 'filename' => $searchModel->filename]);
+        }else{
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+
+    }
+
     /**
      * Finds the Plb3ChecklistDetail model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

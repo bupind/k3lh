@@ -306,6 +306,7 @@ class AppConstants {
     const CODESET_PLB3_BS_WASTE_TYPE_CODE = 'PLB3_BS_WASTE_TYPE_CODE';
     const CODESET_PLB3_BS_WASTE_UNIT_CODE = 'PLB3_BS_WASTE_UNIT_CODE';
     const CODESET_PLB3_BS_TREATMENT_TYPE_CODE = 'PLB3_BS_TREATMENT_TYPE_CODE';
+    const CODESET_PLB3_BS_TREATMENT_RESULT = 'PBTTC1';
 
     //PLB3_QUESTION
     const CODESET_PLB3_QUESTION_TYPE_CODE_PCFTC1 = 'PLB3_QUESTION_TYPE_CODE_PCFTC1';
@@ -314,6 +315,9 @@ class AppConstants {
 
     //PLB3 CHECKLIST
     const CODESET_PLB3_CHECKLIST_FORM_TYPE_CODE = 'PLB3_CHECKLIST_FORM_TYPE_CODE';
+    const CODESET_PLB3_CHECKLIST_FTC_TPS = 'PCFTC1';
+    const CODESET_PLB3_CHECKLIST_FTC_LANDFILL = 'PCFTC2';
+    const CODESET_PLB3_CHECKLIST_FTC_THIRD_PARTY = 'PCFTC3';
 
     const PPA_RBM_PARAM_DEBIT = 'DBT';
     const PPA_RBM_PARAM_PRODUCTION = 'PRD';
@@ -484,6 +488,8 @@ class AppConstants {
     const REPORT_NAME_PPA = 'report_pengendalian_pencemaran_air_%s.xlsx';
     const REPORT_NAME_PPA_BA = 'report_ppa_badan_air_%s.xlsx';
     const REPORT_NAME_PLB3_SA = 'report_plb3_sa_%s.xlsx';
+    const REPORT_NAME_PLB3_BALANCE_SHEET = 'report_plb3_neraca_sa_%s.xlsx';
+    const REPORT_NAME_PLB3_CHECKLIST = 'report_plb3_checklist_sa_%s.xlsx';
 
     // PHPEXCEL
     const PHPEXCEL_FORMAT_CURRENCY = 'Rp #,##0.00';

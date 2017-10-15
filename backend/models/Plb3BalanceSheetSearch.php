@@ -7,11 +7,14 @@ use yii\data\ActiveDataProvider;
 use common\vendor\AppConstants;
 use Yii;
 use common\vendor\AppLabels;
+
 /**
  * Plb3BalanceSheetSearch represents the model behind the search form about `backend\models\Plb3BalanceSheet`.
  */
 class Plb3BalanceSheetSearch extends Plb3BalanceSheet
 {
+    public $filename;
+
     /**
      * @inheritdoc
      */
@@ -67,7 +70,8 @@ class Plb3BalanceSheetSearch extends Plb3BalanceSheet
         return $dataProvider;
     }
 
-    public function export($id) {
+    public function export($id)
+    {
 
         $query = Plb3BalanceSheet::find()->where(['id' => $id]);
 
@@ -83,13 +87,11 @@ class Plb3BalanceSheetSearch extends Plb3BalanceSheet
 
         $model = $dataProvider->getModels()[0];
 
-        $plb3BalanceSheetDetails = $model->plb3BalanceSheetDetails;
-
         // export to excel
 
         //main excel setup
         $objPHPExcel = new \PHPExcel();
-        $filename = sprintf(AppConstants::REPORT_NAME_PPU, Date('dmYHis'));
+        $filename = sprintf(AppConstants::REPORT_NAME_PLB3_BALANCE_SHEET, Date('dmYHis'));
         $defaultStyleArray = [
             'font' => [
                 'size' => 10
@@ -101,9 +103,8 @@ class Plb3BalanceSheetSearch extends Plb3BalanceSheet
         $sheetIndex = 0;
         //Creating sheet
 
-        foreach($plb3BalanceSheetDetails as $key => $value) {
-            $this->exportPlb3BalanceSheetDetail($objPHPExcel, $sheetIndex++, $value);
-        }
+        $this->exportPlb3BalanceSheet($objPHPExcel, $sheetIndex, $model);
+
         $objPHPExcel->removeSheetByIndex($objPHPExcel->getSheetCount() - 1);
         $objPHPExcel->setActiveSheetIndex(0);
 
@@ -115,36 +116,111 @@ class Plb3BalanceSheetSearch extends Plb3BalanceSheet
         return true;
     }
 
-    public function exportPlb3BalanceSheetDetail(\PHPExcel &$objPHPExcel, $sheetIndex, $model){
+    public function exportPlb3BalanceSheet(\PHPExcel &$objPHPExcel, $sheetIndex, $model)
+    {
         //Creating sheet
         $activeSheet = $objPHPExcel->createSheet($sheetIndex);
-        $activeSheet->setTitle(sprintf("%s %s", AppLabels::BM_REPORT_PARAMETER, AppLabels::CEMS));
+        $activeSheet->setTitle(sprintf("%s %s %s", AppLabels::BALANCE_SHEET, AppLabels::WASTE, AppLabels::B3));
 
-        //getting model
-        $ppuEmissionSourceModel = $model->ppuEmissionSources;
+        //setting startdate
+        $startDate = new \DateTime();
+        $startDate->setDate($model->plb3_year - 1, 7, 1);
 
         // set dimension
 
         // set row width
 
         // set column width
-        $activeSheet->getColumnDimension('A')->setWidth(60);
-        $activeSheet->getColumnDimension('B')->setWidth(30);
-        $activeSheet->getColumnDimension('C')->setWidth(30);
-        $activeSheet->getColumnDimension('D')->setWidth(30);
-        $activeSheet->getColumnDimension('E')->setWidth(30);
-        $activeSheet->getColumnDimension('F')->setWidth(60);
-        $activeSheet->getColumnDimension('G')->setWidth(30);
-        $activeSheet->getColumnDimension('H')->setWidth(30);
-        $activeSheet->getColumnDimension('I')->setWidth(30);
-        $activeSheet->getColumnDimension('J')->setWidth(30);
-        $activeSheet->getColumnDimension('K')->setWidth(35);
+        $activeSheet->getColumnDimension('A')->setWidth(4);
+        $activeSheet->getColumnDimension('B')->setWidth(20);
+        $activeSheet->getColumnDimension('C')->setWidth(10);
+        $activeSheet->getColumnDimension('D')->setWidth(10);
+        $activeSheet->getColumnDimension('E')->setWidth(25);
+        $activeSheet->getColumnDimension('F')->setWidth(20);
+        $activeSheet->getColumnDimension('G')->setWidth(10);
+        $activeSheet->getColumnDimension('H')->setWidth(10);
+        $activeSheet->getColumnDimension('I')->setWidth(10);
+        $activeSheet->getColumnDimension('J')->setWidth(10);
+        $activeSheet->getColumnDimension('K')->setWidth(10);
+        $activeSheet->getColumnDimension('L')->setWidth(10);
+        $activeSheet->getColumnDimension('M')->setWidth(10);
+        $activeSheet->getColumnDimension('N')->setWidth(10);
+        $activeSheet->getColumnDimension('O')->setWidth(10);
+        $activeSheet->getColumnDimension('P')->setWidth(10);
+        $activeSheet->getColumnDimension('Q')->setWidth(10);
+        $activeSheet->getColumnDimension('R')->setWidth(10);
+        $activeSheet->getColumnDimension('S')->setWidth(15);
+        $activeSheet->getColumnDimension('T')->setWidth(20);
+        $activeSheet->getColumnDimension('U')->setWidth(20);
+        $activeSheet->getColumnDimension('V')->setWidth(20);
+        $activeSheet->getColumnDimension('W')->setWidth(20);
+        $activeSheet->getColumnDimension('X')->setWidth(20);
+        $activeSheet->getColumnDimension('Y')->setWidth(15);
+        $activeSheet->getColumnDimension('Z')->setWidth(17);
+        $activeSheet->getColumnDimension('AA')->setWidth(15);
+        $activeSheet->getColumnDimension('AB')->setWidth(15);
+
+        //header
+        $activeSheet->mergeCells('A1:E1');
+        $activeSheet->mergeCells('A2:E2');
+        $activeSheet->mergeCells('A3:E3');
+        $activeSheet->mergeCells('F2:AB2');
+        $activeSheet->mergeCells('F3:AB3');
+        $activeSheet->setCellValue('A1', "NERACA PENGELOLAAN LIMBAH B3");
+        $activeSheet->setCellValue('A2', "PT.");
+        $activeSheet->setCellValue('A3', "PERIODE");
+        $activeSheet->setCellValue('F2', $model->powerPlant->pp_name);
+        $activeSheet->setCellValue('F3', $model->plb3_year);
+
+        //header style
+        $styleArray = [
+            'font' => [
+                'bold' => true,
+            ],
+            'alignment' => [
+                'horizontal' => \PHPExcel_Style_Alignment::HORIZONTAL_RIGHT,
+                'vertical' => \PHPExcel_Style_Alignment::VERTICAL_CENTER,
+                'wrap' => true
+            ],
+            'borders' => [
+                'allborders' => [
+                    'style' => \PHPExcel_Style_Border::BORDER_THIN,
+                    'color' => [
+                        'argb' => \PHPExcel_Style_Color::COLOR_BLACK
+                    ]
+                ]
+            ]
+        ];
+
+        $styleArray2 = [
+            'font' => [
+                'bold' => true,
+            ],
+            'alignment' => [
+                'horizontal' => \PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
+                'vertical' => \PHPExcel_Style_Alignment::VERTICAL_CENTER,
+                'wrap' => true
+            ],
+            'borders' => [
+                'allborders' => [
+                    'style' => \PHPExcel_Style_Border::BORDER_THIN,
+                    'color' => [
+                        'argb' => \PHPExcel_Style_Color::COLOR_BLACK
+                    ]
+                ]
+            ]
+        ];
+        $activeSheet->getStyle('A1:E1')->applyFromArray($styleArray);
+        $activeSheet->getStyle('A2:E2')->applyFromArray($styleArray);
+        $activeSheet->getStyle('A3:E3')->applyFromArray($styleArray);
+        $activeSheet->getStyle('F2:AB2')->applyFromArray($styleArray2);
+        $activeSheet->getStyle('F3:AB3')->applyFromArray($styleArray2);
 
         //==========================================================================
 
         // body header
 
-        $styleArrayTitle = [
+        $styleArray = [
             'font' => [
                 'bold' => false,
                 'size' => 13,
@@ -164,42 +240,77 @@ class Plb3BalanceSheetSearch extends Plb3BalanceSheet
                         'argb' => \PHPExcel_Style_Color::COLOR_BLACK
                     ]
                 ]
-            ],
-            'fill' => [
-                'type' => \PHPExcel_Style_Fill::FILL_SOLID,
-                'startcolor' => ['argb' => 'FFF2F2F2']
-            ],
+            ]
         ];
 
-        $activeSheet->setCellValue('A2', sprintf("%s %s %s", AppLabels::ADHERENCE, AppLabels::MONITORING, AppLabels::CEMS));
-        $activeSheet->setCellValue('B2', sprintf("%s %s-%s", AppLabels::QUARTER, "III", $model->ppu_year-1));
-        $activeSheet->setCellValue('C2', sprintf("%s %s-%s", AppLabels::QUARTER, "IV", $model->ppu_year-1));
-        $activeSheet->setCellValue('D2', sprintf("%s %s-%s", AppLabels::QUARTER, "I", $model->ppu_year));
-        $activeSheet->setCellValue('E2', sprintf("%s %s-%s", AppLabels::QUARTER, "II", $model->ppu_year));
-        $activeSheet->setCellValue('F2', AppLabels::DESCRIPTION);
-        $activeSheet->setCellValue('G2', sprintf("%s %s-%s", AppLabels::QUARTER, "III", $model->ppu_year-1));
-        $activeSheet->setCellValue('H2', sprintf("%s %s-%s", AppLabels::QUARTER, "IV", $model->ppu_year-1));
-        $activeSheet->setCellValue('I2', sprintf("%s %s-%s", AppLabels::QUARTER, "I", $model->ppu_year));
-        $activeSheet->setCellValue('J2', sprintf("%s %s-%s", AppLabels::QUARTER, "II", $model->ppu_year));
-        $activeSheet->setCellValue('K2', AppLabels::DESCRIPTION);
-        $activeSheet->setCellValue('A3', "Jumlah data parameter pemantauan harian CEMS selama 3 bulanan");
+        $no1 = 4;
+        $no2 = 7;
+        for ($i = 0; $i < 6; $i++) {
+            $alphabet = $this->toAlphabet($i);
+            $activeSheet->mergeCells("$alphabet$no1:$alphabet$no2");
+            $activeSheet->getStyle("$alphabet$no1:$alphabet$no2")->applyFromArray($styleArray);
+        }
 
-        $activeSheet->getStyle('A2')->applyFromArray($styleArrayTitle);
-        $activeSheet->getStyle('B2')->applyFromArray($styleArrayTitle);
-        $activeSheet->getStyle('C2')->applyFromArray($styleArrayTitle);
-        $activeSheet->getStyle('D2')->applyFromArray($styleArrayTitle);
-        $activeSheet->getStyle('E2')->applyFromArray($styleArrayTitle);
-        $activeSheet->getStyle('F2')->applyFromArray($styleArrayTitle);
-        $activeSheet->getStyle('G2')->applyFromArray($styleArrayTitle);
-        $activeSheet->getStyle('H2')->applyFromArray($styleArrayTitle);
-        $activeSheet->getStyle('I2')->applyFromArray($styleArrayTitle);
-        $activeSheet->getStyle('J2')->applyFromArray($styleArrayTitle);
-        $activeSheet->getStyle('K2')->applyFromArray($styleArrayTitle);
-        $activeSheet->getStyle('A3')->applyFromArray($styleArrayTitle);
+        $no1 = 6;
+        $no2 = 7;
+
+        for ($i = 19; $i < 24; $i++) {
+            $alphabet = $this->toAlphabet($i);
+            $activeSheet->mergeCells("$alphabet$no1:$alphabet$no2");
+            $activeSheet->getStyle("$alphabet$no1:$alphabet$no2")->applyFromArray($styleArray);
+        }
+
+        $activeSheet->mergeCells('G4:L6');
+        $activeSheet->mergeCells('M4:R6');
+        $activeSheet->mergeCells('T4:X5');
+        $activeSheet->mergeCells('S4:S7');
+        $activeSheet->mergeCells('Y4:Y7');
+        $activeSheet->mergeCells('Z4:Z7');
+        $activeSheet->mergeCells('AA4:AA7');
+        $activeSheet->mergeCells('AB4:AB7');
+
+        $activeSheet->getStyle("G4:L6")->applyFromArray($styleArray);
+        $activeSheet->getStyle("M4:R6")->applyFromArray($styleArray);
+        $activeSheet->getStyle("T4:X5")->applyFromArray($styleArray);
+        $activeSheet->getStyle("S4:S7")->applyFromArray($styleArray);
+        $activeSheet->getStyle("Y4:Y7")->applyFromArray($styleArray);
+        $activeSheet->getStyle("Z4:Z7")->applyFromArray($styleArray);
+        $activeSheet->getStyle("AA4:AA7")->applyFromArray($styleArray);
+        $activeSheet->getStyle("AB4:AB7")->applyFromArray($styleArray);
+
+        $activeSheet->setCellValue('A4', AppLabels::NUMBER_SHORT);
+        $activeSheet->setCellValue('B4', sprintf("%s %s", AppLabels::WASTE_TYPE, AppLabels::B3));
+        $activeSheet->setCellValue('C4', AppLabels::WASTE_SOURCE);
+        $activeSheet->setCellValue('D4', AppLabels::WASTE_UNIT);
+        $activeSheet->setCellValue('E4', "Perlakuan");
+        $activeSheet->setCellValue('F4', sprintf("%s (Saldo)", AppLabels::PREVIOUS_WASTE));
+        $activeSheet->setCellValue('G4', sprintf("%s %s", AppLabels::YEAR, $model->plb3_year - 1));
+        $activeSheet->setCellValue('M4', sprintf("%s %s", AppLabels::YEAR, $model->plb3_year));
+
+        $no = 7;
+        for ($i = 6; $i < 18; $i++) {
+            $alphabet = $this->toAlphabet($i);
+            $activeSheet->setCellValue("$alphabet$no", $startDate->format('M'));
+            $activeSheet->getStyle("$alphabet$no")->applyFromArray($styleArray);
+            $startDate->add(new \DateInterval('P1M'));
+        }
+
+        $activeSheet->setCellValue('S4', "Limbah Dihasilkan");
+        $activeSheet->setCellValue('T4', "Limbah Dikelola");
+        $activeSheet->setCellValue('T6', "Disimpan Di TPS");
+        $activeSheet->setCellValue('U6', "Dimanfaatkan Sendiri");
+        $activeSheet->setCellValue('V6', "Diolah Sendiri");
+        $activeSheet->setCellValue('W6', "Ditimbun Sendiri");
+        $activeSheet->setCellValue('X6', "Diserahkan pihak ketiga berizin");
+        $activeSheet->setCellValue('Y4', "Limbah Tidak Dikelola");
+        $activeSheet->setCellValue('Z4', AppLabels::PERCENTAGE . "(%)");
+        $activeSheet->setCellValue('AA4', AppLabels::MANIFEST_CODE);
+        $activeSheet->setCellValue('AB4', AppLabels::MANIFEST_CODE);
 
         //body header style
 
         //==========================================================================
+
 
         //body
         $styleArray = [
@@ -218,89 +329,130 @@ class Plb3BalanceSheetSearch extends Plb3BalanceSheet
             ],
         ];
 
-        //Get the number of parameter code
+        $rowIndex = 8;
 
-        $cemsConstant = [
-            0 => 92,
-            1 => 92,
-            2 => 90,
-            3 => 91,
-        ];
+        foreach ($model->plb3BalanceSheetDetails as $key => $detail) {
+            $endRowIndex = $rowIndex+7;
+            $objPHPExcel->getActiveSheet()->getStyle("Z$rowIndex:Z$endRowIndex")
+                ->getNumberFormat()
+                ->setFormatCode('0.00%');
 
-        $rowIndex = 4;
-        foreach ($ppuEmissionSourceModel as $key => $detail) {
-            $ppucemsReportBm = $detail->ppucemsReportBms;
+            $activeSheet->mergeCells('A' . $rowIndex . ':A' . ($rowIndex + 6));
+            $activeSheet->mergeCells('B' . $rowIndex . ':B' . ($rowIndex + 6));
+            $activeSheet->mergeCells('C' . $rowIndex . ':C' . ($rowIndex + 6));
+            $activeSheet->mergeCells('D' . $rowIndex . ':D' . ($rowIndex + 6));
+            $activeSheet->setCellValue('A' . $rowIndex, ($key + 1));
+            $activeSheet->getStyle('A' . $rowIndex . ':A' . ($rowIndex + 6))->applyFromArray($styleArray);
+            $activeSheet->setCellValue('B' . $rowIndex, $detail->plb3_waste_type);
+            $activeSheet->getStyle('B' . $rowIndex . ':B' . ($rowIndex + 6))->applyFromArray($styleArray);
+            $activeSheet->setCellValue('C' . $rowIndex, $detail->plb3_waste_source_code_desc);
+            $activeSheet->getStyle('C' . $rowIndex . ':C' . ($rowIndex + 6))->applyFromArray($styleArray);
+            $activeSheet->setCellValue('D' . $rowIndex, $detail->plb3_waste_unit_code_desc);
+            $activeSheet->getStyle('D' . $rowIndex . ':D' . ($rowIndex + 6))->applyFromArray($styleArray);
 
-            $activeSheet->setCellValue('A' . $rowIndex, $detail->ppues_name);
-            $activeSheet->getStyle('A' . $rowIndex)->applyFromArray($styleArray);
-            $rowIndex++;
+            $activeSheet->setCellValue('E' . $rowIndex, "Dihasilkan");
+            $activeSheet->getStyle('E' . $rowIndex)->applyFromArray($styleArray);
 
-            foreach($ppucemsReportBm as $keyB => $reportBM){
-                $activeSheet->setCellValue('A' . $rowIndex, $reportBM->ppucemsrb_parameter_code_desc);
-                $activeSheet->getStyle('A' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->setCellValue('E' . ($rowIndex + 1), "Disimpan di TPS");
+            $activeSheet->getStyle('E' . ($rowIndex + 1))->applyFromArray($styleArray);
 
-                $columnIndexNumber = \PHPExcel_Cell::columnIndexFromString('B');
-                foreach($reportBM->ppucemsrbQuarters as $keyQ => $quarter){
-                    $column = \PHPExcel_Cell::stringFromColumnIndex($columnIndexNumber-1);
-                    $column2 = \PHPExcel_Cell::stringFromColumnIndex($columnIndexNumber+4);
-                    $activeSheet->setCellValue($column . $rowIndex, $quarter->ppucemsrbq_value);
-                    $activeSheet->getStyle($column . $rowIndex)->applyFromArray($styleArray);
-                    $activeSheet->setCellValue($column2 . $rowIndex, sprintf("%s %%",number_format($quarter->ppucemsrbq_value/$cemsConstant[$keyQ]*100,2)));
-                    $activeSheet->getStyle($column2 . $rowIndex)->applyFromArray($styleArray);
-                    $columnIndexNumber++;
+            $activeSheet->setCellValue('E' . ($rowIndex + 2), "Dimanfaatkan Sendiri");
+            $activeSheet->getStyle('E' . ($rowIndex + 2))->applyFromArray($styleArray);
+
+            $activeSheet->setCellValue('E' . ($rowIndex + 3), "Diolah Sendiri");
+            $activeSheet->getStyle('E' . ($rowIndex + 3))->applyFromArray($styleArray);
+
+            $activeSheet->setCellValue('E' . ($rowIndex + 4), "Ditimbun Sendiri");
+            $activeSheet->getStyle('E' . ($rowIndex + 4))->applyFromArray($styleArray);
+
+            $activeSheet->setCellValue('E' . ($rowIndex + 5), "Diserahkan Kepihah Ketiga Berizin");
+            $activeSheet->getStyle('E' . ($rowIndex + 5))->applyFromArray($styleArray);
+
+            $activeSheet->setCellValue('E' . ($rowIndex + 6), "Tidak Dikelola");
+            $activeSheet->getStyle('E' . ($rowIndex + 6))->applyFromArray($styleArray);
+
+            $alphabetNum = 19;
+            foreach ($detail->plb3BalanceSheetTreatments as $key2 => $treatment) {
+                $nextRowIndex = $rowIndex + $key2;
+
+                if ($key2 == 1) {
+                    $activeSheet->setCellValue('F' . $nextRowIndex, $detail->plb3_previous_waste);
+                    $activeSheet->getStyle('F' . $nextRowIndex)->applyFromArray($styleArray);
+
+                    for ($i = 6; $i < 18; $i++) {
+                        $alphabet = $this->toAlphabet($i);
+                        $pAlphabet = $this->toAlphabet($i - 1);
+                        $formula = sprintf("%s%s+%s%s-%s%s-%s%s-%s%s-%s%s-%s%s", $pAlphabet, $nextRowIndex, $alphabet, $nextRowIndex - 1, $alphabet, $nextRowIndex + 1, $alphabet, $nextRowIndex + 2, $alphabet, $nextRowIndex + 3, $alphabet, $nextRowIndex + 4, $alphabet, $nextRowIndex + 5);
+
+                        $activeSheet->setCellValue("$alphabet$nextRowIndex", "=$formula");
+                        $activeSheet->getStyle("$alphabet$nextRowIndex:$alphabet$nextRowIndex")->applyFromArray($styleArray);
+                    }
+                } else {
+                    $m = 7;
+                    for ($i = 6; $i < 18; $i++) {
+                        $alphabet = $this->toAlphabet($i);
+
+                        foreach ($treatment->plb3bsdMonths as $key3 => $month) {
+                            if ($month->plb3bsdm_month == $m) {
+                                $activeSheet->setCellValue("$alphabet$nextRowIndex", $month->plb3bsdm_value);
+                                $activeSheet->getStyle("$alphabet$nextRowIndex:$alphabet$nextRowIndex")->applyFromArray($styleArray);
+                                break;
+                            }
+                        }
+                        $m++;
+                        if ($m == 13) {
+                            $m = 1;
+                        }
+                    }
                 }
-                $activeSheet->setCellValue('F' . $rowIndex, $reportBM->ppucemsrb_ref);
-                $activeSheet->getStyle('F' . $rowIndex)->applyFromArray($styleArray);
-                if (!empty($reportBM->attachmentOwner)) {
-                    $attachment = Converter::attachmentsFullPath($reportBM->attachmentOwner);
-                    $activeSheet->setCellValue('K' . $rowIndex, $attachment['label']);
-                    $activeSheet->getCell('K' . $rowIndex)->getHyperlink()->setUrl($attachment['path']);
-                    $activeSheet->getCell('K' . $rowIndex)->getStyle()->getFont()->getColor()->setARGB(\PHPExcel_Style_Color::COLOR_BLUE);
-                    $activeSheet->getCell('K' . $rowIndex)->getStyle()->getAlignment()->setWrapText(true);
-                    $activeSheet->getStyle('K' . $rowIndex)->applyFromArray($styleArray);
+
+                if ($key2 != 0) {
+                    $alphabet = $this->toAlphabet($alphabetNum);
+                    $activeSheet->setCellValue('Z' . $nextRowIndex, "=$alphabet$nextRowIndex/S$rowIndex");
+                    $activeSheet->getStyle('Z' . $nextRowIndex)->applyFromArray($styleArray);
+                    $alphabetNum++;
                 }
-                $rowIndex++;
+                $activeSheet->setCellValue('AA' . $nextRowIndex, $treatment->plb3bst_ref);
+                $activeSheet->getStyle('AA' . $nextRowIndex)->applyFromArray($styleArray);
+
+                $activeSheet->setCellValue('AB' . $nextRowIndex, $treatment->plb3bst_manifest_code);
+                $activeSheet->getStyle('AB' . $nextRowIndex)->applyFromArray($styleArray);
             }
-        }
+            $nextRowIndex = $rowIndex + 1;
 
-        $rowIndex+=2;
-        $activeSheet->setCellValue('A' . $rowIndex, "Jumlah data pemantauan yang memenuhi Baku Mutu CEMS");
-        $activeSheet->getStyle('A' . $rowIndex)->applyFromArray($styleArrayTitle);
-        $rowIndex++;
+            $activeSheet->setCellValue('S' . $rowIndex, "=SUM(G$rowIndex:R$rowIndex)+F$nextRowIndex");
+            $activeSheet->getStyle('S' . $rowIndex)->applyFromArray($styleArray);
 
-        foreach ($ppuEmissionSourceModel as $key => $detail) {
-            $ppucemsReportBm = $detail->ppucemsReportBms;
+            $activeSheet->setCellValue('T' . ($rowIndex + 1), "=R$nextRowIndex");
+            $activeSheet->getStyle('T' . ($rowIndex + 1))->applyFromArray($styleArray);
 
-            $activeSheet->setCellValue('A' . $rowIndex, $detail->ppues_name);
-            $activeSheet->getStyle('A' . $rowIndex)->applyFromArray($styleArray);
-            $rowIndex++;
+            $nextRowIndex++;
 
-            foreach($ppucemsReportBm as $keyB => $reportBM){
-                $activeSheet->setCellValue('A' . $rowIndex, $reportBM->ppucemsrb_parameter_code_desc);
-                $activeSheet->getStyle('A' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->setCellValue('U' . ($rowIndex + 2), "=SUM(F$nextRowIndex:R$nextRowIndex)");
+            $activeSheet->getStyle('U' . ($rowIndex + 2))->applyFromArray($styleArray);
 
-                $columnIndexNumber = \PHPExcel_Cell::columnIndexFromString('B');
-                foreach($reportBM->ppucemsrbQuarters as $keyQ => $quarter){
-                    $column = \PHPExcel_Cell::stringFromColumnIndex($columnIndexNumber-1);
-                    $column2 = \PHPExcel_Cell::stringFromColumnIndex($columnIndexNumber+4);
-                    $activeSheet->setCellValue($column . $rowIndex, $quarter->ppucemsrbq_qs_value);
-                    $activeSheet->getStyle($column . $rowIndex)->applyFromArray($styleArray);
-                    $activeSheet->setCellValue($column2 . $rowIndex, sprintf("%s %%",number_format($quarter->ppucemsrbq_qs_value/$quarter->ppucemsrbq_value*100,2)));
-                    $activeSheet->getStyle($column2 . $rowIndex)->applyFromArray($styleArray);
-                    $columnIndexNumber++;
-                }
-                $activeSheet->setCellValue('F' . $rowIndex, $reportBM->ppucemsrb_sec_ref);
-                $activeSheet->getStyle('F' . $rowIndex)->applyFromArray($styleArray);
-                if (!empty($reportBM->attachmentOwner)) {
-                    $attachment = Converter::attachmentsFullPath($reportBM->attachmentOwner);
-                    $activeSheet->setCellValue('K' . $rowIndex, $attachment['label']);
-                    $activeSheet->getCell('K' . $rowIndex)->getHyperlink()->setUrl($attachment['path']);
-                    $activeSheet->getCell('K' . $rowIndex)->getStyle()->getFont()->getColor()->setARGB(\PHPExcel_Style_Color::COLOR_BLUE);
-                    $activeSheet->getCell('K' . $rowIndex)->getStyle()->getAlignment()->setWrapText(true);
-                    $activeSheet->getStyle('K' . $rowIndex)->applyFromArray($styleArray);
-                }
-                $rowIndex++;
-            }
+            $nextRowIndex++;
+
+            $activeSheet->setCellValue('V' . ($rowIndex + 3), "=SUM(F$nextRowIndex:R$nextRowIndex)");
+            $activeSheet->getStyle('V' . ($rowIndex + 3))->applyFromArray($styleArray);
+
+            $nextRowIndex++;
+
+            $activeSheet->setCellValue('W' . ($rowIndex + 4), "=SUM(F$nextRowIndex:R$nextRowIndex)");
+            $activeSheet->getStyle('W' . ($rowIndex + 4))->applyFromArray($styleArray);
+
+            $nextRowIndex++;
+
+            $activeSheet->setCellValue('X' . ($rowIndex + 5), "=SUM(F$nextRowIndex:R$nextRowIndex)");
+            $activeSheet->getStyle('X' . ($rowIndex + 5))->applyFromArray($styleArray);
+
+            $nextRowIndex++;
+
+            $activeSheet->setCellValue('Y' . ($rowIndex + 6), "=SUM(F$nextRowIndex:R$nextRowIndex)");
+            $activeSheet->getStyle('Y' . ($rowIndex + 6))->applyFromArray($styleArray);
+
+
+            $rowIndex += 7;
         }
 
     }

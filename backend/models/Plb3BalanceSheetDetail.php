@@ -35,6 +35,8 @@ class Plb3BalanceSheetDetail extends AppModel
     public $plb3_waste_unit_code_desc;
     public $plb3_previous_waste_display;
 
+    public $tps_saved_value;
+
     public static function tableName()
     {
         return 'plb3_balance_sheet_detail';
@@ -72,7 +74,8 @@ class Plb3BalanceSheetDetail extends AppModel
         ];
     }
 
-    public function saveTransactional() {
+    public function saveTransactional()
+    {
         $request = Yii::$app->request->post();
         $transaction = Yii::$app->db->beginTransaction();
         $errors = [];
@@ -101,7 +104,7 @@ class Plb3BalanceSheetDetail extends AppModel
                     }
 
                     if (isset($request['Plb3bsdMonth'])) {
-                        if($keyBST != 1) {
+                        if ($keyBST != 1) {
                             foreach ($request['Plb3bsdMonth'][$keyBST] as $keyM => $plb3Month) {
                                 if (isset($plb3Month['id'])) {
                                     $plb3MonthTuple = Plb3bsdMonth::findOne(['id' => $plb3Month['id']]);
@@ -137,12 +140,14 @@ class Plb3BalanceSheetDetail extends AppModel
         }
     }
 
-    public function afterFind() {
+    public function afterFind()
+    {
         parent::afterFind();
 
         $this->plb3_previous_waste_display = $this->plb3_previous_waste;
         $this->plb3_waste_source_code_desc = Codeset::getCodesetValue(AppConstants::CODESET_PLB3_BS_WASTE_TYPE_CODE, $this->plb3_waste_source_code);
         $this->plb3_waste_unit_code_desc = Codeset::getCodesetValue(AppConstants::CODESET_PLB3_BS_WASTE_UNIT_CODE, $this->plb3_waste_unit_code);
+
 
         return true;
     }

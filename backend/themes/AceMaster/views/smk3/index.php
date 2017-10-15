@@ -9,7 +9,7 @@ use backend\models\Sector;
 /* @var $searchModel backend\models\Smk3Search */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = sprintf("%s %s", AppLabels::DATA_FORM, AppLabels::SMK3);
+$this->title = sprintf("%s %s", "AHENG", AppLabels::SMK3);
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="smk3-index">

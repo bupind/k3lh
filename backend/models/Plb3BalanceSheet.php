@@ -57,6 +57,12 @@ class Plb3BalanceSheet extends AppModel
         ];
     }
 
+    public function toAlphabet($number){
+        $alphabet = range('A', 'Z');
+
+        return ($alphabet[$number]);
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
