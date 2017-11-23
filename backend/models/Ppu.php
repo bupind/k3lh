@@ -118,7 +118,6 @@ class Ppu extends AppModel
             $temp = [];
             $emissionRadius = $pesModel->ppues_chimney_diameter/2;
             $emissionWide = pi() * $emissionRadius * $emissionRadius;
-            $emissionWide = number_format($emissionWide, 2);
 
             $ppucemsReportBmModel = PpucemsReportBm::find()->where([
                 'ppu_emission_source_id' => $pesModel->id

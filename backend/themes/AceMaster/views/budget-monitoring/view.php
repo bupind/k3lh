@@ -59,7 +59,7 @@ $form = ActiveForm::begin([
     <hr/>
 
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-12 table-responsive">
             <table id="table-monitor" class="table table-bordered small">
                 <thead>
                 <tr>
