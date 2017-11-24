@@ -187,12 +187,10 @@ class MaturityLevelSearch extends MaturityLevel {
     
                     $attachmentOwner = Converter::attachmentsFullPath($detailModels[$detailModelIndex]->attachmentOwner);
                     if (!empty($attachmentOwner)) {
-                        foreach ($attachmentOwner as $attachment) {
-                            $activeSheet->setCellValue('I' . $index, $attachment['label']);
-                            $activeSheet->getCell('I' . $index)->getHyperlink()->setUrl($attachment['path']);
-                            $activeSheet->getCell('I' . $index)->getStyle()->getFont()->getColor()->setARGB(\PHPExcel_Style_Color::COLOR_BLUE);
-                            $activeSheet->getCell('I' . $index)->getStyle()->getAlignment()->setWrapText(true);
-                        }
+                        $activeSheet->setCellValue('I' . $index, $attachmentOwner['label']);
+                        $activeSheet->getCell('I' . $index)->getHyperlink()->setUrl($attachmentOwner['path']);
+                        $activeSheet->getCell('I' . $index)->getStyle()->getFont()->getColor()->setARGB(\PHPExcel_Style_Color::COLOR_BLUE);
+                        $activeSheet->getCell('I' . $index)->getStyle()->getAlignment()->setWrapText(true);
                     }
             
                     $totalWeight += $question->q_weight;

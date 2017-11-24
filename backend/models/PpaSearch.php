@@ -409,12 +409,10 @@ class PpaSearch extends Ppa {
     
             $attachmentOwner = Converter::attachmentsFullPath($pollutionLoadDecrease->attachmentOwner);
             if (!empty($attachmentOwner)) {
-                foreach ($attachmentOwner as $attachment) {
-                    $activeSheet->setCellValue('I' . $index, $attachment['label']);
-                    $activeSheet->getCell('I' . $index)->getHyperlink()->setUrl($attachment['path']);
-                    $activeSheet->getCell('I' . $index)->getStyle()->getFont()->getColor()->setARGB(\PHPExcel_Style_Color::COLOR_BLUE);
-                    $activeSheet->getCell('I' . $index)->getStyle()->getAlignment()->setWrapText(true);
-                }
+                $activeSheet->setCellValue('I' . $index, $attachmentOwner['label']);
+                $activeSheet->getCell('I' . $index)->getHyperlink()->setUrl($attachmentOwner['path']);
+                $activeSheet->getCell('I' . $index)->getStyle()->getFont()->getColor()->setARGB(\PHPExcel_Style_Color::COLOR_BLUE);
+                $activeSheet->getCell('I' . $index)->getStyle()->getAlignment()->setWrapText(true);
             }
             
             $index++;
@@ -996,11 +994,9 @@ class PpaSearch extends Ppa {
             
                 $attachmentOwner = Converter::attachmentsFullPath($ppaMonth->attachmentOwner);
                 if (!empty($attachmentOwner)) {
-                    foreach ($attachmentOwner as $attachment) {
-                        $activeSheet->getCell($colString . $index)->getHyperlink()->setUrl($attachment['path']);
-                        $activeSheet->getCell($colString . $index)->getStyle()->getFont()->getColor()->setARGB(\PHPExcel_Style_Color::COLOR_BLUE);
-                        $activeSheet->getCell($colString . $index)->getStyle()->getAlignment()->setWrapText(true);
-                    }
+                    $activeSheet->getCell($colString . $index)->getHyperlink()->setUrl($attachmentOwner['path']);
+                    $activeSheet->getCell($colString . $index)->getStyle()->getFont()->getColor()->setARGB(\PHPExcel_Style_Color::COLOR_BLUE);
+                    $activeSheet->getCell($colString . $index)->getStyle()->getAlignment()->setWrapText(true);
                 }
             
                 $colNumber++;

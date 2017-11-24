@@ -96,7 +96,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= ViewButton::widget([
                 'model' => $model,
                 'options' => [
-                    'template' => AppConstants::VIEW_BUTTON_TEMPLATE_EXCEL
+                    'template' => AppConstants::VIEW_BUTTON_TEMPLATE_EXCEL,
+                    'backAction' => sprintf('index?_ppId=%s', $model->power_plant_id)
                 ]
             ]); ?>
         </div>

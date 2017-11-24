@@ -412,11 +412,9 @@ class PpaBaSearch extends PpaBa {
     
                 $attachmentOwner = Converter::attachmentsFullPath($ppaBaMonth->attachmentOwner);
                 if (!empty($attachmentOwner)) {
-                    foreach ($attachmentOwner as $attachment) {
-                        $activeSheet->getCell($colString . $index)->getHyperlink()->setUrl($attachment['path']);
-                        $activeSheet->getCell($colString . $index)->getStyle()->getFont()->getColor()->setARGB(\PHPExcel_Style_Color::COLOR_BLUE);
-                        $activeSheet->getCell($colString . $index)->getStyle()->getAlignment()->setWrapText(true);
-                    }
+                    $activeSheet->getCell($colString . $index)->getHyperlink()->setUrl($attachmentOwner['path']);
+                    $activeSheet->getCell($colString . $index)->getStyle()->getFont()->getColor()->setARGB(\PHPExcel_Style_Color::COLOR_BLUE);
+                    $activeSheet->getCell($colString . $index)->getStyle()->getAlignment()->setWrapText(true);
                 }
         
                 $colNumber++;
