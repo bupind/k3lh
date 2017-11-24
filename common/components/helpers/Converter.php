@@ -6,7 +6,6 @@ use backend\models\AttachmentOwner;
 use yii\helpers\Html;
 use yii\base\Component;
 use common\vendor\AppConstants;
-use yii\helpers\Url;
 
 /**
  * Description of Converter
@@ -204,7 +203,7 @@ class Converter extends Component {
                     ];
                 }
             }else{
-                $result[] = [
+                $result = [
                     'label' => $attachmentOwners->attachment->atf_filename,
                     'path' => sprintf('http://%s%s/uploads/%s/%s', Yii::$app->getRequest()->serverName, \Yii::getAlias(AppConstants::THEME_BASE_URL), strtolower($attachmentOwners->attachment->atf_location), $attachmentOwners->attachment->atf_filename)
                 ];

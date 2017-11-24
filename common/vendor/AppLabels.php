@@ -796,5 +796,8 @@ class AppLabels {
     const FORM_CONTRACT_MONITORING = 'Monitoring Kontrak K3L';
     const METHOD = 'Metode';
 
+    //FORM K3L ACTIVITY
+    const FORM_K3L_ACTIVITY = 'Form Aktifitas K3L';
+
 
 }

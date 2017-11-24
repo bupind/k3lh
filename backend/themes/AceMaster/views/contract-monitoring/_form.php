@@ -152,140 +152,141 @@ $form = ActiveForm::begin([
                 </div>
             </div>
         </div>
-    </div>
 
-    <hr/>
 
-    <div class="row">
-        <div class="col-xs-12 col-md-4">
-            <div class="widget-box">
-                <div class="widget-header">
-                    <h4 class="widget-title"> Persetujuan GM </h4>
-                </div>
-                <div class="widget-body">
-                    <div class="widget-main">
-                        <fieldset>
-                            <?php
+        <hr/>
 
-                            echo $form->field($model, 'cm_gm_status', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
-                                ->dropDownList(Codeset::customMap(AppConstants::CODESET_CM_GM_STATUS_TYPE), ['class' => 'chosen-select form-control'])
-                                ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+        <div class="row">
+            <div class="col-xs-12 col-md-4">
+                <div class="widget-box">
+                    <div class="widget-header">
+                        <h4 class="widget-title"> Persetujuan GM </h4>
+                    </div>
+                    <div class="widget-body">
+                        <div class="widget-main">
+                            <fieldset>
+                                <?php
 
-                            echo $form->field($model, 'cm_gm_date', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
-                                ->widget(
-                                    DatePicker::className(), [
-                                        'model' => $model,
-                                        'attribute' => 'cm_gm_date',
-                                        'type' => DatePicker::TYPE_COMPONENT_APPEND,
-                                        'pluginOptions' => [
-                                            'autoclose' => true,
-                                            'format' => 'dd MM yyyy',
-                                            'todayHighlight' => true
+                                echo $form->field($model, 'cm_gm_status', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+                                    ->dropDownList(Codeset::customMap(AppConstants::CODESET_CM_GM_STATUS_TYPE), ['class' => 'chosen-select form-control'])
+                                    ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+
+                                echo $form->field($model, 'cm_gm_date', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+                                    ->widget(
+                                        DatePicker::className(), [
+                                            'model' => $model,
+                                            'attribute' => 'cm_gm_date',
+                                            'type' => DatePicker::TYPE_COMPONENT_APPEND,
+                                            'pluginOptions' => [
+                                                'autoclose' => true,
+                                                'format' => 'dd MM yyyy',
+                                                'todayHighlight' => true
+                                            ]
                                         ]
-                                    ]
-                                )
-                                ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
-                            ?>
-                        </fieldset>
+                                    )
+                                    ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+                                ?>
+                            </fieldset>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-xs-12 col-md-4">
-            <div class="widget-box">
-                <div class="widget-header">
-                    <h4 class="widget-title"> Proses Pengadaan </h4>
-                </div>
-                <div class="widget-body">
-                    <div class="widget-main">
-                        <fieldset>
-                            <?php
+            <div class="col-xs-12 col-md-4">
+                <div class="widget-box">
+                    <div class="widget-header">
+                        <h4 class="widget-title"> Proses Pengadaan </h4>
+                    </div>
+                    <div class="widget-body">
+                        <div class="widget-main">
+                            <fieldset>
+                                <?php
 
-                            echo $form->field($model, 'cm_procure_receiver', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
-                                ->dropDownList(Codeset::customMap(AppConstants::CODESET_CM_PROCURE_RECEIVER_TYPE), ['class' => 'chosen-select form-control'])
-                                ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+                                echo $form->field($model, 'cm_procure_receiver', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+                                    ->dropDownList(Codeset::customMap(AppConstants::CODESET_CM_PROCURE_RECEIVER_TYPE), ['class' => 'chosen-select form-control'])
+                                    ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
 
-                            echo $form->field($model, 'cm_date', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
-                                ->widget(
-                                    DatePicker::className(), [
-                                        'model' => $model,
-                                        'attribute' => 'cm_date',
-                                        'type' => DatePicker::TYPE_COMPONENT_APPEND,
-                                        'pluginOptions' => [
-                                            'autoclose' => true,
-                                            'format' => 'dd MM yyyy',
-                                            'todayHighlight' => true
+                                echo $form->field($model, 'cm_date', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+                                    ->widget(
+                                        DatePicker::className(), [
+                                            'model' => $model,
+                                            'attribute' => 'cm_date',
+                                            'type' => DatePicker::TYPE_COMPONENT_APPEND,
+                                            'pluginOptions' => [
+                                                'autoclose' => true,
+                                                'format' => 'dd MM yyyy',
+                                                'todayHighlight' => true
+                                            ]
                                         ]
-                                    ]
-                                )
-                                ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+                                    )
+                                    ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
 
-                            echo $form->field($model, 'cm_method', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
-                                ->dropDownList(Codeset::customMap(AppConstants::CODESET_CM_METHOD_TYPE), ['class' => 'chosen-select form-control'])
-                                ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
-                            ?>
-                        </fieldset>
+                                echo $form->field($model, 'cm_method', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+                                    ->dropDownList(Codeset::customMap(AppConstants::CODESET_CM_METHOD_TYPE), ['class' => 'chosen-select form-control'])
+                                    ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+                                ?>
+                            </fieldset>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-xs-12 col-md-4">
-            <div class="widget-box">
-                <div class="widget-header">
-                    <h4 class="widget-title"> Kontrak </h4>
-                </div>
-                <div class="widget-body">
-                    <div class="widget-main">
-                        <fieldset>
-                            <?php
+            <div class="col-xs-12 col-md-4">
+                <div class="widget-box">
+                    <div class="widget-header">
+                        <h4 class="widget-title"> Kontrak </h4>
+                    </div>
+                    <div class="widget-body">
+                        <div class="widget-main">
+                            <fieldset>
+                                <?php
 
-                            echo $form->field($model, "cm_contr_number", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
-                                ->textInput(['maxlength' => true, 'class' => 'form-control'])
-                                ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+                                echo $form->field($model, "cm_contr_number", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+                                    ->textInput(['maxlength' => true, 'class' => 'form-control'])
+                                    ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
 
-                            echo $form->field($model, 'cm_contr_start_date', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
-                                ->widget(
-                                    DatePicker::className(), [
-                                        'model' => $model,
-                                        'attribute' => 'cm_contr_start_date',
-                                        'type' => DatePicker::TYPE_COMPONENT_APPEND,
-                                          'pluginOptions' => [
-                                            'autoclose' => true,
-                                            'format' => 'dd MM yyyy',
-                                            'todayHighlight' => true
+                                echo $form->field($model, 'cm_contr_start_date', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+                                    ->widget(
+                                        DatePicker::className(), [
+                                            'model' => $model,
+                                            'attribute' => 'cm_contr_start_date',
+                                            'type' => DatePicker::TYPE_COMPONENT_APPEND,
+                                            'pluginOptions' => [
+                                                'autoclose' => true,
+                                                'format' => 'dd MM yyyy',
+                                                'todayHighlight' => true
+                                            ]
                                         ]
-                                    ]
-                                )
-                                ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+                                    )
+                                    ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
 
-                            echo $form->field($model, 'cm_contr_end_date', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
-                                ->widget(
-                                    DatePicker::className(), [
-                                        'model' => $model,
-                                        'attribute' => 'cm_contr_end_date',
-                                        'type' => DatePicker::TYPE_COMPONENT_APPEND,
-                                        'pluginOptions' => [
-                                            'autoclose' => true,
-                                            'format' => 'dd MM yyyy',
-                                            'todayHighlight' => true
+                                echo $form->field($model, 'cm_contr_end_date', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+                                    ->widget(
+                                        DatePicker::className(), [
+                                            'model' => $model,
+                                            'attribute' => 'cm_contr_end_date',
+                                            'type' => DatePicker::TYPE_COMPONENT_APPEND,
+                                            'pluginOptions' => [
+                                                'autoclose' => true,
+                                                'format' => 'dd MM yyyy',
+                                                'todayHighlight' => true
+                                            ]
                                         ]
-                                    ]
-                                )
-                                ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+                                    )
+                                    ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
 
-                            echo $form->field($model, "cm_contr_value_display", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
-                                ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly text-right', 'data-cell' => "BB1", 'data-format' => AppConstants::CALX_DATA_FORMAT_THO])
-                                ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
-                            echo $form->field($model, "cm_contr_value")->hiddenInput(['data-cell' => "B1", 'data-format' => AppConstants::CALX_DATA_FORMAT_PLAIN_DEC, 'data-formula' => "BB1"])->label(false);
-                            ?>
-                        </fieldset>
+                                echo $form->field($model, "cm_contr_value_display", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+                                    ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly text-right', 'data-cell' => "BB1", 'data-format' => AppConstants::CALX_DATA_FORMAT_THO])
+                                    ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+                                echo $form->field($model, "cm_contr_value")->hiddenInput(['data-cell' => "B1", 'data-format' => AppConstants::CALX_DATA_FORMAT_PLAIN_DEC, 'data-formula' => "BB1"])->label(false);
+                                ?>
+                            </fieldset>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-xs-12">
-            <?= SubmitButton::widget(['backAction' => ['index', '_ppId' => $powerPlantModel->id], 'isNewRecord' => $model->isNewRecord, 'widget' => true]); ?>
+            <div class="col-xs-12">
+                <?= SubmitButton::widget(['backAction' => ['index', '_ppId' => $powerPlantModel->id], 'isNewRecord' => $model->isNewRecord, 'widget' => true]); ?>
+            </div>
         </div>
     </div>
 

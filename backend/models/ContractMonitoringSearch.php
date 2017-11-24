@@ -341,6 +341,7 @@ class ContractMonitoringSearch extends ContractMonitoring
             $activeSheet->getStyle("S". $rowIndex)->applyFromArray($styleArray);
             $activeSheet->getStyle("T". $rowIndex)->applyFromArray($styleArray);
             $activeSheet->getStyle("U". $rowIndex)->applyFromArray($styleArray);
+            $rowIndex++;
         }
 
         //==========================================================================

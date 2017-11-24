@@ -1064,8 +1064,7 @@ class SiteController extends AppController {
                                                 'icon-class' => 'blue',
                                                 'additionalParameters' => [
                                                     'children' => [
-                                                        '8811' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form Data', 'type' => 'item'],
-                                                        '8812' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Dokumen/Foto', 'type' => 'item'],
+                                                        '8811' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . AppLabels::FORM_K3L_ACTIVITY, ['/k3l-activity', '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                     ]
                                                 ]
                                             ],

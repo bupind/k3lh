@@ -137,6 +137,7 @@ class AppConstants {
     const MODULE_CODE_BEYOND_OBEDIENCE = 'BEYOND_OBEDIENCE';
     const MODULE_CODE_BEYOND_OBEDIENCE_PROGRAM = 'BEYOND_OBEDIENCE_PROGRAM';
     const MODULE_CODE_BEYOND_OBEDIENCE_COMDEV = 'BEYOND_OBEDIENCE_COMDEV';
+    const MODULE_CODE_K3L_ACTIVITY = 'K3L_ACTIVITY';
 
     // ATTACHMENT TYPE
     const ATTACHMENT_TYPE_IMAGE = 'IMG';
@@ -499,6 +500,7 @@ class AppConstants {
     const REPORT_NAME_PLB3_BALANCE_SHEET = 'report_plb3_neraca_sa_%s.xlsx';
     const REPORT_NAME_PLB3_CHECKLIST = 'report_plb3_checklist_sa_%s.xlsx';
     const REPORT_NAME_CONTRACT_MONITORING = 'report_monitoring_kontrak_%s.xlsx';
+    const REPORT_NAME_K3L_ACTIVITY = 'report_aktivitas_k3l_%s.xlsx';
 
     // PHPEXCEL
     const PHPEXCEL_FORMAT_CURRENCY = 'Rp #,##0.00';
