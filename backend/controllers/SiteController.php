@@ -298,6 +298,16 @@ class SiteController extends AppController {
                                                         '3352' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Dokumen SKKO / SKI', ['/skko', '_sId' => $sector->id]), 'type' => 'item'],
                                                     ]
                                                 ]
+                                            ],
+                                            'monitoring-proses-kontrak' => [
+                                                'text' => 'Monitoring Proses Kontrak',
+                                                'type' => 'folder',
+                                                'icon-class' => 'blue',
+                                                'additionalParameters' => [
+                                                    'children' => [
+                                                        '3361' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Monitoring Proses Kontrak', ['/contract-monitoring', '_ppId' => $powerPlant->id]), 'type' => 'item'],
+                                                    ]
+                                                ]
                                             ]
                                         ]
                                     ]

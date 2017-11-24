@@ -792,5 +792,9 @@ class AppLabels {
     const UPLOAD_K3_SIGN = 'Unggah Rambu K3';
     const UPLOAD_INFORMATION_BOARD = 'Unggah Papan Informasi';
 
+    //FORM CONTRACT MONITORING
+    const FORM_CONTRACT_MONITORING = 'Monitoring Kontrak K3L';
+    const METHOD = 'Metode';
+
 
 }

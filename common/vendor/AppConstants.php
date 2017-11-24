@@ -394,6 +394,14 @@ class AppConstants {
     const FD_DETECTOR_TYPE_UNKNOWN = 'FDT3';
     const FD_ALARM_ZONE_UNKNOWN = 'FAZ1';
 
+    //CONTRACT MONITORING TYPE CODE
+    const CODESET_CM_AOAI_TYPE = 'CM_AOAI';
+    const CODESET_CM_PROG_STATUS_TYPE = 'CM_PROGRAM_STATUS';
+    const CODESET_CM_TOR_RAB_STATUS_TYPE = 'CM_TOR_RAB_STATUS';
+    const CODESET_CM_GM_STATUS_TYPE = 'CM_GM_STATUS';
+    const CODESET_CM_PROCURE_RECEIVER_TYPE = 'CM_PROCURE_RECEIVER';
+    const CODESET_CM_METHOD_TYPE = 'CM_METHOD';
+
     // WEB CONFIG
     const WEB_CONFIG_SALE_EXTERNAL_SALES = 'SALE_EXT_SALES';
     const WEB_CONFIG_ALLOWED_IP = 'ALLOWED_IP';
@@ -490,6 +498,7 @@ class AppConstants {
     const REPORT_NAME_PLB3_SA = 'report_plb3_sa_%s.xlsx';
     const REPORT_NAME_PLB3_BALANCE_SHEET = 'report_plb3_neraca_sa_%s.xlsx';
     const REPORT_NAME_PLB3_CHECKLIST = 'report_plb3_checklist_sa_%s.xlsx';
+    const REPORT_NAME_CONTRACT_MONITORING = 'report_monitoring_kontrak_%s.xlsx';
 
     // PHPEXCEL
     const PHPEXCEL_FORMAT_CURRENCY = 'Rp #,##0.00';
