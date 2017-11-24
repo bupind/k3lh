@@ -5,14 +5,14 @@ use common\vendor\AppLabels;
 
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\CompetencyCertification */
+/* @var $model backend\models\ContractMonitoring */
 /* @var $powerPlantModel backend\models\PowerPlant */
 
-$this->title = sprintf("%s %s", AppLabels::BTN_ADD,  AppLabels::FORM_COMPETENCY_CERTIFICATION);
-$this->params['breadcrumbs'][] = ['label' => sprintf("Form %s", AppLabels::FORM_COMPETENCY_CERTIFICATION), 'url' => ['index', '_ppId' => $powerPlantModel->id]];
+$this->title = sprintf("%s %s", AppLabels::BTN_ADD,  AppLabels::FORM_CONTRACT_MONITORING);
+$this->params['breadcrumbs'][] = ['label' => sprintf("Form %s", AppLabels::FORM_CONTRACT_MONITORING), 'url' => ['index', '_ppId' => $powerPlantModel->id]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="competency-certification-create">
+<div class="contract-monitoring-create">
 
     <div class="page-header">
         <h1><?= Html::encode($this->title) ?></h1>

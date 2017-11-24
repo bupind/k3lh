@@ -298,6 +298,16 @@ class SiteController extends AppController {
                                                         '3352' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Dokumen SKKO / SKI', ['/skko', '_sId' => $sector->id]), 'type' => 'item'],
                                                     ]
                                                 ]
+                                            ],
+                                            'monitoring-proses-kontrak' => [
+                                                'text' => 'Monitoring Proses Kontrak',
+                                                'type' => 'folder',
+                                                'icon-class' => 'blue',
+                                                'additionalParameters' => [
+                                                    'children' => [
+                                                        '3361' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Monitoring Proses Kontrak', ['/contract-monitoring', '_ppId' => $powerPlant->id]), 'type' => 'item'],
+                                                    ]
+                                                ]
                                             ]
                                         ]
                                     ]
@@ -1054,8 +1064,7 @@ class SiteController extends AppController {
                                                 'icon-class' => 'blue',
                                                 'additionalParameters' => [
                                                     'children' => [
-                                                        '8811' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form Data', 'type' => 'item'],
-                                                        '8812' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Dokumen/Foto', 'type' => 'item'],
+                                                        '8811' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . AppLabels::FORM_K3L_ACTIVITY, ['/k3l-activity', '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                     ]
                                                 ]
                                             ],

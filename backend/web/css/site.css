@@ -117,7 +117,7 @@ a.desc:after {
     padding: 2px;
 }
 .table > thead > tr.filters > td .form-control {
-    border-radius: 0px;
+    border-radius: 0;
     /*border: 1px solid #aaa;*/
     /*height: 30px;*/
 }
@@ -180,7 +180,7 @@ a.desc:after {
 }
 
 .panel-body {
-    padding-bottom: 0px;
+    padding-bottom: 0;
 }
 
 @media print {
@@ -193,4 +193,8 @@ a.desc:after {
     td .no-wrap {
         display: none;
     }
+}
+
+.no-margin-top{
+    margin-top:0;
 }
