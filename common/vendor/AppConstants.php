@@ -505,6 +505,7 @@ class AppConstants {
     const REPORT_NAME_CONTRACT_MONITORING = 'report_monitoring_kontrak_%s.xlsx';
     const REPORT_NAME_K3L_ACTIVITY = 'report_aktivitas_k3l_%s.xlsx';
     const REPORT_NAME_LOTO_MONITORING = 'report_monitoring_loto_%s.xlsx';
+    const REPORT_NAME_K3_SUPERVISION = 'report_pengawasan_k3_%s.xlsx';
 
     // PHPEXCEL
     const PHPEXCEL_FORMAT_CURRENCY = 'Rp #,##0.00';

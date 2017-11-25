@@ -31,6 +31,7 @@ class AppLabels {
     const BTN_INSERT = 'Sisipkan';
     const BTN_DOWNLOAD_EXCEL = 'Unduh Excel';
     const BTN_EXPORT = 'Ekspor';
+    const BTN_DETAIL = 'Detail';
     const PLEASE_SELECT = '- Silahkan Pilih -';
     
     // ALERT
@@ -801,6 +802,13 @@ class AppLabels {
 
     //LOTO MONITORING
     const FORM_LOTO_MONITORING = "Form Monitoring LOTO";
+
+    //K3 SUPERVISION
+    const FORM_K3_SUPERVISION = 'Laporan Pengawasan K3';
+    const FORM_K3_SUPERVISION_DETAIL = 'Detail Laporan Pengawasan K3';
+    const WORK_NAME = 'Nama Pekerjaan';
+    const FINDING = 'Temuan';
+    const RESPONSE = 'Respon';
 
 
 }

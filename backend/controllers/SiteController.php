@@ -675,7 +675,7 @@ class SiteController extends AppController {
                                                                                     'icon-class' => 'blue',
                                                                                     'additionalParameters' => [
                                                                                         'children' => [
-                                                                                            '5531711' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form Laporan Pengawasan K3', 'type' => 'item'],
+                                                                                            '5531711' => ['text' => Html::a('<i class="ace-icon fa fa-upload blue"></i> ' .'Form'. AppLabels::FORM_K3_SUPERVISION, ['/k3-supervision', '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                                             '5531712' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Penunjukan Pengawas', 'type' => 'item'],
                                                                                             '5531713' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Sertifikat Pengawas', 'type' => 'item'],
                                                                                         ]
