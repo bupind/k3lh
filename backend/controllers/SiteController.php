@@ -659,7 +659,7 @@ class SiteController extends AppController {
                                                                         'icon-class' => 'blue',
                                                                         'additionalParameters' => [
                                                                             'children' => [
-                                                                                '553161' => ['text' => Html::a('<i class="ace-icon fa fa-upload blue"></i> ' . AppLabels::UPLOAD_LOTO_ACTIVITY, ['/common-upload', 'utc' => AppConstants::CODESET_COMMON_UPLOAD_TYPE_CODE_LOTO, '_ppId' => $powerPlant->id]), 'type' => 'item'],
+                                                                                '553161' => ['text' => Html::a('<i class="ace-icon fa fa-upload blue"></i> ' . AppLabels::FORM_LOTO_MONITORING, ['/loto-monitoring', '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                             ]
                                                                         ]
                                                                     ],

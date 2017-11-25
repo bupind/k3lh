@@ -403,6 +403,9 @@ class AppConstants {
     const CODESET_CM_PROCURE_RECEIVER_TYPE = 'CM_PROCURE_RECEIVER';
     const CODESET_CM_METHOD_TYPE = 'CM_METHOD';
 
+    //LOTO MONITORING
+    const CODESET_LM_TOOL_STATUS = 'LM_TOOL_STATUS';
+
     // WEB CONFIG
     const WEB_CONFIG_SALE_EXTERNAL_SALES = 'SALE_EXT_SALES';
     const WEB_CONFIG_ALLOWED_IP = 'ALLOWED_IP';
@@ -501,6 +504,7 @@ class AppConstants {
     const REPORT_NAME_PLB3_CHECKLIST = 'report_plb3_checklist_sa_%s.xlsx';
     const REPORT_NAME_CONTRACT_MONITORING = 'report_monitoring_kontrak_%s.xlsx';
     const REPORT_NAME_K3L_ACTIVITY = 'report_aktivitas_k3l_%s.xlsx';
+    const REPORT_NAME_LOTO_MONITORING = 'report_monitoring_loto_%s.xlsx';
 
     // PHPEXCEL
     const PHPEXCEL_FORMAT_CURRENCY = 'Rp #,##0.00';

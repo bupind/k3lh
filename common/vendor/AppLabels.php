@@ -799,5 +799,8 @@ class AppLabels {
     //FORM K3L ACTIVITY
     const FORM_K3L_ACTIVITY = 'Form Aktifitas K3L';
 
+    //LOTO MONITORING
+    const FORM_LOTO_MONITORING = "Form Monitoring LOTO";
+
 
 }
