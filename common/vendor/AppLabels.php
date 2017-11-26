@@ -810,5 +810,9 @@ class AppLabels {
     const FINDING = 'Temuan';
     const RESPONSE = 'Respon';
 
+    //SPRINKLE MONITORING
+    const FORM_SPRINKLE_MONITORING = 'Laporan Monitoring Sprinkle';
+    const FORM_SPRINKLE_MONITORING_DETAIL = 'Detail Laporan Monitoring Sprinkle';
+
 
 }

@@ -734,7 +734,7 @@ class SiteController extends AppController {
                                                             'icon-class' => 'blue',
                                                             'additionalParameters' => [
                                                                 'children' => [
-                                                                    '554141' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form Monitoring Sprinkle', 'type' => 'item'],
+                                                                    '554141' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Monitoring Sprinkle', ['/sprinkle-monitoring', '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                     '554142' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Sprinkle', 'type' => 'item'],
                                                                 ]
                                                             ]

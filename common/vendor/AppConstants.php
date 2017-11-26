@@ -406,6 +406,12 @@ class AppConstants {
     //LOTO MONITORING
     const CODESET_LM_TOOL_STATUS = 'LM_TOOL_STATUS';
 
+    //SPRINKLE MONITORING
+    const CODESET_SM_SPRINKLE_HEAD = 'SM_SPRINKLE_HEAD';
+    const CODESET_SM_DETECTOR = 'SM_DETECTOR';
+    const CODESET_SM_PIPING_CONDITION = 'SM_PIPING_CONDITION';
+
+
     // WEB CONFIG
     const WEB_CONFIG_SALE_EXTERNAL_SALES = 'SALE_EXT_SALES';
     const WEB_CONFIG_ALLOWED_IP = 'ALLOWED_IP';
@@ -506,6 +512,7 @@ class AppConstants {
     const REPORT_NAME_K3L_ACTIVITY = 'report_aktivitas_k3l_%s.xlsx';
     const REPORT_NAME_LOTO_MONITORING = 'report_monitoring_loto_%s.xlsx';
     const REPORT_NAME_K3_SUPERVISION = 'report_pengawasan_k3_%s.xlsx';
+    const REPORT_NAME_SPRINKLE_MONITORING = 'report_monitoring_sprinkle_%s.xlsx';
 
     // PHPEXCEL
     const PHPEXCEL_FORMAT_CURRENCY = 'Rp #,##0.00';

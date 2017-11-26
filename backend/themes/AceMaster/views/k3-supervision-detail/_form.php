@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
 ?>
 <?php
 $form = ActiveForm::begin([
-    'id' => 'k3-supervision-form',
+    'id' => 'k3-supervision-detail-form',
     'options' => [
         'class' => 'calx form-horizontal',
         'role' => 'form'

@@ -16,12 +16,13 @@ $this->params['breadcrumbs'][] = 'Ubah';
 ?>
 <div class="k3-supervision-detail-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="page-header">
+        <h1><?= Html::encode($this->title) ?></h1>
+    </div>
 
     <?= $this->render('_form', [
         'model' => $model,
         'powerPlantModel' => $powerPlantModel,
-        'ksId' => $ksId,
     ]) ?>
 
 </div>
