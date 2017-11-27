@@ -11,7 +11,7 @@ use common\vendor\AppLabels;
 /* @var $powerPlantModel backend\models\PowerPlant */
 
 $this->title = sprintf("Form %s %s", AppLabels::FORM_SPRINKLE_MONITORING_DETAIL, $powerPlantModel->getSummary());
-$this->params['breadcrumbs'][] = ['label' => AppLabels::FORM_SPRINKLE_MONITORING_DETAIL, 'url' => ['sprinkle-monitoring/index', '_ppId' => $powerPlantModel->id]];
+$this->params['breadcrumbs'][] = ['label' => AppLabels::FORM_SPRINKLE_MONITORING, 'url' => ['sprinkle-monitoring/index', '_ppId' => $powerPlantModel->id]];
 $this->params['breadcrumbs'][] = $this->title;
 $actionColumn = Yii::$container->get('yii\grid\ActionColumn');
 $buttons = array_merge($actionColumn->buttons, [

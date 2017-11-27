@@ -817,5 +817,9 @@ class AppLabels {
     //APD MONITORING
     const FORM_APD_MONITORING = 'Monitoring APD';
 
+    //P3K MONITORING
+    const FORM_P3K_MONITORING = 'Monitoring P3K';
+    const FORM_P3K_MONITORING_DETAIL = 'Detail Monitoring P3K';
+
 
 }
