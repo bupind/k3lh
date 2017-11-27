@@ -861,7 +861,7 @@ class SiteController extends AppController {
                                                             'icon-class' => 'blue',
                                                             'additionalParameters' => [
                                                                 'children' => [
-                                                                    '55611' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form Monitoring APD', 'type' => 'item'],
+                                                                    '55611' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Monitoring APD', ['/apd-monitoring', '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                 ]
                                                             ]
                                                         ],

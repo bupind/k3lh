@@ -814,5 +814,8 @@ class AppLabels {
     const FORM_SPRINKLE_MONITORING = 'Laporan Monitoring Sprinkle';
     const FORM_SPRINKLE_MONITORING_DETAIL = 'Detail Laporan Monitoring Sprinkle';
 
+    //APD MONITORING
+    const FORM_APD_MONITORING = 'Monitoring APD';
+
 
 }

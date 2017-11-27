@@ -411,6 +411,10 @@ class AppConstants {
     const CODESET_SM_DETECTOR = 'SM_DETECTOR';
     const CODESET_SM_PIPING_CONDITION = 'SM_PIPING_CONDITION';
 
+    //APD MONITORING
+    const CODESET_AM_APD_TYPE = 'AM_APD_TYPE';
+    const CODESET_AM_APD_BRAND = 'AM_APD_BRAND';
+
 
     // WEB CONFIG
     const WEB_CONFIG_SALE_EXTERNAL_SALES = 'SALE_EXT_SALES';
@@ -513,6 +517,7 @@ class AppConstants {
     const REPORT_NAME_LOTO_MONITORING = 'report_monitoring_loto_%s.xlsx';
     const REPORT_NAME_K3_SUPERVISION = 'report_pengawasan_k3_%s.xlsx';
     const REPORT_NAME_SPRINKLE_MONITORING = 'report_monitoring_sprinkle_%s.xlsx';
+    const REPORT_NAME_APD_MONITORING = 'report_monitoring_apd_%s.xlsx';
 
     // PHPEXCEL
     const PHPEXCEL_FORMAT_CURRENCY = 'Rp #,##0.00';
