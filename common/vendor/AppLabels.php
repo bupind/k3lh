@@ -825,4 +825,10 @@ class AppLabels {
     const FORM_P2K3_MONITORING = 'Monitoring P2K3';
     const FORM_P2K3_MONITORING_DETAIL = 'Detail Monitoring P2K3';
 
+    //WORK HOUR MONITORING
+    const FORM_WORK_HOUR_MONITORING = 'Monitoring Jam Kerja';
+    const WORKER_QUANTITY = 'J. Pekerja';
+    const MANHOURS = 'Manhours';
+    const ACCU_MANHOURS = 'Akum. Manhours';
+
 }

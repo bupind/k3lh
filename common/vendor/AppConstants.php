@@ -418,6 +418,9 @@ class AppConstants {
     //P2K3 MONITORING
     const COCESET_P2K3M_STATUS = 'P2K3M_STATUS';
 
+    //WORKER_MONITORING
+    const CODESET_WHM_WORKER_TYPE = 'WHM_WORKER_TYPE';
+
 
     // WEB CONFIG
     const WEB_CONFIG_SALE_EXTERNAL_SALES = 'SALE_EXT_SALES';
@@ -523,6 +526,7 @@ class AppConstants {
     const REPORT_NAME_APD_MONITORING = 'report_monitoring_apd_%s.xlsx';
     const REPORT_NAME_P3K_MONITORING = 'report_monitoring_p3k_%s.xlsx';
     const REPORT_NAME_P2K3_MONITORING = 'report_monitoring_p2k3_%s.xlsx';
+    const REPORT_NAME_WORK_HOUR_MONITORING = 'report_monitoring_jam_kerja_%s.xlsx';
 
     // PHPEXCEL
     const PHPEXCEL_FORMAT_CURRENCY = 'Rp #,##0.00';
