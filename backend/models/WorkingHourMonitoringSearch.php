@@ -349,6 +349,7 @@ class WorkingHourMonitoringSearch extends WorkingHourMonitoring
             ],
         ];
 
+        $initialIndex = 6;
         $rowIndex = 6;
         $model = $dataProvider->getModels();
         foreach($model as $key => $value){
@@ -431,6 +432,108 @@ class WorkingHourMonitoringSearch extends WorkingHourMonitoring
 
             $rowIndex++;
         }
+        $endIndex = $rowIndex-1;
+
+        $activeSheet->getStyle("B". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->getStyle("C". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->getStyle("D". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->getStyle("E". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->getStyle("F". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->getStyle("G". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->getStyle("H". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->getStyle("I". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->getStyle("J". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->getStyle("K". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->getStyle("L". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->getStyle("M". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->getStyle("N". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->getStyle("O". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->getStyle("P". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->getStyle("Q". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->getStyle("R". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->getStyle("S". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->getStyle("T". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->getStyle("U". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->getStyle("V". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->getStyle("W". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->getStyle("X". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->getStyle("Y". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->getStyle("Z". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->getStyle("AA". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->getStyle("AB". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->getStyle("AC". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->getStyle("AD". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->getStyle("AE". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->getStyle("AF". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->getStyle("AG". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->getStyle("AH". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->getStyle("AI". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->getStyle("AJ". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->getStyle("AK". $rowIndex)->applyFromArray($styleArray);
+        $activeSheet->setCellValue('B'. $rowIndex, "=SUM(B$initialIndex:B$endIndex)");
+        $activeSheet->setCellValue('C'. $rowIndex, "=SUM(C$initialIndex:C$endIndex)");
+        $activeSheet->setCellValue('D'. $rowIndex, "=SUM(D$initialIndex:D$endIndex)");
+        $activeSheet->setCellValue('E'. $rowIndex, "=SUM(E$initialIndex:E$endIndex)");
+        $activeSheet->setCellValue('F'. $rowIndex, "=SUM(F$initialIndex:F$endIndex)");
+        $activeSheet->setCellValue('G'. $rowIndex, "=SUM(G$initialIndex:G$endIndex)");
+        $activeSheet->setCellValue('H'. $rowIndex, "=SUM(H$initialIndex:H$endIndex)");
+        $activeSheet->setCellValue('I'. $rowIndex, "=SUM(I$initialIndex:I$endIndex)");
+        $activeSheet->setCellValue('J'. $rowIndex, "=SUM(J$initialIndex:J$endIndex)");
+        $activeSheet->setCellValue('K'. $rowIndex, "=SUM(K$initialIndex:K$endIndex)");
+        $activeSheet->setCellValue('L'. $rowIndex, "=SUM(L$initialIndex:L$endIndex)");
+        $activeSheet->setCellValue('M'. $rowIndex, "=SUM(M$initialIndex:M$endIndex)");
+        $activeSheet->setCellValue('N'. $rowIndex, "=SUM(N$initialIndex:N$endIndex)");
+        $activeSheet->setCellValue('O'. $rowIndex, "=SUM(O$initialIndex:O$endIndex)");
+        $activeSheet->setCellValue('P'. $rowIndex, "=SUM(P$initialIndex:P$endIndex)");
+        $activeSheet->setCellValue('Q'. $rowIndex, "=SUM(Q$initialIndex:Q$endIndex)");
+        $activeSheet->setCellValue('R'. $rowIndex, "=SUM(R$initialIndex:R$endIndex)");
+        $activeSheet->setCellValue('S'. $rowIndex, "=SUM(S$initialIndex:S$endIndex)");
+        $activeSheet->setCellValue('T'. $rowIndex, "=SUM(T$initialIndex:T$endIndex)");
+        $activeSheet->setCellValue('U'. $rowIndex, "=SUM(U$initialIndex:U$endIndex)");
+        $activeSheet->setCellValue('V'. $rowIndex, "=SUM(V$initialIndex:V$endIndex)");
+        $activeSheet->setCellValue('W'. $rowIndex, "=SUM(W$initialIndex:W$endIndex)");
+        $activeSheet->setCellValue('X'. $rowIndex, "=SUM(X$initialIndex:X$endIndex)");
+        $activeSheet->setCellValue('Y'. $rowIndex, "=SUM(Y$initialIndex:Y$endIndex)");
+        $activeSheet->setCellValue('Z'. $rowIndex, "=SUM(Z$initialIndex:Z$endIndex)");
+        $activeSheet->setCellValue('AA'. $rowIndex, "=SUM(AA$initialIndex:AA$endIndex)");
+        $activeSheet->setCellValue('AB'. $rowIndex, "=SUM(AB$initialIndex:AB$endIndex)");
+        $activeSheet->setCellValue('AC'. $rowIndex, "=SUM(AC$initialIndex:AC$endIndex)");
+        $activeSheet->setCellValue('AD'. $rowIndex, "=SUM(AD$initialIndex:AD$endIndex)");
+        $activeSheet->setCellValue('AE'. $rowIndex, "=SUM(AE$initialIndex:AE$endIndex)");
+        $activeSheet->setCellValue('AF'. $rowIndex, "=SUM(AF$initialIndex:AF$endIndex)");
+        $activeSheet->setCellValue('AG'. $rowIndex, "=SUM(AG$initialIndex:AG$endIndex)");
+        $activeSheet->setCellValue('AH'. $rowIndex, "=SUM(AH$initialIndex:AH$endIndex)");
+        $activeSheet->setCellValue('AI'. $rowIndex, "=SUM(AI$initialIndex:AI$endIndex)");
+        $activeSheet->setCellValue('AJ'. $rowIndex, "=SUM(AJ$initialIndex:AJ$endIndex)");
+        $activeSheet->setCellValue('AK'. $rowIndex, "=SUM(Ak$initialIndex:AK$endIndex)");
+
+
+        $styleArray = [
+            'font' => [
+                'bold' => true,
+                'color' => [
+                    'argb' => \PHPExcel_Style_Color::COLOR_BLACK
+                ]
+            ],
+            'alignment' => [
+                'horizontal' => \PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                'vertical' => \PHPExcel_Style_Alignment::VERTICAL_CENTER,
+                'wrap' => true
+            ],
+            'borders' => [
+                'allborders' => [
+                    'style' => \PHPExcel_Style_Border::BORDER_THIN,
+                    'color' => [
+                        'argb' => \PHPExcel_Style_Color::COLOR_BLACK
+                    ]
+                ]
+            ],
+        ];
+
+        $activeSheet->setCellValue('A'. $rowIndex, "TOTAL MANHOURS");
+        $activeSheet->getStyle("A". $rowIndex)->applyFromArray($styleArray);
+
+
 
         //==========================================================================
 
