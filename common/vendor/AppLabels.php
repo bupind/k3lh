@@ -821,5 +821,8 @@ class AppLabels {
     const FORM_P3K_MONITORING = 'Monitoring P3K';
     const FORM_P3K_MONITORING_DETAIL = 'Detail Monitoring P3K';
 
+    //P2K3 MONITORING
+    const FORM_P2K3_MONITORING = 'Monitoring P2K3';
+    const FORM_P2K3_MONITORING_DETAIL = 'Detail Monitoring P2K3';
 
 }
