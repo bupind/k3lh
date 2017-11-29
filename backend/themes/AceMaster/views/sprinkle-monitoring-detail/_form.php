@@ -13,7 +13,7 @@ use app\components\SubmitButton;
 ?>
 <?php
 $form = ActiveForm::begin([
-    'id' => 'k3-supervision-detail-form',
+    'id' => 'sprinkle-monitoring-detail-form',
     'options' => [
         'class' => 'calx form-horizontal',
         'role' => 'form'

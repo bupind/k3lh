@@ -10,7 +10,7 @@ use common\vendor\AppConstants;
 /* @var $model backend\models\SprinkleMonitoringDetail */
 
 $this->title = sprintf("%s %s", AppLabels::BTN_VIEW, $model->sm_location);
-$this->params['breadcrumbs'][] = ['label' => sprintf("Form %s", AppLabels::FORM_K3_SUPERVISION_DETAIL), 'url' => ['index', '_ppId' => $model->sprinkleMonitoring->power_plant_id, 'smId' => $model->sprinkle_monitoring_id]];
+$this->params['breadcrumbs'][] = ['label' => sprintf("Form %s", AppLabels::FORM_SPRINKLE_MONITORING_DETAIL), 'url' => ['index', '_ppId' => $model->sprinkleMonitoring->power_plant_id, 'smId' => $model->sprinkle_monitoring_id]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="sprinkle-monitoring-detail-view">

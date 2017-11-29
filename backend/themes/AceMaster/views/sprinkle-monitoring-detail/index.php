@@ -57,7 +57,10 @@ $buttons = array_merge($actionColumn->buttons, [
             ],
             'sm_notes:ntext',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'buttons' => $buttons,
+            ],
         ],
     ]); ?>
 </div>

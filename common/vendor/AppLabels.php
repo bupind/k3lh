@@ -831,4 +831,10 @@ class AppLabels {
     const MANHOURS = 'Manhours';
     const ACCU_MANHOURS = 'Akum. Manhours';
 
+    //WORK ACCIDENT
+    const FORM_WORK_ACCIDENT = 'Arsip Kecelakaan Kerja';
+    const FORM_WORK_ACCIDENT_DETAIL = 'Detail Arsip Kecelakaan Kerja';
+    const EVENT = 'Kejadian';
+    const EVENT_TYPE = 'Jenis Kejadian';
+
 }

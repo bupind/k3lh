@@ -17,7 +17,9 @@ $this->params['breadcrumbs'][] = 'Ubah';
 ?>
 <div class="sprinkle-monitoring-detail-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="page-header">
+        <h1><?= Html::encode($this->title) ?></h1>
+    </div>
 
     <?= $this->render('_form', [
         'model' => $model,
