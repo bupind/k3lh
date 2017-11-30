@@ -424,6 +424,8 @@ class AppConstants {
     //WORK_ACCIDENT
     const CODESET_WA_WORK_ACCIDENT_TYPE = 'WA_WORK_ACCIDENT_TYPE';
 
+    //HYDRANT TESTING
+    const CODESET_HT_DETAIL_PUMP_TYPE = 'HT_DETAIL_PUMP_TYPE';
 
     // WEB CONFIG
     const WEB_CONFIG_SALE_EXTERNAL_SALES = 'SALE_EXT_SALES';
@@ -531,6 +533,7 @@ class AppConstants {
     const REPORT_NAME_P2K3_MONITORING = 'report_monitoring_p2k3_%s.xlsx';
     const REPORT_NAME_WORK_HOUR_MONITORING = 'report_monitoring_jam_kerja_%s.xlsx';
     const REPORT_NAME_WORK_ACCIDENT = 'report_arsip_kecelakaan_kerja_%s.xlsx';
+    const REPORT_NAME_HYDRANT_TESTING = 'report_hydrant_testing_%s.xlsx';
 
     // PHPEXCEL
     const PHPEXCEL_FORMAT_CURRENCY = 'Rp #,##0.00';

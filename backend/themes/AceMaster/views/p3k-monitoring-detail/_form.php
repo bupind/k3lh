@@ -13,7 +13,7 @@ use yii\widgets\ActiveForm;
 ?>
 <?php
 $form = ActiveForm::begin([
-    'id' => 'k3-supervision-detail-form',
+    'id' => 'p3k-monitoring-detail-form',
     'options' => [
         'class' => 'calx form-horizontal',
         'role' => 'form'

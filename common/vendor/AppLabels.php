@@ -837,4 +837,9 @@ class AppLabels {
     const EVENT = 'Kejadian';
     const EVENT_TYPE = 'Jenis Kejadian';
 
+    //HYDRANT TESTING
+    const FORM_HYDRANT_TESTING = 'Testing Hydrant';
+    const FORM_HYDRANT_TESTING_DETAIL = 'Detail Testing Hydrant';
+
+
 }
