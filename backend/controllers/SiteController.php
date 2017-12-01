@@ -294,8 +294,7 @@ class SiteController extends AppController {
                                                 'icon-class' => 'blue',
                                                 'additionalParameters' => [
                                                     'children' => [
-                                                        '3351' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload PAO/SKKO', 'type' => 'item'],
-                                                        '3352' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Dokumen SKKO / SKI', ['/skko', '_sId' => $sector->id]), 'type' => 'item'],
+                                                        '3351' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Dokumen SKKO / SKI', ['/skko', '_sId' => $sector->id]), 'type' => 'item'],
                                                     ]
                                                 ]
                                             ],
@@ -343,10 +342,8 @@ class SiteController extends AppController {
                                                                     '0' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Izin & Dokumen Lingkungan', ['/environment-permit', '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                     '44211' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form SA Profile Perusahaan', ['/environment-permit-company-profile', '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                     '44212' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA Pengesahan Dokumen', 'type' => 'item'],
-                                                                    '44213' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Izin Lingkungan', 'type' => 'item'],
-                                                                    '44214' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload SKKLH/Rekomendasi UKL UPL', 'type' => 'item'],
-                                                                    '44215' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Cover Dokumen Lingkungan', 'type' => 'item'],
-                                                                    '44216' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form SA Pelaporan', 'type' => 'item'],
+                                                                    '44213' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload SKKLH/Rekomendasi UKL UPL', 'type' => 'item'],
+                                                                    '44214' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Cover Dokumen Lingkungan', 'type' => 'item'],
                                                                 ]
                                                             ]
                                                         ],
@@ -1015,7 +1012,7 @@ class SiteController extends AppController {
                                                 'icon-class' => 'blue',
                                                 'additionalParameters' => [
                                                     'children' => [
-                                                        '7711' => ['text' => '<i class="ace-icon fa fa-file-text-o blue"></i> Form ML K3L', 'type' => 'item'],
+                                                        '7711' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . 'Form ML K3L', ['/maturity-level']), 'type' => 'item'],
                                                     ]
                                                 ]
                                             ],
