@@ -8,9 +8,11 @@ use common\vendor\AppLabels;
 /* @var $this yii\web\View */
 /* @var $model backend\models\WorkAccident */
 /* @var $powerPlantModel backend\models\PowerPlant */
+/* @var $title string */
+/* @var $wat string */
 
-$this->title = sprintf("%s %s", AppLabels::BTN_ADD,  AppLabels::FORM_WORK_ACCIDENT);
-$this->params['breadcrumbs'][] = ['label' => sprintf("Form %s", AppLabels::FORM_WORK_ACCIDENT), 'url' => ['index', '_ppId' => $powerPlantModel->id]];
+$this->title = sprintf("%s %s", AppLabels::BTN_ADD,  $title);
+$this->params['breadcrumbs'][] = ['label' => sprintf("Form %s", $title), 'url' => ['index', '_ppId' => $powerPlantModel->id, 'wat' => $wat]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="work-accident-create">
@@ -22,6 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= $this->render('_form', [
         'model' => $model,
         'powerPlantModel' => $powerPlantModel,
+        'title' => $title,
     ]) ?>
 
 </div>

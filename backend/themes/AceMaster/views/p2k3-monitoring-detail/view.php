@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use app\components\DetailView;
 use common\vendor\AppLabels;
 use app\components\ViewButton;
+use common\vendor\AppConstants;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\P2k3MonitoringDetail */
@@ -31,6 +32,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <?= DetailView::widget([
                 'model' => $model,
+                'options' => [
+                    'converter' => [
+                        'p2k3_monitoring_id' => [AppConstants::FORMAT_TYPE_VARIABLE, sprintf("%s %s", $model->p2k3Monitoring->pm_form_month_type_code_desc, $model->p2k3Monitoring->pm_year)],
+                        'pmd_status' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->pmd_status_desc],
+                    ],
+                ]
             ]);
             ?>
         </div>

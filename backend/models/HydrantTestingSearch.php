@@ -440,87 +440,230 @@ class HydrantTestingSearch extends HydrantTesting
         $rowIndex = 5;
         foreach ($model->hydrantTestingDetails as $key => $value) {
             $activeSheet->setCellValue('A' . $rowIndex, ($key + 1));
+            $activeSheet->mergeCells('A' . $rowIndex . ':A' . ($rowIndex + 1));
+            $activeSheet->mergeCells('B' . $rowIndex . ':B' . ($rowIndex + 1));
+            $activeSheet->mergeCells('C' . $rowIndex . ':C' . ($rowIndex + 1));
             $activeSheet->setCellValue('B' . $rowIndex, $value->htd_number);
             $activeSheet->setCellValue('C' . $rowIndex, $value->htd_location);
-            $activeSheet->setCellValue('D' . $rowIndex, $value->htd_pump_type_desc);
+            $activeSheet->setCellValue('D' . $rowIndex, "Electrical Pump");
 
-            $activeSheet->setCellValue('E' . $rowIndex, $value->htdMonths[0]->htdm_date);
-            $activeSheet->setCellValue('F' . $rowIndex, !empty($value->htdMonths[0]->htdm_pressure) ? number_format($value->htdMonths[0]->htdm_pressure) : "");
-            $activeSheet->setCellValue('G' . $rowIndex, !empty($value->htdMonths[0]->htdm_flow_rate) ? number_format($value->htdMonths[0]->htdm_flow_rate) : "");
-            $activeSheet->setCellValue('H' . $rowIndex, !empty($value->htdMonths[0]->htdm_vertical) ? number_format($value->htdMonths[0]->htdm_vertical) : "");
-            $activeSheet->setCellValue('I' . $rowIndex, !empty($value->htdMonths[0]->htdm_horizontal) ? number_format($value->htdMonths[0]->htdm_horizontal) : "");
+            $activeSheet->getStyle('A' . $rowIndex . ':A' . ($rowIndex + 1))->applyFromArray($styleArray);
+            $activeSheet->getStyle('B' . $rowIndex . ':B' . ($rowIndex + 1))->applyFromArray($styleArray);
+            $activeSheet->getStyle('C' . $rowIndex . ':C' . ($rowIndex + 1))->applyFromArray($styleArray);
+            $months = $value->htdMonthsElectrical;
+            
+            $activeSheet->setCellValue('E' . $rowIndex, $months[0]->htdm_date);
+            $activeSheet->setCellValue('F' . $rowIndex, !empty($months[0]->htdm_pressure) ? number_format($months[0]->htdm_pressure) : "");
+            $activeSheet->setCellValue('G' . $rowIndex, !empty($months[0]->htdm_flow_rate) ? number_format($months[0]->htdm_flow_rate) : "");
+            $activeSheet->setCellValue('H' . $rowIndex, !empty($months[0]->htdm_vertical) ? number_format($months[0]->htdm_vertical) : "");
+            $activeSheet->setCellValue('I' . $rowIndex, !empty($months[0]->htdm_horizontal) ? number_format($months[0]->htdm_horizontal) : "");
 
-            $activeSheet->setCellValue('J' . $rowIndex, $value->htdMonths[1]->htdm_date);
-            $activeSheet->setCellValue('K' . $rowIndex, !empty($value->htdMonths[1]->htdm_pressure) ? number_format($value->htdMonths[0]->htdm_pressure) : "");
-            $activeSheet->setCellValue('L' . $rowIndex, !empty($value->htdMonths[1]->htdm_flow_rate) ? number_format($value->htdMonths[0]->htdm_flow_rate) : "");
-            $activeSheet->setCellValue('M' . $rowIndex, !empty($value->htdMonths[1]->htdm_vertical) ? number_format($value->htdMonths[0]->htdm_vertical) : "");
-            $activeSheet->setCellValue('N' . $rowIndex, !empty($value->htdMonths[1]->htdm_horizontal) ? number_format($value->htdMonths[0]->htdm_horizontal) : "");
+            $activeSheet->setCellValue('J' . $rowIndex, $months[1]->htdm_date);
+            $activeSheet->setCellValue('K' . $rowIndex, !empty($months[1]->htdm_pressure) ? number_format($months[0]->htdm_pressure) : "");
+            $activeSheet->setCellValue('L' . $rowIndex, !empty($months[1]->htdm_flow_rate) ? number_format($months[0]->htdm_flow_rate) : "");
+            $activeSheet->setCellValue('M' . $rowIndex, !empty($months[1]->htdm_vertical) ? number_format($months[0]->htdm_vertical) : "");
+            $activeSheet->setCellValue('N' . $rowIndex, !empty($months[1]->htdm_horizontal) ? number_format($months[0]->htdm_horizontal) : "");
 
-            $activeSheet->setCellValue('O' . $rowIndex, $value->htdMonths[2]->htdm_date);
-            $activeSheet->setCellValue('P' . $rowIndex, !empty($value->htdMonths[2]->htdm_pressure) ? number_format($value->htdMonths[0]->htdm_pressure) : "");
-            $activeSheet->setCellValue('Q' . $rowIndex, !empty($value->htdMonths[2]->htdm_flow_rate) ? number_format($value->htdMonths[0]->htdm_flow_rate) : "");
-            $activeSheet->setCellValue('R' . $rowIndex, !empty($value->htdMonths[2]->htdm_vertical) ? number_format($value->htdMonths[0]->htdm_vertical) : "");
-            $activeSheet->setCellValue('S' . $rowIndex, !empty($value->htdMonths[2]->htdm_horizontal) ? number_format($value->htdMonths[0]->htdm_horizontal) : "");
+            $activeSheet->setCellValue('O' . $rowIndex, $months[2]->htdm_date);
+            $activeSheet->setCellValue('P' . $rowIndex, !empty($months[2]->htdm_pressure) ? number_format($months[0]->htdm_pressure) : "");
+            $activeSheet->setCellValue('Q' . $rowIndex, !empty($months[2]->htdm_flow_rate) ? number_format($months[0]->htdm_flow_rate) : "");
+            $activeSheet->setCellValue('R' . $rowIndex, !empty($months[2]->htdm_vertical) ? number_format($months[0]->htdm_vertical) : "");
+            $activeSheet->setCellValue('S' . $rowIndex, !empty($months[2]->htdm_horizontal) ? number_format($months[0]->htdm_horizontal) : "");
 
-            $activeSheet->setCellValue('T' . $rowIndex, $value->htdMonths[3]->htdm_date);
-            $activeSheet->setCellValue('U' . $rowIndex, !empty($value->htdMonths[3]->htdm_pressure) ? number_format($value->htdMonths[0]->htdm_pressure) : "");
-            $activeSheet->setCellValue('V' . $rowIndex, !empty($value->htdMonths[3]->htdm_flow_rate) ? number_format($value->htdMonths[0]->htdm_flow_rate) : "");
-            $activeSheet->setCellValue('W' . $rowIndex, !empty($value->htdMonths[3]->htdm_vertical) ? number_format($value->htdMonths[0]->htdm_vertical) : "");
-            $activeSheet->setCellValue('X' . $rowIndex, !empty($value->htdMonths[3]->htdm_horizontal) ? number_format($value->htdMonths[0]->htdm_horizontal) : "");
+            $activeSheet->setCellValue('T' . $rowIndex, $months[3]->htdm_date);
+            $activeSheet->setCellValue('U' . $rowIndex, !empty($months[3]->htdm_pressure) ? number_format($months[0]->htdm_pressure) : "");
+            $activeSheet->setCellValue('V' . $rowIndex, !empty($months[3]->htdm_flow_rate) ? number_format($months[0]->htdm_flow_rate) : "");
+            $activeSheet->setCellValue('W' . $rowIndex, !empty($months[3]->htdm_vertical) ? number_format($months[0]->htdm_vertical) : "");
+            $activeSheet->setCellValue('X' . $rowIndex, !empty($months[3]->htdm_horizontal) ? number_format($months[0]->htdm_horizontal) : "");
 
-            $activeSheet->setCellValue('Y' . $rowIndex, $value->htdMonths[4]->htdm_date);
-            $activeSheet->setCellValue('Z' . $rowIndex, !empty($value->htdMonths[4]->htdm_pressure) ? number_format($value->htdMonths[0]->htdm_pressure) : "");
-            $activeSheet->setCellValue('AA' . $rowIndex, !empty($value->htdMonths[4]->htdm_flow_rate) ? number_format($value->htdMonths[0]->htdm_flow_rate) : "");
-            $activeSheet->setCellValue('AB' . $rowIndex, !empty($value->htdMonths[4]->htdm_vertical) ? number_format($value->htdMonths[0]->htdm_vertical) : "");
-            $activeSheet->setCellValue('AC' . $rowIndex, !empty($value->htdMonths[4]->htdm_horizontal) ? number_format($value->htdMonths[0]->htdm_horizontal) : "");
+            $activeSheet->setCellValue('Y' . $rowIndex, $months[4]->htdm_date);
+            $activeSheet->setCellValue('Z' . $rowIndex, !empty($months[4]->htdm_pressure) ? number_format($months[0]->htdm_pressure) : "");
+            $activeSheet->setCellValue('AA' . $rowIndex, !empty($months[4]->htdm_flow_rate) ? number_format($months[0]->htdm_flow_rate) : "");
+            $activeSheet->setCellValue('AB' . $rowIndex, !empty($months[4]->htdm_vertical) ? number_format($months[0]->htdm_vertical) : "");
+            $activeSheet->setCellValue('AC' . $rowIndex, !empty($months[4]->htdm_horizontal) ? number_format($months[0]->htdm_horizontal) : "");
 
-            $activeSheet->setCellValue('AD' . $rowIndex, $value->htdMonths[5]->htdm_date);
-            $activeSheet->setCellValue('AE' . $rowIndex, !empty($value->htdMonths[5]->htdm_pressure) ? number_format($value->htdMonths[0]->htdm_pressure) : "");
-            $activeSheet->setCellValue('AF' . $rowIndex, !empty($value->htdMonths[5]->htdm_flow_rate) ? number_format($value->htdMonths[0]->htdm_flow_rate) : "");
-            $activeSheet->setCellValue('AG' . $rowIndex, !empty($value->htdMonths[5]->htdm_vertical) ? number_format($value->htdMonths[0]->htdm_vertical) : "");
-            $activeSheet->setCellValue('AH' . $rowIndex, !empty($value->htdMonths[5]->htdm_horizontal) ? number_format($value->htdMonths[0]->htdm_horizontal) : "");
+            $activeSheet->setCellValue('AD' . $rowIndex, $months[5]->htdm_date);
+            $activeSheet->setCellValue('AE' . $rowIndex, !empty($months[5]->htdm_pressure) ? number_format($months[0]->htdm_pressure) : "");
+            $activeSheet->setCellValue('AF' . $rowIndex, !empty($months[5]->htdm_flow_rate) ? number_format($months[0]->htdm_flow_rate) : "");
+            $activeSheet->setCellValue('AG' . $rowIndex, !empty($months[5]->htdm_vertical) ? number_format($months[0]->htdm_vertical) : "");
+            $activeSheet->setCellValue('AH' . $rowIndex, !empty($months[5]->htdm_horizontal) ? number_format($months[0]->htdm_horizontal) : "");
 
-            $activeSheet->setCellValue('AI' . $rowIndex, $value->htdMonths[6]->htdm_date);
-            $activeSheet->setCellValue('AJ' . $rowIndex, !empty($value->htdMonths[6]->htdm_pressure) ? number_format($value->htdMonths[0]->htdm_pressure) : "");
-            $activeSheet->setCellValue('AK' . $rowIndex, !empty($value->htdMonths[6]->htdm_flow_rate) ? number_format($value->htdMonths[0]->htdm_flow_rate) : "");
-            $activeSheet->setCellValue('AL' . $rowIndex, !empty($value->htdMonths[6]->htdm_vertical) ? number_format($value->htdMonths[0]->htdm_vertical) : "");
-            $activeSheet->setCellValue('AM' . $rowIndex, !empty($value->htdMonths[6]->htdm_horizontal) ? number_format($value->htdMonths[0]->htdm_horizontal) : "");
+            $activeSheet->setCellValue('AI' . $rowIndex, $months[6]->htdm_date);
+            $activeSheet->setCellValue('AJ' . $rowIndex, !empty($months[6]->htdm_pressure) ? number_format($months[0]->htdm_pressure) : "");
+            $activeSheet->setCellValue('AK' . $rowIndex, !empty($months[6]->htdm_flow_rate) ? number_format($months[0]->htdm_flow_rate) : "");
+            $activeSheet->setCellValue('AL' . $rowIndex, !empty($months[6]->htdm_vertical) ? number_format($months[0]->htdm_vertical) : "");
+            $activeSheet->setCellValue('AM' . $rowIndex, !empty($months[6]->htdm_horizontal) ? number_format($months[0]->htdm_horizontal) : "");
 
-            $activeSheet->setCellValue('AN' . $rowIndex, $value->htdMonths[7]->htdm_date);
-            $activeSheet->setCellValue('AO' . $rowIndex, !empty($value->htdMonths[7]->htdm_pressure) ? number_format($value->htdMonths[0]->htdm_pressure) : "");
-            $activeSheet->setCellValue('AP' . $rowIndex, !empty($value->htdMonths[7]->htdm_flow_rate) ? number_format($value->htdMonths[0]->htdm_flow_rate) : "");
-            $activeSheet->setCellValue('AQ' . $rowIndex, !empty($value->htdMonths[7]->htdm_vertical) ? number_format($value->htdMonths[0]->htdm_vertical) : "");
-            $activeSheet->setCellValue('AR' . $rowIndex, !empty($value->htdMonths[7]->htdm_horizontal) ? number_format($value->htdMonths[0]->htdm_horizontal) : "");
+            $activeSheet->setCellValue('AN' . $rowIndex, $months[7]->htdm_date);
+            $activeSheet->setCellValue('AO' . $rowIndex, !empty($months[7]->htdm_pressure) ? number_format($months[0]->htdm_pressure) : "");
+            $activeSheet->setCellValue('AP' . $rowIndex, !empty($months[7]->htdm_flow_rate) ? number_format($months[0]->htdm_flow_rate) : "");
+            $activeSheet->setCellValue('AQ' . $rowIndex, !empty($months[7]->htdm_vertical) ? number_format($months[0]->htdm_vertical) : "");
+            $activeSheet->setCellValue('AR' . $rowIndex, !empty($months[7]->htdm_horizontal) ? number_format($months[0]->htdm_horizontal) : "");
 
-            $activeSheet->setCellValue('AS' . $rowIndex, $value->htdMonths[8]->htdm_date);
-            $activeSheet->setCellValue('AT' . $rowIndex, !empty($value->htdMonths[8]->htdm_pressure) ? number_format($value->htdMonths[0]->htdm_pressure) : "");
-            $activeSheet->setCellValue('AU' . $rowIndex, !empty($value->htdMonths[8]->htdm_flow_rate) ? number_format($value->htdMonths[0]->htdm_flow_rate) : "");
-            $activeSheet->setCellValue('AV' . $rowIndex, !empty($value->htdMonths[8]->htdm_vertical) ? number_format($value->htdMonths[0]->htdm_vertical) : "");
-            $activeSheet->setCellValue('AW' . $rowIndex, !empty($value->htdMonths[8]->htdm_horizontal) ? number_format($value->htdMonths[0]->htdm_horizontal) : "");
+            $activeSheet->setCellValue('AS' . $rowIndex, $months[8]->htdm_date);
+            $activeSheet->setCellValue('AT' . $rowIndex, !empty($months[8]->htdm_pressure) ? number_format($months[0]->htdm_pressure) : "");
+            $activeSheet->setCellValue('AU' . $rowIndex, !empty($months[8]->htdm_flow_rate) ? number_format($months[0]->htdm_flow_rate) : "");
+            $activeSheet->setCellValue('AV' . $rowIndex, !empty($months[8]->htdm_vertical) ? number_format($months[0]->htdm_vertical) : "");
+            $activeSheet->setCellValue('AW' . $rowIndex, !empty($months[8]->htdm_horizontal) ? number_format($months[0]->htdm_horizontal) : "");
 
-            $activeSheet->setCellValue('AX' . $rowIndex, $value->htdMonths[9]->htdm_date);
-            $activeSheet->setCellValue('AY' . $rowIndex, !empty($value->htdMonths[9]->htdm_pressure) ? number_format($value->htdMonths[0]->htdm_pressure) : "");
-            $activeSheet->setCellValue('AZ' . $rowIndex, !empty($value->htdMonths[9]->htdm_flow_rate) ? number_format($value->htdMonths[0]->htdm_flow_rate) : "");
-            $activeSheet->setCellValue('BA' . $rowIndex, !empty($value->htdMonths[9]->htdm_vertical) ? number_format($value->htdMonths[0]->htdm_vertical) : "");
-            $activeSheet->setCellValue('BB' . $rowIndex, !empty($value->htdMonths[9]->htdm_horizontal) ? number_format($value->htdMonths[0]->htdm_horizontal) : "");
+            $activeSheet->setCellValue('AX' . $rowIndex, $months[9]->htdm_date);
+            $activeSheet->setCellValue('AY' . $rowIndex, !empty($months[9]->htdm_pressure) ? number_format($months[0]->htdm_pressure) : "");
+            $activeSheet->setCellValue('AZ' . $rowIndex, !empty($months[9]->htdm_flow_rate) ? number_format($months[0]->htdm_flow_rate) : "");
+            $activeSheet->setCellValue('BA' . $rowIndex, !empty($months[9]->htdm_vertical) ? number_format($months[0]->htdm_vertical) : "");
+            $activeSheet->setCellValue('BB' . $rowIndex, !empty($months[9]->htdm_horizontal) ? number_format($months[0]->htdm_horizontal) : "");
 
-            $activeSheet->setCellValue('BC' . $rowIndex, $value->htdMonths[10]->htdm_date);
-            $activeSheet->setCellValue('BD' . $rowIndex, !empty($value->htdMonths[10]->htdm_pressure) ? number_format($value->htdMonths[0]->htdm_pressure) : "");
-            $activeSheet->setCellValue('BE' . $rowIndex, !empty($value->htdMonths[10]->htdm_flow_rate) ? number_format($value->htdMonths[0]->htdm_flow_rate) : "");
-            $activeSheet->setCellValue('BF' . $rowIndex, !empty($value->htdMonths[10]->htdm_vertical) ? number_format($value->htdMonths[0]->htdm_vertical) : "");
-            $activeSheet->setCellValue('BG' . $rowIndex, !empty($value->htdMonths[10]->htdm_horizontal) ? number_format($value->htdMonths[0]->htdm_horizontal) : "");
+            $activeSheet->setCellValue('BC' . $rowIndex, $months[10]->htdm_date);
+            $activeSheet->setCellValue('BD' . $rowIndex, !empty($months[10]->htdm_pressure) ? number_format($months[0]->htdm_pressure) : "");
+            $activeSheet->setCellValue('BE' . $rowIndex, !empty($months[10]->htdm_flow_rate) ? number_format($months[0]->htdm_flow_rate) : "");
+            $activeSheet->setCellValue('BF' . $rowIndex, !empty($months[10]->htdm_vertical) ? number_format($months[0]->htdm_vertical) : "");
+            $activeSheet->setCellValue('BG' . $rowIndex, !empty($months[10]->htdm_horizontal) ? number_format($months[0]->htdm_horizontal) : "");
 
-            $activeSheet->setCellValue('BH' . $rowIndex, $value->htdMonths[11]->htdm_date);
-            $activeSheet->setCellValue('BI' . $rowIndex, !empty($value->htdMonths[11]->htdm_pressure) ? number_format($value->htdMonths[0]->htdm_pressure) : "");
-            $activeSheet->setCellValue('BJ' . $rowIndex, !empty($value->htdMonths[11]->htdm_flow_rate) ? number_format($value->htdMonths[0]->htdm_flow_rate) : "");
-            $activeSheet->setCellValue('BK' . $rowIndex, !empty($value->htdMonths[11]->htdm_vertical) ? number_format($value->htdMonths[0]->htdm_vertical) : "");
-            $activeSheet->setCellValue('BL' . $rowIndex, !empty($value->htdMonths[11]->htdm_horizontal) ? number_format($value->htdMonths[0]->htdm_horizontal) : "");
+            $activeSheet->setCellValue('BH' . $rowIndex, $months[11]->htdm_date);
+            $activeSheet->setCellValue('BI' . $rowIndex, !empty($months[11]->htdm_pressure) ? number_format($months[0]->htdm_pressure) : "");
+            $activeSheet->setCellValue('BJ' . $rowIndex, !empty($months[11]->htdm_flow_rate) ? number_format($months[0]->htdm_flow_rate) : "");
+            $activeSheet->setCellValue('BK' . $rowIndex, !empty($months[11]->htdm_vertical) ? number_format($months[0]->htdm_vertical) : "");
+            $activeSheet->setCellValue('BL' . $rowIndex, !empty($months[11]->htdm_horizontal) ? number_format($months[0]->htdm_horizontal) : "");
+
+            
+            $activeSheet->getStyle('D' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('E' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('F' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('G' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('H' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('I' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('J' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('K' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('L' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('M' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('N' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('O' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('P' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('Q' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('R' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('S' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('T' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('U' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('V' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('W' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('X' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('Y' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('Z' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('AA' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('AB' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('AC' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('AD' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('AE' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('AF' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('AG' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('AH' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('AI' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('AJ' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('AK' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('AL' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('AM' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('AN' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('AO' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('AP' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('AQ' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('AR' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('AS' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('AT' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('AU' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('AV' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('AW' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('AX' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('AY' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('AZ' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('BA' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('BB' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('BC' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('BD' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('BE' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('BF' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('BG' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('BH' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('BI' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('BJ' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('BK' . $rowIndex)->applyFromArray($styleArray);
+            $activeSheet->getStyle('BL' . $rowIndex)->applyFromArray($styleArray);
+            $rowIndex++;
+
+            $activeSheet->setCellValue('D' . $rowIndex, "Diesel Pump");
+            $months = $value->htdMonthsDiesel;
+
+            $activeSheet->setCellValue('E' . $rowIndex, $months[0]->htdm_date);
+            $activeSheet->setCellValue('F' . $rowIndex, !empty($months[0]->htdm_pressure) ? number_format($months[0]->htdm_pressure) : "");
+            $activeSheet->setCellValue('G' . $rowIndex, !empty($months[0]->htdm_flow_rate) ? number_format($months[0]->htdm_flow_rate) : "");
+            $activeSheet->setCellValue('H' . $rowIndex, !empty($months[0]->htdm_vertical) ? number_format($months[0]->htdm_vertical) : "");
+            $activeSheet->setCellValue('I' . $rowIndex, !empty($months[0]->htdm_horizontal) ? number_format($months[0]->htdm_horizontal) : "");
+
+            $activeSheet->setCellValue('J' . $rowIndex, $months[1]->htdm_date);
+            $activeSheet->setCellValue('K' . $rowIndex, !empty($months[1]->htdm_pressure) ? number_format($months[0]->htdm_pressure) : "");
+            $activeSheet->setCellValue('L' . $rowIndex, !empty($months[1]->htdm_flow_rate) ? number_format($months[0]->htdm_flow_rate) : "");
+            $activeSheet->setCellValue('M' . $rowIndex, !empty($months[1]->htdm_vertical) ? number_format($months[0]->htdm_vertical) : "");
+            $activeSheet->setCellValue('N' . $rowIndex, !empty($months[1]->htdm_horizontal) ? number_format($months[0]->htdm_horizontal) : "");
+
+            $activeSheet->setCellValue('O' . $rowIndex, $months[2]->htdm_date);
+            $activeSheet->setCellValue('P' . $rowIndex, !empty($months[2]->htdm_pressure) ? number_format($months[0]->htdm_pressure) : "");
+            $activeSheet->setCellValue('Q' . $rowIndex, !empty($months[2]->htdm_flow_rate) ? number_format($months[0]->htdm_flow_rate) : "");
+            $activeSheet->setCellValue('R' . $rowIndex, !empty($months[2]->htdm_vertical) ? number_format($months[0]->htdm_vertical) : "");
+            $activeSheet->setCellValue('S' . $rowIndex, !empty($months[2]->htdm_horizontal) ? number_format($months[0]->htdm_horizontal) : "");
+
+            $activeSheet->setCellValue('T' . $rowIndex, $months[3]->htdm_date);
+            $activeSheet->setCellValue('U' . $rowIndex, !empty($months[3]->htdm_pressure) ? number_format($months[0]->htdm_pressure) : "");
+            $activeSheet->setCellValue('V' . $rowIndex, !empty($months[3]->htdm_flow_rate) ? number_format($months[0]->htdm_flow_rate) : "");
+            $activeSheet->setCellValue('W' . $rowIndex, !empty($months[3]->htdm_vertical) ? number_format($months[0]->htdm_vertical) : "");
+            $activeSheet->setCellValue('X' . $rowIndex, !empty($months[3]->htdm_horizontal) ? number_format($months[0]->htdm_horizontal) : "");
+
+            $activeSheet->setCellValue('Y' . $rowIndex, $months[4]->htdm_date);
+            $activeSheet->setCellValue('Z' . $rowIndex, !empty($months[4]->htdm_pressure) ? number_format($months[0]->htdm_pressure) : "");
+            $activeSheet->setCellValue('AA' . $rowIndex, !empty($months[4]->htdm_flow_rate) ? number_format($months[0]->htdm_flow_rate) : "");
+            $activeSheet->setCellValue('AB' . $rowIndex, !empty($months[4]->htdm_vertical) ? number_format($months[0]->htdm_vertical) : "");
+            $activeSheet->setCellValue('AC' . $rowIndex, !empty($months[4]->htdm_horizontal) ? number_format($months[0]->htdm_horizontal) : "");
+
+            $activeSheet->setCellValue('AD' . $rowIndex, $months[5]->htdm_date);
+            $activeSheet->setCellValue('AE' . $rowIndex, !empty($months[5]->htdm_pressure) ? number_format($months[0]->htdm_pressure) : "");
+            $activeSheet->setCellValue('AF' . $rowIndex, !empty($months[5]->htdm_flow_rate) ? number_format($months[0]->htdm_flow_rate) : "");
+            $activeSheet->setCellValue('AG' . $rowIndex, !empty($months[5]->htdm_vertical) ? number_format($months[0]->htdm_vertical) : "");
+            $activeSheet->setCellValue('AH' . $rowIndex, !empty($months[5]->htdm_horizontal) ? number_format($months[0]->htdm_horizontal) : "");
+
+            $activeSheet->setCellValue('AI' . $rowIndex, $months[6]->htdm_date);
+            $activeSheet->setCellValue('AJ' . $rowIndex, !empty($months[6]->htdm_pressure) ? number_format($months[0]->htdm_pressure) : "");
+            $activeSheet->setCellValue('AK' . $rowIndex, !empty($months[6]->htdm_flow_rate) ? number_format($months[0]->htdm_flow_rate) : "");
+            $activeSheet->setCellValue('AL' . $rowIndex, !empty($months[6]->htdm_vertical) ? number_format($months[0]->htdm_vertical) : "");
+            $activeSheet->setCellValue('AM' . $rowIndex, !empty($months[6]->htdm_horizontal) ? number_format($months[0]->htdm_horizontal) : "");
+
+            $activeSheet->setCellValue('AN' . $rowIndex, $months[7]->htdm_date);
+            $activeSheet->setCellValue('AO' . $rowIndex, !empty($months[7]->htdm_pressure) ? number_format($months[0]->htdm_pressure) : "");
+            $activeSheet->setCellValue('AP' . $rowIndex, !empty($months[7]->htdm_flow_rate) ? number_format($months[0]->htdm_flow_rate) : "");
+            $activeSheet->setCellValue('AQ' . $rowIndex, !empty($months[7]->htdm_vertical) ? number_format($months[0]->htdm_vertical) : "");
+            $activeSheet->setCellValue('AR' . $rowIndex, !empty($months[7]->htdm_horizontal) ? number_format($months[0]->htdm_horizontal) : "");
+
+            $activeSheet->setCellValue('AS' . $rowIndex, $months[8]->htdm_date);
+            $activeSheet->setCellValue('AT' . $rowIndex, !empty($months[8]->htdm_pressure) ? number_format($months[0]->htdm_pressure) : "");
+            $activeSheet->setCellValue('AU' . $rowIndex, !empty($months[8]->htdm_flow_rate) ? number_format($months[0]->htdm_flow_rate) : "");
+            $activeSheet->setCellValue('AV' . $rowIndex, !empty($months[8]->htdm_vertical) ? number_format($months[0]->htdm_vertical) : "");
+            $activeSheet->setCellValue('AW' . $rowIndex, !empty($months[8]->htdm_horizontal) ? number_format($months[0]->htdm_horizontal) : "");
+
+            $activeSheet->setCellValue('AX' . $rowIndex, $months[9]->htdm_date);
+            $activeSheet->setCellValue('AY' . $rowIndex, !empty($months[9]->htdm_pressure) ? number_format($months[0]->htdm_pressure) : "");
+            $activeSheet->setCellValue('AZ' . $rowIndex, !empty($months[9]->htdm_flow_rate) ? number_format($months[0]->htdm_flow_rate) : "");
+            $activeSheet->setCellValue('BA' . $rowIndex, !empty($months[9]->htdm_vertical) ? number_format($months[0]->htdm_vertical) : "");
+            $activeSheet->setCellValue('BB' . $rowIndex, !empty($months[9]->htdm_horizontal) ? number_format($months[0]->htdm_horizontal) : "");
+
+            $activeSheet->setCellValue('BC' . $rowIndex, $months[10]->htdm_date);
+            $activeSheet->setCellValue('BD' . $rowIndex, !empty($months[10]->htdm_pressure) ? number_format($months[0]->htdm_pressure) : "");
+            $activeSheet->setCellValue('BE' . $rowIndex, !empty($months[10]->htdm_flow_rate) ? number_format($months[0]->htdm_flow_rate) : "");
+            $activeSheet->setCellValue('BF' . $rowIndex, !empty($months[10]->htdm_vertical) ? number_format($months[0]->htdm_vertical) : "");
+            $activeSheet->setCellValue('BG' . $rowIndex, !empty($months[10]->htdm_horizontal) ? number_format($months[0]->htdm_horizontal) : "");
+
+            $activeSheet->setCellValue('BH' . $rowIndex, $months[11]->htdm_date);
+            $activeSheet->setCellValue('BI' . $rowIndex, !empty($months[11]->htdm_pressure) ? number_format($months[0]->htdm_pressure) : "");
+            $activeSheet->setCellValue('BJ' . $rowIndex, !empty($months[11]->htdm_flow_rate) ? number_format($months[0]->htdm_flow_rate) : "");
+            $activeSheet->setCellValue('BK' . $rowIndex, !empty($months[11]->htdm_vertical) ? number_format($months[0]->htdm_vertical) : "");
+            $activeSheet->setCellValue('BL' . $rowIndex, !empty($months[11]->htdm_horizontal) ? number_format($months[0]->htdm_horizontal) : "");
 
 
-
-            $activeSheet->getStyle('A' . $rowIndex)->applyFromArray($styleArray);
-            $activeSheet->getStyle('B' . $rowIndex)->applyFromArray($styleArray);
-            $activeSheet->getStyle('C' . $rowIndex)->applyFromArray($styleArray);
             $activeSheet->getStyle('D' . $rowIndex)->applyFromArray($styleArray);
             $activeSheet->getStyle('E' . $rowIndex)->applyFromArray($styleArray);
             $activeSheet->getStyle('F' . $rowIndex)->applyFromArray($styleArray);

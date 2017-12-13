@@ -87,9 +87,14 @@ class HydrantTestingDetailController extends AppController
     {
         $model = new HydrantTestingDetail();
 
-        $htdMonths = [];
+        $htdMonthsElectrical = [];
         for($i=0; $i<12; $i++){
-            $htdMonths[] = new HtdMonth();
+            $htdMonthsElectrical[] = new HtdMonth();
+        }
+
+        $htdMonthsDiesel = [];
+        for($i=0; $i<12; $i++){
+            $htdMonthsDiesel[] = new HtdMonth();
         }
 
         $startDate = new \DateTime();
@@ -97,7 +102,7 @@ class HydrantTestingDetailController extends AppController
 
 
         $requestData = Yii::$app->request->post();
-        if ($model->load($requestData) && Model::loadMultiple($htdMonths, $requestData) && $model->saveTransactional()) {
+        if ($model->load($requestData) && Model::loadMultiple($htdMonthsElectrical, $requestData) && Model::loadMultiple($htdMonthsDiesel, $requestData) && $model->saveTransactional()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -106,7 +111,8 @@ class HydrantTestingDetailController extends AppController
                 'model' => $model,
                 'powerPlantModel' => $this->powerPlantModel,
                 'htId' => $htId,
-                'htdMonths' => $htdMonths,
+                'htdMonthsElectrical' => $htdMonthsElectrical,
+                'htdMonthsDiesel' => $htdMonthsDiesel,
                 'startDate' => $startDate,
 
             ]);
@@ -122,7 +128,8 @@ class HydrantTestingDetailController extends AppController
     public function actionUpdate($id, $htId)
     {
         $model = $this->findModel($id);
-        $htdMonths = $model->htdMonths;
+        $htdMonthsElectrical = $model->htdMonthsElectrical;
+        $htdMonthsDiesel = $model->htdMonthsDiesel;
 
         $startDate = new \DateTime();
         $startDate->setDate(2017, 1, 1);
@@ -135,7 +142,8 @@ class HydrantTestingDetailController extends AppController
                 'model' => $model,
                 'powerPlantModel' => $this->powerPlantModel,
                 'htId' => $htId,
-                'htdMonths' => $htdMonths,
+                'htdMonthsElectrical' => $htdMonthsElectrical,
+                'htdMonthsDiesel' => $htdMonthsDiesel,
                 'startDate' => $startDate,
             ]);
         }
@@ -154,7 +162,7 @@ class HydrantTestingDetailController extends AppController
             Yii::$app->session->setFlash('success', AppConstants::MSG_DELETE_SUCCESS);
         }
 
-        return $this->redirect(['index', '_ppId' => $model->hydrantTesting->power_plant_id, 'ksId' => $model->hydrant_testing_id]);
+        return $this->redirect(['index', '_ppId' => $model->hydrantTesting->power_plant_id, 'htId' => $model->hydrant_testing_id]);
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\Codeset;
 use Yii;
 use backend\models\WorkAccident;
 use backend\models\WorkAccidentSearch;
@@ -51,15 +52,18 @@ class WorkAccidentController extends AppController
      * Lists all WorkAccident models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($wat)
     {
         $searchModel = new WorkAccidentSearch();
+        $title = Codeset::getCodesetValue(AppConstants::CODESET_WA_WORK_ACCIDENT_TYPE, $wat);
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'powerPlantModel' => $this->powerPlantModel,
+            'title' => $title,
+            'wat' => $wat,
         ]);
     }
 
@@ -68,10 +72,13 @@ class WorkAccidentController extends AppController
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
+    public function actionView($id, $wat)
     {
+        $title = Codeset::getCodesetValue(AppConstants::CODESET_WA_WORK_ACCIDENT_TYPE, $wat);
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'wat' => $wat,
+            'title' => $title,
         ]);
     }
 
@@ -80,17 +87,20 @@ class WorkAccidentController extends AppController
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($wat)
     {
         $model = new WorkAccident();
+        $title = Codeset::getCodesetValue(AppConstants::CODESET_WA_WORK_ACCIDENT_TYPE, $wat);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_SAVE_SUCCESS);
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->id, 'wat' => $wat]);
         } else {
             return $this->render('create', [
                 'model' => $model,
                 'powerPlantModel' => $this->powerPlantModel,
+                'title' => $title,
+                'wat' => $wat,
             ]);
         }
     }
@@ -101,17 +111,20 @@ class WorkAccidentController extends AppController
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id, $wat)
     {
         $model = $this->findModel($id);
+        $title = Codeset::getCodesetValue(AppConstants::CODESET_WA_WORK_ACCIDENT_TYPE, $wat);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_UPDATE_SUCCESS);
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->id, 'wat' => $wat]);
         } else {
             return $this->render('update', [
                 'model' => $model,
                 'powerPlantModel' => $this->powerPlantModel,
+                'title' => $title,
+                'wat' => $wat,
             ]);
         }
     }
@@ -122,14 +135,14 @@ class WorkAccidentController extends AppController
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id)
+    public function actionDelete($id, $wat)
     {
         $model = $this->findModel($id);
         if ($model->delete()) {
             Yii::$app->session->setFlash('success', AppConstants::MSG_DELETE_SUCCESS);
         }
 
-        return $this->redirect(['index', '_ppId' => $model->power_plant_id]);
+        return $this->redirect(['index', '_ppId' => $model->power_plant_id, 'wat' => $wat]);
     }
 
     public function actionExport($id) {

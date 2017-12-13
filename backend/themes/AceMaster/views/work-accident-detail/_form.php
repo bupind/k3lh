@@ -3,7 +3,6 @@
 use yii\widgets\ActiveForm;
 use common\vendor\AppLabels;
 use common\vendor\AppConstants;
-use backend\models\Codeset;
 use app\components\SubmitButton;
 use kartik\date\DatePicker;
 
@@ -11,6 +10,7 @@ use kartik\date\DatePicker;
 /* @var $model backend\models\WorkAccidentDetail */
 /* @var $form yii\widgets\ActiveForm */
 /* @var $powerPlantModel backend\models\PowerPlant */
+/* @var $wat string */
 
 ?>
 <?php
@@ -60,9 +60,8 @@ $form = ActiveForm::begin([
                                 ->textInput(['maxlength' => true, 'class' => 'form-control'])
                                 ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
 
-                            echo $form->field($model, 'wad_type', ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
-                                ->dropDownList(Codeset::customMap(AppConstants::CODESET_WA_WORK_ACCIDENT_TYPE), ['class' => 'chosen-select form-control'])
-                                ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+                            echo $form->field($model, "wad_type")
+                                ->hiddenInput(['value' => $wat])->label(false);
                             ?>
                         </fieldset>
                     </div>

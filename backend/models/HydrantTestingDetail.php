@@ -15,18 +15,18 @@ use yii\base\Exception;
  * @property integer $hydrant_testing_id
  * @property string $htd_number
  * @property string $htd_location
- * @property string $htd_pump_type
  * @property integer $created_by
  * @property integer $created_at
  * @property integer $updated_by
  * @property integer $updated_at
  *
  * @property HtdMonth[] $htdMonths
+ * @property HtdMonth[] $htdMonthsElectrical
+ * @property HtdMonth[] $htdMonthsDiesel
  * @property HydrantTesting $hydrantTesting
  */
 class HydrantTestingDetail extends AppModel
 {
-    public $htd_pump_type_desc;
     /**
      * @inheritdoc
      */
@@ -44,7 +44,6 @@ class HydrantTestingDetail extends AppModel
             [['hydrant_testing_id', 'htd_number'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
             [['hydrant_testing_id'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
             [['htd_number', 'htd_location'], 'string', 'max' => 50],
-            [['htd_pump_type'], 'string', 'max' => 10],
             [['hydrant_testing_id'], 'exist', 'skipOnError' => true, 'targetClass' => HydrantTesting::className(), 'targetAttribute' => ['hydrant_testing_id' => 'id']],
         ];
     }
@@ -59,7 +58,6 @@ class HydrantTestingDetail extends AppModel
             'hydrant_testing_id' => AppLabels::FORM_HYDRANT_TESTING,
             'htd_number' => 'Nomor Hydrant',
             'htd_location' => AppLabels::LOCATION,
-            'htd_pump_type' => 'Pompa',
         ];
     }
 
@@ -80,7 +78,20 @@ class HydrantTestingDetail extends AppModel
             $hydrantTestingDetailId = $this->id;
 
             if (isset($request['HtdMonth'])) {
-                foreach ($request['HtdMonth'] as $key => $month) {
+                foreach ($request['HtdMonth'][0] as $key => $month) {
+                    if (isset($month['id'])) {
+                        $monthTuple = HtdMonth::findOne(['id' => $month['id']]);
+                    } else {
+                        $monthTuple = new HtdMonth();
+                        $monthTuple->hydrant_testing_detail_id = $hydrantTestingDetailId;
+                    }
+
+                    if (!$monthTuple->load(['HtdMonth' => $month]) || !$monthTuple->save()) {
+                        $errors = array_merge($errors, $monthTuple->errors);
+                        throw new Exception();
+                    }
+                }
+                foreach ($request['HtdMonth'][1] as $key => $month) {
                     if (isset($month['id'])) {
                         $monthTuple = HtdMonth::findOne(['id' => $month['id']]);
                     } else {
@@ -111,20 +122,28 @@ class HydrantTestingDetail extends AppModel
         }
     }
 
-    public function afterFind() {
-        parent::afterFind();
-
-        $this->htd_pump_type_desc = Codeset::getCodesetValue(AppConstants::CODESET_HT_DETAIL_PUMP_TYPE, $this->htd_pump_type);
-
-        return true;
-    }
-
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getHtdMonths()
     {
-        return $this->hasMany(HtdMonth::className(), ['hydrant_testing_detail_id' => 'id']);
+        return $this->hasMany(HtdMonth::className(), ['hydrant_testing_detail_id' => 'id'])->orderBy(['htdm_month' => SORT_ASC]);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getHtdMonthsElectrical()
+    {
+        return $this->hasMany(HtdMonth::className(), ['hydrant_testing_detail_id' => 'id'])->where(['htdm_pump_type' => AppConstants::HT_ELECTRICAL_PUMP])->orderBy(['htdm_month' => SORT_ASC]);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getHtdMonthsDiesel()
+    {
+        return $this->hasMany(HtdMonth::className(), ['hydrant_testing_detail_id' => 'id'])->where(['htdm_pump_type' => AppConstants::HT_DIESEL_PUMP])->orderBy(['htdm_month' => SORT_ASC]);
     }
 
     /**

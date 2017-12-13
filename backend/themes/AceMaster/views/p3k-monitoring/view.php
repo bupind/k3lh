@@ -45,6 +45,41 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-xs-12">
+            <div class="table-responsive">
+                <table id="table-k3-supervision-view" class="<?= AppConstants::TABLE_CLASS_DEFAULT_SMALL; ?>">
+                    <thead>
+                    <tr>
+                        <th rowspan="2" class="text-center"><?= AppLabels::NUMBER_SHORT ?></th>
+                        <th rowspan="2" class="text-center"><?= "Isi Kotak P3K" ?></th>
+                        <th rowspan="2" class="text-center"><?= "Jumlah Standar" ?></th>
+                        <th colspan="12" class="text-center"><?= "Jumlah Isi Kotak P3K" ?></th>
+                        <th rowspan="2" class="text-center"><?= AppLabels::DESCRIPTION ?></th>
+                    </tr>
+                    <tr>
+                        <?php foreach(AppConstants::$monthsList as $key => $value) : ?>
+                            <td class="text-center"><?= $value ?> </td>
+                        <?php endforeach; ?>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($model->p3kMonitoringDetails as $key => $value) : ?>
+                        <tr>
+                            <td class="text-center"><?= ($key + 1) ?></td>
+                            <td class="text-center"><?= $value->pmd_value ?></td>
+                            <td class="text-center"><?= $value->pmd_standard_amount ?></td>
+                            <?php foreach ($value->pmdMonths as $key1 => $value1) : ?>
+                                <td class="text-center"><?= $value1->pmdm_value ?></td>
+                            <?php endforeach; ?>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
             <?= ViewButton::widget([
                 'model' => $model,
                 'options' => [

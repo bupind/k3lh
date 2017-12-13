@@ -17,10 +17,10 @@ $this->params['breadcrumbs'][] = $this->title;
 $actionColumn = Yii::$container->get('yii\grid\ActionColumn');
 $buttons = array_merge($actionColumn->buttons, [
     'update' => function ($url, $model) {
-        return Html::a('<i class="ace-icon fa fa-pencil bigger-120"></i> ' . AppLabels::BTN_UPDATE, ['p3k-monitoring-detail/update', '_ppId' => $model->p2k3Monitoring->powerPlant->id, 'id' => $model->id, 'pmId' => $model->p3k_monitoring_id], ['class' => 'btn btn-xs btn-info']);
+        return Html::a('<i class="ace-icon fa fa-pencil bigger-120"></i> ' . AppLabels::BTN_UPDATE, ['p2k3-monitoring-detail/update', '_ppId' => $model->p2k3Monitoring->powerPlant->id, 'id' => $model->id, 'pmId' => $model->p2k3_monitoring_id], ['class' => 'btn btn-xs btn-info']);
     },
     'update_xs' => function ($url, $model) {
-        return Html::a('<span class="green"><i class="ace-icon fa fa-pencil bigger-120"></i></span>', ['p3k-monitoring-detail/update', '_ppId' => $model->p2k3Monitoring->powerPlant->id, 'id' => $model->id, 'pmId' => $model->p3k_monitoring_id], ['class' => 'tooltip-success', 'data-rel' => 'tooltip', 'data-original-title' => AppLabels::BTN_UPDATE]);
+        return Html::a('<span class="green"><i class="ace-icon fa fa-pencil bigger-120"></i></span>', ['p2k3-monitoring-detail/update', '_ppId' => $model->p2k3Monitoring->powerPlant->id, 'id' => $model->id, 'pmId' => $model->p2k3_monitoring_id], ['class' => 'tooltip-success', 'data-rel' => 'tooltip', 'data-original-title' => AppLabels::BTN_UPDATE]);
     },
 ]);
 ?>
@@ -46,7 +46,10 @@ $buttons = array_merge($actionColumn->buttons, [
             'pmd_finding',
             'pmd_action:ntext',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'buttons' => $buttons,
+            ],
         ],
     ]); ?>
 </div>

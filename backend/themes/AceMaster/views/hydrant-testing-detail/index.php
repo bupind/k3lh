@@ -45,12 +45,11 @@ $buttons = array_merge($actionColumn->buttons, [
 
             'htd_number',
             'htd_location',
-            [
-                'attribute' => 'htd_pump_type',
-                'value' => 'htd_pump_type_desc'
-            ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'buttons' => $buttons,
+            ],
         ],
     ]); ?>
 </div>

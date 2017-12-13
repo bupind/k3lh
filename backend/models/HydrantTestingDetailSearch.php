@@ -17,7 +17,7 @@ class HydrantTestingDetailSearch extends HydrantTestingDetail
     {
         return [
             [['id', 'hydrant_testing_id'], 'integer'],
-            [['htd_number', 'htd_location', 'htd_pump_type'], 'safe'],
+            [['htd_number', 'htd_location'], 'safe'],
         ];
     }
 
@@ -62,9 +62,7 @@ class HydrantTestingDetailSearch extends HydrantTestingDetail
         ]);
 
         $query->andFilterWhere(['like', 'htd_number', $this->htd_number])
-            ->andFilterWhere(['like', 'htd_location', $this->htd_location])
-            ->andFilterWhere(['like', 'htd_pump_type', $this->htd_pump_type]);
-
+            ->andFilterWhere(['like', 'htd_location', $this->htd_location]);
         return $dataProvider;
     }
 }

@@ -9,6 +9,7 @@ use app\components\SubmitButton;
 /* @var $model backend\models\WorkAccident */
 /* @var $form yii\widgets\ActiveForm */
 /* @var $powerPlantModel backend\models\PowerPlant */
+/* @var $wat string */
 ?>
 <?php
 $form = ActiveForm::begin([
@@ -31,7 +32,7 @@ $form = ActiveForm::begin([
         <div class="col-xs-12 col-md-6 col-md-offset-3">
             <div class="widget-box">
                 <div class="widget-header">
-                    <h4 class="widget-title"> <?= AppLabels::FORM_WORK_ACCIDENT ?> </h4>
+                    <h4 class="widget-title"> <?= sprintf("Form %s", $title) ?> </h4>
                 </div>
                 <div class="widget-body">
                     <div class="widget-main">

@@ -8,7 +8,8 @@ use common\vendor\AppLabels;
 /* @var $this yii\web\View */
 /* @var $model backend\models\HydrantTestingDetail */
 /* @var $powerPlantModel backend\models\PowerPlant */
-/* @var $htdMonths backend\models\HtdMonth */
+/* @var $htdMonthsElectrical backend\models\HtdMonth */
+/* @var $htdMonthsDiesel backend\models\HtdMonth */
 /* @var $startDate DateTime */
 /* @var $htId int */
 
@@ -25,7 +26,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= $this->render('_form', [
         'model' => $model,
         'powerPlantModel' => $powerPlantModel,
-        'htdMonths' => $htdMonths,
+        'htdMonthsElectrical' => $htdMonthsElectrical,
+        'htdMonthsDiesel' => $htdMonthsDiesel,
         'startDate' => $startDate,
     ]) ?>
 

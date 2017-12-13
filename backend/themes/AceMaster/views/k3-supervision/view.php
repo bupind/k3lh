@@ -46,6 +46,37 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-xs-12">
+            <div class="table-responsive">
+                <table id="table-k3-supervision-view" class="<?= AppConstants::TABLE_CLASS_DEFAULT_SMALL; ?>">
+                    <thead>
+                        <tr>
+                            <th class="text-center"><?= AppLabels::NUMBER_SHORT ?></th>
+                            <th class="text-center"><?= AppLabels::DATE ?></th>
+                            <th class="text-center"><?= AppLabels::FINDING ?></th>
+                            <th class="text-center"><?= "Tindakan Pengawas K3" ?></th>
+                            <th class="text-center"><?= AppLabels::RESPONSE ?></th>
+                            <th class="text-center"><?= AppLabels::INFORMATION . AppLabels::FINDING ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($model->k3SupervisionDetails as $key => $value) : ?>
+                        <tr>
+                            <td class="text-center"><?= ($key+1)?></td>
+                            <td class="text-center"><?= $value->ksd_date?></td>
+                            <td class="text-center"><?= $value->ksd_finding?></td>
+                            <td class="text-center"><?= $value->ksd_officer_action?></td>
+                            <td class="text-center"><?= $value->ksd_response?></td>
+                            <td class="text-center"><?= $value->ksd_finding_desc?></td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
             <?= ViewButton::widget([
                 'model' => $model,
                 'options' => [

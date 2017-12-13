@@ -17,6 +17,7 @@ use Yii;
  * @property integer $htdm_flow_rate
  * @property integer $htdm_vertical
  * @property integer $htdm_horizontal
+ * @property string $htdm_pump_type
  * @property integer $created_by
  * @property integer $created_at
  * @property integer $updated_by
@@ -40,7 +41,7 @@ class HtdMonth extends AppModel
     public function rules()
     {
         return [
-            [['hydrant_testing_detail_id', 'htdm_month'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
+            [['hydrant_testing_detail_id', 'htdm_month', 'htdm_pump_type'], 'required', 'message' => AppConstants::VALIDATE_REQUIRED],
             [['hydrant_testing_detail_id', 'htdm_month', 'htdm_pressure', 'htdm_flow_rate', 'htdm_vertical', 'htdm_horizontal'], 'integer', 'message' => AppConstants::VALIDATE_INTEGER],
             [['htdm_date'], 'safe'],
             [['hydrant_testing_detail_id'], 'exist', 'skipOnError' => true, 'targetClass' => HydrantTestingDetail::className(), 'targetAttribute' => ['hydrant_testing_detail_id' => 'id']],
@@ -79,7 +80,7 @@ class HtdMonth extends AppModel
         parent::afterFind();
 
         if(!$this->htdm_date == '') {
-            $this->htdm_date = Yii::$app->formatter->asDate($this->htdm_date, AppConstants::FORMAT_DATE_PHP_SHOW_MONTH);
+            $this->htdm_date = Yii::$app->formatter->asDate($this->htdm_date, AppConstants::FORMAT_DATE_PHP);
         }
 
         return true;

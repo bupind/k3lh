@@ -148,7 +148,7 @@ class AppConstants {
     const FORMAT_DB_DATE = 'Y-m-d';
     const FORMAT_DATE_DATEPICKER = 'dd-mm-yyyy';
     const FORMAT_DATE_PHP = 'php:d-m-Y';
-    const FORMAT_DATE_PHP_SHOW_MONTH = 'php:d M Y';
+    const FORMAT_DATE_PHP_SHOW_MONTH = 'php:d-m-Y';
     const FORMAT_DATETIME_PHP = 'php:d-m-Y H:i';
     const FORMAT_DB_DATE_PHP = 'php:Y-m-d';
     const FORMAT_DB_DATETIME_PHP = 'php:Y-m-d H:i:s';
@@ -417,15 +417,22 @@ class AppConstants {
 
     //P2K3 MONITORING
     const COCESET_P2K3M_STATUS = 'P2K3M_STATUS';
+    const P2K3M_STATUS_CLOSE = 'PS3';
 
     //WORKER_MONITORING
     const CODESET_WHM_WORKER_TYPE = 'WHM_WORKER_TYPE';
 
     //WORK_ACCIDENT
     const CODESET_WA_WORK_ACCIDENT_TYPE = 'WA_WORK_ACCIDENT_TYPE';
+    const WORK_ACCIDENT_NEARMISS = 'WWAT4';
+    const WORK_ACCIDENT_KECELAKAAN_INSTALASI = 'WWAT2';
+    const WORK_ACCIDENT_KECELAKAAN_KERJA = 'WWAT1';
+    const WORK_ACCIDENT_KECELAKAAN_UMUM = 'WWAT3';
 
     //HYDRANT TESTING
     const CODESET_HT_DETAIL_PUMP_TYPE = 'HT_DETAIL_PUMP_TYPE';
+    const HT_ELECTRICAL_PUMP = 'HDPT1';
+    const HT_DIESEL_PUMP = 'HDPT2';
 
     // WEB CONFIG
     const WEB_CONFIG_SALE_EXTERNAL_SALES = 'SALE_EXT_SALES';

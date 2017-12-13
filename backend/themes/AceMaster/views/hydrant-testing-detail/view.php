@@ -34,9 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= DetailView::widget([
                 'model' => $model,
                 'options' => [
-                    'converter' => [
-                        'htd_pump_type' => [AppConstants::FORMAT_TYPE_VARIABLE, $model->htd_pump_type_desc],
-                    ],
+                    'excluded' => ['hydrant_testing_id']
                 ]
             ]);
             ?>
@@ -59,47 +57,108 @@ $this->params['breadcrumbs'][] = $this->title;
     ?>
 
     <div class="row">
-        <?php foreach ($model->htdMonths as $key => $value) : ?>
-            <div class="col-xs-12 col-md-4">
-                <div class="widget-box">
-                    <div class="widget-header">
-                        <h4 class="widget-title"> <?= AppConstants::$monthsList[$key + 1] ?> </h4>
-                    </div>
-                    <div class="widget-body">
-                        <div class="widget-main">
-                            <fieldset>
-                                <?php
-                                echo Html::label("Tanggal", null, ['class' => 'col-md-3 control-label no-padding-right']);
-                                ?>
-                                <div class="col-md-9">
-                                    <?php
-                                    echo Html::textInput("Tanggal", $value->htdm_date, ['class' => 'form-control', 'readOnly' => true]);
-                                    ?>
+        <div class="col-xs-12">
+            <div class="tabbable">
+                <ul id="myTab" class="nav nav-tabs">
+                    <li class="active">
+                        <?= Html::a('<i class="green ace-icon fa fa-bars bigger-120"></i> ' . 'Electrical Pump', '#electrical', ['data-toggle' => 'tab', 'aria-expanded' => 'true']); ?>
+                    </li>
+                    <li>
+                        <?= Html::a('<i class="green ace-icon fa fa-bars bigger-120"></i> ' . 'Diesel Pump', '#diesel', ['data-toggle' => 'tab', 'aria-expanded' => 'true']); ?>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div id="electrical" class="tab-pane fade active in">
+                        <div class="row">
+                            <?php foreach($model->htdMonthsElectrical as $key => $value) : ?>
+                                <div class="col-xs-12 col-md-4">
+                                    <div class="widget-box">
+                                        <div class="widget-header">
+                                            <h4 class="widget-title"> <?= AppConstants::$monthsList[$key+1] ?> </h4>
+                                        </div>
+                                        <div class="widget-body">
+                                            <div class="widget-main">
+                                                <fieldset>
+                                                    <?php
+                                                    echo Html::label("Tanggal", null, ['class' => 'col-md-3 control-label no-padding-right']);
+                                                    ?>
+                                                    <div class="col-md-9">
+                                                        <?php
+                                                        echo Html::textInput("Tanggal", $value->htdm_date, ['class' => 'form-control', 'readOnly' => true]);
+                                                        ?>
+                                                    </div>
+                                                    <?php
+                                                    echo $form->field($value, "[$key]htdm_pressure", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+                                                        ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly text-right', 'readOnly' => true])
+                                                        ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+
+                                                    echo $form->field($value, "[$key]htdm_flow_rate", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+                                                        ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly text-right', 'readOnly' => true])
+                                                        ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+
+                                                    echo $form->field($value, "[$key]htdm_vertical", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+                                                        ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly text-right', 'readOnly' => true])
+                                                        ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+
+                                                    echo $form->field($value, "[$key]htdm_horizontal", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+                                                        ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly text-right', 'readOnly' => true])
+                                                        ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+                                                    ?>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <?php
-                                echo $form->field($value, "[$key]htdm_pressure", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
-                                    ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly text-right', 'readOnly' => true])
-                                    ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                    <div id="diesel" class="tab-pane fade">
+                        <div class="row">
+                            <?php foreach($model->htdMonthsDiesel as $key => $value) : ?>
+                                <div class="col-xs-12 col-md-4">
+                                    <div class="widget-box">
+                                        <div class="widget-header">
+                                            <h4 class="widget-title"> <?= AppConstants::$monthsList[$key+1] ?> </h4>
+                                        </div>
+                                        <div class="widget-body">
+                                            <div class="widget-main">
+                                                <fieldset>
+                                                    <?php
+                                                    echo Html::label("Tanggal", null, ['class' => 'col-md-3 control-label no-padding-right']);
+                                                    ?>
+                                                    <div class="col-md-9">
+                                                        <?php
+                                                        echo Html::textInput("Tanggal", $value->htdm_date, ['class' => 'form-control', 'readOnly' => true]);
+                                                        ?>
+                                                    </div>
+                                                    <?php
+                                                    echo $form->field($value, "[$key]htdm_pressure", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+                                                        ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly text-right', 'readOnly' => true])
+                                                        ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
 
-                                echo $form->field($value, "[$key]htdm_flow_rate", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
-                                    ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly text-right', 'readOnly' => true])
-                                    ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+                                                    echo $form->field($value, "[$key]htdm_flow_rate", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+                                                        ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly text-right', 'readOnly' => true])
+                                                        ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
 
-                                echo $form->field($value, "[$key]htdm_vertical", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
-                                    ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly text-right', 'readOnly' => true])
-                                    ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+                                                    echo $form->field($value, "[$key]htdm_vertical", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+                                                        ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly text-right', 'readOnly' => true])
+                                                        ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
 
-                                echo $form->field($value, "[$key]htdm_horizontal", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
-                                    ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly text-right', 'readOnly' => true])
-                                    ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
-
-                                ?>
-                            </fieldset>
+                                                    echo $form->field($value, "[$key]htdm_horizontal", ['template' => AppConstants::ACTIVE_FORM_TEMPLATE_INPUT_COL_9_FULL])
+                                                        ->textInput(['maxlength' => true, 'class' => 'form-control numbersOnly text-right', 'readOnly' => true])
+                                                        ->label(null, ['class' => AppConstants::ACTIVE_FORM_CLASS_LABEL_COL_3]);
+                                                    ?>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>
             </div>
-        <?php endforeach; ?>
+        </div>
     </div>
     <?php ActiveForm::end(); ?>
 

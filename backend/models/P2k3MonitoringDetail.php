@@ -92,6 +92,6 @@ class P2k3MonitoringDetail extends AppModel
      */
     public function getP2k3Monitoring()
     {
-        return $this->hasOne(P3kMonitoring::className(), ['id' => 'p2k3_monitoring_id']);
+        return $this->hasOne(P2k3Monitoring::className(), ['id' => 'p2k3_monitoring_id']);
     }
 }

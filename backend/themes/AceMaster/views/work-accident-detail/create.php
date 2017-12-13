@@ -9,9 +9,11 @@ use common\vendor\AppLabels;
 /* @var $model backend\models\WorkAccidentDetail */
 /* @var $powerPlantModel backend\models\PowerPlant */
 /* @var $waId int */
+/* @var $wat string */
+/* @var $title string */
 
-$this->title = sprintf("%s %s", AppLabels::BTN_ADD, AppLabels::FORM_WORK_ACCIDENT_DETAIL, $powerPlantModel->getSummary());
-$this->params['breadcrumbs'][] = ['label' => AppLabels::FORM_WORK_ACCIDENT_DETAIL, 'url' => ['index', '_ppId' => $powerPlantModel->id, 'waId' => $waId]];
+$this->title = sprintf("%s %s", AppLabels::BTN_ADD, $title, $powerPlantModel->getSummary());
+$this->params['breadcrumbs'][] = ['label' => sprintf("Detail %s", $title), 'url' => ['index', '_ppId' => $powerPlantModel->id, 'waId' => $waId, 'wat' => $wat]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="work-accident-detail-create">
@@ -23,6 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= $this->render('_form', [
         'model' => $model,
         'powerPlantModel' => $powerPlantModel,
+        'wat' => $wat,
     ]) ?>
 
 </div>

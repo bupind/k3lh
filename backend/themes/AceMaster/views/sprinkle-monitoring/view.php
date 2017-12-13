@@ -46,6 +46,41 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-xs-12">
+            <div class="table-responsive">
+                <table id="table-k3-supervision-view" class="<?= AppConstants::TABLE_CLASS_DEFAULT_SMALL; ?>">
+                    <thead>
+                    <tr>
+                        <th rowspan="3" class="text-center"><?= "Head Sprinkle No." ?></th>
+                        <th class="text-center" rowspan="3"><?= AppLabels::LOCATION ?></th>
+                        <th class="text-center" colspan="3"><?= "Pengecekan Visual" ?></th>
+                        <th rowspan="3" class="text-center"><?= "Catatan Hasil Pengecekan" ?></th>
+                    </tr>
+                    <tr>
+                        <th rowspan="2" class="text-center"><?= "Head Sprinkle" ?></th>
+                        <th rowspan="2" class="text-center"><?= "Fisik Detector" ?></th>
+                        <th class="text-center" rowspan="2"><?= "Kondisi Piping" ?></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($model->sprinkleMonitoringDetails as $key => $value) : ?>
+                        <tr>
+                            <td class="text-center"><?= ($key + 1) ?></td>
+                            <td class="text-center"><?= $value->sm_location ?></td>
+                            <td class="text-center"><?= $value->sm_sprinkle_head_desc ?></td>
+                            <td class="text-center"><?= $value->sm_detector_desc ?></td>
+                            <td class="text-center"><?= $value->sm_piping_condition_desc ?></td>
+                            <td class="text-center"><?= $value->sm_notes ?></td>
+
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
             <?= ViewButton::widget([
                 'model' => $model,
                 'options' => [

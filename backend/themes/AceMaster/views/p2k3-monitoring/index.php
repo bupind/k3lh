@@ -26,10 +26,10 @@ $buttons = array_merge($actionColumn->buttons, [
         return Html::a('<span class="blue"><i class="ace-icon fa fa-cloud-download bigger-120"></i></span>', $url, ['class' => 'tooltip-warning', 'data-rel' => 'tooltip', 'data-original-title' => AppLabels::BTN_EXPORT, 'data' => ['method' => 'post']]);
     },
     'detail' => function ($url, $model) {
-        return Html::a('<i class="ace-icon fa fa-circle bigger-120"></i> ' . AppLabels::BTN_DETAIL, ['p2k3-monitoring-detail/index', '_ppId' => $model->powerPlant->id, 'pmId' => $model->id], ['class' => 'btn btn-xs', 'data' => ['method' => 'post']]);
+        return Html::a('<i class="ace-icon fa fa-circle bigger-120"></i> ' . AppLabels::BTN_DETAIL, ['p2k3-monitoring-detail/index', '_ppId' => $model->powerPlant->id, 'pmId' => $model->id], ['class' => 'btn btn-xs']);
     },
     'detail_xs' => function ($url, $model) {
-        return Html::a('<span class="bl0ue"><i class="ace-icon fa fa-circle bigger-120"></i></span>', $url, ['class' => 'tooltip-warning', 'data-rel' => 'tooltip', 'data-original-title' => AppLabels::BTN_DETAIL, 'data' => ['method' => 'post']]);
+        return Html::a('<span class="bl0ue"><i class="ace-icon fa fa-circle bigger-120"></i></span>', $url, ['class' => 'tooltip-warning', 'data-rel' => 'tooltip', 'data-original-title' => AppLabels::BTN_DETAIL]);
     },
 ]);
 $template = Yii::t('app', \common\vendor\AppConstants::GRID_TEMPLATE_DEFAULT_EXTRA, ['additional_buttons' => '{export}{detail}', 'additional_buttons_xs' => '<li>{export_xs}{detail_xs}</li>']);
@@ -54,7 +54,10 @@ $template = Yii::t('app', \common\vendor\AppConstants::GRID_TEMPLATE_DEFAULT_EXT
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'pm_form_month_type_code',
+            [
+                'attribute' => 'pm_form_month_type_code',
+                'value' => 'pm_form_month_type_code_desc'
+            ],
             'pm_year',
 
             [

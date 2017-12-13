@@ -45,6 +45,128 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-xs-12">
+            <div class="table-responsive">
+                <table id="table-hydrant-testing-view" class="<?= AppConstants::TABLE_CLASS_DEFAULT_SMALL; ?>">
+                    <thead>
+                    <tr>
+                        <th rowspan="2">No.</th>
+                        <th rowspan="2">Nomor Hydrant</th>
+                        <th rowspan="2"><?= AppLabels::LOCATION ?></th>
+                        <th rowspan="2">Pompa</th>
+                        <?php foreach (AppConstants::$monthsList as $key => $month) : ?>
+                            <th class="text-center" rowspan="1" colspan="5"><?= $month ?></th>
+                        <?php endforeach; ?>
+                    </tr>
+                    <tr>
+                        <th colspan="1" class="text-center"><?= AppLabels::DATE ?></th>
+                        <th colspan="1" class="text-center"><?= "Pressure (bar)" ?></th>
+                        <th colspan="1" class="text-center"><?= "Flow Rate" ?></th>
+                        <th colspan="1" class="text-center"><?= "J. Vertikal (m)" ?></th>
+                        <th colspan="1" class="text-center"><?= "J. Horizontal (m)" ?></th>
+
+                        <th colspan="1" class="text-center"><?= AppLabels::DATE ?></th>
+                        <th colspan="1" class="text-center"><?= "Pressure (bar)" ?></th>
+                        <th colspan="1" class="text-center"><?= "Flow Rate" ?></th>
+                        <th colspan="1" class="text-center"><?= "J. Vertikal (m)" ?></th>
+                        <th colspan="1" class="text-center"><?= "J. Horizontal (m)" ?></th>
+
+                        <th colspan="1" class="text-center"><?= AppLabels::DATE ?></th>
+                        <th colspan="1" class="text-center"><?= "Pressure (bar)" ?></th>
+                        <th colspan="1" class="text-center"><?= "Flow Rate" ?></th>
+                        <th colspan="1" class="text-center"><?= "J. Vertikal (m)" ?></th>
+                        <th colspan="1" class="text-center"><?= "J. Horizontal (m)" ?></th>
+
+                        <th colspan="1" class="text-center"><?= AppLabels::DATE ?></th>
+                        <th colspan="1" class="text-center"><?= "Pressure (bar)" ?></th>
+                        <th colspan="1" class="text-center"><?= "Flow Rate" ?></th>
+                        <th colspan="1" class="text-center"><?= "J. Vertikal (m)" ?></th>
+                        <th colspan="1" class="text-center"><?= "J. Horizontal (m)" ?></th>
+
+                        <th colspan="1" class="text-center"><?= AppLabels::DATE ?></th>
+                        <th colspan="1" class="text-center"><?= "Pressure (bar)" ?></th>
+                        <th colspan="1" class="text-center"><?= "Flow Rate" ?></th>
+                        <th colspan="1" class="text-center"><?= "J. Vertikal (m)" ?></th>
+                        <th colspan="1" class="text-center"><?= "J. Horizontal (m)" ?></th>
+
+                        <th colspan="1" class="text-center"><?= AppLabels::DATE ?></th>
+                        <th colspan="1" class="text-center"><?= "Pressure (bar)" ?></th>
+                        <th colspan="1" class="text-center"><?= "Flow Rate" ?></th>
+                        <th colspan="1" class="text-center"><?= "J. Vertikal (m)" ?></th>
+                        <th colspan="1" class="text-center"><?= "J. Horizontal (m)" ?></th>
+
+                        <th colspan="1" class="text-center"><?= AppLabels::DATE ?></th>
+                        <th colspan="1" class="text-center"><?= "Pressure (bar)" ?></th>
+                        <th colspan="1" class="text-center"><?= "Flow Rate" ?></th>
+                        <th colspan="1" class="text-center"><?= "J. Vertikal (m)" ?></th>
+                        <th colspan="1" class="text-center"><?= "J. Horizontal (m)" ?></th>
+
+                        <th colspan="1" class="text-center"><?= AppLabels::DATE ?></th>
+                        <th colspan="1" class="text-center"><?= "Pressure (bar)" ?></th>
+                        <th colspan="1" class="text-center"><?= "Flow Rate" ?></th>
+                        <th colspan="1" class="text-center"><?= "J. Vertikal (m)" ?></th>
+                        <th colspan="1" class="text-center"><?= "J. Horizontal (m)" ?></th>
+
+                        <th colspan="1" class="text-center"><?= AppLabels::DATE ?></th>
+                        <th colspan="1" class="text-center"><?= "Pressure (bar)" ?></th>
+                        <th colspan="1" class="text-center"><?= "Flow Rate" ?></th>
+                        <th colspan="1" class="text-center"><?= "J. Vertikal (m)" ?></th>
+                        <th colspan="1" class="text-center"><?= "J. Horizontal (m)" ?></th>
+
+                        <th colspan="1" class="text-center"><?= AppLabels::DATE ?></th>
+                        <th colspan="1" class="text-center"><?= "Pressure (bar)" ?></th>
+                        <th colspan="1" class="text-center"><?= "Flow Rate" ?></th>
+                        <th colspan="1" class="text-center"><?= "J. Vertikal (m)" ?></th>
+                        <th colspan="1" class="text-center"><?= "J. Horizontal (m)" ?></th>
+
+                        <th colspan="1" class="text-center"><?= AppLabels::DATE ?></th>
+                        <th colspan="1" class="text-center"><?= "Pressure (bar)" ?></th>
+                        <th colspan="1" class="text-center"><?= "Flow Rate" ?></th>
+                        <th colspan="1" class="text-center"><?= "J. Vertikal (m)" ?></th>
+                        <th colspan="1" class="text-center"><?= "J. Horizontal (m)" ?></th>
+
+                        <th colspan="1" class="text-center"><?= AppLabels::DATE ?></th>
+                        <th colspan="1" class="text-center"><?= "Pressure (bar)" ?></th>
+                        <th colspan="1" class="text-center"><?= "Flow Rate" ?></th>
+                        <th colspan="1" class="text-center"><?= "J. Vertikal (m)" ?></th>
+                        <th colspan="1" class="text-center"><?= "J. Horizontal (m)" ?></th>
+
+                    </tr>
+
+                    </thead>
+                    <tbody>
+                        <?php foreach($model->hydrantTestingDetails as $key => $value) : ?>
+                            <tr>
+                                <td rowspan="2" class="text-center"><?= ($key+1) ?></td>
+                                <td rowspan="2" class="text-center"><?= $value->htd_number ?></td>
+                                <td rowspan="2" class="text-center"><?= $value->htd_location ?></td>
+                                <td class="text-center">Electrical Pump</td>
+                                <?php foreach($value->htdMonthsElectrical as $key1 => $value1) : ?>
+                                    <td class="text-center"><?= $value1->htdm_date ?></td>
+                                    <td class="text-center"><?= $value1->htdm_pressure ?></td>
+                                    <td class="text-center"><?= $value1->htdm_flow_rate ?></td>
+                                    <td class="text-center"><?= $value1->htdm_vertical ?></td>
+                                    <td class="text-center"><?= $value1->htdm_horizontal ?></td>
+                                <?php endforeach; ?>
+                            </tr>
+                            <tr>
+                                <td class="text-center">Diesel Pump</td>
+                                <?php foreach($value->htdMonthsDiesel as $key1 => $value1) : ?>
+                                    <td class="text-center"><?= $value1->htdm_date ?></td>
+                                    <td class="text-center"><?= $value1->htdm_pressure ?></td>
+                                    <td class="text-center"><?= $value1->htdm_flow_rate ?></td>
+                                    <td class="text-center"><?= $value1->htdm_vertical ?></td>
+                                    <td class="text-center"><?= $value1->htdm_horizontal ?></td>
+                                <?php endforeach; ?>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
             <?= ViewButton::widget([
                 'model' => $model,
                 'options' => [

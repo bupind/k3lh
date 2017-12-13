@@ -672,7 +672,7 @@ class SiteController extends AppController {
                                                                                     'icon-class' => 'blue',
                                                                                     'additionalParameters' => [
                                                                                         'children' => [
-                                                                                            '5531711' => ['text' => Html::a('<i class="ace-icon fa fa-upload blue"></i> ' .'Form'. AppLabels::FORM_K3_SUPERVISION, ['/k3-supervision', '_ppId' => $powerPlant->id]), 'type' => 'item'],
+                                                                                            '5531711' => ['text' => Html::a('<i class="ace-icon fa fa-upload blue"></i> ' .'Form '. AppLabels::FORM_K3_SUPERVISION, ['/k3-supervision', '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                                                             '5531712' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Penunjukan Pengawas', 'type' => 'item'],
                                                                                             '5531713' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Sertifikat Pengawas', 'type' => 'item'],
                                                                                         ]
@@ -908,7 +908,7 @@ class SiteController extends AppController {
                                                             'icon-class' => 'blue',
                                                             'additionalParameters' => [
                                                                 'children' => [
-                                                                    '55661' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Data Nearmiss', ['/work-accident', '_ppId' => $powerPlant->id]), 'type' => 'item'],
+                                                                    '55661' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Data Nearmiss', ['/work-accident', '_ppId' => $powerPlant->id, 'wat' => AppConstants::WORK_ACCIDENT_NEARMISS]), 'type' => 'item'],
                                                                 ]
                                                             ]
                                                         ],
@@ -918,7 +918,7 @@ class SiteController extends AppController {
                                                             'icon-class' => 'blue',
                                                             'additionalParameters' => [
                                                                 'children' => [
-                                                                    '55671' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Kecelakaan Kerja', ['/work-accident', '_ppId' => $powerPlant->id]), 'type' => 'item'],
+                                                                    '55671' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Kecelakaan Kerja', ['/work-accident', '_ppId' => $powerPlant->id, 'wat' => AppConstants::WORK_ACCIDENT_KECELAKAAN_KERJA]), 'type' => 'item'],
                                                                     '55672' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Kecelakaan Kerja', 'type' => 'item'],
                                                                 ]
                                                             ]
@@ -929,7 +929,7 @@ class SiteController extends AppController {
                                                             'icon-class' => 'blue',
                                                             'additionalParameters' => [
                                                                 'children' => [
-                                                                    '55681' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Kecelakaan Instalasi', ['/work-accident', '_ppId' => $powerPlant->id]), 'type' => 'item'],
+                                                                    '55681' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Kecelakaan Instalasi', ['/work-accident', '_ppId' => $powerPlant->id, 'wat' => AppConstants::WORK_ACCIDENT_KECELAKAAN_INSTALASI]), 'type' => 'item'],
                                                                     '55682' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Kecelakaan Instalasi', 'type' => 'item'],
                                                                 ]
                                                             ]
@@ -940,7 +940,7 @@ class SiteController extends AppController {
                                                             'icon-class' => 'blue',
                                                             'additionalParameters' => [
                                                                 'children' => [
-                                                                    '55691' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Kecelakaan Umum', ['/work-accident', '_ppId' => $powerPlant->id]), 'type' => 'item'],
+                                                                    '55691' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> Form Kecelakaan Umum', ['/work-accident', '_ppId' => $powerPlant->id, 'wat' => AppConstants::WORK_ACCIDENT_KECELAKAAN_UMUM]), 'type' => 'item'],
                                                                     '55692' => ['text' => '<i class="ace-icon fa fa-upload blue"></i> Upload Kecelakaan Umum', 'type' => 'item'],
                                                                 ]
                                                             ]
