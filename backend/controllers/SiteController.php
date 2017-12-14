@@ -1012,7 +1012,7 @@ class SiteController extends AppController {
                                                 'icon-class' => 'blue',
                                                 'additionalParameters' => [
                                                     'children' => [
-                                                        '7711' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . 'Form ML K3L', ['/maturity-level']), 'type' => 'item'],
+                                                        '7711' => ['text' => Html::a('<i class="ace-icon fa fa-file-text-o blue"></i> ' . 'Form ML K3L', ['/maturity-level-k3l', '_ppId' => $powerPlant->id]), 'type' => 'item'],
                                                     ]
                                                 ]
                                             ],

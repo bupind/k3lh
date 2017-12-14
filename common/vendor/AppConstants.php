@@ -101,6 +101,7 @@ class AppConstants {
     // MODULE CODE
     const MODULE_CODE_WORKING_PLAN = 'WORKPLAN';
     const MODULE_CODE_MATURITY_LEVEL = 'MAT_LEV';
+    const MODULE_CODE_MATURITY_LEVEL_K3L = 'MAT_LEV_K3L';
     const MODULE_CODE_ENVIRONMENT_PERMIT = 'ENV_PERM_DTL';
     const MODULE_CODE_ENVIRONMENT_PERMIT_DISTRICT = 'ENV_PERM_DSTRCT';
     const MODULE_CODE_ENVIRONMENT_PERMIT_PROVINCE = 'ENV_PERM_PRVNCE';
@@ -525,6 +526,7 @@ class AppConstants {
     const REPORT_NAME_PPU_CEMS = 'report_pengendalian_pencemaran_udara_cems_%s.xlsx';
     const REPORT_NAME_PPU_AMBIENT = 'report_pengendalian_pencemaran_udara_ambient_%s.xlsx';
     const REPORT_NAME_MATURITY_LEVEL = 'report_maturity_level_%s.xlsx';
+    const REPORT_NAME_MATURITY_LEVEL_K3L = 'report_maturity_level_k3l_%s.xlsx';
     const REPORT_NAME_PPA = 'report_pengendalian_pencemaran_air_%s.xlsx';
     const REPORT_NAME_PPA_BA = 'report_ppa_badan_air_%s.xlsx';
     const REPORT_NAME_PLB3_SA = 'report_plb3_sa_%s.xlsx';

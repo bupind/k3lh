@@ -279,12 +279,15 @@ class AppLabels {
     const IGNORED = 'Abaikan';
     const AUDIT_RESULT = 'Hasil Audit';
     const EFFICIENCY = 'Efisiensi';
+    const EVIDEN = 'Eviden';
     
     // MATURITY LEVEL
     const MATURITY_LEVEL = 'Maturity Level';
+    const MATURITY_LEVEL_K3L = 'Maturity Level K3L';
     const ACTION_PLAN = 'Action Plan';
     const TOTAL_MATURITY = 'Total Nilai Maturity';
     const MATURITY_LEVEL_REPORT_TITLE = 'Maturity Level K2/K3 & Keamanan';
+    const MATURITY_LEVEL_REPORT_K3L_TITLE = 'Maturity Level K3L';
 
     // ENVIRONMENT PERMIT
     const ENVIRONMENT_PERMIT = 'Izin Lingkungan';

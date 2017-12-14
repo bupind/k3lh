@@ -21,6 +21,14 @@ $navs = [
     ],
     [
         'icon' => 'fa-file-text-o',
+        'label' => AppLabels::MATURITY_LEVEL_K3L,
+        'submenu' => [
+            ['icon' => 'fa-file-text-o', 'label' => AppLabels::TITLE, 'url' => ['/maturity-level-k3l-title'], 'controller' => 'maturity-level-k3l-title'],
+            ['icon' => 'fa-file-text-o', 'label' => AppLabels::QUESTION, 'url' => ['/maturity-level-k3l-question'], 'controller' => 'maturity-level-k3l-question'],
+        ]
+    ],
+    [
+        'icon' => 'fa-file-text-o',
         'label' => AppLabels::SMK3,
         'submenu' => [
             ['icon' => 'fa-file-text-o', 'label' => AppLabels::QUESTION, 'url' => ['/smk3-title'], 'controller' => 'smk3-title'],
